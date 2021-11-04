@@ -10,11 +10,11 @@
 
 using namespace obotcha;
 
-extern void testParse();
-extern void testToString();
+extern void testPatchParse();
+extern void testPatchToString();
 
 int main() {
-    testParse();
-    testToString();
+    testPatchParse();
+    testPatchToString();
     return 0;
 }
