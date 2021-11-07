@@ -8,13 +8,13 @@ host="127.0.0.1"
 
 port = 1233
 
-s=socket.socket()
-s.connect(("127.0.0.1",1233))
+s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+s.connect(("::1",1233))
 
 buf=4096*32
 f = open("file",'wb')
 
-print "cccc"
+print("cccc")
 with open('data', 'r') as fp:
     while True:
         data = fp.read(1024*4)
@@ -26,4 +26,4 @@ with open('data', 'r') as fp:
         data1 = s.recv(1024)
 
 
-print "Upload Donwloaded"
+print("Upload Donwloaded")

@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "System.hpp"
@@ -62,7 +62,7 @@ int main() {
 
     stream->open();
 
-    InetAddress addr = createInet4Address(1233);
+    InetAddress addr = createInet6Address(1233);
 
     ServerSocket server = createSocketBuilder()->setAddress(addr)->newServerSocket();
     server->bind();

@@ -7,7 +7,7 @@ import time
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
 
-s.bind(("127.0.0.1", 1234))
+s.bind(("127.0.0.1", 1236))
 
 print "start"
 path = "file"
