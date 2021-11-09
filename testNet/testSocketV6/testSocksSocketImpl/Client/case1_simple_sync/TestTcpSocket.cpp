@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 
 using namespace obotcha;
 
@@ -46,10 +46,11 @@ public:
 
 
 int main() {
-    InetAddress addr = createInet4Address(1213);
+    InetAddress addr = createInet6Address(1213);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
-
+    printf("connect trace1 \n");
     int ret = client->connect();
+    printf("connect result is %d \n",ret);
 
     String resp = createString("hello server");
     client->getOutputStream()->write(resp->toByteArray());
@@ -61,11 +62,11 @@ int main() {
     
     int count = message->counts(createString("hello server"));
     if(message->counts(createString("hello server")) != 50) {
-      printf("---TestDataGramSocket case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+      printf("---TestTcpClient case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
     }
 
     client->close();
     monitor->close();
-    printf("---TestDataGramSocket case1_simple_sync test3 [OK]--- \n");
+    printf("---TestTcpClient case1_simple_sync test3 [OK]--- \n");
     return 0;
 }

@@ -5,11 +5,11 @@ import os
 import socket
 import time
 
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
-s.bind(("127.0.0.1", 1236))
+s.bind(("::1", 1236))
 
-print "start"
+print ("start")
 path = "file"
 
 f = open("file",'wb')
@@ -24,11 +24,11 @@ while True:
     f.flush();
     time.sleep(0.01)
     if not data:
-        print "trace2"
+        print("trace2")
         break
 
 f.close()
 s.close()
 conn.close()
 
-print "File Donwloaded"
+print("File Donwloaded")

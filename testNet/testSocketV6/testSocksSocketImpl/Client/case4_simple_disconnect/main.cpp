@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "System.hpp"
@@ -58,7 +58,7 @@ int main() {
     long sum = 0;
 
     for(int i = 0;i<32*1024;i++) {
-      InetAddress addr = createInet4Address(1234);
+      InetAddress addr = createInet6Address(1234);
       Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
         printf("---TestTcpSocket case4_simple_multi_test test1 [FAILED]--- ,i is %d\n",i);

@@ -14,13 +14,11 @@ class ShutDownThread(threading.Thread):
         self.mconn.close()
 
 
-host="127.0.0.1"
-port = 1234
+s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+s.bind(("::1",1234))
 
-s = socket.socket() 
-s.bind((host,port))
 index = 0
-print "start test"
+print("start test")
 
 threads= []
 s.listen(256)
@@ -37,4 +35,4 @@ for t in threads:
     #print "start join"
     t.join()
 
-print "finish!!!"
+print ("finish!!!")
