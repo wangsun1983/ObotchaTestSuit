@@ -5,22 +5,22 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAge.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAge.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAge c = createHttpAge();
+    HttpHeaderAge c = createHttpHeaderAge();
     c->import("600");
     if(!c->toString()->equals("600")) {
-      printf("---[HttpAge test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAge test toString case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAge test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAge test toString case100] [OK]--- \n");
 
 }

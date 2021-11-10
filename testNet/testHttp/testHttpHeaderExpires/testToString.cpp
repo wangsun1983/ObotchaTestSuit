@@ -5,7 +5,7 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "HttpHeaderExpires.hpp"
 
 using namespace obotcha;

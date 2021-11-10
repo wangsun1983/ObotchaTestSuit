@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "TimeWatcher.hpp"
 
 using namespace obotcha;
@@ -16,18 +16,10 @@ Condition disconnectCond = createCondition();
 String message = createString("");
 
 int main() {
-    InetAddress addr = createInet4Address(1218);
+    InetAddress addr = createInet6Address(1222);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
-
-    //int fd = client->getFileDescriptor()->getFd();
-    //printf("fd is %d \n",fd);
-    //if(fcntl(fd, F_GETFL, 0) & O_NONBLOCK != 0) {
-    //  printf("it is a nonblock \n");
-    //} else {
-    //  printf("it is a block io \n");
-    //}
 
     String resp = createString("hello server");
     client->getOutputStream()->write(resp->toByteArray());
@@ -39,7 +31,7 @@ int main() {
     while(count < 1024) {
       ByteArray data = createByteArray(128);
       watcher->start();
-      int len =client->getInputStream()->read(data);
+      int len = client->getInputStream()->read(data);
       long interval = watcher->stop();
 
       if(len == 0) {
@@ -54,6 +46,7 @@ int main() {
       }
       count++;
     }
+    client->close();
 
     printf("---TestSocket IO Block test2 [OK]---\n");
     return 0;

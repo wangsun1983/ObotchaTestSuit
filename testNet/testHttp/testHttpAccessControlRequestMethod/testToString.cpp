@@ -5,22 +5,22 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAccessControlRequestMethod.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAccessControlRequestMethod.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAccessControlRequestMethod c = createHttpAccessControlRequestMethod();
+    HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
     c->import("POST");
     if(!c->toString()->equals("POST")) {
-      printf("---[HttpAccessControlRequestMethod test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlRequestMethod test toString case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAccessControlRequestMethod test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAccessControlRequestMethod test toString case100] [OK]--- \n");
 
 }

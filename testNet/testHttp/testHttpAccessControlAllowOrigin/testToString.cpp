@@ -5,32 +5,32 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAccessControlAllowOrigin.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAccessControlAllowOrigin.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAccessControlAllowOrigin c = createHttpAccessControlAllowOrigin();
+    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->import("https://developer.mozilla.org");
     if(!c->toString()->equals("https://developer.mozilla.org")) {
-      printf("---[HttpAccessControlAllowOrigin test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlAllowOrigin test toString case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
   while(1) {
-    HttpAccessControlAllowOrigin c = createHttpAccessControlAllowOrigin();
+    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->import("*");
     if(!c->toString()->equals("*")) {
-      printf("---[HttpAccessControlAllowOrigin test toString case2] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlAllowOrigin test toString case2] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAccessControlAllowOrigin test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAccessControlAllowOrigin test toString case100] [OK]--- \n");
 
 }

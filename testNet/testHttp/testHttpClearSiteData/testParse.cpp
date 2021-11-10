@@ -5,39 +5,39 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
-#include "HttpAllow.hpp"
-#include "HttpClearSiteData.hpp"
+#include "HttpHeaderAllow.hpp"
+#include "HttpHeaderClearSiteData.hpp"
 
 using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpClearSiteData c = createHttpClearSiteData();
+    HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
     c->import("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
     if(c->isCache()) {
-      printf("---[HttpClearSiteData test Parse case1] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case1] [FAILED]--- \n");
       break;
     }
 
     if(c->isCookies()) {
-      printf("---[HttpClearSiteData test Parse case2] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case2] [FAILED]--- \n");
       break;
     }
 
     if(c->isStorage()) {
-      printf("---[HttpClearSiteData test Parse case3] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case3] [FAILED]--- \n");
       break;
     }
 
     if(c->isExecutionContexts()) {
-      printf("---[HttpClearSiteData test Parse case4] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case4] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpClearSiteData test Parse case100] [OK]--- \n");
+  printf("---[HttpHeaderClearSiteData test Parse case100] [OK]--- \n");
 
 }

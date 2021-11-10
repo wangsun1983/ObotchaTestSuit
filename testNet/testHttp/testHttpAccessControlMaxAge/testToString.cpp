@@ -5,22 +5,22 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAccessControlMaxAge.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAccessControlMaxAge.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAccessControlMaxAge c = createHttpAccessControlMaxAge();
+    HttpHeaderAccessControlMaxAge c = createHttpHeaderAccessControlMaxAge();
     c->import("600");
     if(!c->toString()->equals("600")) {
-      printf("---[HttpAccessControlMaxAge test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlMaxAge test toString case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAccessControlMaxAge test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAccessControlMaxAge test toString case100] [OK]--- \n");
 
 }

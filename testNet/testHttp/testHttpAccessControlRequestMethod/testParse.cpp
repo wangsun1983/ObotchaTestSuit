@@ -5,24 +5,24 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
-#include "HttpAccessControlRequestMethod.hpp"
+#include "HttpHeaderAccessControlRequestMethod.hpp"
 #include "HttpMethod.hpp"
 
 using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpAccessControlRequestMethod c = createHttpAccessControlRequestMethod();
+    HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
     c->import("POST");
     if(c->get() != st(HttpMethod)::Post){
-      printf("---[HttpAccessControlRequestMethod test Parse case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlRequestMethod test Parse case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAccessControlRequestMethod test Parse case100] [OK]--- \n");
+  printf("---[HttpHeaderAccessControlRequestMethod test Parse case100] [OK]--- \n");
 
 }

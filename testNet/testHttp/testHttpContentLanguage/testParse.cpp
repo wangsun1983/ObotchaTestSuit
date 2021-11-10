@@ -5,30 +5,30 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
-#include "HttpAllow.hpp"
-#include "HttpContentLanguage.hpp"
+#include "HttpHeaderAllow.hpp"
+#include "HttpHeaderContentLanguage.hpp"
 
 using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpContentLanguage c = createHttpContentLanguage();
+    HttpHeaderContentLanguage c = createHttpHeaderContentLanguage();
     c->import("de-DE, en-CA");
     auto list = c->get();
     if(!list->get(0)->equals("de-DE")) {
-      printf("---[HttpContentLanguage test Parse case1] [FAILED]--- \n");
+      printf("---[HttpHeaderContentLanguage test Parse case1] [FAILED]--- \n");
       break;
     }
 
     if(!list->get(1)->equals("en-CA")) {
-      printf("---[HttpContentLanguage test Parse case2] [FAILED]--- \n");
+      printf("---[HttpHeaderContentLanguage test Parse case2] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpContentLanguage test Parse case100] [OK]--- \n");
+  printf("---[HttpHeaderContentLanguage test Parse case100] [OK]--- \n");
 
 }

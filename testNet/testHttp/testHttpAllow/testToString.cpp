@@ -5,22 +5,22 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAllow.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAllow.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAllow c = createHttpAllow();
+    HttpHeaderAllow c = createHttpHeaderAllow();
     c->import("POST, GET, OPTIONS");
     if(!c->toString()->equals("POST, GET, OPTIONS")) {
-      printf("---[HttpAllow test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
+      printf("---[HttpHeaderAllow test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpAllow test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAllow test toString case100] [OK]--- \n");
 
 }

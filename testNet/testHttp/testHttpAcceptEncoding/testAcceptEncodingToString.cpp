@@ -5,29 +5,29 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAcceptEncoding.hpp"
+#include "HttpHeaderAcceptEncoding.hpp"
 
 using namespace obotcha;
 
 void testEncodingToString() {
   while(1) {
-    HttpAcceptEncoding encoding1 = createHttpAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
     encoding1->import("gzip,compress,br");
     if(!encoding1->toString()->equals("gzip,compress,br")) {
-      printf("---[HttpAcceptEncoding test toString case1] [FAILED]--- encoding is %s\n",encoding1->toString()->toChars());
+      printf("---[HttpHeaderAcceptEncoding test toString case1] [FAILED]--- encoding is %s\n",encoding1->toString()->toChars());
     }
     break;
   }
 
   while(1) {
-    HttpAcceptEncoding encoding1 = createHttpAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
     encoding1->import("deflate,gzip;q=1,*;q=0.5");
     if(!encoding1->toString()->equals("deflate,gzip;q=1,*;q=0.5")) {
-      printf("---[HttpAcceptEncoding test toString case2] [FAILED]--- encoding is %s\n",encoding1->toString()->toChars());
+      printf("---[HttpHeaderAcceptEncoding test toString case2] [FAILED]--- encoding is %s\n",encoding1->toString()->toChars());
     }
     break;
   }
 
-  printf("---[HttpAcceptEncoding test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAcceptEncoding test toString case100] [OK]--- \n");
 
 }

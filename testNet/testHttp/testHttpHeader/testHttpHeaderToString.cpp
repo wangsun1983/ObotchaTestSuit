@@ -8,7 +8,7 @@
 #include "HttpHeaderParser.hpp"
 #include "ByteRingArrayReader.hpp"
 #include "HttpMethod.hpp"
-#include "HttpAcceptCharSet.hpp"
+#include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
 #include "HttpProtocol.hpp"
 
@@ -78,29 +78,29 @@ void testHttpHeaderToString() {
       break;
     }
 
-    ArrayList<HttpAcceptCharSetItem> charsets1 = charset1->getCharSets();
-    ArrayList<HttpAcceptCharSetItem> charsets2 = charset1->getCharSets();
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets1 = charset1->getCharSets();
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets2 = charset1->getCharSets();
     if(charsets1->size() != 2 || charsets2->size() != 2) {
       printf("---[HttpHeaderToString test Parse case5] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptCharSetItem charSetItem1_0 = charsets1->get(0);
-    HttpAcceptCharSetItem charSetItem2_0 = charsets2->get(0);
+    HttpHeaderAcceptCharSetItem charSetItem1_0 = charsets1->get(0);
+    HttpHeaderAcceptCharSetItem charSetItem2_0 = charsets2->get(0);
     if(!charSetItem1_0->type->equalsIgnoreCase(charSetItem2_0->type)) {
       printf("---[HttpHeaderToString test Parse case6] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptCharSetItem charSetItem1_1 = charsets1->get(1);
-    HttpAcceptCharSetItem charSetItem2_1 = charsets2->get(1);
+    HttpHeaderAcceptCharSetItem charSetItem1_1 = charsets1->get(1);
+    HttpHeaderAcceptCharSetItem charSetItem2_1 = charsets2->get(1);
     if(!charSetItem1_1->type->equalsIgnoreCase(charSetItem2_1->type)) {
       printf("---[HttpHeaderToString test Parse case7] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptCharSetItem charSetItem1_2 = charsets1->get(1);
-    HttpAcceptCharSetItem charSetItem2_2 = charsets2->get(1);
+    HttpHeaderAcceptCharSetItem charSetItem1_2 = charsets1->get(1);
+    HttpHeaderAcceptCharSetItem charSetItem2_2 = charsets2->get(1);
     if(st(Math)::compareFloat(charSetItem1_2->weight,charSetItem2_2->weight) != st(Math)::AlmostEqual) {
       printf("---[HttpHeaderToString test Parse case8] [FAILED]--- \n");
       break;
@@ -108,25 +108,25 @@ void testHttpHeaderToString() {
 
     //Encoding
     //Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r\n
-    HttpAcceptEncoding encoding1 = header1->getAcceptEncoding();
-    HttpAcceptEncoding encoding2 = header2->getAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = header1->getAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding2 = header2->getAcceptEncoding();
 
-    ArrayList<HttpAcceptEncodingItem> encodings1 = encoding1->getEncodings();
-    ArrayList<HttpAcceptEncodingItem> encodings2 = encoding2->getEncodings();
+    ArrayList<HttpHeaderAcceptEncodingItem> encodings1 = encoding1->getEncodings();
+    ArrayList<HttpHeaderAcceptEncodingItem> encodings2 = encoding2->getEncodings();
     if(encodings1->size() != 3 || encodings2->size() != 3) {
       printf("---[HttpHeaderToString test Parse case9] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptEncodingItem encodingItem1_0 = encodings1->get(0);
-    HttpAcceptEncodingItem encodingItem2_0 = encodings2->get(0);
+    HttpHeaderAcceptEncodingItem encodingItem1_0 = encodings1->get(0);
+    HttpHeaderAcceptEncodingItem encodingItem2_0 = encodings2->get(0);
     if(!encodingItem1_0->type->equals(encodingItem1_0->type)) {
       printf("---[HttpHeaderToString test Parse case9] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptEncodingItem encodingItem1_1 = encodings1->get(1);
-    HttpAcceptEncodingItem encodingItem2_1 = encodings2->get(1);
+    HttpHeaderAcceptEncodingItem encodingItem1_1 = encodings1->get(1);
+    HttpHeaderAcceptEncodingItem encodingItem2_1 = encodings2->get(1);
     if(!encodingItem1_1->type->equals(encodingItem2_1->type)) {
       printf("---[HttpHeaderToString test Parse case10] [FAILED]--- \n");
       break;
@@ -137,8 +137,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    HttpAcceptEncodingItem encodingItem1_2 = encodings1->get(2);
-    HttpAcceptEncodingItem encodingItem2_2 = encodings2->get(2);
+    HttpHeaderAcceptEncodingItem encodingItem1_2 = encodings1->get(2);
+    HttpHeaderAcceptEncodingItem encodingItem2_2 = encodings2->get(2);
     if(!encodingItem1_2->type->equals(encodingItem2_2->type)) {
       printf("---[HttpHeaderToString test Parse case12] [FAILED]--- \n");
       break;
@@ -150,27 +150,27 @@ void testHttpHeaderToString() {
     }
 
     //Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
-    HttpAcceptLanguage mAcceptLang1 = header1->getAcceptLanguage();
-    HttpAcceptLanguage mAcceptLang2 = header2->getAcceptLanguage();
+    HttpHeaderAcceptLanguage mAcceptLang1 = header1->getAcceptLanguage();
+    HttpHeaderAcceptLanguage mAcceptLang2 = header2->getAcceptLanguage();
 
-    ArrayList<HttpAcceptLanguageItem> langs1 = mAcceptLang1->getLanguages();
-    ArrayList<HttpAcceptLanguageItem> langs2 = mAcceptLang2->getLanguages();
+    ArrayList<HttpHeaderAcceptLanguageItem> langs1 = mAcceptLang1->getLanguages();
+    ArrayList<HttpHeaderAcceptLanguageItem> langs2 = mAcceptLang2->getLanguages();
 
     if(langs1->size() != 5 || langs2->size() != 5) {
       printf("---[HttpHeaderToString test Parse case14] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptLanguageItem langItem1_0 = langs1->get(0);
-    HttpAcceptLanguageItem langItem2_0 = langs2->get(0);
+    HttpHeaderAcceptLanguageItem langItem1_0 = langs1->get(0);
+    HttpHeaderAcceptLanguageItem langItem2_0 = langs2->get(0);
 
     if(!langItem1_0->lang->equals(langItem2_0->lang)) {
       printf("---[HttpHeaderToString test Parse case15] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptLanguageItem langItem1_1 = langs1->get(1);
-    HttpAcceptLanguageItem langItem2_1 = langs2->get(1);
+    HttpHeaderAcceptLanguageItem langItem1_1 = langs1->get(1);
+    HttpHeaderAcceptLanguageItem langItem2_1 = langs2->get(1);
 
     if(!langItem1_1->lang->equals(langItem2_1->lang)) {
       printf("---[HttpHeaderToString test Parse case16] [FAILED]--- \n");
@@ -182,8 +182,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    HttpAcceptLanguageItem langItem1_2 = langs1->get(2);
-    HttpAcceptLanguageItem langItem2_2 = langs2->get(2);
+    HttpHeaderAcceptLanguageItem langItem1_2 = langs1->get(2);
+    HttpHeaderAcceptLanguageItem langItem2_2 = langs2->get(2);
     if(!langItem1_2->lang->equals(langItem2_2->lang)) {
       printf("---[HttpHeaderToString test Parse case18] [FAILED]--- \n");
       break;
@@ -194,8 +194,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    HttpAcceptLanguageItem langItem1_3 = langs1->get(3);
-    HttpAcceptLanguageItem langItem2_3 = langs2->get(3);
+    HttpHeaderAcceptLanguageItem langItem1_3 = langs1->get(3);
+    HttpHeaderAcceptLanguageItem langItem2_3 = langs2->get(3);
     if(!langItem1_3->lang->equals(langItem2_3->lang)) {
       printf("---[HttpHeaderToString test Parse case20] [FAILED]--- \n");
       break;
@@ -206,8 +206,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    HttpAcceptLanguageItem langItem1_4 = langs1->get(4);
-    HttpAcceptLanguageItem langItem2_4 = langs2->get(4);
+    HttpHeaderAcceptLanguageItem langItem1_4 = langs1->get(4);
+    HttpHeaderAcceptLanguageItem langItem2_4 = langs2->get(4);
     if(!langItem1_4->lang->equals(langItem2_4->lang)) {
       printf("---[HttpHeaderToString test Parse case22] [FAILED]--- \n");
       break;
@@ -219,52 +219,52 @@ void testHttpHeaderToString() {
     }
 
     //Accept-Patch: application/example, text/example
-    HttpAcceptPatch patch1 = header1->getAcceptPatch();
-    HttpAcceptPatch patch2 = header2->getAcceptPatch();
+    HttpHeaderAcceptPatch patch1 = header1->getAcceptPatch();
+    HttpHeaderAcceptPatch patch2 = header2->getAcceptPatch();
 
-    ArrayList<HttpAcceptPatchItem> patches1 = patch1->getAcceptPatches();
-    ArrayList<HttpAcceptPatchItem> patches2 = patch2->getAcceptPatches();
+    ArrayList<HttpHeaderAcceptPatchItem> patches1 = patch1->getAcceptPatches();
+    ArrayList<HttpHeaderAcceptPatchItem> patches2 = patch2->getAcceptPatches();
 
-    HttpAcceptPatchItem patchItem1_0 = patches1->get(0);
-    HttpAcceptPatchItem patchItem2_0 = patches2->get(0);
+    HttpHeaderAcceptPatchItem patchItem1_0 = patches1->get(0);
+    HttpHeaderAcceptPatchItem patchItem2_0 = patches2->get(0);
     if(!patchItem1_0->type->equals(patchItem2_0->type)) {
       printf("---[HttpHeaderToString test Parse case24] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptPatchItem patchItem1_1 = patches1->get(1);
-    HttpAcceptPatchItem patchItem2_1 = patches2->get(1);
+    HttpHeaderAcceptPatchItem patchItem1_1 = patches1->get(1);
+    HttpHeaderAcceptPatchItem patchItem2_1 = patches2->get(1);
     if(!patchItem1_1->type->equals(patchItem2_1->type)) {
       printf("---[HttpHeaderToString test Parse case25] [FAILED]--- \n");
       break;
     }
 
     //Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8
-    HttpAccept accept1 = header1->getAccept();
-    HttpAccept accept2 = header2->getAccept();
-    ArrayList<HttpAcceptItem> accepts1 = accept1->getAccepts();
-    ArrayList<HttpAcceptItem> accepts2 = accept2->getAccepts();
+    HttpHeaderAccept accept1 = header1->getAccept();
+    HttpHeaderAccept accept2 = header2->getAccept();
+    ArrayList<HttpHeaderAcceptItem> accepts1 = accept1->getAccepts();
+    ArrayList<HttpHeaderAcceptItem> accepts2 = accept2->getAccepts();
     if(accepts1->size() != accepts2->size()) {
       printf("---[HttpHeaderToString test Parse case26_0] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptItem acceptItem1_0 = accepts1->get(0);
-    HttpAcceptItem acceptItem2_0 = accepts2->get(0);
+    HttpHeaderAcceptItem acceptItem1_0 = accepts1->get(0);
+    HttpHeaderAcceptItem acceptItem2_0 = accepts2->get(0);
     if(!acceptItem1_0->type->equals(acceptItem2_0->type)) {
       printf("---[HttpHeaderToString test Parse case26] [FAILED]---\n");
       break;
     }
 
-    HttpAcceptItem acceptItem1_1 = accepts1->get(1);
-    HttpAcceptItem acceptItem2_1 = accepts2->get(1);
+    HttpHeaderAcceptItem acceptItem1_1 = accepts1->get(1);
+    HttpHeaderAcceptItem acceptItem2_1 = accepts2->get(1);
     if(!acceptItem1_1->type->equals(acceptItem2_1->type)) {
       printf("---[HttpHeaderToString test Parse case27] [FAILED]--- \n");
       break;
     }
 
-    HttpAcceptItem acceptItem1_2 = accepts1->get(2);
-    HttpAcceptItem acceptItem2_2 = accepts2->get(2);
+    HttpHeaderAcceptItem acceptItem1_2 = accepts1->get(2);
+    HttpHeaderAcceptItem acceptItem2_2 = accepts2->get(2);
     if(!acceptItem1_2->type->equals(acceptItem2_2->type)) {
       printf("---[HttpHeaderToString test Parse case28] [FAILED]--- \n");
       break;
@@ -275,8 +275,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    HttpAcceptItem acceptItem1_3 = accepts1->get(3);
-    HttpAcceptItem acceptItem2_3 = accepts2->get(3);
+    HttpHeaderAcceptItem acceptItem1_3 = accepts1->get(3);
+    HttpHeaderAcceptItem acceptItem2_3 = accepts2->get(3);
     if(!acceptItem1_3->type->equals(acceptItem2_3->type)) {
       printf("---[HttpHeaderToString test Parse case30] [FAILED]--- \n");
       break;
@@ -296,8 +296,8 @@ void testHttpHeaderToString() {
     }
 
     //Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
-    HttpAuthorization authorization1 = header1->getAuthorization();
-    HttpAuthorization authorization2 = header2->getAuthorization();
+    HttpHeaderAuthorization authorization1 = header1->getAuthorization();
+    HttpHeaderAuthorization authorization2 = header2->getAuthorization();
     if(!authorization1->type->equals(authorization2->type)) {
       printf("---[HttpHeaderToString test Parse case33] [FAILED]--- \n");
       break;
@@ -309,8 +309,8 @@ void testHttpHeaderToString() {
     }
 
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
-    HttpContentDisposition contentDisp1 = header1->getContentDisposition();
-    HttpContentDisposition contentDisp2 = header2->getContentDisposition();
+    HttpHeaderContentDisposition contentDisp1 = header1->getContentDisposition();
+    HttpHeaderContentDisposition contentDisp2 = header2->getContentDisposition();
     if(!contentDisp1->type->equals(contentDisp2->type)) {
       printf("---[HttpHeaderToString test Parse case35] [FAILED]--- \n");
       break;
@@ -335,8 +335,8 @@ void testHttpHeaderToString() {
     }
 
     //Cache-Control: max-age=1000
-    HttpCacheControl cachecontrol1 = header1->getCacheControl();
-    HttpCacheControl cachecontrol2 = header2->getCacheControl();
+    HttpHeaderCacheControl cachecontrol1 = header1->getCacheControl();
+    HttpHeaderCacheControl cachecontrol2 = header2->getCacheControl();
     if(cachecontrol1->maxAgeSeconds() != cachecontrol2->maxAgeSeconds()) {
       printf("---[HttpHeaderToString test Parse case39] [FAILED]--- \n");
       break;

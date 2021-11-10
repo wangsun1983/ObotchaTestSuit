@@ -5,23 +5,23 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
-#include "HttpAge.hpp"
+#include "HttpHeaderAge.hpp"
 #include "HttpMethod.hpp"
 
 using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpAge c = createHttpAge();
+    HttpHeaderAge c = createHttpHeaderAge();
     c->import("600");
     if(c->get() != 600) {
-      printf("---[HttpAge test Parse case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAge test Parse case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAge test Parse case100] [OK]--- \n");
+  printf("---[HttpHeaderAge test Parse case100] [OK]--- \n");
 }

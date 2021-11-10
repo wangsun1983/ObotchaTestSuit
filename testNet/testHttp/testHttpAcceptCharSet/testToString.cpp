@@ -5,41 +5,41 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAcceptCharSet.hpp"
+#include "HttpHeaderAcceptCharSet.hpp"
 
 using namespace obotcha;
 
 void testCharSetToString() {
   while(1) {
-    HttpAcceptCharSet charset = createHttpAcceptCharSet();
+    HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->import("iso-8859-1");
     if(!charset->toString()->equals("iso-8859-1")) {
-      printf("---[HttpAcceptCharSet test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAcceptCharSet test toString case1] [FAILED]--- \n");
       break;
     }
     break;
   }
 
   while(1) {
-    HttpAcceptCharSet charset = createHttpAcceptCharSet();
+    HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->import("utf-8, iso-8859-1;q=0.5");
     if(!charset->toString()->equals("utf-8, iso-8859-1;q=0.5")) {
-      printf("---[HttpAcceptCharSet test toString case2] [FAILED]---,str is %s \n",charset->toString()->toChars());
+      printf("---[HttpHeaderAcceptCharSet test toString case2] [FAILED]---,str is %s \n",charset->toString()->toChars());
       break;
     }
     break;
   }
 
   while(1) {
-    HttpAcceptCharSet charset = createHttpAcceptCharSet();
+    HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->import("utf-8, iso-8859-1;q=0.5, *;q=0.1");
     if(!charset->toString()->equals("utf-8, iso-8859-1;q=0.5, *;q=0.1")) {
-      printf("---[HttpAcceptCharSet test toString case3] [FAILED]--- \n");
+      printf("---[HttpHeaderAcceptCharSet test toString case3] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAcceptCharSet test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAcceptCharSet test toString case100] [OK]--- \n");
 
 }

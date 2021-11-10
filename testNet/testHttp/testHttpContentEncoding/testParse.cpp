@@ -5,30 +5,30 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
+#include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
-#include "HttpAllow.hpp"
-#include "HttpContentEncoding.hpp"
+#include "HttpHeaderAllow.hpp"
+#include "HttpHeaderContentEncoding"
 
 using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpContentEncoding c = createHttpContentEncoding();
+    HttpHeaderContentEncoding c = createHttpHeaderContentEncoding();
     c->import("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->equals("gzip")) {
-      printf("---[HttpClearSiteData test Parse case1] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case1] [FAILED]--- \n");
       break;
     }
 
     if(!list->get(1)->equals("deflate")) {
-      printf("---[HttpClearSiteData test Parse case2] [FAILED]--- \n");
+      printf("---[HttpHeaderClearSiteData test Parse case2] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpClearSiteData test Parse case100] [OK]--- \n");
+  printf("---[HttpHeaderClearSiteData test Parse case100] [OK]--- \n");
 
 }

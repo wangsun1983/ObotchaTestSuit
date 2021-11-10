@@ -5,17 +5,17 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpAccept.hpp"
-#include "HttpAccessControlRequestHeaders.hpp"
+#include "HttpHeaderAccept.hpp"
+#include "HttpHeaderAccessControlRequestHeaders.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpAccessControlRequestHeaders c = createHttpAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->import("X-PINGOTHER, Content-Type");
     if(!c->toString()->equals("X-PINGOTHER, Content-Type")) {
-      printf("---[HttpAccessControlRequestHeaders test toString case1] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlRequestHeaders test toString case1] [FAILED]--- \n");
       break;
     }
 
@@ -23,15 +23,15 @@ void testToString() {
   }
 
   while(1) {
-    HttpAccessControlRequestHeaders c = createHttpAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->import("X-PINGOTHER");
     if(!c->toString()->equals("X-PINGOTHER")) {
-      printf("---[HttpAccessControlRequestHeaders test toString case3] [FAILED]--- \n");
+      printf("---[HttpHeaderAccessControlRequestHeaders test toString case3] [FAILED]--- \n");
       break;
     }
     break;
   }
 
-  printf("---[HttpAccessControlRequestHeaders test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderAccessControlRequestHeaders test toString case100] [OK]--- \n");
 
 }
