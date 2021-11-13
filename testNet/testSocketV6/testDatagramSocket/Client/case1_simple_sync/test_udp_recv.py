@@ -1,7 +1,9 @@
 import socket
 
-s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-s.bind(("127.0.0.1",1213))
+
+s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+
+s.bind(("::1",1213))
 count = 0
 receive_data,client = s.recvfrom(1024)
 print("hjjjjj")

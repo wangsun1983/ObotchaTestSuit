@@ -1,7 +1,7 @@
 #include "DatagramSocketImpl.hpp"
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "AutoLock.hpp"
 #include "Condition.hpp"
 
@@ -17,8 +17,13 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
+    if(data != nullptr) {
+      printf("data is %s \n",data->toString()->toChars());
+    }
+
     if(isFirst) {
-      int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+      int len = s->getOutputStream()->write(createString("hello client1222")->toByteArray());
+      printf("len is %d \n",len);
       isFirst = false;
       mCond->notify();
       return;
@@ -30,7 +35,7 @@ public:
 };
 
 int main() {
-  InetAddress addr = createInet4Address(1222);
+  InetAddress addr = createInet6Address(1222);
   Socket sock = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
   int result = sock->bind();
   SocketMonitor monitor = createSocketMonitor();
@@ -39,7 +44,7 @@ int main() {
   AutoLock ll(mMutex);
   mCond->wait(mMutex);
 
-  sleep(1);
+  sleep(10);
   int count = message->counts("hello client");
     
   if(message->counts("hello client") != 50) {
