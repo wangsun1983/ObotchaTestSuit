@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "System.hpp"
@@ -28,7 +28,7 @@ int main() {
       }
     }
 
-    InetAddress addr = createInet4Address(1234);
+    InetAddress addr = createInet6Address(1234);
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
 
     int ret = client->connect();

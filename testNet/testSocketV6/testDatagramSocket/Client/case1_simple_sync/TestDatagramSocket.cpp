@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 
 using namespace obotcha;
 
@@ -46,7 +46,7 @@ public:
 
 
 int main() {
-    InetAddress addr = createInet4Address(1213);
+    InetAddress addr = createInet6Address(1215);
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
 
     int ret = client->connect();

@@ -22,7 +22,7 @@ public:
     }
 
     if(isFirst) {
-      int len = s->getOutputStream()->write(createString("hello client1222")->toByteArray());
+      int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
       printf("len is %d \n",len);
       isFirst = false;
       mCond->notify();
@@ -45,6 +45,9 @@ int main() {
   mCond->wait(mMutex);
 
   sleep(10);
+  sock->close();
+  monitor->close();
+  
   int count = message->counts("hello client");
     
   if(message->counts("hello client") != 50) {

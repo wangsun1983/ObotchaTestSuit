@@ -1,23 +1,21 @@
-from socket import *
+import socket
+import time
 import sys
 import select
 import os
 import time
 
-host="127.0.0.1"
 
-port = 1233
-
-s = socket(AF_INET,SOCK_DGRAM)
-addr = (host,port)
+s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+addr = ("::1",1233)
 
 buf=4096*32
 f = open("file",'wb')
 
-print "cccc"
+print("cccc")
 with open('data', 'r') as fp:
     while True:
-        print "aaaa"
+        print("aaaa")
         data = fp.read(1024*4)
         s.sendto(data,addr)
         time.sleep(0.1)
@@ -25,4 +23,4 @@ with open('data', 'r') as fp:
             break;
 
 
-print "Upload Donwloaded"
+print("Upload Donwloaded")

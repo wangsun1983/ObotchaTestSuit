@@ -2,7 +2,7 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "System.hpp"
@@ -22,16 +22,16 @@ public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
       case Message:
-        printf("i get a data,data size is %d \n",data->size());
         stream->write(data);
         filesize -= data->size();
         if(filesize == 0) {
+          printf("start notify \n");
           mCond->notify();
         }
       break;
 
       case Disconnect:
-      //printf("disconnect!!!! \n");
+      printf("disconnect!!!! \n");
       //mCond->notify();
       break;
     }
@@ -62,7 +62,7 @@ int main() {
 
     stream->open();
 
-    InetAddress addr = createInet4Address(1233);
+    InetAddress addr = createInet6Address(1233);
 
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
     client->bind();

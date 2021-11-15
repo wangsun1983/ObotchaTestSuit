@@ -1,13 +1,14 @@
-from socket import *
+import socket
+
 import sys
 import select
 import os
 
-host="127.0.0.1"
+host="::1"
 
 port = 1234
 
-s = socket(AF_INET,SOCK_DGRAM)
+s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
 s.bind((host,port))
 addr = (host,port)
 
