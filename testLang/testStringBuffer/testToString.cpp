@@ -2,13 +2,12 @@
 
 using namespace obotcha;
 
-
-void testAppend() {
+void testToString() {
     while(1) {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append("abc","abc2","abc3");
-      if(!buffer->toString()->equals("abcabc2abc3")) {
-        printf("StringBuffer append test1-------[FAILED] \n");
+      if(!buffer->toString(0,4)->equals("abca")) {
+        printf("StringBuffer toString test1-------[FAILED] \n");
       }
       break;
     }
@@ -16,11 +15,11 @@ void testAppend() {
     while(1) {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append('a','b','c');
-      if(!buffer->toString()->equals("abc")) {
-        printf("StringBuffer append test2-------[FAILED] \n");
+      if(!buffer->toString(0,2)->equals("ab")) {
+        printf("StringBuffer toString test2-------[FAILED] \n");
       }
       break;
     }
 
-    printf("StringBuffer append test100-------[OK] \n");
+    printf("StringBuffer toString test100-------[OK] \n");
 }

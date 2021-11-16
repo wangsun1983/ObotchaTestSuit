@@ -10,8 +10,14 @@
 using namespace obotcha;
 
 extern void testAppend();
+extern void testPerformance();
+extern void testToString();
+extern void testSubString();
 
 int main() {
     testAppend();
+    testToString();
+    testSubString();
+    //testPerformance();
     return 0;
 }
