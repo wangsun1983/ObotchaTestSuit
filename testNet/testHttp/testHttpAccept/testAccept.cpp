@@ -14,7 +14,7 @@ void testEncodingParse() {
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
     encoding1->import("text/html");
-    auto encodings = encoding1->getAccepts();
+    auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       printf("---[HttpHeaderAccept test Parse case1] [FAILED]--- \n");
       break;
@@ -30,7 +30,7 @@ void testEncodingParse() {
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
     encoding1->import("image/*");
-    auto encodings = encoding1->getAccepts();
+    auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       printf("---[HttpHeaderAccept test Parse case3] [FAILED]--- \n");
       break;
@@ -47,7 +47,7 @@ void testEncodingParse() {
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
     encoding1->import("text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8");
-    auto encodings = encoding1->getAccepts();
+    auto encodings = encoding1->get();
     if(encodings->size() != 4) {
       printf("---[HttpHeaderAccept test Parse case5] [FAILED]--- \n");
       break;

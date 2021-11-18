@@ -7,7 +7,8 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderContentLanguage.hpp"
-#include "HttpProtocol.hpp"
+#include "HttpPacket.hpp"
+
 using namespace obotcha;
 
 void testToString() {

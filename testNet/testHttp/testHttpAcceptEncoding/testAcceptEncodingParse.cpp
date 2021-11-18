@@ -13,7 +13,7 @@ void testEncodingParse() {
   while(1) {
     HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
     encoding1->import("gzip, compress, br");
-    auto encodings = encoding1->getEncodings();
+    auto encodings = encoding1->get();
     if(encodings->size() != 3) {
       printf("---[HttpHeaderAcceptEncoding test Parse case1] [FAILED]--- \n");
       break;
@@ -31,7 +31,7 @@ void testEncodingParse() {
   while(1) {
     HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
     encoding1->import("deflate, gzip;q=1.0, *;q=0.5");
-    auto encodings = encoding1->getEncodings();
+    auto encodings = encoding1->get();
     if(encodings->size() != 3) {
       printf("---[HttpHeaderAcceptEncoding test Parse case3] [FAILED]--- \n");
       break;

@@ -31,6 +31,7 @@ extern void TestStringContains();
 extern void TestStringIndexOf();
 extern void TestStringEquals();
 extern void TestCounts();
+extern void trimPerformance();
 
 int main() {
 

@@ -570,7 +570,7 @@ void basetest() {
     String abc2 = "";
     //printf("abc2 size is %d \n",abc2->size());
     if(abc2->size() != 0) {
-      printf("String size test2----------[FAIL] \n");
+      printf("String size test2----------[FAIL] ,abc2 size is %d\n",abc2->size());
       break;
     }
 
@@ -1319,12 +1319,12 @@ void basetest() {
   //  bool startsWith(String v);
   while(1) {
     String abc = "aabbccaa";
-    if(abc->startsWith("aa")) {
+    if(!abc->startsWith("aa")) {
       printf("String startsWith test1-------[FAIL] \n");
       break;
     }
 
-    if(!abc->startsWith("bb")) {
+    if(abc->startsWith("bb")) {
       printf("String startsWith test2-------[FAIL] \n");
       break;
     }

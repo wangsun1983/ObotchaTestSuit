@@ -17,7 +17,7 @@ void testUrlEncodedValueToString() {
     v->set("abc","1");
     v->set("bbb","qq");
     v->set("ccc","ffds");
-    if(!v->toString()->equals("abc=1&bbb=qq&ccc=ffds")) {
+    if(!v->toString()->equals("ccc=ffds&bbb=qq&abc=1")) {
       printf("---[HttpUrlEncodedValue test toString case1] [FAILED]--- v is %s\n",v->toString()->toChars());
     }
     break;

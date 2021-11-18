@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->import("X-Custom-Header, Upgrade-Insecure-Requests");
-    auto list = c->getHeaders();
+    auto list = c->get();
     if(!list->get(0)->equals("X-Custom-Header")) {
       printf("---[HttpHeaderAccessControlAllowHeaders test Parse case1] [FAILED]--- \n");
       break;
@@ -31,7 +31,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->import("*");
-    auto list = c->getHeaders();
+    auto list = c->get();
     if(!list->get(0)->equals("*")) {
       printf("---[HttpHeaderAccessControlAllowHeaders test Parse case3] [FAILED]--- \n");
       break;

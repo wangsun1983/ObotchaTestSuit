@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/time.h>
+
+#include "Thread.hpp"
+#include "Object.hpp"
+#include "HttpMime.hpp"
+#include "HttpHeaderSecFetchDest.hpp"
+#include "Math.hpp"
+
+using namespace obotcha;
+
+void testParse() {
+  while(1) {
+    HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
+    save->import("audio");
+    if(!save->get()->equals("audio")) {
+      printf("---[HttpHeaderSecFetchDest test Parse case1] [FAILED]--- \n");
+      break;
+    }
+    break;
+  }
+
+  while(1) {
+    HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
+    save->import("track");
+    if(!save->get()->equals("track")) {
+      printf("---[HttpHeaderSecFetchDest test Parse case2] [FAILED]--- \n");
+      break;
+    }
+    break;
+  }
+
+  printf("---[HttpHeaderSecFetchDest test Parse case100] [OK]--- \n");
+
+}

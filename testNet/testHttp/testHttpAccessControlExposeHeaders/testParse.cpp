@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
     c->import("Content-Length, X-Kuma-Revision");
-    auto list = c->getHeaders();
+    auto list = c->get();
     String v0 = list->get(0);
     if(!v0->equals("Content-Length")) {
       printf("---[HttpHeaderAccessControlExposeHeaders test Parse case1] [FAILED]--- \n");

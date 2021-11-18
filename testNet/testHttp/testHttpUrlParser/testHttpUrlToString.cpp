@@ -24,7 +24,7 @@ void testHttpUrlToString() {
   while(1) {
     String request =  "http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss";
     HttpUrl url = createHttpUrl(request);
-    if(!url->toString()->equals("http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss")) {
+    if(!url->toString()->equals("http://su:abc@localhost:1234/test.cgi?c=d&a=b#fffsss")) {
       printf("---[HttpUrlToString test case2] [FAILED]--- url is %s\n",url->toString()->toChars());
     }
     break;
@@ -33,7 +33,7 @@ void testHttpUrlToString() {
   while(1) {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
     HttpUrl url = createHttpUrl(request);
-    if(!url->toString()->equals("http://abdd@localhost/test.cgi?a=b&c=d")) {
+    if(!url->toString()->equals("http://abdd@localhost/test.cgi?c=d&a=b")) {
       printf("---[HttpUrlToString test case3] [FAILED]--- \n");
     }
     break;
@@ -65,7 +65,7 @@ void testHttpUrlToString() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss");
-    if(!url->toString()->equals("su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss")) {
+    if(!url->toString()->equals("su:abc@localhost:1234/test.cgi?c=d&a=b#fffsss")) {
       printf("---[HttpUrlToString test case7] [FAILED]---,url is %s \n",url->toString()->toChars());
     }
     break;

@@ -13,7 +13,7 @@ void testPatchParse() {
   while(1) {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("application/example, text/example");
-    auto encodings = encoding1->getAcceptPatches();
+    auto encodings = encoding1->get();
     if(encodings->size() != 2) {
       printf("---[HttpHeaderAcceptPatch test Parse case1] [FAILED]--- \n");
       break;
@@ -30,7 +30,7 @@ void testPatchParse() {
   while(1) {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("text/example;charset=utf-8");
-    auto encodings = encoding1->getAcceptPatches();
+    auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       printf("---[HttpHeaderAcceptPatch test Parse case3] [FAILED]--- \n");
       break;
@@ -52,7 +52,7 @@ void testPatchParse() {
   while(1) {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("application/merge-patch+json");
-    auto encodings = encoding1->getAcceptPatches();
+    auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       printf("---[HttpHeaderAcceptPatch test Parse case5] [FAILED]--- \n");
       break;
@@ -62,7 +62,7 @@ void testPatchParse() {
         printf("---[HttpHeaderAcceptPatch test Parse case6] [FAILED]--- \n");
         break;
     }
-    
+
     break;
   }
 

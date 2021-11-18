@@ -5,7 +5,7 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpContentType.hpp"
+#include "HttpHeaderContentType.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +16,7 @@ public:
 };
 
 #define MEMBER(X) \
-{ st(HttpContentType)::Type##X,st(HttpContentType)::X->toChars()}
+{ st(HttpMime)::Type##X,st(HttpMime)::X->toChars()}
 
 
 NameMap names[1024] = {
@@ -105,7 +105,7 @@ NameMap names[1024] = {
 
 
 void testNameIdConvert() {
-  for(int i = st(HttpContentType)::TypeTextHtml;i <st(HttpContentType)::TypeMax;i++ ) {
+  for(int i = st(HttpMime)::TypeTextHtml;i <st(HttpMime)::TypeMax;i++ ) {
       HttpMime mime = createHttpMime();
       mime->setTypeId(i);
       String f1 = mime->getTypeName();

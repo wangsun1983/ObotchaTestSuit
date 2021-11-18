@@ -8,7 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
 #include "HttpHeaderAllow.hpp"
-#include "HttpHeaderContentEncoding"
+#include "HttpHeaderContentEncoding.hpp"
 
 using namespace obotcha;
 

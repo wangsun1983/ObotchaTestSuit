@@ -5,7 +5,7 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpContentType.hpp"
+#include "HttpHeaderContentType.hpp"
 
 using namespace obotcha;
 
@@ -18,192 +18,192 @@ void check(String suffix,int expectedId) {
 }
 
 void testSuffixIdConvert() {
-  check(st(HttpContentType)::SuffixHtml,st(HttpContentType)::TypeTextHtml);
-  check(st(HttpContentType)::SuffixHtm,st(HttpContentType)::TypeTextHtml);
-  check(st(HttpContentType)::SuffixShtml,st(HttpContentType)::TypeTextHtml);
+  check(st(HttpMime)::SuffixHtml,st(HttpMime)::TypeTextHtml);
+  check(st(HttpMime)::SuffixHtm,st(HttpMime)::TypeTextHtml);
+  check(st(HttpMime)::SuffixShtml,st(HttpMime)::TypeTextHtml);
 
-  check(st(HttpContentType)::SuffixCss,st(HttpContentType)::TypeTextCss);
+  check(st(HttpMime)::SuffixCss,st(HttpMime)::TypeTextCss);
 
-  check(st(HttpContentType)::SuffixXml,st(HttpContentType)::TypeTextXml);
+  check(st(HttpMime)::SuffixXml,st(HttpMime)::TypeTextXml);
 
-  check(st(HttpContentType)::SuffixGif,st(HttpContentType)::TypeImageGif);
+  check(st(HttpMime)::SuffixGif,st(HttpMime)::TypeImageGif);
 
-  check(st(HttpContentType)::SuffixJpeg,st(HttpContentType)::TypeImageJpeg);
-  check(st(HttpContentType)::SuffixJpg,st(HttpContentType)::TypeImageJpeg);
+  check(st(HttpMime)::SuffixJpeg,st(HttpMime)::TypeImageJpeg);
+  check(st(HttpMime)::SuffixJpg,st(HttpMime)::TypeImageJpeg);
 
-  check(st(HttpContentType)::SuffixJs,st(HttpContentType)::TypeApplicationJs);
+  check(st(HttpMime)::SuffixJs,st(HttpMime)::TypeApplicationJs);
 
-  check(st(HttpContentType)::SuffixAtom,st(HttpContentType)::TypeApplicationAtomXml);
+  check(st(HttpMime)::SuffixAtom,st(HttpMime)::TypeApplicationAtomXml);
 
-  check(st(HttpContentType)::SuffixRss,st(HttpContentType)::TypeApplicationRss);
+  check(st(HttpMime)::SuffixRss,st(HttpMime)::TypeApplicationRss);
 
-  check(st(HttpContentType)::SuffixMml,st(HttpContentType)::TypeTextMathml);
+  check(st(HttpMime)::SuffixMml,st(HttpMime)::TypeTextMathml);
 
-  check(st(HttpContentType)::SuffixTxt,st(HttpContentType)::TypeTextPlain);
+  check(st(HttpMime)::SuffixTxt,st(HttpMime)::TypeTextPlain);
 
-  check(st(HttpContentType)::SuffixJad,st(HttpContentType)::TypeTextVndSunJ2meAppDes);
+  check(st(HttpMime)::SuffixJad,st(HttpMime)::TypeTextVndSunJ2meAppDes);
 
-  check(st(HttpContentType)::SuffixWml,st(HttpContentType)::TypeTextVndWapWml);
+  check(st(HttpMime)::SuffixWml,st(HttpMime)::TypeTextVndWapWml);
 
-  check(st(HttpContentType)::SuffixHtc,st(HttpContentType)::TypeTextXComponent);
+  check(st(HttpMime)::SuffixHtc,st(HttpMime)::TypeTextXComponent);
 
-  check(st(HttpContentType)::SuffixPng,st(HttpContentType)::TypeImagePng);
+  check(st(HttpMime)::SuffixPng,st(HttpMime)::TypeImagePng);
 
-  check(st(HttpContentType)::SuffixSvg,st(HttpContentType)::TypeImageSvgXml);
-  check(st(HttpContentType)::SuffixSvgz,st(HttpContentType)::TypeImageSvgXml);
+  check(st(HttpMime)::SuffixSvg,st(HttpMime)::TypeImageSvgXml);
+  check(st(HttpMime)::SuffixSvgz,st(HttpMime)::TypeImageSvgXml);
 
-  check(st(HttpContentType)::SuffixTif,st(HttpContentType)::TypeImageTiff);
-  check(st(HttpContentType)::SuffixTiff,st(HttpContentType)::TypeImageTiff);
+  check(st(HttpMime)::SuffixTif,st(HttpMime)::TypeImageTiff);
+  check(st(HttpMime)::SuffixTiff,st(HttpMime)::TypeImageTiff);
 
-  check(st(HttpContentType)::SuffixWbmp,st(HttpContentType)::TypeImageVndWapWbmp);
+  check(st(HttpMime)::SuffixWbmp,st(HttpMime)::TypeImageVndWapWbmp);
 
-  check(st(HttpContentType)::SuffixWebp,st(HttpContentType)::TypeImageWebp);
+  check(st(HttpMime)::SuffixWebp,st(HttpMime)::TypeImageWebp);
 
-  check(st(HttpContentType)::SuffixIco,st(HttpContentType)::TypeImageXIcon);
+  check(st(HttpMime)::SuffixIco,st(HttpMime)::TypeImageXIcon);
 
-  check(st(HttpContentType)::SuffixJng,st(HttpContentType)::TypeImageXJng);
+  check(st(HttpMime)::SuffixJng,st(HttpMime)::TypeImageXJng);
 
-  check(st(HttpContentType)::SuffixBmp,st(HttpContentType)::TypeImageXMsBmp);
+  check(st(HttpMime)::SuffixBmp,st(HttpMime)::TypeImageXMsBmp);
 
-  check(st(HttpContentType)::SuffixWoff,st(HttpContentType)::TypeApplicationFontWoff);
+  check(st(HttpMime)::SuffixWoff,st(HttpMime)::TypeApplicationFontWoff);
 
-  check(st(HttpContentType)::SuffixJar,st(HttpContentType)::TypeApplicationJavaArchive);
-  check(st(HttpContentType)::SuffixWar,st(HttpContentType)::TypeApplicationJavaArchive);
-  check(st(HttpContentType)::SuffixEar,st(HttpContentType)::TypeApplicationJavaArchive);
+  check(st(HttpMime)::SuffixJar,st(HttpMime)::TypeApplicationJavaArchive);
+  check(st(HttpMime)::SuffixWar,st(HttpMime)::TypeApplicationJavaArchive);
+  check(st(HttpMime)::SuffixEar,st(HttpMime)::TypeApplicationJavaArchive);
 
-  check(st(HttpContentType)::SuffixJson,st(HttpContentType)::TypeApplicationJson);
+  check(st(HttpMime)::SuffixJson,st(HttpMime)::TypeApplicationJson);
 
-  check(st(HttpContentType)::SuffixHqx,st(HttpContentType)::TypeApplicationMaxBinhex40);
+  check(st(HttpMime)::SuffixHqx,st(HttpMime)::TypeApplicationMaxBinhex40);
 
-  check(st(HttpContentType)::SuffixDoc,st(HttpContentType)::TypeApplicationMsword);
+  check(st(HttpMime)::SuffixDoc,st(HttpMime)::TypeApplicationMsword);
 
-  check(st(HttpContentType)::SuffixPdf,st(HttpContentType)::TypeApplicationPdf);
+  check(st(HttpMime)::SuffixPdf,st(HttpMime)::TypeApplicationPdf);
 
-  check(st(HttpContentType)::SuffixPs,st(HttpContentType)::TypeApplicationPostScript);
-  check(st(HttpContentType)::SuffixEps,st(HttpContentType)::TypeApplicationPostScript);
-  check(st(HttpContentType)::SuffixAi,st(HttpContentType)::TypeApplicationPostScript);
+  check(st(HttpMime)::SuffixPs,st(HttpMime)::TypeApplicationPostScript);
+  check(st(HttpMime)::SuffixEps,st(HttpMime)::TypeApplicationPostScript);
+  check(st(HttpMime)::SuffixAi,st(HttpMime)::TypeApplicationPostScript);
 
-  check(st(HttpContentType)::SuffixRtf,st(HttpContentType)::TypeApplicationRtf);
+  check(st(HttpMime)::SuffixRtf,st(HttpMime)::TypeApplicationRtf);
 
-  check(st(HttpContentType)::SuffixM3u8,st(HttpContentType)::TypeApplicationVndAppleMpegurl);
+  check(st(HttpMime)::SuffixM3u8,st(HttpMime)::TypeApplicationVndAppleMpegurl);
 
-  check(st(HttpContentType)::SuffixKml,st(HttpContentType)::TypeApplicationVndGoogleEarthKmlXml);
+  check(st(HttpMime)::SuffixKml,st(HttpMime)::TypeApplicationVndGoogleEarthKmlXml);
 
-  check(st(HttpContentType)::SuffixKmz,st(HttpContentType)::TypeApplicationVndGoogleEarthKmz);
+  check(st(HttpMime)::SuffixKmz,st(HttpMime)::TypeApplicationVndGoogleEarthKmz);
 
-  check(st(HttpContentType)::SuffixXls,st(HttpContentType)::TypeApplicationVndMsExcel);
+  check(st(HttpMime)::SuffixXls,st(HttpMime)::TypeApplicationVndMsExcel);
 
-  check(st(HttpContentType)::SuffixEot,st(HttpContentType)::TypeApplicationVndMsFontObject);
+  check(st(HttpMime)::SuffixEot,st(HttpMime)::TypeApplicationVndMsFontObject);
 
-  check(st(HttpContentType)::SuffixPpt,st(HttpContentType)::TypeApplicationVndMsPpt);
+  check(st(HttpMime)::SuffixPpt,st(HttpMime)::TypeApplicationVndMsPpt);
 
-  check(st(HttpContentType)::SuffixOdj,st(HttpContentType)::TypeApplicationVndOasisOpendocGraphics);
+  check(st(HttpMime)::SuffixOdj,st(HttpMime)::TypeApplicationVndOasisOpendocGraphics);
 
-  check(st(HttpContentType)::SuffixOdp,st(HttpContentType)::TypeApplicationVndOasisOpendocPresentation);
+  check(st(HttpMime)::SuffixOdp,st(HttpMime)::TypeApplicationVndOasisOpendocPresentation);
 
-  check(st(HttpContentType)::SuffixOds,st(HttpContentType)::TypeApplicationVndOasisOpendocSpreadsheet);
+  check(st(HttpMime)::SuffixOds,st(HttpMime)::TypeApplicationVndOasisOpendocSpreadsheet);
 
-  check(st(HttpContentType)::SuffixOdt,st(HttpContentType)::TypeApplicationVndOasisOpendocText);
+  check(st(HttpMime)::SuffixOdt,st(HttpMime)::TypeApplicationVndOasisOpendocText);
 
-  check(st(HttpContentType)::SuffixPptx,st(HttpContentType)::TypeApplicationVndOpenxmlPresentation);
+  check(st(HttpMime)::SuffixPptx,st(HttpMime)::TypeApplicationVndOpenxmlPresentation);
 
-  check(st(HttpContentType)::SuffixXlsx,st(HttpContentType)::TypeApplicationVndOpenXmlSheet);
+  check(st(HttpMime)::SuffixXlsx,st(HttpMime)::TypeApplicationVndOpenXmlSheet);
 
-  check(st(HttpContentType)::SuffixDocx,st(HttpContentType)::TypeApplicationVndOepnXmlDoc);
+  check(st(HttpMime)::SuffixDocx,st(HttpMime)::TypeApplicationVndOepnXmlDoc);
 
-  check(st(HttpContentType)::SuffixWmlc,st(HttpContentType)::TypeApplicationVndWapWmls);
+  check(st(HttpMime)::SuffixWmlc,st(HttpMime)::TypeApplicationVndWapWmls);
 
-  check(st(HttpContentType)::Suffix7z,st(HttpContentType)::TypeApplication7z);
+  check(st(HttpMime)::Suffix7z,st(HttpMime)::TypeApplication7z);
 
-  check(st(HttpContentType)::SuffixCco,st(HttpContentType)::TypeApplicationXCocoa);
+  check(st(HttpMime)::SuffixCco,st(HttpMime)::TypeApplicationXCocoa);
 
-  check(st(HttpContentType)::SuffixJardiff,st(HttpContentType)::TypeApplicationXJavaArch);
+  check(st(HttpMime)::SuffixJardiff,st(HttpMime)::TypeApplicationXJavaArch);
 
-  check(st(HttpContentType)::SuffixJnlp,st(HttpContentType)::TypeApplicationXJavaJnlpFile);
+  check(st(HttpMime)::SuffixJnlp,st(HttpMime)::TypeApplicationXJavaJnlpFile);
 
-  check(st(HttpContentType)::SuffixRun,st(HttpContentType)::TypeApplicationXMakeself);
+  check(st(HttpMime)::SuffixRun,st(HttpMime)::TypeApplicationXMakeself);
 
-  check(st(HttpContentType)::SuffixPl,st(HttpContentType)::TypeApplicationXPerl);
-  check(st(HttpContentType)::SuffixPm,st(HttpContentType)::TypeApplicationXPerl);
+  check(st(HttpMime)::SuffixPl,st(HttpMime)::TypeApplicationXPerl);
+  check(st(HttpMime)::SuffixPm,st(HttpMime)::TypeApplicationXPerl);
 
-  check(st(HttpContentType)::SuffixPrc,st(HttpContentType)::TypeApplicationXPilot);
-  check(st(HttpContentType)::SuffixPdb,st(HttpContentType)::TypeApplicationXPilot);
+  check(st(HttpMime)::SuffixPrc,st(HttpMime)::TypeApplicationXPilot);
+  check(st(HttpMime)::SuffixPdb,st(HttpMime)::TypeApplicationXPilot);
 
-  check(st(HttpContentType)::SuffixRar,st(HttpContentType)::TypeApplicationXRarCompressed);
+  check(st(HttpMime)::SuffixRar,st(HttpMime)::TypeApplicationXRarCompressed);
 
-  check(st(HttpContentType)::SuffixRpm,st(HttpContentType)::TypeApplicationXReadhatPkgManager);
+  check(st(HttpMime)::SuffixRpm,st(HttpMime)::TypeApplicationXReadhatPkgManager);
 
-  check(st(HttpContentType)::SuffixSea,st(HttpContentType)::TypeApplicationXSea);
+  check(st(HttpMime)::SuffixSea,st(HttpMime)::TypeApplicationXSea);
 
-  check(st(HttpContentType)::SuffixSwf,st(HttpContentType)::TypeApplicationXShockwaveFlash);
+  check(st(HttpMime)::SuffixSwf,st(HttpMime)::TypeApplicationXShockwaveFlash);
 
-  check(st(HttpContentType)::SuffixSit,st(HttpContentType)::TypeApplicationXStuffit);
+  check(st(HttpMime)::SuffixSit,st(HttpMime)::TypeApplicationXStuffit);
 
-  check(st(HttpContentType)::SuffixTcl,st(HttpContentType)::TypeApplicationXTcl);
-  check(st(HttpContentType)::SuffixTk,st(HttpContentType)::TypeApplicationXTcl);
+  check(st(HttpMime)::SuffixTcl,st(HttpMime)::TypeApplicationXTcl);
+  check(st(HttpMime)::SuffixTk,st(HttpMime)::TypeApplicationXTcl);
 
-  check(st(HttpContentType)::SuffixDer,st(HttpContentType)::TypeApplicationXX509CaCert);
-  check(st(HttpContentType)::SuffixPem,st(HttpContentType)::TypeApplicationXX509CaCert);
-  check(st(HttpContentType)::SuffixCrt,st(HttpContentType)::TypeApplicationXX509CaCert);
+  check(st(HttpMime)::SuffixDer,st(HttpMime)::TypeApplicationXX509CaCert);
+  check(st(HttpMime)::SuffixPem,st(HttpMime)::TypeApplicationXX509CaCert);
+  check(st(HttpMime)::SuffixCrt,st(HttpMime)::TypeApplicationXX509CaCert);
 
-  check(st(HttpContentType)::SuffixXpi,st(HttpContentType)::TypeApplicationXXpinstall);
+  check(st(HttpMime)::SuffixXpi,st(HttpMime)::TypeApplicationXXpinstall);
 
-  check(st(HttpContentType)::SuffixXhtml,st(HttpContentType)::TypeApplicationXhtmlXml);
+  check(st(HttpMime)::SuffixXhtml,st(HttpMime)::TypeApplicationXhtmlXml);
 
-  check(st(HttpContentType)::SuffixXspf,st(HttpContentType)::TypeApplicationXspfXml);
+  check(st(HttpMime)::SuffixXspf,st(HttpMime)::TypeApplicationXspfXml);
 
-  check(st(HttpContentType)::SuffixZip,st(HttpContentType)::TypeApplicationZip);
+  check(st(HttpMime)::SuffixZip,st(HttpMime)::TypeApplicationZip);
 
-  check(st(HttpContentType)::SuffixBin,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixExe,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixDll,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixDeb,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixDmg,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixIso,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixImg,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixMsi,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixMsp,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixMsm,st(HttpContentType)::TypeApplicationOctetStream);
-  check(st(HttpContentType)::SuffixImg,st(HttpContentType)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixBin,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixExe,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixDll,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixDeb,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixDmg,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixIso,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixImg,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixMsi,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixMsp,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixMsm,st(HttpMime)::TypeApplicationOctetStream);
+  check(st(HttpMime)::SuffixImg,st(HttpMime)::TypeApplicationOctetStream);
 
-  check(st(HttpContentType)::SuffixMid,st(HttpContentType)::TypeAudioMidi);
-  check(st(HttpContentType)::SuffixMidi,st(HttpContentType)::TypeAudioMidi);
-  check(st(HttpContentType)::SuffixKar,st(HttpContentType)::TypeAudioMidi);
+  check(st(HttpMime)::SuffixMid,st(HttpMime)::TypeAudioMidi);
+  check(st(HttpMime)::SuffixMidi,st(HttpMime)::TypeAudioMidi);
+  check(st(HttpMime)::SuffixKar,st(HttpMime)::TypeAudioMidi);
 
-  check(st(HttpContentType)::SuffixMp3,st(HttpContentType)::TypeAudioMpeg);
+  check(st(HttpMime)::SuffixMp3,st(HttpMime)::TypeAudioMpeg);
 
-  check(st(HttpContentType)::SuffixOgg,st(HttpContentType)::TypeAudioOgg);
+  check(st(HttpMime)::SuffixOgg,st(HttpMime)::TypeAudioOgg);
 
-  check(st(HttpContentType)::SuffixM4a,st(HttpContentType)::TypeAudioXM4a);
+  check(st(HttpMime)::SuffixM4a,st(HttpMime)::TypeAudioXM4a);
 
-  check(st(HttpContentType)::SuffixRa,st(HttpContentType)::TypeAudioXRealAudio);
+  check(st(HttpMime)::SuffixRa,st(HttpMime)::TypeAudioXRealAudio);
 
-  check(st(HttpContentType)::Suffix3Gpp,st(HttpContentType)::TypeVideo3Gpp);
-  check(st(HttpContentType)::Sufix3Gp,st(HttpContentType)::TypeVideo3Gpp);
+  check(st(HttpMime)::Suffix3Gpp,st(HttpMime)::TypeVideo3Gpp);
+  check(st(HttpMime)::Sufix3Gp,st(HttpMime)::TypeVideo3Gpp);
 
-  check(st(HttpContentType)::SuffixTs,st(HttpContentType)::TypeVideoMp2t);
+  check(st(HttpMime)::SuffixTs,st(HttpMime)::TypeVideoMp2t);
 
-  check(st(HttpContentType)::SuffixMp4,st(HttpContentType)::TypeVideoMp4);
+  check(st(HttpMime)::SuffixMp4,st(HttpMime)::TypeVideoMp4);
 
-  check(st(HttpContentType)::SuffixMpeg,st(HttpContentType)::TypeVideoMpeg);
-  check(st(HttpContentType)::SuffixMpg,st(HttpContentType)::TypeVideoMpeg);
+  check(st(HttpMime)::SuffixMpeg,st(HttpMime)::TypeVideoMpeg);
+  check(st(HttpMime)::SuffixMpg,st(HttpMime)::TypeVideoMpeg);
 
-  check(st(HttpContentType)::SuffixMov,st(HttpContentType)::TypeVidoQuicktime);
+  check(st(HttpMime)::SuffixMov,st(HttpMime)::TypeVidoQuicktime);
 
-  check(st(HttpContentType)::SuffixWebm,st(HttpContentType)::TypeVideoWebm);
+  check(st(HttpMime)::SuffixWebm,st(HttpMime)::TypeVideoWebm);
 
-  check(st(HttpContentType)::SuffixFlv,st(HttpContentType)::TypeVideoXflv);
+  check(st(HttpMime)::SuffixFlv,st(HttpMime)::TypeVideoXflv);
 
-  check(st(HttpContentType)::SuffixM4V,st(HttpContentType)::TypeVideoXM4v);
+  check(st(HttpMime)::SuffixM4V,st(HttpMime)::TypeVideoXM4v);
 
-  check(st(HttpContentType)::SuffixMng,st(HttpContentType)::TypeVideoXMng);
+  check(st(HttpMime)::SuffixMng,st(HttpMime)::TypeVideoXMng);
 
-  check(st(HttpContentType)::SuffixAsx,st(HttpContentType)::TypeVideoXMsAsf);
-  check(st(HttpContentType)::SuffixAsf,st(HttpContentType)::TypeVideoXMsAsf);
+  check(st(HttpMime)::SuffixAsx,st(HttpMime)::TypeVideoXMsAsf);
+  check(st(HttpMime)::SuffixAsf,st(HttpMime)::TypeVideoXMsAsf);
 
-  check(st(HttpContentType)::SuffixWmv,st(HttpContentType)::TypeVideoXMsWmv);
+  check(st(HttpMime)::SuffixWmv,st(HttpMime)::TypeVideoXMsWmv);
 
-  check(st(HttpContentType)::SuffixAvi,st(HttpContentType)::TypeVideoXMsVideo);
+  check(st(HttpMime)::SuffixAvi,st(HttpMime)::TypeVideoXMsVideo);
 
   printf("---[TestHttpMime suffix to id case100] [OK]--- \n");
 }

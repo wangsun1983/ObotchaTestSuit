@@ -6,8 +6,8 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
-#include "HttpHeaderContentEncoding"
-#include "HttpProtocol.hpp"
+#include "HttpHeaderContentEncoding.hpp"
+
 using namespace obotcha;
 
 void testToString() {

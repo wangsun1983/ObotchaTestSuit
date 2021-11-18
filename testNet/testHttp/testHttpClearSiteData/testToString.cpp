@@ -7,11 +7,12 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderClearSiteData.hpp"
-#include "HttpProtocol.hpp"
+
 using namespace obotcha;
 
 void testToString() {
   while(1) {
+    printf("start to Stirng test \n");
     HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
     c->import("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
 

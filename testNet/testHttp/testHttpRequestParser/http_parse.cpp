@@ -1502,7 +1502,7 @@ void testHttpParse() {
         }
 
         //check http major version
-        HttpVersion ver = header->getVersion();
+        HttpHeaderVersion ver = header->getVersion();
         if(ver == nullptr) {
             printf("HttpPacketParse CheckVersion failed,version is null \n");
             continue;

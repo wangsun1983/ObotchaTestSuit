@@ -22,14 +22,14 @@ void TestStringSize() {
             break;
         }
 
-        char buff[12];
+        char buff[12] = {0};
         buff[0] = 'a';
         buff[1] = 'b';
         buff[3] = 'd';
         buff[4] = 'f';
         str = createString(buff);
         if(str->size() != 2) {
-            printf("String size test2-------[FAIL] \n");
+            printf("String size1 test2-------[FAIL],size is %d \n",str->size());
             break;
         }
         break;

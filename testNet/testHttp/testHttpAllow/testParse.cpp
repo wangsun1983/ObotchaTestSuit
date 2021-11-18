@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderAllow c = createHttpHeaderAllow();
     c->import("POST, GET, OPTIONS");
-    auto list = c->getMethods();
+    auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
       printf("---[HttpHeaderAllow test Parse case1] [FAILED]--- \n");
       break;

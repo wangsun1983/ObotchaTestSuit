@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->import("true");
-    if(!c->isAllowed()) {
+    if(!c->get()) {
       printf("---[HttpHeaderAccessControlAllowCredentials test Parse case1] [FAILED]--- \n");
       break;
     }
@@ -25,7 +25,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->import("false");
-    if(c->isAllowed()) {
+    if(c->get()) {
       printf("---[HttpHeaderAccessControlAllowCredentials test Parse case2] [FAILED]--- \n");
       break;
     }

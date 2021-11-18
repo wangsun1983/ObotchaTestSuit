@@ -51,6 +51,13 @@ void TestStringTrim() {
             break;
         }
 
+        str = createString("abcf");
+        str1 = str->trim();
+        if(str1 == nullptr || !str1->equals("abcf")) {
+            printf("String trim test6-------[FAIL] \n");
+            break;
+        }
+
         break;
     }
 

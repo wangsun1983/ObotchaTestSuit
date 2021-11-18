@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
     c->import("POST, GET, OPTIONS");
-    auto list = c->getMethods();
+    auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
       printf("---[HttpHeaderAccessControlAllowMethods test Parse case1] [FAILED]--- \n");
       break;

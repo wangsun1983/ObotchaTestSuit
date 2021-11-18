@@ -66,25 +66,14 @@ void testHttpUrlParse() {
     }
 
     auto query = url->getQuery();
-    auto list = query->getValues();
-    auto p0 = list->get(0);
-    if(!p0->getKey()->equals("a")) {
-      printf("---[HttpUrlParse test Parse case7] [FAILED]--- \n");
-      break;
-    }
+    auto map = query->getValues();
 
-    if(!p0->getValue()->equals("b")) {
+    if(!map->get("a")->equals("b")) {
       printf("---[HttpUrlParse test Parse case8] [FAILED]--- \n");
       break;
     }
 
-    auto p1 = list->get(1);
-    if(!p1->getKey()->equals("c")) {
-      printf("---[HttpUrlParse test Parse case9] [FAILED]--- \n");
-      break;
-    }
-
-    if(!p1->getValue()->equals("d")) {
+    if(!map->get("c")->equals("d")) {
       printf("---[HttpUrlParse test Parse case10] [FAILED]--- \n");
       break;
     }
@@ -130,25 +119,13 @@ void testHttpUrlParse() {
     }
 
     auto query = url->getQuery();
-    auto list = query->getValues();
-    auto p0 = list->get(0);
-    if(!p0->getKey()->equals("a")) {
-      printf("---[HttpUrlParse test Parse case18] [FAILED]--- \n");
-      break;
-    }
-
-    if(!p0->getValue()->equals("b")) {
+    auto map = query->getValues();
+    if(!map->get("a")->equals("b")) {
       printf("---[HttpUrlParse test Parse case19] [FAILED]--- \n");
       break;
     }
 
-    auto p1 = list->get(1);
-    if(!p1->getKey()->equals("c")) {
-      printf("---[HttpUrlParse test Parse case20] [FAILED]--- \n");
-      break;
-    }
-
-    if(!p1->getValue()->equals("d")) {
+    if(!map->get("c")->equals("d")) {
       printf("---[HttpUrlParse test Parse case21] [FAILED]--- \n");
       break;
     }
@@ -289,25 +266,14 @@ void testHttpUrlParse() {
     }
 
     auto query = url->getQuery();
-    auto list = query->getValues();
-    auto p0 = list->get(0);
-    if(!p0->getKey()->equals("a")) {
-      printf("---[HttpUrlParse test Parse case45] [FAILED]--- \n");
-      break;
-    }
+    auto map = query->getValues();
 
-    if(!p0->getValue()->equals("b")) {
+    if(!map->get("a")->equals("b")) {
       printf("---[HttpUrlParse test Parse case46] [FAILED]--- \n");
       break;
     }
 
-    auto p1 = list->get(1);
-    if(!p1->getKey()->equals("c")) {
-      printf("---[HttpUrlParse test Parse case47] [FAILED]--- \n");
-      break;
-    }
-
-    if(!p1->getValue()->equals("d")) {
+    if(!map->get("c")->equals("d")) {
       printf("---[HttpUrlParse test Parse case48] [FAILED]--- \n");
       break;
     }

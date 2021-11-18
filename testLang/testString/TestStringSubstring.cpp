@@ -43,7 +43,7 @@ void TestStringSubString() {
 
         str2 = str->subString(0,5);
         //if(!str2->equals("abcef") || !str->equals("abcef")) {
-        if(str2 != nullptr) {
+        if(!str2->equals("abcef") || !str->equals("abcef")) {
             printf("String SubString test5-------[FAIL] \n");
             break;
         }

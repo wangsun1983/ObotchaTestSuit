@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->import("X-PINGOTHER, Content-Type");
-    auto list = c->getHeaders();
+    auto list = c->get();
     if(!list->get(0)->equals("X-PINGOTHER")) {
       printf("---[HttpHeaderAccessControlRequestHeaders test Parse case1] [FAILED]--- \n");
       break;
@@ -31,7 +31,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->import("X-PINGOTHER");
-    auto list = c->getHeaders();
+    auto list = c->get();
     if(!list->get(0)->equals("X-PINGOTHER")) {
       printf("---[HttpHeaderAccessControlRequestHeaders test Parse case3] [FAILED]--- \n");
       break;

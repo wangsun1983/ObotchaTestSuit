@@ -10,7 +10,6 @@
 #include "HttpMethod.hpp"
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
-#include "HttpProtocol.hpp"
 #include "HttpMethod.hpp"
 
 using namespace obotcha;
@@ -41,7 +40,7 @@ void testHttpHeaderSet() {
     url->setPath("demo");
     header->setUrl(url);
 
-    header->setVersion(createHttpVersion(1,1));
+    header->setVersion(createHttpHeaderVersion(1,1));
     header->set("Accept-Charset","utf-8, iso-8859-1;q=0.5");
     header->set("Accept-Encoding","deflate, gzip;q=1.0, *;q=0.5");
     header->set("Accept-Language","fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5");
@@ -79,7 +78,7 @@ void testHttpHeaderSet() {
       break;
     }
 
-    ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->getCharSets();
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 2) {
       printf("---[HttpHeader test Set case5] [FAILED]--- \n");
       break;
@@ -105,7 +104,7 @@ void testHttpHeaderSet() {
     //Encoding
     //Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r\n
     HttpHeaderAcceptEncoding encoding = header->getAcceptEncoding();
-    ArrayList<HttpHeaderAcceptEncodingItem> encodings = encoding->getEncodings();
+    ArrayList<HttpHeaderAcceptEncodingItem> encodings = encoding->get();
     if(encodings->size() != 3) {
       printf("---[HttpHeader test Set case9] [FAILED]--- \n");
       break;
@@ -141,7 +140,7 @@ void testHttpHeaderSet() {
 
     //Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
     HttpHeaderAcceptLanguage mAcceptLang = header->getAcceptLanguage();
-    ArrayList<HttpHeaderAcceptLanguageItem> langs = mAcceptLang->getLanguages();
+    ArrayList<HttpHeaderAcceptLanguageItem> langs = mAcceptLang->get();
     if(langs->size() != 5) {
       printf("---[HttpHeader test Set case14] [FAILED]--- \n");
       break;
@@ -199,7 +198,7 @@ void testHttpHeaderSet() {
 
     //Accept-Patch: application/example, text/example
     HttpHeaderAcceptPatch patch = header->getAcceptPatch();
-    ArrayList<HttpHeaderAcceptPatchItem> patches = patch->getAcceptPatches();
+    ArrayList<HttpHeaderAcceptPatchItem> patches = patch->get();
     HttpHeaderAcceptPatchItem patchItem1 = patches->get(0);
     if(!patchItem1->type->equals("application/example")) {
       printf("---[HttpHeader test Set case24] [FAILED]--- \n");
@@ -214,7 +213,7 @@ void testHttpHeaderSet() {
 
     //Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8
     HttpHeaderAccept accept = header->getAccept();
-    ArrayList<HttpHeaderAcceptItem> accepts = accept->getAccepts();
+    ArrayList<HttpHeaderAcceptItem> accepts = accept->get();
     if(accepts->size() != 4) {
       printf("---[HttpHeader test Set case26_0] [FAILED]--- \n");
       break;
@@ -305,14 +304,14 @@ void testHttpHeaderSet() {
     }
 
     //Content-Length: 2000
-    int contentLen = header->getContentLength();
+    int contentLen = header->getContentLength()->get();
     if(contentLen != 2000) {
       printf("---[HttpHeader test Set case40] [FAILED]--- \n");
       break;
     }
 
     //Link: <https://example.com>; rel="preload"
-    ArrayList<HttpHeaderLink> links = header->getHeaderLinks();
+    ArrayList<HttpHeaderLink> links = header->getLinks();
     if(links->size() != 1) {
       printf("---[HttpHeader test Set case41] [FAILED]--- \n");
       break;
@@ -330,7 +329,7 @@ void testHttpHeaderSet() {
     }
 
     //X-Frame-Options: allow-from https://example.com/
-    HttpXFrameOptions xframeoption = header->getXFrameOptions();
+    HttpHeaderXFrameOptions xframeoption = header->getXFrameOptions();
     if(!xframeoption->option->equals("allow-from")) {
       printf("---[HttpHeader test Set case44] [FAILED]--- \n");
       break;

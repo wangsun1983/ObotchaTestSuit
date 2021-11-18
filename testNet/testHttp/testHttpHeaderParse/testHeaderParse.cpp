@@ -331,7 +331,7 @@ void testHttpHeaderParse() {
     }
 
     //X-Frame-Options: allow-from https://example.com/
-    HttpXFrameOptions xframeoption = header->getXFrameOptions();
+    HttpHeaderXFrameOptions xframeoption = header->getXFrameOptions();
     if(!xframeoption->option->equals("allow-from")) {
       printf("---[HttpHeaderParse test Parse case44] [FAILED]--- \n");
       break;

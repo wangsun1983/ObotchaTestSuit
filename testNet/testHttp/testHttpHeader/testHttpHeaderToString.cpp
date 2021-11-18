@@ -10,7 +10,7 @@
 #include "HttpMethod.hpp"
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
-#include "HttpProtocol.hpp"
+#include "HttpPacket.hpp"
 
 using namespace obotcha;
 
@@ -39,7 +39,7 @@ void testHttpHeaderToString() {
     HttpHeaderParser parser = createHttpHeaderParser(reader);
     HttpHeader header1 = parser->doParse();
 
-    String result = header1->toString(st(HttpProtocol)::HttpRequest);
+    String result = header1->toString(st(HttpPacket)::Request);
 
     result = result->append("\r\n\r\n");
     //reparse again
@@ -78,8 +78,8 @@ void testHttpHeaderToString() {
       break;
     }
 
-    ArrayList<HttpHeaderAcceptCharSetItem> charsets1 = charset1->getCharSets();
-    ArrayList<HttpHeaderAcceptCharSetItem> charsets2 = charset1->getCharSets();
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets1 = charset1->get();
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets2 = charset1->get();
     if(charsets1->size() != 2 || charsets2->size() != 2) {
       printf("---[HttpHeaderToString test Parse case5] [FAILED]--- \n");
       break;
@@ -111,8 +111,8 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptEncoding encoding1 = header1->getAcceptEncoding();
     HttpHeaderAcceptEncoding encoding2 = header2->getAcceptEncoding();
 
-    ArrayList<HttpHeaderAcceptEncodingItem> encodings1 = encoding1->getEncodings();
-    ArrayList<HttpHeaderAcceptEncodingItem> encodings2 = encoding2->getEncodings();
+    ArrayList<HttpHeaderAcceptEncodingItem> encodings1 = encoding1->get();
+    ArrayList<HttpHeaderAcceptEncodingItem> encodings2 = encoding2->get();
     if(encodings1->size() != 3 || encodings2->size() != 3) {
       printf("---[HttpHeaderToString test Parse case9] [FAILED]--- \n");
       break;
@@ -153,8 +153,8 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptLanguage mAcceptLang1 = header1->getAcceptLanguage();
     HttpHeaderAcceptLanguage mAcceptLang2 = header2->getAcceptLanguage();
 
-    ArrayList<HttpHeaderAcceptLanguageItem> langs1 = mAcceptLang1->getLanguages();
-    ArrayList<HttpHeaderAcceptLanguageItem> langs2 = mAcceptLang2->getLanguages();
+    ArrayList<HttpHeaderAcceptLanguageItem> langs1 = mAcceptLang1->get();
+    ArrayList<HttpHeaderAcceptLanguageItem> langs2 = mAcceptLang2->get();
 
     if(langs1->size() != 5 || langs2->size() != 5) {
       printf("---[HttpHeaderToString test Parse case14] [FAILED]--- \n");
@@ -222,8 +222,8 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptPatch patch1 = header1->getAcceptPatch();
     HttpHeaderAcceptPatch patch2 = header2->getAcceptPatch();
 
-    ArrayList<HttpHeaderAcceptPatchItem> patches1 = patch1->getAcceptPatches();
-    ArrayList<HttpHeaderAcceptPatchItem> patches2 = patch2->getAcceptPatches();
+    ArrayList<HttpHeaderAcceptPatchItem> patches1 = patch1->get();
+    ArrayList<HttpHeaderAcceptPatchItem> patches2 = patch2->get();
 
     HttpHeaderAcceptPatchItem patchItem1_0 = patches1->get(0);
     HttpHeaderAcceptPatchItem patchItem2_0 = patches2->get(0);
@@ -242,8 +242,8 @@ void testHttpHeaderToString() {
     //Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8
     HttpHeaderAccept accept1 = header1->getAccept();
     HttpHeaderAccept accept2 = header2->getAccept();
-    ArrayList<HttpHeaderAcceptItem> accepts1 = accept1->getAccepts();
-    ArrayList<HttpHeaderAcceptItem> accepts2 = accept2->getAccepts();
+    ArrayList<HttpHeaderAcceptItem> accepts1 = accept1->get();
+    ArrayList<HttpHeaderAcceptItem> accepts2 = accept2->get();
     if(accepts1->size() != accepts2->size()) {
       printf("---[HttpHeaderToString test Parse case26_0] [FAILED]--- \n");
       break;
@@ -343,16 +343,16 @@ void testHttpHeaderToString() {
     }
 
     //Content-Length: 2000
-    int contentLen1 = header1->getContentLength();
-    int contentLen2 = header2->getContentLength();
+    int contentLen1 = header1->getContentLength()->get();
+    int contentLen2 = header2->getContentLength()->get();
     if(contentLen1 != contentLen2) {
       printf("---[HttpHeaderToString test Parse case40] [FAILED]--- \n");
       break;
     }
 
     //Link: <https://example.com>; rel="preload"
-    ArrayList<HttpHeaderLink> links1 = header1->getHeaderLinks();
-    ArrayList<HttpHeaderLink> links2 = header2->getHeaderLinks();
+    ArrayList<HttpHeaderLink> links1 = header1->getLinks();
+    ArrayList<HttpHeaderLink> links2 = header2->getLinks();
     if(links1->size() != 1 || links2->size() != 1) {
       printf("---[HttpHeaderToString test Parse case41] [FAILED]--- \n");
       break;
@@ -371,8 +371,8 @@ void testHttpHeaderToString() {
     }
 
     //X-Frame-Options: allow-from https://example.com/
-    HttpXFrameOptions xframeoption1 = header1->getXFrameOptions();
-    HttpXFrameOptions xframeoption2 = header2->getXFrameOptions();
+    HttpHeaderXFrameOptions xframeoption1 = header1->getXFrameOptions();
+    HttpHeaderXFrameOptions xframeoption2 = header2->getXFrameOptions();
     if(!xframeoption1->option->equals(xframeoption2->option)) {
       printf("---[HttpHeaderToString test Parse case44] [FAILED]--- \n");
       break;

@@ -5,21 +5,21 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpContentRange.hpp"
+#include "HttpHeaderContentRange.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpContentRange range = createHttpContentRange();
+    HttpHeaderContentRange range = createHttpHeaderContentRange();
     range->import("bytes 200-1000/67589");
     if(!range->toString()->equals("bytes 200-1000/67589")) {
-      printf("---[HttpContentRange test toSring case1] [FAILED]--- range is %s\n",range->toString()->toChars());
+      printf("---[HttpHeaderContentRange test toSring case1] [FAILED]--- range is %s\n",range->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpContentRange test toSring case100] [OK]--- \n");
+  printf("---[HttpHeaderContentRange test toSring case100] [OK]--- \n");
 
 }

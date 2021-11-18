@@ -14,7 +14,7 @@ void testLanguageParse() {
   while(1) {
     HttpHeaderAcceptLanguage encoding1 = createHttpHeaderAcceptLanguage();
     encoding1->import("fr-CH,fr;q=0.9,en;q=0.8,de;q=0.7,*;q=0.5");
-    auto languages = encoding1->getLanguages();
+    auto languages = encoding1->get();
     if(languages->size() != 5) {
       printf("---[HttpHeaderAcceptLanguage test Parse case1] [FAILED]--- \n");
       break;

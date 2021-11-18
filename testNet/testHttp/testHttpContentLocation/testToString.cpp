@@ -5,21 +5,21 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "HttpMime.hpp"
-#include "HttpContentLocation.hpp"
+#include "HttpHeaderContentLocation.hpp"
 
 using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpContentLocation location = createHttpContentLocation();
+    HttpHeaderContentLocation location = createHttpHeaderContentLocation();
     location->import("/index.html");
     if(!location->toString()->equals("/index.html")) {
-      printf("---[HttpContentLocation test toString case1] [FAILED]--- ,str is %s\n",location->toString()->toChars());
+      printf("---[HttpHeaderContentLocation test toString case1] [FAILED]--- ,str is %s\n",location->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpContentLocation test toString case100] [OK]--- \n");
+  printf("---[HttpHeaderContentLocation test toString case100] [OK]--- \n");
 
 }

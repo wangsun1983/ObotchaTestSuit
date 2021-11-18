@@ -7,14 +7,15 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderCacheControl.hpp"
-#include "HttpProtocol.hpp"
+#include "HttpPacket.hpp"
+
 using namespace obotcha;
 
 void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->import("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpProtocol)::HttpRequest));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Request));
 
     if(c->noCache() != c2->noCache()) {
       printf("---[HttpHeaderCacheControl test toString case1] [FAILED]--- \n");
@@ -56,7 +57,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->import("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpProtocol)::HttpResponse));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->noCache() != c2->noCache()) {
       printf("---[HttpHeaderCacheControl test toString case8] [FAILED]--- \n");
@@ -98,7 +99,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->import("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpProtocol)::HttpResponse));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->maxAgeSeconds() != c2->maxAgeSeconds()) {
       printf("---[HttpHeaderCacheControl test toString case15] [FAILED]--- \n");
@@ -125,7 +126,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->import("public");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpProtocol)::HttpResponse));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
     if(c->isPublic() != c2->isPublic()) {
       printf("---[HttpHeaderCacheControl test toString case19] [FAILED]--- \n");
       break;
