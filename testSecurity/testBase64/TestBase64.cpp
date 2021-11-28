@@ -95,4 +95,21 @@ int main() {
       break;
   }
 
+  //encode(File)
+  while(1) {
+      Base64 base64 = createBase64();
+      String content = createString("<<?\?\?>>");
+      ByteArray encode = base64->encodeBase64Url(content->toByteArray());
+      if(!encode->toString()->equals("PDw_Pz8-Pg")) {
+          printf("---[ByteArray Test {encode(File)} case3] [FAILED]--- \n");
+      }
+
+      ByteArray decode = base64->decodeBase64Url(encode);
+      if(!decode->toString()->equals("<<?\?\?>>")) {
+          printf("---[ByteArray Test {encode(File)} case4] [FAILED]--- \n");
+      }
+      
+      break;
+  }
+
 }

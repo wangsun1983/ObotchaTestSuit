@@ -60,6 +60,7 @@ int main() {
   HttpServer server = createHttpServerBuilder()
                     ->setAddress(createInet4Address(1234))
                     ->setListener(listener)
+                    ->setProtocol(st(HttpProtocol)::Http_H2C)
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
