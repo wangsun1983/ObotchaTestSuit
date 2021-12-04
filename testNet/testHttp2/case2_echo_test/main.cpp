@@ -21,6 +21,7 @@ using namespace obotcha;
 // curl -v --http2 http://127.0.0.1:1234/aaa
 
 // curl -v -d '12345abc' --http2 http://127.0.0.1:1234/aaa
+// curl -i -XPUT --http2 http://127.0.0.1:1234/aaa -d hello
 
 //    curl -v -d '{"aps":{"alert":"Test Push","sound":"default"}}' \
     --cert /path/to/cert/cert.pem:SECURE_PASSWORD \
@@ -66,7 +67,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 int main() {
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1265))
+                    ->setAddress(createInet4Address(1266))
                     ->setListener(listener)
                     ->setProtocol(st(HttpProtocol)::Http_H2C)
                     ->build();
