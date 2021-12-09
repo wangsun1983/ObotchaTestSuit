@@ -32,9 +32,12 @@ extern void TestStringIndexOf();
 extern void TestStringEquals();
 extern void TestCounts();
 extern void trimPerformance();
+extern void StringContentEqualsTest();
 
 int main() {
 
+  StringContentEqualsTest();
+  
   basetest();
 
   ignorecasetest();
