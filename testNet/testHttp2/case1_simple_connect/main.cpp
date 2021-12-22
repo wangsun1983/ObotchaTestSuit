@@ -15,6 +15,7 @@
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
+#include "Http2Server.hpp"
 
 using namespace obotcha;
 
@@ -30,8 +31,9 @@ using namespace obotcha;
 CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 
-DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
+DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
+  void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
+    /*
       switch(event) {
           case HttpEvent::Connect: {
               
@@ -41,11 +43,11 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           case HttpEvent::Message: {
               printf("write response connect!!! \n");
               //if(step == 0) {
-                HttpResponse response = createHttpResponse();
-                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
-                w->write(response);
-                step = 1;
+              //  HttpResponse response = createHttpResponse();
+              //  response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+              //  response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+              //  w->write(response);
+              //  step = 1;
               //} else {
               //  String entity = msg->getEntity()->getContent()->toString();
               //  if(!entity->equals("hello this is server")) {
@@ -60,16 +62,17 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
       }
+      */
   }
 };
 
 int main() {
   MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1265))
-                    ->setListener(listener)
+  Http2Server server = createHttpServerBuilder()
+                    ->setAddress(createInet4Address(1268))
+                    ->setHttp2Listener(listener)
                     ->setProtocol(st(HttpProtocol)::Http_H2C)
-                    ->build();
+                    ->buildHttp2Server();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
   connectlatch->await();
