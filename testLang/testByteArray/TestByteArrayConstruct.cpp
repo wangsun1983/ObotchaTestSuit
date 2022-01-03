@@ -10,6 +10,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,14 +20,14 @@ void testConstruct() {
       //case1 _ByteArray(int length,bool isSafe = false);
       ByteArray data = createByteArray(128);
       if(data->size() != 128) {
-        printf("ByteArray test Construct test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 1");
         break;
       }
       data[16] = 12;
       byte *val = data->toValue();
       val[16] = 32;
       if(data[16] != 32) {
-        printf("ByteArray test Construct test 2-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 2");
         break;
       }
 
@@ -37,12 +38,12 @@ void testConstruct() {
       val = data->toValue();
       val[16] = 32;
       if(data[16] == 32) {
-        printf("ByteArray test Construct test 3-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 3");
         break;
       }
 
       free(val);
-      printf("ByteArray test Construct test 4-------[OK] \n");
+      TEST_OK("ByteArray test Construct test 4");
       break;
     }
 
@@ -56,7 +57,7 @@ void testConstruct() {
       ByteArray arr1 = createByteArray(data+32,16);
       for(int i = 0;i < 16;i++) {
         if(arr1[i] != i+32) {
-          printf("ByteArray test Construct test 3-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 3");
           break;
         }
       }
@@ -64,7 +65,7 @@ void testConstruct() {
       byte *val = arr1->toValue();
       val[8] = 32;
       if(arr1[8] != 32) {
-        printf("ByteArray test Construct test 4-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 4");
         break;
       }
 
@@ -72,7 +73,7 @@ void testConstruct() {
       arr1->setSafe();
       for(int i = 0;i < 16;i++) {
         if(arr1[i] != i+32) {
-          printf("ByteArray test Construct test 4-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 4");
           break;
         }
       }
@@ -80,11 +81,11 @@ void testConstruct() {
       val = arr1->toValue();
       val[8] = 32;
       if(arr1[8] == 32) {
-        printf("ByteArray test Construct test 5-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 5");
         break;
       }
       free(val);
-      printf("ByteArray test Construct test 5-------[OK] \n");
+      TEST_OK("ByteArray test Construct test 5");
       break;
     }
 
@@ -97,7 +98,7 @@ void testConstruct() {
       ByteArray arr1 = createByteArray(data);
       for(int i = 0;i<32;i++) {
         if(arr1[i] != i) {
-          printf("ByteArray test Construct test 6-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 6");
           break;
         }
       }
@@ -105,7 +106,7 @@ void testConstruct() {
       byte *val = arr1->toValue();
       val[16] = 22;
       if(arr1[16] != 22) {
-        printf("ByteArray test Construct test 7-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 7");
         break;
       }
 
@@ -113,7 +114,7 @@ void testConstruct() {
       arr2->setSafe();
       for(int i = 0;i<32;i++) {
         if(arr2[i] != i) {
-          printf("ByteArray test Construct test 8-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 8");
           break;
         }
       }
@@ -121,11 +122,11 @@ void testConstruct() {
       val = arr2->toValue();
       val[16] = 22;
       if(arr2[16] == 22) {
-        printf("ByteArray test Construct test 9-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 9");
         break;
       }
       free(val);
-      printf("ByteArray test Construct test 10-------[OK] \n");
+      TEST_OK("ByteArray test Construct test 10");
       break;
     }
 
@@ -138,13 +139,13 @@ void testConstruct() {
 
       ByteArray data1 = createByteArray(data);
       if(data1->size() != 32) {
-        printf("ByteArray test Construct test 11-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 11");
         break;
       }
 
       for(int j = 0;j< data1->size();j++) {
         if(data[j] != data1[j]) {
-          printf("ByteArray test Construct test 12-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 12");
           break;
         }
       }
@@ -159,13 +160,13 @@ void testConstruct() {
 
       ByteArray data1 = createByteArray(data,10);
       if(data1->size() != 22) {
-        printf("ByteArray test Construct test 13-------[FAIL],data1 is %d \n",data1->size());
+        TEST_FAIL("ByteArray test Construct test 13");
         break;
       }
 
       for(int j = 0;j< data1->size();j++) {
         if(data[j + 10] != data1[j]) {
-          printf("ByteArray test Construct test 14 -------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 14");
           break;
         }
       }
@@ -180,17 +181,17 @@ void testConstruct() {
 
       ByteArray data1 = createByteArray(data,10,2);
       if(data1->size() != 2) {
-        printf("ByteArray test Construct test 15-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Construct test 15");
         break;
       }
 
       for(int j = 0;j< 2;j++) {
         if(data[j + 10] != data1[j]) {
-          printf("ByteArray test Construct test 16 -------[FAIL] \n");
+          TEST_FAIL("ByteArray test Construct test 16");
           break;
         }
       }
       break;
     }
-    printf("ByteArray test Construct test 100 -------[OK] \n");
+    TEST_OK("ByteArray test Construct test 100");
 }

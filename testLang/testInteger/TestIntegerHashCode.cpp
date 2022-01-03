@@ -6,6 +6,7 @@
 #include "Integer.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,17 +16,17 @@ void hashcodeTest() {
     Integer t1 = createInteger(1);
     Integer t2 = createInteger(1);
     if(t1->hashcode() != t2->hashcode()) {
-      printf("Integer hashcode test1-------[FAIL] \n");
+      TEST_FAIL("Integer hashcode test1");
       break;
     }
 
     Integer t3 = createInteger(2);
     if(t1->hashcode() == t3->hashcode()) {
-      printf("Integer hashcode test2-------[FAIL] \n");
+      TEST_FAIL("Integer hashcode test2");
       break;
     }
 
-    printf("Integer hashcode test3-------[OK] \n");
+    TEST_OK("Integer hashcode test3");
     break;
   }
 

@@ -6,21 +6,21 @@
 #include "Integer.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void basetest() {
 
-  printf("---[Integer Test Start]--- \n");
   //_Integer(int v);
   while(1) {
       Integer v1 = createInteger(10);
       if(v1->toValue() != 10){
-          printf("Integer construct test1-------[FAIL] \n");
+          TEST_FAIL("Integer construct test1");
           break;
       }
 
-      printf("Boolean construct test-------[OK] \n");
+      TEST_OK("Boolean construct test");
       break;
   }
 
@@ -29,17 +29,17 @@ void basetest() {
     Integer v1 = createInteger(11);
     Integer v2 = createInteger(v1);
     if(v2->toValue() != 11) {
-      printf("Integer construct test3-------[FAIL] \n");
+      TEST_FAIL("Integer construct test3");
       break;
     }
 
     Integer v3;
     try {
       Integer v4 = createInteger(v3);
-      printf("Integer construct test4-------[FAIL] \n");
+      TEST_FAIL("Integer construct test4");
     } catch(InitializeException e) {}
 
-    printf("Integer construct test5-------[OK] \n");
+    TEST_OK("Integer construct test5");
     break;
   }
 
@@ -48,11 +48,11 @@ void basetest() {
     Integer v1 = createInteger(11);
     Integer v2 = createInteger(v1);
     if(v2->toValue() != 11) {
-      printf("Integer toValue test1-------[FAIL] \n");
+      TEST_FAIL("Integer toValue test1");
       break;
     }
 
-    printf("Integer toValue test1-------[OK] \n");
+    TEST_OK("Integer toValue test1");
     break;
   }
 
@@ -61,11 +61,11 @@ void basetest() {
     Integer v1 = createInteger(11);
     Integer v2 = createInteger(11);
     if(!v1->equals(v2)) {
-      printf("Integer equals test1-------[FAIL] \n");
+      TEST_FAIL("Integer equals test1");
       break;
     }
 
-    printf("Integer equals test3-------[OK] \n");
+    TEST_OK("Integer equals test3");
     break;
   }
 
@@ -73,11 +73,11 @@ void basetest() {
   while(1) {
     Integer v1 = createInteger(11);
     if(!v1->equals(11)) {
-      printf("Integer equals test4-------[FAIL] \n");
+      TEST_FAIL("Integer equals test4");
       break;
     }
 
-    printf("Integer equals test5-------[OK] \n");
+    TEST_OK("Integer equals test5");
     break;
   }
 
@@ -86,11 +86,11 @@ void basetest() {
     Integer v1 = createInteger(12);
     Integer v2 = createInteger(12);
     if(v1 != v2) {
-      printf("Integer [==] test1-------[FAIL] \n");
+      TEST_FAIL("Integer [==] test1");
       break;
     }
 
-    printf("Integer [==] test1-------[OK] \n");
+    TEST_OK("Integer [==] test1");
     break;
   }
 

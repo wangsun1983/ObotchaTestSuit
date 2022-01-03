@@ -605,7 +605,7 @@ void testArrayList_Integer() {
       break;
     }
 
-    size != list->size();
+    //size != list->size();
     isException = false;
     try {
         list->insert(-1,list2,100);

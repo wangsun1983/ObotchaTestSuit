@@ -7,6 +7,7 @@
 #include "Double.hpp"
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,18 +17,18 @@ void hashtest() {
   Double d1 = createDouble(1.1);
   Double d2 = createDouble(1.1);
   if(d1->hashcode() != d2->hashcode()) {
-    printf("Double hashcode test1-------[Fail] \n");
+    TEST_FAIL("Double hashcode test1");
   }
 
   Double d3 = createDouble(1.10);
   if(d1->hashcode() != d3->hashcode()) {
-    printf("Double hashcode test2-------[Fail] \n");
+    TEST_FAIL("Double hashcode test2");
   }
 
   Double d4 = createDouble(1.100000001);
   if(d1->hashcode() == d4->hashcode()) {
-    printf("Double hashcode test3-------[Fail] \n");
+    TEST_FAIL("Double hashcode test3");
   }
 
-  printf("Double hashcode test100-------[OK] \n");
+  TEST_OK("Double hashcode test100");
 }

@@ -6,6 +6,7 @@
 #include "Double.hpp"
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ void updatetest() {
     Double d1 = createDouble(1.1);
     d1->update(1.2);
     if((d1->toValue() - 1.2) > EPSINON) {
-      printf("Double update special test1-------[FAIL] \n");
+      TEST_FAIL("Double update special test1");
       break;
     }
 
@@ -27,7 +28,7 @@ void updatetest() {
 
     d2->update(d2_1);
     if((d2->toValue() - 1.2) > EPSINON) {
-      printf("Double update special test2-------[FAIL] \n");
+      TEST_FAIL("Double update special test2");
       break;
     }
 
@@ -37,7 +38,7 @@ void updatetest() {
       d3->update(d3_1);
     } catch(IllegalArgumentException e){}
 
-    printf("Double update special test3-------[OK] \n");
+    TEST_OK("Double update special test3");
     break;
   }
 }

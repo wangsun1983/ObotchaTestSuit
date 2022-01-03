@@ -8,6 +8,7 @@
 #include "ByteArray.hpp"
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,12 +19,12 @@ void testByteArrayStringConvert() {
     ByteArray array = str->toByteArray();
 
     String v = array->toString();
-    //printf("v is %s \n",v->toChars());
+    //TEST_FAIL("v is %s \n",v->toChars());
     if(!v->equals(str)) {
-      printf("ByteArray  ByteArray String Convert test 1-------[FAILED] \n");
+      TEST_FAIL("ByteArray  ByteArray String Convert test 1");
     }
     break;
   }
 
-  printf("ByteArray  ByteArray String Convert test 100-------[OK] \n");
+  TEST_OK("ByteArray  ByteArray String Convert test 100");
 }

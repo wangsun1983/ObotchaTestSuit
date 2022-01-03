@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void equaltest() {
     Double d1_1 = createDouble(1.1);
 
     if(!d1->equals(d1_1)) {
-        printf("Double equal special test1-------[Fail] \n");
+        TEST_FAIL("Double equal special test1");
         break;
     }
 
@@ -29,11 +30,11 @@ void equaltest() {
     Double d2_1 = createDouble(1.2);
 
     if(d2->equals(d2_1)) {
-        printf("Double equal special test2-------[Fail] \n");
+        TEST_FAIL("Double equal special test2");
         break;
     }
 
-    printf("Double equal special test4-------[Success] \n");
+    TEST_OK("Double equal special test4");
     break;
   }
 
@@ -43,7 +44,7 @@ void equaltest() {
     Double d1_1 = createDouble(1.1);
 
     if(d1!= d1_1) {
-        printf("Double equal special test5-------[Fail] \n");
+        TEST_FAIL("Double equal special test5");
         break;
     }
 
@@ -52,7 +53,7 @@ void equaltest() {
     Double d2_1 = createDouble(1.2);
 
     if(d2 == d2_1) {
-        printf("Double equal special test6-------[Fail] \n");
+        TEST_FAIL("Double equal special test6");
         break;
     }
 
@@ -60,11 +61,11 @@ void equaltest() {
     Double d3 = createDouble(1.1);
     Double d3_1;
     if(d3 == d3_1) {
-      printf("Double equal special test7-------[Fail] \n");
+      TEST_FAIL("Double equal special test7");
     }
 
 
-    printf("Double equal special test8-------[Success] \n");
+    TEST_OK("Double equal special test8");
     break;
   }
 }

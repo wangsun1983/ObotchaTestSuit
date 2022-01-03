@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,31 +23,31 @@ void testByteArrayClear() {
 
       data->quickShrink(16);
       if(data->size() != 16) {
-        printf("ByteArray test Clear test 1-------[FAIL],data size is %d \n",data->size());
+        TEST_FAIL("ByteArray test Clear test 1");
         break;
       }
 
       for(int i = 0;i < 16;i++) {
         if(data[i] != i) {
-          printf("ByteArray test Clear test 2-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Clear test 2");
           break;
         }
       }
 
       data->clear();
       if(data->size() != 32) {
-        printf("ByteArray test Clear test 3-------[FAIL] \n");
+        TEST_FAIL("ByteArray test Clear test 3");
         break;
       }
 
       for(int i = 0;i<32;i++) {
         if(data[i] != 0) {
-          printf("ByteArray test Clear test 4-------[FAIL] \n");
+          TEST_FAIL("ByteArray test Clear test 4");
           break;
         }
       }
 
-      printf("ByteArray test Clear test 5-------[OK] \n");
+      TEST_OK("ByteArray test Clear test 5");
       break;
     }
 }

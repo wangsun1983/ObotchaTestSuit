@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -24,20 +25,20 @@ void testgrow() {
 
       arr->growTo(16);
       if(arr->size() != 16) {
-        printf("ByteArray testgrow test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray testgrow test 1");
         break;
       }
 
       for(int i = 0;i<8;i++) {
         if(arr[i] != i) {
-          printf("ByteArray testgrow test 2-------[FAIL] \n");
+          TEST_FAIL("ByteArray testgrow test 2");
           break;
         }
       }
 
       for(int i = 9;i<16;i++) {
         if(arr[i] != 0) {
-          printf("ByteArray testgrow test 3-------[FAIL] \n");
+          TEST_FAIL("ByteArray testgrow test 3");
           break;
         }
       }
@@ -45,11 +46,11 @@ void testgrow() {
       //case2
       ByteArray arr2 = createByteArray(8);
       if(arr2->growTo(2) != -InvalidParam) {
-        printf("ByteArray testgrow test 4-------[FAIL] \n");
+        TEST_FAIL("ByteArray testgrow test 4");
         break;
       }
 
-      printf("ByteArray testgrow test 5-------[OK] \n");
+      TEST_OK("ByteArray testgrow test 5");
       break;
     }
 
@@ -63,24 +64,24 @@ void testgrow() {
       arr->quickShrink(4);
 
       if(arr->size() != 4) {
-        printf("ByteArray testclear test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray testclear test 1");
         break;
       }
 
       arr->clear();
       if(arr->size() != 8) {
-        printf("ByteArray testclear test 2-------[FAIL] \n");
+        TEST_FAIL("ByteArray testclear test 2");
         break;
       }
 
       for(int i = 0;i<8;i++) {
         if(arr[i] != 0) {
-          printf("ByteArray testclear test 3-------[FAIL] \n");
+          TEST_FAIL("ByteArray testclear test 3");
           break;
         }
       }
 
-      printf("ByteArray testclear test 4-------[OK] \n");
+      TEST_OK("ByteArray testclear test 4");
       break;
     }
 
@@ -94,25 +95,25 @@ void testgrow() {
 
       arr->growBy(16);
       if(arr->size() != 24) {
-        printf("ByteArray testgrow test 5-------[FAIL] \n");
+        TEST_FAIL("ByteArray testgrow test 5");
         break;
       }
 
       for(int i = 0;i<8;i++) {
         if(arr[i] != i) {
-          printf("ByteArray testgrow test 6-------[FAIL] \n");
+          TEST_FAIL("ByteArray testgrow test 6");
           break;
         }
       }
 
       for(int i = 9;i<24;i++) {
         if(arr[i] != 0) {
-          printf("ByteArray testgrow test 7-------[FAIL] \n");
+          TEST_FAIL("ByteArray testgrow test 7");
           break;
         }
       }
 
-      printf("ByteArray testgrow test 7-------[OK] \n");
+      TEST_OK("ByteArray testgrow test 7");
       break;
     }
 

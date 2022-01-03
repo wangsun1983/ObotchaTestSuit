@@ -6,6 +6,7 @@
 #include "Boolean.hpp"
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,24 +19,24 @@ void testequals() {
         //Boolean t2 = createBoolean(nullptr);
 
         if(t0 != t0_1){
-            printf("Boolean special equal test1-------[FAIL] \n");
+            TEST_FAIL("Boolean special equal test1");
         }
 
         //case1
         Boolean t1 = createBoolean(false);
         Boolean t1_1 = createBoolean(false);
         if(t1 != t1_1){
-            printf("Boolean special equal test2-------[FAIL] \n");
+            TEST_FAIL("Boolean special equal test2");
         }
 
         //case1
         Boolean t2 = createBoolean(false);
         Boolean t2_1 = createBoolean(true);
         if(t2 == t2_1){
-            printf("Boolean special equal test3-------[FAIL] \n");
+            TEST_FAIL("Boolean special equal test3");
         }
 
-        printf("Boolean special equal test4-------[OK] \n");
+        TEST_OK("Boolean special equal test4");
         break;
     }
 
@@ -46,27 +47,27 @@ void testequals() {
         //Boolean t2 = createBoolean(nullptr);
 
         if(!t0->equals(t0_1)){
-            printf("Boolean equal test1-------[FAIL] \n");
+            TEST_FAIL("Boolean equal test1");
         }
 
         t0 = createBoolean(true);
         t0_1 = createBoolean(false);
 
         if(t0->equals(t0_1)){
-            printf("Boolean equal test2-------[FAIL] \n");
+            TEST_FAIL("Boolean equal test2");
         }
 
         t0 = createBoolean(true);
         if(!t0->equals(true)) {
-            printf("Boolean equal test3-------[FAIL] \n");
+            TEST_FAIL("Boolean equal test3");
         }
 
         t0 = createBoolean(false);
         if(!t0->equals(false)) {
-            printf("Boolean equal test4-------[FAIL] \n");
+            TEST_FAIL("Boolean equal test4");
         }
 
-        printf("Boolean equal test5-------[OK] \n");
+        TEST_OK("Boolean equal test5");
         break;
     }
 

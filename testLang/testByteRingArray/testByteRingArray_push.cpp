@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,26 +36,23 @@ ByteRingArray createStartBiggerThanEnd() {
 
 void push_test() {
   ByteRingArray array = createStartBiggerThanEnd();
-  printf("array start 1 index is %d \n",array->getStartIndex());
   //pop 2 data
   ByteArray b1 = array->pop(2);
   if(b1->at(0) != 5 ||
      b1->at(1) != 6) {
-    printf("---[ByteRingArray Test push_test {push_test} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case1]");
     return;
   }
-  printf("array start 2 index is %d \n",array->getStartIndex());
 
   if(array->getStartIndex() != 0 
     ||array->getEndIndex() != 2) {
-    printf("startIndex is %d,endIndex is %d \n",array->getStartIndex(),array->getEndIndex());
-    printf("---[ByteRingArray Test push_test {push_test} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case2]");
     return;
   }
 
   int v2 = array->pop();
   if(v2 != 7) {
-    printf("---[ByteRingArray Test push_test {push_test} case3] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case3]");
     return;
   }
 
@@ -72,10 +70,10 @@ void push_test() {
      array->at(3) != 19 ||
      array->at(4) != 19 ||
      array->at(5) != 19 ) {
-    printf("---[ByteRingArray Test push_test {push_test} case4] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case4]");
     return;
   }
 
 
-  printf("---[ByteRingArray Test push_test {push_test} case10] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test push_test {push_test} case10]");
 }

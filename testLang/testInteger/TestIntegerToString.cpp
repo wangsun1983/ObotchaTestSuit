@@ -8,6 +8,7 @@
 #include "Integer.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -69,7 +70,7 @@ void testtostring() {
 
        String v2 = createString(HexTable[i]);
        if(v1 != v2) {
-         printf("Integer toString test1-------[FAIL] \n");
+         TEST_FAIL("Integer toString test1");
          break;
        }
      }
@@ -80,8 +81,7 @@ void testtostring() {
 
        String v2 = createString(OctTable[i]);
        if(v1 != v2) {
-         printf("v1 is %s,v2 is %s,i is %d \n",v1->toChars(),v2->toChars(),i);
-         printf("Integer toString test2-------[FAIL] \n");
+         TEST_FAIL("Integer toString test2");
          break;
        }
      }
@@ -92,12 +92,12 @@ void testtostring() {
 
        String v2 = createString(BinaryTable[i]);
        if(v1 != v2) {
-         printf("Integer toString test3-------[FAIL] \n");
+         TEST_FAIL("Integer toString test3");
          break;
        }
      }
 
-     printf("Integer toString test4-------[OK] \n");
+     TEST_OK("Integer toString test4");
      break;
    }
 
@@ -109,7 +109,7 @@ void testtostring() {
        Integer t3 = createInteger(t2);
 
        if(t1 != t3) {
-         printf("Integer toInt test1-------[FAIL] \n");
+         TEST_FAIL("Integer toInt test1");
          break;
        }
      }
@@ -120,8 +120,7 @@ void testtostring() {
        Integer t3 = createInteger(t2);
 
        if(t1 != t3) {
-         printf("t1 is %d,t3 is %d,i is %d \n",t1->toValue(),t3->toValue(),i);
-         printf("Integer toInt test2-------[FAIL] \n");
+         TEST_FAIL("Integer toInt test2");
          break;
        }
      }
@@ -129,16 +128,16 @@ void testtostring() {
      for(int i = 0;i < 100;i++) {
        Integer t1 = createInteger(i);
        String str = createString(BinaryTable[i]);
-       //printf("11111 str is %s \n",str->toChars());
+       //TEST_FAIL("11111 str is %s \n",str->toChars());
        int t2 = st(Integer)::parseBinaryInt(str)->toValue();
        Integer t3 = createInteger(t2);
         if(t1 != t3) {
-         printf("Integer toInt test3-------[FAIL] \n");
+         TEST_FAIL("Integer toInt test3");
          break;
        }
      }
 
-     printf("Integer toInt test10-------[OK] \n");
+     TEST_OK("Integer toInt test10");
      break;
    }
 

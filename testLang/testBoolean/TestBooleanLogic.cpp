@@ -8,6 +8,7 @@
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,51 +20,51 @@ void testLogic() {
         Boolean t0 = createBoolean(true);
         t0->logicOr(true);
         if(!t0->toValue()) {
-            printf("Boolean logicOr test1-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test1");
         }
 
         t0->logicOr(false);
         if(!t0->toValue()) {
-            printf("Boolean logicOr test2-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test2");
         }
 
         t0 = createBoolean(false);
         t0->logicOr(true);
         if(!t0->toValue()) {
-            printf("Boolean logicOr test3-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test3");
         }
 
         t0 = createBoolean(false);
         t0->logicOr(false);
         if(t0->toValue()) {
-            printf("Boolean logicOr test4-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test4");
         }
 
         //Test class
         t0 = createBoolean(true);
         t0->logicOr(createBoolean(true));
         if(!t0->toValue()) {
-            printf("Boolean logicOr test5-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test5");
         }
 
         t0->logicOr(createBoolean(false));
         if(!t0->toValue()) {
-            printf("Boolean logicOr test6-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test6");
         }
 
         t0 = createBoolean(false);
         t0->logicOr(createBoolean(true));
         if(!t0->toValue()) {
-            printf("Boolean logicOr test7-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test7");
         }
 
         t0 = createBoolean(false);
         t0->logicOr(createBoolean(false));
         if(t0->toValue()) {
-            printf("Boolean logicOr test8-------[FAIL] \n");
+            TEST_FAIL("Boolean logicOr test8");
         }
 
-        printf("Boolean logicOr test9-------[OK] \n");
+        TEST_OK("Boolean logicOr test9 ");
         break;
     }
 
@@ -73,49 +74,49 @@ void testLogic() {
         Boolean t0 = createBoolean(true);
         t0->logicAnd(true);
         if(!t0->toValue()) {
-            printf("Boolean logicAnd test1-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test1");
         }
 
         t0->logicAnd(false);
         if(t0->toValue()) {
-            printf("Boolean logicAnd test2-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test2");
         }
 
         t0 = createBoolean(false);
         t0->logicAnd(true);
         if(t0->toValue()) {
-            printf("Boolean logicAnd test3-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test3");
         }
 
         t0->logicOr(false);
         if(t0->toValue()) {
-            printf("Boolean logicAnd test4-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test4");
         }
 
         //class data
         t0 = createBoolean(true);
         t0->logicAnd(createBoolean(true));
         if(!t0->toValue()) {
-            printf("Boolean logicAnd test5-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test5");
         }
 
         t0->logicAnd(createBoolean(false));
         if(t0->toValue()) {
-            printf("Boolean logicAnd test6-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test6");
         }
 
         t0 = createBoolean(false);
         t0->logicAnd(createBoolean(true));
         if(t0->toValue()) {
-            printf("Boolean logicAnd test7-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test7");
         }
 
         t0->logicOr(createBoolean(false));
         if(t0->toValue()) {
-            printf("Boolean logicAnd test8-------[FAIL] \n");
+            TEST_FAIL("Boolean logicAnd test8");
         }
 
-        printf("Boolean logicAnd test9-------[OK] \n");
+        TEST_OK("Boolean logicAnd test9 ");
         break;
     }
 

@@ -6,6 +6,7 @@
 #include "Float.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,18 +14,18 @@ void hashcodetest() {
   Float t1 = createFloat(1.1);
   Float t2 = createFloat(1.1);
   if(t1->hashcode() != t2->hashcode()) {
-    printf("Float hashcode test1-------[FAIL] \n");
+    TEST_FAIL("Float hashcode test1");
   }
 
   Float t3 = createFloat(1.10);
   if(t1->hashcode() != t3->hashcode()) {
-    printf("Float hashcode test2-------[FAIL] \n");
+    TEST_FAIL("Float hashcode test2");
   }
 
   Float t4 = createFloat(1.100000001);
   if(t1->hashcode() != t4->hashcode()) {
-    printf("Float hashcode test3-------[FAIL] \n");
+    TEST_FAIL("Float hashcode test3");
   }
 
-  printf("Float hashcode test100-------[OK] \n");
+  TEST_OK("Float hashcode test100");
 }

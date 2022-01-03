@@ -8,6 +8,7 @@
 #include "Integer.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,29 +16,29 @@ void testIntegerParseWrong() {
   while(1) {
    Integer v1 = st(Integer)::parseDecInt("xd");
    if(v1 != nullptr) {
-    printf("Integer testIntegerParseWrong test1-------[FAIL] \n");
+    TEST_FAIL("Integer testIntegerParseWrong test1");
     break;
    }
 
    v1 = st(Integer)::parseHexInt("xd");
    if(v1 != nullptr) {
-    printf("Integer testIntegerParseWrong test2-------[FAIL] \n");
+    TEST_FAIL("Integer testIntegerParseWrong test2");
     break;
    }
 
    v1 = st(Integer)::parseOctInt("xd");
    if(v1 != nullptr) {
-    printf("Integer testIntegerParseWrong test3-------[FAIL] \n");
+    TEST_FAIL("Integer testIntegerParseWrong test3");
     break;
    }
 
    v1 = st(Integer)::parseBinaryInt("111d");
    if(v1 != nullptr) {
-    printf("Integer testIntegerParseWrong test4-------[FAIL] \n");
+    TEST_FAIL("Integer testIntegerParseWrong test4");
     break;
    }
 
-   printf("Integer testIntegerParseWrong test5-------[OK] \n");
+   TEST_OK("Integer testIntegerParseWrong test5");
    break;
   }
 }

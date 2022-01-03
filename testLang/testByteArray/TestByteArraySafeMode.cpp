@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,13 +30,13 @@ void testsafemode() {
 
     for(int i = 0;i < 8;i++) {
       if(arr1[i] != 99) {
-        printf("ByteArray testsafemode test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray testsafemode test 1");
         break;
       }
     }
     free(data1);
     
-    printf("ByteArray testsafemode test 2-------[OK] \n");
+    TEST_OK("ByteArray testsafemode test 2");
     break;
   }
 
@@ -53,12 +54,12 @@ void testsafemode() {
 
     for(int i = 0;i < 8;i++) {
       if(arr1[i] != i) {
-        printf("ByteArray testsafemode test 3-------[FAIL] \n");
+        TEST_FAIL("ByteArray testsafemode test 3");
         break;
       }
     }
 
-    printf("ByteArray testsafemode test 4-------[OK] \n");
+    TEST_OK("ByteArray testsafemode test 4");
     break;
   }
 
@@ -67,12 +68,12 @@ void testsafemode() {
     ByteArray arr1 = createByteArray(8);
     arr1->setSafe();
     if(!arr1->isSafeMode()) {
-      printf("ByteArray testsafemode test 5-------[FAILED] \n");
+      TEST_FAIL("ByteArray testsafemode test 5");
       break;
     }
     break;
   }
 
-  printf("ByteArray testsafemode test 100-------[OK] \n");
+  TEST_OK("ByteArray testsafemode test 100");
   return;
 }

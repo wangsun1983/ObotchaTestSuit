@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,11 +30,11 @@ void testByteRingArrayPush2() {
       }
 
       if(!isException) {
-        printf("---[ByteRingArray Test push_test {push_test1} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test1} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test1} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test1} case1]");
       break;
   }
 
@@ -59,11 +60,11 @@ void testByteRingArrayPush2() {
       }
 
       if(!isException) {
-        printf("---[ByteRingArray Test push_test {push_test2} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test2} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test2} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test2} case1]");
       break;
   }
 
@@ -89,16 +90,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 11 || ringarray->at(1) != 2
         ||ringarray->at(2) != 3 || ringarray->at(3) != 4
         ||ringarray->at(4) != 10) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test3} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test3} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test3} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test3} case1]");
       break;
   }
 
@@ -125,16 +121,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 11 || ringarray->at(1) != 12
         ||ringarray->at(2) != 3 || ringarray->at(3) != 4
         ||ringarray->at(4) != 10) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test4} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test4} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test4} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test4} case1]");
       break;
   }
 
@@ -163,16 +154,16 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 11 || ringarray->at(1) != 12
         ||ringarray->at(2) != 13 || ringarray->at(3) != 4
         ||ringarray->at(4) != 10) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test5} case1] [FAILED]--- \n");
+        TEST_FAIL("ring[0] is %d \n",ringarray->at(0));
+        TEST_FAIL("ring[1] is %d \n",ringarray->at(1));
+        TEST_FAIL("ring[2] is %d \n",ringarray->at(2));
+        TEST_FAIL("ring[3] is %d \n",ringarray->at(3));
+        TEST_FAIL("ring[4] is %d \n",ringarray->at(4));
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test5} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test5} case1] [OK]--- \n");
+      TEST_FAIL("---[ByteRingArray Test push_test {push_test5} case1] [OK]--- \n");
       break;
   }
   */
@@ -203,16 +194,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 11 || ringarray->at(1) != 12
         ||ringarray->at(2) != 13 || ringarray->at(3) != 14
         ||ringarray->at(4) != 10) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test6} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test6} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test6} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test6} case1]");
       break;
   }
 
@@ -241,16 +227,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 10 || ringarray->at(1) != 11
         ||ringarray->at(2) != 12 || ringarray->at(3) != 13
         ||ringarray->at(4) != 5) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test7} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test7} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test7} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test7} case1]");
       break;
   }
 
@@ -278,16 +259,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 1 || ringarray->at(1) != 10
         ||ringarray->at(2) != 11 || ringarray->at(3) != 12
         ||ringarray->at(4) != 5) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test8} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test8} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test8} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test8} case1]");
       break;
   }
 
@@ -314,16 +290,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 1 || ringarray->at(1) != 2
         ||ringarray->at(2) != 10 || ringarray->at(3) != 11
         ||ringarray->at(4) != 5) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test9} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test9} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test9} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test9} case1]");
       break;
   }
 
@@ -349,16 +320,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 1 || ringarray->at(1) != 2
         ||ringarray->at(2) != 3 || ringarray->at(3) != 10
         ||ringarray->at(4) != 5) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test10} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test10} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test10} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test10} case1]");
       break;
   }
 
@@ -385,16 +351,11 @@ void testByteRingArrayPush2() {
       if(ringarray->at(0) != 1 || ringarray->at(1) != 10
         ||ringarray->at(2) != 11 || ringarray->at(3) != 4
         ||ringarray->at(4) != 5) {
-        printf("ring[0] is %d \n",ringarray->at(0));
-        printf("ring[1] is %d \n",ringarray->at(1));
-        printf("ring[2] is %d \n",ringarray->at(2));
-        printf("ring[3] is %d \n",ringarray->at(3));
-        printf("ring[4] is %d \n",ringarray->at(4));
-        printf("---[ByteRingArray Test push_test {push_test11} case1] [FAILED]--- \n");
+        TEST_FAIL("---[ByteRingArray Test push_test {push_test11} case1]");
         return;
       }
 
-      printf("---[ByteRingArray Test push_test {push_test11} case1] [OK]--- \n");
+      TEST_OK("---[ByteRingArray Test push_test {push_test11} case1]");
       break;
   }
 

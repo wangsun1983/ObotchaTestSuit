@@ -22,6 +22,7 @@ extern void testConstruct();
 extern void testByteArrayClear();
 extern void testByteArrayStruct();
 extern void testByteArrayStringConvert();
+extern void testPriority();
 
 int main() {
   testByteArrayStringConvert();
@@ -35,5 +36,6 @@ int main() {
   testForeach();
   testConstruct();
   testByteArrayClear();
+  testPriority();
   return 0;
 }

@@ -1,4 +1,5 @@
 #include "ByteArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -11,13 +12,13 @@ void testForeach() {
   int index = 0;
   array->foreach([&index](byte d) {
     if(d != index) {
-      printf("ByteArray Lambda test 1-------[FAIL] \n");
+      TEST_FAIL("ByteArray Lambda test 1");
       return -1;
     }
     index++;
     return 1;
   });
 
-  printf("ByteArray Lambda test 1-------[OK] \n");
+  TEST_OK("ByteArray Lambda test 1");
 
 }

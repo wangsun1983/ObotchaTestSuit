@@ -11,20 +11,20 @@
 #include "InitializeException.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void basetest() {
-  printf("---[Byte Test Start]--- \n");
   //_Byte(Byte v);
   while(1) {
       Byte v1 = createByte(10);
       if(v1->toValue() != 10){
-          printf("Byte construct test1-------[FAIL] \n");
+          TEST_FAIL("Byte construct test1");
           break;
       }
 
-      printf("Byte construct test-------[OK] \n");
+      TEST_OK("Byte construct test");
       break;
   }
 
@@ -33,11 +33,11 @@ void basetest() {
     Byte v1 = createByte(11);
     Byte v2 = createByte(v1);
     if(v2->toValue() != 11) {
-      printf("Byte construct test3-------[FAIL] \n");
+      TEST_FAIL("Byte construct test3");
       break;
     }
 
-    printf("Byte construct test5-------[OK] \n");
+    TEST_OK("Byte construct test5");
     break;
   }
 
@@ -46,11 +46,11 @@ void basetest() {
     Byte v1 = createByte(11);
     Byte v2 = createByte(v1);
     if(v2->toValue() != 11) {
-      printf("Byte toValue test1-------[FAIL] \n");
+      TEST_FAIL("Byte toValue test1");
       break;
     }
 
-    printf("Byte toValue test1-------[OK] \n");
+    TEST_OK("Byte toValue test1");
     break;
   }
 
@@ -59,11 +59,11 @@ void basetest() {
     Byte v1 = createByte(11);
     Byte v2 = createByte(11);
     if(!v1->equals(v2)) {
-      printf("Byte equals test1-------[FAIL] \n");
+      TEST_FAIL("Byte equals test1");
       break;
     }
 
-    printf("Byte equals test3-------[OK] \n");
+    TEST_OK("Byte equals test3");
     break;
   }
 
@@ -71,11 +71,11 @@ void basetest() {
   while(1) {
     Byte v1 = createByte(11);
     if(!v1->equals(11)) {
-      printf("Byte equals test4-------[FAIL] \n");
+      TEST_FAIL("Byte equals test4");
       break;
     }
 
-    printf("Byte equals test5-------[OK] \n");
+    TEST_OK("Byte equals test5");
     break;
   }
 
@@ -84,11 +84,11 @@ void basetest() {
     Byte v1 = createByte(12);
     Byte v2 = createByte(12);
     if(v1 != v2) {
-      printf("Byte [==] test1-------[FAIL] \n");
+      TEST_FAIL("Byte [==] test1");
       break;
     }
 
-    printf("Byte [==] test1-------[OK] \n");
+    TEST_OK("Byte [==] test1");
     break;
   }
 

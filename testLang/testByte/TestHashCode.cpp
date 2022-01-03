@@ -8,6 +8,7 @@
 #include "Byte.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,17 +16,17 @@ void testHash() {
    Byte t1 = createByte(1);
    Byte t2 = createByte(2);
    if(t1->hashcode() == t2->hashcode()) {
-    printf("Byte hashcode test1-------[FAIL] \n");
+    TEST_FAIL("Byte hashcode test1");
     return;
    }
 
    t1 = createByte(1);
    t2 = createByte(1);
    if(t1->hashcode() != t2->hashcode()) {
-    printf("Byte hashcode test2-------[FAIL] \n");
+    TEST_FAIL("Byte hashcode test2");
     return;
    }
 
-   printf("Byte hashcode test3-------[OK] \n");
-  return;
+   TEST_OK("Byte hashcode test3");
+   return;
 }

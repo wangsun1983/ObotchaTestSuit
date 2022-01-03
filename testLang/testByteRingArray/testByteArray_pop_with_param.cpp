@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,56 +28,56 @@ void testByteRingArrayPopWithParam() {
 
     ByteArray result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case1] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case1]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test pop with param case2] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case2]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case3] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case3]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test pop with param case4] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case4]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case5] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case5]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test pop with param case6] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case6]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case7] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case7]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test pop with param case8] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case8]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case9] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case9]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test pop with param case10] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case10]");
       break;
     }
 
@@ -88,7 +89,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      printf("---[ByteRingArray Test pop with param case11] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case11]");
       break;
     }
 
@@ -99,56 +100,56 @@ void testByteRingArrayPopWithParam() {
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case12] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case12]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test pop with param case13] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case13]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case14] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case14]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test pop with param case15] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case15]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case16] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case16]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test pop with param case17] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case17]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case18] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case18]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test pop with param case19] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case19]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case20] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case20]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test pop with param case21] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case21]");
       break;
     }
 
@@ -159,56 +160,56 @@ void testByteRingArrayPopWithParam() {
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case22] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case22]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test pop with param case23] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case23]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case24] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case24]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test pop with param case25] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case25]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case26] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case26]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test pop with param case27] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case27]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case28] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case28]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test pop with param case29] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case29]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case30] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case30]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test pop with param case31] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case31]");
       break;
     }
 
@@ -220,7 +221,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      printf("---[ByteRingArray Test pop with param case32] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case32]");
       break;
     }
 
@@ -231,56 +232,56 @@ void testByteRingArrayPopWithParam() {
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case42] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case42]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test pop with param case43] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case43]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case44] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case44]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test pop with param case45] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case45]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case46] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case46]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test pop with param case47] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case47]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case48] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case48]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test pop with param case49] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case49]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case50] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case50]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test pop with param case51] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case51]");
       break;
     }
 
@@ -292,7 +293,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      printf("---[ByteRingArray Test pop with param case52] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case52]");
       break;
     }
 
@@ -303,56 +304,56 @@ void testByteRingArrayPopWithParam() {
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case42] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case42]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test pop with param case43] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case43]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case44] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case44]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test pop with param case45] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case45]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case46] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case46]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test pop with param case47] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case47]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case48] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case48]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test pop with param case49] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case49]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test pop with param case50] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case50]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test pop with param case51] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case51]");
       break;
     }
 
@@ -364,11 +365,11 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      printf("---[ByteRingArray Test pop with param case52] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test pop with param case52]");
       break;
     }
 
-    printf("---[ByteRingArray Test pop with param case100] [OK]--- \n");
+    TEST_OK("---[ByteRingArray Test pop with param case100]");
     break;
   }
   return;

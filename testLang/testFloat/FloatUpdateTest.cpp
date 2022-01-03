@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,7 +20,7 @@ void updatetest() {
     Float d1 = createFloat(1.1);
     d1->update(1.2);
     if((d1->toValue() - 1.2) > EPSINON) {
-      printf("Float update special test1-------[FAIL] \n");
+      TEST_FAIL("Float update special test1");
       break;
     }
 
@@ -28,11 +29,11 @@ void updatetest() {
 
     d2->update(d2_1);
     if((d2->toValue() - 1.2) > EPSINON) {
-      printf("Float update special test2-------[FAIL] \n");
+      TEST_FAIL("Float update special test2");
       break;
     }
 
-    printf("Float update special test3-------[OK] \n");
+    TEST_OK("Float update special test3");
     break;
   }
 }

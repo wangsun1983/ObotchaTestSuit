@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,13 +30,13 @@ void testappend() {
 
       data1->append(data2);
       if(data1->size() != 32) {
-        printf("ByteArray testappend test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray testappend test 1");
         break;
       }
 
       for(int i = 0;i<32;i++) {
         if(data1[i] != i) {
-            printf("ByteArray testappend test 2-------[FAIL] \n");
+            TEST_FAIL("ByteArray testappend test 2");
             break;
         }
       }
@@ -49,11 +50,11 @@ void testappend() {
 
       byte data4[12];
       if(data3->append(data4,-1) != -InvalidParam) {
-        printf("ByteArray testappend test 3-------[FAIL] \n");
+        TEST_FAIL("ByteArray testappend test 3");
         break;
       }
 
-      printf("ByteArray testappend test 4-------[OK] \n");
+      TEST_OK("ByteArray testappend test 4");
       break;
     }
 
@@ -77,12 +78,12 @@ void testappend() {
       const byte *t2 = array->toValue();
 
       if(t1 != t2) {
-        printf("ByteArray testappend test 5-------[FAIL] \n");
+        TEST_FAIL("ByteArray testappend test 5");
         break;
       }
 
       if(array->size() != 12) {
-        printf("ByteArray testappend test 6-------[FAIL] \n");
+        TEST_FAIL("ByteArray testappend test 6");
         break;
       }
 
@@ -98,11 +99,11 @@ void testappend() {
         ||array[9] != 1
         ||array[10] != 2
         ||array[11] != 3 ) {
-        printf("ByteArray testappend test 7-------[FAIL] \n");
+        TEST_FAIL("ByteArray testappend test 7");
         break;
       }
 
-      printf("ByteArray testappend test 8-------[OK] \n");
+      TEST_OK("ByteArray testappend test 8");
       break;
     }
 }

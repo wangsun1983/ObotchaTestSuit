@@ -6,6 +6,7 @@
 #include "Boolean.hpp"
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,27 +17,27 @@ void testUpdate() {
         Boolean t0 = createBoolean(true);
         t0->update(true);
         if(!t0->toValue()) {
-            printf("Boolean update test1-------[FAIL] \n");
+            TEST_FAIL("Boolean update test1");
         }
 
         t0->update(false);
         if(t0->toValue()) {
-            printf("Boolean update test2-------[FAIL] \n");
+            TEST_FAIL("Boolean update test2");
         }
 
         t0 = createBoolean(false);
         t0->update(true);
         if(!t0->toValue()) {
-            printf("Boolean update test3-------[FAIL] \n");
+            TEST_FAIL("Boolean update test3");
         }
 
         t0 = createBoolean(false);
         t0->update(false);
         if(t0->toValue()) {
-            printf("Boolean update test4-------[FAIL] \n");
+            TEST_FAIL("Boolean update test4");
         }
 
-        printf("Boolean update test5-------[OK] \n");
+        TEST_OK("Boolean update test5");
         break;
     }
 

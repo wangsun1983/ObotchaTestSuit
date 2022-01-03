@@ -8,6 +8,7 @@
 #include "ByteArray.hpp"
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,8 +28,7 @@ void testByteArrayStruct() {
 
     MyData *p2 = array->get<MyData>();
     if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
-      printf("ByteArray test Struct test 1-------[FAILED],data1 is %d,data2 is %ld,data3 is %d \n",
-            p2->data1,p2->data2,p2->data3);
+      TEST_FAIL("ByteArray test Struct test 1");
     }
     break;
   }
@@ -43,8 +43,7 @@ void testByteArrayStruct() {
 
     MyData *p2 = array->get<MyData>();
     if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
-      printf("ByteArray test Struct test 2-------[FAILED],data1 is %d,data2 is %ld,data3 is %d \n",
-            p2->data1,p2->data2,p2->data3);
+      TEST_FAIL("ByteArray test Struct test 2");
     }
     break;
   }
@@ -58,11 +57,10 @@ void testByteArrayStruct() {
 
     MyData *p2 = array->get<MyData>();
     if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
-      printf("ByteArray test Struct test 3-------[FAILED],data1 is %d,data2 is %ld,data3 is %d \n",
-            p2->data1,p2->data2,p2->data3);
+      TEST_FAIL("ByteArray test Struct test 3");
     }
     break;
   }
 
-  printf("ByteArray test Struct test 100-------[OK] \n");
+  TEST_OK("ByteArray test Struct test");
 }

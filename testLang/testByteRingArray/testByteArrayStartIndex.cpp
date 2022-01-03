@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,31 +17,31 @@ void testStartIndex() {
     ByteRingArray array = createByteRingArray(5);
     array->push(1);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case1] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case1]");
       return;
     }
 
     array->push(2);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case2] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case2]");
       return;
     }
 
     array->push(3);
      if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case3] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case3]");
       return;
     }
 
     array->push(4);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case4] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case4]");
       return;
     }
 
     array->push(5);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case5] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case5]");
       return;
     }
 
@@ -48,35 +49,35 @@ void testStartIndex() {
     array->setNextIndex(0);
     array->setSize(1);
     if(array->getStartIndex() != 4) {
-      printf("---[ByteRingArray Test Start Index case6] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case6]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(2);
     if(array->getStartIndex() != 3) {
-      printf("---[ByteRingArray Test Start Index case7] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case7]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(3);
     if(array->getStartIndex() != 2) {
-      printf("---[ByteRingArray Test Start Index case8] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case8]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(4);
     if(array->getStartIndex() != 1) {
-      printf("---[ByteRingArray Test Start Index case9] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case9]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(5);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case10] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case10]");
       return;
     }
 
@@ -84,35 +85,35 @@ void testStartIndex() {
     array->setNextIndex(1);
     array->setSize(1);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case11] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case11]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(2);
     if(array->getStartIndex() != 4) {
-      printf("---[ByteRingArray Test Start Index case12] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case12]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(3);
     if(array->getStartIndex() != 3) {
-      printf("---[ByteRingArray Test Start Index case13] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case13]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(4);
     if(array->getStartIndex() != 2) {
-      printf("---[ByteRingArray Test Start Index case14] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case14]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(5);
     if(array->getStartIndex() != 1) {
-      printf("---[ByteRingArray Test Start Index case15] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case15]");
       return;
     }
 
@@ -120,35 +121,35 @@ void testStartIndex() {
     array->setNextIndex(2);
     array->setSize(1);
     if(array->getStartIndex() != 1) {
-      printf("---[ByteRingArray Test Start Index case16] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case16]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(2);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case17] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case17]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(3);
     if(array->getStartIndex() != 4) {
-      printf("---[ByteRingArray Test Start Index case18] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case18]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(4);
     if(array->getStartIndex() != 3) {
-      printf("---[ByteRingArray Test Start Index case19] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case19]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(5);
     if(array->getStartIndex() != 2) {
-      printf("---[ByteRingArray Test Start Index case20] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case20]");
       return;
     }
 
@@ -156,35 +157,35 @@ void testStartIndex() {
     array->setNextIndex(3);
     array->setSize(1);
     if(array->getStartIndex() != 2) {
-      printf("---[ByteRingArray Test Start Index case21] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case21]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(2);
     if(array->getStartIndex() != 1) {
-      printf("---[ByteRingArray Test Start Index case22] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case22]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(3);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case23] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case23]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(4);
     if(array->getStartIndex() != 4) {
-      printf("---[ByteRingArray Test Start Index case24] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case24]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(5);
     if(array->getStartIndex() != 3) {
-      printf("---[ByteRingArray Test Start Index case25] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case25]");
       return;
     }
 
@@ -192,35 +193,35 @@ void testStartIndex() {
     array->setNextIndex(4);
     array->setSize(1);
     if(array->getStartIndex() != 3) {
-      printf("---[ByteRingArray Test Start Index case26] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case26]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(2);
     if(array->getStartIndex() != 2) {
-      printf("---[ByteRingArray Test Start Index case27] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case27]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(3);
     if(array->getStartIndex() != 1) {
-      printf("---[ByteRingArray Test Start Index case28] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case28]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(4);
     if(array->getStartIndex() != 0) {
-      printf("---[ByteRingArray Test Start Index case29] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case29]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(5);
     if(array->getStartIndex() != 4) {
-      printf("---[ByteRingArray Test Start Index case30] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test Start Index case30]");
       return;
     }
 

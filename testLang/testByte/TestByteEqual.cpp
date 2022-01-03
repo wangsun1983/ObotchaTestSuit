@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
 #include "Byte.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,18 +17,18 @@ void equaltest() {
       Byte v1 = createByte(10);
       Byte v2 = createByte(10);
       if(v1 != v2){
-          printf("Byte equal test1-------[FAIL] \n");
+          TEST_FAIL("Byte equal test1");
           break;
       }
 
       Byte v3 = createByte(10);
       Byte v4 = createByte(11);
       if(v3 == v4){
-          printf("Byte equal test2-------[FAIL] \n");
+          TEST_FAIL("Byte equal test2");
           break;
       }
 
-      printf("Byte equal test3-------[OK] \n");
+      TEST_OK("Byte equal test3");
       break;
   }
 

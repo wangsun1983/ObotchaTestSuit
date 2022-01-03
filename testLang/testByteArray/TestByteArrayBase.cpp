@@ -8,6 +8,7 @@
 #include "ByteArray.hpp"
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,8 +18,6 @@ struct MyData {
 };
 
 void basetest() {
-
-    printf("---[ByteArray Test Start]--- \n");
     while(1) {
         //Test Construct
         ByteArray array1 = createByteArray(16);
@@ -26,7 +25,7 @@ void basetest() {
         byte *p = array1->toValue();
         for(int index = 0;index<16;index++) {
             if(p[index] != 0) {
-              printf("ByteArray construct test1-------[FAIL] \n");
+              TEST_FAIL("ByteArray construct test1");
               break;
             }
         }
@@ -38,7 +37,7 @@ void basetest() {
         bool isOk = true;
         for(int index = 0;index<16;index++) {
             if(p2[index] != 8) {
-              printf("ByteArray construct test2-------[FAIL] \n");
+              TEST_FAIL("ByteArray construct test2");
               isOk = false;
               break;
             }
@@ -47,7 +46,7 @@ void basetest() {
         free(v);
 
         if(isOk) {
-            printf("ByteArray construct -------[OK] \n");
+            TEST_OK("ByteArray construct ");
         }
         break;
     }
@@ -62,7 +61,7 @@ void basetest() {
         bool isOk = true;
         for(int index = 0;index<16;index++) {
             if(p2[index] != 0) {
-              printf("ByteArray clear test1 -------[FAIL] \n");
+              TEST_FAIL("ByteArray clear test1 ");
               isOk = false;
               break;
             }
@@ -71,7 +70,7 @@ void basetest() {
         free(v);
 
         if(isOk) {
-            printf("ByteArray clear -------[OK] \n");
+            TEST_OK("ByteArray clear ");
         }
         break;
     }
@@ -86,7 +85,7 @@ void basetest() {
         bool isOk = true;
         for(int index = 0;index<16;index++) {
             if(p2[index] != 0) {
-              printf("ByteArray toValue test1 -------[FAIL] \n");
+              TEST_FAIL("ByteArray toValue test1 ");
               isOk = false;
               break;
             }
@@ -95,7 +94,7 @@ void basetest() {
         free(v);
 
         if(isOk) {
-            printf("ByteArray toValue -------[OK] \n");
+            TEST_OK("ByteArray toValue ");
         }
         break;
     }
@@ -107,13 +106,13 @@ void basetest() {
         ByteArray array1 = createByteArray(v,16);
 
         if(array1->size() != 16) {
-            printf("ByteArray size test1 -------[FAIL] \n");
+            TEST_FAIL("ByteArray size test1 ");
             break;
         }
 
         free(v);
 
-        printf("ByteArray size -------[OK] \n");
+        TEST_OK("ByteArray size ");
         break;
     }
 
@@ -121,11 +120,11 @@ void basetest() {
         //test isEmpty
         ByteArray t = createByteArray(16);
         if(t->isEmpty()) {
-            printf("ByteArray isEmpty -------[FAIL] \n");
+            TEST_FAIL("ByteArray isEmpty ");
             break;
         }
 
-        printf("ByteArray isEmpty -------[OK] \n");
+        TEST_OK("ByteArray isEmpty ");
         break;
     }
 
@@ -139,13 +138,13 @@ void basetest() {
         for(int index = 0;index<16;index++) {
             if(p[index] != array1->at(index)) {
                 isOk = false;
-                printf("ByteArray at -------[FAIL] \n");
+                TEST_FAIL("ByteArray at ");
                 break;
             }
         }
 
         if(isOk) {
-          printf("ByteArray at -------[OK] \n");
+          TEST_OK("ByteArray at ");
         }
         free(v);
         break;
@@ -163,13 +162,13 @@ void basetest() {
         for(int index = 0;index<16;index++) {
             if(p[index] != 9) {
                 isOk = false;
-                printf("ByteArray fill -------[FAIL] \n");
+                TEST_FAIL("ByteArray fill ");
                 break;
             }
         }
 
         if(isOk) {
-          printf("ByteArray fill -------[OK] \n");
+          TEST_OK("ByteArray fill ");
         }
 
         free(v);
@@ -187,23 +186,23 @@ void basetest() {
         ||buff2->at(3) != 3
         ||buff2->at(4) != 0
         ||buff2->at(5) != 0) {
-          printf("ByteArray fill test 4-------[FAIL] \n");
+          TEST_FAIL("ByteArray fill test 4");
           break;
       }
 
       ByteArray buff3 = createByteArray(6);
       try {
         buff3->fill(100,2,3);
-        printf("ByteArray fill test 5-------[FAIL] \n");
+        TEST_FAIL("ByteArray fill test 5");
       } catch(ArrayIndexOutOfBoundsException e) {}
 
       ByteArray buff4 = createByteArray(6);
       try {
         buff4->fill(0,200,3);
-        printf("ByteArray fill test 6-------[FAIL] \n");
+        TEST_FAIL("ByteArray fill test 6");
       }catch(ArrayIndexOutOfBoundsException e) {}
 
-      printf("ByteArray fill test 7-------[OK] \n");
+      TEST_OK("ByteArray fill test 7");
       break;
     }
 
@@ -216,11 +215,11 @@ void basetest() {
       struct MyData * t1 = (struct MyData *)arr->toValue();
       if(t1->i != t.i
         ||t1->j != t.j) {
-          printf("ByteArray construct<template> test 1-------[FAIL] \n");
+          TEST_FAIL("ByteArray construct<template> test 1");
           break;
       }
 
-      printf("ByteArray construct<template> test 2-------[OK] \n");
+      TEST_OK("ByteArray construct<template> test 2");
       break;
     }
 
@@ -229,13 +228,13 @@ void basetest() {
       ByteArray array = createByteArray(2);
       try{
         int value = array->at(3);
-        printf("ByteArray at()) test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray at()) test 1");
         break;
       } catch(ArrayIndexOutOfBoundsException e){
-        //printf("exception is %s \n",e->getErrInfo()->toChars());
+        //TEST_FAIL("exception is %s \n",e->getErrInfo()->toChars());
       }
 
-      printf("ByteArray at()) test 2-------[OK] \n");
+      TEST_OK("ByteArray at()) test 2");
       break;
     }
 

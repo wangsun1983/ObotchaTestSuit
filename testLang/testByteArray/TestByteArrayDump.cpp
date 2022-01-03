@@ -9,6 +9,7 @@
 #include "ByteArray.hpp"
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -28,18 +29,18 @@ void dumptest() {
       char buff[256];
       int ret = read(fd,buff,256);
       if(ret != 16) {
-        printf("ByteArray dump test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray dump test 1");
         break;
       }
 
       for(int i = 0;i<16;i++) {
         if(arr1[i]!= buff[i]) {
-          printf("ByteArray dump test 2-------[FAIL] \n");
+          TEST_FAIL("ByteArray dump test 2");
           break;
         }
       }
 
-      printf("ByteArray dump test 3-------[OK] \n");
+      TEST_OK("ByteArray dump test 3");
       break;
     }
 

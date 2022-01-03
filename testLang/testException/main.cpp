@@ -3,6 +3,7 @@
 
 #include "Object.hpp"
 #include "Exception.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,9 +36,9 @@ int main() {
     }
 
     if(!isException) {
-        printf("---[Exception test1] [FAILED]--- \n");
+        TEST_FAIL("---[Exception test1]");
     }
 
-    printf("---[Exception test1] [OK]--- \n");
+    TEST_OK("---[Exception test1]");
     return 1;
 }

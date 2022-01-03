@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,17 +36,16 @@ void testPush_byte() {
   }
 
   if(!isException) {
-    printf("---[ByteRingArray Test {pushByte(byte val)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(byte val)} case1]");
     return;
   }
 
   if(array->getAvailDataSize() != 5) {
-    printf("avail data size is %d \n",array->getAvailDataSize());
-    printf("---[ByteRingArray Test {pushByte(byte val)} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(byte val)} case2]");
     return;
   }
 
-  printf("---[ByteRingArray Test {pushByte(byte val)} case3] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test {pushByte(byte val)} case3]");
 }
 
 //test push(ByteArray)
@@ -58,12 +58,12 @@ void testPush_bytearray() {
   ringarray->push(array1);
 
   if(ringarray->at(0) != 1) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case0] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case0]");
     return;
   }
 
   if(ringarray->getAvailDataSize() != 1) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case1]");
     return;
   }
 
@@ -76,12 +76,12 @@ void testPush_bytearray() {
 
   if(ringarray->at(0) != 1 ||
      ringarray->at(1) != 2) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case2]");
     return;
   }
 
   if(ringarray->getAvailDataSize() != 2) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case3] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case3]");
     return;
   }
 
@@ -97,12 +97,12 @@ void testPush_bytearray() {
      ringarray->at(1) != 2 ||
      ringarray->at(2) != 3) {
 
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case4] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case4]");
     return;
   }
 
   if(ringarray->getAvailDataSize() != 3) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case5] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case5]");
     return;
   }
 
@@ -119,12 +119,12 @@ void testPush_bytearray() {
      ringarray->at(1) != 2 ||
      ringarray->at(2) != 3 ||
      ringarray->at(3) != 4) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case6] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case6]");
     return;
   }
 
   if(ringarray->getAvailDataSize() != 4) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case7] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case7]");
     return;
   }
 
@@ -143,12 +143,12 @@ void testPush_bytearray() {
      ringarray->at(2) != 3 ||
      ringarray->at(3) != 4 ||
      ringarray->at(4) != 5) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case8] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case8]");
     return;
   }
 
   if(ringarray->getAvailDataSize() != 5) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case9] [FAILED]---,size is %d \n",ringarray->getAvailDataSize());
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case9]");
     return;
   }
 
@@ -170,11 +170,11 @@ void testPush_bytearray() {
   }
 
   if(!isException) {
-    printf("---[ByteRingArray Test {pushByte(ByteArray val)} case10] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case10]");
     return;
   }
 
-  printf("---[ByteRingArray Test {pushByte(ByteArray val)} case11] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test {pushByte(ByteArray val)} case11]");
 }
 
 
@@ -200,7 +200,7 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 3 ||
      ringarray->at(4) != 9) {
-    printf("---[ByteRingArray Test loop {pushByte(ByteArray val)} case0] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case0]");
     return;
   }
 
@@ -223,7 +223,7 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 9 ||
      ringarray->at(4) != 10) {
-    printf("---[ByteRingArray Test loop {pushByte(ByteArray val)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case1]");
     return;
   }
 
@@ -247,29 +247,24 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 9 ||
      ringarray->at(3) != 10 ||
      ringarray->at(4) != 11) {
-    printf("---[ByteRingArray Test loop {pushByte(ByteArray val)} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case2]");
     return;
   }
 
-  printf("---[ByteRingArray Test loop {pushByte(ByteArray val)} case10] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test loop {pushByte(ByteArray val)} case10]");
   return;
 }
 
 //test push(ByteArray) loop
 void testPush_bytearray_loop_2() {
   //{x,x,2,3,x}
-  printf("testPush_bytearray_loop_2 \n");
   ByteRingArray ringarray = createByteRingArray(5);
   for(int index = 0;index < 4;index++) {
-    printf("testPush_bytearray_loop push index is %d\n",index);
     ringarray->push(index);
   }
 
-  printf("0startindex is %d \n",ringarray->getStartIndex());
   ringarray->pop(1);
-  printf("1startindex is %d \n",ringarray->getStartIndex());
   ringarray->pop(1);
-  printf("2startindex is %d \n",ringarray->getStartIndex());
 
   ByteArray array1 = createByteArray(3);
   array1[0] = 10;
@@ -283,7 +278,7 @@ void testPush_bytearray_loop_2() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 3 ||
      ringarray->at(4) != 10) {
-    printf("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case0] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case0]");
     return;
   }
 
@@ -308,12 +303,12 @@ void testPush_bytearray_loop_2() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 10 ||
      ringarray->at(4) != 11) {
-    printf("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case1]");
     return;
   }
 
 
-  printf("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case10] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case10]");
   return;
 }
 
@@ -343,7 +338,7 @@ void testPush_bytearray_continue() {
      ringarray->at(4) != 1 ||
      ringarray->at(5) != 2 ) {
 
-    printf("---[ByteRingArray Test continue {push(ByteArray val)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test continue {push(ByteArray val)} case1]");
     return;
   }
 
@@ -372,11 +367,11 @@ void testPush_bytearray_continue() {
      ringarray->at(4) != 10 ||
      ringarray->at(5) != 11 ) {
 
-    printf("---[ByteRingArray Test continue {push(ByteArray val)} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test continue {push(ByteArray val)} case2]");
     return;
   }
 
-  printf("---[ByteRingArray Test continue {push(ByteArray val)} case10] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test continue {push(ByteArray val)} case10]");
   return;
 }
 
@@ -404,11 +399,11 @@ void test_pop() {
      v4 != 4 ||
      v5 != 5 ||
      v6 != 6) {
-    printf("---[ByteRingArray Test pop {pop()} case2] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test pop {pop()} case2]");
     return;
   }
 
-  printf("---[ByteRingArray Test pop {pop()} cas10] [OK]--- \n");
+  TEST_OK("---[ByteRingArray Test pop {pop()} cas10]");
   return;
 
 }
@@ -434,7 +429,7 @@ void test_pop_size() {
      b2->at(1) != 4 ||
      b3->at(0) != 5 ||
      b3->at(1) != 6 ) {
-    printf("---[ByteRingArray Test pop_size {pop(int)} case1] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case1]");
     return;
   }
 
@@ -459,10 +454,10 @@ void test_pop_size() {
      b2->at(1) != 5 ||
      b3->at(0) != 6 ||
      b3->at(1) != 7 ) {
-    printf("b1[0] is %d,b1[1] is %d \n",b1[0],b1[1]);
-    printf("b2[0] is %d,b2[1] is %d \n",b2[0],b2[1]);
-    printf("b3[0] is %d,b3[1] is %d \n",b3[0],b3[1]);
-    printf("---[ByteRingArray Test pop_size {pop(int)} case2] [FAILED]--- \n");
+    TEST_FAIL("b1[0] is %d,b1[1] is %d \n",b1[0],b1[1]);
+    TEST_FAIL("b2[0] is %d,b2[1] is %d \n",b2[0],b2[1]);
+    TEST_FAIL("b3[0] is %d,b3[1] is %d \n",b3[0],b3[1]);
+    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case2]");
     return;
   }
 
@@ -489,7 +484,7 @@ void test_pop_size() {
      b1->at(3) != 7 ||
      b1->at(4) != 8 ||
      b1->at(5) != 9 ) {
-    printf("---[ByteRingArray Test pop_size {pop(int)} case3] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case3]");
     return;
   }
 
@@ -498,7 +493,7 @@ void test_pop_size() {
   ringarray->push(17);
   ringarray->push(18);
   if(ringarray->getAvailDataSize() != 4) {
-    printf("---[ByteRingArray Test pop_size {pop(int)} case4] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case4]");
     return;
   }
 
@@ -508,11 +503,11 @@ void test_pop_size() {
      b2->at(1) != 16 ||
      b2->at(2) != 17 ||
      b2->at(3) != 18 ) {
-    printf("---[ByteRingArray Test pop_size {pop(int)} case5] [FAILED]--- \n");
+    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case5]");
     return;
   }
 
-  printf("---[ByteRingArray Test pop_size {pop(int)} case10] [OK]--- \n");
+  TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case10] [OK]--- \n");
   return;
 }
 */

@@ -7,6 +7,7 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "ByteArrayReader.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void operatortest() {
         ||array->at(2) != 2
         ||array->at(3) != 3
         ||array->at(4) != 4){
-        printf("ByteArray operatortest test 1-------[FAIL] \n");
+        TEST_FAIL("ByteArray operatortest test 1");
         break;
       }
 
@@ -35,7 +36,7 @@ void operatortest() {
       ByteArray array2 = createByteArray(5);
       try {
         array2[100] = 1;
-        printf("ByteArray operatortest test 2-------[FAIL] \n");
+        TEST_FAIL("ByteArray operatortest test 2");
       } catch(ArrayIndexOutOfBoundsException e) {}
 
       //case 3
@@ -45,14 +46,14 @@ void operatortest() {
       }
 
       for(int j = 0;j<128;j++) {
-        //printf("array3[%d] is %d \n",j,array3[j]);
+        //TEST_FAIL("array3[%d] is %d \n",j,array3[j]);
         if(array3[j] != j+1) {
-          printf("ByteArray operatortest test 3-------[FAIL] \n");
+          TEST_FAIL("ByteArray operatortest test 3");
           return;
         }
       }
 
-      printf("ByteArray operatortest test 3-------[OK] \n");
+      TEST_OK("ByteArray operatortest test 3");
       break;
   }
 
@@ -71,9 +72,10 @@ void operatortest() {
     }
 
     if(!isException) {
-      printf("ByteArray operatortest test 5-------[OK] \n");
+      TEST_FAIL("ByteArray operatortest test 5");
     }
-    printf("ByteArray operatortest test 6-------[OK] \n");
+
+    TEST_OK("ByteArray operatortest test 6");
     break;
   }
 

@@ -5,6 +5,7 @@
 #include "Message.hpp"
 #include "System.hpp"
 #include "ByteRingArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,12 +28,12 @@ void testPopAll() {
 
     ByteArray result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case1] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case1]");
       break;
     }
 
     if(result[0] != 1 || result[1] != 2 || result[2] != 3 || result[3] != 4 || result[4] != 5) {
-      printf("---[ByteRingArray Test PopAll case2] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case2]");
       break;
     }
 
@@ -42,12 +43,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case2] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case2]");
       break;
     }
 
     if(result[0] != 2 || result[1] != 3 || result[2] != 4 || result[3] != 5) {
-      printf("---[ByteRingArray Test PopAll case3] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case3]");
       break;
     }
 
@@ -57,12 +58,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case4] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case4]");
       break;
     }
 
     if(result[0] != 3 || result[1] != 4 || result[2] != 5) {
-      printf("---[ByteRingArray Test PopAll case5] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case5]");
       break;
     }
 
@@ -72,12 +73,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case6] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case6]");
       break;
     }
 
     if(result[0] != 4 || result[1] != 5) {
-      printf("---[ByteRingArray Test PopAll case7] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case7]");
       break;
     }
 
@@ -87,12 +88,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case8] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case8]");
       break;
     }
 
     if(result[0] != 5) {
-      printf("---[ByteRingArray Test PopAll case9] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case9]");
       break;
     }
 
@@ -103,12 +104,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case10] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case10]");
       break;
     }
 
     if(result[0] != 2 || result[1] != 3 || result[2] != 4 || result[3] != 5 || result[4] != 1) {
-      printf("---[ByteRingArray Test PopAll case11] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case11]");
       break;
     }
 
@@ -118,12 +119,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case12] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case12]");
       break;
     }
 
     if(result[0] != 3 || result[1] != 4 || result[2] != 5 || result[3] != 1) {
-      printf("---[ByteRingArray Test PopAll case13] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case13]");
       break;
     }
 
@@ -133,12 +134,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case14] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case14]");
       break;
     }
 
     if(result[0] != 4 || result[1] != 5 || result[2] != 1) {
-      printf("---[ByteRingArray Test PopAll case15] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case15]");
       break;
     }
 
@@ -148,12 +149,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case16] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case16]");
       break;
     }
 
     if(result[0] != 5 || result[1] != 1) {
-      printf("---[ByteRingArray Test PopAll case17] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case17]");
       break;
     }
 
@@ -163,12 +164,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case18] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case18]");
       break;
     }
 
     if(result[0] != 1) {
-      printf("---[ByteRingArray Test PopAll case19] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case19]");
       break;
     }
 
@@ -179,12 +180,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case20] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case20]");
       break;
     }
 
     if(result[0] != 3 || result[1] != 4 || result[2] != 5 || result[3] != 1 || result[4] != 2) {
-      printf("---[ByteRingArray Test PopAll case21] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case21]");
       break;
     }
 
@@ -194,12 +195,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case20] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case20]");
       break;
     }
 
     if(result[0] != 4 || result[1] != 5 || result[2] != 1 || result[3] != 2) {
-      printf("---[ByteRingArray Test PopAll case21] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case21]");
       break;
     }
 
@@ -209,12 +210,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case21] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case21]");
       break;
     }
 
     if(result[0] != 5 || result[1] != 1 || result[2] != 2) {
-      printf("---[ByteRingArray Test PopAll case22] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case22]");
       break;
     }
 
@@ -224,12 +225,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case23] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case23]");
       break;
     }
 
     if(result[0] != 1 || result[1] != 2) {
-      printf("---[ByteRingArray Test PopAll case24] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case24]");
       break;
     }
 
@@ -239,12 +240,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case25] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case25]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test PopAll case26] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case26]");
       break;
     }
 
@@ -255,12 +256,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case27] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case27]");
       break;
     }
 
     if(result[0] != 3 || result[1] != 4 || result[2] != 5 || result[3] != 1 || result[4] != 2) {
-      printf("---[ByteRingArray Test PopAll case28] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case28]");
       break;
     }
 
@@ -270,12 +271,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case29] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case29]");
       break;
     }
 
     if(result[0] != 4 || result[1] != 5 || result[2] != 1 || result[3] != 2) {
-      printf("---[ByteRingArray Test PopAll case30] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case30]");
       break;
     }
 
@@ -285,12 +286,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case31] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case31]");
       break;
     }
 
     if(result[0] != 5 || result[1] != 1 || result[2] != 2) {
-      printf("---[ByteRingArray Test PopAll case32] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case32]");
       break;
     }
 
@@ -300,12 +301,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case32] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case32]");
       break;
     }
 
     if(result[0] != 1 || result[1] != 2) {
-      printf("---[ByteRingArray Test PopAll case33] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case33]");
       break;
     }
 
@@ -315,12 +316,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case34] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case34]");
       break;
     }
 
     if(result[0] != 2) {
-      printf("---[ByteRingArray Test PopAll case35] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case35]");
       break;
     }
 
@@ -331,12 +332,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case36] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case36]");
       break;
     }
 
     if(result[0] != 4 || result[1] != 5 || result[2] != 1 || result[3] != 2 || result[4] != 3) {
-      printf("---[ByteRingArray Test PopAll case37] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case37]");
       break;
     }
 
@@ -346,12 +347,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case38] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case38]");
       break;
     }
 
     if(result[0] != 5|| result[1] != 1 || result[2] != 2 || result[3] != 3) {
-      printf("---[ByteRingArray Test PopAll case39] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case39]");
       break;
     }
 
@@ -361,12 +362,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case38] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case38]");
       break;
     }
 
     if(result[0] != 1|| result[1] != 2 || result[2] != 3) {
-      printf("---[ByteRingArray Test PopAll case39] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case39]");
       break;
     }
 
@@ -376,12 +377,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case40] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case40]");
       break;
     }
 
     if(result[0] != 2|| result[1] != 3) {
-      printf("---[ByteRingArray Test PopAll case41] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case41]");
       break;
     }
 
@@ -391,12 +392,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case42] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case42]");
       break;
     }
 
     if(result[0] != 3) {
-      printf("---[ByteRingArray Test PopAll case43] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case43]");
       break;
     }
 
@@ -407,12 +408,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 5) {
-      printf("---[ByteRingArray Test PopAll case44] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case44]");
       break;
     }
 
     if(result[0] != 5 || result[1] != 1 || result[2] != 2 || result[3] != 3 || result[4] != 4) {
-      printf("---[ByteRingArray Test PopAll case45] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case45]");
       break;
     }
 
@@ -422,12 +423,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 4) {
-      printf("---[ByteRingArray Test PopAll case46] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case46]");
       break;
     }
 
     if(result[0] != 1 || result[1] != 2 || result[2] != 3 || result[3] != 4) {
-      printf("---[ByteRingArray Test PopAll case47] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case47]");
       break;
     }
 
@@ -437,12 +438,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 3) {
-      printf("---[ByteRingArray Test PopAll case48] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case48]");
       break;
     }
 
     if(result[0] != 2 || result[1] != 3 || result[2] != 4) {
-      printf("---[ByteRingArray Test PopAll case49] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case49]");
       break;
     }
 
@@ -452,12 +453,12 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 2) {
-      printf("---[ByteRingArray Test PopAll case50] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case50]");
       break;
     }
 
     if(result[0] != 3 || result[1] != 4) {
-      printf("---[ByteRingArray Test PopAll case51] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case51]");
       break;
     }
 
@@ -467,16 +468,16 @@ void testPopAll() {
 
     result = arr1->popAll();
     if(result->size() != 1) {
-      printf("---[ByteRingArray Test PopAll case52] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case52]");
       break;
     }
 
     if(result[0] != 4) {
-      printf("---[ByteRingArray Test PopAll case53] [FAILED]--- \n");
+      TEST_FAIL("---[ByteRingArray Test PopAll case53]");
       break;
     }
 
-    printf("---[ByteRingArray Test PopAll case99] [OK]--- \n");
+    TEST_OK("---[ByteRingArray Test PopAll case99]");
     break;
   }
 
