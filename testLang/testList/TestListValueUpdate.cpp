@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Uint8.hpp"
 #include "List.hpp"
+#include "TestLog.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -28,11 +29,11 @@ void testListValueUpdate() {
 
     TestUpdateData data2 = values[0];
     if(data2->i != 123 ||data2->j != 456) {
-      printf("List ValueUpdate test1-------[FAIL] \n");
+      TEST_FAIL("List ValueUpdate test1");
       break;
     }
 
-    printf("List ValueUpdate test100-------[OK] \n");
+    TEST_OK("List ValueUpdate test100");
     break;
   }
 }

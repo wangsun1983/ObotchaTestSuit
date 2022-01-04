@@ -9,6 +9,7 @@
 #include "String.hpp"
 #include "Math.hpp"
 #include "Field.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -84,61 +85,61 @@ void testReflectComplexFieldWrite() {
       f->setValue(false);
 
       if(data->data1->complexMember1->intData != 1) {
-        printf("Reflect Reflect Complex Write test1-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test1");
         break;
       }
 
       if(data->data1->complexMember1->byteData != 2) {
-        printf("Reflect Reflect Complex Write test2-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test2");
         break;
       }
 
       if(data->data1->complexMember1->doubleData != 1.1) {
-        printf("Reflect Reflect Complex Write test3-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test3");
         break;
       }
 
       if(st(Math)::compareFloat(data->data1->complexMember1->floatData,2.2) != st(Math)::AlmostEqual) {
-        printf("Reflect Reflect Complex Write test4-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test4");
         break;
       }
 
       if(data->data1->complexMember1->longData != 3) {
-        printf("Reflect Reflect Complex Write test5-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test5");
         break;
       }
 
       if(!data->data1->complexMember1->stringData->equals("a")) {
-        printf("Reflect Reflect Complex Write test6-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test6");
         break;
       }
 
       if(data->data1->complexMember1->uint8Data != 4) {
-        printf("Reflect Reflect Complex Write test7-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test7");
         break;
       }
 
       if(data->data1->complexMember1->uint16Data != 5) {
-        printf("Reflect Reflect Complex Write test8-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test8");
         break;
       }
 
       if(data->data1->complexMember1->uint32Data != 6) {
-        printf("Reflect Reflect Complex Write test9-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test9");
         break;
       }
 
       if(data->data1->complexMember1->uint64Data != 7) {
-        printf("Reflect Reflect Complex Write test10-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test10");
         break;
       }
 
       if(data->data1->complexMember1->boolData) {
-        printf("Reflect Reflect Complex Write test11-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Complex Write test11");
         break;
       }
 
-      printf("Reflect Reflect Complex Write test12-------[OK] \n");
+      TEST_OK("Reflect Reflect Complex Write test12");
       break;
     }
 }

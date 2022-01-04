@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "StrongPointer.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -25,19 +26,19 @@ void testReferenceHashMap() {
     HashMapData ref = createHashMapData();
     HashMap<String,HashMapData> list = createHashMap<String,HashMapData>();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test1-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test1");
       break;
     }
 
     list->put(createString("tag"),ref);
     if(ref->getStrongCount() != 2) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test2-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test2");
       break;
     }
 
     list->clear();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test3-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test3");
       break;
     }
 
@@ -49,24 +50,24 @@ void testReferenceHashMap() {
     HashMapData2 ref = createHashMapData2();
     HashMap<String,HashMapData> list = createHashMap<String,HashMapData>();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test4-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test4");
       break;
     }
 
     list->put(createString("tag"),Cast<HashMapData>(ref));
     if(ref->getStrongCount() != 2) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test5-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test5");
       break;
     }
 
     list->clear();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceHashMap<String,HashMapData>Count test6-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceHashMap<String,HashMapData>Count test6");
       break;
     }
 
     break;
   }
 
-  printf("Object ReferenceHashMap<String,HashMapData>Count test100-------[OK] \n");
+  TEST_OK("Object ReferenceHashMap<String,HashMapData>Count test100");
 }

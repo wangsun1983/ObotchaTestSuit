@@ -9,21 +9,21 @@
 #include "Log.hpp"
 #include "InitializeException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void basetest() {
 
-  printf("---[Long Test Start]--- \n");
   //_Long(long v);
   while(1) {
       Long v1 = createLong(10);
       if(v1->toValue() != 10){
-          printf("Long construct test1-------[FAIL] \n");
+          TEST_FAIL("Long construct test1");
           break;
       }
 
-      printf("Long construct test-------[OK] \n");
+      TEST_OK("Long construct test");
       break;
   }
 
@@ -32,17 +32,17 @@ void basetest() {
     Long v1 = createLong(11);
     Long v2 = createLong(v1);
     if(v2->toValue() != 11) {
-      printf("Long construct test3-------[FAIL] \n");
+      TEST_FAIL("Long construct test3");
       break;
     }
 
     Long v3;
     try {
         Long v4 = createLong(v3);
-        printf("Long construct test4-------[FAIL] \n");
+        TEST_FAIL("Long construct test4");
     } catch(InitializeException e) {}
 
-    printf("Long construct test5-------[OK] \n");
+    TEST_OK("Long construct test5");
     break;
   }
 
@@ -51,11 +51,11 @@ void basetest() {
     Long v1 = createLong(11);
     Long v2 = createLong(v1);
     if(v2->toValue() != 11) {
-      printf("Long toValue test1-------[FAIL] \n");
+      TEST_FAIL("Long toValue test1");
       break;
     }
 
-    printf("Long toValue test1-------[OK] \n");
+    TEST_OK("Long toValue test1");
     break;
   }
 
@@ -64,11 +64,11 @@ void basetest() {
     Long v1 = createLong(11);
     Long v2 = createLong(11);
     if(!v1->equals(v2)) {
-      printf("Long equals test2-------[FAIL] \n");
+      TEST_FAIL("Long equals test2");
       break;
     }
 
-    printf("Long equals test2-------[OK] \n");
+    TEST_OK("Long equals test2");
     break;
   }
 
@@ -76,11 +76,11 @@ void basetest() {
   while(1) {
     Long v1 = createLong(11);
     if(!v1->equals(11)) {
-      printf("Long equals test4-------[FAIL] \n");
+      TEST_FAIL("Long equals test4");
       break;
     }
 
-    printf("Long equals test5-------[OK] \n");
+    TEST_OK("Long equals test5");
     break;
   }
 
@@ -89,11 +89,11 @@ void basetest() {
     Long v1 = createLong(12);
     Long v2 = createLong(12);
     if(v1 != v2) {
-      printf("Long [==] test1-------[FAIL] \n");
+      TEST_FAIL("Long [==] test1");
       break;
     }
 
-    printf("Long [==] test1-------[OK] \n");
+    TEST_OK("Long [==] test1");
     break;
   }
 

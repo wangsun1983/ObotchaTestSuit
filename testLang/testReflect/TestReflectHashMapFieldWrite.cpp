@@ -14,6 +14,7 @@
 #include "JsonValue.hpp"
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -37,52 +38,6 @@ public:
 };
 
 void testReflectHashMapFieldWrite() {
-#if 0
-    //case1
-    Container data1 = createContainer();
-    Field f = data1->getField("map");
-    f->createObject();
-
-    if(data1->map == nullptr) {
-      printf("create map failed \n");
-    } else {
-      printf("create map success \n");
-    }
-
-    KeyValuePair<Object,Object> data = f->createMapItemObject();
-    if(data == nullptr) {
-      printf("create object failed \n");
-    } else {
-      printf("create object success \n");
-    }
-
-    Object key = data->getKey();
-    if(IsInstance(String,key)) {
-      printf("key is a string \n");
-      String str = Cast<String>(key);
-      str->update("hello");
-    } else {
-      printf("key is not a string \n");
-    }
-
-    Object value = data->getValue();
-    Field data1Field = value->getField("data1");
-    data1Field->setValue(100);
-
-    Field data2Field = value->getField("data2");
-    data1Field->setValue(200);
-
-    f->addMapItemObject(key,value);
-    //TODO
-
-
-    HashMapValue v = data1->map->get(createString("hello"));
-    if(v == nullptr) {
-      printf("v is null \n");
-    }
-
-    printf("v.data1 is %d,v.data2 is %d \n",v->data1,v->data2);
-#endif
     //json update
     while(1) {
         Container c = createContainer();
@@ -113,27 +68,27 @@ void testReflectHashMapFieldWrite() {
 
         HashMapValue val1 = rdata3->map->get("tag1");
         if(val1 == nullptr) {
-          printf("Reflect HashMap Write test1-------[FAIL] \n");
+          TEST_FAIL("Reflect HashMap Write test1");
           break;
         }
 
         if(val1->data1 != 123 || val1->data2 != 456) {
-          printf("Reflect HashMap Write test2-------[FAIL] \n");
+          TEST_FAIL("Reflect HashMap Write test2");
           break;
         }
 
         HashMapValue val2 = rdata3->map->get("tag2");
         if(val2 == nullptr) {
-          printf("Reflect HashMap Write test3-------[FAIL] \n");
+          TEST_FAIL("Reflect HashMap Write test3");
           break;
         }
 
         if(val2->data1 != 789 || val2->data2 != 999) {
-          printf("Reflect HashMap Write test4-------[FAIL] \n");
+          TEST_FAIL("Reflect HashMap Write test4");
           break;
         }
 
-        printf("Reflect HashMap Write test5-------[OK] \n");
+        TEST_OK("Reflect HashMap Write test5");
         break;
     }
 
@@ -179,47 +134,47 @@ void testReflectHashMapFieldWrite() {
       readValue->reflectTo(ll2);
 
       if(ll2 == nullptr) {
-        printf("Reflect HashMap Write test6-------[FAIL] \n");
+        TEST_FAIL("Reflect HashMap Write test6");
         break;
       }
 
       if(ll2->lists == nullptr) {
-        printf("Reflect HashMap Write test7-------[FAIL] \n");
+        TEST_FAIL("Reflect HashMap Write test7");
         break;
       }
 
       if(ll2->lists->size() != 2) {
-        printf("Reflect HashMap Write test8-------[FAIL],ll2->lists->size() is %d \n",ll2->lists->size());
+        TEST_FAIL("Reflect HashMap Write test8");
         break;
       }
 
       HashMap<String,HashMapValue> chkmap1 = ll2->lists->get(0);
       HashMapValue qq1 = chkmap1->get(createString("T1"));
       if(qq1 == nullptr || qq1->data1 != 1 ||qq1->data2 != 2) {
-        printf("Reflect HashMap Write test9-------[FAIL] qq1->data1 is %d,qq1->data2 is %d\n",qq1->data1,qq1->data2);
+        TEST_FAIL("Reflect HashMap Write test9");
         break;
       }
 
       HashMapValue qq2 = chkmap1->get(createString("T2"));
       if(qq2 == nullptr || qq2->data1 != 3 ||qq2->data2 != 4) {
-        printf("Reflect HashMap Write test10-------[FAIL] \n");
+        TEST_FAIL("Reflect HashMap Write test10");
         break;
       }
 
       HashMap<String,HashMapValue> chkmap2 = ll2->lists->get(1);
       HashMapValue tt1 = chkmap2->get(createString("T1"));
       if(tt1 == nullptr || tt1->data1 != 11 ||tt1->data2 != 12) {
-        printf("Reflect HashMap Write test11-------[FAIL] \n");
+        TEST_FAIL("Reflect HashMap Write test11");
         break;
       }
 
       HashMapValue tt2 = chkmap2->get(createString("T2"));
       if(tt2 == nullptr || tt2->data1 != 13 ||tt2->data2 != 14) {
-        printf("Reflect HashMap Write test12-------[FAIL] \n");
+        TEST_FAIL("Reflect HashMap Write test12");
         break;
       }
 
-      printf("Reflect HashMap Write test13-------[OK] \n");
+      TEST_OK("Reflect HashMap Write test13");
       break;
     }
 

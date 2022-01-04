@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -28,7 +29,7 @@ void TestStringUpdate() {
         str->update(q);
 
         if(!str->equals("hello")) {
-            printf("String update test1-------[FAIL] \n");
+            TEST_FAIL("String update test1");
             break;
         }
 
@@ -42,7 +43,7 @@ void TestStringUpdate() {
         q2[4] = '5';
         str2->update(q2);
         if(!str2->equals("12345")) {
-            printf("String update test2-------[FAIL] \n");
+            TEST_FAIL("String update test2");
             break;
         }
 
@@ -52,14 +53,14 @@ void TestStringUpdate() {
         q2[3] = '9';
         q2[4] = '9';
         if(!str2->equals("12345")) {
-            printf("String update test3-------[FAIL] \n");
+            TEST_FAIL("String update test3");
             break;
         }
 
         String str3 = createString("abc");
         str3->update("hhhh");
         if(!str3->equals("hhhh")) {
-            printf("String update test4-------[FAIL] \n");
+            TEST_FAIL("String update test4");
             break;
         }
 
@@ -71,13 +72,13 @@ void TestStringUpdate() {
         String str2 = createString("ffff");
         str2->update(str);
         if(!str2->equals("abc")) {
-            printf("String update test4-------[FAIL] \n");
+            TEST_FAIL("String update test4");
             break;
         }
 
         str->update("ttt");
         if(!str2->equals("abc")) {
-            printf("String update test5-------[FAIL] \n");
+            TEST_FAIL("String update test5");
             break;
         }
         break;
@@ -89,11 +90,11 @@ void TestStringUpdate() {
         str->update(str2);
 
         if(!str->equals("ffff")) {
-            printf("String update test6-------[FAIL] \n");
+            TEST_FAIL("String update test6");
             break;
         }
 
         break;
     }
-    printf("String update test100-------[OK] \n");
+    TEST_OK("String update test100");
 }

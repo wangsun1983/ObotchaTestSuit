@@ -1,4 +1,5 @@
 #include "StringBuffer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -7,7 +8,7 @@ void testToString() {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append("abc","abc2","abc3");
       if(!buffer->toString(0,4)->equals("abca")) {
-        printf("StringBuffer toString test1-------[FAILED] \n");
+        TEST_FAIL("StringBuffer toString test1");
       }
       break;
     }
@@ -16,10 +17,10 @@ void testToString() {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append('a','b','c');
       if(!buffer->toString(0,2)->equals("ab")) {
-        printf("StringBuffer toString test2-------[FAILED] \n");
+        TEST_FAIL("StringBuffer toString test2");
       }
       break;
     }
 
-    printf("StringBuffer toString test100-------[OK] \n");
+    TEST_OK("StringBuffer toString test100");
 }

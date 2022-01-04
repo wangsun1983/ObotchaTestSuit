@@ -9,6 +9,7 @@
 #include "String.hpp"
 #include "Math.hpp"
 #include "Field.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -87,61 +88,61 @@ void testReflectFieldWrite() {
       f = data1->getField("boolData");
       f->setValue(false);
       if(data1->intData != 1) {
-        printf("Reflect Reflect Field Write test1-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test1");
         break;
       }
 
       if(data1->byteData != 2) {
-        printf("Reflect Reflect Field Write test2-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test2");
         break;
       }
 
       if(data1->doubleData != 1.1) {
-        printf("Reflect Reflect Field Write test3-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test3");
         break;
       }
 
       if(st(Math)::compareFloat(data1->floatData,2.2) != st(Math)::AlmostEqual) {
-        printf("Reflect Reflect Field Write test4-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test4");
         break;
       }
 
       if(data1->longData != 3) {
-        printf("Reflect Reflect Field Write test5-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test5");
         break;
       }
 
       if(!data1->stringData->equals("a")) {
-        printf("Reflect Reflect Field Write test6-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test6");
         break;
       }
 
       if(data1->uint8Data != 4) {
-        printf("Reflect Reflect Field Write test7-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test7");
         break;
       }
 
       if(data1->uint16Data != 5) {
-        printf("Reflect Reflect Field Write test8-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test8");
         break;
       }
 
       if(data1->uint32Data != 6) {
-        printf("Reflect Reflect Field Write test9-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test9");
         break;
       }
 
       if(data1->uint64Data != 7) {
-        printf("Reflect Reflect Field Write test10-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test10");
         break;
       }
 
       if(data1->boolData) {
-        printf("Reflect Reflect Field Write test11-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test11");
         break;
       }
 
-      printf("Reflect Reflect Field test12-------[OK] \n");
+      TEST_OK("Reflect Reflect Field test12");
       break;
     }
 
@@ -193,62 +194,62 @@ void testReflectFieldWrite() {
       v10->update(false);
 
       if(data1->intData == nullptr||data1->intData->toValue() != 1) {
-        printf("Reflect Reflect Field Write test13-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test13");
         break;
       }
 
       if(data1->byteData == nullptr || data1->byteData->toValue() != 2) {
-        printf("Reflect Reflect Field Write test14-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test14");
         break;
       }
 
       if(data1->doubleData == nullptr ||data1->doubleData->toValue() != 1.1) {
-        printf("Reflect Reflect Field Write test15-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test15");
         break;
       }
 
       if(data1->floatData == nullptr
         ||st(Math)::compareFloat(data1->floatData->toValue(),2.2) != st(Math)::AlmostEqual) {
-        printf("Reflect Reflect Field Write test16-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test16");
         break;
       }
 
       if(data1->longData == nullptr ||data1->longData->toValue() != 3) {
-        printf("Reflect Reflect Field Write test17-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test17");
         break;
       }
 
       if(data1->stringData == nullptr ||!data1->stringData->equals("a")) {
-        printf("Reflect Reflect Field Write test18-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test18");
         break;
       }
 
       if(data1->uint8Data == nullptr ||data1->uint8Data->toValue() != 4) {
-        printf("Reflect Reflect Field Write test19-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test19");
         break;
       }
 
       if(data1->uint16Data == nullptr ||data1->uint16Data->toValue() != 5) {
-        printf("Reflect Reflect Field Write test20-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test20");
         break;
       }
 
       if(data1->uint32Data == nullptr ||data1->uint32Data->toValue() != 6) {
-        printf("Reflect Reflect Field Write test21-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test21");
         break;
       }
 
       if(data1->uint64Data == nullptr ||data1->uint64Data->toValue() != 7) {
-        printf("Reflect Reflect Field Write test22-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test22");
         break;
       }
 
       if(data1->boolData == nullptr ||data1->boolData->toValue()) {
-        printf("Reflect Reflect Field Write test23-------[FAIL] \n");
+        TEST_FAIL("Reflect Reflect Field Write test23");
         break;
       }
 
-      printf("Reflect Reflect Field test24-------[OK] \n");
+      TEST_OK("Reflect Reflect Field test24");
       break;
     }
 

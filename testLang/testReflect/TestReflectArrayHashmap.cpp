@@ -12,6 +12,7 @@
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -74,37 +75,37 @@ void testReflectArrayHashmap() {
     readValue->reflectTo(result);
 
     if(result->datas == nullptr || result->datas->size() != 2) {
-      printf("Reflect Array HashMap test1-------[FAIL] \n");
+      TEST_FAIL("Reflect Array HashMap test1");
       break;
     }
 
     HashMap<String,ItemData> m1 = result->datas->get(0);
     ItemData item1 = m1->get(createString("value1"));
     if(item1 == nullptr || item1->data1 != 1 || item1->data2 != 2) {
-      printf("Reflect Array HashMap test2-------[FAIL] \n");
+      TEST_FAIL("Reflect Array HashMap test2");
       break;
     }
 
     ItemData item2 = m1->get(createString("value2"));
     if(item2 == nullptr || item2->data1 != 3 || item2->data2 != 4) {
-      printf("Reflect Array HashMap test3-------[FAIL] \n");
+      TEST_FAIL("Reflect Array HashMap test3");
       break;
     }
 
     HashMap<String,ItemData> m2 = result->datas->get(1);
     ItemData item3 = m2->get(createString("data1"));
     if(item3 == nullptr || item3->data1 != 5 || item3->data2 != 6) {
-      printf("Reflect Array HashMap test4-------[FAIL] \n");
+      TEST_FAIL("Reflect Array HashMap test4");
       break;
     }
 
     ItemData item4 = m2->get(createString("data2"));
     if(item4 == nullptr || item4->data1 != 7 || item4->data2 != 8) {
-      printf("Reflect Array HashMap test5-------[FAIL] \n");
+      TEST_FAIL("Reflect Array HashMap test5");
       break;
     }
 
-    printf("Reflect Array HashMap test6-------[OK] \n");
+    TEST_OK("Reflect Array HashMap test6");
     break;
   }
 }

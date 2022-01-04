@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,7 +23,7 @@ void TestStringCharAt() {
         ||str->charAt(2) != 'c'
         ||str->charAt(3) != 'e'
         ||str->charAt(4) != 'f') {
-            printf("String charAt test1-------[FAIL] \n");
+            TEST_FAIL("String charAt test1");
             break;
         }
         break;
@@ -38,11 +39,11 @@ void TestStringCharAt() {
         }
 
         if(!isException) {
-            printf("String charAt test2-------[FAIL] \n");
+            TEST_FAIL("String charAt test2");
             break;
         }
         break;
     }
 
-    printf("String charAt test100-------[OK] \n");
+    TEST_OK("String charAt test100");
 }

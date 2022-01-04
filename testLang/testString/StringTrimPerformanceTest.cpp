@@ -11,6 +11,7 @@
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 

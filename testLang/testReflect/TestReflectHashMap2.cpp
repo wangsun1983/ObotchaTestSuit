@@ -12,6 +12,7 @@
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -94,47 +95,47 @@ void testReflectMap2() {
     readValue->reflectTo(result);
 
     if(result->maps == nullptr || result->maps->size() != 2) {
-      printf("Reflect HashMap2  test4-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test4");
       break;
     }
 
     MapValue2 v2_1 = result->maps->get(createString("value1"));
     if(v2_1 == nullptr || v2_1->maps == nullptr || v2_1->maps->size() != 2) {
-      printf("Reflect HashMap2  test5-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test5");
       break;
     }
 
     auto data = v2_1->maps->get(createString("member1"));
     if(data == nullptr || data->data1 != 1 || data->data2 != 2) {
-      printf("Reflect HashMap2  test6-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test6");
       break;
     }
 
     auto dd2 = v2_1->maps->get(createString("member2"));
     if(dd2 == nullptr || dd2->data1 != 3 || dd2->data2 != 4) {
-      printf("Reflect HashMap2  test7-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test7");
       break;
     }
 
     MapValue2 v2_2 = result->maps->get(createString("value2"));
     if(v2_2 == nullptr || v2_2->maps == nullptr || v2_2->maps->size() != 2) {
-      printf("Reflect HashMap2  test8-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test8");
       break;
     }
 
     auto data3 = v2_2->maps->get(createString("member1"));
     if(data3 == nullptr || data3->data1 != 5 || data3->data2 != 6) {
-      printf("Reflect HashMap2  test9-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test9");
       break;
     }
 
     auto data4 = v2_2->maps->get(createString("member2"));
     if(data4 == nullptr || data4->data1 != 7 || data4->data2 != 8) {
-      printf("Reflect HashMap2  test10-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test10");
       break;
     }
 
-    printf("Reflect HashMap2  test11-------[OK] \n");
+    TEST_OK("Reflect HashMap2  test11");
     break;
   }
 
@@ -165,23 +166,23 @@ void testReflectMap2() {
     readValue->reflectTo(result);
 
     if(result->mmaps == nullptr || result->mmaps->size() != 2) {
-      printf("Reflect HashMap2  test1-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test1");
       break;
     }
 
     MapValue1 mV1 = result->mmaps->get(createString("value1"));
     if(mV1 == nullptr || mV1->data1 != 1 || mV1->data2 != 2) {
-      printf("Reflect HashMap2  test2-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test2");
       break;
     }
 
     MapValue1 mV2 = result->mmaps->get(createString("value2"));
     if(mV2 == nullptr || mV2->data1 != 3 || mV2->data2 != 4) {
-      printf("Reflect HashMap2  test3-------[FAIL] \n");
+      TEST_FAIL("Reflect HashMap2  test3");
       break;
     }
 
-    printf("Reflect HashMap2  test100-------[OK] \n");
+    TEST_OK("Reflect HashMap2  test100");
     break;
 
   }

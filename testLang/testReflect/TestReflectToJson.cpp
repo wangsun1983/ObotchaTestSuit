@@ -10,6 +10,9 @@
 #include "Math.hpp"
 #include "Field.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
+#include "JsonReader.hpp"
+#include "Math.hpp"
 
 using namespace obotcha;
 
@@ -74,6 +77,161 @@ void testReflectToJson() {
 
     JsonWriter jwriter = createJsonWriter("output1.json");
     jwriter->write(jvalue);
+
+    JsonReader r = createJsonReader(createFile("output1.json"));
+
+    ReflectData result = createReflectData();
+    JsonValue jvalue1 = r->get();
+    jvalue1->reflectTo(result);
+    if(result->member1 == nullptr || result->member2 == nullptr) {
+      TEST_FAIL("testReflectToJson test1");
+    }
+
+    if(result->member1->intData != data->member1->intData) {
+      TEST_FAIL("testReflectToJson test2");
+    }
+
+    if(result->member1->byteData != data->member1->byteData) {
+      TEST_FAIL("testReflectToJson test3");
+    }
+
+    if(result->member1->byteData != data->member1->byteData) {
+      TEST_FAIL("testReflectToJson test4");
+    }
+
+    if(result->member1->longData != data->member1->longData) {
+      TEST_FAIL("testReflectToJson test5");
+    }
+
+    if(!result->member1->stringData->equals(data->member1->stringData)) {
+      TEST_FAIL("testReflectToJson test6");
+    }
+
+    if(result->member1->uint8Data != data->member1->uint8Data) {
+      TEST_FAIL("testReflectToJson test7");
+    }
+
+    if(result->member1->uint16Data != data->member1->uint16Data) {
+      TEST_FAIL("testReflectToJson test8");
+    }
+
+    if(result->member1->uint32Data != data->member1->uint32Data) {
+      TEST_FAIL("testReflectToJson test9");
+    }
+
+    if(result->member1->uint64Data != data->member1->uint64Data) {
+      TEST_FAIL("testReflectToJson test10");
+    }
+
+    if(result->member1->boolData != data->member1->boolData) {
+      TEST_FAIL("testReflectToJson test11");
+    }
+
+    if(st(Math)::compareDouble(result->member1->doubleData,result->member1->doubleData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test12");
+    }
+
+    if(st(Math)::compareFloat(result->member1->floatData,result->member1->floatData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test13");
+    }
+
+    if(result->member1->intData != data->member1->intData) {
+      TEST_FAIL("testReflectToJson test2");
+    }
+
+    if(result->member1->byteData != data->member1->byteData) {
+      TEST_FAIL("testReflectToJson test3");
+    }
+
+    if(result->member1->byteData != data->member1->byteData) {
+      TEST_FAIL("testReflectToJson test4");
+    }
+
+    if(result->member1->longData != data->member1->longData) {
+      TEST_FAIL("testReflectToJson test5");
+    }
+
+    if(!result->member1->stringData->equals(data->member1->stringData)) {
+      TEST_FAIL("testReflectToJson test6");
+    }
+
+    if(result->member1->uint8Data != data->member1->uint8Data) {
+      TEST_FAIL("testReflectToJson test7");
+    }
+
+    if(result->member1->uint16Data != data->member1->uint16Data) {
+      TEST_FAIL("testReflectToJson test8");
+    }
+
+    if(result->member1->uint32Data != data->member1->uint32Data) {
+      TEST_FAIL("testReflectToJson test9");
+    }
+
+    if(result->member1->uint64Data != data->member1->uint64Data) {
+      TEST_FAIL("testReflectToJson test10");
+    }
+
+    if(result->member1->boolData != data->member1->boolData) {
+      TEST_FAIL("testReflectToJson test11");
+    }
+
+    if(st(Math)::compareDouble(result->member1->doubleData,result->member1->doubleData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test12");
+    }
+
+    if(st(Math)::compareFloat(result->member1->floatData,result->member1->floatData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test13");
+    }
+
+    //member2
+    if(result->member2->intData != data->member2->intData) {
+      TEST_FAIL("testReflectToJson test14");
+    }
+
+    if(result->member2->byteData != data->member2->byteData) {
+      TEST_FAIL("testReflectToJson test15");
+    }
+
+    if(result->member2->byteData != data->member2->byteData) {
+      TEST_FAIL("testReflectToJson test16");
+    }
+
+    if(result->member2->longData != data->member2->longData) {
+      TEST_FAIL("testReflectToJson test17");
+    }
+
+    if(!result->member2->stringData->equals(data->member2->stringData)) {
+      TEST_FAIL("testReflectToJson test18");
+    }
+
+    if(result->member2->uint8Data != data->member2->uint8Data) {
+      TEST_FAIL("testReflectToJson test19");
+    }
+
+    if(result->member2->uint16Data != data->member2->uint16Data) {
+      TEST_FAIL("testReflectToJson test20");
+    }
+
+    if(result->member2->uint32Data != data->member2->uint32Data) {
+      TEST_FAIL("testReflectToJson test21");
+    }
+
+    if(result->member2->uint64Data != data->member2->uint64Data) {
+      TEST_FAIL("testReflectToJson test22");
+    }
+
+    if(result->member2->boolData != data->member2->boolData) {
+      TEST_FAIL("testReflectToJson test23");
+    }
+
+    if(st(Math)::compareDouble(result->member2->doubleData,result->member2->doubleData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test24");
+    }
+
+    if(st(Math)::compareFloat(result->member2->floatData,result->member2->floatData) != st(Math)::AlmostEqual) {
+      TEST_FAIL("testReflectToJson test25");
+    }
+
     break;
   }
 }

@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -31,7 +32,7 @@ void splittest() {
         ListIterator<String> iterator = str1list->getIterator();
 
         if(str1list->size() != 4) {
-            printf("String split Special test1-------[FAIL] \n");
+            TEST_FAIL("String split Special test1");
             break;
         }
 
@@ -39,7 +40,7 @@ void splittest() {
             ||!str1list->get(1)->equals("b")
             ||!str1list->get(2)->equals("c")
             ||!str1list->get(3)->equals("d")) {
-            printf("String split Special test2-------[FAIL] \n");
+            TEST_FAIL("String split Special test2");
             break;
         }
 
@@ -47,7 +48,7 @@ void splittest() {
         String str2 = createString(" ");
         ArrayList<String> str2list = str2->split(createString(" "));
         if(str2list->size() != 0) {
-            printf("String split Special test3-------[FAIL] \n");
+            TEST_FAIL("String split Special test3");
             break;
         }
 
@@ -55,17 +56,17 @@ void splittest() {
         String str3 = createString("accbcc");
         ArrayList<String> str3list = str3->split(createString("cc"));
         if(str3list->size() != 2) {
-            printf("String split Special test5-------[FAIL] \n");
+            TEST_FAIL("String split Special test5");
             break;
         }
 
         if(!str3list->get(0)->equals("a")
             ||!str3list->get(1)->equals("b")) {
-            printf("String split Special test6-------[FAIL] \n");
+            TEST_FAIL("String split Special test6");
             break;
         }
 
-        printf("String split Special test8-------[Success] \n");
+        TEST_OK("String split Special test8");
         break;
     }
 

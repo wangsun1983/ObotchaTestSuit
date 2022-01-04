@@ -6,6 +6,7 @@
 #include "Long.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,17 +16,17 @@ void hashcodeTest() {
     Long t1 = createLong(1);
     Long t2 = createLong(1);
     if(t1->hashcode() != t2->hashcode()) {
-      printf("Long hashcode test1-------[FAIL] \n");
+      TEST_FAIL("Long hashcode test1");
       break;
     }
 
     Long t3 = createLong(2);
     if(t1->hashcode() == t3->hashcode()) {
-      printf("Long hashcode test2-------[FAIL] \n");
+      TEST_FAIL("Long hashcode test2");
       break;
     }
 
-    printf("Long hashcode test3-------[OK] \n");
+    TEST_OK("Long hashcode test3");
     break;
   }
 

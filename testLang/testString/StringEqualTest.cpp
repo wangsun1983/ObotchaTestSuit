@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,11 +22,11 @@ void equaltest() {
         String str1 = createString("abc");
         String str2 = createString("abc");
         if(str1 != str2) {
-            printf("String equaltest Special test1-------[FAIL]\n");
+            TEST_FAIL("String equaltest Special test1");
             break;
         }
 
-        printf("String equaltest Special test2-------[Success]\n");
+        TEST_OK("String equaltest Special test2");
         break;
     }
 

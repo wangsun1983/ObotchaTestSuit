@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,40 +20,40 @@ void TestStringTrimAll() {
         String str = createString(" abc f ");
         String str1 = str->trimAll();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trimAll test1-------[FAIL] \n");
+            TEST_FAIL("String trimAll test1");
             break;
         }
 
         str = createString("      abc f      ");
         str1 = str->trimAll();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trimAll test2-------[FAIL] \n");
+            TEST_FAIL("String trimAll test2");
             break;
         }
 
         str = createString("      abc   f      ");
         str1 = str->trimAll();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trimAll test3-------[FAIL] \n");
+            TEST_FAIL("String trimAll test3");
             break;
         }
 
         str = createString("abc   f      ");
         str1 = str->trimAll();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trimAll test4-------[FAIL] \n");
+            TEST_FAIL("String trimAll test4");
             break;
         }
 
         str = createString("    abc   f");
         str1 = str->trimAll();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trimAll test5-------[FAIL] \n");
+            TEST_FAIL("String trimAll test5");
             break;
         }
 
         break;
     }
 
-    printf("String trimAll test100-------[OK] \n");
+    TEST_OK("String trimAll test100");
 }

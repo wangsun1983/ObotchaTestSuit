@@ -8,15 +8,16 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void TestParseException() {
   Uint16 data = st(Uint16)::parseDecUint16("0x12");
   if(data != nullptr) {
-    printf("Uint16 Parse Exception test1-------[FAIL] \n");
+    TEST_FAIL("Uint16 Parse Exception test1");
   }
 
-  printf("Uint16 Parse Exception test100-------[OK] \n");
+  TEST_OK("Uint16 Parse Exception test100");
   return;
 }

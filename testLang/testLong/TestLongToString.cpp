@@ -8,6 +8,7 @@
 #include "Long.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -68,8 +69,7 @@ void testtostring() {
        String v1 = t1->toHexString();
        String v2 = createString(HexTable[i]);
        if(v1 != v2) {
-         printf("v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-         printf("Long toString test1-------[FAIL] \n");
+         TEST_FAIL("Long toString test1");
          break;
        }
      }
@@ -80,7 +80,7 @@ void testtostring() {
 
        String v2 = createString(OctTable[i]);
        if(v1 != v2) {
-         printf("Long toString test2-------[FAIL] \n");
+         TEST_FAIL("Long toString test2");
          break;
        }
      }
@@ -90,12 +90,12 @@ void testtostring() {
        String v1 = t1->toBinaryString();
        String v2 = createString(BinaryTable[i]);
        if(v1 != v2) {
-         printf("Long toString test3-------[FAIL] \n");
+         TEST_FAIL("Long toString test3");
          break;
        }
      }
 
-     printf("Long toString test4-------[OK] \n");
+     TEST_OK("Long toString test4");
      break;
    }
 
@@ -106,8 +106,7 @@ void testtostring() {
        Long t2 = st(Long)::parseHexLong(createString(HexTable[i]));
        Long t3 = createLong(t2);
        if(t1 != t3) {
-         printf("t1 is %ld,t3 is %ld \n",t1->toValue(),t3->toValue());
-         printf("Long toInt test1-------[FAIL] \n");
+         TEST_FAIL("Long toInt test1");
          break;
        }
      }
@@ -118,8 +117,7 @@ void testtostring() {
        Long t3 = createLong(t2);
 
        if(t1 != t3) {
-         printf("t1 is %ld,t3 is %ld,i is %d \n",t1->toValue(),t3->toValue(),i);
-         printf("Long toInt test2-------[FAIL] \n");
+         TEST_FAIL("Long toInt test2");
          break;
        }
      }
@@ -127,16 +125,16 @@ void testtostring() {
      for(int i = 0;i < 100;i++) {
        Long t1 = createLong(i);
        String str = createString(BinaryTable[i]);
-       //printf("11111 str is %s \n",str->toChars());
+       //TEST_FAIL("11111 str is %s \n",str->toChars());
        Long t2 = st(Long)::parseBinaryLong(str);
        Long t3 = createLong(t2);
         if(t1 != t3) {
-         printf("Long toInt test3-------[FAIL] \n");
+         TEST_FAIL("Long toInt test3");
          break;
        }
      }
 
-     printf("Long toInt test10-------[OK] \n");
+     TEST_OK("Long toInt test10");
      break;
    }
 

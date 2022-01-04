@@ -8,6 +8,7 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,17 +16,17 @@ void testHash() {
    Uint16 t1 = createUint16(1);
    Uint16 t2 = createUint16(2);
    if(t1->hashcode() == t2->hashcode()) {
-    printf("Uint16 hashcode test1-------[FAIL] \n");
+    TEST_FAIL("Uint16 hashcode test1");
     return;
    }
 
    t1 = createUint16(1);
    t2 = createUint16(1);
    if(t1->hashcode() != t2->hashcode()) {
-    printf("Uint16 hashcode test2-------[FAIL] \n");
+    TEST_FAIL("Uint16 hashcode test2");
     return;
    }
 
-   printf("Uint16 hashcode test3-------[OK] \n");
+   TEST_OK("Uint16 hashcode test3");
    return;
 }

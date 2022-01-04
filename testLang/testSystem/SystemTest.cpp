@@ -7,22 +7,22 @@
 #include "StrongPointer.hpp"
 #include "System.hpp"
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 #define CPU_NUMS 12
 
 int main() {
-  printf("---[System Test Start]--- \n");
   //static long int currentTimeMillis();
   while(1) {
     long int times = st(System)::currentTimeMillis();
     if(times <= 0) {
-      printf("System currentTimeMillis test1-------[FAIL] \n");
+      TEST_FAIL("System currentTimeMillis test1");
       break;
     }
-    
-    printf("System currentTimeMillis test1-------[Success] \n");
+
+    TEST_OK("System currentTimeMillis test1");
       break;
     break;
   }
@@ -31,11 +31,11 @@ int main() {
   while(1) {
     int num = st(System)::availableProcessors();
     if(num != CPU_NUMS) {
-        printf("System availableProcessors test1-------[FAIL] \n");
+        TEST_FAIL("System availableProcessors test1");
         break;
     }
 
-    printf("System availableProcessors test1-------[Success] \n");
+    TEST_OK("System availableProcessors test1");
     break;
   }
 
@@ -43,11 +43,11 @@ int main() {
   while(1) {
     int num = st(System)::onlineProcessors();
     if(num != CPU_NUMS) {
-        printf("System Test test1-------[FAIL] \n");
+        TEST_FAIL("System Test test1");
         break;
     }
 
-    printf("System Test test1-------[Success] \n");
+    TEST_OK("System Test test1");
     break;
   }
 
@@ -56,11 +56,11 @@ int main() {
     String cmd = "ls -la";
     String result = st(System)::executeForResult(cmd);
     if(result->size() < 10) {
-      printf("System executeForResult test1-------[FAIL] \n");
+      TEST_FAIL("System executeForResult test1");
       break;
     }
 
-    printf("System executeForResult test1-------[Success] \n");
+    TEST_OK("System executeForResult test1");
     break;
   }
 
@@ -72,18 +72,18 @@ int main() {
       }
 
       if(file->exists()) {
-        printf("System execute test1-------[FAIL] \n");
+        TEST_FAIL("System execute test1");
         break;
       }
 
       String cmd = "mkdir abc";
       st(System)::execute(cmd);
       if(!file->exists()) {
-        printf("System execute test2-------[FAIL] \n");
+        TEST_FAIL("System execute test2");
         break;
       }
 
-      printf("System execute test1-------[Success] \n");
+      TEST_OK("System execute test1");
       break;
   }
 

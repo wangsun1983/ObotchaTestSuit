@@ -11,6 +11,8 @@
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
 
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 void StringConstructTest() {
@@ -19,31 +21,31 @@ void StringConstructTest() {
         std::string str = "abc";
         String str1 = createString(&str);
         if(!str1->equals("abc")) {
-            printf("String construct test1-------[FAIL] \n");
+            TEST_FAIL("String construct test1");
             break;
         }
 
         String str2 = createString(str);
         if(!str2->equals("abc")) {
-            printf("String construct test2-------[FAIL] \n");
+            TEST_FAIL("String construct test2");
             break;
         }
 
         String str3 = createString(str2);
         if(!str3->equals("abc")) {
-            printf("String construct test3-------[FAIL] \n");
+            TEST_FAIL("String construct test3");
             break;
         }
 
         String str4 = createString("abc");
         if(!str4->equals("abc")) {
-            printf("String construct test4-------[FAIL] \n");
+            TEST_FAIL("String construct test4");
             break;
         }
 
         String str5 = createString("abcd",1,3);
         if(!str5->equals("bcd")) {
-            printf("String construct test5-------[FAIL] \n");
+            TEST_FAIL("String construct test5");
             break;
         }
 
@@ -67,7 +69,7 @@ void StringConstructTest() {
         }
 
         if(!isException) {
-            printf("String construct test6-------[FAIL] \n");
+            TEST_FAIL("String construct test6");
             break;
         }
 
@@ -75,7 +77,7 @@ void StringConstructTest() {
         Integer v1 = createInteger(1200);
         String str6 = createString(v1);
         if(!str6->equals("1200")) {
-            printf("String construct test7-------[FAIL] \n");
+            TEST_FAIL("String construct test7");
             break;
         }
 
@@ -83,14 +85,14 @@ void StringConstructTest() {
         Boolean v2 = createBoolean(false);
         String str7 = createString(v2);
         if(!str7->equals("false")) {
-            printf("String construct test8-------[FAIL] \n");
+            TEST_FAIL("String construct test8");
             break;
         }
 
         Boolean v3 = createBoolean(true);
         String str8 = createString(v3);
         if(!str8->equals("true")) {
-            printf("String construct test9-------[FAIL] \n");
+            TEST_FAIL("String construct test9");
             break;
         }
 
@@ -98,7 +100,7 @@ void StringConstructTest() {
         Float v4 = createFloat(100.0001);
         String str9 = createString(v4);
         if(!str9->equals("100.0001")) {
-            printf("String construct test10-------[FAIL] str9 is %s\n",str9->toChars());
+            TEST_FAIL("String construct test10-------[FAIL] str9 is %s\n",str9->toChars());
             break;
         }
 
@@ -106,7 +108,7 @@ void StringConstructTest() {
         Double v5 = createDouble(200.3322);
         String str10 = createString(v5);
         if(!str10->equals("200.0002")) {
-            printf("String construct test11-------[FAIL],str10 is %s \n",str10->toChars());
+            TEST_FAIL("String construct test11-------[FAIL],str10 is %s \n",str10->toChars());
             break;
         }
 */
@@ -114,7 +116,7 @@ void StringConstructTest() {
         Long v6 = createLong(200);
         String str11 = createString(v6);
         if(!str11->equals("200")) {
-            printf("String construct test12-------[FAIL] \n");
+            TEST_FAIL("String construct test12");
             break;
         }
 
@@ -122,7 +124,7 @@ void StringConstructTest() {
         Uint8 v7 = createUint8(200);
         String str12 = createString(v7);
         if(!str12->equals("200")) {
-            printf("String construct test13-------[FAIL] \n");
+            TEST_FAIL("String construct test13");
             break;
         }
 
@@ -130,7 +132,7 @@ void StringConstructTest() {
         Uint16 v8 = createUint16(12200);
         String str13 = createString(v8);
         if(!str13->equals("12200")) {
-            printf("String construct test14-------[FAIL] \n");
+            TEST_FAIL("String construct test14");
             break;
         }
 
@@ -138,7 +140,7 @@ void StringConstructTest() {
         Uint32 v9 = createUint32(12200);
         String str14 = createString(v9);
         if(!str14->equals("12200")) {
-            printf("String construct test15-------[FAIL] \n");
+            TEST_FAIL("String construct test15");
             break;
         }
 
@@ -146,7 +148,7 @@ void StringConstructTest() {
         Uint64 v10 = createUint64(12200);
         String str15 = createString(v10);
         if(!str15->equals("12200")) {
-            printf("String construct test16-------[FAIL] \n");
+            TEST_FAIL("String construct test16");
             break;
         }
 
@@ -154,7 +156,7 @@ void StringConstructTest() {
         Byte v11 = createByte(22);
         String str16 = createString(v11);
         if(!str16->equals("22")) {
-            printf("String construct test17-------[FAIL] \n");
+            TEST_FAIL("String construct test17");
             break;
         }
 
@@ -162,7 +164,7 @@ void StringConstructTest() {
         int v12 = 100;
         String str17 = createString(v12);
         if(!str17->equals("100")) {
-            printf("String construct test18-------[FAIL] \n");
+            TEST_FAIL("String construct test18");
             break;
         }
 
@@ -171,14 +173,14 @@ void StringConstructTest() {
         bool v13 = false;
         String str18 = createString(v13);
         if(!str18->equals("false")) {
-            printf("String construct test19-------[FAIL] \n");
+            TEST_FAIL("String construct test19");
             break;
         }
 
         bool v14 = true;
         String str19 = createString(v14);
         if(!str19->equals("true")) {
-            printf("String construct test20-------[FAIL] \n");
+            TEST_FAIL("String construct test20");
             break;
         }
 
@@ -187,7 +189,7 @@ void StringConstructTest() {
         float v15 = 11.112;
         String str20 = createString(v15);
         if(!str20->equals("11.112")) {
-            printf("String construct test21-------[FAIL] \n");
+            TEST_FAIL("String construct test21");
             break;
         }
 
@@ -195,7 +197,7 @@ void StringConstructTest() {
         double v16 = 11.112;
         String str21 = createString(v16);
         if(!str21->equals("11.112")) {
-            printf("String construct test22-------[FAIL] \n");
+            TEST_FAIL("String construct test22");
             break;
         }
 */
@@ -203,7 +205,7 @@ void StringConstructTest() {
         long v17 = 1200;
         String str22 = createString(v17);
         if(!str22->equals("1200")) {
-            printf("String construct test23-------[FAIL] \n");
+            TEST_FAIL("String construct test23");
             break;
         }
 
@@ -211,7 +213,7 @@ void StringConstructTest() {
         char v18 = 112;
         String str23 = createString(v18);
         if(!str23->equals("112")) {
-            printf("String construct test24-------[FAIL] \n");
+            TEST_FAIL("String construct test24");
             break;
         }
 
@@ -219,7 +221,7 @@ void StringConstructTest() {
         uint8_t v19 = 112;
         String str24 = createString(v19);
         if(!str24->equals("112")) {
-            printf("String construct test25-------[FAIL] \n");
+            TEST_FAIL("String construct test25");
             break;
         }
 
@@ -227,7 +229,7 @@ void StringConstructTest() {
         uint16_t v20 = 1112;
         String str25 = createString(v20);
         if(!str25->equals("1112")) {
-            printf("String construct test26-------[FAIL] \n");
+            TEST_FAIL("String construct test26");
             break;
         }
 
@@ -235,7 +237,7 @@ void StringConstructTest() {
         uint32_t v21 = 1113332;
         String str26 = createString(v21);
         if(!str26->equals("1113332")) {
-            printf("String construct test27-------[FAIL] \n");
+            TEST_FAIL("String construct test27");
             break;
         }
 
@@ -243,11 +245,11 @@ void StringConstructTest() {
         uint32_t v22 = 111334432;
         String str27 = createString(v22);
         if(!str27->equals("111334432")) {
-            printf("String construct test28-------[FAIL] \n");
+            TEST_FAIL("String construct test28");
             break;
         }
 
-        printf("String construct test100-------[OK] \n");
+        TEST_OK("String construct test100");
         break;
     }
 }

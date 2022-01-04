@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,21 +24,21 @@ void TestCounts() {
         String str3 = createString("b");
         String str4 = createString("q");
         if(str1->counts(str2) != 2) {
-            printf("String TestCounts test1-------[FAIL]\n");
+            TEST_FAIL("String TestCounts test1");
             break;
         }
 
         if(str1->counts(str3) != 3) {
-            printf("String TestCounts test2-------[FAIL]\n");
+            TEST_FAIL("String TestCounts test2");
             break;
         }
 
         if(str1->counts(str4) != 0) {
-            printf("String TestCounts test3-------[FAIL]\n");
+            TEST_FAIL("String TestCounts test3");
             break;
         }
         break;
     }
 
-    printf("String TestCounts test100-------[OK]\n");
+    TEST_OK("String TestCounts test100");
 }

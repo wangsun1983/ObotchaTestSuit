@@ -8,6 +8,7 @@
 #include "Long.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -98,7 +99,7 @@ void testLongParse() {
      for(int i = 0;i < 100;i++) {
       int v = st(Long)::parseDecLong(createString(i))->toValue();
       if(v != i) {
-          printf("Long testLongParse test1-------[FAIL],index is %d,v is %d \n",i,v);
+          TEST_FAIL("Long testLongParse test1");
           break;
       }
      }
@@ -106,7 +107,7 @@ void testLongParse() {
      for(int i = 0;i < 100;i++) {
       int v = st(Long)::parseHexLong(createString(HexTable[i]))->toValue();
       if(v != i) {
-          printf("Long testLongParse test2-------[FAIL],index is %d,v is %d \n",i,v);
+          TEST_FAIL("Long testLongParse test2");
           break;
       }
      }
@@ -115,7 +116,7 @@ void testLongParse() {
       String hexStr = createString(createString(HexTable[i]))->toUpperCase();
       int v = st(Long)::parseHexLong(hexStr)->toValue();
       if(v != i) {
-          printf("Long testLongParse test2-------[FAIL],index is %d,v is %d \n",i,v);
+          TEST_FAIL("Long testLongParse test2");
           break;
       }
      }
@@ -123,7 +124,7 @@ void testLongParse() {
      for(int i = 0;i < 100;i++) {
       int v = st(Long)::parseHexLong(createString(HexTable_X[i]))->toValue();
       if(v != i) {
-          printf("Long testLongParse test3-------[FAIL],index is %d,v is %d \n",i,v);
+          TEST_FAIL("Long testLongParse test3");
           break;
       }
      }
@@ -131,7 +132,7 @@ void testLongParse() {
      for(int i = 0;i < 100;i++) {
       int v = st(Long)::parseOctLong(createString(OctTable[i]))->toValue();
       if(v != i) {
-          printf("Long testLongParse test4-------[FAIL],index is %d,v is %d,str is %s\n",i,v,OctTable[i].c_str());
+          TEST_FAIL("Long testLongParse test4");
           break;
       }
      }
@@ -139,21 +140,21 @@ void testLongParse() {
      for(int i = 0;i < 100;i++) {
       int v = st(Long)::parseBinaryLong(createString(BinaryTable[i]))->toValue();
       if(v != i) {
-          printf("Long testLongParse test5-------[FAIL],index is %d,v is %d,str is %s \n",i,v,BinaryTable[i].c_str());
+          TEST_FAIL("Long testLongParse test5");
           break;
       }
 
       for(int i = 0;i < 100;i++) {
        int v = st(Long)::parseBinaryLong(createString(BinaryTable_2[i]))->toValue();
        if(v != i) {
-           printf("Long testLongParse test5-------[FAIL],index is %d,v is %d,str is %s \n",i,v,BinaryTable[i].c_str());
+           TEST_FAIL("Long testLongParse test5");
            break;
        }
       }
 
      }
 
-     printf("Long testLongParse test100-------[OK] \n");
+     TEST_OK("Long testLongParse test100");
      break;
    }
 

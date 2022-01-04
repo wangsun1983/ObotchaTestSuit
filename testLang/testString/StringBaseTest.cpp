@@ -10,55 +10,38 @@
 #include "NullPointerException.hpp"
 #include "TransformException.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void basetest() {
 
-  printf("---[String Test Start]--- \n");
-  //test String()
-
   while(1) {
     String str1 = createString();
     if(str1->size() != 0) {
-        printf("String construct test1-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test1");
         break;
     }
 
-    printf("String construct test1-------[OK] \n");
+    TEST_OK("BaseTest String construct test1");
     break;
   }
-
-  //test String(String v)
-  //while(1) {
-  //  String str1 = nullptr;
-  //  try {
-  //      String str2 = createString(str1);
-  //      printf("String construct test2-------[FAIL] \n");
-  //      break;
-  //  } catch(NullPointerException) {
-
-  //  }
-
-  //  printf("String construct test2-------[OK] \n");
-  //  break;
-  //}
 
   //test _String(std::string v);
   while(1) {
     std::string v("abc");
     String str = createString(v);
     if(str->size() != 3) {
-        printf("String construct test3-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test3");
         break;
     }
 
     if(!str->equals("abc")) {
-        printf("String construct test4-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test4");
         break;
     }
 
-    printf("String construct test5-------[OK] \n");
+    TEST_OK("BaseTest String construct test5");
     break;
   }
 
@@ -68,24 +51,24 @@ void basetest() {
     String str = createString(v);
     String str2 = createString(str);
     if(str2->size() != 3) {
-        printf("String construct test6-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test6");
         break;
     }
 
     if(!str2->equals("abc")) {
-        printf("String construct test7-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test7");
         break;
     }
 
     //String str3;
     //try {
     //    String str4 = createString(str3);
-    //    printf("String construct test8-------[FAIL] \n");
+    //    TEST_FAIL("BaseTest String construct test8");
     //} catch(NullPointerException e) {
 
     //}
 
-    printf("String construct test8-------[OK] \n");
+    TEST_OK("BaseTest String construct test8");
     break;
   }
 
@@ -93,12 +76,12 @@ void basetest() {
   while(1) {
     String str = createString("abc");
     if(str->size() != 3) {
-        printf("String construct test9-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test9");
         break;
     }
 
     if(!str->equals("abc")) {
-        printf("String construct test10-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test10");
         break;
     }
 
@@ -110,11 +93,11 @@ void basetest() {
     //}
 
     //if(!isException) {
-    //  printf("String construct test11-------[FAIL] \n");
+    //  TEST_FAIL("BaseTest String construct test11");
     //  break;
     //}
 
-    printf("String construct test12-------[OK] \n");
+    TEST_OK("BaseTest String construct test12");
     break;
   }
 
@@ -122,13 +105,13 @@ void basetest() {
   while(1) {
     String str = createString("abc",1,2);
     if(!str->equals("bc")) {
-        printf("String construct test13-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test13");
         break;
     }
 
     String str2 = createString("abc",2,1);
     if(!str2->equals("c")) {
-        printf("String construct test14-------[FAIL] \n");
+        TEST_FAIL("BaseTest String construct test14");
         break;
     }
 
@@ -140,11 +123,11 @@ void basetest() {
     }
 
     if(!isException) {
-      printf("String construct test15-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test15");
       break;
     }
 
-    printf("String construct test16-------[OK] \n");
+    TEST_OK("BaseTest String construct test16");
     break;
   }
 
@@ -153,7 +136,7 @@ void basetest() {
     Integer v1 = createInteger(123);
     String str1 = createString(v1);
     if(!str1->equals("123")) {
-      printf("String construct test17-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test17");
       break;
     }
 
@@ -166,10 +149,10 @@ void basetest() {
     //}
 
     //if(!isException) {
-    //  printf("String construct test18-------[FAIL] \n");
+    //  TEST_FAIL("BaseTest String construct test18");
     //  break;
     //}
-    printf("String construct test18-------[OK] \n");
+    TEST_OK("BaseTest String construct test18");
     break;
   }
 
@@ -178,14 +161,14 @@ void basetest() {
     Boolean v1 = createBoolean(true);
     String str1 = createString(v1);
     if(!str1->equals("true")) {
-      printf("String construct test19-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test19");
       break;
     }
 
     Boolean v2 = createBoolean(false);
     String str2 = createString(v2);
     if(!str2->equals("false")) {
-      printf("String construct test20-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test20");
       break;
     }
 
@@ -198,11 +181,11 @@ void basetest() {
     //}
 
     //if(!isException) {
-    //  printf("String construct test21-------[FAIL] \n");
+    //  TEST_FAIL("BaseTest String construct test21");
     //  break;
     //}
 
-    printf("String construct test22-------[OK] \n");
+    TEST_OK("BaseTest String construct test22");
     break;
   }
 
@@ -210,15 +193,15 @@ void basetest() {
   while(1) {
     Float v1 = createFloat(1.2f);
     String str1 = createString(v1);
-    if(!str1->equals("1.2")) {
-      printf("String construct test23-------[FAIL],str1 is %s \n",str1->toChars());
+    if(!str1->contains("1.2")) {
+      TEST_FAIL("BaseTest String construct test23");
       break;
     }
 
     Float v2 = createFloat(1.3f);
     String str2 = createString(v2);
-    if(!str2->equals("1.3")) {
-      printf("String construct test24-------[FAIL] \n");
+    if(!str2->contains("1.")) {
+      TEST_FAIL("BaseTest String construct test24");
       break;
     }
 
@@ -231,11 +214,11 @@ void basetest() {
     //}
 
     //if(!isException) {
-    //  printf("String construct test25-------[FAIL] \n");
+    //  TEST_FAIL("BaseTest String construct test25");
     //  break;
     //}
 
-    printf("String construct test26-------[OK] \n");
+    TEST_OK("BaseTest String construct test26");
     break;
   }
 
@@ -244,14 +227,14 @@ void basetest() {
     Double v1 = createDouble(1.2);
     String str1 = createString(v1);
     if(!str1->equals("1.2")) {
-      printf("String construct test27-------[FAIL],str1 is %s \n",str1->toChars());
+      TEST_FAIL("BaseTest String construct test27");
       break;
     }
 
     Double v2 = createDouble(1.3);
     String str2 = createString(v2);
     if(!str2->equals("1.3")) {
-      printf("String construct test28-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test28");
       break;
     }
 
@@ -265,11 +248,11 @@ void basetest() {
     }
 
     if(!isException) {
-      printf("String construct test29-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test29");
       break;
     }*/
 
-    printf("String construct test30-------[OK] \n");
+    TEST_OK("BaseTest String construct test30");
     break;
   }
 
@@ -278,14 +261,14 @@ void basetest() {
     Long v1 = createLong(1234567);
     String str1 = createString(v1);
     if(!str1->equals("1234567")) {
-      printf("String construct test31-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test31");
       break;
     }
 
     Long v2 = createLong(345678);
     String str2 = createString(v2);
     if(!str2->equals("345678")) {
-      printf("String construct test32-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test32");
       break;
     }
 /*
@@ -298,11 +281,11 @@ void basetest() {
     }
 
     if(!isException) {
-      printf("String construct test33-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test33");
       break;
     }
 */
-    printf("String construct test34-------[OK] \n");
+    TEST_OK("BaseTest String construct test34");
     break;
   }
 
@@ -311,11 +294,11 @@ void basetest() {
     int v = 100;
     String s = createString(v);
     if(!s->equals("100")) {
-      printf("String construct test35-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test35");
       break;
     }
 
-    printf("String construct test36-------[OK] \n");
+    TEST_OK("BaseTest String construct test36");
     break;
   }
 
@@ -324,18 +307,18 @@ void basetest() {
     bool v = false;
     String s = createString(v);
     if(!s->equals("false")) {
-      printf("String construct test37-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test37");
       break;
     }
 
     bool v2 = true;
     String s2 = createString(v2);
     if(!s2->equals("true")) {
-      printf("String construct test38-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test38");
       break;
     }
 
-    printf("String construct test39-------[OK] \n");
+    TEST_OK("BaseTest String construct test39");
     break;
   }
 
@@ -343,12 +326,12 @@ void basetest() {
   while(1) {
     float v = 100.1f;
     String s = createString(v);
-    if(!s->equals("100.1")) {
-      printf("String construct test40-------[FAIL] \n");
+    if(!s->contains("100.")) {
+      TEST_FAIL("BaseTest String construct test40");
       break;
     }
 
-    printf("String construct test41-------[OK] \n");
+    TEST_OK("BaseTest String construct test41");
     break;
   }
 
@@ -357,11 +340,11 @@ void basetest() {
     double v = 100.01;
     String s = createString(v);
     if(!s->equals("100.01")) {
-      printf("String construct test42-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test42");
       break;
     }
 
-    printf("String construct test43-------[OK] \n");
+    TEST_OK("BaseTest String construct test43");
     break;
   }
 
@@ -370,11 +353,11 @@ void basetest() {
     long v = 100011;
     String s = createString(v);
     if(!s->equals("100011")) {
-      printf("String construct test44-------[FAIL] \n");
+      TEST_FAIL("BaseTest String construct test44");
       break;
     }
 
-    printf("String construct test45-------[OK] \n");
+    TEST_OK("BaseTest String construct test45");
     break;
   }
 
@@ -382,13 +365,13 @@ void basetest() {
   while(1) {
       String str = createString("AaAbAc");
       String str2 = str->replaceAll("A","t");
-      //printf("after replace is %s \n",str2->toChars());
+      //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
       if(!str2->equals("tatbtc")) {
-        printf("String replaceAll test1-------[FAIL] \n");
+        TEST_FAIL("BaseTest String replaceAll test1");
         break;
       }
 
-      printf("String replaceAll test1-------[OK] \n");
+      TEST_OK("BaseTest String replaceAll test1");
       break;
   }
 
@@ -397,7 +380,7 @@ void basetest() {
     String abc1 = "1,2,3,4,5";
     ArrayList<String> list = abc1->split(",");
     if(list->size() != 5) {
-      printf("String split test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String split test1");
       break;
     }
 
@@ -406,7 +389,7 @@ void basetest() {
       ||!list->get(2)->equals("3")
       ||!list->get(3)->equals("4")
       ||!list->get(4)->equals("5")) {
-      printf("String split test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String split test2");
       break;
     }
 
@@ -414,7 +397,7 @@ void basetest() {
     ArrayList<String> list2 = abc2->split("||");
 
     if(list2 != nullptr && list2->size() != 0) {
-      printf("String split test3-------[FAIL] \n");
+      TEST_FAIL("BaseTest String split test3");
       break;
     }
 
@@ -424,12 +407,12 @@ void basetest() {
     ArrayList<String> list3 = createArrayList<String>();
     abc3->split("||",list3);
     if(list3->size() != 0) {
-      printf("String split test4-------[FAIL] \n");
+      TEST_FAIL("BaseTest String split test4");
       break;
     }
 #endif
 
-    printf("String split test5-------[OK] \n");
+    TEST_OK("BaseTest String split test5");
     break;
 
   }
@@ -439,11 +422,11 @@ void basetest() {
     String abc = "hello world";
     const char *p = abc->toChars();
     if(strcmp(p,"hello world") != 0) {
-      printf("String toChars test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String toChars test1");
       break;
     }
 
-    printf("String toChars test1-------[OK] \n");
+    TEST_OK("BaseTest String toChars test1");
     break;
   }
 
@@ -452,29 +435,29 @@ void basetest() {
     String abc = "helloworld";
     String str = abc->subString(1,3);
     if(!str->equals("ell")) {
-      printf("String subString test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String subString test1");
       break;
     }
 
     String str2 = abc->subString(20,30);
     if(str2 != nullptr) {
-      printf("String subString test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String subString test2");
       break;
     }
 
     String str3 = abc->subString(1,100);
     if(str3 != nullptr) {
-      printf("String subString test3-------[FAIL] \n");
+      TEST_FAIL("BaseTest String subString test3");
       break;
     }
 
     String str4 = abc->subString(5,2);
     if(!str4->equals("wo")) {
-      printf("String subString test4-------[FAIL] \n");
+      TEST_FAIL("BaseTest String subString test4");
       break;
     }
 
-    printf("String subString test-------[OK] \n");
+    TEST_OK("BaseTest String subString test");
     break;
 
   }
@@ -484,7 +467,7 @@ void basetest() {
     String abc = "hello world";
     //char *p = abc->toChars();
     if(abc->charAt(1) != 'e') {
-      printf("String charAt test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String charAt test1");
       break;
     }
 
@@ -496,11 +479,11 @@ void basetest() {
     }
 
     if(!isException) {
-      printf("String charAt test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String charAt test2");
       break;
     }
 
-    printf("String charAt test3-------[OK] \n");
+    TEST_OK("BaseTest String charAt test3");
     break;
   }
 
@@ -508,24 +491,24 @@ void basetest() {
   while(1) {
     String abc = "abcd";
     if(!abc->contains("bc")) {
-      printf("String contains test1 -------[FAIL] \n");
+      TEST_FAIL("BaseTest String contains test1 ");
       break;
     }
 /*
     String abc2;
     try {
         if(abc->contains(abc2)) {
-            printf("String contains test2 -------[FAIL] \n");
+            TEST_FAIL("BaseTest String contains test2 ");
             break;
         } else {
-            printf("String contains test2 -------[FAIL] \n");
+            TEST_FAIL("BaseTest String contains test2 ");
             break;
         }
     } catch(NullPointerException e) {
 
     }
 */
-    printf("String contains test3-------[OK] \n");
+    TEST_OK("BaseTest String contains test3");
     break;
   }
 
@@ -534,16 +517,16 @@ void basetest() {
     String abc = " a b c ";
     String abc2 = abc->trim();
     if(abc2->equals(abc)) {
-      printf("String trim test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String trim test1");
       break;
     }
 
     if(!abc2->equals("a b c")) {
-      printf("String trim test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String trim test2");
       break;
     }
 
-    printf("String trim test3----------[OK] \n");
+    TEST_OK("BaseTest String trim test3");
     break;
   }
 
@@ -552,10 +535,10 @@ void basetest() {
     String abc = " a b c d ";
     String abc2 = abc->trimAll();
     if(!abc2->equals("abcd")) {
-      printf("String trimAll test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String trimAll test1");
       break;
     }
-    printf("String trimALL test1----------[OK] \n");
+    TEST_OK("BaseTest String trimALL test1");
     break;
   }
 
@@ -563,14 +546,14 @@ void basetest() {
   while(1) {
     String abc = "abcd";
     if(abc->size() != 4) {
-      printf("String size test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String size test1");
       break;
     }
 
     String abc2 = "";
-    //printf("abc2 size is %d \n",abc2->size());
+    //TEST_FAIL("BaseTest abc2 size is %d \n",abc2->size());
     if(abc2->size() != 0) {
-      printf("String size test2----------[FAIL] ,abc2 size is %d\n",abc2->size());
+      TEST_FAIL("BaseTest String size test2");
       break;
     }
 
@@ -578,12 +561,12 @@ void basetest() {
 //null point cannot access
     String abc3 = nullptr;
     if(abc->size() != 0) {
-      printf("String size test3----------[FAIL] \n");
+      TEST_FAIL("BaseTest String size test3");
       break;
     }
 #endif
 
-    printf("String size test3----------[OK] \n");
+    TEST_OK("BaseTest String size test3");
     break;
   }
 
@@ -592,23 +575,23 @@ void basetest() {
     String abc = "abcde";
     int index = abc->indexOf("cd");
     if(index != 2) {
-      printf("String indexOf test1----------[FAILED] \n");
+      TEST_FAIL("BaseTest String indexOf test1");
       break;
     }
 
     index = abc->indexOf("q");
     if(index != -1) {
-      printf("String indexOf test2----------[FAILED] \n");
+      TEST_FAIL("BaseTest String indexOf test2");
       break;
     }
 /*
     index = abc->indexOf(nullptr);
     if(index != -1) {
-      printf("String indexOf test3----------[FAILED] \n");
+      TEST_FAIL("BaseTest String indexOf test3");
       break;
     }
 */
-    printf("String indexOf test4----------[OK] \n");
+    TEST_OK("BaseTest String indexOf test4");
     break;
   }
 
@@ -619,7 +602,7 @@ void basetest() {
     String abc3 = abc->append(abc2);
 
     if(!abc3->equals("abcdefg")) {
-      printf("String append test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String append test1");
       break;
     }
 
@@ -627,11 +610,11 @@ void basetest() {
     String abc6 = "a";
     String abc7 = abc6->append(nullptr);
     if(!abc7->equals("a")) {
-      printf("String append test3----------[FAIL] \n");
+      TEST_FAIL("BaseTest String append test3");
       break;
     }
 
-    printf("String append test3----------[OK] \n");
+    TEST_OK("BaseTest String append test3");
     break;
 
   }
@@ -643,15 +626,15 @@ void basetest() {
       const char* t1 = "b";
       String r1 = abc->append(t1);
       if(!r1->equals("aaab")) {
-        printf("String append test4----------[FAIL] \n");
+        TEST_FAIL("BaseTest String append test4");
         break;
       }
       if(!abc->equals("aaa")) {
-        printf("String append test5----------[FAIL] \n");
+        TEST_FAIL("BaseTest String append test5");
         break;
       }
 
-      printf("String append test5----------[OK] \n");
+      TEST_OK("BaseTest String append test5");
       break;
   }
 
@@ -662,18 +645,18 @@ void basetest() {
     Integer t1 = abc->toInteger();
 
     if(!t1->equals(123)) {
-      printf("String toInteger test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toInteger test1");
       break;
     }
 
     String abc2 = "abc";
     Integer t2 = abc2->toInteger();
     if(t2 != nullptr) {
-      printf("String toInteger test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toInteger test2");
       break;
     }
 
-    printf("String toInteger test3----------[OK] \n");
+    TEST_OK("BaseTest String toInteger test3");
     break;
   }
 
@@ -682,25 +665,25 @@ void basetest() {
     String abc = "true";
     Boolean b1 = abc->toBoolean();
     if(!b1->toValue()) {
-        printf("String toBoolean test1----------[FAIL] \n");
+        TEST_FAIL("BaseTest String toBoolean test1");
         break;
     }
 
     String abc2 = "false";
     Boolean b2 = abc2->toBoolean();
     if(b2->toValue()) {
-        printf("String toBoolean test2----------[FAIL] \n");
+        TEST_FAIL("BaseTest String toBoolean test2");
         break;
     }
 
     String abc3 = "aaa";
     Boolean b3 = abc3->toBoolean();
     if(b3 != nullptr) {
-      printf("String toBoolean test3----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBoolean test3");
       break;
     }
 
-    printf("String toBoolean test4----------[OK] \n");
+    TEST_OK("BaseTest String toBoolean test4");
     break;
   }
 
@@ -709,18 +692,18 @@ void basetest() {
     String abc = "1.2";
     Float f = abc->toFloat();
     if(f->toValue() != 1.2f) {
-       printf("String toFloat test1----------[FAIL] \n");
+       TEST_FAIL("BaseTest String toFloat test1");
        break;
     }
 
     String abc2 = "a";
     Float f2 = abc2->toFloat();
     if(f2 != nullptr) {
-      printf("String toFloat test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toFloat test2");
       break;
     }
 
-    printf("String toFloat test3----------[OK] \n");
+    TEST_OK("BaseTest String toFloat test3");
     break;
   }
 
@@ -729,21 +712,21 @@ void basetest() {
     String abc = "1.2";
     Double f = abc->toDouble();
     //std::out<<"double f is "<<f<<std::endl;
-    //printf("double f is %lf \n",f->toValue());
+    //TEST_FAIL("BaseTest double f is %lf \n",f->toValue());
     if(f->toValue() != 1.2) {
       //TODO
-       printf("String toDouble test1----------[FAIL] TODO \n");
+       TEST_FAIL("BaseTest String toDouble test1");
        break;
     }
 
     String abc2 = "a";
     Double f2 = abc2->toDouble();
     if(f2 != nullptr) {
-      printf("String toDouble test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toDouble test2");
       break;
     }
 
-    printf("String toDouble test3----------[OK] \n");
+    TEST_OK("BaseTest String toDouble test3");
     break;
   }
 
@@ -752,17 +735,17 @@ void basetest() {
     String abc = "123";
     int val = abc->toBasicInt();
     if(val != 123) {
-      printf("String toBasicInt test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicInt test1");
       break;
     }
 
     String abc2 = "1a b";
     try{
         int val2 = abc2->toBasicInt();
-        printf("String toBasicInt test2----------[FAIL] \n");
+        TEST_FAIL("BaseTest String toBasicInt test2");
     } catch(TransformException e) {}
 
-    printf("String toBasicInt test3----------[OK] \n");
+    TEST_OK("BaseTest String toBasicInt test3");
     break;
   }
 
@@ -771,40 +754,40 @@ void basetest() {
     String abc = "true";
     bool val = abc->toBasicBool();
     if(!val) {
-      printf("String toBasicBool test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicBool test1");
       break;
     }
 
     String abc2 = "True";
     bool val2 = abc2->toBasicBool();
     if(!val2) {
-      printf("String toBasicBool test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicBool test2");
       break;
     }
 
     String abc3 = "false";
     bool val3 = abc3->toBasicBool();
     if(val3) {
-      printf("String toBasicBool test3----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicBool test3");
       break;
     }
 
     String abc4 = "fAlse";
     bool val4 = abc4->toBasicBool();
     if(val4) {
-      printf("String toBasicBool test4----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicBool test4");
       break;
     }
 
     String abc5 = "ggg";
     try {
     bool val5 = abc5->toBasicBool();
-       printf("String toBasicBool test5----------[FAIL] \n");
+       TEST_FAIL("BaseTest String toBasicBool test5");
     } catch(TransformException e) {
 
     }
 
-    printf("String toBasicBool test6----------[OK] \n");
+    TEST_OK("BaseTest String toBasicBool test6");
     break;
   }
 
@@ -813,24 +796,24 @@ void basetest() {
     String abc1 = "1.222";
     float v1 = abc1->toBasicFloat();
     if(v1 != 1.222f) {
-      printf("String toBasicFloat test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicFloat test1");
       break;
     }
 
     String abc2 = "1";
     float v2 = abc2->toBasicFloat();
     if(v2 != 1.0f) {
-      printf("String toBasicFloat test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicFloat test2");
       break;
     }
 
     String abc3 = "1ab";
     try {
         float v3 = abc3->toBasicFloat();
-        printf("String toBasicFloat test3----------[FAIL] \n");
+        TEST_FAIL("BaseTest String toBasicFloat test3");
     } catch(TransformException e) {}
 
-    printf("String toBasicFloat test4----------[OK] \n");
+    TEST_OK("BaseTest String toBasicFloat test4");
     break;
   }
 
@@ -839,24 +822,24 @@ void basetest() {
     String abc1 = "1.222";
     double v1 = abc1->toBasicDouble();
     if(v1 != 1.222) {
-      printf("String toBasicDouble test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicDouble test1");
       break;
     }
 
     String abc2 = "1";
     double v2 = abc2->toBasicDouble();
     if(v2 != 1.0) {
-      printf("String toBasicDouble test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toBasicDouble test2");
       break;
     }
 
     String abc3 = "1ab";
     try {
         double v3 = abc3->toBasicDouble();
-        printf("String toBasicDouble test3----------[FAIL] \n");
+        TEST_FAIL("BaseTest String toBasicDouble test3");
     } catch(TransformException e) {}
 
-    printf("String toBasicDouble test4----------[OK] \n");
+    TEST_OK("BaseTest String toBasicDouble test4");
     break;
   }
 
@@ -865,18 +848,18 @@ void basetest() {
     Integer v1 = createInteger(100);
     String a1 = st(String)::valueOf(v1);
     if(!a1->equals("100")) {
-      printf("String valueOf test1----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test1");
       break;
     }
 /*
     Integer v2;
     String a2 = st(String)::valueOf(v2);
     if(a2 != nullptr) {
-      printf("String valueOf test2----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test2");
       break;
     }
 */
-    printf("String valueOf test3----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test3");
     break;
   }
 
@@ -885,25 +868,25 @@ void basetest() {
     Boolean v1 = createBoolean(true);
     String a1 = st(String)::valueOf(v1);
     if(!a1->equals("true")) {
-      printf("String valueOf test3----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test3");
       break;
     }
 
     Boolean v2 = createBoolean(false);
     String a2 = st(String)::valueOf(v2);
     if(!a2->equals("false")) {
-      printf("String valueOf test4----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test4");
       break;
     }
 /*
     Boolean v3;
     String a3 = st(String)::valueOf(v3);
     if(a3 != nullptr) {
-      printf("String valueOf test5----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test5");
       break;
     }
 */
-    printf("String valueOf test6----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test6");
     break;
   }
 
@@ -911,10 +894,9 @@ void basetest() {
   while(1) {
     Double v1 = createDouble(100);
     String a1 = st(String)::valueOf(v1);
-    printf("v1 is %s \n",a1->toChars());
     if(!a1->equals("100")) {
       //TODO
-      printf("String valueOf test7----------[FAIL] TODO\n");
+      TEST_FAIL("BaseTest String valueOf test7");
       break;
     }
 
@@ -922,11 +904,11 @@ void basetest() {
     Double v2;
     String a2 = st(String)::valueOf(v2);
     if(a2 != nullptr) {
-      printf("String valueOf test8----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test8");
       break;
     }
 */
-    printf("String valueOf test9----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test9");
     break;
   }
 
@@ -936,18 +918,18 @@ void basetest() {
     Float v1 = createFloat(100);
     String a1 = st(String)::valueOf(v1);
     if(!a1->equals("100")) {
-      printf("String valueOf test10----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test10");
       break;
     }
 /*
     Float v2;
     String a2 = st(String)::valueOf(v2);
     if(a2 != nullptr) {
-      printf("String valueOf test11----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test11");
       break;
     }
 */
-    printf("String valueOf test12----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test12");
     break;
   }
 
@@ -956,18 +938,18 @@ void basetest() {
     int i = -1;
     String v1 = st(String)::valueOf(i);
     if(!v1->equals("-1")) {
-      printf("String valueOf test13----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test13");
       break;
     }
 
     int i2 = 10;
     String v2 = st(String)::valueOf(i2);
     if(!v2->equals("10")) {
-      printf("String valueOf test14----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test14");
       break;
     }
 
-    printf("String valueOf test15----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test15");
     break;
   }
 
@@ -976,18 +958,18 @@ void basetest() {
     bool i = false;
     String v1 = st(String)::valueOf(i);
     if(!v1->equals("false")) {
-      printf("String valueOf test16----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test16");
       break;
     }
 
     bool i2 = true;
     String v2 = st(String)::valueOf(i2);
     if(!v2->equals("true")) {
-      printf("String valueOf test17----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test17");
       break;
     }
 
-    printf("String valueOf test18----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test18");
     break;
   }
 
@@ -996,19 +978,19 @@ void basetest() {
     double i = -1.0;
     String v1 = st(String)::valueOf(i);
     if(!v1->equals("-1")) {
-      printf("String valueOf test19----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test19");
       break;
     }
 
     double i2 = 10;
     String v2 = st(String)::valueOf(i2);
-    //printf("v2 is %s \n",v2->toChars());
+    //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->equals("10")) {
-      printf("String valueOf test20----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test20");
       break;
     }
 
-    printf("String valueOf test21----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test21");
     break;
   }
 
@@ -1017,19 +999,19 @@ void basetest() {
     float i = -1.0f;
     String v1 = st(String)::valueOf(i);
     if(!v1->equals("-1")) {
-      printf("String valueOf test22----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test22");
       break;
     }
 
     float i2 = 10;
     String v2 = st(String)::valueOf(i2);
-    //printf("v2 is %s \n",v2->toChars());
+    //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->equals("10")) {
-      printf("String valueOf test23----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test23");
       break;
     }
 
-    printf("String valueOf test24----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test24");
     break;
   }
 
@@ -1038,18 +1020,18 @@ void basetest() {
     const char *p1 = "abc";
     String s1 = st(String)::valueOf(p1);
     if(!s1->equals("abc")) {
-      printf("String valueOf test25----------[FAIL] \n");
+      TEST_FAIL("BaseTest String valueOf test25");
       break;
     }
 
     const char *p2 = nullptr;
     String s2 = st(String)::valueOf(p2);
     if(s2 != nullptr) {
-        printf("String valueOf test26----------[FAIL] \n");
+        TEST_FAIL("BaseTest String valueOf test26");
         break;
     }
 
-    printf("String valueOf test27----------[OK] \n");
+    TEST_OK("BaseTest String valueOf test27");
     break;
   }
 
@@ -1058,23 +1040,23 @@ void basetest() {
     String s1 = "abc";
     String s2 = "abc";
     if(!s1->equals(s2)) {
-      printf("String equals test1 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test1 ");
       break;
     }
 
     String s3 = "dd";
     if(s1->equals(s3)) {
-      printf("String equals test2 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test2 ");
       break;
     }
 /*
     String s4;
     if(s1->equals(s4)) {
-      printf("String equals test3 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test3 ");
       break;
     }
 */
-    printf("String equals test4 ----------[OK] \n");
+    TEST_OK("BaseTest String equals test4 ");
     break;
   }
 
@@ -1083,23 +1065,23 @@ void basetest() {
     String s1 = "abc";
     std::string s2 = "abc";
     if(!s1->equals(s2)) {
-      printf("String equals test5 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test5 ");
       break;
     }
 
     std::string s3 = "dd";
     if(s1->equals(s3)) {
-      printf("String equals test6 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test6 ");
       break;
     }
 
     std::string s4;
     if(s1->equals(s4)) {
-      printf("String equals test7 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test7 ");
       break;
     }
 
-    printf("String equals test8 ----------[OK] \n");
+    TEST_OK("BaseTest String equals test8 ");
     break;
   }
 
@@ -1108,23 +1090,23 @@ void basetest() {
     String s1 = "abc";
     const char * s2 = "abc";
     if(!s1->equals(s2)) {
-      printf("String equals test9 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test9 ");
       break;
     }
 
     const char *s3 = "dd";
     if(s1->equals(s3)) {
-      printf("String equals test10 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test10 ");
       break;
     }
 /*
     const char *s4 = nullptr;
     if(s1->equals(s4)) {
-      printf("String equals test11 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String equals test11 ");
       break;
     }
 */
-    printf("String equals test12 ----------[OK] \n");
+    TEST_OK("BaseTest String equals test12 ");
     break;
   }
 
@@ -1138,25 +1120,25 @@ void basetest() {
     String abc = "123AbC";
     String t1 = abc->toLowerCase();
     if(!t1->equals("123abc")) {
-      printf("String toLowerCase test1 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toLowerCase test1 ");
       break;
     }
 
     String abc2 = "123";
     String t2 = abc2->toLowerCase();
     if(!t2->equals("123")) {
-      printf("String toLowerCase test2 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toLowerCase test2 ");
       break;
     }
 
     String abc3 = "123 ABD";
     String t3 = abc3->toLowerCase();
     if(!t3->equals("123 abd")) {
-      printf("String toLowerCase test3 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toLowerCase test3 ");
       break;
     }
 
-    printf("String toLowerCase test4 ----------[OK] \n");
+    TEST_OK("BaseTest String toLowerCase test4 ");
     break;
   }
 
@@ -1164,27 +1146,27 @@ void basetest() {
   while(1) {
     String abc = "abc";
     String t1 = abc->toUpperCase();
-    //printf("t1 is %s \n",t1->toChars());
+    //TEST_FAIL("BaseTest t1 is %s \n",t1->toChars());
     if(!t1->equals("ABC")) {
-      printf("String toUpperCase test1 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toUpperCase test1 ");
       break;
     }
 
     String abc2 = "123";
     String t2 = abc2->toUpperCase();
     if(!t2->equals("123")) {
-      printf("String toUpperCase test2 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toUpperCase test2 ");
       break;
     }
 
     String abc3 = "123 abc";
     String t3 = abc3->toUpperCase();
     if(!t3->equals("123 ABC")) {
-      printf("String toUpperCase test3 ----------[FAIL] \n");
+      TEST_FAIL("BaseTest String toUpperCase test3 ");
       break;
     }
 
-    printf("String toUpperCase test4 ----------[OK] \n");
+    TEST_OK("BaseTest String toUpperCase test4 ");
     break;
   }
 
@@ -1192,13 +1174,13 @@ void basetest() {
   while(1) {
       String str = createString("AaAbAc");
       String str2 = str->replaceFirst("A","t");
-      //printf("after replace is %s \n",str2->toChars());
+      //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
       if(!str2->equals("taAbAc")) {
-        printf("String replaceFirst test1-------[FAIL] \n");
+        TEST_FAIL("BaseTest String replaceFirst test1");
         break;
       }
 
-      printf("String replaceFirst test1-------[OK] \n");
+      TEST_OK("BaseTest String replaceFirst test1");
       break;
   }
 
@@ -1207,17 +1189,17 @@ void basetest() {
   while(1) {
       String str = createString("AaAbAc");
       if(!str->equalsIgnoreCase("aaabAC")) {
-        printf("String equalsIgnoreCase test1-------[FAIL] \n");
+        TEST_FAIL("BaseTest String equalsIgnoreCase test1");
         break;
       }
 /*
       String str2;
       try {
           str->equalsIgnoreCase(str2);
-          printf("String equalsIgnoreCase test2-------[FAIL] \n");
+          TEST_FAIL("BaseTest String equalsIgnoreCase test2");
       } catch(NullPointerException e) {}
 */
-      printf("String equalsIgnoreCase test3-------[OK] \n");
+      TEST_OK("BaseTest String equalsIgnoreCase test3");
       break;
   }
 
@@ -1226,17 +1208,17 @@ void basetest() {
      String str1 = createString("aabbccdd");
      String str2 = createString("AA");
      if(str1->indexOfIgnoreCase(str2) != 0) {
-       printf("String indexOfIgnoreCase test1-------[FAIL] \n");
+       TEST_FAIL("BaseTest String indexOfIgnoreCase test1");
        break;
      }
 /*
      String str3;
      try {
        str1->indexOfIgnoreCase(str3);
-       printf("String indexOfIgnoreCase test2-------[FAIL] \n");
+       TEST_FAIL("BaseTest String indexOfIgnoreCase test2");
      } catch(NullPointerException e) {}
 */
-     printf("String indexOfIgnoreCase test3-------[OK] \n");
+     TEST_OK("BaseTest String indexOfIgnoreCase test3");
      break;
   }
 
@@ -1244,16 +1226,16 @@ void basetest() {
   while(1) {
       String str = createString("AaAbAc");
       if(!str->containsIgnoreCase("ab")) {
-        printf("String containsIgnoreCase test1-------[FAIL] \n");
+        TEST_FAIL("BaseTest String containsIgnoreCase test1");
         break;
       }
 
       if(str->containsIgnoreCase("dd")) {
-        printf("String containsIgnoreCase test2-------[FAIL] \n");
+        TEST_FAIL("BaseTest String containsIgnoreCase test2");
         break;
       }
 
-      printf("String containsIgnoreCase test1-------[OK] \n");
+      TEST_OK("BaseTest String containsIgnoreCase test1");
       break;
   }
 
@@ -1261,11 +1243,11 @@ void basetest() {
   while(1) {
     String abc = "";
     if(!abc->isEmpty()) {
-      printf("String isEmpty test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String isEmpty test1");
       break;
     }
 
-    printf("String isEmpty test2-------[OK] \n");
+    TEST_OK("BaseTest String isEmpty test2");
     break;
   }
 
@@ -1273,21 +1255,21 @@ void basetest() {
   while(1) {
     String abc = "abc";
     if(!abc->endsWith("c")) {
-      printf("String endsWith test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String endsWith test1");
       break;
     }
 
     if(abc->endsWith("f")) {
-      printf("String endsWith test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String endsWith test2");
       break;
     }
 /*
     try {
       abc->endsWith(nullptr);
-      printf("String endsWith test3-------[FAIL] \n");
+      TEST_FAIL("BaseTest String endsWith test3");
     } catch(NullPointerException e) {}
 */
-    printf("String endsWith test4-------[OK] \n");
+    TEST_OK("BaseTest String endsWith test4");
     break;
   }
 
@@ -1295,24 +1277,24 @@ void basetest() {
   while(1) {
     String abc = "aabbccaaaa";
     int index = abc->lastIndexOf("aa");
-    //printf("index is %d \n",index);
+    //TEST_FAIL("BaseTest index is %d \n",index);
     if(index != 9) {
-      printf("String lastIndexof test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String lastIndexof test1");
       break;
     }
 
     int index2 = abc->lastIndexOf("zz");
     if(index2 != -1) {
-      printf("String lastIndexof test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String lastIndexof test2");
       break;
     }
 /*
     try {
         abc->lastIndexOf(nullptr);
-        printf("String lastIndexof test3-------[FAIL] \n");
+        TEST_FAIL("BaseTest String lastIndexof test3");
     } catch(NullPointerException e) {}
 */
-    printf("String lastIndexof test4-------[OK] \n");
+    TEST_OK("BaseTest String lastIndexof test4");
     break;
   }
 
@@ -1320,21 +1302,21 @@ void basetest() {
   while(1) {
     String abc = "aabbccaa";
     if(!abc->startsWith("aa")) {
-      printf("String startsWith test1-------[FAIL] \n");
+      TEST_FAIL("BaseTest String startsWith test1");
       break;
     }
 
     if(abc->startsWith("bb")) {
-      printf("String startsWith test2-------[FAIL] \n");
+      TEST_FAIL("BaseTest String startsWith test2");
       break;
     }
 /*
     try {
         abc->startsWith(nullptr);
-        printf("String startsWith test3-------[FAIL] \n");
+        TEST_FAIL("BaseTest String startsWith test3");
     } catch(NullPointerException e) {}
 */
-    printf("String startsWith test4-------[OK] \n");
+    TEST_OK("BaseTest String startsWith test4");
     break;
   }
 

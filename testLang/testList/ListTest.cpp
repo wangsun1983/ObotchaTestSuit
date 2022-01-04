@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Uint8.hpp"
 #include "List.hpp"
+#include "TestLog.hpp"
 
 using namespace std;
 using namespace obotcha;

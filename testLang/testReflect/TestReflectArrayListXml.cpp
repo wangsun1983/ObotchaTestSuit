@@ -11,6 +11,7 @@
 #include "Field.hpp"
 #include "XmlWriter.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -68,53 +69,53 @@ void testReflectArrayListToXml() {
     doc1->reflectTo(data3);
 
     if(data3->lists == nullptr || data3->lists->size() != 2) {
-      printf("Reflect ArrayList Xml Reflect test1-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test1");
       break;
     }
 
     ArrayList<XmlItemData1> dl1 = data3->lists->get(0);
     if(dl1 == 0 || dl1->size() != 2) {
-      printf("Reflect ArrayList Xml Reflect test2-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test2");
       break;
     }
 
     XmlItemData1 data1 = dl1->get(0);
     if(data1 == nullptr || data1->data1 != 1 || data1->data2 != 2) {
-      printf("Reflect ArrayList Xml Reflect test3-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test3");
       break;
     }
 
     XmlItemData1 data2 = dl1->get(1);
     if(data2 == nullptr || data2->data1 != 3 || data2->data2 != 4) {
-      printf("Reflect ArrayList Xml Reflect test4-------[FAIL],data2->data1 is %d \n",data2->data1);
+      TEST_FAIL("Reflect ArrayList Xml Reflect test4");
       break;
     }
 
     ArrayList<XmlItemData1> dl2 = data3->lists->get(1);
     if(dl2 == nullptr || dl2->size() != 3) {
-      printf("Reflect ArrayList Xml Reflect test5-------[FAIL],dl2->size is %d \n",dl2->size());
+      TEST_FAIL("Reflect ArrayList Xml Reflect test5");
       break;
     }
 
     XmlItemData1 data2_1 = dl2->get(0);
     if(data2_1 == nullptr || data2_1->data1 != 1 || data2_1->data2 != 2) {
-      printf("Reflect ArrayList Xml Reflect test6-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test6");
       break;
     }
 
     XmlItemData1 data2_2 = dl2->get(1);
     if(data2_2 == nullptr || data2_2->data1 != 3 || data2_2->data2 != 4) {
-      printf("Reflect ArrayList Xml Reflect test7-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test7");
       break;
     }
 
     XmlItemData1 data2_3 = dl2->get(2);
     if(data2_3 == nullptr || data2_3->data1 != 5 || data2_3->data2 != 6) {
-      printf("Reflect ArrayList Xml Reflect test8-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList Xml Reflect test8");
       break;
     }
 
-    printf("Reflect ArrayList Xml Reflect test5-------[OK] \n");
+    TEST_OK("Reflect ArrayList Xml Reflect test5");
     break;
   }
 }

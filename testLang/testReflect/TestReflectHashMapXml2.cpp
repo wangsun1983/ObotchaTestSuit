@@ -11,6 +11,7 @@
 #include "Field.hpp"
 #include "XmlWriter.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -66,53 +67,53 @@ void testReflectHashMapXml2() {
     XmlReflectData2 data3 = createXmlReflectData2();
     doc1->reflectTo(data3);
     if(data3->map == nullptr || data3->map->size() != 2) {
-      printf("ReflectHashMapXml2 test2-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test2");
       break;
     }
 
     HashMap<String,HashMapXmlValue2> map3_1 = data3->map->get(createString("content1"));
     if(map3_1 == nullptr || map3_1->size() != 3) {
-      printf("ReflectHashMapXml2 test3-------[FAIL],map3_1 size is %d \n",map3_1->size());
+      TEST_FAIL("ReflectHashMapXml2 test3");
       break;
     }
 
     HashMapXmlValue2 value3_1 = map3_1->get(createString("tag1"));
     if(value3_1 == nullptr || value3_1->data1 != 1 || value3_1->data2 != 2) {
-      printf("ReflectHashMapXml2 test3_1-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test3_1");
       break;
     }
 
     HashMapXmlValue2 value3_2 = map3_1->get(createString("tag2"));
     if(value3_2 == nullptr || value3_2->data1 != 3 || value3_2->data2 != 4) {
-      printf("ReflectHashMapXml2 test4-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test4");
       break;
     }
 
     HashMapXmlValue2 value3_3 = map3_1->get(createString("tag3"));
     if(value3_3 == nullptr || value3_3->data1 != 5 || value3_3->data2 != 6) {
-      printf("ReflectHashMapXml2 test5-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test5");
       break;
     }
 
     HashMap<String,HashMapXmlValue2> map3_2 = data3->map->get(createString("content2"));
     if(map3_2 == nullptr || map3_2->size() != 2) {
-      printf("ReflectHashMapXml2 test6-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test6");
       break;
     }
 
     HashMapXmlValue2 value4_1 = map3_2->get(createString("tag2"));
     if(value4_1 == nullptr || value4_1->data1 != 3 || value4_1->data2 != 4) {
-      printf("ReflectHashMapXml2 test7-------[FAIL],data1 is %d,data2 is %d \n",value4_1->data1,value4_1->data2);
+      TEST_FAIL("ReflectHashMapXml2 test7");
       break;
     }
 
     HashMapXmlValue2 value4_2 = map3_2->get(createString("tag3"));
     if(value4_2 == nullptr || value4_2->data1 != 5 || value4_2->data2 != 6) {
-      printf("ReflectHashMapXml2 test8-------[FAIL] \n");
+      TEST_FAIL("ReflectHashMapXml2 test8");
       break;
     }
 
-    printf("ReflectHashMapXml2 test100-------[OK] \n");
+    TEST_OK("ReflectHashMapXml2 test100");
     break;
   }
 }

@@ -7,21 +7,21 @@
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void basetest() {
 
-  printf("---[Uint32 Test Start]--- \n");
   //_Uint32(int v);
   while(1) {
       Uint32 v1 = createUint32(10);
       if(v1->toValue() != 10){
-          printf("Uint32 construct test1-------[FAIL] \n");
+          TEST_FAIL("Uint32 construct test1");
           break;
       }
 
-      printf("Uint32 construct test-------[OK] \n");
+      TEST_OK("Uint32 construct test");
       break;
   }
 
@@ -30,17 +30,17 @@ void basetest() {
     Uint32 v1 = createUint32(11);
     Uint32 v2 = createUint32(v1);
     if(v2->toValue() != 11) {
-      printf("Uint32 construct test3-------[FAIL] \n");
+      TEST_FAIL("Uint32 construct test3");
       break;
     }
 
     Uint32 v3;
     try {
         Uint32 v4 = createUint32(v3);
-        printf("Uint32 construct test4-------[FAIL] \n");
+        TEST_FAIL("Uint32 construct test4");
     } catch(InitializeException e) {}
 
-    printf("Uint32 construct test5-------[OK] \n");
+    TEST_OK("Uint32 construct test5");
     break;
   }
 
@@ -49,11 +49,11 @@ void basetest() {
     Uint32 v1 = createUint32(11);
     Uint32 v2 = createUint32(v1);
     if(v2->toValue() != 11) {
-      printf("Uint32 toValue test1-------[FAIL] \n");
+      TEST_FAIL("Uint32 toValue test1");
       break;
     }
 
-    printf("Uint32 toValue test1-------[OK] \n");
+    TEST_OK("Uint32 toValue test1");
     break;
   }
 
@@ -62,16 +62,16 @@ void basetest() {
     Uint32 v1 = createUint32(11);
     Uint32 v2 = createUint32(11);
     if(!v1->equals(v2)) {
-      printf("Uint32 equals test1-------[FAIL] \n");
+      TEST_FAIL("Uint32 equals test1");
       break;
     }
 /*
     try {
       v1->equals(nullptr);
-      printf("Uint32 equals test2-------[FAIL] \n");
+      TEST_FAIL("Uint32 equals test2");
     } catch(NullPointerException e) {}
 */
-    printf("Uint32 equals test3-------[OK] \n");
+    TEST_OK("Uint32 equals test3");
     break;
   }
 
@@ -79,11 +79,11 @@ void basetest() {
   while(1) {
     Uint32 v1 = createUint32(11);
     if(!v1->equals(11)) {
-      printf("Uint32 equals test4-------[FAIL] \n");
+      TEST_FAIL("Uint32 equals test4");
       break;
     }
 
-    printf("Uint32 equals test5-------[OK] \n");
+    TEST_OK("Uint32 equals test5");
     break;
   }
 
@@ -92,27 +92,27 @@ void basetest() {
     Uint32 v1 = createUint32(12);
     Uint32 v2 = createUint32(12);
     if(v1 != v2) {
-      printf("Uint32 [==] test1-------[FAIL] \n");
+      TEST_FAIL("Uint32 [==] test1");
       break;
     }
 
-    printf("Uint32 [==] test1-------[OK] \n");
+    TEST_OK("Uint32 [==] test1");
     break;
   }
 
   //MAX_VALUE/MIN_VALUE
   while(1) {
       if(st(Uint32)::MAX_VALUE < 0) {
-        printf("Uint32 MAX_VALUE test1-------[FAIL] \n");
+        TEST_FAIL("Uint32 MAX_VALUE test1");
         break;
       }
 
       if(st(Uint32)::MIN_VALUE != 0) {
-        printf("Uint32 MIN_VALUE test2-------[FAIL] \n");
+        TEST_FAIL("Uint32 MIN_VALUE test2");
         break;
       }
 
-      printf("Uint32 MIN_VALUE/MAX_VALUE test3-------[Success] \n");
+      TEST_OK("Uint32 MIN_VALUE/MAX_VALUE test3");
       break;
   }
 }

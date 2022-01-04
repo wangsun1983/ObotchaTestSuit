@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,53 +19,53 @@ void TestStringEquals() {
     while(1) {
         String str = createString(" abc  f ");
         if(!str->equals(" abc  f ")) {
-            printf("String equals test1-------[FAIL] \n");
+            TEST_FAIL("String equals test1");
             break;
         }
 
         if(str->equals("a")) {
-            printf("String equals test1_1-------[FAIL] \n");
+            TEST_FAIL("String equals test1_1");
             break;
         }
 
         if(str->equals("ab")) {
-            printf("String equals test2-------[FAIL] \n");
+            TEST_FAIL("String equals test2");
             break;
         }
 
         if(str->equals("abc")) {
-            printf("String equals test3-------[FAIL] \n");
+            TEST_FAIL("String equals test3");
             break;
         }
 
         if(str->equals("abc ")) {
-            printf("String equals test4-------[FAIL] \n");
+            TEST_FAIL("String equals test4");
             break;
         }
 
         if(str->equals("abc  f")) {
-            printf("String equals test5-------[FAIL] \n");
+            TEST_FAIL("String equals test5");
             break;
         }
 
         if(str->equals("     abc f      ")) {
-            printf("String equals test6-------[FAIL] \n");
+            TEST_FAIL("String equals test6");
             break;
         }
 
         if(str->equals("A")) {
-            printf("String equals test7-------[FAIL] \n");
+            TEST_FAIL("String equals test7");
             break;
         }
 
         String str2 = createString(" abc  f ");
         if(!str->equals(str2)) {
-            printf("String equals test8-------[FAIL] \n");
+            TEST_FAIL("String equals test8");
             break;
         }
 
         break;
     }
 
-    printf("String equals test100-------[OK] \n");
+    TEST_OK("String equals test100");
 }

@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ void TestStringSize() {
     while(1) {
         String str = createString(" abc f ");
         if(str->size() != 7) {
-            printf("String size test1-------[FAIL] \n");
+            TEST_FAIL("String size test1");
             break;
         }
 
@@ -29,11 +30,11 @@ void TestStringSize() {
         buff[4] = 'f';
         str = createString(buff);
         if(str->size() != 2) {
-            printf("String size1 test2-------[FAIL],size is %d \n",str->size());
+            TEST_FAIL("String size1 test2");
             break;
         }
         break;
     }
 
-    printf("String size test100-------[OK] \n");
+    TEST_OK("String size test100");
 }

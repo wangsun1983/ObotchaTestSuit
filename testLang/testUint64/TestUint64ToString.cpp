@@ -8,6 +8,7 @@
 #include "Uint64.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -68,8 +69,7 @@ void testtostring() {
        String v1 = t1->toHexString();
        String v2 = createString(HexTable[i]);
        if(v1 != v2) {
-         printf("v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-         printf("Uint64 toString test1-------[FAIL] \n");
+         TEST_FAIL("Uint64 toString test1");
          break;
        }
      }
@@ -80,7 +80,7 @@ void testtostring() {
 
        String v2 = createString(OctTable[i]);
        if(v1 != v2) {
-         printf("Uint64 toString test2-------[FAIL] \n");
+         TEST_FAIL("Uint64 toString test2");
          break;
        }
      }
@@ -90,12 +90,12 @@ void testtostring() {
        String v1 = t1->toBinaryString();
        String v2 = createString(BinaryTable[i]);
        if(v1 != v2) {
-         printf("Uint64 toString test3-------[FAIL] \n");
+         TEST_FAIL("Uint64 toString test3");
          break;
        }
      }
 
-     printf("Uint64 toString test4-------[OK] \n");
+     TEST_OK("Uint64 toString test4");
      break;
    }
 
@@ -106,8 +106,7 @@ void testtostring() {
        Uint64 t2 = st(Uint64)::parseHexUint64(createString(HexTable[i]));
        Uint64 t3 = createUint64(t2);
        if(t1 != t3) {
-         printf("t1 is %d,t3 is %d \n",t1->toValue(),t3->toValue());
-         printf("Uint64 toInt test1-------[FAIL] \n");
+         TEST_FAIL("Uint64 toInt test1");
          break;
        }
      }
@@ -118,8 +117,7 @@ void testtostring() {
        Uint64 t3 = createUint64(t2);
 
        if(t1 != t3) {
-         printf("t1 is %d,t3 is %d,i is %d \n",t1->toValue(),t3->toValue(),i);
-         printf("Uint64 toInt test2-------[FAIL] \n");
+         TEST_FAIL("Uint64 toInt test2");
          break;
        }
      }
@@ -127,16 +125,16 @@ void testtostring() {
      for(int i = 0;i < 100;i++) {
        Uint64 t1 = createUint64(i);
        String str = createString(BinaryTable[i]);
-       //printf("11111 str is %s \n",str->toChars());
+       //TEST_FAIL("11111 str is %s \n",str->toChars());
        Uint64 t2 = st(Uint64)::parseBinaryUint64(str);
        Uint64 t3 = createUint64(t2);
         if(t1 != t3) {
-         printf("Uint64 toInt test3-------[FAIL] \n");
+         TEST_FAIL("Uint64 toInt test3");
          break;
        }
      }
 
-     printf("Uint64 toInt test10-------[OK] \n");
+     TEST_OK("Uint64 toInt test10");
      break;
    }
 

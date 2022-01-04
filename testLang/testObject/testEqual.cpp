@@ -5,6 +5,7 @@
 //#include "ArrayList.hpp"
 #include "Object.hpp"
 #include "StrongPointer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -63,7 +64,7 @@ void testEqual() {
     TestData1 d1 = createTestData1(1);
     TestData1 d2 = createTestData1(2);
     if(d1 != d2) {
-      printf("Object Equal test1-------[FAIL] \n");
+      TEST_FAIL("Object Equal test1");
       break;
     }
 
@@ -72,7 +73,7 @@ void testEqual() {
     TestData2 d4 = createTestData2();
     d4->j = 10;
     if(d3 != d4) {
-      printf("Object Equal test2-------[FAIL] \n");
+      TEST_FAIL("Object Equal test2");
       break;
     }
 
@@ -82,7 +83,7 @@ void testEqual() {
     TestData3 d6 = createTestData3();
     d4->j = 10;
     if(d5 == d6) {
-      printf("Object Equal test3-------[FAIL] \n");
+      TEST_FAIL("Object Equal test3");
       break;
     }
 
@@ -93,7 +94,7 @@ void testEqual() {
     s2->j = 100;
 
     if(s1 != s2) {
-      printf("Object Equal test4-------[FAIL] \n");
+      TEST_FAIL("Object Equal test4");
       break;
     }
 
@@ -101,7 +102,7 @@ void testEqual() {
     TestData1 data1 = createTestData1(1);
     _TestData1 *data2 = new _TestData1(1);
     if(data1 != data2) {
-      printf("Object Equal test5-------[FAIL] \n");
+      TEST_FAIL("Object Equal test5");
       break;
     }
 
@@ -113,11 +114,11 @@ void testEqual() {
     data4->j = 100;
 
     if(data4 != data3) {
-      printf("Object Equal test6-------[FAIL] \n");
+      TEST_FAIL("Object Equal test6");
       break;
     }
 
-    printf("Object Equal test5-------[OK] \n");
+    TEST_OK("Object Equal test5");
     break;
   }
 }

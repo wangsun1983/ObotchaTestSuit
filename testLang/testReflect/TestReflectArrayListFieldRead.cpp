@@ -9,6 +9,7 @@
 #include "String.hpp"
 #include "Math.hpp"
 #include "Field.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -74,76 +75,73 @@ void testReflectArrayListFieldRead() {
       //check field
       Field f = data1->getField("intData");
       if(f->getIntValue() != 1 || f->getType() != st(Field)::FieldTypeInt) {
-        printf("Reflect ArrayList Field Read test1-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test1");
         break;
       }
 
       f = data1->getField("byteData");
       if(f->getByteValue() != 2 || f->getType() != st(Field)::FieldTypeByte) {
-        printf("v is %d,type is %d \n",f->getByteValue(),st(Field)::FieldTypeByte);
-        printf("Reflect ArrayList Field Read test2-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test2");
         break;
       }
 
       f = data1->getField("doubleData");
       if(f->getDoubleValue() != 1.1 || f->getType() != st(Field)::FieldTypeDouble) {
-        printf("Reflect ArrayList Field Read test3-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test3");
         break;
       }
 
       f = data1->getField("floatData");
-      if(st(Math)::compareFloat(2.2,f->getFloatValue()) != st(Math)::AlmostEqual || f->getType() != st(Field)::FieldTypeFloat) {
-        printf("v is %lf,type is %d \n",f->getFloatValue(),f->getType());
-        printf("Reflect ArrayList Field Read test4-------[FAIL] \n");
+      if(st(Math)::compareFloat(2.2,f->getFloatValue()) != st(Math)::AlmostEqual
+        || f->getType() != st(Field)::FieldTypeFloat) {
+        TEST_FAIL("Reflect ArrayList Field Read test4");
         break;
       }
 
       f = data1->getField("longData");
       if(f->getLongValue() != 3 || f->getType() != st(Field)::FieldTypeLong) {
-        printf("Reflect ArrayList Field Read test5-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test5");
         break;
       }
 
       f = data1->getField("stringData");
       String v = f->getStringValue();
       if(v == nullptr || !v->equals("a")|| f->getType() != st(Field)::FieldTypeString) {
-        printf("Reflect ArrayList Field Read test6-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test6");
         break;
       }
 
       f = data1->getField("uint8Data");
       if(f->getByteValue() != 4 || f->getType() != st(Field)::FieldTypeUint8) {
-        printf("uint8 value is %d,type is %d \n",f->getByteValue(),f->getType());
-        printf("Reflect ArrayList Field Read test7-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test7");
         break;
       }
 
       f = data1->getField("uint16Data");
       if(f->getUint16Value() != 5 || f->getType() != st(Field)::FieldTypeUint16) {
-        printf("Reflect ArrayList Field Read test7-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test7");
         break;
       }
 
       f = data1->getField("uint32Data");
       if(f->getUint32Value() != 6 || f->getType() != st(Field)::FieldTypeUint32) {
-        printf("uint32 value is %d,type is %d \n",f->getUint32Value(),f->getType());
-        printf("Reflect ArrayList Field Read test8-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test8");
         break;
       }
 
       f = data1->getField("uint64Data");
       if(f->getUint64Value() != 7 || f->getType() != st(Field)::FieldTypeUint64) {
-        printf("Reflect ArrayList Field Read test9-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test9");
         break;
       }
 
       f = data1->getField("boolData");
       if(f->getBoolValue() || f->getType() != st(Field)::FieldTypeBool) {
-        printf("Reflect ArrayList Field Read test10-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Read test10");
         break;
       }
 
-      printf("Reflect ArrayList Field Read test11-------[OK] \n");
+      TEST_OK("Reflect ArrayList Field Read test11");
       break;
     }
 

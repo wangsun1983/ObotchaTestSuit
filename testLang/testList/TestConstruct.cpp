@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Uint8.hpp"
 #include "List.hpp"
+#include "TestLog.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -39,21 +40,21 @@ void testConstruct() {
 
     List<ConstructData> mylist2 = createList<ConstructData>(mylist1);
     if(mylist2[0]->i != 1 || mylist2[0]->j != 1) {
-      printf("List construct test-------[FAIL] \n");
+      TEST_FAIL("List construct test");
       break;
     }
 
     if(mylist2[1]->i != 2 || mylist2[1]->j != 2) {
-      printf("List construct test1-------[FAIL] \n");
+      TEST_FAIL("List construct test1");
       break;
     }
 
     if(mylist2[2]->i != 3 || mylist2[2]->j != 3) {
-      printf("List construct test-------[FAIL] \n");
+      TEST_FAIL("List construct test");
       break;
     }
 
-    printf("List construct test-------[OK] \n");
+    TEST_OK("List construct test");
     break;
   }
 }

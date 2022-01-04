@@ -9,6 +9,7 @@
 #include "String.hpp"
 #include "Math.hpp"
 #include "Field.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -43,12 +44,6 @@ void testReflectArrayListFieldWrite() {
       Field arrayField = collection->getField("mylist");
       arrayField->createObject();
       Object data1 = collection->getField("mylist")->createListItemObject();
-      //printf("testReflectArrayListFieldWrite field size is %d,class name is %s \n",
-      //        data1->getAllFields()->size(),data1->__ReflectClassName()->toChars());
-      //ArrayList<Field> fields = data1->getAllFields();
-      //for(int i = 0;i<fields->size();i++) {
-      //  printf("field is %s \n",fields->get(i)->getName()->toChars());
-      //}
 
       Field f = data1->getField("intData");
       f->setValue(1);
@@ -119,123 +114,123 @@ void testReflectArrayListFieldWrite() {
       collection->getField("mylist")->addListItemObject(data2);
 
       if(collection->mylist->size() != 2) {
-        printf("Reflect ArrayList Field Write test1-------[FAIL],size is %d \n",collection->mylist->size());
+        TEST_FAIL("Reflect ArrayList Field Write test1-------[FAIL]");
         break;
       }
 
       ArrayDataLLL2 d1 = collection->mylist->get(0);
       if(d1->intData != 1) {
-        printf("Reflect ArrayList Field Write test1_1-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test1_1-------[FAIL] \n");
         break;
       }
 
       if(d1->byteData != 2) {
-        printf("Reflect ArrayList Field Write test2-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test2-------[FAIL] \n");
         break;
       }
 
       if(d1->doubleData != 1.1) {
-        printf("Reflect ArrayList Field Write test3-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test3-------[FAIL] \n");
         break;
       }
 
       if(st(Math)::compareFloat(d1->floatData,2.2) != st(Math)::AlmostEqual) {
-        printf("Reflect ArrayList Field Write test4-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test4-------[FAIL] \n");
         break;
       }
 
       if(d1->longData != 3) {
-        printf("Reflect ArrayList Field Write test5-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test5-------[FAIL] \n");
         break;
       }
 
       if(!d1->stringData->equals("a")) {
-        printf("Reflect ArrayList Field Write test6-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test6-------[FAIL] \n");
         break;
       }
 
       if(d1->uint8Data != 4) {
-        printf("Reflect ArrayList Field Write test7-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test7-------[FAIL] \n");
         break;
       }
 
       if(d1->uint16Data != 5) {
-        printf("Reflect ArrayList Field Write test8-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test8-------[FAIL] \n");
         break;
       }
 
       if(d1->uint32Data != 6) {
-        printf("Reflect ArrayList Field Write test9-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test9-------[FAIL] \n");
         break;
       }
 
       if(d1->uint64Data != 7) {
-        printf("Reflect ArrayList Field Write test10-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test10-------[FAIL] \n");
         break;
       }
 
       if(d1->boolData) {
-        printf("Reflect ArrayList Field Write test11-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test11-------[FAIL] \n");
         break;
       }
 
       ArrayDataLLL2 d2 = collection->mylist->get(1);
       if(d2->intData != 11) {
-        printf("Reflect ArrayList Field Write test12-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test12-------[FAIL] \n");
         break;
       }
 
       if(d2->byteData != 12) {
-        printf("Reflect ArrayList Field Write test13-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test13-------[FAIL] \n");
         break;
       }
 
       if(d2->doubleData != 11.1) {
-        printf("Reflect ArrayList Field Write test14-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test14-------[FAIL] \n");
         break;
       }
 
       if(st(Math)::compareFloat(d2->floatData,12.2) != st(Math)::AlmostEqual) {
-        printf("Reflect ArrayList Field Write test15-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test15-------[FAIL] \n");
         break;
       }
 
       if(d2->longData != 13) {
-        printf("Reflect ArrayList Field Write test16-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test16-------[FAIL] \n");
         break;
       }
 
       if(!d2->stringData->equals("b")) {
-        printf("Reflect ArrayList Field Write test17-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test17-------[FAIL] \n");
         break;
       }
 
       if(d2->uint8Data != 14) {
-        printf("Reflect ArrayList Field Write test18-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test18-------[FAIL] \n");
         break;
       }
 
       if(d2->uint16Data != 15) {
-        printf("Reflect ArrayList Field Write test19-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test19-------[FAIL] \n");
         break;
       }
 
       if(d2->uint32Data != 16) {
-        printf("Reflect ArrayList Field Write test20-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test20-------[FAIL] \n");
         break;
       }
 
       if(d2->uint64Data != 17) {
-        printf("Reflect ArrayList Field Write test21-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test21-------[FAIL] \n");
         break;
       }
 
       if(d2->boolData) {
-        printf("Reflect ArrayList Field Write test22-------[FAIL] \n");
+        TEST_FAIL("Reflect ArrayList Field Write test22-------[FAIL] \n");
         break;
       }
 
-      printf("Reflect ArrayList Field Write test23-------[OK] \n");
+      TEST_OK("Reflect ArrayList Field Write test23");
       break;
     }
 }

@@ -10,6 +10,7 @@
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void updatetest() {
       v1->update(2);
 
       if(v1->toValue() != 2){
-          printf("Uint8 update special test1-------[FAIL] \n");
+          TEST_FAIL("Uint8 update special test1");
           break;
       }
 
@@ -30,11 +31,11 @@ void updatetest() {
       v2->update(v2_1);
 
       if(v2->toValue() != 2) {
-          printf("Uint8 update special test2-------[FAIL] \n");
+          TEST_FAIL("Uint8 update special test2");
           break;
       }
 
-      printf("yte update special test4-------[OK] \n");
+      TEST_OK("yte update special test4");
       break;
   }
 }

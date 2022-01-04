@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Uint8.hpp"
 #include "List.hpp"
+#include "TestLog.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -26,11 +27,11 @@ void testExceptoin() {
     }
 
     if(!isException) {
-      printf("List Exception test-------[FAIL] \n");
+      TEST_FAIL("List Exception test");
       break;
     }
 
-    printf("List construct test-------[OK] \n");
+    TEST_OK("List construct test");
     break;
   }
 }

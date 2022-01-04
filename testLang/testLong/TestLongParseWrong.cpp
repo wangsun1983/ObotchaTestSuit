@@ -8,6 +8,7 @@
 #include "Long.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,29 +16,29 @@ void testLongParseWrong() {
   while(1) {
    Long v1 = st(Long)::parseDecLong("xd");
    if(v1 != nullptr) {
-    printf("Long testLongParseWrong test1-------[FAIL] \n");
+    TEST_FAIL("Long testLongParseWrong test1");
     break;
    }
 
    v1 = st(Long)::parseHexLong("xd");
    if(v1 != nullptr) {
-    printf("Long testLongParseWrong test2-------[FAIL] \n");
+    TEST_FAIL("Long testLongParseWrong test2");
     break;
    }
 
    v1 = st(Long)::parseOctLong("xd");
    if(v1 != nullptr) {
-    printf("Long testLongParseWrong test3-------[FAIL] \n");
+    TEST_FAIL("Long testLongParseWrong test3");
     break;
    }
 
    v1 = st(Long)::parseBinaryLong("111d");
    if(v1 != nullptr) {
-    printf("Long testLongParseWrong test4-------[FAIL] \n");
+    TEST_FAIL("Long testLongParseWrong test4");
     break;
    }
 
-   printf("Long testLongParseWrong test5-------[OK] \n");
+   TEST_OK("Long testLongParseWrong test5");
    break;
   }
 }

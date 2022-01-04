@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "StrongPointer.hpp"
 #include "ArrayList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -25,19 +26,19 @@ void testReferenceArraylist() {
     ContainerData ref = createContainerData();
     ArrayList<ContainerData> list = createArrayList<ContainerData>();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceArraylistCount test1-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test1");
       break;
     }
 
     list->add(ref);
     if(ref->getStrongCount() != 2) {
-      printf("Object ReferenceArraylistCount test2-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test2");
       break;
     }
 
     list->clear();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceArraylistCount test3-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test3");
       break;
     }
 
@@ -49,19 +50,19 @@ void testReferenceArraylist() {
     ContainerData2 ref = createContainerData2();
     ArrayList<ContainerData> list = createArrayList<ContainerData>();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceArraylistCount test4-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test4");
       break;
     }
 
     list->add(Cast<ContainerData>(ref));
     if(ref->getStrongCount() != 2) {
-      printf("Object ReferenceArraylistCount test5-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test5");
       break;
     }
 
     list->clear();
     if(ref->getStrongCount() != 1) {
-      printf("Object ReferenceArraylistCount test6-------[FAIL] \n");
+      TEST_FAIL("Object ReferenceArraylistCount test6");
       break;
     }
 
@@ -69,5 +70,5 @@ void testReferenceArraylist() {
   }
 
 
-  printf("Object ReferenceArraylistCount test100-------[OK] \n");
+  TEST_OK("Object ReferenceArraylistCount test100");
 }

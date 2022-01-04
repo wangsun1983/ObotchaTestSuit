@@ -11,6 +11,7 @@
 #include "Field.hpp"
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -84,79 +85,79 @@ void testReflectArrayList2() {
     readValue->reflectTo(ll_chk);
 
     if(ll_chk->lists == nullptr) {
-      printf("Reflect ArrayList2 test11-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test11");
       break;
     }
 
     if(ll_chk->lists->size() != 2) {
-      printf("Reflect ArrayList2 test12-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test12");
       break;
     }
 
     ArrayList<ArrayData3> ll_0 = ll_chk->lists->get(0);
     if(ll_0 == nullptr || ll_0->size() != 2) {
-      printf("Reflect ArrayList2 test13-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test13");
       break;
     }
 
     ArrayData3 ll_0_1 = ll_0->get(0);
     if(ll_0_1->list->size() != 2) {
-      printf("Reflect ArrayList2 test13-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test13");
       break;
     }
 
     if(ll_0_1->list->get(0)->toValue() != 1 ||ll_0_1->list->get(1)->toValue() != 2) {
-      printf("Reflect ArrayList2 test14-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test14");
       break;
     }
 
     ArrayData3 ll_0_2 = ll_0->get(1);
     if(ll_0_2->list->size() != 2) {
-      printf("Reflect ArrayList2 test15-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test15");
       break;
     }
 
     if(ll_0_2->list->get(0)->toValue() != 3 ||ll_0_2->list->get(1)->toValue() != 4) {
-      printf("Reflect ArrayList2 test16-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test16");
       break;
     }
 
     ll_1 = ll_chk->lists->get(1);
     if(ll_1 == nullptr || ll_1->size() != 3) {
-      printf("Reflect ArrayList2 test17-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test17");
       break;
     }
 
     ArrayData3 ll_1_1 = ll_1->get(0);
     if(ll_1_1->list->size() != 2) {
-      printf("Reflect ArrayList2 test18-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test18");
       break;
     }
 
     if(ll_1_1->list->get(0)->toValue() != 1 ||ll_1_1->list->get(1)->toValue() != 2) {
-      printf("Reflect ArrayList2 test19-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test19");
       break;
     }
 
     ArrayData3 ll_1_2 = ll_1->get(1);
     if(ll_1_2->list->size() != 2) {
-      printf("Reflect ArrayList2 test20-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test20");
       break;
     }
 
     if(ll_1_2->list->get(0)->toValue() != 3 ||ll_1_2->list->get(1)->toValue() != 4) {
-      printf("Reflect ArrayList2 test21-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test21");
       break;
     }
 
     ArrayData3 ll_1_3 = ll_1->get(2);
     if(ll_1_3->list->size() != 2) {
-      printf("Reflect ArrayList2 test22-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test22");
       break;
     }
 
     if(ll_1_3->list->get(0)->toValue() != 5 ||ll_1_3->list->get(1)->toValue() != 6) {
-      printf("Reflect ArrayList2 test23-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test23");
       break;
     }
 
@@ -208,57 +209,57 @@ void testReflectArrayList2() {
     readValue->reflectTo(ll2);
 
     if(ll2 == nullptr) {
-      printf("Reflect ArrayList2 test1-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test1");
       break;
     }
 
     if(ll2->lists == nullptr) {
-      printf("Reflect ArrayList2 test2-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test2");
       break;
     }
 
     if(ll2->lists->size() != 2) {
-      printf("Reflect ArrayList2 test3-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test3");
       break;
     }
 
     ArrayList<ArrayData2> list_t1 = ll2->lists->get(0);
     if(list_t1->size() != 2) {
-      printf("Reflect ArrayList2 test4-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test4");
       break;
     }
 
     ArrayData2 v_t1 = list_t1->get(0);
     if(v_t1->data1 != 1 || v_t1->data2 != 2) {
-      printf("Reflect ArrayList2 test5-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test5");
       break;
     }
 
     ArrayData2 v_t2 = list_t1->get(1);
     if(v_t2->data1 != 1 || v_t2->data2 != 2) {
-      printf("Reflect ArrayList2 test6-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test6");
       break;
     }
 
     ArrayList<ArrayData2> list_t2 = ll2->lists->get(1);
     if(list_t2->size() != 2) {
-      printf("Reflect ArrayList2 test7-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test7");
       break;
     }
 
     ArrayData2 v2_t1 = list_t2->get(0);
     if(v2_t1->data1 != 1 || v2_t1->data2 != 2) {
-      printf("Reflect ArrayList2 test8-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test8");
       break;
     }
 
     ArrayData2 v2_t2 = list_t1->get(1);
     if(v2_t2->data1 != 1 || v2_t2->data2 != 2) {
-      printf("Reflect ArrayList2 test9-------[FAIL] \n");
+      TEST_FAIL("Reflect ArrayList2 test9");
       break;
     }
 
-    printf("Reflect ArrayList2 test10-------[OK] \n");
+    TEST_OK("Reflect ArrayList2 test10");
     break;
   }
 

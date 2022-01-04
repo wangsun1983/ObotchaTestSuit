@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,16 +20,16 @@ void TestStringToChars() {
         String str = createString("abcdef");
         const char *p = str->toChars();
         if(strlen(p) != str->size()) {
-            printf("String toChars test1-------[FAIL] \n");
+            TEST_FAIL("String toChars test1");
             break;
         }
 
         if(p[0] != 'a' || p[1] != 'b' || p[2] != 'c'|| p[3] != 'd' || p[4] != 'e' ||p[5] != 'f') {
-            printf("String toChars test2-------[FAIL] \n");
+            TEST_FAIL("String toChars test2");
             break;
         }
 
         break;
     }
-    printf("String update test100-------[OK] \n");
+    TEST_OK("String update test100");
 }

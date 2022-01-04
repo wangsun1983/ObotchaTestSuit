@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
 #include "Uint8.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,18 +17,18 @@ void equaltest() {
       Uint8 v1 = createUint8(10);
       Uint8 v2 = createUint8(10);
       if(v1 != v2){
-          printf("Uint8 equal test1-------[FAIL] \n");
+          TEST_FAIL("Uint8 equal test1");
           break;
       }
 
       Uint8 v3 = createUint8(10);
       Uint8 v4 = createUint8(11);
       if(v3 == v4){
-          printf("Uint8 equal test2-------[FAIL] \n");
+          TEST_FAIL("Uint8 equal test2");
           break;
       }
 
-      printf("Uint8 equal test3-------[OK] \n");
+      TEST_OK("Uint8 equal test3");
       break;
   }
 

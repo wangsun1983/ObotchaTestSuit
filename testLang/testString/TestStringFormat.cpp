@@ -3,30 +3,26 @@
 #include <type_traits>
 
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void formattest() {
 
-  printf("---[String Format Test Start]--- \n");
-
-  while(1) {
+    while(1) {
     String str = st(String)::format("i say %s","hello");
     if(!str->equals("i say hello")){
-      printf("---[String Format Test {format()} case1] [FAILED]--- \n");
+      TEST_FAIL("[String Format Test {format()} case1]");
       break;
     }
 
     str = st(String)::format("%d,%s",1,"a");
     if(!str->equals("1,a")) {
-      printf("---[String Format Test {format()} case2] [FAILED]--- \n");
+      TEST_FAIL("[String Format Test {format()} case2]");
       break;
     }
 
-    printf("---[String Format Test {format()} case3] [Success]--- \n");
+    TEST_OK("[String Format Test {format()} case3]");
     break;
   }
-
-
-
 }

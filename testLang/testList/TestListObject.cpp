@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Uint8.hpp"
 #include "List.hpp"
+#include "TestLog.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -22,17 +23,17 @@ void listobjecttest() {
   while(1) {
     List<MyData> mylist1 = createList<MyData>(4);
     if(mylist1->size() != 4) {
-      printf("List Object construct test1-------[FAIL] \n");
+      TEST_FAIL("List Object construct test1");
       break;
     }
 
     MyData v1 = mylist1[0];
     if(v1 != nullptr) {
-      printf("List Object construct test2-------[FAIL] \n");
+      TEST_FAIL("List Object construct test2");
       break;
     }
 
-    printf("List Object construct test3-------[OK] \n");
+    TEST_OK("List Object construct test3");
     break;
   }
 
@@ -48,14 +49,14 @@ void listobjecttest() {
 
     List<MyData> list1 = createList<MyData>(vlist,5);
     if(list1->size() != 5) {
-      printf("List Object construct test4-------[FAIL] \n");
+      TEST_FAIL("List Object construct test4");
       break;
     }
 
     for(int i = 0;i<5;i++) {
       MyData v = vlist[i];
       if(v->i != i ||v->j != i) {
-        printf("List Object construct test5-------[FAIL] \n");
+        TEST_FAIL("List Object construct test5");
         break;
       }
     }
@@ -69,12 +70,12 @@ void listobjecttest() {
     for(int i = 0;i<5;i++) {
       MyData v = vlist[i];
       if(v->i != i*100 ||v->j != i*100) {
-        printf("List Object construct test6-------[FAIL] \n");
+        TEST_FAIL("List Object construct test6");
         break;
       }
     }
 
-    printf("List Object construct test7-------[OK] \n");
+    TEST_OK("List Object construct test7");
     break;
   }
 
@@ -90,11 +91,11 @@ void listobjecttest() {
     list1[0] = nullptr;
     MyData data1_1 = list1[0];
     if(data1_1 != nullptr) {
-      printf("List Object set null test1-------[FAIL] \n");
+      TEST_FAIL("List Object set null test1");
       break;
     }
 
-    printf("List Object set null test2-------[OK] \n");
+    TEST_OK("List Object set null test2");
     break;
   }
 }

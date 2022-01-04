@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,47 +19,47 @@ void TestStringContains() {
     while(1) {
         String str = createString(" abc  f ");
         if(!str->contains("  ")) {
-            printf("String contains test1-------[FAIL] \n");
+            TEST_FAIL("String contains test1");
             break;
         }
 
         if(!str->contains("a")) {
-            printf("String contains test1_1-------[FAIL] \n");
+            TEST_FAIL("String contains test1_1");
             break;
         }
 
         if(!str->contains("ab")) {
-            printf("String contains test2-------[FAIL] \n");
+            TEST_FAIL("String contains test2");
             break;
         }
 
         if(!str->contains("abc")) {
-            printf("String contains test3-------[FAIL] \n");
+            TEST_FAIL("String contains test3");
             break;
         }
 
         if(!str->contains("abc ")) {
-            printf("String contains test4-------[FAIL] \n");
+            TEST_FAIL("String contains test4");
             break;
         }
 
         if(!str->contains("abc  f")) {
-            printf("String contains test5-------[FAIL] \n");
+            TEST_FAIL("String contains test5");
             break;
         }
 
         if(str->contains("     abc f      ")) {
-            printf("String contains test6-------[FAIL] \n");
+            TEST_FAIL("String contains test6");
             break;
         }
 
         if(str->contains("A")) {
-            printf("String contains test7-------[FAIL] \n");
+            TEST_FAIL("String contains test7");
             break;
         }
 
         break;
     }
 
-    printf("String contains test100-------[OK] \n");
+    TEST_OK("String contains test100");
 }

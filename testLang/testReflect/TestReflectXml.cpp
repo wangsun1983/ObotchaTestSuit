@@ -11,6 +11,7 @@
 #include "Field.hpp"
 #include "XmlWriter.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -51,19 +52,17 @@ void testReflectToXml() {
     XmlDocument doc1 = createXmlDocument("output_xml_1.xml");
     XmlReflectData data3 = createXmlReflectData();
     doc1->reflectTo(data3);
-    if(data3->map == nullptr) {
-      printf("map is nullptr \n");
-    } else {
-      printf("xml size is %d \n",data3->map->size());
-    }
 
     HashMapXmlValue v1 = data3->map->get("hello");
-    printf("v1 data1 is %d \n",v1->data1);
-    printf("v1 data2 is %d \n",v1->data2);
+    if(v1->data1 != value->data1 || v1->data2 != value->data2) {
+      TEST_FAIL("testReflectToXml test1");
+    }
 
     HashMapXmlValue v2 = data3->map->get("hello1");
-    printf("v2 data1 is %d \n",v2->data1);
-    printf("v2 data2 is %d \n",v2->data2);
+    if(v2->data1 != value2->data1 || v2->data2 != value2->data2) {
+      TEST_FAIL("testReflectToXml test2");
+    }
+    
     break;
   }
 }

@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,47 +20,47 @@ void TestStringTrim() {
         String str = createString(" abc f ");
         String str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abc f")) {
-            printf("String trim test1-------[FAIL] \n");
+            TEST_FAIL("String trim test1");
             break;
         }
 
         str = createString("      abc f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abc f")) {
-            printf("String trim test2-------[FAIL] \n");
+            TEST_FAIL("String trim test2");
             break;
         }
 
         str = createString("      abc   f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abc   f")) {
-            printf("String trim test3-------[FAIL] \n");
+            TEST_FAIL("String trim test3");
             break;
         }
 
         str = createString("abc   f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abc   f")) {
-            printf("String trim test4-------[FAIL] \n");
+            TEST_FAIL("String trim test4");
             break;
         }
 
         str = createString("    abc   f");
         str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abc   f")) {
-            printf("String trim test5-------[FAIL] \n");
+            TEST_FAIL("String trim test5");
             break;
         }
 
         str = createString("abcf");
         str1 = str->trim();
         if(str1 == nullptr || !str1->equals("abcf")) {
-            printf("String trim test6-------[FAIL] \n");
+            TEST_FAIL("String trim test6");
             break;
         }
 
         break;
     }
 
-    printf("String trim test100-------[OK] \n");
+    TEST_OK("String trim test100");
 }

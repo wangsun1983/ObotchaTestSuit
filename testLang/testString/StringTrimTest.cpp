@@ -10,6 +10,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,38 +22,38 @@ void trimtest() {
         String string1 = "a b c";
         String string1_1 = string1->trim();
         if(!string1_1->equals("a b c")) {
-            printf("String trim Special test1-------[FAIL] \n");
+            TEST_FAIL("String trim Special test1");
         }
 
         if(!string1->equals("a b c")) {
-            printf("String trim Special test1_1-------[FAIL] \n");
+            TEST_FAIL("String trim Special test1_1");
         }
 
         //case2
         String string2 = " a b c";
         String string2_1 = string2->trim();
         if(!string2_1->equals("a b c")) {
-            printf("String trim Special test2-------[FAIL] \n");
+            TEST_FAIL("String trim Special test2");
             break;
         }
 
         if(!string2->equals(" a b c")) {
-            printf("String trim Special test2_1-------[FAIL] \n");
+            TEST_FAIL("String trim Special test2_1");
         }
 
         //case3
         String string3 = " a b c ";
         String string3_1 = string3->trim();
         if(!string3_1->equals("a b c")) {
-            printf("String trim Special test3-------[FAIL] \n");
+            TEST_FAIL("String trim Special test3");
             break;
         }
 
         if(!string3->equals(" a b c ")) {
-            printf("String trim Special test3_1-------[FAIL] \n");
+            TEST_FAIL("String trim Special test3_1");
         }
 
-        printf("String trim Special test12-------[Success] \n");
+        TEST_OK("String trim Special test12");
         break;
     }
 
@@ -62,41 +63,38 @@ void trimtest() {
         String string1 = "a b c";
         String string1_1 = string1->trimAll();
         if(!string1_1->equals("abc")) {
-            printf("String trimAll Special test1-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test1");
         }
 
         if(!string1->equals("a b c")) {
-            printf("String trimAll Special test1_1-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test1_1");
         }
 
         //case2
         String string2 = " a b c";
         String string2_1 = string2->trimAll();
         if(!string2_1->equals("abc")) {
-            printf("String trimAll Special test2-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test2");
             break;
         }
 
         if(!string2->equals(" a b c")) {
-            printf("String trimAll Special test2_1-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test2_1");
         }
 
         //case3
         String string3 = " a b c ";
         String string3_1 = string3->trimAll();
         if(!string3_1->equals("abc")) {
-            printf("String trimAll Special test3-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test3");
             break;
         }
 
         if(!string3->equals(" a b c ")) {
-            printf("String trimAll Special test3_1-------[FAIL] \n");
+            TEST_FAIL("String trimAll Special test3_1");
         }
 
-        printf("String trimAll Special test12-------[Success] \n");
+        TEST_OK("String trimAll Special test12");
         break;
     }
-
-
-
 }

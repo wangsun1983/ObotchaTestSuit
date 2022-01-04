@@ -2,28 +2,28 @@
 <XmlReflectList>
 	<lists>
 		<_ArrayList>
-			<_array_item>
+			<XmlItemData1>
 				<data2>2</data2>
 				<data1>1</data1>
-			</_array_item>
-			<_array_item>
+			</XmlItemData1>
+			<XmlItemData1>
 				<data2>4</data2>
 				<data1>3</data1>
-			</_array_item>
+			</XmlItemData1>
 		</_ArrayList>
 		<_ArrayList>
-			<_array_item>
+			<XmlItemData1>
 				<data2>2</data2>
 				<data1>1</data1>
-			</_array_item>
-			<_array_item>
+			</XmlItemData1>
+			<XmlItemData1>
 				<data2>4</data2>
 				<data1>3</data1>
-			</_array_item>
-			<_array_item>
+			</XmlItemData1>
+			<XmlItemData1>
 				<data2>6</data2>
 				<data1>5</data1>
-			</_array_item>
+			</XmlItemData1>
 		</_ArrayList>
 	</lists>
 </XmlReflectList>

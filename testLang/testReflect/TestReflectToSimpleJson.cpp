@@ -11,6 +11,7 @@
 #include "Field.hpp"
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -79,64 +80,61 @@ void testReflectToSimpleJson() {
     readValue->reflectTo(rdata3);
 
     if(data->member1->intData != rdata3->member1->intData) {
-      printf("Reflect to json test1-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test1");
       break;
     }
 
     if(data->member1->byteData != rdata3->member1->byteData) {
-      printf("data1 is %d,data2 is %d \n",data->member1->byteData,rdata3->member1->byteData);
-      printf("Reflect to json test2-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test2");
       break;
     }
 
     if(data->member1->doubleData != rdata3->member1->doubleData) {
-      printf("Reflect to json test3-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test3");
       break;
     }
 
     if(data->member1->floatData != rdata3->member1->floatData) {
-      printf("Reflect to json test4-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test4");
       break;
     }
 
     if(data->member1->longData != rdata3->member1->longData) {
-      printf("Reflect to json test5-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test5");
       break;
     }
 
     if(!data->member1->stringData->equals(rdata3->member1->stringData)) {
-      printf("member string is %s,member2 string is %s \n",data->member1->stringData->toChars(),rdata3->member1->stringData->toChars());
-      printf("Reflect to json test6-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test6");
       break;
     }
 
     if(data->member1->uint8Data != rdata3->member1->uint8Data) {
-      printf("Reflect to json test7-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test7");
       break;
     }
 
     if(data->member1->uint16Data != rdata3->member1->uint16Data) {
-      printf("Reflect to json test8-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test8");
       break;
     }
 
     if(data->member1->uint32Data != rdata3->member1->uint32Data) {
-      printf("Reflect to json test9-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test9");
       break;
     }
 
     if(data->member1->uint64Data != rdata3->member1->uint64Data) {
-      printf("data1 is %lu,data2 is %lu \n",data->member1->uint64Data,rdata3->member1->uint64Data);
-      printf("Reflect to json test10-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test10");
       break;
     }
 
     if(data->member1->boolData != rdata3->member1->boolData) {
-      printf("Reflect to json test11-------[FAIL] \n");
+      TEST_FAIL("Reflect to json test11");
       break;
     }
 
-    printf("Reflect to json test12-------[OK] \n");
+    TEST_OK("Reflect to json test12");
     break;
   }
 }

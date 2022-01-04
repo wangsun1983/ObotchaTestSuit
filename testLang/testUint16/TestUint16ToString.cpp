@@ -8,6 +8,7 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -68,8 +69,7 @@ void testtostring() {
        String v1 = t1->toHexString();
        String v2 = createString(HexTable[i]);
        if(v1 != v2) {
-         printf("v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-         printf("Uint16 toString test1-------[FAIL] \n");
+         TEST_FAIL("Uint16 toString test1");
          break;
        }
      }
@@ -80,7 +80,7 @@ void testtostring() {
 
        String v2 = createString(OctTable[i]);
        if(v1 != v2) {
-         printf("Uint16 toString test2-------[FAIL] \n");
+         TEST_FAIL("Uint16 toString test2");
          break;
        }
      }
@@ -90,12 +90,12 @@ void testtostring() {
        String v1 = t1->toBinaryString();
        String v2 = createString(BinaryTable[i]);
        if(v1 != v2) {
-         printf("Uint16 toString test3-------[FAIL] \n");
+         TEST_FAIL("Uint16 toString test3");
          break;
        }
      }
 
-     printf("Uint16 toString test4-------[OK] \n");
+     TEST_OK("Uint16 toString test4");
      break;
    }
 
@@ -106,8 +106,7 @@ void testtostring() {
        Uint16 t2 = st(Uint16)::parseHexUint16(createString(HexTable[i]));
        Uint16 t3 = createUint16(t2);
        if(t1 != t3) {
-         printf("t1 is %d,t3 is %d \n",t1->toValue(),t3->toValue());
-         printf("Uint16 toInt test1-------[FAIL] \n");
+         TEST_FAIL("Uint16 toInt test1");
          break;
        }
      }
@@ -118,8 +117,7 @@ void testtostring() {
        Uint16 t3 = createUint16(t2);
 
        if(t1 != t3) {
-         printf("t1 is %d,t3 is %d,i is %d \n",t1->toValue(),t3->toValue(),i);
-         printf("Uint16 toInt test2-------[FAIL] \n");
+         TEST_FAIL("Uint16 toInt test2");
          break;
        }
      }
@@ -127,16 +125,16 @@ void testtostring() {
      for(int i = 0;i < 100;i++) {
        Uint16 t1 = createUint16(i);
        String str = createString(BinaryTable[i]);
-       //printf("11111 str is %s \n",str->toChars());
+       //TEST_FAIL("11111 str is %s \n",str->toChars());
        Uint16 t2 = st(Uint16)::parseBinaryUint16(str);
        Uint16 t3 = createUint16(t2);
         if(t1 != t3) {
-         printf("Uint16 toInt test3-------[FAIL] \n");
+         TEST_FAIL("Uint16 toInt test3");
          break;
        }
      }
 
-     printf("Uint16 toInt test10-------[OK] \n");
+     TEST_OK("Uint16 toInt test10");
      break;
    }
 }
