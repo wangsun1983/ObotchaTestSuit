@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testArrayList_Boolean() {
     if(list->get(0)->toValue() != true
       ||list->get(1)->toValue() != false
       ||list->get(2)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {add()} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {add()} case1]");
         break;
     }
 
@@ -28,11 +29,11 @@ void testArrayList_Boolean() {
     Boolean t2;
     list2->add(t2);
     if(list2->size() == 0) {
-      printf("---[ArrayList<Boolean> Test {add()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {add()} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {add()} case3] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {add()} case3]");
     break;
   }
 
@@ -45,7 +46,7 @@ void testArrayList_Boolean() {
     if(list->get(0)->toValue() != true
       ||list->get(1)->toValue() != false
       ||list->get(2)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {add(bool val)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {add(bool val)} case1]");
         break;
     }
 
@@ -53,11 +54,11 @@ void testArrayList_Boolean() {
     Boolean t2;
     list2->add(t2);
     if(list2->size() == 0) {
-      printf("---[ArrayList<Boolean> Test {add(bool val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {add(bool val)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {add(bool val)} case3] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {add(bool val)} case3]");
     break;
   }
 
@@ -78,12 +79,12 @@ void testArrayList_Boolean() {
       ||list->get(2)->toValue() != true
       ||list->get(3)->toValue() != false
       ||list->get(4)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case1]");
         break;
     }
 
     if(list->size() != 5) {
-      printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case2]");
       break;
     }
 
@@ -98,12 +99,12 @@ void testArrayList_Boolean() {
     if(list3->get(0)->toValue() != true
       ||list3->get(1)->toValue() != false
       ||list3->get(2)->toValue() != true){
-        printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case3]");
         break;
     }
 
     if(list3->size() != 3) {
-      printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case4]");
       break;
     }
 /*
@@ -111,11 +112,11 @@ void testArrayList_Boolean() {
     list3->add(list5);
 */
     if(list3->size() != 3) {
-      printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case6] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {add(ArrayList<Boolean> list)} case6]");
     break;
   }
 
@@ -128,18 +129,18 @@ void testArrayList_Boolean() {
     int size = list->size();
     list->clear();
     if(size != 3 || list->size() != 0) {
-      printf("---[ArrayList<Boolean> Test {clear()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {clear()} case1]");
       break;
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     list2->clear();
     if(list2->size() != 0) {
-      printf("---[ArrayList<Boolean> Test {clear()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {clear()} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {clear()} case3] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {clear()} case3]");
     break;
   }
 
@@ -152,7 +153,7 @@ void testArrayList_Boolean() {
 
     Boolean v1 = list->removeAt(0);
     if(!v1->equals(true)) {
-      printf("---[ArrayList<Boolean> Test {remove(int index)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(int index)} case1]");
       break;
     }
 
@@ -169,7 +170,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {remove(int index)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(int index)} case2]");
       break;
     }
 
@@ -183,11 +184,11 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {remove(int index)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(int index)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {remove(int index)} case4] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {remove(int index)} case4]");
     break;
   }
 
@@ -200,7 +201,7 @@ void testArrayList_Boolean() {
 
     int index = list->remove(createBoolean(false));
     if(index != 1) {
-      printf("---[ArrayList<Boolean> Test {remove(Boolean v)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(Boolean v)} case1]");
       break;
     }
 
@@ -209,7 +210,7 @@ void testArrayList_Boolean() {
 
     int index2 = list2->remove(createBoolean(false));
     if(index2 != -1) {
-      printf("---[ArrayList<Boolean> Test {remove(Boolean v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(Boolean v)} case2]");
       break;
     }
 
@@ -217,11 +218,11 @@ void testArrayList_Boolean() {
     Boolean v3;
     list2->remove(v3);
     if(list2->size() != size) {
-      printf("---[ArrayList<Boolean> Test {remove(Boolean v)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {remove(Boolean v)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {remove(Boolean v)} case4] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {remove(Boolean v)} case4]");
     break;
   }
 
@@ -234,7 +235,7 @@ void testArrayList_Boolean() {
 
     if(list->indexOf(createBoolean(true)) != 0
       ||list->indexOf(createBoolean(false)) != 2) {
-        printf("---[ArrayList<Boolean> Test {indexOf(Boolean v)} case0] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {indexOf(Boolean v)} case0]");
         break;
     }
 
@@ -243,17 +244,17 @@ void testArrayList_Boolean() {
     list2->add(createBoolean(true));
 
     if(list2->indexOf(createBoolean(false)) != -1) {
-      printf("---[ArrayList<Boolean> Test {indexOf(Boolean v)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {indexOf(Boolean v)} case1]");
       break;
     }
 
     Boolean p;
     if(list2->indexOf(p) != -1) {
-      printf("---[ArrayList<Boolean> Test {indexOf(Boolean v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {indexOf(Boolean v)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {indexOf(Boolean v)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {indexOf(Boolean v)}]");
     break;
   }
 
@@ -268,14 +269,14 @@ void testArrayList_Boolean() {
     if(list->get(0)->toValue() != true
     ||list->get(1)->toValue() != false
     ||list->get(2)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,Boolean val)} case1]");
       break;
     }
 
     Boolean t1;
     int result = list->set(1,t1);
     if(result != 0) {
-      printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,Boolean val)} case2]");
       break;
     }
 
@@ -287,23 +288,23 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,Boolean val)} case3]");
       break;
     }
 
     if(list->get(0)->toValue() != true
     ||list->get(1) != nullptr
     ||list->get(2)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,Boolean val)} case4]");
       break;
     }
 
     if(list->size() != 3) {
-      printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,Boolean val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {set(int index,Boolean val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {set(int index,Boolean val)}]");
     break;
   }
 
@@ -318,14 +319,14 @@ void testArrayList_Boolean() {
     if(list->get(0)->toValue() != true
     ||list->get(1)->toValue() != false
     ||list->get(2)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {set(int index,bool val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,bool val)} case1]");
       break;
     }
 
     Boolean t1;
     int result = list->set(1,t1);
     if(result != 0) {
-      printf("---[ArrayList<Boolean> Test {set(int index,bool val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,bool val)} case2]");
       break;
     }
 
@@ -337,23 +338,23 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {set(int index,bool val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,bool val)} case3]");
       break;
     }
 
     if(list->get(0)->toValue() != true
     ||list->get(1) != nullptr
     ||list->get(2)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {set(int index,bool val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,bool val)} case4]");
       break;
     }
 
     if(list->size() != 3) {
-      printf("---[ArrayList<Boolean> Test {set(int index,bool val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {set(int index,bool val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {set(int index,bool val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {set(int index,bool val)}]");
     break;
   }
 
@@ -366,7 +367,7 @@ void testArrayList_Boolean() {
 
     Boolean v1 = list->get(1);
     if(v1->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {get(int index)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {get(int index)} case0]");
       break;
     }
 
@@ -379,7 +380,7 @@ void testArrayList_Boolean() {
       isException = true;
     }
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {get(int index)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {get(int index)} case1]");
       break;
     }
 
@@ -393,11 +394,11 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {get(int index)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {get(int index)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {get(int index)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {get(int index)}]");
     break;
   }
 
@@ -413,7 +414,7 @@ void testArrayList_Boolean() {
     ||!list->get(1)->equals(false)
     ||!list->get(2)->equals(true)
     ||!list->get(3)->equals(true)) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,Boolean val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,Boolean val)} case1]");
       break;
     }
 
@@ -427,7 +428,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,Boolean val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,Boolean val)} case2]");
       break;
     }
 
@@ -441,11 +442,11 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,Boolean val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,Boolean val)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insert(int index,Boolean val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insert(int index,Boolean val)}]");
     break;
   }
 
@@ -461,7 +462,7 @@ void testArrayList_Boolean() {
     ||!list->get(1)->equals(false)
     ||!list->get(2)->equals(true)
     ||!list->get(3)->equals(true)) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,bool val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,bool val)} case1]");
       break;
     }
 
@@ -476,7 +477,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,bool val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,bool val)} case2]");
       break;
     }
 
@@ -490,11 +491,11 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,bool val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,bool val)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insert(int index,bool val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insert(int index,bool val)}]");
     break;
   }
 
@@ -518,7 +519,7 @@ void testArrayList_Boolean() {
     ||list->get(3)->toValue() != false
     ||list->get(4)->toValue() != true
     ||list->get(5)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case0]");
       break;
     }
 
@@ -533,7 +534,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case1]");
       break;
     }
 
@@ -548,7 +549,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case2]");
       break;
     }
 
@@ -569,11 +570,11 @@ void testArrayList_Boolean() {
     ||list3->get(3)->toValue() != true
     ||list3->get(4)->toValue() != true
     ||list3->get(5)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list)}]");
     break;
   }
 
@@ -595,12 +596,12 @@ void testArrayList_Boolean() {
     ||list->get(2)->toValue() != false
     ||list->get(3)->toValue() != true
     ||list->get(4)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case0]");
       break;
     }
 
     if(list->size() != 5) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case1]");
       break;
     }
 
@@ -615,7 +616,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case1]");
       break;
     }
 
@@ -628,7 +629,7 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case2]");
       break;
     }
 
@@ -648,12 +649,12 @@ void testArrayList_Boolean() {
     ||list3->get(2)->toValue() != true
     ||list3->get(3)->toValue() != true
     ||list3->get(4)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case3]");
       break;
     }
 
     if(list3->size() != 5) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case4]");
       break;
     }
 
@@ -676,17 +677,17 @@ void testArrayList_Boolean() {
       ||list5->get(3)->toValue() != true
       ||list5->get(4)->toValue() != true
       ||list5->get(5)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case5]");
       break;
     }
 
     if(list5->size() != 6) {
-      printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case6] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)} case6]");
       break;
     }
 #endif
 
-    printf("---[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insert(int index,ArrayList<Boolean> list,int length)}]");
     break;
   }
 
@@ -702,24 +703,24 @@ void testArrayList_Boolean() {
        ||list->get(1)->toValue() != true
        ||list->get(2)->toValue() != true
        ||list->get(3)->toValue() != true) {
-         printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)} case1] [FAILED]--- \n");
+         TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(Boolean val)} case1]");
          break;
     }
 
     if(list->size() != 4) {
-        printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(Boolean val)} case2]");
         break;
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     list2->insertFirst(createBoolean(false));
     if(list2->get(0)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(Boolean val)} case3]");
       break;
     }
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(Boolean val)} case4]");
       break;
     }
 
@@ -727,11 +728,11 @@ void testArrayList_Boolean() {
     Boolean nt;
     list3->insertFirst(nt);
     if(list3->size() == 0) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(Boolean val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insertFirst(Boolean val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertFirst(Boolean val)}]");
     break;
   }
 
@@ -747,28 +748,28 @@ void testArrayList_Boolean() {
        ||list->get(1)->toValue() != true
        ||list->get(2)->toValue() != true
        ||list->get(3)->toValue() != true) {
-         printf("---[ArrayList<Boolean> Test {insertFirst(bool val)} case1] [FAILED]--- \n");
+         TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(bool val)} case1]");
          break;
     }
 
     if(list->size() != 4) {
-        printf("---[ArrayList<Boolean> Test {insertFirst(bool val)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(bool val)} case2]");
         break;
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     list2->insertFirst(createBoolean(true));
     if(list2->get(0)->toValue() != true) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(bool val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(bool val)} case3]");
       break;
     }
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(bool val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(bool val)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insertFirst(bool val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertFirst(bool val)}]");
     break;
   }
 
@@ -791,7 +792,7 @@ void testArrayList_Boolean() {
       ||list->get(3)->toValue() != true
       ||list->get(4)->toValue() != true
       ||list->get(5)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case1]");
         break;
       }
 
@@ -804,12 +805,12 @@ void testArrayList_Boolean() {
 
     if(list3->get(0)->toValue() != false
       ||list3->get(1)->toValue() != false){
-        printf("---[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case2]");
         break;
       }
 
     if(list3->size() != 2) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case3]");
       break;
     }
 
@@ -817,11 +818,11 @@ void testArrayList_Boolean() {
     ArrayList<Boolean> list5;
     list3->insertFirst(list5);
     if(list3->size() != 2) {
-      printf("---[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)} case4]");
       break;
     }
 */
-    printf("---[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertFirst(ArrayList<Boolean> list)}]");
     break;
   }
 
@@ -837,12 +838,12 @@ void testArrayList_Boolean() {
       ||list->get(1)->toValue() != true
       ||list->get(2)->toValue() != true
       ||list->get(3)->toValue() != false) {
-        printf("---[ArrayList<Boolean> Test {insertLast(Boolean v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(Boolean v)} case1]");
         break;
     }
 
     if(list->size() != 4) {
-      printf("---[ArrayList<Boolean> Test {insertLast(Boolean v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertLast(Boolean v)} case2]");
       break;
     }
 
@@ -856,16 +857,16 @@ void testArrayList_Boolean() {
     if(list2->get(0)->toValue() != true
       ||list2->get(1)->toValue() != true
       ||list2->get(2)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {insertLast(Boolean v)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(Boolean v)} case3]");
         break;
     }
 
     if(list2->size() != 4) {
-      printf("---[ArrayList<Boolean> Test {insertLast(Boolean v)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertLast(Boolean v)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insertLast(Boolean v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertLast(Boolean v)} case5]");
     break;
   }
 
@@ -881,12 +882,12 @@ void testArrayList_Boolean() {
       ||list->get(1)->toValue() != true
       ||list->get(2)->toValue() != true
       ||list->get(3)->toValue() != false) {
-        printf("---[ArrayList<Boolean> Test {insertLast(bool v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(bool v)} case1]");
         break;
     }
 
     if(list->size() != 4) {
-      printf("---[ArrayList<Boolean> Test {insertLast(bool v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertLast(bool v)} case2]");
       break;
     }
 
@@ -894,16 +895,16 @@ void testArrayList_Boolean() {
     list2->insertLast(createBoolean(false));
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Boolean> Test {insertLast(bool v)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertLast(bool v)} case3]");
       break;
     }
 
     if(list2->get(0)->toValue() != false) {
-      printf("---[ArrayList<Boolean> Test {insertLast(bool v)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {insertLast(bool v)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {insertLast(bool v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertLast(bool v)} case5]");
     break;
   }
 
@@ -926,12 +927,12 @@ void testArrayList_Boolean() {
       ||list->get(3)->toValue() != true
       ||list->get(4)->toValue() != true
       ||list->get(5)->toValue() != true) {
-        printf("---[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case1]");
         break;
     }
 
     if(list->size() != 6) {
-        printf("---[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case2]");
         break;
     }
 
@@ -946,16 +947,16 @@ void testArrayList_Boolean() {
     if(list3->get(0)->toValue() != false
       ||list3->get(1)->toValue() != false
       ||list3->get(2)->toValue() != false) {
-        printf("---[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case3]");
         break;
     }
 
     if(list3->size() != 3) {
-        printf("---[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case4] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case4]");
         break;
     }
 */
-    printf("---[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {insertLast(ArrayList<Boolean> v)} case5]");
     break;
   }
 
@@ -966,17 +967,17 @@ void testArrayList_Boolean() {
     list->add(createBoolean(true));
     list->add(createBoolean(true));
     if(list->size() != 3) {
-      printf("---[ArrayList<Boolean> Test {size()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {size()} case1]");
       break;
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     if(list2->size() != 0) {
-      printf("---[ArrayList<Boolean> Test {size()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Boolean> Test {size()} case2]");
       break;
     }
 
-    printf("---[ArrayList<Boolean> Test {size()} case3] [OK]--- \n");
+    TEST_OK("[ArrayList<Boolean> Test {size()} case3]");
     break;
   }
 
@@ -994,7 +995,7 @@ void testArrayList_Boolean() {
     while(iterator->hasValue() && index != list->size()) {
       Boolean v = iterator->getValue();
       if(v->toValue() != true) {
-        printf("---[ListIterator<Boolean> Test {getValue()} case1] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Boolean> Test {getValue()} case1]");
         break;
       }
 
@@ -1014,11 +1015,11 @@ void testArrayList_Boolean() {
     }
 
     if(!isException) {
-      printf("---[ListIterator<Boolean> Test {getValue()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {getValue()} case2]");
       break;
     }
 
-    printf("---[ListIterator<Boolean> Test {getValue()} case3] [OK]--- \n");
+    TEST_OK("[ListIterator<Boolean> Test {getValue()} case3]");
     break;
   }
 
@@ -1030,7 +1031,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(false));
     ListIterator<Boolean> iterator = list->getIterator();
     if(!iterator->hasValue()) {
-      printf("---[ListIterator<Boolean> Test {hasValue()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {hasValue()} case1]");
       break;
     }
 
@@ -1039,18 +1040,18 @@ void testArrayList_Boolean() {
     iterator->next();
 
     if(iterator->hasValue()) {
-      printf("---[ListIterator<Boolean> Test {hasValue()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {hasValue()} case2]");
       break;
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     ListIterator<Boolean> iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
-      printf("---[ListIterator<Boolean> Test {hasValue()} case3] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {hasValue()} case3]");
       break;
     }
 
-    printf("---[ListIterator<Boolean> Test {hasValue()} case4] [OK]--- \n");
+    TEST_OK("[ListIterator<Boolean> Test {hasValue()} case4]");
     break;
   }
 
@@ -1065,7 +1066,7 @@ void testArrayList_Boolean() {
     iterator->next();
     iterator->next();
     if(iterator->next()) {
-      printf("---[ListIterator<Boolean> Test {next()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {next()} case1]");
       break;
     }
 
@@ -1073,15 +1074,15 @@ void testArrayList_Boolean() {
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
     ListIterator<Boolean> iterator2 = list2->getIterator();
     if(iterator2->next()) {
-      printf("---[ListIterator<Boolean> Test {next()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Boolean> Test {next()} case2]");
       break;
     }
 */
-    printf("---[ListIterator<Boolean> Test {next()} case3] [OK]--- \n");
+    TEST_OK("[ListIterator<Boolean> Test {next()} case3]");
     break;
   }
 
-  //--[_ListIterator<Boolean> Test {remove()} Start]---
+  //--[_ListIterator<Boolean> Test {remove()} Start]
   while(1) {
     ArrayList<Boolean> list = createArrayList<Boolean>();
     list->add(createBoolean(true));
@@ -1100,17 +1101,17 @@ void testArrayList_Boolean() {
     }
 
     if(list->size() != 2) {
-        printf("---[ListIterator<Boolean> Test {remove()} case0] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Boolean> Test {remove()} case0]");
         break;
     }
 
     if(list->get(0)->toValue()
       ||list->get(1)->toValue()) {
-        printf("---[ListIterator<Boolean> Test {remove()} case2] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Boolean> Test {remove()} case2]");
         break;
     }
 
-    printf("---[ListIterator<Boolean> Test {remove()} case3] [OK]--- \n");
+    TEST_OK("[ListIterator<Boolean> Test {remove()} case3]");
     break;
   }
 }

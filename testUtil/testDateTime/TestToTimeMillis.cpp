@@ -11,6 +11,7 @@
 #include "DateTime.hpp"
 #include "Calendar.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,8 +19,9 @@ void testToTimeMillis() {
 	Calendar now = createCalendar();
 	DateTime date = now->getDateTime();
 	if(date->toTimeMillis() != now->toTimeMillis()) {
-		printf("DateTime toTimeMillis test1-------[FAILED],now is %ld,date is %ld \n",now->toTimeMillis(),date->toTimeMillis());
-	}
+		printf("now is %ld,date is %ld \n",now->toTimeMillis(),date->toTimeMillis());
+	    TEST_FAIL("DateTime toTimeMillis test1-------[FAILED]");
+    }
 
-	printf("DateTime toTimeMillis test100-------[OK] \n");
+	TEST_OK("DateTime toTimeMillis test100");
 }

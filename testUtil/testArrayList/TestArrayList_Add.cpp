@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,12 +35,12 @@ void testArrayList_Add() {
 
     AddTestData data = list2->get(0);
     if(data == nullptr || data->data1 != 1 ||data->data2 != 2) {
-      printf("---[ArrayList add test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList add test1]");
     }
 
     data = list2->get(1);
     if(data == nullptr || data->data1 != 3 ||data->data2 != 4) {
-      printf("---[ArrayList add test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList add test2]");
     }
     break;
   }
@@ -67,25 +68,25 @@ void testArrayList_Add() {
     list2->add(list1);
 
     if(list2->size() != 2) {
-      printf("---[ArrayList add test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList add test3]");
       break;
     }
 
     ArrayList<AddTestData> ll1 = list2->get(0);
     AddTestData ll1_data = ll1->get(0);
     if(ll1_data->data1 != 1 || ll1_data->data2 != 2) {
-      printf("---[ArrayList add test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList add test4]");
       break;
     }
 
     ArrayList<AddTestData> ll2 = list2->get(1);
     AddTestData ll2_data = ll2->get(0);
     if(ll2_data->data1 != 3 || ll2_data->data2 != 4) {
-      printf("---[ArrayList add test5] [FAILED]---,data1 is %d,data2 i %d \n",ll2_data->data1,ll2_data->data2);
+      TEST_FAIL("[ArrayList add test5] [FAILED]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList add test100] [OK]--- \n");
+  TEST_OK("[ArrayList add test100]");
 }

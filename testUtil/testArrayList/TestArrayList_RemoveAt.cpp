@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,12 +19,12 @@ void testArrayList_RemoveAt() {
 
     auto value = list->removeAt(0);
     if(value == nullptr || !value->equals("a")) {
-      printf("---[ArrayList removeAt test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList removeAt test1]");
       break;
     }
 
     if(list->size() != 1) {
-      printf("---[ArrayList removeAt test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList removeAt test2]");
       break;
     }
 
@@ -40,11 +41,11 @@ void testArrayList_RemoveAt() {
     }
 
     if(!isException) {
-      printf("---[ArrayList removeAt test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList removeAt test3]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList removeAt test100] [OK]--- \n");
+  TEST_OK("[ArrayList removeAt test100]");
 }

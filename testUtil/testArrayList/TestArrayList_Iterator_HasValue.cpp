@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,25 +16,25 @@ void testArrayList_Iterator_HasValue() {
     ArrayList<String> list = createArrayList<String>();
     auto iterator = list->getIterator();
     if(iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test1]");
       break;
     }
 
     list->add(createString("a")); //this may case crash~~~.haha
     if(!iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test2]");
       break;
     }
 
 #if 0
     iterator->remove();
     if(iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test2_1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test2_1]");
       break;
     }
 
     if(list->size() != 0) {
-      printf("---[ArrayList Iterator HasValue test2_2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test2_2]");
       break;
     }
 #endif
@@ -46,13 +47,13 @@ void testArrayList_Iterator_HasValue() {
     list->add(createString("a"));
     auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test3]");
       break;
     }
 
     iterator->remove();
     if(iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test4] ");
       break;
     }
 
@@ -64,18 +65,18 @@ void testArrayList_Iterator_HasValue() {
     list->add(createString("a"));
     auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test5] ");
       break;
     }
 
     iterator->next();
     if(iterator->hasValue()) {
-      printf("---[ArrayList Iterator HasValue test6] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator HasValue test6] ");
       break;
     }
 
     break;
   }
 
-  printf("---[ArrayList Iterator HasValue test100] [OK]--- \n");
+  TEST_OK("[ArrayList Iterator HasValue test100]");
 }

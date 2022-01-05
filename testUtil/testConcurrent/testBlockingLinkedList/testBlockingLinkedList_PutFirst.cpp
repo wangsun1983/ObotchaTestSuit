@@ -6,6 +6,7 @@
 #include "BlockingLinkedList.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 

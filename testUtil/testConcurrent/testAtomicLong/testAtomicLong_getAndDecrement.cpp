@@ -3,6 +3,7 @@
 
 #include "AtomicLong.hpp"
 #include "Thread.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,7 +31,7 @@ void testGetAndDecrement() {
             }
 
             if(value->get() != 0) {
-                printf("AtomicLong GetAndDecrement test1-------[FAILED],value is %ld \n",value->get());
+                TEST_FAIL("AtomicLong GetAndDecrement test1");
                 break;
             }
         }
@@ -42,16 +43,16 @@ void testGetAndDecrement() {
       AtomicLong value = createAtomicLong(5);
       long v = value->getAndDecrement();
       if(v != 5) {
-        printf("AtomicLong GetAndDecrement test2-------[FAILED],v is %ld \n",v);
+        TEST_FAIL("AtomicLong GetAndDecrement test2");
         break;
       }
 
       if(value->get() != 4) {
-        printf("AtomicLong GetAndDecrement test3-------[FAILED],v is %ld \n",value->get());
+        TEST_FAIL("AtomicLong GetAndDecrement test3");
         break;
       }
       break;
     }
 
-    printf("AtomicLong GetAndDecrement test100-------[OK] \n");
+    TEST_OK("AtomicLong GetAndDecrement test100");
 }

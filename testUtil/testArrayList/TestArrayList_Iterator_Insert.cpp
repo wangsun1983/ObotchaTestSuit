@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ void testArrayList_Iterator_Insert() {
     auto iterator = list->getIterator();
     iterator->insert(createString("a1"));
     if(list->size() != 2 || !list->get(0)->equals("a1") || !list->get(1)->equals("a")) {
-      printf("---[ArrayList Iterator Insert test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Insert test1]");
       break;
     }
     break;
@@ -32,13 +33,13 @@ void testArrayList_Iterator_Insert() {
     iterator->next();
     iterator->insert(createString("a1"));
     if(list->size() != 3 || !list->get(0)->equals("a") || !list->get(1)->equals("a1") ||!list->get(2)->equals("b")) {
-      printf("---[ArrayList Iterator Insert test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Insert test2]");
       break;
     }
 
     auto value = iterator->getValue();
     if(value == nullptr || !value->equals("a1")) {
-      printf("---[ArrayList Iterator Insert test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Insert test3]");
       break;
     }
 
@@ -58,7 +59,7 @@ void testArrayList_Iterator_Insert() {
     || !list->get(1)->equals(createString("d"))
     || !list->get(2)->equals(createString("c"))
     || !list->get(3)->equals(createString("b"))) {
-      printf("---[ArrayList Iterator Insert test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Insert test4]");
       break;
     }
     break;
@@ -83,11 +84,11 @@ void testArrayList_Iterator_Insert() {
     }
 
     if(sum != 8) {
-      printf("---[ArrayList Iterator Insert test5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Insert test5]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList Iterator Insert test100] [OK]--- \n");
+  TEST_OK("[ArrayList Iterator Insert test100]");
 }

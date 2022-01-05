@@ -7,6 +7,7 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,6 +40,7 @@ int testCalendarDecreaseYear_Interval() {
              testCalendar->get(st(Calendar)::Minute) != d1->minute ||
              testCalendar->get(st(Calendar)::Second) != d1->second ||
              testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+
                printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
                printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
@@ -49,12 +51,13 @@ int testCalendarDecreaseYear_Interval() {
                printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarDecreaseYear_Interval()} case1] [FAILED]--- \n");
+
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseYear_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseYear_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseYear_Interval()} case2]");
     return 0;
 }
 
@@ -77,6 +80,7 @@ int testCalendarDecreaseDay_Interval() {
              testCalendar->get(st(Calendar)::Minute) != d1->minute ||
              testCalendar->get(st(Calendar)::Second) != d1->second ||
              testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+
                printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
                printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
@@ -87,12 +91,13 @@ int testCalendarDecreaseDay_Interval() {
                printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarDecreaseDay_Interval()} case1] [FAILED]--- \n");
+
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseDay_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseDay_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseDay_Interval()} case2]");
     return 0;
 }
 
@@ -113,6 +118,7 @@ int testCalendarDecreaseMonth_Interval() {
              testCalendar->get(st(Calendar)::Minute) != d1->minute ||
              testCalendar->get(st(Calendar)::Second) != d1->second ||
              testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+
                printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
                printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
@@ -123,12 +129,13 @@ int testCalendarDecreaseMonth_Interval() {
                printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarDecreaseMonth_Interval()} case1] [FAILED]--- \n");
+
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseMonth_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseMonth_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseMonth_Interval()} case2]");
     return 0;
 }
 
@@ -162,12 +169,12 @@ int testCalendarDecreaseHour_Interval() {
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
                printf("decreaseHour is %d \n",i);
-               printf("---[Calendar Test {testCalendarDecreaseHour_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseHour_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseHour_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseHour_Interval()} case2]");
     return 0;
 }
 
@@ -199,12 +206,12 @@ int testCalendarDecreaseMinute_Interval() {
                printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarDecreaseMinute_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseMinute_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseMinute_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseMinute_Interval()} case2]");
     return 0;
 }
 
@@ -236,11 +243,11 @@ int testCalendarDecreaseSecond_Interval() {
                printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarDecreaseSecond_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarDecreaseSecond_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarDecreaseSecond_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarDecreaseSecond_Interval()} case2]");
     return 0;
 }

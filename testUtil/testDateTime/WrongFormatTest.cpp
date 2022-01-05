@@ -11,199 +11,200 @@
 #include "DateTime.hpp"
 #include "Calendar.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void wrongformat() {
-	  try {
-		    DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12.30:00Z");
-				printf("DateTime wrongformat test1-------[FAIL] \n");
-		} catch(InitializeException e) {}
+  try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12.30:00Z");
+        TEST_FAIL("DateTime wrongformat test1");
+    } catch(InitializeException e) {}
 
-		try {
-		    DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-8T12:30:00+01:00");
-				printf("DateTime wrongformat test2-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-8T12:30:00+01:00");
+        TEST_FAIL("DateTime wrongformat test2");
+    } catch(InitializeException e) {}
 
-		try {
-		    DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-0812:30:00-01:00");
-				printf("DateTime wrongformat test3-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-0812:30:00-01:00");
+        TEST_FAIL("DateTime wrongformat test3");
+    } catch(InitializeException e) {}
 
-		try {
-		    DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:0");
-				printf("DateTime wrongformat test4-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:0");
+        TEST_FAIL("DateTime wrongformat test4");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-8");
-				printf("DateTime wrongformat test5-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-8");
+        TEST_FAIL("DateTime wrongformat test5");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-1-08T12:30:00Z");
-				printf("DateTime wrongformat test6-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-1-08T12:30:00Z");
+        TEST_FAIL("DateTime wrongformat test6");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08Z12:30:00+01:00");
-				printf("DateTime wrongformat test7-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08Z12:30:00+01:00");
+        TEST_FAIL("DateTime wrongformat test7");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:00-01.00");
-				printf("DateTime wrongformat test8-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:00-01.00");
+        TEST_FAIL("DateTime wrongformat test8");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12;30:00");
-				printf("DateTime wrongformat test9------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12;30:00");
+        TEST_FAIL("DateTime wrongformat test9");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01+08");
-				printf("DateTime wrongformat test10-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01+08");
+        TEST_FAIL("DateTime wrongformat test10");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:00.123*01:00");
-				printf("DateTime wrongformat test11-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-08T12:30:00.123*01:00");
+        TEST_FAIL("DateTime wrongformat test11");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"201009-23T16:17:01.2817002+02:00");
-				printf("DateTime wrongformat test12-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"201009-23T16:17:01.2817002+02:00");
+        TEST_FAIL("DateTime wrongformat test12");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"005-01-08T12:30:00.123456");
-				printf("DateTime wrongformat test13-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"005-01-08T12:30:00.123456");
+        TEST_FAIL("DateTime wrongformat test13");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-0");
-				printf("DateTime wrongformat test14-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"2005-01-0");
+        TEST_FAIL("DateTime wrongformat test14");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"jnghjgnbcfjb");
-				printf("DateTime wrongformat test15-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatISO8601Frac,"jnghjgnbcfjb");
+        TEST_FAIL("DateTime wrongformat test15");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"at, 8 Jan 05 12:30:00 GMT");
-				printf("DateTime wrongformat test16-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"at, 8 Jan 05 12:30:00 GMT");
+        TEST_FAIL("DateTime wrongformat test16");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Sat, x Jan 05 12:30:00 +0100");
-				printf("DateTime wrongformat test17-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Sat, x Jan 05 12:30:00 +0100");
+        TEST_FAIL("DateTime wrongformat test17");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Sat, 8 Jan 05 12:30:00 *0100");
-				printf("DateTime wrongformat test18-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Sat, 8 Jan 05 12:30:00 *0100");
+        TEST_FAIL("DateTime wrongformat test18");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Tue, 18 Jan 05 12:30:00 abc");
-				printf("DateTime wrongformat test19-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Tue, 18 Jan 05 12:30:00 abc");
+        TEST_FAIL("DateTime wrongformat test19");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Wed, 12 Sep 73 02:01:2 CST");
-				printf("DateTime wrongformat test20-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"Wed, 12 Sep 73 02:01:2 CST");
+        TEST_FAIL("DateTime wrongformat test20");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC822,"12 Sep 73 02.01:12 EST");
-				printf("DateTime wrongformat test21-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC822,"12 Sep 73 02.01:12 EST");
+        TEST_FAIL("DateTime wrongformat test21");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 2005 12:30:00 GPX");
-				printf("DateTime wrongformat test22-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 2005 12:30:00 GPX");
+        TEST_FAIL("DateTime wrongformat test22");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 2005 xy:30:00 +0100");
-				printf("DateTime wrongformat test23-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 2005 xy:30:00 +0100");
+        TEST_FAIL("DateTime wrongformat test23");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 205 12:30:00 -0100");
-				printf("DateTime wrongformat test24-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 205 12:30:00 -0100");
+        TEST_FAIL("DateTime wrongformat test24");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 205 12:30:00 -0100");
-				printf("DateTime wrongformat test25-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1123,"Sat, 8 Jan 205 12:30:00 -0100");
+        TEST_FAIL("DateTime wrongformat test25");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatHTTP,"Sat, 08 Jn 2005 12:30:00 GMT");
-				printf("DateTime wrongformat test26-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatHTTP,"Sat, 08 Jn 2005 12:30:00 GMT");
+        TEST_FAIL("DateTime wrongformat test26");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatHTTP,"Sat 08 Jan 2005 12:30:00 -0100");
-				printf("DateTime wrongformat test27-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatHTTP,"Sat 08 Jan 2005 12:30:00 -0100");
+        TEST_FAIL("DateTime wrongformat test27");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday, 8-Jan 05 12:30:00 GMT");
-				printf("DateTime wrongformat test28-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday, 8-Jan 05 12:30:00 GMT");
+        TEST_FAIL("DateTime wrongformat test28");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday, 8+Jan-05 12:30:00 +0100");
-				printf("DateTime wrongformat test29-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday, 8+Jan-05 12:30:00 +0100");
+        TEST_FAIL("DateTime wrongformat test29");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday 8-Jan-05 12:30:00 -0100");
-				printf("DateTime wrongformat test30-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Saturday 8-Jan-05 12:30:00 -0100");
+        TEST_FAIL("DateTime wrongformat test30");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Wed, 12-pep-73 02:01:12 CST");
-				printf("DateTime wrongformat test31-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC850,"Wed, 12-pep-73 02:01:12 CST");
+        TEST_FAIL("DateTime wrongformat test31");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 0512:30:00 GMT");
-				printf("DateTime wrongformat test32-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 0512:30:00 GMT");
+        TEST_FAIL("DateTime wrongformat test32");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 051 12:30:00 +0100");
-				printf("DateTime wrongformat test33-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 051 12:30:00 +0100");
+        TEST_FAIL("DateTime wrongformat test33");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 05 12:30:00 -0100x");
-				printf("DateTime wrongformat test34-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatRFC1036,"Saturday, 8 Jan 05 12:30:00 -0100x");
+        TEST_FAIL("DateTime wrongformat test34");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatASCTIME,"Bat Jan  8 12:30:00 2005");
-				printf("DateTime wrongformat test35-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatASCTIME,"Bat Jan  8 12:30:00 2005");
+        TEST_FAIL("DateTime wrongformat test35");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatSORTABLE,"2005-01-08 12:30;00");
-				printf("DateTime wrongformat test36-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatSORTABLE,"2005-01-08 12:30;00");
+        TEST_FAIL("DateTime wrongformat test36");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(st(DateTime)::FormatSORTABLE,"2005+01-08");
-				printf("DateTime wrongformat test36-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(st(DateTime)::FormatSORTABLE,"2005+01-08");
+        TEST_FAIL("DateTime wrongformat test36");
+    } catch(InitializeException e) {}
 
-		try {
-				DateTime t = createDateTime(createString(""),createString("12:30 PM"));
-				printf("DateTime wrongformat test37-------[FAIL] \n");
-		} catch(InitializeException e) {}
+    try {
+        DateTime t = createDateTime(createString(""),createString("12:30 PM"));
+        TEST_FAIL("DateTime wrongformat test37");
+    } catch(InitializeException e) {}
 
-    printf("DateTime wrongformat test10-------[OK] \n");
+    TEST_OK("DateTime wrongformat test10");
 }

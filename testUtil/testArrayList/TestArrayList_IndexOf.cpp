@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -38,12 +39,12 @@ void testArrayList_IndexOf() {
     list->add(createString("a"));
     list->add(createString("b"));
     if(list->indexOf(createString("a")) != 0) {
-      printf("---[ArrayList IndexOf test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test1]");
       break;
     }
 
     if(list->indexOf(createString("b")) != 1) {
-      printf("---[ArrayList IndexOf test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test2]");
       break;
     }
     break;
@@ -54,12 +55,12 @@ void testArrayList_IndexOf() {
     list->add(createInteger(100));
     list->add(createInteger(200));
     if(list->indexOf(createInteger(100)) != 0) {
-      printf("---[ArrayList IndexOf test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test3]");
       break;
     }
 
     if(list->indexOf(createInteger(200)) != 1) {
-      printf("---[ArrayList IndexOf test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test4]");
       break;
     }
     break;
@@ -74,22 +75,22 @@ void testArrayList_IndexOf() {
     list->add(t2);
 
     if(list->indexOf(t1) != 0) {
-      printf("---[ArrayList IndexOf test5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test5]");
       break;
     }
 
     if(list->indexOf(t2) != 1) {
-      printf("---[ArrayList IndexOf test6] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test6]");
       break;
     }
 
     if(list->indexOf(createIndexTestData(100)) != -1) {
-      printf("---[ArrayList IndexOf test7] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test7]");
       break;
     }
 
     if(list->indexOf(createIndexTestData(200)) != -1) {
-      printf("---[ArrayList IndexOf test8] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test8]");
       break;
     }
 
@@ -105,17 +106,17 @@ void testArrayList_IndexOf() {
     list->add(t2);
 
     if(list->indexOf(createIndexTestData2(100)) != 0) {
-      printf("---[ArrayList IndexOf test9] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test9]");
       break;
     }
 
     if(list->indexOf(createIndexTestData2(200)) != 1) {
-      printf("---[ArrayList IndexOf test10] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList IndexOf test10]");
       break;
     }
 
     break;
   }
 
-  printf("---[ArrayList IndexOf test100] [OK]--- \n");
+  TEST_OK("[ArrayList IndexOf test100]");
 }

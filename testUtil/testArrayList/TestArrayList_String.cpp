@@ -8,13 +8,14 @@
 #include "String.hpp"
 #include "NullPointerException.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testArrayList_String() {
-  //---[ArrayList<String> Test Start]---
+  //[ArrayList<String> Test Start]
 
-      //---[ArrayList<String> Test {add(char *val)} Start]---
+      //[ArrayList<String> Test {add(char *val)} Start]
       while(1) {
           ArrayList<String> list = createArrayList<String>();
           list->add(createString("a"));
@@ -23,7 +24,7 @@ void testArrayList_String() {
           if(!list->get(0)->equals("a")
           || !list->get(1)->equals("b")
           || !list->get(2)->equals("c")) {
-              printf("---[ArrayList<String> Test {add(char * val)} case1] [FAILED]--- \n");
+              TEST_FAIL("[ArrayList<String> Test {add(char * val)} case1]");
               break;
           }
 
@@ -31,15 +32,15 @@ void testArrayList_String() {
           String pp;
           list->add(pp);
           if(list->size() == size) {
-            printf("---[ArrayList<String> Test {add(char * val)} case2] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {add(char * val)} case2]");
             break;
           }
 
-          printf("---[ArrayList<String> Test {add(char * val)}] [OK]--- \n");
+          TEST_OK("[ArrayList<String> Test {add(char * val)}]");
           break;
       }
 
-      //---[ArrayList<String> Test {add(std::string v)} Start]---
+      //[ArrayList<String> Test {add(std::string v)} Start]
       while(1) {
           ArrayList<String> list = createArrayList<String>();
 
@@ -54,15 +55,15 @@ void testArrayList_String() {
           if(!list->get(0)->equals("a")
           || !list->get(1)->equals("b")
           || !list->get(2)->equals("c")) {
-              printf("---[ArrayList<String> Test {add(std::string val) case1] [FAILED]--- \n");
+              TEST_FAIL("[ArrayList<String> Test {add(std::string val) case1]");
               break;
           }
 
-          printf("---[ArrayList<String> Test {add(std::string val)] [OK]--- \n");
+          TEST_OK("[ArrayList<String> Test {add(std::string val)]");
           break;
       }
 
-      //---[ArrayList<String> Test {add(String val)} Start]---
+      //[ArrayList<String> Test {add(String val)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -71,15 +72,15 @@ void testArrayList_String() {
         if(!list->get(0)->equals("a")
         || !list->get(1)->equals("b")
         || !list->get(2)->equals("c")) {
-            printf("---[ArrayList<String> Test {add(String val)} case1] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {add(String val)} case1]");
             break;
         }
 
-        printf("---[ArrayList<String> Test {add(String val)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {add(String val)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {add(ArrayList<String> list)} Start]---
+      //[ArrayList<String> Test {add(ArrayList<String> list)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -95,30 +96,30 @@ void testArrayList_String() {
         || !list->get(1)->equals("b")
         || !list->get(2)->equals("c")
         || !list->get(3)->equals("d")) {
-            printf("---[ArrayList<String> Test {add(ArrayList<String> list)}] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {add(ArrayList<String> list)}]");
             break;
         }
 
-        printf("---[ArrayList<String> Test {add(ArrayList<String> list)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {add(ArrayList<String> list)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {clear()} Start]---
+      //[ArrayList<String> Test {clear()} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("1"));
         int size = list->size();
         list->clear();
         if(list->size() != 0 || size != 1) {
-          printf("---[ArrayList<String> Test {clear()}] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {clear()}]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {clear()}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {clear()}]");
         break;
       }
 
-      //---[ArrayList<String> Test {remove(int index)} Start]---
+      //[ArrayList<String> Test {remove(int index)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -127,12 +128,12 @@ void testArrayList_String() {
 
         String v = list->removeAt(1);
         if(!v->equals("b")) {
-          printf("---[ArrayList<String> Test {remove(int index)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(int index)} case1]");
           break;
         }
 
         if(list->size() != 2) {
-          printf("---[ArrayList<String> Test {remove(int index)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(int index)} case2]");
           break;
         }
 
@@ -144,7 +145,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {remove(int index)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(int index)} case3]");
           break;
         }
 
@@ -159,7 +160,7 @@ void testArrayList_String() {
         }
 
         if(v == nullptr || !isException) {
-          printf("---[ArrayList<String> Test {remove(int index)} case4] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(int index)} case4]");
           break;
         }
 
@@ -171,15 +172,15 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {remove(int index)} case5] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(int index)} case5]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {remove(int index)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {remove(int index)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {remove(String v)} Start]---
+      //[ArrayList<String> Test {remove(String v)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -188,32 +189,32 @@ void testArrayList_String() {
 
         int result = list->remove("a");
         if(result == -1) {
-          printf("---[ArrayList<String> Test {remove(String v)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(String v)} case1]");
           break;
         }
 
         if(list->size() != 2) {
-          printf("---[ArrayList<String> Test {remove(String v)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(String v)} case2]");
           break;
         }
 
         String s;
         result = list->remove(s);
         if(result != -1) {
-          printf("---[ArrayList<String> Test {remove(String v)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(String v)} case3]");
           break;
         }
 
         if(list->size() != 2) {
-          printf("---[ArrayList<String> Test {remove(String v)} case4] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {remove(String v)} case4]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {remove(String v)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {remove(String v)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {indexOf(String v)} Start]---
+      //[ArrayList<String> Test {indexOf(String v)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -223,26 +224,26 @@ void testArrayList_String() {
         if(list->indexOf("a") < 0
         ||list->indexOf("b") < 0
         ||list->indexOf("c") < 0) {
-          printf("---[ArrayList<String> Test {indexOf(String v)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {indexOf(String v)} case1]");
           break;
         }
 
         String s;
         int index = list->indexOf(s);
         if(list->indexOf(s) != -1) {
-          printf("---[ArrayList<String> Test {indexOf(String v)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {indexOf(String v)} case2]");
           break;
         }
 
         if(list->indexOf("d") >= 0) {
-          printf("---[ArrayList<String> Test {indexOf(String v)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {indexOf(String v)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {indexOf(String v)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {indexOf(String v)}]");
         break;
       }
-      //---[ArrayList<String> Test {set(int index,String val)} Start]---
+      //[ArrayList<String> Test {set(int index,String val)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -253,7 +254,7 @@ void testArrayList_String() {
         if(!list->get(0)->equals("d")
         || !list->get(1)->equals("b")
         || !list->get(2)->equals("c")) {
-            printf("---[ArrayList<String> Test {set(int index,String val)} case1] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {set(int index,String val)} case1]");
             break;
         }
 
@@ -265,7 +266,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {set(int index,String val)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {set(int index,String val)} case2]");
           break;
         }
 
@@ -277,15 +278,15 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {set(int index,String val)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {set(int index,String val)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {set(int index,String val)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {set(int index,String val)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {get(int index)} Start]---
+      //[ArrayList<String> Test {get(int index)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -294,7 +295,7 @@ void testArrayList_String() {
         if(!list->get(0)->equals("a")
         ||!list->get(1)->equals("b")
         ||!list->get(2)->equals("c")) {
-          printf("---[ArrayList<String> Test {get(int index)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {get(int index)} case1]");
           break;
         }
 
@@ -306,7 +307,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-            printf("---[ArrayList<String> Test {get(int index)} case2] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {get(int index)} case2]");
             break;
         }
 
@@ -318,14 +319,14 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {get(int index)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {get(int index)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {get(int index)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {get(int index)}]");
         break;
       }
-      //---[ArrayList<String> Test {insert(int index,String val)} Start]---
+      //[ArrayList<String> Test {insert(int index,String val)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -337,7 +338,7 @@ void testArrayList_String() {
         ||!list->get(1)->equals("d")
         ||!list->get(2)->equals("b")
         ||!list->get(3)->equals("c")) {
-          printf("---[ArrayList<String> Test {insert(int index,String val)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,String val)} case1]");
           break;
         }
 
@@ -349,7 +350,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,String val)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,String val)} case2]");
           break;
         }
 
@@ -361,15 +362,15 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,String val)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,String val)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {insert(int index,String val)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {insert(int index,String val)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {insert(int index,char* val)} Start]---
+      //[ArrayList<String> Test {insert(int index,char* val)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -381,7 +382,7 @@ void testArrayList_String() {
         ||!list->get(1)->equals("d")
         ||!list->get(2)->equals("b")
         ||!list->get(3)->equals("c")) {
-          printf("---[ArrayList<String> Test {insert(int index,char* val)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,char* val)} case1]");
           break;
         }
 
@@ -393,7 +394,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,char* val)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,char* val)} case2]");
           break;
         }
 
@@ -405,15 +406,15 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,char* val)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,char* val)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {insert(int index,char* val)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {insert(int index,char* val)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {insert(int index,std::string val)} Start]---
+      //[ArrayList<String> Test {insert(int index,std::string val)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString(std::string("a")));
@@ -425,7 +426,7 @@ void testArrayList_String() {
         ||!list->get(1)->equals(std::string("d"))
         ||!list->get(2)->equals(std::string("b"))
         ||!list->get(3)->equals(std::string("c"))) {
-          printf("---[ArrayList<String> Test {insert(int index,std::string val)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,std::string val)} case1]");
           break;
         }
 
@@ -437,7 +438,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,std::string val)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,std::string val)} case2]");
           break;
         }
 
@@ -449,15 +450,15 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,std::string val)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,std::string val)} case3]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {insert(int index,std::string val)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {insert(int index,std::string val)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {insert(int index,ArrayList<String> list)} Start]---
+      //[ArrayList<String> Test {insert(int index,ArrayList<String> list)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -474,7 +475,7 @@ void testArrayList_String() {
         ||!list->get(2)->equals("d")
         ||!list->get(3)->equals("e")
         ||!list->get(4)->equals("c")){
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case1]");
           break;
         }
 
@@ -486,7 +487,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case2] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case2]");
           break;
         }
 
@@ -498,7 +499,7 @@ void testArrayList_String() {
         }
 
         if(!isException) {
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case3] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case3]");
           break;
         }
 
@@ -507,15 +508,15 @@ void testArrayList_String() {
         list->insert(0,list3);
 
         if(size != list->size()) {
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case4] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case4]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {insert(int index,ArrayList<String> list)}]");
         break;
       }
 
-      //---[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} Start]---
+      //[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} Start]
       while(1) {
         ArrayList<String> list = createArrayList<String>();
         list->add(createString("a"));
@@ -528,17 +529,17 @@ void testArrayList_String() {
         list2->add(createString("f"));
 
         list->insert(2,list2,2);
-        //printf("list->get(0) is %s \n",list->get(0)->toChars());
-        //printf("list->get(1) is %s \n",list->get(1)->toChars());
-        //printf("list->get(2) is %s \n",list->get(2)->toChars());
-        //printf("list->get(3) is %s \n",list->get(3)->toChars());
-        //printf("list->get(4) is %s \n",list->get(4)->toChars());
+        //TEST_FAIL("list->get(0) is %s \n",list->get(0)->toChars());
+        //TEST_FAIL("list->get(1) is %s \n",list->get(1)->toChars());
+        //TEST_FAIL("list->get(2) is %s \n",list->get(2)->toChars());
+        //TEST_FAIL("list->get(3) is %s \n",list->get(3)->toChars());
+        //TEST_FAIL("list->get(4) is %s \n",list->get(4)->toChars());
         if(!list->get(0)->equals("a")
         ||!list->get(1)->equals("b")
         ||!list->get(2)->equals("d")
         ||!list->get(3)->equals("e")
         ||!list->get(4)->equals("c")){
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} case1] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} case1]");
           break;
         }
 
@@ -555,27 +556,27 @@ void testArrayList_String() {
         }
 
         if(!isException1) {
-            printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} case2] [FAILED]--- \n");
+            TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} case2]");
         }
-        //printf("list->get(0) is %s \n",list->get(0)->toChars());
-        //printf("list->get(1) is %s \n",list->get(1)->toChars());
-        //printf("list->get(2) is %s \n",list->get(2)->toChars());
-        //printf("list->get(3) is %s \n",list->get(3)->toChars());
-        //printf("list->get(4) is %s \n",list->get(4)->toChars());
-        //printf("list->get(5) is %s \n",list->get(5)->toChars());
+        //TEST_FAIL("list->get(0) is %s \n",list->get(0)->toChars());
+        //TEST_FAIL("list->get(1) is %s \n",list->get(1)->toChars());
+        //TEST_FAIL("list->get(2) is %s \n",list->get(2)->toChars());
+        //TEST_FAIL("list->get(3) is %s \n",list->get(3)->toChars());
+        //TEST_FAIL("list->get(4) is %s \n",list->get(4)->toChars());
+        //TEST_FAIL("list->get(5) is %s \n",list->get(5)->toChars());
 
         if(!list->get(0)->equals("a")
         ||!list->get(1)->equals("b")
         ||!list->get(2)->equals("c")){
-          printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)}] [FAILED]--- \n");
+          TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)}]");
           break;
         }
 
-        printf("---[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)}] [OK]--- \n");
+        TEST_OK("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)}]");
         break;
       }
 
-  //---[ArrayList<String> Test {insertFirst(String val)} Start]---
+  //[ArrayList<String> Test {insertFirst(String val)} Start]
   while(1){
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -587,7 +588,7 @@ void testArrayList_String() {
     ||!list->get(1)->equals("a")
     ||!list->get(2)->equals("b")
     ||!list->get(3)->equals("c")){
-      printf("---[ArrayList<String> Test {insertFirst(String val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(String val)} case1]");
       break;
     }
 
@@ -595,15 +596,15 @@ void testArrayList_String() {
     int size = list->size();
     list->insertFirst(str1);
     if(list->size() == size) {
-      printf("---[ArrayList<String> Test {insertFirst(String val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(String val)} case2]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {insertFirst(String val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertFirst(String val)}]");
     break;
   }
 
-  //---[ArrayList<String> Test {insertFirst(const char * val)} Start]---
+  //[ArrayList<String> Test {insertFirst(const char * val)} Start]
   while(1){
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -615,7 +616,7 @@ void testArrayList_String() {
     ||!list->get(1)->equals("a")
     ||!list->get(2)->equals("b")
     ||!list->get(3)->equals("c")){
-      printf("---[ArrayList<String> Test {insertFirst(const char * val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(const char * val)} case1]");
       break;
     }
 
@@ -623,15 +624,15 @@ void testArrayList_String() {
     int size = list->size();
     list->insertFirst(str1);
     if(list->size() == size) {
-      printf("---[ArrayList<String> Test {insertFirst(const char * val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(const char * val)} case2]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {insertFirst(const char * val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertFirst(const char * val)}]");
     break;
   }
 
-  //---[ArrayList<String> Test {insertFirst(ArrayList<String> list)} Start]---
+  //[ArrayList<String> Test {insertFirst(ArrayList<String> list)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -650,13 +651,13 @@ void testArrayList_String() {
     ||!list->get(3)->equals("a")
     ||!list->get(4)->equals("b")
     ||!list->get(5)->equals("c")){
-      //printf("list->get(0) is %s \n",list->get(0)->toChars());
-      //printf("list->get(1) is %s \n",list->get(1)->toChars());
-      //printf("list->get(2) is %s \n",list->get(2)->toChars());
-      //printf("list->get(3) is %s \n",list->get(3)->toChars());
-      //printf("list->get(4) is %s \n",list->get(4)->toChars());
-      //printf("list->get(5) is %s \n",list->get(5)->toChars());
-      printf("---[ArrayList<String> Test {insertFirst(ArrayList<String> list)} case1] [FAILED]--- \n");
+      //TEST_FAIL("list->get(0) is %s \n",list->get(0)->toChars());
+      //TEST_FAIL("list->get(1) is %s \n",list->get(1)->toChars());
+      //TEST_FAIL("list->get(2) is %s \n",list->get(2)->toChars());
+      //TEST_FAIL("list->get(3) is %s \n",list->get(3)->toChars());
+      //TEST_FAIL("list->get(4) is %s \n",list->get(4)->toChars());
+      //TEST_FAIL("list->get(5) is %s \n",list->get(5)->toChars());
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(ArrayList<String> list)} case1]");
       break;
     }
 /*
@@ -664,14 +665,14 @@ void testArrayList_String() {
     int size = list->size();
     list->add(list3);
     if(size != list->size()) {
-      printf("---[ArrayList<String> Test {insertFirst(ArrayList<String> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertFirst(ArrayList<String> list)} case2]");
       break;
     }
 */
-    printf("---[ArrayList<String> Test {insertFirst(ArrayList<String> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertFirst(ArrayList<String> list)}]");
     break;
   }
-  //---[ArrayList<String> Test {insertLast(String v)} Start]---
+  //[ArrayList<String> Test {insertLast(String v)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -683,7 +684,7 @@ void testArrayList_String() {
     ||!list->get(1)->equals("b")
     ||!list->get(2)->equals("c")
     ||!list->get(3)->equals("d")){
-      printf("---[ArrayList<String> Test {insertLast(String v)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(String v)} case1]");
       break;
     }
 
@@ -691,13 +692,13 @@ void testArrayList_String() {
     int size = list->size();
     list->insertLast(s);
     if(size == list->size()) {
-      printf("---[ArrayList<String> Test {insertLast(String v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(String v)} case2]");
       break;
     }
-    printf("---[ArrayList<String> Test {insertLast(String v)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertLast(String v)}]");
     break;
   }
-  //---[ArrayList<String> Test {insertLast(const char *s)} Start]---
+  //[ArrayList<String> Test {insertLast(const char *s)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -709,7 +710,7 @@ void testArrayList_String() {
     ||!list->get(1)->equals("b")
     ||!list->get(2)->equals("c")
     ||!list->get(3)->equals("d")){
-      printf("---[ArrayList<String> Test {insertLast(const char * s)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(const char * s)} case1]");
       break;
     }
 /*
@@ -717,13 +718,13 @@ void testArrayList_String() {
     int size = list->size();
     try {
       list->insertLast(createString(p));
-      printf("---[ArrayList<String> Test {insertLast(const char *s )} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(const char *s )} case2]");
     } catch(InitializeException e) {}
 */
-    printf("---[ArrayList<String> Test {insertLast(const char *s)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertLast(const char *s)}]");
     break;
   }
-  //---[ArrayList<String> Test {insertLast(ArrayList<String> list)} Start]---
+  //[ArrayList<String> Test {insertLast(ArrayList<String> list)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -742,7 +743,7 @@ void testArrayList_String() {
     ||!list->get(3)->equals("e")
     ||!list->get(4)->equals("f")
     ||!list->get(5)->equals("g")){
-      printf("---[ArrayList<String> Test {insertLast(ArrayList<String> list)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(ArrayList<String> list)} case1]");
       break;
     }
 
@@ -751,45 +752,45 @@ void testArrayList_String() {
     ArrayList<String> list3;
     list->insertLast(list3);
     if(size != list->size()) {
-      printf("---[ArrayList<String> Test {insertLast(ArrayList<String> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {insertLast(ArrayList<String> list)} case2]");
       break;
     }
 */
-    printf("---[ArrayList<String> Test {insertLast(ArrayList<String> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {insertLast(ArrayList<String> list)}]");
     break;
   }
-  //---[ArrayList<String> Test {size()} Start]---
+  //[ArrayList<String> Test {size()} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
     if(list->size() != 1) {
-      printf("---[ArrayList<String> Test {size()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {size()} case1]");
       break;
     }
 
     list->clear();
     if(list->size() != 0) {
-      printf("---[ArrayList<String> Test {size()} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {size()} case0]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {size()}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {size()}]");
     break;
   }
 
-  //---[ArrayList<String> Test {getIterator()} Start]---
+  //[ArrayList<String> Test {getIterator()} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
     if(list->getIterator()== nullptr) {
-      printf("---[ArrayList<String> Test {getIterator()} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {getIterator()} case0]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {getIterator()}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {getIterator()}]");
     break;
   }
-  //--[_ListIterator<String> Test {_ListIterator(ArrayList<String> list)} Start]---
+  //--[_ListIterator<String> Test {_ListIterator(ArrayList<String> list)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -810,15 +811,15 @@ void testArrayList_String() {
     }
 
     if(!isOk) {
-      printf("---[ArrayList<String> Test {_ListIterator(ArrayList<String> list)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {_ListIterator(ArrayList<String> list)} case0]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {_ListIterator(ArrayList<String> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {_ListIterator(ArrayList<String> list)}]");
     break;
   }
 
-  //--[_ListIterator<String> Test {_ListIterator(_ArrayList<String> *list)} Start]---
+  //--[_ListIterator<String> Test {_ListIterator(_ArrayList<String> *list)} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -839,15 +840,15 @@ void testArrayList_String() {
     }
 
     if(!isOk) {
-      printf("---[ArrayList<String> Test {_ListIterator(_ArrayList<String> *list)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<String> Test {_ListIterator(_ArrayList<String> *list)} case0]");
       break;
     }
 
-    printf("---[ArrayList<String> Test {_ListIterator(_ArrayList<String> *list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<String> Test {_ListIterator(_ArrayList<String> *list)}]");
     break;
   }
 
-  //--[_ListIterator<String> Test {remove()} Start]---
+  //--[_ListIterator<String> Test {remove()} Start]
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->add(createString("a"));
@@ -865,17 +866,17 @@ void testArrayList_String() {
     }
 
     if(list->size() != 4) {
-        printf("---[_ListIterator<String> Test {remove()} case0] [FAILED]--- \n");
+        TEST_FAIL("[_ListIterator<String> Test {remove()} case0]");
         break;
     }
 
     if(!list->get(0)->equals("a") ||!list->get(1)->equals("b")
       ||!list->get(2)->equals("d")||!list->get(3)->equals("e")) {
-        printf("---[_ListIterator<String> Test {remove()} case2] [FAILED]--- \n");
+        TEST_FAIL("[_ListIterator<String> Test {remove()} case2]");
         break;
     }
 
-    printf("---[_ListIterator<String> Test {remove()} case3] [OK]--- \n");
+    TEST_OK("[_ListIterator<String> Test {remove()} case3]");
     break;
   }
 }

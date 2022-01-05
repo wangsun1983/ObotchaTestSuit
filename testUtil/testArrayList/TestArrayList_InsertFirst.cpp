@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void testArrayList_InsertFirst() {
       || !list->get(1)->equals("d")
       || !list->get(2)->equals("a")
       || !list->get(3)->equals("b")) {
-        printf("---[ArrayList insertFirst test1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList insertFirst test1]");
         break;
       }
 
@@ -51,7 +52,7 @@ void testArrayList_InsertFirst() {
       || !list->get(1)->equals("d")
       || !list->get(2)->equals("a")
       || !list->get(3)->equals("b")) {
-      printf("---[ArrayList insertFirst test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList insertFirst test2]");
       break;
     }
     break;
@@ -71,11 +72,11 @@ void testArrayList_InsertFirst() {
       isException = true;
     }
     if(!isException) {
-      printf("---[ArrayList insertFirst test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList insertFirst test3]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList insertFirst test100] [OK]--- \n");
+  TEST_OK("[ArrayList insertFirst test100]");
 }

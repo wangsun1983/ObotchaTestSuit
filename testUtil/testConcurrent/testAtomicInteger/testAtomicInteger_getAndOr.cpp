@@ -3,6 +3,7 @@
 
 #include "AtomicInteger.hpp"
 #include "Thread.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -11,16 +12,16 @@ void testGetAndOr() {
       AtomicInteger integer = createAtomicInteger(1);
       int v = integer->getAndOr(4);
       if(v != 1) {
-        printf("AtomicInteger testGetAndOr test2-------[FAILED],v is %d \n",v);
+        TEST_FAIL("AtomicInteger testGetAndOr test2");
         break;
       }
 
       if(integer->get() != 5) {
-        printf("AtomicInteger testGetAndOr test3-------[FAILED],v is %d \n",integer->get());
+        TEST_FAIL("AtomicInteger testGetAndOr test3");
         break;
       }
       break;
     }
 
-    printf("AtomicInteger testGetAndOr test100-------[OK] \n");
+    TEST_OK("AtomicInteger testGetAndOr test100");
 }

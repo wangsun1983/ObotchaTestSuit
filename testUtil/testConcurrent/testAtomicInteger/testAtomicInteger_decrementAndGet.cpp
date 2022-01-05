@@ -3,6 +3,7 @@
 
 #include "AtomicInteger.hpp"
 #include "Thread.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,7 +31,7 @@ void testDecrementAndGet() {
             }
 
             if(value->get() != 0) {
-                printf("AtomicInteger DecrementAndGet test1-------[FAILED],value is %d \n",value->get());
+                TEST_FAIL("AtomicInteger DecrementAndGet test1");
                 break;
             }
         }
@@ -42,11 +43,11 @@ void testDecrementAndGet() {
       AtomicInteger integer = createAtomicInteger(5);
       int v = integer->decrementAndGet();
       if(v != 4) {
-        printf("AtomicInteger DecrementAndGet test2-------[FAILED],v is %d \n",v);
+        TEST_FAIL("AtomicInteger DecrementAndGet test2");
         break;
       }
       break;
     }
 
-    printf("AtomicInteger DecrementAndGet test100-------[OK] \n");
+    TEST_OK("AtomicInteger DecrementAndGet test100");
 }

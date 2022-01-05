@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,14 +20,14 @@ void testArrayList_Iterator_GetValue() {
     auto iterator = list->getIterator();
     auto v = iterator->getValue();
     if(v == nullptr || !v->equals("a")) {
-      printf("---[ArrayList Iterator GetValue test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator GetValue test1]");
       break;
     }
 
     iterator->next();
     v = iterator->getValue();
     if(v == nullptr || !v->equals("b")) {
-      printf("---[ArrayList Iterator GetValue test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator GetValue test2]");
       break;
     }
 
@@ -39,7 +40,7 @@ void testArrayList_Iterator_GetValue() {
     }
 
     if(!isExcpetion) {
-      printf("---[ArrayList Iterator GetValue test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator GetValue test3]");
       break;
     }
 
@@ -57,11 +58,11 @@ void testArrayList_Iterator_GetValue() {
       }
 
       if(!isExcpetion) {
-        printf("---[ArrayList Iterator GetValue test4] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList Iterator GetValue test4]");
         break;
       }
       break;
   }
 
-  printf("---[ArrayList Iterator GetValue test100] [OK]--- \n");
+  TEST_OK("[ArrayList Iterator GetValue test100]");
 }

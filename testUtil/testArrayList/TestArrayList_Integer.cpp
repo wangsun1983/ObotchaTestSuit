@@ -6,24 +6,25 @@
 #include "ArrayList.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testArrayList_Integer() {
-  //--[_ArrayList<Integer> Test {add(Integer val)} Start]---
+  //--[_ArrayList<Integer> Test {add(Integer val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
     list->add(createInteger(2));
 
     if(list->size() != 2) {
-      printf("---[ArrayList<Integer> Test {add(Integer val)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(Integer val)} case0]");
       break;
     }
 
     if(list->get(0)->toValue() != 1
     ||list->get(1)->toValue() != 2) {
-      printf("---[ArrayList<Integer> Test {add(Integer val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(Integer val)} case1]");
       break;
     }
 
@@ -31,36 +32,36 @@ void testArrayList_Integer() {
     int size = list->size();
     list->add(t);
     if(size == list->size()) {
-      printf("---[ArrayList<Integer> Test {add(Integer val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(Integer val)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {add(Integer val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {add(Integer val)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {add(int val)} Start]---
+  //--[_ArrayList<Integer> Test {add(int val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
     list->add(createInteger(2));
 
     if(list->size() != 2) {
-      printf("---[ArrayList<Integer> Test {add(int val)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(int val)} case0]");
       break;
     }
 
     if(list->get(0)->toValue() != 1
     ||list->get(1)->toValue() != 2) {
-      printf("---[ArrayList<Integer> Test {add(int val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(int val)} case1]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {add(int val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {add(int val)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {add(ArrayList<Integer> list)} Start]---
+  //--[_ArrayList<Integer> Test {add(ArrayList<Integer> list)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -72,7 +73,7 @@ void testArrayList_Integer() {
     list->add(list2);
 
     if(list->size() != 4) {
-      printf("---[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case0]");
       break;
     }
 
@@ -80,7 +81,7 @@ void testArrayList_Integer() {
     ||list->get(1)->toValue() != 2
     ||list->get(2)->toValue() != 3
     ||list->get(3)->toValue() != 4) {
-      printf("---[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case1]");
       break;
     }
 /*
@@ -88,14 +89,14 @@ void testArrayList_Integer() {
     int size = list->size();
     list->add(list3);
     if(size != list->size()) {
-      printf("---[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {add(ArrayList<Integer> list)} case2]");
       break;
     }
 */
-    printf("---[ArrayList<Integer> Test {add(ArrayList<Integer> val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {add(ArrayList<Integer> val)}]");
     break;
   }
-  //--[_ArrayList<Integer> Test {clear()} Start]---
+  //--[_ArrayList<Integer> Test {clear()} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -103,14 +104,14 @@ void testArrayList_Integer() {
     int size = list->size();
     list->clear();
     if(size == 0 || list->size() != 0) {
-      printf("---[ArrayList<Integer> Test {clear()} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {clear()} case0]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {clear()}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {clear()}]");
     break;
   }
-  //--[_ArrayList<Integer> Test {remove(int index)} Start]---
+  //--[_ArrayList<Integer> Test {remove(int index)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -119,12 +120,12 @@ void testArrayList_Integer() {
 
     Integer i = list->removeAt(2);
     if(i->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {remove(int index)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(int index)} case0]");
       break;
     }
 
     if(list->size() != 2) {
-      printf("---[ArrayList<Integer> Test {remove(int index)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(int index)} case1]");
       break;
     }
 
@@ -136,7 +137,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {remove(int index)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(int index)} case2]");
       break;
     }
 
@@ -148,15 +149,15 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {remove(int index)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(int index)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {remove(int index)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {remove(int index)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {remove(Integer v)} Start]---
+  //--[_ArrayList<Integer> Test {remove(Integer v)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -165,40 +166,40 @@ void testArrayList_Integer() {
 
     int result = list->remove(createInteger(2));
     if(result == -1) {
-      printf("---[ArrayList<Integer> Test {remove(Integer v)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case0]");
       break;
     }
 
     if(list->size() != 2
       ||list->get(0)->toValue() != 1
       ||list->get(1)->toValue() != 3){
-        printf("---[ArrayList<Integer> Test {remove(Integer v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case1]");
         break;
     }
 
     Integer t1 = createInteger(100);
     if(list->remove(t1) != -1) {
-      printf("---[ArrayList<Integer> Test {remove(Integer v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case2]");
       break;
     }
 
     Integer t2;
     int size = list->size();
     if(list->remove(t2) != -1) {
-      printf("---[ArrayList<Integer> Test {remove(Integer v)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case3]");
       break;
     }
 
     if(size != list->size()) {
-      printf("---[ArrayList<Integer> Test {remove(Integer v)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {remove(Integer v)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {remove(Integer v)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {indexOf(Integer v)} Start]---
+  //--[_ArrayList<Integer> Test {indexOf(Integer v)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -208,26 +209,26 @@ void testArrayList_Integer() {
     if(list->indexOf(createInteger(1)) != 0
       ||list->indexOf(createInteger(2)) != 1
       ||list->indexOf(createInteger(3)) != 2) {
-        printf("---[ArrayList<Integer> Test {indexOf(Integer v)} case0] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {indexOf(Integer v)} case0]");
         break;
     }
 
     if(list->indexOf(createInteger(100)) != -1) {
-      printf("---[ArrayList<Integer> Test {indexOf(Integer v)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {indexOf(Integer v)} case1]");
       break;
     }
 
     Integer p;
     if(list->indexOf(p) != -1) {
-      printf("---[ArrayList<Integer> Test {indexOf(Integer v)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {indexOf(Integer v)} case1]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {indexOf(Integer v)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {indexOf(Integer v)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {set(int index,Integer val)} Start]---
+  //--[_ArrayList<Integer> Test {set(int index,Integer val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -238,19 +239,19 @@ void testArrayList_Integer() {
     if(list->get(0)->toValue() != 2
     ||list->get(1)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case1]");
       break;
     }
 
     Integer t1;
     int result = list->set(1,t1);
     if(result != 0) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case2]");
       break;
     }
 
     if(list->get(1) != nullptr) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case2_1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case2_1]");
       break;
     }
 
@@ -262,26 +263,26 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case3]");
       break;
     }
 
     if(list->get(0)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case4]");
       break;
     }
 
     if(list->size() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,Integer val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,Integer val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {set(int index,Integer val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {set(int index,Integer val)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {set(int index,int val)} Start]---
+  //--[_ArrayList<Integer> Test {set(int index,int val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -292,19 +293,19 @@ void testArrayList_Integer() {
     if(list->get(0)->toValue() != 2
     ||list->get(1)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case1]");
       break;
     }
 
     Integer t1;
     int result = list->set(1,t1);
     if(result != 0) {
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case2]");
       break;
     }
 
     if(list->get(1) != nullptr){
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case2_1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case2_1]");
       break;
     }
 
@@ -316,26 +317,26 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case3]");
       break;
     }
 
     if(list->get(0)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case4]");
       break;
     }
 
     if(list->size() != 3) {
-      printf("---[ArrayList<Integer> Test {set(int index,int val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {set(int index,int val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {set(int index,int val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {set(int index,int val)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {get(int index)} Start]---
+  //--[_ArrayList<Integer> Test {get(int index)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -344,7 +345,7 @@ void testArrayList_Integer() {
 
     Integer v1 = list->get(1);
     if(v1->toValue() != 2) {
-      printf("---[ArrayList<Integer> Test {get(int index)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {get(int index)} case0]");
       break;
     }
 
@@ -356,7 +357,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {get(int index)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {get(int index)} case1]");
       break;
     }
 
@@ -368,15 +369,15 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {get(int index)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {get(int index)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {get(int index)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {get(int index)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {insert(int index,Integer val)} Start]---
+  //--[_ArrayList<Integer> Test {insert(int index,Integer val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -388,12 +389,7 @@ void testArrayList_Integer() {
     ||list->get(1)->toValue() != 4
     ||list->get(2)->toValue() != 2
     ||list->get(3)->toValue() != 3) {
-      printf("list[0] is %d \n",list->get(0)->toValue());
-      printf("list[1] is %d \n",list->get(1)->toValue());
-      printf("list[2] is %d \n",list->get(2)->toValue());
-      printf("list[3] is %d \n",list->get(3)->toValue());
-
-      printf("---[ArrayList<Integer> Test {insert(int index,Integer val)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,Integer val)} case0]");
       break;
     }
 
@@ -406,7 +402,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,Integer val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,Integer val)} case1]");
       break;
     }
 
@@ -418,7 +414,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,Integer val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,Integer val)} case2]");
       break;
     }
 
@@ -431,15 +427,15 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,Integer val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,Integer val)} case2]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insert(int index,Integer val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insert(int index,Integer val)}]");
     break;
   }
 
-  //--[_ArrayList<Integer> Test {insert(int index,int val)} Start]---
+  //--[_ArrayList<Integer> Test {insert(int index,int val)} Start]
   while(1) {
     ArrayList<Integer>list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -451,7 +447,7 @@ void testArrayList_Integer() {
     ||list->get(1)->toValue() != 4
     ||list->get(2)->toValue() != 2
     ||list->get(3)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {insert(int index,int val)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,int val)} case0]");
       break;
     }
 
@@ -464,7 +460,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,int val)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,int val)} case1]");
       break;
     }
 
@@ -476,18 +472,18 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,int val)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,int val)} case2]");
       break;
     }
 
     int currentSize = list->size();
     list->insert(0,createInteger(100));
     if(list->get(0)->toValue() != 100 && (list->size() != (currentSize + 1))) {
-      printf("---[ArrayList<Integer> Test {insert(int index,int val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,int val)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insert(int index,int val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insert(int index,int val)}]");
     break;
   }
 
@@ -510,7 +506,7 @@ void testArrayList_Integer() {
     ||list->get(3)->toValue() != 6
     ||list->get(4)->toValue() != 2
     ||list->get(5)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case0]");
       break;
     }
 
@@ -523,7 +519,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case1]");
       break;
     }
 
@@ -536,7 +532,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case2]");
       break;
     }
 
@@ -557,11 +553,11 @@ void testArrayList_Integer() {
     ||list3->get(3)->toValue() != 10
     ||list3->get(4)->toValue() != 11
     ||list3->get(5)->toValue() != 12) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)} case3]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list)}]");
     break;
   }
 
@@ -583,12 +579,12 @@ void testArrayList_Integer() {
     ||list->get(2)->toValue() != 5
     ||list->get(3)->toValue() != 2
     ||list->get(4)->toValue() != 3) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case0] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case0]");
       break;
     }
 
     if(list->size() != 5) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case1]");
       break;
     }
 
@@ -601,7 +597,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case1]");
       break;
     }
 
@@ -614,7 +610,7 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case2]");
       break;
     }
 
@@ -634,12 +630,12 @@ void testArrayList_Integer() {
     ||list3->get(2)->toValue() != 10
     ||list3->get(3)->toValue() != 11
     ||list3->get(4)->toValue() != 12) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case3]");
       break;
     }
 
     if(list3->size() != 5) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case4]");
       break;
     }
 
@@ -663,21 +659,21 @@ void testArrayList_Integer() {
     if(list5->get(0)->toValue() != 10
       ||list5->get(1)->toValue() != 11
       ||list5->get(2)->toValue() != 12) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case5]");
       break;
     }
 
     if(!isException2) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case6] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case6]");
       break;
     }
 
     if(list5->size() != 3) {
-      printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case7] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)} case7]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insert(int index,ArrayList<Integer> list,int length)}]");
     break;
   }
 
@@ -693,24 +689,24 @@ void testArrayList_Integer() {
        ||list->get(1)->toValue() != 1
        ||list->get(2)->toValue() != 2
        ||list->get(3)->toValue() != 3) {
-         printf("---[ArrayList<Integer> Test {insertFirst(Integer val)} case1] [FAILED]--- \n");
+         TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case1]");
          break;
     }
 
     if(list->size() != 4) {
-        printf("---[ArrayList<Integer> Test {insertFirst(Integer val)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case2]");
         break;
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
     list2->insertFirst(createInteger(4));
     if(list2->get(0)->toValue() != 4) {
-      printf("---[ArrayList<Integer> Test {insertFirst(Integer val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case3]");
       break;
     }
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Integer> Test {insertFirst(Integer val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case4]");
       break;
     }
 
@@ -718,11 +714,11 @@ void testArrayList_Integer() {
     Integer nt;
     list3->insertFirst(nt);
     if(list3->size() == 0) {
-      printf("---[ArrayList<Integer> Test {insertFirst(Integer val)} case5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case5]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insertFirst(Integer val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertFirst(Integer val)}]");
     break;
   }
 
@@ -738,28 +734,28 @@ void testArrayList_Integer() {
        ||list->get(1)->toValue() != 1
        ||list->get(2)->toValue() != 2
        ||list->get(3)->toValue() != 3) {
-         printf("---[ArrayList<Integer> Test {insertFirst(int val)} case1] [FAILED]--- \n");
+         TEST_FAIL("[ArrayList<Integer> Test {insertFirst(int val)} case1]");
          break;
     }
 
     if(list->size() != 4) {
-        printf("---[ArrayList<Integer> Test {insertFirst(int val)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertFirst(int val)} case2]");
         break;
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
     list2->insertFirst(createInteger(4));
     if(list2->get(0)->toValue() != 4) {
-      printf("---[ArrayList<Integer> Test {insertFirst(int val)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(int val)} case3]");
       break;
     }
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Integer> Test {insertFirst(int val)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(int val)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insertFirst(int val)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertFirst(int val)}]");
     break;
   }
 
@@ -782,7 +778,7 @@ void testArrayList_Integer() {
       ||list->get(3)->toValue() != 1
       ||list->get(4)->toValue() != 2
       ||list->get(5)->toValue() != 3) {
-        printf("---[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case1]");
         break;
       }
 
@@ -795,12 +791,12 @@ void testArrayList_Integer() {
 
     if(list3->get(0)->toValue() != 1
       ||list3->get(1)->toValue() != 2){
-        printf("---[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case2]");
         break;
       }
 
     if(list3->size() != 2) {
-      printf("---[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case3]");
       break;
     }
 
@@ -808,11 +804,11 @@ void testArrayList_Integer() {
     ArrayList<Integer> list5;
     list3->insertFirst(list5);
     if(list3->size() != 2) {
-      printf("---[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)} case4]");
       break;
     }
 */
-    printf("---[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)}] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertFirst(ArrayList<Integer> list)}]");
     break;
   }
 
@@ -828,12 +824,12 @@ void testArrayList_Integer() {
       ||list->get(1)->toValue() != 2
       ||list->get(2)->toValue() != 3
       ||list->get(3)->toValue() != 4) {
-        printf("---[ArrayList<Integer> Test {insertLast(Integer v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(Integer v)} case1]");
         break;
     }
 
     if(list->size() != 4) {
-      printf("---[ArrayList<Integer> Test {insertLast(Integer v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertLast(Integer v)} case2]");
       break;
     }
 
@@ -847,16 +843,16 @@ void testArrayList_Integer() {
     if(list2->get(0)->toValue() != 1
       ||list2->get(1)->toValue() != 2
       ||list2->get(2)->toValue() != 3) {
-        printf("---[ArrayList<Integer> Test {insertLast(Integer v)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(Integer v)} case3]");
         break;
     }
 
     if(list2->size() != 4) {
-      printf("---[ArrayList<Integer> Test {insertLast(Integer v)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertLast(Integer v)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insertLast(Integer v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertLast(Integer v)} case5]");
     break;
   }
 
@@ -872,12 +868,12 @@ void testArrayList_Integer() {
       ||list->get(1)->toValue() != 2
       ||list->get(2)->toValue() != 3
       ||list->get(3)->toValue() != 4) {
-        printf("---[ArrayList<Integer> Test {insertLast(int v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(int v)} case1]");
         break;
     }
 
     if(list->size() != 4) {
-      printf("---[ArrayList<Integer> Test {insertLast(int v)} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertLast(int v)} case2]");
       break;
     }
 
@@ -885,16 +881,16 @@ void testArrayList_Integer() {
     list2->insertLast(createInteger(1));
 
     if(list2->size() != 1) {
-      printf("---[ArrayList<Integer> Test {insertLast(int v)} case3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertLast(int v)} case3]");
       break;
     }
 
     if(list2->get(0)->toValue() != 1) {
-      printf("---[ArrayList<Integer> Test {insertLast(int v)} case4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {insertLast(int v)} case4]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {insertLast(int v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertLast(int v)} case5]");
     break;
   }
 
@@ -917,12 +913,12 @@ void testArrayList_Integer() {
       ||list->get(3)->toValue() != 4
       ||list->get(4)->toValue() != 5
       ||list->get(5)->toValue() != 6) {
-        printf("---[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case1]");
         break;
     }
 
     if(list->size() != 6) {
-        printf("---[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case2]");
         break;
     }
 
@@ -937,16 +933,16 @@ void testArrayList_Integer() {
     if(list3->get(0)->toValue() != 1
       ||list3->get(1)->toValue() != 2
       ||list3->get(2)->toValue() != 3) {
-        printf("---[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case3]");
         break;
     }
 
     if(list3->size() != 3) {
-        printf("---[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case4] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case4]");
         break;
     }
 
-    printf("---[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case5] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {insertLast(ArrayList<Integer> v)} case5]");
     break;
   }
 
@@ -957,17 +953,17 @@ void testArrayList_Integer() {
     list->add(createInteger(2));
     list->add(createInteger(3));
     if(list->size() != 3) {
-      printf("---[ArrayList<Integer> Test {size()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {size()} case1]");
       break;
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
     if(list2->size() != 0) {
-      printf("---[ArrayList<Integer> Test {size()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList<Integer> Test {size()} case2]");
       break;
     }
 
-    printf("---[ArrayList<Integer> Test {size()} case3] [OK]--- \n");
+    TEST_OK("[ArrayList<Integer> Test {size()} case3]");
     break;
   }
 
@@ -985,7 +981,7 @@ void testArrayList_Integer() {
     while(iterator->hasValue() && index != list->size()) {
       Integer v = iterator->getValue();
       if(v->toValue() != index) {
-        printf("---[ListIterator<Integer> Test {getValue()} case1] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Integer> Test {getValue()} case1]");
         break;
       }
 
@@ -1003,11 +999,11 @@ void testArrayList_Integer() {
     }
 
     if(!isException) {
-      printf("---[ListIterator<Integer> Test {getValue()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {getValue()} case2]");
       break;
     }
 
-    printf("---[ListIterator<Integer> Test {getValue()} case3] [OK]--- \n");
+    TEST_OK("[ListIterator<Integer> Test {getValue()} case3]");
     break;
   }
 
@@ -1019,7 +1015,7 @@ void testArrayList_Integer() {
     list->add(createInteger(3));
     ListIterator<Integer> iterator = list->getIterator();
     if(!iterator->hasValue()) {
-      printf("---[ListIterator<Integer> Test {hasValue()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case1]");
       break;
     }
 
@@ -1028,18 +1024,18 @@ void testArrayList_Integer() {
     iterator->next();
 
     if(iterator->hasValue()) {
-      printf("---[ListIterator<Integer> Test {hasValue()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case2]");
       break;
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
     ListIterator<Integer> iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
-      printf("---[ListIterator<Integer> Test {hasValue()} case3] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case3]");
       break;
     }
 
-    printf("---[ListIterator<Integer> Test {hasValue()} case4] [OK]--- \n");
+    TEST_OK("[ListIterator<Integer> Test {hasValue()} case4]");
     break;
   }
 
@@ -1053,28 +1049,26 @@ void testArrayList_Integer() {
 
     iterator->next();
     Integer v1 = iterator->getValue();
-    printf("v1 is %d \n",v1->toValue());
 
     iterator->next();
     Integer v2 = iterator->getValue();
-    printf("v2 is %d \n",v2->toValue());
 
     if(iterator->next()) {
-      printf("---[ListIterator<Integer> Test {next()} case1] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {next()} case1]");
       break;
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
     ListIterator<Integer> iterator2 = list2->getIterator();
     if(iterator2->next()) {
-      printf("---[ListIterator<Integer> Test {next()} case2] [FAILED]--- \n");
+      TEST_FAIL("[ListIterator<Integer> Test {next()} case2]");
     }
 
-    printf("---[ListIterator<Integer> Test {next()} case3] [OK]--- \n");
+    TEST_OK("[ListIterator<Integer> Test {next()} case3]");
     break;
   }
 
-  //--[_ListIterator<Integer> Test {remove()} Start]---
+  //--[_ListIterator<Integer> Test {remove()} Start]
   while(1) {
     ArrayList<Integer> list = createArrayList<Integer>();
     list->add(createInteger(1));
@@ -1092,17 +1086,17 @@ void testArrayList_Integer() {
     }
 
     if(list->size() != 4) {
-        printf("---[ListIterator<Integer> Test {remove()} case0] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Integer> Test {remove()} case0]");
         break;
     }
 
     if(list->get(0)->toValue() != 1 ||list->get(1)->toValue() != 2
       ||list->get(2)->toValue() != 4||list->get(3)->toValue() != 5) {
-        printf("---[ListIterator<Integer> Test {remove()} case2] [FAILED]--- \n");
+        TEST_FAIL("[ListIterator<Integer> Test {remove()} case2]");
         break;
     }
 
-    printf("---[_ListIterator<Integer> Test {remove()} case3] [OK]--- \n");
+    TEST_OK("[_ListIterator<Integer> Test {remove()} case3]");
     break;
   }
 }

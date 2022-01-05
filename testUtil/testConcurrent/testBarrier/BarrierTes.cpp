@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "System.hpp"
 #include "Barrier.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -84,18 +85,17 @@ private:
 };
 
 int normaltest() {
-  printf("---[Barrier Test Start]--- \n");
-
+  
   //Barrier()/getWaitNums()
   while(1) {
       Barrier barrier = createBarrier(2);
       int num = barrier->getWaitNums();
       if(num != 2) {
-        printf("---[Barrier Test {construct()} case1] [FAIL]---,num is %d \n",num);
+        TEST_FAIL("[Barrier Test {construct()} case1]");
         break;
       }
 
-      printf("---[Barrier Test {construct()} case2] [OK]--- \n");
+      TEST_OK("[Barrier Test {construct()} case2]");
       break;
   }
 
@@ -112,11 +112,11 @@ int normaltest() {
 
       int v = st(System)::currentTimeMillis() - current;
       if(v > 3005) {
-        printf("---[Barrier Test {await()} case1] [FAIL]--- \n");
+        TEST_FAIL("[Barrier Test {await()} case1]");
         break;
       }
 
-      printf("---[Barrier Test {await()} case2] [OK]--- \n");
+      TEST_OK("[Barrier Test {await()} case2]");
       break;
   }
 
@@ -130,11 +130,11 @@ int normaltest() {
       b->await(1000);
       int v = st(System)::currentTimeMillis() - current;
       if(v > 1005) {
-        printf("---[Barrier Test {await(long)} case1] [FAIL]--- \n");
+        TEST_FAIL("[Barrier Test {await(long)} case1]");
         break;
       }
 
-      printf("---[Barrier Test {await(long)} case2] [OK]--- \n");
+      TEST_OK("[Barrier Test {await(long)} case2]");
       break;
   }
 
@@ -146,11 +146,11 @@ int normaltest() {
     sleep(1);
     int num = b->getWaitNums();
     if(num != 1) {
-        printf("---[Barrier Test {getWaitNums()} case1] [FAIL]--- \n");
+        TEST_FAIL("[Barrier Test {getWaitNums()} case1]");
         break;
     }
 
-    printf("---[Barrier Test {getWaitNums()} case2] [OK]--- \n");
+    TEST_OK("[Barrier Test {getWaitNums()} case2]");
     break;
   }
 
@@ -162,11 +162,11 @@ int normaltest() {
 
     sleep(2);
     if(mtestCount == 1) {
-        printf("---[Barrier Test func {await()} case1] [FAIL]--- \n");
+        TEST_FAIL("[Barrier Test func {await()} case1]");
         break;
     }
 
-    printf("---[Barrier Test func {await()} case2] [OK]--- \n");
+    TEST_OK("[Barrier Test func {await()} case2]");
     break;
   }
 }

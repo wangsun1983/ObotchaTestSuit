@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,18 +19,18 @@ void testArrayList_Iterator_Remove() {
 
     auto iterator = list->getIterator();
     if(!iterator->remove()) {
-      printf("---[ArrayList Iterator Remove test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Remove test1]");
       break;
     }
 
     String value = iterator->getValue();
     if(value == nullptr || !value->equals("b") || list->size() != 1) {
-      printf("---[ArrayList Iterator Remove test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Remove test2]");
       break;
     }
 
     if(list->size() != 1) {
-      printf("---[ArrayList Iterator Remove test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Remove test3]");
       break;
     }
     break;
@@ -39,10 +40,10 @@ void testArrayList_Iterator_Remove() {
     ArrayList<String> list = createArrayList<String>();
     auto iterator = list->getIterator();
     if(iterator->remove()) {
-      printf("---[ArrayList Iterator Remove test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Iterator Remove test4]");
       break;
     }
     break;
   }
-  printf("---[ArrayList Iterator Remove test100] [OK]--- \n");
+  TEST_OK("[ArrayList Iterator Remove test100]");
 }

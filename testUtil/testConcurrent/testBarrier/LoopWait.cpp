@@ -7,6 +7,7 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "AtomicInteger.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,10 +31,10 @@ int looptest() {
   barrier_257->await();
   sleep(1);
   if(loopValue->get() != 256) {
-    printf("---[Barrier Test {loop test} case1] [FAIL]--- \n");
+    TEST_FAIL("[Barrier Test {loop test} case1]");
     return 0;
   }
 
-  printf("---[Barrier Test {loop test} case100] [OK]--- \n");
+  TEST_OK("[Barrier Test {loop test} case100]");
   return 0;
 }

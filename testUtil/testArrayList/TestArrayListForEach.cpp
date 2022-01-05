@@ -6,6 +6,7 @@
 #include "ArrayList.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,7 +20,7 @@ void testArrayListForEach() {
     int index = 1;
     list->foreach([&index](String value) {
       if(value->toBasicInt() != index) {
-        printf("---[ArrayList Foreach test1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList Foreach test1]");
         return Global::Break;
       }
       index++;
@@ -43,11 +44,11 @@ void testArrayListForEach() {
     });
 
     if(index != 2) {
-      printf("---[ArrayList Foreach test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Foreach test2]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList Foreach test100] [OK]--- \n");
+  TEST_OK("[ArrayList Foreach test100]");
 }

@@ -7,9 +7,9 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
-
 
 void testArrayList_InsertLast() {
   while(1) {
@@ -27,7 +27,7 @@ void testArrayList_InsertLast() {
       || !list->get(1)->equals("b")
       || !list->get(2)->equals("c")
       || !list->get(3)->equals("d")) {
-        printf("---[ArrayList InsertLast test1] [FAILED]--- \n");
+        TEST_FAIL("[ArrayList InsertLast test1]");
         break;
       }
 
@@ -46,14 +46,14 @@ void testArrayList_InsertLast() {
     list2->add(createString("f"));
 
     list->insertLast(list2,2);
-    //printf("size is %d \n",list->size());
-    //printf("a1 %s,a2 %s,a3 %s,a4 %s \n",list->get(0)->toChars(),list->get(1)->toChars(),list->get(2)->toChars(),list->get(3)->toChars());
+    //TEST_FAIL("size is %d \n",list->size());
+    //TEST_FAIL("a1 %s,a2 %s,a3 %s,a4 %s \n",list->get(0)->toChars(),list->get(1)->toChars(),list->get(2)->toChars(),list->get(3)->toChars());
     if(list->size() != 4
       || !list->get(0)->equals("a")
       || !list->get(1)->equals("b")
       || !list->get(2)->equals("c")
       || !list->get(3)->equals("d")) {
-      printf("---[ArrayList InsertLast test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList InsertLast test2]");
       break;
     }
     break;
@@ -73,11 +73,11 @@ void testArrayList_InsertLast() {
       isException = true;
     }
     if(!isException) {
-      printf("---[ArrayList InsertLast test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList InsertLast test3]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList InsertLast test100] [OK]--- \n");
+  TEST_OK("[ArrayList InsertLast test100]");
 }

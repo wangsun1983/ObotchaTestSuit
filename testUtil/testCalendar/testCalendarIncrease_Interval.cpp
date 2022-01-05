@@ -7,6 +7,7 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -48,12 +49,12 @@ int testCalendarIncreaseYear_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarIncreaseYear_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarIncreaseYear_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarIncreaseYear_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarIncreaseYear_Interval()} case2]");
     return 0;
 }
 
@@ -84,12 +85,12 @@ int testCalendarIncreaseDay_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarIncreaseDay_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarIncreaseDay_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarIncreaseDay_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarIncreaseDay_Interval()} case2]");
     return 0;
 }
 
@@ -120,12 +121,12 @@ int testCalendarIncreaseMonth_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {testCalendarIncreaseMonth_Interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {testCalendarIncreaseMonth_Interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {testCalendarIncreaseMonth_Interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {testCalendarIncreaseMonth_Interval()} case2]");
     return 0;
 }
 
@@ -158,12 +159,12 @@ int testCalendarIncreaseHour_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {increaseHour()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {increaseHour()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {increaseHour()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {increaseHour()} case2]");
     return 0;
 }
 
@@ -195,12 +196,12 @@ int testCalendarIncreaseMinute_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {increaseMinute_interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {increaseMinute_interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {increaseMinute_interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {increaseMinute_interval()} case2]");
     return 0;
 }
 
@@ -232,11 +233,11 @@ int testCalendarIncreaseSecond_Interval() {
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Second),d1->second);
                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
-               printf("---[Calendar Test {increaseSecond_interval()} case1] [FAILED]--- \n");
+               TEST_FAIL("[Calendar Test {increaseSecond_interval()} case1]");
                return -1;
         }
     }
 
-    printf("---[Calendar Test {increaseSecond_interval()} case2] [Success]--- \n");
+    TEST_OK("[Calendar Test {increaseSecond_interval()} case2]");
     return 0;
 }

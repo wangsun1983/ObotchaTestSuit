@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testArrayList_Insert() {
     list->insert(0,createString("c"));
     if(list->size() != 3 || !list->get(0)->equals("c")
       || !list->get(1)->equals("a")|| !list->get(2)->equals("b")) {
-      printf("---[ArrayList Insert test1] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test1]");
       break;
     }
     break;
@@ -30,7 +31,7 @@ void testArrayList_Insert() {
     ArrayList<String> list = createArrayList<String>();
     list->insert(0,createString("c"));
     if(list->size() != 1 || !list->get(0)->equals("c")) {
-      printf("---[ArrayList Insert test2] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test2]");
       break;
     }
     break;
@@ -41,7 +42,7 @@ void testArrayList_Insert() {
     list->insert(0,createString("c"));
     list->insert(1,createString("d"));
     if(list->size() != 2 || !list->get(0)->equals("c") || !list->get(1)->equals("d")) {
-      printf("---[ArrayList Insert test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test3]");
       break;
     }
     break;
@@ -57,7 +58,7 @@ void testArrayList_Insert() {
     }
 
     if(!isException) {
-      printf("---[ArrayList Insert test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test4]");
       break;
     }
     break;
@@ -73,7 +74,7 @@ void testArrayList_Insert() {
     list->insert(0,list2);
     if(list->size() != 3 || !list->get(0)->equals("a")
       || !list->get(1)->equals("b")|| !list->get(2)->equals("c")) {
-      printf("---[ArrayList Insert test5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test5]");
       break;
     }
     break;
@@ -87,14 +88,14 @@ void testArrayList_Insert() {
     list->insert(0,list2);
     if(list->size() != 2 || !list->get(0)->equals("a")
       || !list->get(1)->equals("b")) {
-      printf("---[ArrayList Insert test6] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test6]");
       break;
     }
 
     list2->clear();
     if(list->size() != 2 || !list->get(0)->equals("a")
       || !list->get(1)->equals("b")) {
-      printf("---[ArrayList Insert test7] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test7]");
       break;
     }
 
@@ -117,7 +118,7 @@ void testArrayList_Insert() {
       || !list->get(3)->equals("b")
       || !list->get(4)->equals("e")
       ) {
-      printf("---[ArrayList Insert test8] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test8]");
       break;
     }
     break;
@@ -133,7 +134,7 @@ void testArrayList_Insert() {
     list->insert(0,list2,1);
     if(list->size() != 2 || !list->get(0)->equals("a")
       || !list->get(1)->equals("c")) {
-      printf("---[ArrayList Insert test9] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test9]");
       break;
     }
     break;
@@ -146,7 +147,7 @@ void testArrayList_Insert() {
     list2->add(createString("b"));
     list->insert(0,list2,1);
     if(list->size() != 1 || !list->get(0)->equals("a")) {
-      printf("---[ArrayList Insert test10] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test10]");
       break;
     }
     break;
@@ -165,11 +166,11 @@ void testArrayList_Insert() {
     }
 
     if(!isException) {
-      printf("---[ArrayList Insert test11] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList Insert test11]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList Insert test100] [OK]--- \n");
+  TEST_OK("[ArrayList Insert test100]");
 }

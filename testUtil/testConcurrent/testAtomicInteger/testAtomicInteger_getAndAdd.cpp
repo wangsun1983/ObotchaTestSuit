@@ -3,6 +3,7 @@
 
 #include "AtomicInteger.hpp"
 #include "Thread.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,7 +31,7 @@ void testGetAndAdd() {
             }
 
             if(value->get() != 64*64*1024*2) {
-                printf("AtomicInteger GetAndAdd test1-------[FAILED],value is %d \n",value->get());
+                TEST_FAIL("AtomicInteger GetAndAdd test1");
                 break;
             }
         }
@@ -42,16 +43,16 @@ void testGetAndAdd() {
       AtomicInteger integer = createAtomicInteger(3);
       int v = integer->getAndAdd(2);
       if(v != 3) {
-        printf("AtomicInteger GetAndAdd test2-------[FAILED],v is %d \n",v);
+        TEST_FAIL("AtomicInteger GetAndAdd test2");
         break;
       }
 
       if(integer->get() != 5) {
-        printf("AtomicInteger GetAndAdd test3-------[FAILED],v is %d \n",integer->get());
+        TEST_FAIL("AtomicInteger GetAndAdd test3");
         break;
       }
 
       break;
     }
-    printf("AtomicInteger AddAndGet test100-------[OK] \n");
+    TEST_OK("AtomicInteger AddAndGet test100");
 }

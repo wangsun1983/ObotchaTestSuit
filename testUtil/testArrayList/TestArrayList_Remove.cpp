@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,41 +37,41 @@ void testArrayList_Remove() {
     list->add(d3);
 
     if(list->size() != 3) {
-      printf("---[ArrayList remvoe test1] [FAIL]--- \n");
+      TEST_FAIL("[ArrayList remvoe test1]");
       break;
     }
 
     int index = list->remove(d2);
     if(list->size() != 2 || index != 1) {
-      printf("---[ArrayList remvoe test2] [FAIL]--- \n");
+      TEST_FAIL("[ArrayList remvoe test2]");
       break;
     }
 
     auto ll_d1 = list->get(0);
     if(ll_d1->data1 != 1 || ll_d1->data2 != 2) {
-      printf("---[ArrayList remvoe test2] [FAIL]--- \n");
+      TEST_FAIL("[ArrayList remvoe test2]");
       break;
     }
 
     auto ll_d2 = list->get(1);
     if(ll_d2->data1 != 5 || ll_d2->data2 != 6) {
-      printf("---[ArrayList remvoe test3] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList remvoe test3]");
       break;
     }
 
     index = list->remove(d3);
     if(index != 1) {
-      printf("---[ArrayList remvoe test4] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList remvoe test4]");
       break;
     }
 
     index = list->remove(d1);
     if(index != 0) {
-      printf("---[ArrayList remvoe test5] [FAILED]--- \n");
+      TEST_FAIL("[ArrayList remvoe test5]");
       break;
     }
     break;
   }
 
-  printf("---[ArrayList remove test100] [OK]--- \n");
+  TEST_OK("[ArrayList remove test100]");
 }

@@ -3,6 +3,7 @@
 
 #include "AtomicLong.hpp"
 #include "Thread.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -11,16 +12,16 @@ void testGetAndAnd() {
       AtomicLong value = createAtomicLong(7);
       long v = value->getAndAnd(2);
       if(v != 7) {
-        printf("AtomicLong testGetAndAnd test2-------[FAILED],v is %ld \n",v);
+        TEST_FAIL("AtomicLong testGetAndAnd test2");
         break;
       }
 
       if(value->get() != 2) {
-        printf("AtomicLong testGetAndAnd test3-------[FAILED],v is %ld \n",value->get());
+        TEST_FAIL("AtomicLong testGetAndAnd test3");
         break;
       }
       break;
     }
 
-    printf("AtomicLong testGetAndAnd test100-------[OK] \n");
+    TEST_OK("AtomicLong testGetAndAnd test100");
 }
