@@ -12,6 +12,8 @@
 #include "Mutex.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -25,7 +27,7 @@ int testMutex_Lock() {
       t->lock(100);
       long result = watch->stop();
       if(result < 0 || result > 5) {
-        printf("---[TestMutex Lock case1] [FAIL]--- \n");
+        TEST_FAIL("[TestMutex Lock case1]");
         break;
       }
       break;
@@ -38,7 +40,7 @@ int testMutex_Lock() {
       t->lock(100);
       long result = watch->stop();
       if(result < 100 || result > 105) {
-        printf("---[TestMutex Lock case2] [FAIL]--- \n");
+        TEST_FAIL("[TestMutex Lock case2]");
         break;
       }
       break;
@@ -55,12 +57,12 @@ int testMutex_Lock() {
       long ret = t->lock(100);
       long result = watch->stop();
       if(ret != -WaitTimeout) {
-        printf("---[TestMutex Lock case3_1] [FAIL]---,ret is %d \n",ret);
+        TEST_FAIL("[TestMutex Lock case3_1]");
         break;
       }
 
       if(result < 100 || result > 105) {
-        printf("---[TestMutex Lock case3] [FAIL]---,result is %d \n",result);
+        TEST_FAIL("[TestMutex Lock case3]");
         break;
       }
       break;
@@ -79,16 +81,17 @@ int testMutex_Lock() {
 
       usleep(100*1000);
       if(count->get() != 0) {
-        printf("---[TestMutex Lock case4] [FAIL]--- \n");
+        TEST_FAIL("[TestMutex Lock case4]");
         break;
       }
       t->unlock();
       usleep(10*1000);
       if(count->get() != 1) {
-        printf("---[TestMutex Lock case5] [FAIL]--- \n");
+        TEST_FAIL("[TestMutex Lock case5]");
         break;
       }
       break;
     }
-    printf("---[TestMutex Lock case100] [OK]--- \n");
+    TEST_OK("[TestMutex Lock case100]");
+    return 0;
 }

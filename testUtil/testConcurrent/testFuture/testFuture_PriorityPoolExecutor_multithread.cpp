@@ -11,6 +11,7 @@
 #include "Math.hpp"
 #include "TaskResult.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -44,7 +45,7 @@ void testPriorityPoolExecutor_Multithread() {
     }
 
     if(sum != expectSum) {
-      printf("---[Future PriorityPoolExecutor Multithread case1 -------[FAILED] \n");
+      TEST_FAIL("[Future PriorityPoolExecutor Multithread case1");
       break;
     }
 
@@ -52,5 +53,5 @@ void testPriorityPoolExecutor_Multithread() {
     pool->awaitTermination();
     break;
   }
-  printf("---[Future PriorityPoolExecutor Multithread case100 -------[OK] \n");
+  TEST_OK("[Future PriorityPoolExecutor Multithread case100");
 }

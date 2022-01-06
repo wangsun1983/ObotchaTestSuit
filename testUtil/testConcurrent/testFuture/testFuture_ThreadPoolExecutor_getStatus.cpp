@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Math.hpp"
 #include "TaskResult.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,13 +30,13 @@ void testThreadPoolExecutor_getStatus() {
 
     pool->shutdown();
     if(f2->getStatus() != st(Future)::Cancel) {
-      printf("---[Future ThreadPoolExecutor getStatus case1 -------[FAILED] status is %d\n",f2->getStatus());
+      TEST_FAIL("[Future ThreadPoolExecutor getStatus case1");
       break;
     }
 
     pool->awaitTermination();
     if(f1->getStatus() != st(Future)::Complete) {
-      printf("---[Future ThreadPoolExecutor getStatus case2 -------[FAILED] status is %d\n",f1->getStatus());
+      TEST_FAIL("[Future ThreadPoolExecutor getStatus case2");
       break;
     }
 
@@ -55,7 +56,7 @@ void testThreadPoolExecutor_getStatus() {
     });
 
     if(f2->getStatus() != st(Future)::Waiting) {
-      printf("---[Future ThreadPoolExecutor getStatus case3 -------[FAILED] status is %d\n",f1->getStatus());
+      TEST_FAIL("[Future ThreadPoolExecutor getStatus case3");
       break;
     }
     pool->shutdown();
@@ -63,5 +64,5 @@ void testThreadPoolExecutor_getStatus() {
     break;
   }
 
-  printf("---[Future ThreadPoolExecutor getStatus case100 -------[OK] \n");
+  TEST_OK("[Future ThreadPoolExecutor getStatus case100");
 }

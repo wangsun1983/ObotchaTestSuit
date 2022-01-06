@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,16 +15,16 @@ void testConcurrentQueue_Clear() {
       list->add(createString("b"));
       list->add(createString("c"));
       if(list->size() != 3) {
-        printf("ConcurrentQueue clear test1-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue clear test1");
         break;
       }
 
       list->clear();
       if(list->size() != 0) {
-        printf("ConcurrentQueue clear test2-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue clear test2");
         break;
       }
       break;
     }
-    printf("ConcurrentQueue clear test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue clear test100");
 }

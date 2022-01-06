@@ -12,6 +12,8 @@
 #include "Mutex.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -32,12 +34,12 @@ void testMutex_TryLock() {
       int result = t->tryLock();
       long interval = watch->stop();
       if(result != -LockBusy) {
-        printf("---[TestMutex tryLock case1] [FAILED]--- \n");
+        TEST_FAIL("[TestMutex tryLock case1]");
         break;
       }
 
       if(interval > 5 || interval < 0) {
-        printf("---[TestMutex tryLock case2] [FAILED]--- \n");
+        TEST_FAIL("[TestMutex tryLock case2]");
         break;
       }
 
@@ -59,11 +61,11 @@ void testMutex_TryLock() {
       t->lock();
       long v = watch->stop();
       if(v < 100 || v > 105) {
-        printf("---[TestMutex tryLock case3] [FAILED]--- v is %ld \n",v);
+        TEST_FAIL("[TestMutex tryLock case3]");
         break;
       }
       break;
     }
 
-    printf("---[TestMutex tryLock case100] [OK]--- \n");
+    TEST_OK("[TestMutex tryLock case100]");
 }

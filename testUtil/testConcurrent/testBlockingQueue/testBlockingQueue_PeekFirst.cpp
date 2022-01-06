@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,12 +20,12 @@ void testBlockingQueuePeekFirst() {
 
         String v = list->peekFirst();
         if(v == nullptr || !v->equals("a")) {
-          printf("BlockingQueue PeekFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue PeekFirst test1");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingQueue PeekFirst test2-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue PeekFirst test2");
           break;
         }
         break;
@@ -35,16 +36,16 @@ void testBlockingQueuePeekFirst() {
 
       String v = list->peekFirst();
       if(v != nullptr) {
-        printf("BlockingQueue PeekFirst test3-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue PeekFirst test3");
         break;
       }
 
       if(list->size() != 0) {
-        printf("BlockingQueue PeekFirst test4-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue PeekFirst test4");
         break;
       }
       break;
     }
 
-    printf("BlockingQueue PeekFirst test100-------[OK] \n");
+    TEST_OK("BlockingQueue PeekFirst test100");
 }

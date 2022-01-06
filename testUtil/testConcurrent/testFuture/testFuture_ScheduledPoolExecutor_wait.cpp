@@ -12,6 +12,7 @@
 #include "TaskResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -31,7 +32,7 @@ void testScheduledPoolExecutor_Wait() {
       f1->wait();
       long time = watcher->stop();
       if(time < 200 || time > 205) {
-        printf("---[Future ScheduledThreadPool Wait case1 -------[FAILED] \n");
+        TEST_FAIL("[Future ScheduledThreadPool Wait case1");
         break;
       }
       pool->shutdown();
@@ -55,12 +56,12 @@ void testScheduledPoolExecutor_Wait() {
       long time = watcher->stop();
 
       if(time < 100 || time > 105) {
-        printf("---[Future ScheduledThreadPool Wait case2 -------[FAILED] \n");
+        TEST_FAIL("[Future ScheduledThreadPool Wait case2");
         break;
       }
 
       if(ret != -WaitTimeout) {
-        printf("---[Future ScheduledThreadPool Wait case2_1 -------[FAILED] \n");
+        TEST_FAIL("[Future ScheduledThreadPool Wait case2_1");
         break;
       }
       pool->shutdown();
@@ -85,7 +86,7 @@ void testScheduledPoolExecutor_Wait() {
     int ret = f1->wait(100);
     long time = watcher->stop();
     if(time < 0 || time > 5) {
-      printf("---[Future ScheduledThreadPool Wait case4 -------[FAILED] \n");
+      TEST_FAIL("[Future ScheduledThreadPool Wait case4");
       break;
     }
     pool->shutdown();
@@ -145,7 +146,7 @@ void testScheduledPoolExecutor_Wait() {
     latch->await();
     long result = watcher->stop();
     if(result < 195 || result > 205) {
-      printf("---[Future ScheduledThreadPool Wait case5 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future ScheduledThreadPool Wait case5");
       break;
     }
 
@@ -176,7 +177,7 @@ void testScheduledPoolExecutor_Wait() {
     f->wait();
     long result = watcher->stop();
     if(result < 0 || result > 15) {
-      printf("---[Future ScheduledThreadPool Wait case6 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future ScheduledThreadPool Wait case6");
       break;
     }
 
@@ -184,5 +185,5 @@ void testScheduledPoolExecutor_Wait() {
     break;
   }
 
-  printf("---[Future ScheduledThreadPool Wait case100 -------[OK] \n");
+  TEST_OK("[Future ScheduledThreadPool Wait case100");
 }

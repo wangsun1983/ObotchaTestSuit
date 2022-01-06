@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +18,7 @@ void testConcurrentQueue_PutLast() {
       if(ll->size() != 3 || !ll->get(0)->equals("a")
           || !ll->get(1)->equals("b")
           || !ll->get(2)->equals("c")) {
-            printf("ConcurrentQueue putLast test1-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue putLast test1");
             break;
           }
       break;
@@ -32,11 +33,11 @@ void testConcurrentQueue_PutLast() {
       if(ll->size() != 3 || ll->get(0) != 1
           || ll->get(1) != 2
           || ll->get(2) != 3) {
-            printf("ConcurrentQueue putLast test2-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue putLast test2");
             break;
           }
       break;
     }
 
-    printf("ConcurrentQueue putLast test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue putLast test100");
 }

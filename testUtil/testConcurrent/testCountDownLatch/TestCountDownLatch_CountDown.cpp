@@ -6,7 +6,8 @@
 #include "Thread.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
-
+#include "TestLog.hpp"
+#include "Error.hpp"
 using namespace obotcha;
 
 void testCountDownLatch_CountDown() {
@@ -22,7 +23,7 @@ void testCountDownLatch_CountDown() {
       latch->await();
       long result = watcher->stop();
       if(result < 100 || result > 105) {
-        printf("---[TestCountDownLatch CountDown case1] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch CountDown case1]");
         break;
       }
       break;
@@ -39,7 +40,7 @@ void testCountDownLatch_CountDown() {
       latch->await(200);
       long result = watcher->stop();
       if(result < 200 || result > 205) {
-        printf("---[TestCountDownLatch CountDown case2] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch CountDown case2]");
         break;
       }
       break;
@@ -48,21 +49,21 @@ void testCountDownLatch_CountDown() {
     while(1) {
       CountDownLatch latch = createCountDownLatch(2);
       if(latch->countDown() != 0) {
-        printf("---[TestCountDownLatch CountDown case3] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch CountDown case3]");
         break;
       }
 
       if(latch->countDown() != 0) {
-        printf("---[TestCountDownLatch CountDown case4] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch CountDown case4]");
         break;
       }
 
       if(latch->countDown() != -AlreadyDestroy) {
-        printf("---[TestCountDownLatch CountDown case5] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch CountDown case5]");
         break;
       }
       break;
     }
 
-    printf("---[TestCountDownLatch CountDown case100] [OK]--- \n");
+    TEST_OK("---[TestCountDownLatch CountDown case100]");
 }

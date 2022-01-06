@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Math.hpp"
 #include "TaskResult.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,7 +36,7 @@ void testCachedPoolExecutor_Cancel() {
       f2->cancel();
       usleep(150*1000);
       if(value != 222) {
-        printf("---[Future CachedPoolExecutor Cancel case2 -------[FAIL],value is %d \n",value);
+        TEST_FAIL("[Future CachedPoolExecutor Cancel case2");
         break;
       }
 
@@ -47,7 +48,7 @@ void testCachedPoolExecutor_Cancel() {
       }
 
       if(!isException) {
-        printf("---[Future CachedPoolExecutor Cancel case3 -------[FAIL] \n");
+        TEST_FAIL("[Future CachedPoolExecutor Cancel case3");
         break;
       }
       break;
@@ -63,12 +64,12 @@ void testCachedPoolExecutor_Cancel() {
     f1->cancel();
 
     if(value != 222) {
-      printf("---[Future CachedPoolExecutor Cancel case4 -------[FAIL] \n");
+      TEST_FAIL("[Future CachedPoolExecutor Cancel case4");
       break;
     }
 
     if(f1->getResult<int>() != 333) {
-      printf("---[Future CachedPoolExecutor Cancel case5 -------[FAIL] \n");
+      TEST_FAIL("[Future CachedPoolExecutor Cancel case5");
       break;
     }
     break;
@@ -77,5 +78,5 @@ void testCachedPoolExecutor_Cancel() {
   pool->shutdown();
   pool->awaitTermination();
 
-  printf("---[Future CachedPoolExecutor Cancel case100 -------[OK] \n");
+  TEST_OK("[Future CachedPoolExecutor Cancel case100");
 }

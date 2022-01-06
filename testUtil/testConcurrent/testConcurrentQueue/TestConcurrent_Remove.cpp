@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,13 +17,13 @@ void testConcurrentQueue_Remove() {
 
       int index = list->remove(createString("b"));
       if(index != 1) {
-        printf("ConcurrentQueue Remove test1-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue Remove test1");
         break;
       }
       ArrayList<String> ll = list->toArray();
       if(ll->size() != 2 || !ll->get(0)->equals("a")
           || !ll->get(1)->equals("c")) {
-            printf("ConcurrentQueue Remove test1_1-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue Remove test1_1");
             break;
           }
       break;
@@ -37,12 +38,12 @@ void testConcurrentQueue_Remove() {
       ArrayList<int> ll = list->toArray();
       if(ll->size() != 2 || ll->get(0)!= 1
           || ll->get(1) != 3) {
-            printf("ConcurrentQueue Remove test2-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue Remove test2");
             break;
       }
 
       if(index != 1) {
-        printf("ConcurrentQueue Remove test2_1-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue Remove test2_1");
         break;
       }
       break;
@@ -57,12 +58,12 @@ void testConcurrentQueue_Remove() {
       ArrayList<int> ll = list->toArray();
       if(ll->size() != 2 || ll->get(0)!= 2
           || ll->get(1) != 3) {
-            printf("ConcurrentQueue Remove test3_1-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue Remove test3_1");
             break;
       }
 
       if(index != 0) {
-        printf("ConcurrentQueue Remove test3-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue Remove test3");
         break;
       }
       break;
@@ -78,12 +79,12 @@ void testConcurrentQueue_Remove() {
       if(ll->size() != 3 || ll->get(0)!= 1
           || ll->get(1) != 2
           || ll->get(2) != 3) {
-            printf("ConcurrentQueue Remove test4-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue Remove test4");
             break;
       }
 
       if(index != -1) {
-        printf("ConcurrentQueue Remove test4-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue Remove test4");
         break;
       }
       break;
@@ -98,16 +99,16 @@ void testConcurrentQueue_Remove() {
       ArrayList<int> ll = list->toArray();
       if(ll->size() != 2 || ll->get(0)!= 1
           || ll->get(1) != 2) {
-            printf("ConcurrentQueue Remove test5-------[FAILED] \n");
+            TEST_FAIL("ConcurrentQueue Remove test5");
             break;
       }
 
       if(index != 2) {
-        printf("ConcurrentQueue Remove test6-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue Remove test6");
         break;
       }
       break;
     }
 
-    printf("ConcurrentQueue Remove test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue Remove test100");
 }

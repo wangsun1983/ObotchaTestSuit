@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -41,10 +42,10 @@ void testConcurrentQueue_MultiThread_Case1() {
       }
 
       if(sum != 16*result) {
-        printf("ConcurrentQueue MultiThread Case1 test1-------[FAILED],sum is %ld \n",sum);
+        TEST_FAIL("ConcurrentQueue MultiThread Case1 test1");
       }
       break;
     }
 
-    printf("ConcurrentQueue MultiThread Case1 test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue MultiThread Case1 test100");
 }

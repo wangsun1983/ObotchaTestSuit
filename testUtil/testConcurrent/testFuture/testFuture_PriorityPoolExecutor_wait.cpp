@@ -12,6 +12,7 @@
 #include "TaskResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,7 +36,7 @@ void testPriorityPoolExecutor_Wait() {
       long time = watcher->stop();
 
       if(time < 200 || time > 205) {
-        printf("---[Future PriorityThreadPool Wait case1 -------[FAILED] \n");
+        TEST_FAIL("[Future PriorityThreadPool Wait case1");
         break;
       }
       pool->shutdown();
@@ -59,12 +60,12 @@ void testPriorityPoolExecutor_Wait() {
       long time = watcher->stop();
 
       if(time < 100 || time > 105) {
-        printf("---[Future PriorityThreadPool Wait case2 -------[FAILED] \n");
+        TEST_FAIL("[Future PriorityThreadPool Wait case2");
         break;
       }
 
       if(ret != -WaitTimeout) {
-        printf("---[Future PriorityThreadPool Wait case2_1 -------[FAILED] \n");
+        TEST_FAIL("[Future PriorityThreadPool Wait case2_1");
         break;
       }
       pool->shutdown();
@@ -86,7 +87,7 @@ void testPriorityPoolExecutor_Wait() {
     int ret = f1->wait(100);
     long time = watcher->stop();
     if(time < 95 || time > 105) {
-      printf("---[Future PriorityThreadPool Wait case4 -------[FAILED] \n");
+      TEST_FAIL("[Future PriorityThreadPool Wait case4");
       break;
     }
     pool->shutdown();
@@ -145,7 +146,7 @@ void testPriorityPoolExecutor_Wait() {
     latch->await();
     long result = watcher->stop();
     if(result < 95 || result > 105) {
-      printf("---[Future PriorityThreadPool Wait case5 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future PriorityThreadPool Wait case5");
       break;
     }
 
@@ -174,7 +175,7 @@ void testPriorityPoolExecutor_Wait() {
     f->wait();
     long result = watcher->stop();
     if(result < 10 || result > 15) {
-      printf("---[Future PriorityThreadPool Wait case6 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future PriorityThreadPool Wait case6");
       break;
     }
 
@@ -182,5 +183,5 @@ void testPriorityPoolExecutor_Wait() {
     break;
   }
 
-  printf("---[Future PriorityThreadPool Wait case100 -------[OK] \n");
+  TEST_OK("[Future PriorityThreadPool Wait case100");
 }

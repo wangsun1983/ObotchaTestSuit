@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testBlockingQueueToArray() {
         if(ll->size() != 3 || !ll->get(0)->equals("a")
         || !ll->get(1)->equals("b")
         || !ll->get(2)->equals("c")) {
-          printf("BlockingQueue toArray test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue toArray test1");
           break;
         }
 
@@ -31,7 +32,7 @@ void testBlockingQueueToArray() {
         BlockingQueue<int> list = createBlockingQueue<int>(3);
         ArrayList<int> ll = list->toArray();
         if(ll->size() != 0) {
-          printf("BlockingQueue toArray test2-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue toArray test2");
           break;
         }
 
@@ -48,7 +49,7 @@ void testBlockingQueueToArray() {
         int start = 0;
         while(iterator->hasValue()) {
           if(iterator->getValue() != start) {
-            printf("BlockingQueue toArray test3-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue toArray test3");
             break;
           }
           start++;
@@ -57,5 +58,5 @@ void testBlockingQueueToArray() {
         break;
     }
 
-    printf("BlockingQueue destroy test100-------[OK] \n");
+    TEST_OK("BlockingQueue destroy test100");
 }

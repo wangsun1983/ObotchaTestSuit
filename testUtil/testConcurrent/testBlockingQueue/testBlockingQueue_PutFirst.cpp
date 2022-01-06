@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -28,7 +29,7 @@ void testBlockingQueuePutFirst() {
         long time2 = st(System)::currentTimeMillis();
 
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingQueue PutFirst test1-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingQueue PutFirst test1");
           break;
         }
 
@@ -41,7 +42,7 @@ void testBlockingQueuePutFirst() {
           auto v = iterator->getValue();
           auto v2 = list->takeFirst();
           if(!v->equals(v2)) {
-            printf("BlockingQueue PutFirst test2-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+            TEST_FAIL("BlockingQueue PutFirst test2");
             break;
           }
           iterator->next();
@@ -51,5 +52,5 @@ void testBlockingQueuePutFirst() {
     }
 
 
-    printf("BlockingQueue PutFirst test100-------[OK] \n");
+    TEST_OK("BlockingQueue PutFirst test100");
 }

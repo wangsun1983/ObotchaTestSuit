@@ -11,6 +11,7 @@
 #include "Math.hpp"
 #include "TaskResult.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,9 +23,9 @@ void testScheduledPoolExecutor_Multithread() {
     CountDownLatch latch = createCountDownLatch(32*1024);
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
-      //printf("trace2 \n");
+      //TEST_FAIL("trace2 \n");
       Future t = pool->submit(10,[&latch,i]{
-        //printf("thread_start \n");
+        //TEST_FAIL("thread_start \n");
         st(TaskResult)::set(i);
         latch->countDown();
       });
@@ -45,7 +46,7 @@ void testScheduledPoolExecutor_Multithread() {
     }
 
     if(sum != expectSum) {
-      printf("---[Future ScheduledPoolExecutor Multithread case1 -------[FAILED] \n");
+      TEST_FAIL("[Future ScheduledPoolExecutor Multithread case1");
       break;
     }
 
@@ -53,5 +54,5 @@ void testScheduledPoolExecutor_Multithread() {
     pool->awaitTermination();
     break;
   }
-  printf("---[Future ScheduledPoolExecutor Multithread case100 -------[OK] \n");
+  TEST_OK("[Future ScheduledPoolExecutor Multithread case100");
 }

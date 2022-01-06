@@ -46,4 +46,4 @@ libname	= testBarrier
 everything : $(libname)
 
 $(libname): $(link)
-	g++ *.cpp $(cflags) -o mytest $(external) $(sharelib)
+	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)

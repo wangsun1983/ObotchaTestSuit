@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Math.hpp"
 #include "TaskResult.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -33,7 +34,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       }
 
       if(!isException) {
-        printf("---[Future ThreadPoolExecutor GetResult Error case1 -------[FAILED] \n");
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult Error case1");
         break;
       }
       break;
@@ -50,7 +51,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       int result = f1->getResult<int>();
 
       if(result != 100 || value != 222) {
-        printf("---[Future ThreadPoolExecutor GetResult Error case2 -------[FAILED] \n");
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult Error case2");
         break;
       }
       break;
@@ -59,5 +60,5 @@ void testThreadPoolExecutor_GetResult_Error() {
   pool->shutdown();
   pool->awaitTermination();
 
-  printf("---[Future ThreadPoolExecutor GetResult Error case100 -------[OK] \n");
+  TEST_OK("[Future ThreadPoolExecutor GetResult Error case100");
 }

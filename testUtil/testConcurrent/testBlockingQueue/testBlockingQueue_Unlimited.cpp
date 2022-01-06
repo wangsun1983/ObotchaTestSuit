@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,12 +19,12 @@ void testBlockingQueueUnlimited() {
         }
 
         if(list->size() != 1024) {
-          printf("BlockingQueue unlimited capacity test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue unlimited capacity test1");
         }
 
         list->clear();
         if(list->size() != 0) {
-          printf("BlockingQueue unlimited capacity test2-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue unlimited capacity test2");
         }
 
         break;
@@ -40,17 +41,17 @@ void testBlockingQueueUnlimited() {
         String str = list->take();
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingQueue unlimited capacity-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingQueue unlimited capacity");
           break;
         }
 
         if(str == nullptr || !str->equals("a")) {
-          printf("BlockingQueue unlimited capacity test3-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue unlimited capacity test3");
           break;
         }
         break;
     }
 
 
-    printf("BlockingQueue destroy test100-------[OK] \n");
+    TEST_OK("BlockingQueue destroy test100");
 }

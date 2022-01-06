@@ -19,7 +19,6 @@ extern void testMutex_TryLock();
 extern void testMutex_UnLock();
 
 int main() {
-    printf("---[TestMutex Test Start]--- \n");
     testMutexInOneThread();
     testMutexNormal();
     testMutex_Lock();

@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Math.hpp"
 #include "TaskResult.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,7 +35,7 @@ void testScheduledPoolExecutor_Cancel() {
       f2->cancel();
       usleep(150*1000);
       if(value == 222) {
-        printf("---[Future ScheduledPoolExecutor Cancel case2 -------[FAIL],value is %d \n",value);
+        TEST_FAIL("[Future ScheduledPoolExecutor Cancel case2");
         break;
       }
 
@@ -42,7 +43,7 @@ void testScheduledPoolExecutor_Cancel() {
       int v = f2->getResult<int>();
 
       if(v != 100) {
-        printf("---[Future ScheduledPoolExecutor Cancel case3 -------[FAIL] \n");
+        TEST_FAIL("[Future ScheduledPoolExecutor Cancel case3");
         break;
       }
       break;
@@ -59,12 +60,12 @@ void testScheduledPoolExecutor_Cancel() {
     f1->cancel();
     usleep(200*1000);
     if(value != 222) {
-      printf("---[Future ScheduledPoolExecutor Cancel case4 -------[FAIL] \n");
+      TEST_FAIL("[Future ScheduledPoolExecutor Cancel case4");
       break;
     }
 
     if(f1->getResult<int>() != 333) {
-      printf("---[Future ScheduledPoolExecutor Cancel case5 -------[FAIL] \n");
+      TEST_FAIL("[Future ScheduledPoolExecutor Cancel case5");
       break;
     }
     break;
@@ -73,5 +74,5 @@ void testScheduledPoolExecutor_Cancel() {
   pool->shutdown();
   pool->awaitTermination();
 
-  printf("---[Future ScheduledPoolExecutor Cancel case100 -------[OK] \n");
+  TEST_OK("[Future ScheduledPoolExecutor Cancel case100");
 }

@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,11 +40,11 @@ void testBlockingQueueInt() {
         list->putFirst(6);
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) > 5005 ||(time2 - time1) < 5000 ) {
-            printf("BlockingQueue<int> putFirst test1-------[FAIL],value is %ld \n",time2 - time1);
+            TEST_FAIL("BlockingQueue<int> putFirst test1");
             break;
         }
 
-        printf("BlockingQueue<int> putFirst test2-------[OK] \n");
+        TEST_OK("BlockingQueue<int> putFirst test2");
         break;
     }
 
@@ -57,11 +58,11 @@ void testBlockingQueueInt() {
         for(int i = 0;i<5;i++) {
             int v = list->takeFirst();
             if(v != i) {
-                printf("BlockingQueue<int> putFirst test3-------[FAIL],v is %d i is %d\n",v,i);
+                TEST_FAIL("BlockingQueue<int> putFirst test3");
                 break;
             }
         }
-        printf("BlockingQueue<int> putFirst test4-------[OK] \n");
+        TEST_OK("BlockingQueue<int> putFirst test4");
         break;
     }
 
@@ -76,16 +77,16 @@ void testBlockingQueueInt() {
         }
         long time2 = st(System)::currentTimeMillis();
         if(!isException) {
-            printf("BlockingQueue<int> takeFirst test3-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue<int> takeFirst test3");
             break;
         }
 
         if((time2 - time1) > 105 || (time2 - time1) < 100) {
-            printf("BlockingQueue<int> takeFirst test3-------[FAIL],interval is %ld \n",time2-time1);
+            TEST_FAIL("BlockingQueue<int> takeFirst test3");
             break;
         }
 
-        printf("BlockingQueue<int> takeFirst test4-------[OK] \n");
+        TEST_OK("BlockingQueue<int> takeFirst test4");
         break;
     }
 

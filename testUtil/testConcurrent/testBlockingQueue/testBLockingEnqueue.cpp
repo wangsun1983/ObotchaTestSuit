@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -48,7 +49,7 @@ public:
     void run() {
         int i = 0;
         while(1) {
-            //printf("setvalue is %d \n",i);
+            //TEST_FAIL("setvalue is %d \n",i);
             EnqueueData d = createEnqueueData(i);
             mQueue->putFirst(d);
             mQueue->putFirst(d);
@@ -56,7 +57,7 @@ public:
             if(i == 50) {
                 EnqueueData nt;
                 mQueue->putLast(nt);
-                //printf("fvalue is %d \n",fvalue);
+                //TEST_FAIL("fvalue is %d \n",fvalue);
                 return;
             }
             i++;
@@ -82,7 +83,7 @@ public:
             if(d == nullptr) {
                 return;
             }
-            //printf("d->getValue is %d \n",d->getValue());
+            //TEST_FAIL("d->getValue is %d \n",d->getValue());
 
             value += d->getValue();
         }
@@ -113,11 +114,11 @@ void testEnqueueDequeue() {
         list->putFirst(createEnqueueData(5));
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 5000 || (time2 - time1) > 5005) {
-            printf("BlockingQueue putFirst test1-------[FAIL],value is %ld \n",time2 - time1);
+            TEST_FAIL("BlockingQueue putFirst test1");
             break;
         }
 
-        printf("BlockingQueue putFirst test2-------[OK] \n");
+        TEST_OK("BlockingQueue putFirst test2");
         break;
     }
 
@@ -131,35 +132,35 @@ void testEnqueueDequeue() {
 
         EnqueueData data1 = list->takeFirst();
         if(data1->getValue() != 5) {
-            printf("BlockingQueue putFirst test3-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test3");
             break;
         }
 
         data1 = list->takeFirst();
         if(data1->getValue() != 4) {
-            printf("BlockingQueue putFirst test4-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test4");
             break;
         }
 
         data1 = list->takeFirst();
         if(data1->getValue() != 3) {
-            printf("BlockingQueue putFirst test5-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test5");
             break;
         }
 
         data1 = list->takeFirst();
         if(data1->getValue() != 2) {
-            printf("BlockingQueue putFirst test6-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test6");
             break;
         }
 
         data1 = list->takeFirst();
         if(data1->getValue() != 1) {
-            printf("BlockingQueue putFirst test7-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test7");
             break;
         }
 
-        printf("BlockingQueue putFirst test8-------[OK] \n");
+        TEST_OK("BlockingQueue putFirst test8");
         break;
     }
 
@@ -167,11 +168,11 @@ void testEnqueueDequeue() {
         BlockingQueue<EnqueueData> list = createBlockingQueue<EnqueueData>(5);
         list->putFirst(nullptr);
         if(list->size() == 0) {
-            printf("BlockingQueue putFirst test9-------[FAIL] \n");
+            TEST_FAIL("BlockingQueue putFirst test9");
             break;
         }
 
-        printf("BlockingQueue putFirst test10-------[OK] \n");
+        TEST_OK("BlockingQueue putFirst test10");
         break;
     }
 
@@ -189,11 +190,11 @@ void testEnqueueDequeue() {
 
         int result = t2->getResult();
         if(result != 2550) {
-            printf("BlockingQueue putFirst test11-------[FAIL],result is %d \n",result);
+            TEST_FAIL("BlockingQueue putFirst test11");
             break;
         }
 
-        printf("BlockingQueue putFirst test12-------[OK] \n");
+        TEST_OK("BlockingQueue putFirst test12");
         break;
     }
 }

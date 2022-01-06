@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,12 +20,12 @@ void testBlockingQueueRemoveAt() {
 
         String v = list->removeAt(1);
         if(v == nullptr || !v->equals("b")) {
-          printf("BlockingQueue removeAt test1-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue removeAt test1");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingQueue removeAt test2-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue removeAt test2");
           break;
         }
         break;
@@ -40,7 +41,7 @@ void testBlockingQueueRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingQueue removeAt test3-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue removeAt test3");
           break;
         }
 
@@ -57,7 +58,7 @@ void testBlockingQueueRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingQueue removeAt test4-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue removeAt test4");
           break;
         }
 
@@ -75,12 +76,12 @@ void testBlockingQueueRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingQueue removeAt test5-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue removeAt test5");
           break;
         }
 
         break;
     }
 
-    printf("BlockingQueue removeAt test100-------[OK] \n");
+    TEST_OK("BlockingQueue removeAt test100");
 }

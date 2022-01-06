@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +18,7 @@ void testConcurrentQueue_Add() {
       for(int j = 0;j<1024;j++) {
         String v = list->get(j);
         if(v->toBasicInt() != j) {
-          printf("ConcurrentQueue add test1-------[FAILED],v is %d,j is %d \n",v->toBasicInt(),j);
+          TEST_FAIL("ConcurrentQueue add test1");
         }
       }
       break;
@@ -32,11 +33,11 @@ void testConcurrentQueue_Add() {
       for(int j = 0;j<1024;j++) {
         int v = list->get(j);
         if(v != j) {
-          printf("ConcurrentQueue add test2-------[FAILED],v is %d,j is %d \n",v,j);
+          TEST_FAIL("ConcurrentQueue add test2");
         }
       }
       break;
     }
 
-    printf("ConcurrentQueue add test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue add test100");
 }

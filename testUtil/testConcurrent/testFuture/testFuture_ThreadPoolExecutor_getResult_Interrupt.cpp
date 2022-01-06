@@ -11,6 +11,7 @@
 #include "Math.hpp"
 #include "TaskResult.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -43,12 +44,12 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
     long result = watcher->stop();
 
     if(result < 85 || result > 95) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case1 -------[FAILED] ,result is %ld\n",result);
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case1");
       break;
     }
 
     if(v != 100) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case2 -------[FAILED] ,v is %d\n",v);
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case2");
       break;
     }
 
@@ -84,17 +85,17 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
 
     long result = watcher->stop();
     if(result < 5 || result > 15) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case3 -------[FAILED] ,result is %ld\n",result);
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case3");
       break;
     }
 
     if(v != nullptr) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case4 -------[FAILED]\n");
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case4");
       break;
     }
 
     if(!isException) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case4_1 -------[FAILED]\n");
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case4_1");
       break;
     }
 
@@ -130,12 +131,12 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
 
     long result = watcher->stop();
     if(result < 5 || result > 15) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case5 -------[FAILED] ,result is %ld\n",result);
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case5");
       break;
     }
 
     if(!isException) {
-      printf("---[Future ThreadPoolExecutor GetResult Interrupt case6 -------[FAILED]\n");
+      TEST_FAIL("[Future ThreadPoolExecutor GetResult Interrupt case6");
       break;
     }
 
@@ -143,5 +144,5 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
     break;
   }
 
-  printf("---[Future ThreadPoolExecutor GetResult Interrupt case100 -------[OK] \n");
+  TEST_OK("[Future ThreadPoolExecutor GetResult Interrupt case100");
 }

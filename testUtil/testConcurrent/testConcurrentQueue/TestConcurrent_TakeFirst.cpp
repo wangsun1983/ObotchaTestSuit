@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +18,7 @@ void testConcurrentQueue_TakeFirst() {
       for(int i = 0;i < 3;i++) {
         auto v = list->takeFirst();
         if(v != ll->get(i)) {
-          printf("ConcurrentQueue takeFirst test1-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue takeFirst test1");
           break;
         }
       }
@@ -33,7 +34,7 @@ void testConcurrentQueue_TakeFirst() {
       for(int i = 0;i < 3;i++) {
         auto v = list->takeFirst();
         if(v != ll->get(i)) {
-          printf("ConcurrentQueue takeFirst test100-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue takeFirst test100");
           break;
         }
       }
@@ -50,11 +51,11 @@ void testConcurrentQueue_TakeFirst() {
       }
 
       if(!isException) {
-        printf("ConcurrentQueue takeFirst test100-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue takeFirst test100");
         break;
       }
       break;
     }
 
-    printf("ConcurrentQueue takeFirst test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue takeFirst test100");
 }

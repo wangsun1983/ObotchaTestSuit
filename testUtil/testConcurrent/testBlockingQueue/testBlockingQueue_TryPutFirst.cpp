@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,12 +20,12 @@ void testBlockingQueueTryPutFirst() {
 
         bool result = list->tryPutFirst(createString("d"));
         if(result) {
-          printf("BlockingQueue TryPutFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue TryPutFirst test1");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingQueue TryPutFirst test1_1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue TryPutFirst test1_1");
           break;
         }
         break;
@@ -45,7 +46,7 @@ void testBlockingQueueTryPutFirst() {
         auto v = iterator->getValue();
         auto v2 = list->takeFirst();
         if(!v->equals(v2)) {
-          printf("BlockingQueue TryPutFirst test2-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+          TEST_FAIL("BlockingQueue TryPutFirst test2");
           break;
         }
         iterator->next();
@@ -53,5 +54,5 @@ void testBlockingQueueTryPutFirst() {
       break;
     }
 
-    printf("BlockingQueue TryPutFirst test100-------[OK] \n");
+    TEST_OK("BlockingQueue TryPutFirst test100");
 }

@@ -6,7 +6,8 @@
 #include "Thread.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
-
+#include "TestLog.hpp"
+#include "Error.hpp"
 using namespace obotcha;
 
 void testCountDownLatch_MultiThread() {
@@ -23,7 +24,7 @@ void testCountDownLatch_MultiThread() {
       usleep(100*1000);
 
       if(l->await() != -AlreadyDestroy) {
-        printf("---[TestCountDownLatch MultiThread case1] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch MultiThread case1]");
         break;
       }
       break;
@@ -42,18 +43,18 @@ void testCountDownLatch_MultiThread() {
       }
 
       if(finishCount->get() != 0) {
-        printf("---[TestCountDownLatch MultiThread case2] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch MultiThread case2]");
         break;
       }
 
       l->countDown();
       usleep(100*1000);
       if(finishCount->get() != 15) {
-        printf("---[TestCountDownLatch MultiThread case3] [FAILED]---,value is %d \n",finishCount->get());
+        TEST_FAIL("---[TestCountDownLatch MultiThread case3]");
         break;
       }
       break;
     }
 
-    printf("---[TestCountDownLatch MultiThread case100] [OK]--- \n");
+    TEST_OK("---[TestCountDownLatch MultiThread case100]");
 }

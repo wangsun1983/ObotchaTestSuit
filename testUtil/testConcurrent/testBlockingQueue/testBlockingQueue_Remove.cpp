@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,28 +20,28 @@ void testBlockingQueueRemove() {
 
         list->remove(createString("b"));
         if(list->size() != 2) {
-          printf("BlockingQueue remove test1-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test1");
           break;
         }
 
         ArrayList<String> ll = list->toArray();
         if(ll->size() != 2) {
-          printf("BlockingQueue remove test2-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test2");
           break;
         }
 
         if(!ll->get(0)->equals("a") || !ll->get(1)->equals("c")) {
-          printf("BlockingQueue remove test3-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test3");
           break;
         }
 
         if(list->remove("f") != -1) {
-          printf("BlockingQueue remove test3_1-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test3_1");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingQueue remove test3_2-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test3_2");
           break;
         }
 
@@ -50,7 +51,7 @@ void testBlockingQueueRemove() {
     while(1) {
         BlockingQueue<String> list = createBlockingQueue<String>(3);
         if(list->remove(createString("a"))!= -1) {
-          printf("BlockingQueue remove test4-------[FAILED] \n");
+          TEST_FAIL("BlockingQueue remove test4");
           break;
         }
 
@@ -58,5 +59,5 @@ void testBlockingQueueRemove() {
     }
 
 
-    printf("BlockingQueue remove test100-------[OK] \n");
+    TEST_OK("BlockingQueue remove test100");
 }

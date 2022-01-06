@@ -11,6 +11,7 @@
 #include "Math.hpp"
 #include "TaskResult.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,12 +30,12 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
       int ret = f1->getResult<int>();
       long interval = watcher->stop();
       if(interval<200 || interval > 205) {
-        printf("---[Future ThreadPoolExecutor GetResult TimeWatch case1 -------[FAILED] interval is %ld \n",interval);
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult TimeWatch case1");
         break;
       }
 
       if(ret != 111) {
-        printf("---[Future ThreadPoolExecutor GetResult TimeWatch case2 -------[FAILED] \n");
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult TimeWatch case2");
         break;
       }
       break;
@@ -53,7 +54,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
       }
       long interval = watcher->stop();
       if(interval<200 || interval > 205) {
-        printf("---[Future ThreadPoolExecutor GetResult TimeWatch case3 -------[FAILED] interval is %ld \n",interval);
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult TimeWatch case3");
         break;
       }
 
@@ -74,7 +75,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
 
       long interval = watcher->stop();
       if(!isException || interval<100 || interval > 105) {
-        printf("---[Future ThreadPoolExecutor GetResult TimeWatch case4 -------[FAILED] interval is %ld \n",interval);
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult TimeWatch case4");
         break;
       }
 
@@ -98,7 +99,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
 
       long interval = watcher->stop();
       if(!isException || interval<100 || interval > 105 || ret != 0) {
-        printf("---[Future ThreadPoolExecutor GetResult TimeWatch case5 -------[FAILED] interval is %ld,ret is %d \n",interval,ret);
+        TEST_FAIL("[Future ThreadPoolExecutor GetResult TimeWatch case5");
         break;
       }
 
@@ -108,5 +109,5 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
   pool->shutdown();
   pool->awaitTermination();
 
-  printf("---[Future ThreadPoolExecutor GetResult TimeWatch case100 -------[OK] \n");
+  TEST_OK("[Future ThreadPoolExecutor GetResult TimeWatch case100");
 }

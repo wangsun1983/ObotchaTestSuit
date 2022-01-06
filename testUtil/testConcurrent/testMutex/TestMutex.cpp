@@ -11,6 +11,8 @@
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -23,14 +25,14 @@ public:
     }
 
     void run() {
-        //printf("Thread1 start \n");
+        //TEST_FAIL("Thread1 start \n");
         AutoLock l(mutex_t);
         //mutex_t->lock();
         //cond->wait(mutex_t);
-        //printf("Thread1 goto sleep \n");
+        //TEST_FAIL("Thread1 goto sleep \n");
         sleep(5);
         //mutex_t->unlock();
-        //printf("Thread1 end \n");
+        //TEST_FAIL("Thread1 end \n");
     }
 
 private:
@@ -46,13 +48,13 @@ public:
     }
 
     void run() {
-        //printf("Thread2 start \n");
+        //TEST_FAIL("Thread2 start \n");
         //cond->notify();
         AutoLock l(mutex_t);
         //mutex_t->lock();
-        //printf("Thread2 trace \n");
+        //TEST_FAIL("Thread2 trace \n");
         //mutex_t->unlock();
-        //printf("Thread2 end \n");
+        //TEST_FAIL("Thread2 end \n");
     }
 
 private:
@@ -68,13 +70,13 @@ public:
     }
 
     void run() {
-        //printf("Thread2 start \n");
+        //TEST_FAIL("Thread2 start \n");
         //cond->notify();
         AutoLock l(mutex_t,2000);
         //mutex_t->lock();
-        //printf("Thread2 trace \n");
+        //TEST_FAIL("Thread2 trace \n");
         //mutex_t->unlock();
-        //printf("Thread2 end \n");
+        //TEST_FAIL("Thread2 end \n");
     }
 
 private:
@@ -90,14 +92,14 @@ public:
     }
 
     void run() {
-        //printf("Thread2 start \n");
+        //TEST_FAIL("Thread2 start \n");
         //cond->notify();
         //AutoLock l(mutex_t,2000);
         mutex_t->tryLock();
         //mutex_t->lock();
-        //printf("Thread2 trace \n");
+        //TEST_FAIL("Thread2 trace \n");
         //mutex_t->unlock();
-        //printf("Thread2 end \n");
+        //TEST_FAIL("Thread2 end \n");
     }
 
 private:
@@ -108,7 +110,7 @@ int testMutexNormal() {
     //Mutex()
     while(1) {
         Mutex mutex = createMutex();
-        printf("---[TestMutex Test {construct()} case1] [OK]--- \n");
+        TEST_OK("[TestMutex Test {construct()} case1]");
         break;
     }
 
@@ -116,11 +118,11 @@ int testMutexNormal() {
     while(1) {
         Mutex mutex = createMutex("test");
         if(!mutex->toString()->equals("test")) {
-            printf("---[TestMutex Test {construct(String)} case1] [FAIL]--- \n");
+            TEST_FAIL("[TestMutex Test {construct(String)} case1]");
             break;
         }
 
-        printf("---[TestMutex Test {construct(String)} case2] [OK]--- \n");
+        TEST_OK("[TestMutex Test {construct(String)} case2]");
         break;
     }
 
@@ -137,11 +139,11 @@ int testMutexNormal() {
         mThread2->join();
         int v = st(System)::currentTimeMillis() - current;
         if(v >5005) {
-            printf("---[TestMutex Test {lock()} case1] [FAIL]--- \n");
+            TEST_FAIL("[TestMutex Test {lock()} case1]");
             break;
         }
 
-        printf("---[TestMutex Test {lock()} case2] [OK]--- \n");
+        TEST_OK("[TestMutex Test {lock()} case2]");
         break;
     }
 
@@ -157,11 +159,11 @@ int testMutexNormal() {
         mThread2->start();
         int v = st(System)::currentTimeMillis() - current;
         if(v > 2005) {
-            printf("---[TestMutex Test {lock(long)} case1] [FAIL]--- \n");
+            TEST_FAIL("[TestMutex Test {lock(long)} case1]");
             break;
         }
 
-        printf("---[TestMutex Test {lock(long)} case2] [OK]--- \n");
+        TEST_FAIL("[TestMutex Test {lock(long)} case2] [OK] \n");
         break;
     }
 #endif
@@ -171,11 +173,11 @@ int testMutexNormal() {
         Mutex t = createMutex();
         int ret = t->unlock();
         if(ret == 0) {
-            printf("---[TestMutex Test {unlock()} case1] [FAIL]--- \n");
+            TEST_FAIL("[TestMutex Test {unlock()} case1]");
             break;
         }
 
-        printf("---[TestMutex Test {unlock()} case2] [OK]--- \n");
+        TEST_OK("[TestMutex Test {unlock()} case2]");
         break;
     }
 
@@ -191,15 +193,16 @@ int testMutexNormal() {
         mThread2->join();
 
         int v = st(System)::currentTimeMillis() - current;
-        //printf("v is %d \n",v);
+        //TEST_FAIL("v is %d \n",v);
         if(v > 5) {
-            printf("---[TestMutex Test {tryLock()} case1] [FAIL]--- \n");
+            TEST_FAIL("[TestMutex Test {tryLock()} case1]");
             break;
         }
 
-        printf("---[TestMutex Test {tryLock()} case2] [OK]--- \n");
+        TEST_OK("[TestMutex Test {tryLock()} case2]");
         break;
     }
 
     sleep(10);
+    return 0;
 }

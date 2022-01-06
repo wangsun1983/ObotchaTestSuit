@@ -5,7 +5,8 @@
 #include "CountDownLatch.hpp"
 #include "Thread.hpp"
 #include "System.hpp"
-
+#include "TestLog.hpp"
+#include "Error.hpp"
 using namespace obotcha;
 
 void testCountDownLatch_Construct() {
@@ -18,12 +19,12 @@ void testCountDownLatch_Construct() {
       }
 
       if(!isException) {
-        printf("---[TestCountDownLatch Construct case1] [FAILED]--- \n");
+        TEST_FAIL("---[TestCountDownLatch Construct case1]");
         break;
       }
 
       break;
     }
 
-    printf("---[TestCountDownLatch Construct case100] [OK]--- \n");
+    TEST_OK("---[TestCountDownLatch Construct case100]");
 }

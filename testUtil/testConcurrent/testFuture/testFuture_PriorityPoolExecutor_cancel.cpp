@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Math.hpp"
 #include "TaskResult.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +37,7 @@ void testPriorityPoolExecutor_Cancel() {
       f2->cancel();
       usleep(150*1000);
       if(value != 222) {
-        printf("---[Future PriorityPoolExecutor Cancel case2 -------[FAIL],value is %d \n",value);
+        TEST_FAIL("[Future PriorityPoolExecutor Cancel case2");
         break;
       }
 
@@ -48,7 +49,7 @@ void testPriorityPoolExecutor_Cancel() {
       }
 
       if(!isException) {
-        printf("---[Future PriorityPoolExecutor Cancel case3 -------[FAIL] \n");
+        TEST_FAIL("[Future PriorityPoolExecutor Cancel case3");
         break;
       }
       pool->shutdown();
@@ -70,12 +71,12 @@ void testPriorityPoolExecutor_Cancel() {
     f1->cancel();
 
     if(value != 222) {
-      printf("---[Future PriorityPoolExecutor Cancel case4 -------[FAIL] \n");
+      TEST_FAIL("[Future PriorityPoolExecutor Cancel case4");
       break;
     }
 
     if(f1->getResult<int>() != 333) {
-      printf("---[Future PriorityPoolExecutor Cancel case5 -------[FAIL] \n");
+      TEST_FAIL("[Future PriorityPoolExecutor Cancel case5");
       break;
     }
     pool->shutdown();
@@ -106,7 +107,7 @@ void testPriorityPoolExecutor_Cancel() {
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
       if(f->getStatus() != st(Future)::Cancel) {
-        printf("---[Future PriorityPoolExecutor Cancel case6 -------[FAIL] \n");
+        TEST_FAIL("[Future PriorityPoolExecutor Cancel case6");
         break;
       }
       iterator->next();
@@ -154,9 +155,9 @@ void testPriorityPoolExecutor_Cancel() {
       iterator->next();
     }
 
-    printf("---[Future PriorityPoolExecutor Cancel case7 -------[OK],count is %d \n",count);
+    TEST_OK("[Future PriorityPoolExecutor Cancel case7");
     break;
   }
 
-  printf("---[Future PriorityPoolExecutor Cancel case100 -------[OK] \n");
+  TEST_OK("[Future PriorityPoolExecutor Cancel case100");
 }

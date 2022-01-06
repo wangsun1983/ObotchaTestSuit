@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,12 +22,12 @@ void testBlockingQueueTakeLast() {
 
         String v = list->takeLast();
         if(v == nullptr || !v->equals("c")) {
-          printf("BlockingQueue TakeLast test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue TakeLast test1");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingQueue TakeLast test2-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue TakeLast test2");
           break;
         }
         break;
@@ -44,21 +45,21 @@ void testBlockingQueueTakeLast() {
       String v = list->takeLast();
       long interval = watcher->stop();
       if(v == nullptr || !v->equals("a")) {
-        printf("BlockingQueue TakeLast test3-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue TakeLast test3");
         break;
       }
 
       if(interval < 100 || interval > 105) {
-        printf("BlockingQueue TakeLast test4-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue TakeLast test4");
         break;
       }
 
       if(list->size() != 0) {
-        printf("BlockingQueue TakeLast test5-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue TakeLast test5");
         break;
       }
       break;
     }
 
-    printf("BlockingQueue TakeLast test100-------[OK] \n");
+    TEST_OK("BlockingQueue TakeLast test100");
 }

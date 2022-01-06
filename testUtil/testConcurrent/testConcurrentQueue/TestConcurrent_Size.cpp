@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "ConcurrentQueue.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -11,13 +12,13 @@ void testConcurrentQueue_Size() {
     while(1) {
       ConcurrentQueue<int> queue = createConcurrentQueue<int>();
       if(queue->size() != 0) {
-          printf("ConcurrentQueue size test1-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue size test1");
           break;
       }
 
       queue->putFirst(1);
       if(queue->size() != 1) {
-          printf("ConcurrentQueue size test2-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue size test2");
           break;
       }
 
@@ -26,7 +27,7 @@ void testConcurrentQueue_Size() {
         queue2->putLast(i);
       }
       if(queue2->size() != 1024) {
-        printf("ConcurrentQueue size test3-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue size test3");
         break;
       }
 
@@ -36,13 +37,13 @@ void testConcurrentQueue_Size() {
     while(1) {
       ConcurrentQueue<String> queue = createConcurrentQueue<String>();
       if(queue->size() != 0) {
-          printf("ConcurrentQueue size test4-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue size test4");
           break;
       }
 
       queue->putFirst(createString("a"));
       if(queue->size() != 1) {
-          printf("ConcurrentQueue size test5-------[FAILED] \n");
+          TEST_FAIL("ConcurrentQueue size test5");
           break;
       }
 
@@ -52,11 +53,11 @@ void testConcurrentQueue_Size() {
       }
 
       if(queue2->size() != 1024) {
-        printf("ConcurrentQueue size test6-------[FAILED] \n");
+        TEST_FAIL("ConcurrentQueue size test6");
         break;
       }
 
       break;
     }
-    printf("ConcurrentQueue size test100-------[OK] \n");
+    TEST_OK("ConcurrentQueue size test100");
 }

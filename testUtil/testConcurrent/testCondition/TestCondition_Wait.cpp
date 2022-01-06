@@ -8,6 +8,8 @@
 #include "AutoLock.hpp"
 #include "Integer.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -27,11 +29,11 @@ void testConditionWait() {
 
       usleep(1000*200);
       if(result < 100 || result > 105) {
-        printf("Condition Wait Case1 test1-------[FAILED],result is %ld\n",result);
+        TEST_FAIL("Condition Wait Case1 test1");
         break;
       }
 
-      printf("Condition Wait Case1 test2-------[OK] \n");
+      TEST_OK("Condition Wait Case1 test2");
       break;
     }
 
@@ -42,15 +44,15 @@ void testConditionWait() {
       watch->start();
       int ret = c->wait(mMutex,300);
       if(ret != -WaitTimeout) {
-        printf("Condition Wait Case1 test3-------[FAILED] \n");
+        TEST_FAIL("Condition Wait Case1 test3");
         break;
       }
       long interval = watch->stop();
       if(interval > 305 || interval < 300) {
-        printf("Condition Wait Case1 test4-------[FAILED],interval is %ld \n",interval);
+        TEST_FAIL("Condition Wait Case1 test4");
         break;
       }
-      printf("Condition Wait Case1 test5-------[OK],interval is %ld \n",interval);
+      TEST_OK("Condition Wait Case1 test5");
       break;
     }
 
@@ -69,11 +71,11 @@ void testConditionWait() {
       c->wait(mMutex);
       result = watch->stop();
       if(result < 100 || result > 105) {
-        printf("Condition Wait Case1 test6-------[FAILED] \n");
+        TEST_FAIL("Condition Wait Case1 test6");
         break;
       }
 
-      printf("Condition Wait Case1 test7-------[OK] \n");
+      TEST_OK("Condition Wait Case1 test7");
       break;
     }
 }

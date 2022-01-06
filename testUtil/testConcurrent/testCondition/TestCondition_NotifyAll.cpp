@@ -8,6 +8,7 @@
 #include "AutoLock.hpp"
 #include "Integer.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,7 +22,7 @@ void testConditionNotifyAll() {
         AutoLock l(mMutex);
         int ret = c->wait(mMutex);
         if(ret != 0) {
-          printf("Condition Notify Case1 test1-------[FAILED],ret is %d \n",ret);
+          TEST_FAIL("Condition Notify Case1 test1");
           return;
         }
 
@@ -33,7 +34,7 @@ void testConditionNotifyAll() {
         AutoLock l(mMutex);
         int ret = c->wait(mMutex);
         if(ret != 0) {
-          printf("Condition NotifyAll Case1 test2-------[FAILED] \n");
+          TEST_FAIL("Condition NotifyAll Case1 test2");
           return;
         }
 
@@ -44,16 +45,16 @@ void testConditionNotifyAll() {
       c->notifyAll();
       usleep(100*1000);
       if(v->get() != 2) {
-        printf("Condition NotifyAll Case1 test3-------[FAILED] \n");
+        TEST_FAIL("Condition NotifyAll Case1 test3");
       }
       c->notify();
 
       usleep(100*1000);
       if(v->get() != 2) {
-        printf("Condition NotifyAll Case1 test4-------[FAILED] \n");
+        TEST_FAIL("Condition NotifyAll Case1 test4");
       }
 
-      printf("Condition NotifyAll Case1 test5-------[OK] \n");
+      TEST_OK("Condition NotifyAll Case1 test5");
       break;
     }
 

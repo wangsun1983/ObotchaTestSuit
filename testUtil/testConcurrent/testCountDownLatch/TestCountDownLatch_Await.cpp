@@ -6,6 +6,8 @@
 #include "Thread.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -22,7 +24,7 @@ void testCountDownLatch_Await() {
       latch->await(100);
       long result = watcher->stop();
       if(result < 100 || result > 105) {
-        printf("---[TestCountDownLatch await case1] [FAILED]---,result is %ld \n",result);
+        TEST_FAIL("---[TestCountDownLatch await case1]");
         break;
       }
 
@@ -31,7 +33,7 @@ void testCountDownLatch_Await() {
       latch->await(100);
       result = watcher->stop();
       if(result > 5) {
-        printf("---[TestCountDownLatch await case2] [FAILED]---,result is %ld \n",result);
+        TEST_FAIL("---[TestCountDownLatch await case2]");
         break;
       }
       break;
@@ -39,5 +41,5 @@ void testCountDownLatch_Await() {
 
 
 
-    printf("---[TestCountDownLatch CountDown case100] [OK]--- \n");
+    TEST_OK("---[TestCountDownLatch CountDown case100]");
 }

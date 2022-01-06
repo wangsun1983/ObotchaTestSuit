@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -62,9 +63,9 @@ void testMultiThreadQueue() {
     }
 
     if(count->get() != 32*1024*16) {
-      printf("BlockingQueue testMultiThreadQueue test1-------[FAIL] \n");
+      TEST_FAIL("BlockingQueue testMultiThreadQueue test1");
     } else {
-      printf("BlockingQueue testMultiThreadQueue test1-------[OK] \n");
+      TEST_OK("BlockingQueue testMultiThreadQueue test1");
     }
 
 }

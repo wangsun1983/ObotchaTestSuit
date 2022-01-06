@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,12 +20,12 @@ void testBlockingQueueTryPutLast() {
 
         bool result = list->tryPutLast(createString("d"));
         if(result) {
-          printf("BlockingQueue tryPutLast test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue tryPutLast test1");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingQueue tryPutLast test1_1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue tryPutLast test1_1");
           break;
         }
         break;
@@ -37,7 +38,7 @@ void testBlockingQueueTryPutLast() {
       list->tryPutLast(createString("c"));
       list->tryPutLast(createString("d"));
       if(list->size() != 3) {
-        printf("BlockingQueue tryPutLast test2-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue tryPutLast test2");
         break;
       }
 
@@ -50,7 +51,7 @@ void testBlockingQueueTryPutLast() {
         auto v = iterator->getValue();
         auto v2 = list->takeFirst();
         if(!v->equals(v2)) {
-          printf("BlockingQueue tryPutLast test3-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+          TEST_FAIL("BlockingQueue tryPutLast test3");
           break;
         }
         iterator->next();
@@ -64,11 +65,11 @@ void testBlockingQueueTryPutLast() {
       list->putLast(createString("e"));
       ArrayList<String> ll2 = list->toArray();
       if(ll2->size() != 3 || !ll2->get(0)->equals("b")|| !ll2->get(1)->equals("c")|| !ll2->get(2)->equals("e")) {
-        printf("BlockingQueue tryPutLast test4-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue tryPutLast test4");
         break;
       }
       break;
     }
 
-    printf("BlockingQueue tryPutLast test100-------[OK] \n");
+    TEST_OK("BlockingQueue tryPutLast test100");
 }

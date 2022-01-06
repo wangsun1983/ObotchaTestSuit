@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +18,7 @@ void testBlockingQueueTryTakeLast() {
         BlockingQueue<String> list = createBlockingQueue<String>(3);
         String v = list->tryTakeLast();
         if(v != nullptr) {
-          printf("BlockingQueue tryTakeLast test1-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue tryTakeLast test1");
           break;
         }
 
@@ -34,7 +35,7 @@ void testBlockingQueueTryTakeLast() {
       }
 
       if(!isException) {
-        printf("BlockingQueue tryTakeLast test2-------[FAIL] \n");
+        TEST_FAIL("BlockingQueue tryTakeLast test2");
         break;
       }
       break;
@@ -49,17 +50,17 @@ void testBlockingQueueTryTakeLast() {
         String v2 = list->tryTakeLast();
         String v3 = list->tryTakeLast();
         if(v1 == nullptr || v2 == nullptr || v3 != nullptr) {
-          printf("BlockingQueue tryTakeLast test3-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue tryTakeLast test3");
           break;
         }
 
         if(!v1->equals("b") || !v2->equals("a")) {
-          printf("BlockingQueue tryTakeLast test4-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue tryTakeLast test4");
           break;
         }
 
         break;
     }
 
-    printf("BlockingQueue tryTakeLast test100-------[OK] \n");
+    TEST_OK("BlockingQueue tryTakeLast test100");
 }

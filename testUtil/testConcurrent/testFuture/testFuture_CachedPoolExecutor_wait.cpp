@@ -12,6 +12,7 @@
 #include "TaskResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +37,7 @@ void testCachedPoolExecutor_Wait() {
       long time = watcher->stop();
 
       if(time < 200 || time > 205) {
-        printf("---[Future CahcedPoolExecutor Wait case1 -------[FAILED] \n");
+        TEST_FAIL("[Future CahcedPoolExecutor Wait case1");
         break;
       }
       pool->shutdown();
@@ -61,12 +62,12 @@ void testCachedPoolExecutor_Wait() {
       long time = watcher->stop();
 
       if(time < 100 || time > 105) {
-        printf("---[Future CahcedPoolExecutor Wait case2 -------[FAILED] \n");
+        TEST_FAIL("[Future CahcedPoolExecutor Wait case2");
         break;
       }
 
       if(ret != -WaitTimeout) {
-        printf("---[Future CahcedPoolExecutor Wait case2_1 -------[FAILED] \n");
+        TEST_FAIL("[Future CahcedPoolExecutor Wait case2_1");
         break;
       }
       pool->shutdown();
@@ -91,7 +92,7 @@ void testCachedPoolExecutor_Wait() {
     int ret = f1->wait(100);
     long time = watcher->stop();
     if(time < 95 || time > 105) {
-      printf("---[Future CahcedPoolExecutor Wait case4 -------[FAILED] \n");
+      TEST_FAIL("[Future CahcedPoolExecutor Wait case4");
       break;
     }
     pool->shutdown();
@@ -151,7 +152,7 @@ void testCachedPoolExecutor_Wait() {
     latch->await();
     long result = watcher->stop();
     if(result < 95 || result > 105) {
-      printf("---[Future CahcedPoolExecutor Wait case5 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future CahcedPoolExecutor Wait case5");
       break;
     }
 
@@ -183,7 +184,7 @@ void testCachedPoolExecutor_Wait() {
     f->wait();
     long result = watcher->stop();
     if(result < 10 || result > 15) {
-      printf("---[Future CahcedPoolExecutor Wait case6 -------[FAILED],result is %ld \n",result);
+      TEST_FAIL("[Future CahcedPoolExecutor Wait case6");
       break;
     }
 
@@ -191,5 +192,5 @@ void testCachedPoolExecutor_Wait() {
     break;
   }
 
-  printf("---[Future CahcedPoolExecutor Wait case100 -------[OK] \n");
+  TEST_OK("[Future CahcedPoolExecutor Wait case100");
 }

@@ -6,6 +6,7 @@
 #include "BlockingQueue.hpp"
 #include "Integer.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -26,17 +27,17 @@ void testBlockingQueueClear() {
         list->put(createString("d"));
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingQueue clear test1-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingQueue clear test1");
           break;
         }
 
         if(list->size() != 1) {
-          printf("BlockingQueue clear test2-------[FAIL] \n");
+          TEST_FAIL("BlockingQueue clear test2");
           break;
         }
 
         break;
     }
 
-    printf("BlockingQueue destroy test100-------[OK] \n");
+    TEST_OK("BlockingQueue destroy test100");
 }

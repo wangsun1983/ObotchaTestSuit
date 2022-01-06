@@ -9,6 +9,8 @@
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +20,7 @@ int testMutexInOneThread() {
         Mutex m = createMutex();
         m->lock();
         m->lock();
-        printf("---[TestMutex TestMutexInOneThread case1] [Success]--- \n");
+        TEST_OK("[TestMutex TestMutexInOneThread case1]");
         break;
     }
 
@@ -26,7 +28,8 @@ int testMutexInOneThread() {
         Mutex m = createMutex();
         m->tryLock();
         m->lock();
-        printf("---[TestMutex TestMutexInOneThread case2] [Success]--- \n");
+        TEST_OK("[TestMutex TestMutexInOneThread case2]");
         break;
     }
+    return 0;
 }
