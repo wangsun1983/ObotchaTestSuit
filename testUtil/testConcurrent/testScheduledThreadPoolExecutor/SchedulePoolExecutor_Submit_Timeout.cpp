@@ -13,6 +13,7 @@
 #include "ThreadScheduledPoolExecutor.hpp"
 #include "Long.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +37,7 @@ void testSubmitTimeout() {
     long result = watch->stop();
 
     if(result < 0 || result > 55) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTimeout case1] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTimeout case1]");
       break;
     }
     pool->shutdown();
@@ -61,7 +62,7 @@ void testSubmitTimeout() {
 
     long result = watch->stop();
     if(result < 0 || result > 5) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTimeout case2] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTimeout case2]");
       break;
     }
     pool->shutdown();
@@ -69,5 +70,5 @@ void testSubmitTimeout() {
     break;
   }
 
-  printf("---[ScheduledThreadPoolExecutor SubmitTimeout case100] [OK]--- \n");
+  TEST_OK("[ScheduledThreadPoolExecutor SubmitTimeout case100]");
 }

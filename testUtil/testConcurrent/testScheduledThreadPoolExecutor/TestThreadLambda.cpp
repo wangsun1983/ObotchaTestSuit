@@ -10,6 +10,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,22 +21,20 @@ int testThreadLambda() {
         long time2 = st(System)::currentTimeMillis();
 
         t->submit(5000,[&time1]() {
-            printf("testThreadLambda inner log1 \n");
             time1 = st(System)::currentTimeMillis();
-            printf("testThreadLambda inner log2 \n");
         });
 
         sleep(6);
         if(time2 - time1 > 5005 || time1 - time2 > 5005) {
-            printf("---[testThreadLambda value case1] [FAIL]--- time2 is %ld,time1 is %ld\n",time2,time1);
+            TEST_FAIL("[testThreadLambda value case1]");
             break;
         }
-        printf("---[testThreadLambda value case2] [OK]--- \n");
+        TEST_OK("[testThreadLambda value case2]");
         break;
     }
-    printf("testThreadLambda inner start shutdown \n");
     t->shutdown();
-    printf("testThreadLambda inner start shutdown1 \n");
     sleep(10);
-    printf("testThreadLambda inner start shutdown3 \n");
+    TEST_OK("testThreadLambda inner shutdown");
+
+    return 0;
 }

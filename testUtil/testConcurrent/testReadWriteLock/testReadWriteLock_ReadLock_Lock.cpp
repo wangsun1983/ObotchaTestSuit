@@ -7,6 +7,7 @@
 #include "System.hpp"
 #include "AtomicInteger.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -40,7 +41,7 @@ void testReadLock_Lock() {
     t2->join();
 
     if(value->get() != 3) {
-      printf("---[TestReadLock ReadLock Lock case1] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadLock Lock case1]");
       break;
     }
     break;
@@ -55,11 +56,11 @@ void testReadLock_Lock() {
     r2->lock();
     long v = watcher->stop();
     if(v > 5 || v < 0) {
-      printf("---[TestReadLock ReadLock Lock case2] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadLock Lock case2]");
       break;
     }
     break;
   }
 
-  printf("---[TestReadLock ReadLock Lock case100] [OK]--- \n");
+  TEST_FAIL("[TestReadLock ReadLock Lock case100] [OK] \n");
 }

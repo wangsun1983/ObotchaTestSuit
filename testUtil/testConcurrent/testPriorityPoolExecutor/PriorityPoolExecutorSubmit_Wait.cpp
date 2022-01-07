@@ -11,6 +11,7 @@
 #include "Error.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +37,7 @@ void testSubmitWait() {
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestPriorityPoolExecutor SubmitWait Test case1] [FAILED]--- result is %ld\n",result);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitWait Test case1]");
       break;
     }
 
@@ -65,7 +66,7 @@ void testSubmitWait() {
     });
     long result = watch->stop();
     if(result < 0 || result > 5) {
-      printf("---[TestPriorityPoolExecutor SubmitWait Test case2] [FAILED]--- result is %ld\n",result);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitWait Test case2]");
       break;
     }
 
@@ -93,7 +94,7 @@ void testSubmitWait() {
 
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestPriorityPoolExecutor SubmitWait Test case3] [FAILED]--- result is %ld\n",result);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitWait Test case3]");
       break;
     }
 
@@ -101,6 +102,6 @@ void testSubmitWait() {
     pool->awaitTermination();
     break;
   }
-  printf("---[TestPriorityPoolExecutor SubmitWait Test case100] [OK]--- \n");
+  TEST_OK("[TestPriorityPoolExecutor SubmitWait Test case100]");
 
 }

@@ -8,6 +8,8 @@
 #include "SpinLock.hpp"
 #include "AutoLock.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -28,12 +30,12 @@ int testSpinlockTryLock() {
 		int ret = l->tryLock();
 		long v = watcher->stop();
 		if(v < 0 || v > 5) {
-			printf("---[TestSpinlock TryLock case1] [FAILED]--- \n");
+			TEST_FAIL("[TestSpinlock TryLock case1]");
 			break;
 		}
 
 		if(ret != -LockBusy) {
-			printf("---[TestSpinlock TryLock case2] [FAILED]--- \n");
+			TEST_FAIL("[TestSpinlock TryLock case2]");
 			break;
 		}
 
@@ -54,12 +56,13 @@ int testSpinlockTryLock() {
 		l->lock();
 		long v = watcher->stop();
 		if(v < 100 || v > 105) {
-			printf("---[TestSpinlock TryLock case3] [FAILED]---,v is %d \n",v);
+			TEST_FAIL("[TestSpinlock TryLock case3]");
 			break;
 		}
 		t->join();
 		break;
 	}
 
-	printf("---[TestSpinlock TryLock case100] [OK]--- \n");
+	TEST_OK("[TestSpinlock TryLock case100]");
+	return 0;
 }

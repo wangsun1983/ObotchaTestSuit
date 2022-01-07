@@ -14,6 +14,7 @@
 #include "Long.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,7 +35,7 @@ void testAwaitTermination() {
     pool->awaitTermination();
     long result = watch->stop();
     if(result < 0 || result > 5) {
-      printf("---[ScheduledThreadPoolExecutor awaitTermination case1] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor awaitTermination case1]");
     }
     break;
   }
@@ -53,7 +54,7 @@ void testAwaitTermination() {
     pool->awaitTermination();
     long result = watch->stop();
     if(result < 100 || result > 205) {
-      printf("---[ScheduledThreadPoolExecutor awaitTermination case2] [FAILED]--- ,result is %ld\n",result);
+      TEST_FAIL("[ScheduledThreadPoolExecutor awaitTermination case2]");
     }
     break;
   }
@@ -72,7 +73,7 @@ void testAwaitTermination() {
     pool->awaitTermination(50);
     long result = watch->stop();
     if(result < 50 || result > 55) {
-      printf("---[ScheduledThreadPoolExecutor awaitTermination case3] [FAILED]--- ,result is %ld\n",result);
+      TEST_FAIL("[ScheduledThreadPoolExecutor awaitTermination case3]");
     }
     break;
   }
@@ -90,7 +91,7 @@ void testAwaitTermination() {
     pool->awaitTermination(50);
     long result = watch->stop();
     if(result < 0 || result > 5) {
-      printf("---[ScheduledThreadPoolExecutor awaitTermination case4] [FAILED]--- ,result is %ld\n",result);
+      TEST_FAIL("[ScheduledThreadPoolExecutor awaitTermination case4]");
     }
     break;
   }
@@ -110,9 +111,9 @@ void testAwaitTermination() {
 
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[ScheduledThreadPoolExecutor awaitTermination case5] [FAILED]--- ,result is %ld\n",result);
+      TEST_FAIL("[ScheduledThreadPoolExecutor awaitTermination case5]");
     }
     break;
   }
-  printf("---[ScheduledThreadPoolExecutor awaitTermination case100] [OK]--- \n");
+  TEST_OK("[ScheduledThreadPoolExecutor awaitTermination case100]");
 }

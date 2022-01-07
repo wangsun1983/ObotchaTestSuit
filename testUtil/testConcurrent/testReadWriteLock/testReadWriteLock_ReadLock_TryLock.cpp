@@ -7,6 +7,8 @@
 #include "System.hpp"
 #include "AtomicInteger.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +22,7 @@ void testReadLock_TryLock() {
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
       if(ret != -LockBusy) {
-        printf("---[TestReadLock ReadLock TryLock case1] [FAIL]--- \n");
+        TEST_FAIL("[TestReadLock ReadLock TryLock case1]");
       }
       value->incrementAndGet();
     });
@@ -28,7 +30,7 @@ void testReadLock_TryLock() {
     usleep(1000);
 
     if(value->get() != 1) {
-      printf("---[TestReadLock ReadLock TryLock case2] [FAIL]--- \n");
+      TEST_FAIL("[TestReadLock ReadLock TryLock case2]");
     }
     break;
   }
@@ -40,7 +42,7 @@ void testReadLock_TryLock() {
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
       if(ret != 0) {
-        printf("---[TestReadLock ReadLock TryLock case3] [FAIL]--- ret is %d\n",ret);
+        TEST_FAIL("[TestReadLock ReadLock TryLock case3]");
       }
       value->incrementAndGet();
     });
@@ -48,10 +50,10 @@ void testReadLock_TryLock() {
     usleep(1000);
 
     if(value->get() != 1) {
-      printf("---[TestReadLock ReadLock TryLock case4] [FAIL]--- \n");
+      TEST_FAIL("[TestReadLock ReadLock TryLock case4]");
     }
     break;
   }
 
-  printf("---[TestReadLock ReadLock TryLock case100] [OK]--- \n");
+  TEST_OK("[TestReadLock ReadLock TryLock case100]");
 }

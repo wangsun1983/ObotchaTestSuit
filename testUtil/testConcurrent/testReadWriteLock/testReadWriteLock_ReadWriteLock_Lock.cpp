@@ -7,6 +7,7 @@
 #include "System.hpp"
 #include "AtomicInteger.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -50,12 +51,12 @@ void testReadWriteLock_Lock() {
     long v = watcher->stop();
 
     if(value->get() != 3) {
-      printf("---[TestReadLock ReadWriteLock Lock case1] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadWriteLock Lock case1]");
       break;
     }
 
     if(v < 300 || v > 305) {
-      printf("---[TestReadLock ReadWriteLock Lock case2] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadWriteLock Lock case2]");
       break;
     }
 
@@ -99,12 +100,12 @@ void testReadWriteLock_Lock() {
     long v = watcher->stop();
 
     if(value->get() != 3) {
-      printf("---[TestReadLock ReadWriteLock Lock case3] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadWriteLock Lock case3]");
       break;
     }
 
     if(v < 100 || v > 105) {
-      printf("---[TestReadLock ReadWriteLock Lock case4] [FAILED]--- \n");
+      TEST_FAIL("[TestReadLock ReadWriteLock Lock case4]");
       break;
     }
 
@@ -116,9 +117,9 @@ void testReadWriteLock_Lock() {
     rwLock->getWriteLock()->lock();
     rwLock->getWriteLock()->lock();
     rwLock->getReadLock()->lock();
-    printf("---[TestReadLock ReadWriteLock Lock case5] [OK]--- \n");
+    TEST_OK("[TestReadLock ReadWriteLock Lock case5]");
     break;
   }
 
-  printf("---[TestReadLock ReadWriteLock Lock case100] [OK]--- \n");
+  TEST_OK("[TestReadLock ReadWriteLock Lock case100]");
 }

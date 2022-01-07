@@ -11,6 +11,7 @@
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -89,17 +90,17 @@ void testSubmitMultiThread() {
     }
 
     if(sum1 != count1) {
-      printf("---[TestPriorityPoolExecutor MultiThread Test case1] [FAILED]--- sum1 is %d,count1 is %d\n",sum1,count1);
+      TEST_FAIL("[TestPriorityPoolExecutor MultiThread Test case1]");
       //break;
     }
 
     if(sum2 != count2) {
-      printf("---[TestPriorityPoolExecutor MultiThread Test case2] [FAILED]--- sum2 is %d,count2 is %d\n",sum2,count2);
+      TEST_FAIL("[TestPriorityPoolExecutor MultiThread Test case2]");
       //break;
     }
 
     if(sum3 != count3) {
-      printf("---[TestPriorityPoolExecutor MultiThread Test case3] [FAILED]--- sum3 is %d,count3 is %d\n",sum3,count3);
+      TEST_FAIL("[TestPriorityPoolExecutor MultiThread Test case3]");
       //break;
     }
 
@@ -108,5 +109,5 @@ void testSubmitMultiThread() {
     break;
   }
 
-  printf("---[TestPriorityPoolExecutor SubmitPriority Test case100] [OK]--- \n");
+  TEST_OK("[TestPriorityPoolExecutor SubmitPriority Test case100]");
 }

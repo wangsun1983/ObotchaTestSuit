@@ -11,23 +11,24 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "ThreadScheduledPoolExecutor.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 DECLARE_CLASS(MyReleaseTest) IMPLEMENTS(Runnable) {
 public:
     _MyReleaseTest() {
-        //printf("MyReleaseTest is %lx \n",this);
+        //TEST_FAIL("MyReleaseTest is %lx \n",this);
     }
 
     void run() {
-        //printf("MyReleaseTest running1 \n");
+        //TEST_FAIL("MyReleaseTest running1 \n");
         sleep(1);
-        //printf("MyReleaseTest running2 \n");
+        //TEST_FAIL("MyReleaseTest running2 \n");
     }
 
     void onInterrupt() {
-        //printf("MyReleaseTest interrupt \n");
+        //TEST_FAIL("MyReleaseTest interrupt \n");
     }
 
     ~_MyReleaseTest() {
@@ -45,22 +46,22 @@ int ReleaseTest() {
             for(int i = 0; i < 50;i++) {
                 pool->submit(100,createMyReleaseTest());
             }
-            //printf("test1 pool size is %d \n",pool->getStrongCount());
+            //TEST_FAIL("test1 pool size is %d \n",pool->getStrongCount());
             sleep(2);
-            //printf("test2 pool size is %d \n",pool->getStrongCount());
+            //TEST_FAIL("test2 pool size is %d \n",pool->getStrongCount());
             pool->shutdown();
-            //printf("test3 pool count is %d \n",pool->getStrongCount());
+            //TEST_FAIL("test3 pool count is %d \n",pool->getStrongCount());
         }
-        printf("---[ScheduledThreadPoolExecutor Test {Release} case6] [OK]--- \n");
+        TEST_OK("[ScheduledThreadPoolExecutor Test {Release} case6]");
         break;
     }
 
 
     while(1) {
-        //printf("start another test \n");
+        //TEST_FAIL("start another test \n");
 
         {
-//printf("start another test1 \n");
+//TEST_FAIL("start another test1 \n");
 
             ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
             for(int i = 0; i < 50;i++) {
@@ -69,26 +70,23 @@ int ReleaseTest() {
 
             sleep(3);
 
-            //printf("start another test2 \n");
+            //TEST_FAIL("start another test2 \n");
 
             pool->shutdown();
-            //printf("start another test3 \n");
+            //TEST_FAIL("start another test3 \n");
 
             sleep(5);
 
             pool = nullptr;
 
-            //printf("MyReleaseTest is %d \n",st(MyReleaseTest)::getDebugReferenceCount());
-            //printf("Thread is %d \n",st(Thread)::getDebugReferenceCount());
-
-            printf("start another test4 \n");
-
+            //TEST_FAIL("MyReleaseTest is %d \n",st(MyReleaseTest)::getDebugReferenceCount());
+            //TEST_FAIL("Thread is %d \n",st(Thread)::getDebugReferenceCount());
         }
         sleep(50);
 
 
-        printf("---[ScheduledThreadPoolExecutor Test {Release} case10] [OK]--- \n");
+        TEST_OK("[ScheduledThreadPoolExecutor Test {Release} case10]");
         break;
     }
-
+    return 0;
 }

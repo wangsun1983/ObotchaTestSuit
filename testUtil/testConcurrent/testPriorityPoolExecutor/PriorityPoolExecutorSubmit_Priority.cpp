@@ -11,6 +11,7 @@
 #include "Error.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -47,12 +48,12 @@ void testSubmitPriority() {
 
     usleep(200*1000);
     if(task2time > task1time || (task1time - task2time) > 25 || (task1time - task2time) < 20) {
-      printf("---[TestPriorityPoolExecutor SubmitPriority Test case1] [FAILED]--- interval %ld\n",task1time - task2time);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitPriority Test case1]");
       break;
     }
 
     if(task2time > task3time || (task3time - task2time) > 15) {
-      printf("---[TestPriorityPoolExecutor SubmitPriority Test case2] [FAILED]--- interval is %ld\n",task3time - task2time);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitPriority Test case2]");
       break;
     }
 
@@ -93,12 +94,12 @@ void testSubmitPriority() {
 
     usleep(200*1000);
     if(task2time > task1time || (task1time - task2time) > 15 || (task1time - task2time) < 10) {
-      printf("---[TestPriorityPoolExecutor SubmitPriority Test case2] [FAILED]--- interval %ld\n",task1time - task2time);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitPriority Test case2]");
       break;
     }
 
     if(task3time > task2time || (task2time - task3time) > 15 || (task2time - task3time) < 10) {
-      printf("---[TestPriorityPoolExecutor SubmitPriority Test case3] [FAILED]--- interval %ld\n",task2time - task3time);
+      TEST_FAIL("[TestPriorityPoolExecutor SubmitPriority Test case3]");
       break;
     }
 
@@ -107,6 +108,6 @@ void testSubmitPriority() {
     break;
   }
 
-  printf("---[TestPriorityPoolExecutor SubmitPriority Test case100] [OK]--- \n");
+  TEST_OK("[TestPriorityPoolExecutor SubmitPriority Test case100]");
 
 }

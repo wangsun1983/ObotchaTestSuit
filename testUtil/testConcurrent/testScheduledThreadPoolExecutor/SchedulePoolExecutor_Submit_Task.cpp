@@ -14,6 +14,7 @@
 #include "Long.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,7 +40,7 @@ void testSubmitTask() {
     long result = watch->stop();
 
     if(result < 100 || result > 105) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTask case1] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case1]");
       break;
     }
     pool->shutdown();
@@ -63,7 +64,7 @@ void testSubmitTask() {
     latch->await(300);
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTask case2] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case2]");
       break;
     }
     pool->shutdown();
@@ -87,7 +88,7 @@ void testSubmitTask() {
     latch->await(300);
     long result = watch->stop();
     if(result < 100 || result > 105 ) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTask case3] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case3]");
       break;
     }
     pool->shutdown();
@@ -111,12 +112,12 @@ void testSubmitTask() {
     latch->await(300);
     long result = watch->stop();
     if(result < 300 || result > 305) {
-      printf("---[ScheduledThreadPoolExecutor SubmitTask case4] [FAILED]--- \n");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case4]");
       break;
     }
     pool->shutdown();
     pool->awaitTermination();
     break;
   }
-  printf("---[ScheduledThreadPoolExecutor SubmitTask case100] [OK]--- \n");
+  TEST_OK("[ScheduledThreadPoolExecutor SubmitTask case100]");
 }

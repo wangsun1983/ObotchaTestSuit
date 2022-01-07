@@ -12,6 +12,7 @@
 #include "Error.hpp"
 #include "ThreadScheduledPoolExecutor.hpp"
 #include "Long.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -25,7 +26,7 @@ public:
     }
 
     void onInterrupt() {
-        //printf("MyLoopSubmit interrupt \n");
+        //TEST_FAIL("MyLoopSubmit interrupt \n");
     }
 };
 
@@ -41,7 +42,7 @@ public:
     }
 
     void onInterrupt() {
-        //printf("MyLoopSubmit interrupt \n");
+        //TEST_FAIL("MyLoopSubmit interrupt \n");
     }
 };
 
@@ -52,12 +53,10 @@ int scheduleloopsubmit() {
     for(int i = 0; i < 32*1024;i++) {
         pool->submit(0,createMyLoopSubmit());
     }
-    printf("finish submit cost %ld \n",st(System)::currentTimeMillis() - time);
-
 
     sleep(1);
     if(myloopvalue->get() != 32*1024) {
-        printf("---[ScheduledThreadPoolExecutor LoopSubmit case1],value is %d [FAIL]--- \n",myloopvalue->get());
+        TEST_FAIL("[ScheduledThreadPoolExecutor LoopSubmit case1]");
     }
     pool->shutdown();
 
@@ -71,7 +70,7 @@ int scheduleloopsubmit() {
     sleep(5);
 
     if(myloopvalue->get() != 32*1024) {
-        printf("---[ScheduledThreadPoolExecutor LoopSubmit case2],value is %d [FAIL]--- \n",myloopvalue->get());
+        TEST_FAIL("[ScheduledThreadPoolExecutor LoopSubmit case2]");
     }
     pool->shutdown();
 
@@ -86,16 +85,17 @@ int scheduleloopsubmit() {
 
     sleep(5);
     if(currentTimeList->size() != 32*1024) {
-        printf("---[ScheduledThreadPoolExecutor LoopSubmit case3],size is %d [FAIL]--- \n",currentTimeList->size());
+        TEST_FAIL("[ScheduledThreadPoolExecutor LoopSubmit case3]");
     }
 
     for(int i = 0;i < 32*1024;i++) {
         long v = currentTimeList->get(i);
         if((v - time) > 200) {
-           printf("---[ScheduledThreadPoolExecutor LoopSubmit case4],i is %d,time is %ld [FAIL]--- \n",i,v-time);
+           TEST_FAIL("[ScheduledThreadPoolExecutor LoopSubmit case4]");
            //break;
         }
     }
 #endif
-    printf("---[ScheduledThreadPoolExecutor LoopSubmit case100] [OK]--- \n");
+    TEST_OK("[ScheduledThreadPoolExecutor LoopSubmit case100]");
+    return 0;
 }
