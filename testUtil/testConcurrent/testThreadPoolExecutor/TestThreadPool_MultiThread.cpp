@@ -12,6 +12,7 @@
 #include "Error.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -92,17 +93,17 @@ void testThreadPool_MultiThread() {
     }
 
     if(sum1 != count1) {
-      printf("---[ThreadPoolExecutor MultiThread Test case1] [FAILED]--- sum1 is %d,count1 is %d\n",sum1,count1);
+      TEST_FAIL("[ThreadPoolExecutor MultiThread Test case1] sum1 is %d,count1 is %d",sum1,count1);
       //break;
     }
 
     if(sum2 != count2) {
-      printf("---[ThreadPoolExecutor MultiThread Test case2] [FAILED]--- sum2 is %d,count2 is %d\n",sum2,count2);
+      TEST_FAIL("[ThreadPoolExecutor MultiThread Test case2] sum2 is %d,count2 is %d",sum2,count2);
       //break;
     }
 
     if(sum3 != count3) {
-      printf("---[ThreadPoolExecutor MultiThread Test case3] [FAILED]--- sum3 is %d,count3 is %d\n",sum3,count3);
+      TEST_FAIL("[ThreadPoolExecutor MultiThread Test case3] sum3 is %d,count3 is %d",sum3,count3);
       //break;
     }
 
@@ -111,5 +112,5 @@ void testThreadPool_MultiThread() {
     break;
   }
 
-  printf("---[ThreadPoolExecutor MultiThread test100] [OK]--- \n");
+  TEST_OK("[ThreadPoolExecutor MultiThread test100]");
 }

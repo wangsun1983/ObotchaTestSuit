@@ -3,6 +3,7 @@
 
 #include "HashSet.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testHashContains() {
     set->add(createString("abc2"));
     set->add(createString("abc3"));
     if(!set->contains(createString("abc1"))) {
-        printf("HashSet Contains test1-------[FAIL] \n");
+        TEST_FAIL("HashSet Contains test1");
     }
 
     if(set->contains(createString("abcd"))) {
-        printf("HashSet Contains test2-------[FAIL] \n");
+        TEST_FAIL("HashSet Contains test2");
     }
 
-    printf("HashSet Contains test100-------[OK] \n");
+    TEST_OK("HashSet Contains test100");
 }

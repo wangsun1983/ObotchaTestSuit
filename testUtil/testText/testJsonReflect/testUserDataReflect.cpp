@@ -13,6 +13,7 @@
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -86,15 +87,15 @@ void testUserDataReflect() {
           data2->uint32Data != 105 ||
           data2->uint64Data != 107 ||
           !data2->boolData) {
-            printf("---[JsonReflect UserData Reflect Test case1] [FAILED]--- \n");
+            TEST_FAIL("[JsonReflect UserData Reflect Test case1]  ");
       }
 
       if(st(Math)::compareDouble(data2->doubleData,100.10) != st(Math)::AlmostEqual) {
-          printf("---[JsonReflect UserData Reflect Test case1_1] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect UserData Reflect Test case1_1]  ");
       }
 
       if(st(Math)::compareFloat(data2->floatData,101.10) != st(Math)::AlmostEqual) {
-          printf("---[JsonReflect UserData Reflect Test case1_2] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect UserData Reflect Test case1_2]  ");
       }
       break;
     }
@@ -132,7 +133,7 @@ void testUserDataReflect() {
         data->floatObjData == nullptr ||
         data->doubleObjData == nullptr ||
         data->byteObjData == nullptr) {
-          printf("---[JsonReflect UserData Reflect Test case2] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect UserData Reflect Test case2]  ");
         }
 
       if(data->intObjData->toValue() != 100 ||
@@ -143,17 +144,17 @@ void testUserDataReflect() {
         data->uint64ObjData->toValue() != 105 ||
         !data->boolObjData->toValue() ||
         data->byteObjData->toValue() != 23) {
-          printf("---[JsonReflect UserData Reflect Test case3] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect UserData Reflect Test case3]  ");
         }
 
         if(st(Math)::compareFloat(data->floatObjData->toValue(),102.10) != st(Math)::AlmostEqual) {
-            printf("---[JsonReflect UserData Reflect Test case3_1] [FAILED]--- \n");
+            TEST_FAIL("[JsonReflect UserData Reflect Test case3_1]  ");
         }
 
         if(st(Math)::compareDouble(data->doubleObjData->toValue(),103.20) != st(Math)::AlmostEqual) {
-            printf("---[JsonReflect UserData Reflect Test case3_2] [FAILED]--- \n");
+            TEST_FAIL("[JsonReflect UserData Reflect Test case3_2]  ");
         }
         break;
     }
-    printf("---[JsonReflect UserData Reflect Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect UserData Reflect Test case100]");
 }

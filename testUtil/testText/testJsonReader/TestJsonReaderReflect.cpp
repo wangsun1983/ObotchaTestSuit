@@ -8,8 +8,9 @@
 #include "File.hpp"
 #include "Reflect.hpp"
 
-
 #include "Log.hpp"
+#include "TestLog.hpp"
+
 
 using namespace obotcha;
 
@@ -25,5 +26,6 @@ int testreflect() {
     //MyReflectData data = mReader->reflect<st(MyReflectData)>();
     MyReflectData data = createMyReflectData();
     mReader->get()->reflectTo(data);
-    std::cout<<"a is "<<data->a<<";d is "<<data->d;
+    //std::cout<<"a is "<<data->a<<";d is "<<data->d;
+    return 0;
 }

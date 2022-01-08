@@ -10,13 +10,14 @@
 #include "System.hpp"
 #include "ExecutorBuilder.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 DECLARE_CLASS(MyDestroyTest) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        //printf("i am running123 \n");
+        //TEST_FAIL("i am running123 ");
         sleep(5);
     }
 
@@ -36,11 +37,11 @@ void testThreadDestroy() {
             }
             sleep(10);
         //} catch(ExecutorDestructorException e) {
-        //    printf("---[ThreadPoolExecutor Test {destroy()} special case1] [FAIL]--- \n");
+        //    TEST_FAIL("[ThreadPoolExecutor Test {destroy()} special case1] [FAIL] ");
         //    break;
         //}
 
-        printf("---[ThreadPoolExecutor Test {destroy()} special case1] [OK]--- \n");
+        TEST_FAIL("[ThreadPoolExecutor Test {destroy()} special case1] [OK] ");
         break;
     }
 

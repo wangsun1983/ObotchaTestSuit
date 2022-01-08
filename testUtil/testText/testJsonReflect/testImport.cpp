@@ -14,6 +14,7 @@
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
 #include <vector>
+#include "TestLog.hpp"
 
 using namespace obotcha;
 DECLARE_CLASS(BaseImportData) {
@@ -21,7 +22,7 @@ public:
   int baseData1;
 
   void dump() {
-    printf("    [BaseImportData] baseData1 is %d \n",baseData1);
+    TEST_FAIL("[BaseImportData] baseData1 is %d ",baseData1);
   }
   DECLARE_REFLECT_FIELD(BaseImportData,baseData1)
 };
@@ -34,18 +35,18 @@ public:
   ArrayList<BaseImportData> subData4;
 
   void dump() {
-      printf("  [SubImportData] subData1 is %d \n",subData1);
-      printf("  [SubImportData] subData2 is %ld \n",subData2);
-      printf("  [SubImportData] subData3 is %s \n",subData3->toChars());
-      printf("  [SubImportData] start dump subData4 \n");
+      TEST_FAIL("  [SubImportData] subData1 is %d ",subData1);
+      TEST_FAIL("  [SubImportData] subData2 is %ld ",subData2);
+      TEST_FAIL("  [SubImportData] subData3 is %s ",subData3->toChars());
+      TEST_FAIL("  [SubImportData] start dump subData4 ");
       ListIterator<BaseImportData> iterator = subData4->getIterator();
       while(iterator->hasValue()) {
         BaseImportData vv = iterator->getValue();
         vv->dump();
-        printf("\n");
+        TEST_FAIL("");
         iterator->next();
       }
-      printf("  [SubImportData] finish dump subData4 \n");
+      TEST_FAIL("  [SubImportData] finish dump subData4 ");
   }
 
   DECLARE_REFLECT_FIELD(SubImportData,subData1,subData2,subData3,subData4)
@@ -59,21 +60,21 @@ public:
   ArrayList<SubImportData> data4;
 
   void dump() {
-    printf("[ImportData] data1 is %d \n",data1);
-    printf("[ImportData] data2 is %ld \n",data2);
-    printf("[ImportData] start dump data3 \n");
+    TEST_FAIL("[ImportData] data1 is %d ",data1);
+    TEST_FAIL("[ImportData] data2 is %ld ",data2);
+    TEST_FAIL("[ImportData] start dump data3 ");
     data3->dump();
-    printf("[ImportData] finish dump data3 \n");
+    TEST_FAIL("[ImportData] finish dump data3 ");
 
-    printf("[ImportData] start dump data4 \n");
+    TEST_FAIL("[ImportData] start dump data4 ");
     ListIterator<SubImportData> iterator = data4->getIterator();
     while(iterator->hasValue()) {
         SubImportData vv = iterator->getValue();
         vv->dump();
-        printf("\n");
+        TEST_FAIL("");
         iterator->next();
     }
-    printf("[ImportData] finish dump subData4 \n");
+    TEST_FAIL("[ImportData] finish dump subData4 ");
   }
   DECLARE_REFLECT_FIELD(ImportData,data1,data2,data3,data4)
 };
@@ -122,7 +123,7 @@ void testImport() {
     ImportData info = createImportData();
     value->reflectTo(info);
 
-    //printf("data1 is %d \n",info->data1);
-    //printf("data2 is %ld \n",info->data2);
-    info->dump();
+    //TEST_FAIL("data1 is %d ",info->data1);
+    //TEST_FAIL("data2 is %ld ",info->data2);
+    //info->dump();
 }

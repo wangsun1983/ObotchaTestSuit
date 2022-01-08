@@ -12,6 +12,7 @@
 #include "Uint64.hpp"
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -38,25 +39,25 @@ void testHashMapUint64Uint64() {
       HashMap<Uint64,Uint64> maps2 = createHashMap<Uint64,Uint64>();
       value2->reflectTo(maps2);
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case1]  ");
         break;
       }
 
       auto v1 = maps2->get(createUint64(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case2]  ");
         break;
       }
 
       auto v2 = maps2->get(createUint64(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case3]  ");
         break;
       }
 
       auto v3 = maps2->get(createUint64(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case4] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case4]  ");
         break;
       }
 
@@ -83,30 +84,30 @@ void testHashMapUint64Uint64() {
       value2->reflectTo(data2);
       HashMap<Uint64,Uint64> maps2 = data2->maps;
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case5]  ");
         break;
       }
 
       auto v1 = maps2->get(createUint64(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case6]  ");
         break;
       }
 
       auto v2 = maps2->get(createUint64(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case7] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case7]  ");
         break;
       }
 
       auto v3 = maps2->get(createUint64(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Uint64 Uint64 Test case8] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Uint64 Uint64 Test case8]  ");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect HashMap Uint64 Uint64 Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect HashMap Uint64 Uint64 Test case100]");
 }

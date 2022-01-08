@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Boolean.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testHashMapStringString() {
       map->put("a","this is a");
       std::string v = map->get("a");
       if(v != "this is a") {
-        printf("---[HashMap<std::string,std::string>} test1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<std::string,std::string>} test1]");
         break;
       }
       break;
@@ -31,7 +32,7 @@ void testHashMapStringString() {
       }
 
       if(!isException) {
-        printf("---[HashMap<std::string,std::string>} test2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<std::string,std::string>} test2]");
       }
       break;
     }
@@ -42,7 +43,7 @@ void testHashMapStringString() {
       map->put("a","this is not a");
       map->put("b","this is b");
       if(map->size() != 2) {
-        printf("---[HashMap<std::string,std::string>} test3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<std::string,std::string>} test3]");
         break;
       }
 
@@ -50,11 +51,11 @@ void testHashMapStringString() {
       std::string v2 = map->get("b");
 
       if(v1 != "this is not a" || v2 != "this is b") {
-        printf("---[HashMap<std::string,std::string>} test3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<std::string,std::string>} test3]");
         break;
       }
       break;
     }
 
-    printf("---[HashMap<std::string,std::string>} test100] [OK]--- \n");
+    TEST_OK("[HashMap<std::string,std::string>} test100]");
 }

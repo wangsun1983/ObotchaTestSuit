@@ -11,6 +11,7 @@
 #include "Reflect.hpp"
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -48,7 +49,7 @@ void testArrayListInteger() {
       value2->reflectTo(list2);
 
       if(list2->size() != 5) {
-        printf("---[JsonReflect ArrayList Integer Test case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Integer Test case1]  ");
         break;
       }
 
@@ -57,7 +58,7 @@ void testArrayListInteger() {
         ||list2->get(2)->toValue() != 3
         ||list2->get(3)->toValue() != 4
         ||list2->get(4)->toValue() != 5) {
-          printf("---[JsonReflect ArrayList Integer Test case2] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect ArrayList Integer Test case2]  ");
           break;
       }
       break;
@@ -96,7 +97,7 @@ void testArrayListInteger() {
         ||list2->list1->get(2)->toValue() != 3
         ||list2->list1->get(3)->toValue() != 4
         ||list2->list1->get(4)->toValue() != 5) {
-          printf("---[JsonReflect ArrayList Integer Test case3] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect ArrayList Integer Test case3]  ");
           break;
       }
 
@@ -105,11 +106,11 @@ void testArrayListInteger() {
         ||list2->list2->get(2)->toValue() != 8
         ||list2->list2->get(3)->toValue() != 9
         ||list2->list2->get(4)->toValue() != 10) {
-          printf("---[JsonReflect ArrayList Integer Test case4] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect ArrayList Integer Test case4]  ");
           break;
       }
       break;
     }
 
-    printf("---[JsonReflect ArrayList Integer Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect ArrayList Integer Test case100]");
 }

@@ -6,21 +6,22 @@
 #include "JsonValue.hpp"
 
 #include "Log.hpp"
+#include "TestLog.hpp"
+
 
 using namespace obotcha;
 
 int arrayDataTest() {
-    printf("---[JsonReader Array Data Test Start]--- \n");
     //String getString(String tag);
     while(1) {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_01.json"));
       JsonValue value = reader->get();
       if(value != nullptr && value->size() != 0) {
-        printf("---[JsonReader SimpleRead {data test} case1] [FAILED]---,value size is %d \n",value->size());
+        TEST_FAIL("[JsonReader SimpleRead {data test} case1] [FAILED],value size is %d ",value->size());
         break;
       }
 
-      printf("---[JsonReader SimpleRead {data test} case5] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case5]  ");
       break;
     }
 
@@ -28,32 +29,32 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case6]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case7] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case7]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case8] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case8]");
         break;
       }
 
       if(value->size() != 1) {
-        printf("---[JsonReader SimpleRead {data test} case9] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case9]");
         break;
       }
 
       Integer v = value->getIntegerAt(0);
       if(v == nullptr || v->toValue() != 1) {
-        printf("---[JsonReader SimpleRead {data test} case10] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case10]");
         break;
       }
 
-      printf("---[JsonReader SimpleRead {data test} case11] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case11]  ");
       break;
     }
 
@@ -61,22 +62,22 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case12] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case12]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case13] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case13]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case14] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case14]");
         break;
       }
 
       if(value->size() != 5) {
-        printf("---[JsonReader SimpleRead {data test} case15] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case15]");
         break;
       }
 
@@ -90,11 +91,11 @@ int arrayDataTest() {
         ||v2 == nullptr || v2->toValue() != 3
         ||v3 == nullptr || v3->toValue() != 4
         ||v4 == nullptr || v4->toValue() != 5) {
-        printf("---[JsonReader SimpleRead {data test} case16] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case16]");
         break;
       }
 
-      printf("---[JsonReader SimpleRead {data test} case17] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case17]  ");
       break;
     }
 
@@ -102,22 +103,22 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case18] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case18]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case19] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case19]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case20] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case20]");
         break;
       }
 
       if(value->size() != 4) {
-        printf("---[JsonReader SimpleRead {data test} case21] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case21]");
         break;
       }
 
@@ -129,16 +130,16 @@ int arrayDataTest() {
         ||v2 == nullptr || v2->toValue() != 12.3
         ||v1 == nullptr || !v1->equals("abc")
         ||v3 == nullptr || v3->toValue() != -4) {
-        printf("---[JsonReader SimpleRead {data test} case22] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case22]");
         break;
       }
 
       if(value->getIntegerAt(4) != nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case22_1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case22_1]");
         break;
       }
 
-      printf("---[JsonReader SimpleRead {data test} case23] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case23]  ");
       break;
     }
 
@@ -146,35 +147,35 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case24] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case24]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case25] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case25]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case25] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case25]");
         break;
       }
 
       if(value->size() != 99) {
-        printf("---[JsonReader SimpleRead {data test} case26] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case26]");
         break;
       }
 
       for(int i = 0;i < 99;i++) {
         Integer vv = value->getIntegerAt(i);
         if(vv == nullptr || vv->toValue() != (i+1)) {
-          printf("case27 vv is %d,index is %d \n",vv->toValue(),i);
-          printf("---[JsonReader SimpleRead {data test} case27] [FAILED]--- \n");
+          TEST_FAIL("case27 vv is %d,index is %d ",vv->toValue(),i);
+          TEST_FAIL("[JsonReader SimpleRead {data test} case27]");
           break;
         }
       }
 
-      printf("---[JsonReader SimpleRead {data test} case28] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case28]  ");
       break;
     }
 
@@ -182,22 +183,22 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_06.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case29] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case29]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case30] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case30]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case31] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case31]");
         break;
       }
 
       if(value->size() != 4) {
-        printf("---[JsonReader SimpleRead {data test} case32] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case32]");
         break;
       }
 
@@ -210,12 +211,12 @@ int arrayDataTest() {
         ||str2 == nullptr || !str2->equals("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
         ||str3 == nullptr || !str3->equals("ccccccccccccccccccccccc")
         ||str4 == nullptr || !str4->equals("dddddddddddddddddddddddddddddddddddddddddddddddddddd")) {
-          printf("---[JsonReader SimpleRead {data test} case33] [FAILED]--- \n");
+          TEST_FAIL("[JsonReader SimpleRead {data test} case33]");
           break;
       }
 
 
-      printf("---[JsonReader SimpleRead {data test} case28] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case28]  ");
       break;
     }
 
@@ -223,46 +224,48 @@ int arrayDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_array_07.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        printf("---[JsonReader SimpleRead {data test} case30] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case30]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case31] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case31]");
         break;
       }
 
       if(!value->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case32] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case32]");
         break;
       }
 
       if(value->size() != 1) {
-        printf("---[JsonReader SimpleRead {data test} case33] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case33]");
         break;
       }
 
       JsonValue vv1 = value->getValueAt(0);
       if(!vv1->isArray()) {
-        printf("---[JsonReader SimpleRead {data test} case34] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case34]");
         break;
       }
 
       String vv1Value = vv1->getStringAt(0);
       if(vv1Value == nullptr || !vv1Value->equals("A")) {
-        printf("---[JsonReader SimpleRead {data test} case35] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader SimpleRead {data test} case35]");
         break;
       }
 
       for(int index = 1;index<2120;index++) {
           Integer vInt = vv1->getIntegerAt(index);
           if(vInt->toValue() != (index-1)) {
-            printf("---[JsonReader SimpleRead {data test} case36] [FAILED]--- \n");
+            TEST_FAIL("[JsonReader SimpleRead {data test} case36]");
             break;
           }
       }
 
-      printf("---[JsonReader SimpleRead {data test} case37] [OK]--- \n");
+      TEST_OK("[JsonReader SimpleRead {data test} case37]  ");
       break;
     }
+
+    return 0;
 }

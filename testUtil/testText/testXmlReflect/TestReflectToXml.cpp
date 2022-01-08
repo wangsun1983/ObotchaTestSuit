@@ -10,6 +10,7 @@
 #include "Math.hpp"
 #include "Field.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 

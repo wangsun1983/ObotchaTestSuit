@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,19 +17,19 @@ void testLinkedListRemoveAt() {
 
         auto str1 = mList->removeAt(1);
         if(!str1->equals("b")) {
-          printf("LinkedList RemoveAt test1-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test1");
           break;
         }
 
         auto str2 = mList->removeAt(1);
         if(!str2->equals("c")) {
-          printf("LinkedList RemoveAt test2-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test2");
           break;
         }
 
         auto str3 = mList->removeAt(0);
         if(!str3->equals("a")) {
-          printf("LinkedList RemoveAt test3-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test3");
           break;
         }
 
@@ -43,19 +44,19 @@ void testLinkedListRemoveAt() {
 
         auto str1 = mList->removeAt(0);
         if(!str1->equals("a")) {
-          printf("LinkedList RemoveAt test4-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test4");
           break;
         }
 
         auto str2 = mList->removeAt(0);
         if(!str2->equals("b")) {
-          printf("LinkedList RemoveAt test5-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test5");
           break;
         }
 
         auto str3 = mList->removeAt(0);
         if(!str3->equals("c")) {
-          printf("LinkedList RemoveAt test6-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test6");
           break;
         }
 
@@ -70,13 +71,13 @@ void testLinkedListRemoveAt() {
 
         String v = mList->removeAt(5);
         if(v != nullptr) {
-          printf("LinkedList RemoveAt test7-------[FAILED] \n");
+          TEST_FAIL("LinkedList RemoveAt test7");
           break;
         }
 
         break;
     }
 
-    printf("LinkedList RemoveAt test100-------[OK] \n");
+    TEST_OK("LinkedList RemoveAt test100");
 
 }

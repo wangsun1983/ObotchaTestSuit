@@ -14,6 +14,7 @@
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -57,15 +58,15 @@ void testInnerClassReflect() {
 
         if(data2->data1 == nullptr ||
           data2->data2 == nullptr) {
-            printf("---[JsonReflect Inner Data Reflect Test case1] [FAILED]--- \n");
+            TEST_FAIL("[XmlReflect Inner Data Reflect Test case1]");
         }
 
         if(data2->data1->intData != 1000 ||
           !data2->data2->stringData->equals("hello world")) {
-            printf("---[JsonReflect Inner Data Reflect Test case2] [FAILED]--- \n");
+            TEST_FAIL("[XmlReflect Inner Data Reflect Test case2]");
         }
         break;
     }
 
-    printf("---[JsonReflect UserData Reflect Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect UserData Reflect Test case100]");
 }

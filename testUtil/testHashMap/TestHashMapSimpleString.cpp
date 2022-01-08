@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -24,22 +25,22 @@ void testHashMapSimpleString() {
         map->put(tag,tt);
 
         if(map->size() != 1) {
-            printf("---[HashMap String Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
         SimpleStringData tt2 = map->get(tag);
         if(tt2 == nullptr || tt2->i != 100) {
-          printf("---[HashMap String Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put("tag2",nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap String Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
 
-        printf("---[HashMap String Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap String Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -54,24 +55,24 @@ void testHashMapSimpleString() {
       int size = map->size();
       map->remove("tag1");
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap String Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case1]");
         break;
       }
 
       map->put(tag,tt);
       size = map->size();
       if(map->size() != 1) {
-        printf("---[HashMap String Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case2]");
         break;
       }
 
       map->remove("tag2");
       if(map->size() != 1) {
-        printf("---[HashMap String Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap String Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap String Test {remove(T t)} case4]");
       break;
     }
 
@@ -84,17 +85,17 @@ void testHashMapSimpleString() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap String Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {isEmpty()} case1]");
         break;
       }
 
       map->remove("tag1");
       if(!map->isEmpty()) {
-        printf("---[HashMap String Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap String Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {isEmpty()} case3]");
       break;
     }
 
@@ -110,18 +111,18 @@ void testHashMapSimpleString() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap String Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {clear()} case1]");
         break;
       }
 
       HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap String Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap String Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {clear()} case3]");
       break;
     }
 
@@ -134,11 +135,11 @@ void testHashMapSimpleString() {
       map->put(tag,tt);
       map->put("tag2",tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap String Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap String Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap String Test {size()} case1]");
       break;
     }
 
@@ -148,22 +149,22 @@ void testHashMapSimpleString() {
       for(int index = 0;index < 100;index++) {
         SimpleStringData tt = createSimpleStringData();
         tt->i = index;
-        //printf("put index is %d \n",index);
+        //TEST_FAIL("put index is %d ",index);
         map->put(std::to_string(index),tt);
       }
 
       ArrayList<std::string> keys = map->keySet();
       int size = keys->size();
       if(size != 100) {
-        printf("---[HashMap String Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {keySet()} case1]");
         break;
       }
 
       for(int index = 0;index < size;index++) {
         std::string key1 = keys->get(index);
         if(map->get(key1) == nullptr) {
-          //printf("key1->int is %d,index is %d \n",key1->toBasicInt(),index);
-          printf("---[HashMap String Test {keySet(),index is %d} case2] [FAILED]--- \n",index);
+          //TEST_FAIL("key1->int is %d,index is %d ",key1->toBasicInt(),index);
+          TEST_FAIL("[HashMap String Test {keySet(),index is %d} case2]",index);
           break;
         }
       }
@@ -171,11 +172,11 @@ void testHashMapSimpleString() {
       HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
       ArrayList<std::string>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap String Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap String Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap String Test {keySet()} case4]");
       break;
     }
 
@@ -193,7 +194,7 @@ void testHashMapSimpleString() {
       for(int index = 0;index < size;index++) {
         SimpleStringData key1 = keys->get(index);
         if(map->get(std::to_string(key1->i)) == nullptr) {
-          printf("---[HashMap String Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {entrySet()} case1]");
           break;
         }
       }
@@ -201,11 +202,11 @@ void testHashMapSimpleString() {
       HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
       ArrayList<SimpleStringData>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap String Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap String Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {entrySet()} case3]");
       break;
     }
 
@@ -224,20 +225,20 @@ void testHashMapSimpleString() {
       while(iterator->hasValue()) {
           std::string key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator String Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator String Test {getKey/getValue()} case1]");
             break;
           }
 
           SimpleStringData t1 = iterator->getValue();
           if(t1->i != atoi(key.c_str())) {
-            printf("---[MapIterator String Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator String Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator String Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator String Test {getKey/getValue()} case3]");
       break;
 
     }

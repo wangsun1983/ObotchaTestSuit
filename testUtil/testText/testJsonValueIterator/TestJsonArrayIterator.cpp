@@ -4,6 +4,7 @@
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
 #include "JsonValue.hpp"
+#include "TestLog.hpp"
 
 #include "Log.hpp"
 
@@ -23,7 +24,7 @@ int testJsonArrayIterator() {
       while(iterator->hasValue()) {
         auto str = iterator->getString();
         if(!str->equals(list->get(index))) {
-          printf("---[JsonArrayIterator Test case1] [FAILED]--- \n");
+          TEST_FAIL("[JsonArrayIterator Test case1]");
           break;
         }
 
@@ -32,7 +33,7 @@ int testJsonArrayIterator() {
       }
 
       if(index != 3){
-        printf("---[JsonArrayIterator Test case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonArrayIterator Test case2]");
         break;
       }
       break;
@@ -48,7 +49,7 @@ int testJsonArrayIterator() {
       while(iterator->hasValue()) {
         auto str = iterator->getInteger();
         if(str->toValue() != array[index]) {
-          printf("---[JsonArrayIterator Test case3] [FAILED]--- \n");
+          TEST_FAIL("[JsonArrayIterator Test case3]");
           break;
         }
         iterator->next();
@@ -56,7 +57,7 @@ int testJsonArrayIterator() {
       }
 
       if(index != 3){
-        printf("---[JsonArrayIterator Test case4] [FAILED]--- \n");
+        TEST_FAIL("[JsonArrayIterator Test case4]");
         break;
       }
       break;
@@ -72,7 +73,7 @@ int testJsonArrayIterator() {
       while(iterator->hasValue()) {
         auto str = iterator->getBoolean();
         if(str->toValue() != array[index]) {
-          printf("---[JsonArrayIterator Test case5] [FAILED]--- \n");
+          TEST_FAIL("[JsonArrayIterator Test case5]");
           break;
         }
         iterator->next();
@@ -80,7 +81,7 @@ int testJsonArrayIterator() {
       }
 
       if(index != 3){
-        printf("---[JsonArrayIterator Test case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonArrayIterator Test case6]");
         break;
       }
       break;
@@ -97,13 +98,13 @@ int testJsonArrayIterator() {
       while(iterator->hasValue()) {
         String tag  = iterator->getTag();
         if(!tag->equals(tag_value[index])) {
-          printf("---[JsonArrayIterator Test case7] [FAILED]--- \n");
+          TEST_FAIL("[JsonArrayIterator Test case7]");
           break;
         }
 
         Integer val = iterator->getInteger();
         if(val->toValue() != val_array[index]) {
-          printf("---[JsonArrayIterator Test case8] [FAILED]--- \n");
+          TEST_FAIL("[JsonArrayIterator Test case8]");
           break;
         }
 
@@ -112,11 +113,12 @@ int testJsonArrayIterator() {
       }
 
       if(index != 3){
-        printf("---[JsonArrayIterator Test case9] [FAILED]--- \n");
+        TEST_FAIL("[JsonArrayIterator Test case9]");
         break;
       }
       break;
     }
 
-    printf("---[JsonArrayIterator Test case100] [OK]--- \n");
+    TEST_OK("[JsonArrayIterator Test case100]");
+    return 0;
 }

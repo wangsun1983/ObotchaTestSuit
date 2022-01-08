@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 
 using namespace obotcha;
@@ -35,24 +36,23 @@ public:
 
 
 void testThreadSleepRelease() {
-  printf("---[TestThread Sleep Release Start]--- \n");
-
+  
   while(1) {
     {
       MyLongSleepTest1Thread t = createMyLongSleepTest1Thread();
       t->start();
       sleep(1);
-      printf("t count is %d \n",t->getStrongCount());
+      TEST_FAIL("t count is %d ",t->getStrongCount());
       t->interrupt();
     }
     sleep(1);
 
     if(myLongSleepExceptionTest1 != 1 || myLongSleepReleaseTest1 != 1) {
-      printf("---[Thread Test {sleep release()} case1] [FAIL] \n");
+      TEST_FAIL("[Thread Test {sleep release()} case1]");
       break;
     }
 
-    printf("---[Thread Test {sleep release()} case2] [OK] \n");
+    TEST_OK("[Thread Test {sleep release()} case2]");
     break;
   }
 

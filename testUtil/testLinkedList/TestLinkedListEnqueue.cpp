@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testLinkedListEnqueue() {
         mList->putLast(createString("c"));
 
         if(mList->size() != 3) {
-          printf("LinkedList base test1-------[FAIL] \n");
+          TEST_FAIL("LinkedList base test1");
           break;
         }
 
@@ -29,8 +30,8 @@ void testLinkedListEnqueue() {
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
           if(!v1->equals(list[count])) {
-            printf("v1 is %s,vv is %s \n",v1->toChars(),list[count].c_str());
-            printf("LinkedList base test2-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test2,v1 is %s,vv is %s ",v1->toChars(),list[count].c_str());
+            
             break;
           }
           iterator->next();
@@ -54,7 +55,7 @@ void testLinkedListEnqueue() {
         mList->putLast(6);
 
         if(mList->size() != 3) {
-          printf("LinkedList base test3-------[FAIL],size is %d \n",mList->size());
+          TEST_FAIL("LinkedList base test3,size is %d ",mList->size());
           break;
         }
 
@@ -63,8 +64,8 @@ void testLinkedListEnqueue() {
         while(iterator->hasValue()) {
           int v1 = iterator->getValue();
           if(v1 != list[count]) {
-            printf("v1 is %d,vv is %d \n",v1,list[count]);
-            printf("LinkedList base test4-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test4,v1 is %d,vv is %d ",v1,list[count]);
+            
             break;
           }
           iterator->next();
@@ -87,7 +88,7 @@ void testLinkedListEnqueue() {
         mList->putFirst(createString("c"));
 
         if(mList->size() != 3) {
-          printf("LinkedList base test5-------[FAIL] \n");
+          TEST_FAIL("LinkedList base test5");
           break;
         }
 
@@ -96,8 +97,8 @@ void testLinkedListEnqueue() {
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
           if(!v1->equals(list[count])) {
-            printf("v1 is %s,vv is %s \n",v1->toChars(),list[count].c_str());
-            printf("LinkedList base test5-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test5,v1 is %s,vv is %s ",v1->toChars(),list[count].c_str());
+            
             break;
           }
           iterator->next();
@@ -121,7 +122,7 @@ void testLinkedListEnqueue() {
         mList->putFirst(6);
 
         if(mList->size() != 3) {
-          printf("LinkedList base test6-------[FAIL],size is %d \n",mList->size());
+          TEST_FAIL("LinkedList base test6,size is %d ",mList->size());
           break;
         }
 
@@ -130,8 +131,8 @@ void testLinkedListEnqueue() {
         while(iterator->hasValue()) {
           int v1 = iterator->getValue();
           if(v1 != list[count]) {
-            printf("v1 is %d,vv is %d \n",v1,list[count]);
-            printf("LinkedList base test7-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test7,v1 is %d,vv is %d ",v1,list[count]);
+            
             break;
           }
           iterator->next();
@@ -164,7 +165,7 @@ void testLinkedListEnqueue() {
       }
 
       if(mList->size() != 2) {
-        printf("LinkedList base test8-------[FAIL] \n");
+        TEST_FAIL("LinkedList base test8");
       }
 
       iterator = mList->getIterator();
@@ -172,8 +173,8 @@ void testLinkedListEnqueue() {
       while(iterator->hasValue()) {
           String v = iterator->getValue();
           if(!v->equals(list[count])) {
-            printf("v1 is %s,vv is %s \n",v->toChars(),list[count].c_str());
-            printf("LinkedList base test9-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test9,v1 is %s,vv is %s ",v->toChars(),list[count].c_str());
+            
             break;
           }
           iterator->next();
@@ -205,7 +206,7 @@ void testLinkedListEnqueue() {
       }
 
       if(mList->size() != 2) {
-        printf("LinkedList base test10-------[FAIL] \n");
+        TEST_FAIL("LinkedList base test10");
       }
 
       iterator = mList->getIterator();
@@ -213,8 +214,8 @@ void testLinkedListEnqueue() {
       while(iterator->hasValue()) {
           int v = iterator->getValue()->toValue();
           if(v != list[count]) {
-            printf("v1 is %d,vv is %d \n",v,list[count]);
-            printf("LinkedList base test11-------[FAIL] \n");
+            TEST_FAIL("LinkedList base test11,v1 is %d,vv is %d ",v,list[count]);
+            
             break;
           }
           iterator->next();
@@ -223,6 +224,6 @@ void testLinkedListEnqueue() {
       break;
     }
 
-    printf("LinkedList base test100-------[OK] \n");
+    TEST_OK("LinkedList base test100");
 
 }

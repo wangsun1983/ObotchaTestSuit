@@ -11,6 +11,7 @@
 #include "System.hpp"
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -60,7 +61,7 @@ int numTest() {
         int maxThreadNum = pool->getThreadsNum();
         if(maxThreadNum != 4) {
             pool->shutdown();
-            printf("---[TestCachedPoolExecutor NumTest {case2,maxThreadNum is %d] [FAIL]--- \n",maxThreadNum);
+            TEST_FAIL("[TestCachedPoolExecutor NumTest {case2,maxThreadNum is %d]",maxThreadNum);
             break;
         }
         pool->shutdown();
@@ -76,17 +77,19 @@ int numTest() {
         sleep(16);
         int threadsize = pool->getThreadsNum();
         if(threadsize != 0) {
-            printf("---[TestCachedPoolExecutor NumTest {case3] [FAIL]---,thread size is  %d \n",threadsize);
+            TEST_FAIL("[TestCachedPoolExecutor NumTest {case3],thread size is  %d ",threadsize);
             break;
         }
 
         if(test6Num != testNum) {
-            printf("---[TestCachedPoolExecutor NumTest {case4] [FAIL]---,thread size is  %d \n",threadsize);
+            TEST_FAIL("[TestCachedPoolExecutor NumTest {case4],thread size is  %d ",threadsize);
             break;
         }
         pool->shutdown();
 
-        printf("---[TestCachedPoolExecutor NumTest {case4] [Success]--- \n");
+        TEST_OK("[TestCachedPoolExecutor NumTest {case4]");
         break;
     }
+
+    return 0;
 }

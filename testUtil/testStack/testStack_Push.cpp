@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "Stack.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,13 +24,13 @@ void testStackPush() {
     }
 
     if(ss->size() != 1024*32) {
-      printf("testStack push test1-------[FAILED] \n");
+      TEST_FAIL("testStack push test1");
       break;
     }
 
     for(int i = 1024*32 - 1;i >= 0;i--) {
       if(ss->pop() != i) {
-        printf("testStack push test2-------[FAILED] \n");
+        TEST_FAIL("testStack push test2");
         break;
       }
     }
@@ -44,17 +45,17 @@ void testStackPush() {
     }
 
     if(ss->size() != 1024*32) {
-      printf("testStack push test3-------[FAILED] \n");
+      TEST_FAIL("testStack push test3");
       break;
     }
 
     for(int i = 1024*32 - 1;i >= 0;i--) {
       if(ss->pop()->v != i) {
-        printf("testStack push test4-------[FAILED] \n");
+        TEST_FAIL("testStack push test4");
         break;
       }
     }
     break;
   }
-  printf("testStack push test100-------[OK] \n");
+  TEST_OK("testStack push test100");
 }

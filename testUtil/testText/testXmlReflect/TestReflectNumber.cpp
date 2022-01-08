@@ -12,10 +12,11 @@
 #include "XmlWriter.hpp"
 #include "XmlReader.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
-DECLARE_CLASS(NumberReflectData) {
+DECLARE_CLASS(NumberXmlReflectData) {
 public:
   Integer intData;
   Byte byteData;
@@ -28,7 +29,7 @@ public:
   Uint32 uint32Data;
   Uint64 uint64Data;
   Boolean boolData;
-  DECLARE_REFLECT_FIELD(NumberReflectData,intData,byteData,doubleData,
+  DECLARE_REFLECT_FIELD(NumberXmlReflectData,intData,byteData,doubleData,
                         floatData,longData,stringData,uint8Data,uint16Data,uint32Data,
                         uint64Data,boolData)
 };
@@ -36,7 +37,7 @@ public:
 void testReflectNumber() {
   //test1
   while(1) {
-      NumberReflectData data = createNumberReflectData();
+      NumberXmlReflectData data = createNumberXmlReflectData();
       data->intData = createInteger(1);
       data->byteData = createByte(1);
       data->doubleData = createDouble(1.1);
@@ -55,68 +56,68 @@ void testReflectNumber() {
       writer->write("./tmp/output1.xml");
       XmlReader reader = createXmlReader(createFile("./tmp/output1.xml"));
       XmlDocument doc2 = reader->get();
-      NumberReflectData rdata3 = createNumberReflectData();
+      NumberXmlReflectData rdata3 = createNumberXmlReflectData();
       doc2->reflectTo(rdata3);
 
       if(rdata3->intData == nullptr ||data->intData->toValue() != rdata3->intData->toValue()) {
-        printf("Reflect Number To File test1-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test1");
         break;
       }
 
       if(rdata3->byteData == nullptr ||data->byteData->toValue() != rdata3->byteData->toValue()) {
-        printf("Reflect Number To File test2-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test2");
         break;
       }
 
       if(rdata3->doubleData == nullptr ||data->doubleData->toValue() != rdata3->doubleData->toValue()) {
-        printf("Reflect Number To File test3-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test3");
         break;
       }
 
       if(rdata3->floatData == nullptr
         ||st(Math)::compareFloat(data->floatData->toValue(),rdata3->floatData->toValue()) != st(Math)::AlmostEqual) {
-        printf("data->floatData is %lf,rdata3->floatData is %lf \n",data->floatData->toValue(),rdata3->floatData->toValue());
-        printf("Reflect Number To File test4-------[FAIL] \n");
+        TEST_FAIL("data->floatData is %lf,rdata3->floatData is %lf \n",data->floatData->toValue(),rdata3->floatData->toValue());
+        TEST_FAIL("XmlReflect Number To File test4");
         break;
       }
 
       if(rdata3->longData == nullptr ||data->longData->toValue() != rdata3->longData->toValue()) {
-        printf("Reflect Number To File test5-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test5");
         break;
       }
 
       if(rdata3->uint8Data == nullptr ||data->uint8Data->toValue() != rdata3->uint8Data->toValue()) {
-        printf("data->uint8Data is %d,rdata3->uint8Data is %d \n",data->uint8Data->toValue(),rdata3->uint8Data->toValue());
-        printf("Reflect Number To File test6-------[FAIL] \n");
+        TEST_FAIL("data->uint8Data is %d,rdata3->uint8Data is %d \n",data->uint8Data->toValue(),rdata3->uint8Data->toValue());
+        TEST_FAIL("XmlReflect Number To File test6");
         break;
       }
 
       if(rdata3->uint16Data == nullptr ||data->uint16Data->toValue() != rdata3->uint16Data->toValue()) {
-        printf("Reflect Number To File test7-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test7");
         break;
       }
 
       if(rdata3->uint32Data == nullptr ||data->uint32Data->toValue() != rdata3->uint32Data->toValue()) {
-        printf("Reflect Number To File test8-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test8");
         break;
       }
 
       if(rdata3->uint64Data == nullptr ||data->uint64Data->toValue() != rdata3->uint64Data->toValue()) {
-        printf("Reflect Number To File test9-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test9");
         break;
       }
 
       if(rdata3->boolData == nullptr ||data->boolData->toValue() != rdata3->boolData->toValue()) {
-        printf("Reflect Number To File test10-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test10");
         break;
       }
 
       if(rdata3->stringData == nullptr ||!data->stringData->equals(rdata3->stringData)) {
-        printf("Reflect Number To File test11-------[FAIL] \n");
+        TEST_FAIL("XmlReflect Number To File test11");
         break;
       }
 
-      printf("Reflect Number To File test12-------[OK] \n");
+      TEST_OK("XmlReflect Number To File test12");
       break;
   }
 }

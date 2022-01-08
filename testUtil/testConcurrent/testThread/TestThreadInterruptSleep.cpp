@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,7 +31,7 @@ void testThreadInterruptSleep() {
     t->interrupt();
     t->join();
     if(!isInterrupt) {
-      printf("---[Thread Test {interruptSleep()} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {interruptSleep()} case1]");
     }
     break;
   }
@@ -48,12 +49,12 @@ void testThreadInterruptSleep() {
     long result = watcher->stop();
 
     if(result < 100 || result > 105) {
-      printf("---[Thread Test {interruptSleep()} case2] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {interruptSleep()} case2]");
     }
     break;
   }
 
-  printf("---[Thread Test {interruptSleep()} case100] [OK]--- \n");
+  TEST_OK("[Thread Test {interruptSleep()} case100]");
 
 
 }

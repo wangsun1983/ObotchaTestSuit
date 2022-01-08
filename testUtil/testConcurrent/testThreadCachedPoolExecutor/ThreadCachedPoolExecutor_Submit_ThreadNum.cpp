@@ -12,6 +12,7 @@
 #include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,7 +30,7 @@ void CachedPoolSubmit_ThreadNum() {
     });
     usleep(1000);
     if(pool->getThreadsNum() != 1 || pool->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test1] [FAILED]--- threads is %d,tasks is %d \n",pool->getThreadsNum(),pool->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test1] threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
       break;
     }
 
@@ -38,7 +39,7 @@ void CachedPoolSubmit_ThreadNum() {
     });
     usleep(1000);
     if(pool->getThreadsNum() != 2 || pool->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test2] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test2]");
       break;
     }
 
@@ -47,7 +48,7 @@ void CachedPoolSubmit_ThreadNum() {
     });
     usleep(1000);
     if(pool->getThreadsNum() != 3 || pool->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test3] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test3]");
       break;
     }
 
@@ -55,13 +56,13 @@ void CachedPoolSubmit_ThreadNum() {
       usleep(100*1000);
     });
     if(pool->getThreadsNum() != 3 || pool->getTasksNum() != 1) {
-      printf("---[TestCachedPoolExecutor ThreadNum test4] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test4]");
       break;
     }
 
     usleep(405*1000);
     if(pool->getThreadsNum() != 0 || pool->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test5] [FAILED]--- threads is %d,tasks is %d \n",pool->getThreadsNum(),pool->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test5] threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
       break;
     }
 
@@ -76,7 +77,7 @@ void CachedPoolSubmit_ThreadNum() {
     }
     usleep(205*1000);
     if(pool->getThreadsNum() != 0 || pool->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test6] [FAILED]--- threads is %d,tasks is %d \n",pool->getThreadsNum(),pool->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test6]threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
       break;
     }
 
@@ -96,7 +97,7 @@ void CachedPoolSubmit_ThreadNum() {
     }
     usleep(105*1000);
     if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test7] [FAILED]--- threads is %d,tasks is %d \n",pool2->getThreadsNum(),pool2->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test7]threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
       break;
     }
 
@@ -118,7 +119,7 @@ void CachedPoolSubmit_ThreadNum() {
     }
     usleep(150*1000);
     if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test8] [FAILED]--- threads is %d,tasks is %d \n",pool2->getThreadsNum(),pool2->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test8] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
       break;
     }
 
@@ -140,13 +141,13 @@ void CachedPoolSubmit_ThreadNum() {
     }
 
     if(pool2->getThreadsNum() != 12) {
-      printf("---[TestCachedPoolExecutor ThreadNum test9] [FAILED]--- threads is %d,tasks is %d \n",pool2->getThreadsNum(),pool2->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test9] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
       break;
     }
 
     usleep(150*1000);
     if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      printf("---[TestCachedPoolExecutor ThreadNum test10] [FAILED]--- threads is %d,tasks is %d \n",pool2->getThreadsNum(),pool2->getTasksNum());
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test10] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
       break;
     }
 
@@ -157,5 +158,5 @@ void CachedPoolSubmit_ThreadNum() {
 
   pool->shutdown();
   pool->awaitTermination();
-  printf("---[TestCachedPoolExecutor ThreadNum test100] [OK]--- \n");
+  TEST_OK("[TestCachedPoolExecutor ThreadNum test100]");
 }

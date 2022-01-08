@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 
 using namespace obotcha;
@@ -27,7 +28,6 @@ public:
 
 
 void testThreadQuickJoin() {
-  printf("---[TestThread Sleep Start]--- \n");
 
   while(1) {
     for(int i = 0;i < 1024*32;i++) {
@@ -35,7 +35,7 @@ void testThreadQuickJoin() {
       t->start();
       t->join();
     }
-    printf("---[Thread Test {Quick Join()} case1] [Success] \n");
+    TEST_OK("[Thread Test {Quick Join()} case1]");
     break;
   }
 

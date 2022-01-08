@@ -10,14 +10,13 @@
 #include "Log.hpp"
 #include "ArrayList.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int main() {
-    printf("---[UUID Test Start]--- \n");
     //String toValue();
     UUID uuid = createUUID();
-	printf("uuid is %s \n",uuid->generate()->toChars());
     /*
     while(1) {
         ArrayList<String> list = craeteArrayList<String>();

@@ -12,6 +12,7 @@
 #include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -38,7 +39,7 @@ void CachedPoolSubmit_Timeout() {
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor Submit Timeout test1] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[TestCachedPoolExecutor Submit Timeout test1],result is %ld ",result);
       break;
     }
 
@@ -72,7 +73,7 @@ void CachedPoolSubmit_Timeout() {
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor Submit Timeout test2] [FAILED]--- result is %ld\n",result);
+      TEST_FAIL("[TestCachedPoolExecutor Submit Timeout test2] result is %ld",result);
       break;
     }
 
@@ -80,5 +81,5 @@ void CachedPoolSubmit_Timeout() {
     break;
   }
 
-  printf("---[TestCachedPoolExecutor Submit Timeout test100] [OK]--- \n");
+  TEST_OK("[TestCachedPoolExecutor Submit Timeout test100]");
 }

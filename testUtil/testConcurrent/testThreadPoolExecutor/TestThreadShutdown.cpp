@@ -11,13 +11,14 @@
 #include "ThreadPoolExecutor.hpp"
 #include "ExecutorBuilder.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 DECLARE_CLASS(MyShutdownRunTest1) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        //printf("i am running123 \n");
+        //TEST_FAIL("i am running123 ");
         sleep(10);
     }
 
@@ -33,7 +34,7 @@ public:
     }
 
     void run() {
-        //printf("i am running123 \n");
+        //TEST_FAIL("i am running123 ");
         sleep(10);
     }
 
@@ -90,17 +91,17 @@ void testThreadShutdown() {
         int ret = pool->shutdown();
 
         if(ret != -AlreadyDestroy) {
-            printf("---[ThreadPoolExecutor Test {shutdown()} special case1] [FAIL]---,ret is %d \n",ret);
+            TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case1],ret is %d ",ret);
             break;
         }
 
         auto mtask = pool->submit(createMyShutdownRunTest1());
         if(mtask != nullptr) {
-            printf("---[ThreadPoolExecutor Test {shutdown()} special case2] [FAIL]--- \n");
+            TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case2]");
             break;
         }
 
-        printf("---[ThreadPoolExecutor Test {shutdown()} special case3] [OK]--- \n");
+        TEST_OK("[ThreadPoolExecutor Test {shutdown()} special case3]");
         break;
     }
 
@@ -116,10 +117,10 @@ void testThreadShutdown() {
         pool->shutdown();
         sleep(1);
         if(run->getCount() != 4) {
-            printf("---[ThreadPoolExecutor Test {shutdown()} special case4,run->getCount is %d ] [FAIL]--- \n",run->getCount());
+            TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case4,run->getCount is %d ] ",run->getCount());
             break;
         }
-        printf("---[ThreadPoolExecutor Test {shutdown()} special case5] [OK]--- \n");
+        TEST_OK("[ThreadPoolExecutor Test {shutdown()} special case5]");
         break;
     }
 
@@ -129,12 +130,12 @@ void testThreadShutdown() {
         pool->awaitTermination(1000);
         long current = st(System)::currentTimeMillis();
         if((current - t) > 1) {
-            printf("---[ThreadPoolExecutor Test {shutdown()} special case6, interval is %ld] [FAIL]--- \n",current - t);
+            TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case6, interval is %ld] ",current - t);
             break;
         }
 
         pool->shutdown();
-        printf("---[ThreadPoolExecutor Test {shutdown()} special case7] [OK]--- \n");
+        TEST_OK("[ThreadPoolExecutor Test {shutdown()} special case7]");
         break;
     }
 
@@ -146,11 +147,11 @@ void testThreadShutdown() {
         int result = pool->awaitTermination(1000);
         long current = st(System)::currentTimeMillis();
         if((current - t) > 10 || result < 0) {
-            printf("---[ThreadPoolExecutor Test {shutdown()} special case8] [FAIL]---,interval is %ld,result is %d \n",current - t,result);
+            TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case8],interval is %ld,result is %d ",current - t,result);
             break;
         }
 
-        printf("---[ThreadPoolExecutor Test {shutdown()} special case9] [OK]--- \n");
+        TEST_OK("[ThreadPoolExecutor Test {shutdown()} special case9]");
         break;
     }
 

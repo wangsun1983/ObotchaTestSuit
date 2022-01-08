@@ -8,6 +8,7 @@
 #include "Mutex.hpp"
 #include "AutoLock.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 #define TEST_DEVIATION 50 //ms
 #define TEST_SLEEP_INTERVAL 100 //s
@@ -64,11 +65,11 @@ void testThreadRelease() {
 
         sleep(10);
         if(mReleaseCount != 50) {
-            printf("---[Thread Test {release()} case1],mReleaseCount is %d [FAILED]--- \n",mReleaseCount);
+            TEST_FAIL("[Thread Test {release()} case1],mReleaseCount is %d",mReleaseCount);
             break;
         }
 
-        printf("---[Thread Test {release()} case2] [OK]--- \n");
+        TEST_OK("[Thread Test {release()} case2]");
         break;
     }
 
@@ -83,17 +84,17 @@ void testThreadRelease() {
 
         sleep(10);
         if(mReleaseCount != 0) {
-            printf("---[Thread Test {release()} case3],mReleaseCount is %d [FAILED]--- \n",mReleaseCount);
+            TEST_FAIL("[Thread Test {release()} case3],mReleaseCount is %d",mReleaseCount);
             break;
         }
 
         list->clear();
         if(mReleaseCount != 50) {
-            printf("---[Thread Test {release()} case4],mReleaseCount is %d [FAILED]--- \n",mReleaseCount);
+            TEST_FAIL("[Thread Test {release()} case4],mReleaseCount is %d",mReleaseCount);
             break;
         }
 
-        printf("---[Thread Test {release()} case5] [OK]--- \n");
+        TEST_OK("[Thread Test {release()} case5]");
         break;
     }
 
@@ -114,18 +115,18 @@ void testThreadRelease() {
 
         sleep(5);
         if(mReleaseCount != 0) {
-            printf("---[Thread Test {release()} case6],mReleaseCount is %d [FAILED]--- \n",mReleaseCount);
+            TEST_FAIL("[Thread Test {release()} case6],mReleaseCount is %d",mReleaseCount);
             break;
         }
 
         sleep(5);
         list->clear();
         if(mReleaseCount != 50) {
-            printf("---[Thread Test {release()} case7],mReleaseCount is %d [FAILED]--- \n",mReleaseCount);
+            TEST_FAIL("[Thread Test {release()} case7],mReleaseCount is %d",mReleaseCount);
             break;
         }
 
-        printf("---[Thread Test {release()} case8] [OK]--- \n");
+        TEST_OK("[Thread Test {release()} case8]");
         break;
 
     }

@@ -12,6 +12,7 @@
 #include "Error.hpp"
 #include "AtomicInteger.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,9 +22,7 @@ DECLARE_CLASS(MyLoopShutdownRunnable1) IMPLEMENTS(Runnable) {
 public:
     void run() {
       try {
-        printf("runnable 1 \n");
         st(Thread)::msleep(100);
-        printf("runnable 2 \n");
       }catch(InterruptedException &e) {
         //interruptCount->add(1);
       }
@@ -39,14 +38,11 @@ void testThreadPoolLoopShutdown() {
     }
 
     int ret = executor->shutdown();
-    printf("ret is %d \n",ret);
-
+    
     executor->awaitTermination();
 
-    printf("finish await \n");
-
     if(interruptCount->get() != 1024*8) {
-      printf("---[ThreadPoolExecutor Loop shutdown} special case1,value is %d] [FAIL]--- \n",interruptCount->get());
+      TEST_FAIL("[ThreadPoolExecutor Loop shutdown} special case1,value is %d]",interruptCount->get());
     }
 
     //test2
@@ -64,11 +60,11 @@ void testThreadPoolLoopShutdown() {
     }
 
     if(interruptCount->get() != 1024*8) {
-      printf("---[ThreadPoolExecutor Loop shutdown} special case2,value is %d] [FAIL]--- \n",interruptCount->get());
+      TEST_FAIL("[ThreadPoolExecutor Loop shutdown} special case2,value is %d]",interruptCount->get());
     }
 
     executor2->shutdown();
 
-    printf("---[ThreadPoolExecutor Loop shutdown} special case100] [OK]--- \n");
+    TEST_OK("[ThreadPoolExecutor Loop shutdown} special case100]");
 
 }

@@ -13,6 +13,7 @@
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -49,7 +50,7 @@ void testArrayListDouble() {
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
-        printf("---[JsonReflect ArrayList Double Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Double Test case1]");
         break;
       }
 
@@ -58,7 +59,7 @@ void testArrayListDouble() {
         ||st(Math)::compareDouble(list2->get(2)->toValue(),3.3) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->get(3)->toValue(),4.4) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->get(4)->toValue(),5.5) != st(Math)::AlmostEqual) {
-          printf("---[JsonReflect ArrayList Double Test case2] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect ArrayList Double Test case2]");
           break;
       }
       break;
@@ -96,7 +97,7 @@ void testArrayListDouble() {
         ||st(Math)::compareDouble(list2->list1->get(2)->toValue(),3.3) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->list1->get(3)->toValue(),4.4) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->list1->get(4)->toValue(),5.5) != st(Math)::AlmostEqual) {
-          printf("---[JsonReflect ArrayList Double Test case3] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect ArrayList Double Test case3]");
           break;
       }
 
@@ -105,11 +106,11 @@ void testArrayListDouble() {
         ||st(Math)::compareDouble(list2->list2->get(2)->toValue(),8.8) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->list2->get(3)->toValue(),9.9) != st(Math)::AlmostEqual
         ||st(Math)::compareDouble(list2->list2->get(4)->toValue(),10.1) != st(Math)::AlmostEqual) {
-          printf("---[JsonReflect ArrayList Double Test case4] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect ArrayList Double Test case4]");
           break;
       }
       break;
     }
 
-    printf("---[JsonReflect ArrayList Double Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect ArrayList Double Test case100]");
 }

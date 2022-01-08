@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,7 +31,7 @@ void testThreadLambda() {
         sleep(1);
 
         if(value != 1) {
-            printf("---[Thread TestLambda case1] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestLambda case1]");
             break;
         }
 
@@ -50,7 +51,7 @@ void testThreadLambda() {
         sleep(1);
 
         if(value != 123) {
-            printf("---[Thread TestLambda case2] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestLambda case2]");
             break;
         }
 
@@ -70,7 +71,7 @@ void testThreadLambda() {
         sleep(1);
 
         if(result != 123) {
-            printf("---[Thread TestLambda case3] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestLambda case3]");
             break;
         }
 
@@ -90,7 +91,7 @@ void testThreadLambda() {
         sleep(1);
 
         if(result == 123) {
-            printf("---[Thread TestLambda case4] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestLambda case4]");
             break;
         }
 
@@ -103,7 +104,6 @@ void testThreadLambda() {
         data->j = 120;
 
         Thread t1 = createThread([&data]() {
-            printf("start t1 \n");
             data->i = 1;
             data->j = 2;
         });
@@ -113,14 +113,13 @@ void testThreadLambda() {
         sleep(1);
 
         if(data->i != 1 ||data->j != 2) {
-            printf("i is %d,j is %d \n",data->i,data->j);
-            printf("---[Thread TestLambda case5] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestLambda case5]");
             break;
         }
 
         break;
     }
 
-    printf("---[Thread TestLambda case6] [OK]--- \n");
+    TEST_OK("[Thread TestLambda case6]");
 
 }

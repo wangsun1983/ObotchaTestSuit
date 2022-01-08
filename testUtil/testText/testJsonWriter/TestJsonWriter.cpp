@@ -3,11 +3,11 @@
 
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int main() {
-    printf("---[JsonWriter Test Start]--- \n");
 
     //write a json
     JsonWriter writer = createJsonWriter(createString("abc.json"));
@@ -31,41 +31,41 @@ int main() {
     while(1) {
       Integer i1 = value->getInteger("a");
       if(i1 == nullptr || i1->toValue() != 1) {
-        printf("---[JsonWriter Test {write()} case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case1]");
         break;
       }
 
       String s1 = value->getString("c");
       if(s1 == nullptr || !s1->equals("nihao")) {
-        printf("---[JsonWriter Test {write()} case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case2]");
         break;
       }
 
       JsonValue arr = value->getValue("darr");
       if(arr == nullptr) {
-        printf("---[JsonWriter Test {write()} case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case3]");
         break;
       }
 
       String ss1 = arr->getStringAt(0);
       if(ss1 == nullptr || !ss1->equals("abc1")) {
-        printf("---[JsonWriter Test {write()} case4] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case4]");
         break;
       }
 
       String ss2 = arr->getStringAt(1);
       if(ss2 == nullptr || !ss2->equals("abc2")) {
-        printf("---[JsonWriter Test {write()} case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case5]");
         break;
       }
 
       String ss3 = arr->getStringAt(2);
       if(ss3 == nullptr || !ss3->equals("abc3")) {
-        printf("---[JsonWriter Test {write()} case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonWriter Test {write()} case6]");
         break;
       }
 
-      printf("---[JsonWriter Test {write()} case7] [Success]--- \n");
+      TEST_OK("[JsonWriter Test {write()} case7]");
       break;
     }
 

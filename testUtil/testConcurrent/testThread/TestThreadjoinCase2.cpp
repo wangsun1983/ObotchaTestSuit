@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,21 +36,21 @@ void testThreadjoinCase2() {
     t->join();
   }
 
-  printf("---[Thread Test {JoinCase()} case1] [OK]--- \n");
+  TEST_OK("[Thread Test {JoinCase()} case1]");
 
   for(int i = 0;i<1024*32;i++) {
     Thread t = createThread(createJoinRunCase2(10));
     t->start();
     t->join();
   }
-  printf("---[Thread Test {JoinCase()} case2] [OK]--- \n");
+  TEST_OK("[Thread Test {JoinCase()} case2]");
 
   for(int i = 0;i<1024;i++) {
     Thread t = createThread(createJoinRunCase2(100));
     t->start();
     t->join();
   }
-  printf("---[Thread Test {JoinCase()} case3] [OK]--- \n");
+  TEST_OK("[Thread Test {JoinCase()} case3]");
 
   //wait(1ms)
   for(int i = 0;i<1024;i++) {
@@ -58,7 +59,7 @@ void testThreadjoinCase2() {
     st(Thread)::interruptableSleep(1);
     t->join();
   }
-  printf("---[Thread Test {JoinCase()} case4] [OK]--- \n");
+  TEST_OK("[Thread Test {JoinCase()} case4]");
 
   for(int i = 0;i<1024;i++) {
     Thread t = createThread(createJoinRunCase2(10));
@@ -67,7 +68,7 @@ void testThreadjoinCase2() {
     t->join();
   }
 
-  printf("---[Thread Test {JoinCase()} case6] [OK]--- \n");
+  TEST_OK("[Thread Test {JoinCase()} case6]");
 
 
 }

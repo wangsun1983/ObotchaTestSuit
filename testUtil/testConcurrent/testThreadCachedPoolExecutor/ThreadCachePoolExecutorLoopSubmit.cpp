@@ -14,6 +14,7 @@
 #include "ThreadCachedPoolExecutor.hpp"
 #include "AtomicInteger.hpp"
 #include "ArrayList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ public:
    void run() {
       ttt->lock();
       //submitLoopValue1->incrementAndGet();
-      //printf("vv is %d \n");
+      //TEST_FAIL("vv is %d ");
       checksubmitList->set(vv,1);
       vv++;
       ttt->unlock();
@@ -37,7 +38,6 @@ public:
 
 int loopsubmittest() {
     while(1) {
-        printf("checksubmitList size is %d\n",checksubmitList->size());
         for(int i = 0; i < 100000;i++) {
           checksubmitList->add(0);
         }
@@ -49,27 +49,26 @@ int loopsubmittest() {
                                         ->setMaxThreadNum(20)
                                         ->setTimeout(1000)
                                         ->newCachedThreadPool();
-        printf("start trace \n");
         for(int i = 0;i < 100000;i++) {
-            //printf("trace 1,i is %d \n",i);
+            //TEST_FAIL("trace 1,i is %d ",i);
             pool->submit(createSubmitLoopRun1());
         }
-        printf("checksubmitList trace1");
         sleep(10);
         pool->shutdown();
-        printf("checksubmitList trace2");
         //for(int i = 0; i < 100000;i++) {
         //  if(checksubmitList->get(i) != 1) {
-        //    printf("value is %d,index is %d \n",checksubmitList->get(i),i);
+        //    TEST_FAIL("value is %d,index is %d ",checksubmitList->get(i),i);
         //  }
         //}
 
         if(vv != 100000) {
-          printf("---[CacheThreadPool loopsumit case1],value is %d [FAIL]--- \n",vv);
+          TEST_FAIL("[CacheThreadPool loopsumit case1],value is %d",vv);
         }
 
-        printf("---[CacheThreadPool loopsumit case100] [OK]--- \n");
+        TEST_OK("[CacheThreadPool loopsumit case100]");
 
         break;
     }
+
+    return 0;
 }

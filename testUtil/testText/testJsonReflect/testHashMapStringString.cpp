@@ -12,6 +12,7 @@
 #include "Integer.hpp"
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -47,19 +48,19 @@ void testHashMapStringString() {
       JsonValue value2 = reader->get();
 /*
       auto iterator = value2->getIterator();
-      printf("iterator tag is %s \n",iterator->getTag()->toChars());
-      printf("iterator value is %s \n",iterator->getString()->toChars());
+      TEST_FAIL("iterator tag is %s ",iterator->getTag()->toChars());
+      TEST_FAIL("iterator value is %s ",iterator->getString()->toChars());
 
       JsonValue value3 = iterator->getValue();
-      printf("value3 is %s \n",value3->getString()->toChars());
-      printf("value3 is %s \n",value3->getName()->toChars());
+      TEST_FAIL("value3 is %s ",value3->getString()->toChars());
+      TEST_FAIL("value3 is %s ",value3->getName()->toChars());
 */
 
       HashMap<String,String>map2 = createHashMap<String,String>();
       value2->reflectTo(map2);
 
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap String String Test case1]  ");
         break;
       }
 
@@ -68,7 +69,7 @@ void testHashMapStringString() {
         ||!map2->get("tag3")->equals("val3")
         ||!map2->get("tag4")->equals("val4")
         ||!map2->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case2] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect HashMap String String Test case2]  ");
           break;
       }
       break;
@@ -94,7 +95,7 @@ void testHashMapStringString() {
 
       auto map2 = checkValue->maps;
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap String String Test case3]  ");
         break;
       }
 
@@ -103,7 +104,7 @@ void testHashMapStringString() {
         ||!map2->get("tag3")->equals("val3")
         ||!map2->get("tag4")->equals("val4")
         ||!map2->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case4] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect HashMap String String Test case4]  ");
           break;
       }
       break;
@@ -123,7 +124,7 @@ void testHashMapStringString() {
       //value2->reflectTo(map2);
 
       if(value2 != nullptr) {
-        printf("---[JsonReflect HashMap String String Test case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap String String Test case5]  ");
         break;
       }
       break;
@@ -157,7 +158,7 @@ void testHashMapStringString() {
 
       auto map1 = checkValue->maps1;
       if(map1->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap String String Test case6]  ");
         break;
       }
 
@@ -166,13 +167,13 @@ void testHashMapStringString() {
         ||!map1->get("tag3")->equals("val3")
         ||!map1->get("tag4")->equals("val4")
         ||!map1->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case7] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect HashMap String String Test case7]  ");
           break;
       }
 
       auto map2 = checkValue->maps2;
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case8] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap String String Test case8]  ");
         break;
       }
 
@@ -181,11 +182,11 @@ void testHashMapStringString() {
         ||!map2->get("2_tag3")->equals("2_val3")
         ||!map2->get("2_tag4")->equals("2_val4")
         ||!map2->get("2_tag5")->equals("2_val5")) {
-          printf("---[JsonReflect HashMap String String Test case9] [FAILED]--- \n");
+          TEST_FAIL("[JsonReflect HashMap String String Test case9]  ");
           break;
       }
       break;
     }
 
-    printf("---[JsonReflect HashMap String String Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect HashMap String String Test case100]");
 }

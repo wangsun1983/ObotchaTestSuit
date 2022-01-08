@@ -11,6 +11,7 @@
 #include "Reflect.hpp"
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -78,49 +79,49 @@ void testArrayListMap() {
       value2->reflectTo(list2);
 
       if(list2->size() != 2) {
-        printf("---[JsonReflect ArrayList Map Test case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case1]  ");
         break;
       }
 
       auto ll1 = list2->get(0);
       if(ll1->size() != 3) {
-        printf("---[JsonReflect ArrayList Map Test case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case2]  ");
         break;
       }
 
       if(ll1->get(createInteger(0))->data1 != 1 ||ll1->get(createInteger(0))->data2 != 2) {
-        printf("---[JsonReflect ArrayList Map Test case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case3]  ");
         break;
       }
 
       if(ll1->get(createInteger(1))->data1 != 3 ||ll1->get(createInteger(1))->data2 != 4) {
-        printf("---[JsonReflect ArrayList Map Test case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case3]  ");
         break;
       }
 
       if(ll1->get(createInteger(2))->data1 != 5 ||ll1->get(createInteger(2))->data2 != 6) {
-        printf("---[JsonReflect ArrayList Map Test case4] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case4]  ");
         break;
       }
 
       auto ll2 = list2->get(1);
       if(ll2->size() != 3) {
-        printf("---[JsonReflect ArrayList Map Test case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case5]  ");
         break;
       }
 
       if(ll2->get(createInteger(0))->data1 != 11 ||ll2->get(createInteger(0))->data2 != 21) {
-        printf("---[JsonReflect ArrayList Map Test case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case6]  ");
         break;
       }
 
       if(ll2->get(createInteger(1))->data1 != 31 ||ll2->get(createInteger(1))->data2 != 41) {
-        printf("---[JsonReflect ArrayList Map Test case7] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case7]  ");
         break;
       }
 
       if(ll2->get(createInteger(2))->data1 != 51 ||ll2->get(createInteger(2))->data2 != 61) {
-        printf("---[JsonReflect ArrayList Map Test case8] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case8]  ");
         break;
       }
 
@@ -180,54 +181,54 @@ void testArrayListMap() {
       ArrayList<HashMap<Integer,ListMapItem>> list2 = data->list;
 
       if(list2->size() != 2) {
-        printf("---[JsonReflect ArrayList Map Test case9] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case9]  ");
         break;
       }
 
       auto ll1 = list2->get(0);
       if(ll1->size() != 3) {
-        printf("---[JsonReflect ArrayList Map Test case10] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case10]  ");
         break;
       }
 
       if(ll1->get(createInteger(0))->data1 != 1 ||ll1->get(createInteger(0))->data2 != 2) {
-        printf("---[JsonReflect ArrayList Map Test case11] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case11]  ");
         break;
       }
 
       if(ll1->get(createInteger(1))->data1 != 3 ||ll1->get(createInteger(1))->data2 != 4) {
-        printf("---[JsonReflect ArrayList Map Test case12] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case12]  ");
         break;
       }
 
       if(ll1->get(createInteger(2))->data1 != 5 ||ll1->get(createInteger(2))->data2 != 6) {
-        printf("---[JsonReflect ArrayList Map Test case13] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case13]  ");
         break;
       }
 
       auto ll2 = list2->get(1);
       if(ll2->size() != 3) {
-        printf("---[JsonReflect ArrayList Map Test case14] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case14]  ");
         break;
       }
 
       if(ll2->get(createInteger(0))->data1 != 11 ||ll2->get(createInteger(0))->data2 != 21) {
-        printf("---[JsonReflect ArrayList Map Test case15] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case15]  ");
         break;
       }
 
       if(ll2->get(createInteger(1))->data1 != 31 ||ll2->get(createInteger(1))->data2 != 41) {
-        printf("---[JsonReflect ArrayList Map Test case16] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case16]  ");
         break;
       }
 
       if(ll2->get(createInteger(2))->data1 != 51 ||ll2->get(createInteger(2))->data2 != 61) {
-        printf("---[JsonReflect ArrayList Map Test case17] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect ArrayList Map Test case17]  ");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect ArrayList Map Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect ArrayList Map Test case100]");
 }

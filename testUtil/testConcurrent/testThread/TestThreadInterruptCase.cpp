@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 #define TEST_DEVIATION 50 //ms
 #define TEST_SLEEP_INTERVAL 100 //s
@@ -25,16 +26,14 @@ DECLARE_CLASS(MyTest1Thread) IMPLEMENTS(Thread) {
 public:
     void run() {
         try {
-            printf("start sleep \n");
             st(Thread)::interruptableSleep();
         }catch(InterruptedException &e){
-            printf("start sleep exception \n");
             myTest1Interrupt = 1;
         }
     }
 
     ~_MyTest1Thread() {
-        //printf("m2 \n");
+        //TEST_FAIL("m2 ");
         myTest1 = 1;
     }
 
@@ -49,11 +48,11 @@ void testThreadInterruptCase() {
         thread->interrupt();
         thread->join();
         if(myTest1Interrupt != 1) {
-            printf("---[Thread Test {Interrupt()} special case1,myTest1Interrupt is %d] [FAILED]--- \n",myTest1Interrupt);
+            TEST_FAIL("[Thread Test {Interrupt()} special case1]");
             break;
         }
 
-        printf("---[Thread Test {Interrupt()} special case2] [OK]--- \n");
+        TEST_OK("[Thread Test {Interrupt()} special case2]");
         break;
     }
 

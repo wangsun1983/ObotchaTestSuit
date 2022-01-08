@@ -1,4 +1,4 @@
-gcc = clang++
+gcc = g++
 
 cflags = -fpic \
 		-lrt \
@@ -20,6 +20,9 @@ cflags = -fpic \
 		-I ../../../../external/crc32/include \
 		-I ../../../../external/openssl/include \
 		-I ../../../../external/libco \
+		-I ../../../../external/uuid/include \
+		-I ../../../../external/glog/include \
+		-I ../../../common \
 		-g \
 		-std=c++14 \
 		-fsanitize=address \

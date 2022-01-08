@@ -7,13 +7,11 @@
 #include "StrongPointer.hpp"
 #include "Long.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int main() {
-
-  printf("---[TimeWatcher Test Start]--- \n");
-  
 
   while(1) {
       TimeWatcher t = createTimeWatcher();
@@ -22,11 +20,11 @@ int main() {
       //t->stop();
       long interval = t->stop();
       if(interval != 5000) {
-          printf("---[TimeWatcher Test {start/stop()} case1] [FAIL]--- \n");
+          TEST_FAIL("[TimeWatcher Test {start/stop()} case1]");
           break;
       }
 
-      printf("---[TimeWatcher Test {start/stop()} case1] [Success]--- \n");
+      TEST_OK("[TimeWatcher Test {start/stop()} case1]");
       break;
   }
   

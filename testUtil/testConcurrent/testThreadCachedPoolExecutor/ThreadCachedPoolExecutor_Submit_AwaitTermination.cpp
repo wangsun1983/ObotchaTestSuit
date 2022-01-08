@@ -12,6 +12,7 @@
 #include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,11 +35,11 @@ void CachedPoolSubmit_AwaitTermination() {
     pool->awaitTermination();
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor AwaitTermination test1] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor AwaitTermination test1]");
       break;
     }
     break;
   }
   
-  printf("---[TestCachedPoolExecutor AwaitTermination test100] [OK]--- \n");
+  TEST_OK("[TestCachedPoolExecutor AwaitTermination test100] ");
 }

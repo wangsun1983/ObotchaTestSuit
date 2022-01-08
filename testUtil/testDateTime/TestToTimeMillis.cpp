@@ -19,8 +19,7 @@ void testToTimeMillis() {
 	Calendar now = createCalendar();
 	DateTime date = now->getDateTime();
 	if(date->toTimeMillis() != now->toTimeMillis()) {
-		printf("now is %ld,date is %ld \n",now->toTimeMillis(),date->toTimeMillis());
-	    TEST_FAIL("DateTime toTimeMillis test1-------[FAILED]");
+		TEST_FAIL("DateTime toTimeMillis test1,now is %ld,date is %ld",now->toTimeMillis(),date->toTimeMillis());
     }
 
 	TEST_OK("DateTime toTimeMillis test100");

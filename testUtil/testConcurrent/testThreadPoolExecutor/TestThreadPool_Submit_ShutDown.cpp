@@ -11,6 +11,7 @@
 #include "ExecutorBuilder.hpp"
 #include "Error.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,7 +40,7 @@ void testThreadPoolSubmit_ShutDown() {
     });
     long result = watcher->stop();
     if(result < 100 || result > 105) {
-      printf("---[ThreadPoolExecutor Submit_Shutdown test1] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Shutdown test1] ,result is %ld ",result);
     }
 
     pool->awaitTermination();
@@ -68,7 +69,7 @@ void testThreadPoolSubmit_ShutDown() {
     f2->wait();
     long result = watcher->stop();
     if(result < 100 || result > 105) {
-      printf("---[ThreadPoolExecutor Submit_Shutdown test2] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Shutdown test2] ,result is %ld ",result);
     }
     pool->awaitTermination();
     break;
@@ -97,11 +98,11 @@ void testThreadPoolSubmit_ShutDown() {
     });
     long result = watcher->stop();
     if(result < 100 || result > 105) {
-      printf("---[ThreadPoolExecutor Submit_Shutdown test3] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Shutdown test3] ,result is %ld ",result);
     }
     pool->awaitTermination();
     break;
   }
 
-  printf("---[ThreadPoolExecutor Submit_Shutdown test100] [OK]--- \n");
+  TEST_OK("[ThreadPoolExecutor Submit_Shutdown test100]");
 }

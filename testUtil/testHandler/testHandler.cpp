@@ -4,6 +4,7 @@
 #include "Handler.hpp"
 #include "Message.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -45,8 +46,8 @@ void testHandler() {
 
   sleep(10);
   if(m->count != 32*1024 || m->delayedCount != 32*1024) {
-    printf("---[Handler Test {Normal sendEmptyMessage/Delayed()} case1] [FAILED]--- \n");
+    TEST_FAIL("[Handler Test {Normal sendEmptyMessage/Delayed()} case1]");
   }
 
-  printf("---[Handler Test {Normal sendEmptyMessage/Delayed()} case2] [OK]--- \n");
+  TEST_OK("[Handler Test {Normal sendEmptyMessage/Delayed()} case2]");
 }

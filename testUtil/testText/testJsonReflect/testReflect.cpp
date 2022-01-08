@@ -13,6 +13,7 @@
 #include "Integer.hpp"
 #include "JsonReader.hpp"
 #include <vector>
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -50,24 +51,24 @@ void testReflect() {
     PersonInfo info = createPersonInfo();
     value->reflectTo(info);
 
-    printf("info name is %s \n",info->name->toChars());
-    printf("info url is %s \n",info->url->toChars());
-    printf("info page is %s \n",info->page->toChars());
-    printf("info street is %s \n",info->address->street->toChars());
-    printf("info city is %s \n",info->address->city->toChars());
-    printf("info country is %s \n",info->address->country->toChars());
+    TEST_FAIL("info name is %s ",info->name->toChars());
+    TEST_FAIL("info url is %s ",info->url->toChars());
+    TEST_FAIL("info page is %s ",info->page->toChars());
+    TEST_FAIL("info street is %s ",info->address->street->toChars());
+    TEST_FAIL("info city is %s ",info->address->city->toChars());
+    TEST_FAIL("info country is %s ",info->address->country->toChars());
     if(info->isNonProfit) {
-        printf("info isNonProfit is true \n");
+        TEST_FAIL("info isNonProfit is true ");
     } else {
-        printf("info isNonProfit is false \n");
+        TEST_FAIL("info isNonProfit is false ");
     }
 
     if(info->links != nullptr) {
-        printf("size is %d \n",info->links->size());
+        TEST_FAIL("size is %d ",info->links->size());
         ListIterator<Link> iterator = info->links->getIterator();
         while(iterator->hasValue()) {
             Link ll = iterator->getValue();
-            printf("Link name is %s,url is %s \n",ll->name->toChars(),ll->url->toChars());
+            TEST_FAIL("Link name is %s,url is %s ",ll->name->toChars(),ll->url->toChars());
             iterator->next();
         }
     }

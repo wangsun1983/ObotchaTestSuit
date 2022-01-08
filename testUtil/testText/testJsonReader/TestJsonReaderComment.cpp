@@ -6,11 +6,12 @@
 #include "JsonValue.hpp"
 
 #include "Log.hpp"
+#include "TestLog.hpp"
+
 
 using namespace obotcha;
 
 int commentTest() {
-    printf("---[JsonReader Comment Test Start]--- \n");
     //String getString(String tag);
     while(1) {
       JsonReader reader = createJsonReader(createFile("./test/data/test_comment_01.json"));
@@ -19,25 +20,25 @@ int commentTest() {
       JsonValue vv1 = v->getValueAt(0);
       String vv1_str = vv1->getString("a");
       if(vv1_str == nullptr || !vv1_str->equals("aaa")) {
-        printf("---[JsonReader commonTest case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader commonTest case1]");
         break;
       }
 
       JsonValue vv2 = v->getValueAt(1);
       String vv2_str = vv2->getString("b");
       if(vv2_str == nullptr || !vv2_str->equals("bbb")) {
-        printf("---[JsonReader commonTest case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader commonTest case2]");
         break;
       }
 
       JsonValue vv3 = v->getValueAt(2);
       String vv3_str = vv3->getString("c");
       if(vv3_str == nullptr || !vv3_str->equals("ccc")) {
-        printf("---[JsonReader commonTest case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader commonTest case3]");
         break;
       }
 
-      printf("---[JsonReader commonTest case4] [OK]--- \n");
+      TEST_OK("[JsonReader commonTest case4]");
       break;
     }
 
@@ -46,20 +47,20 @@ int commentTest() {
       JsonValue root = reader->get();
       Integer v1 = root->getInteger("first");
       if(v1 == nullptr || v1->toValue() != 1) {
-        printf("---[JsonReader commonTest case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader commonTest case5]");
         break;
       }
 
       Integer v2 = root->getInteger("second");
       if(v2 == nullptr || v2->toValue() != 2) {
-        printf("---[JsonReader commonTest case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReader commonTest case6]");
         break;
       }
 
-      printf("---[JsonReader commonTest case7] [OK]--- \n");
+      TEST_OK("[JsonReader commonTest case7]");
       break;
     }
 
-    printf("---[JsonReader commonTest case100] [OK]--- \n");
+    TEST_OK("[JsonReader commonTest case100]");
     return 0;
 }

@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "LruCache.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ public:
   int i;
 
   ~_MyData() {
-    //printf("release mydata : %d \n",i);
+    //TEST_FAIL("release mydata : %d ",i);
   }
 };
 
@@ -31,7 +32,7 @@ int testLruAdd() {
       }
 
       if(lru->size() != 3) {
-        printf("---[LruCache Test {put()} case1] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case1]");
         return 1;
       }
 
@@ -40,16 +41,16 @@ int testLruAdd() {
       MyData m3 = lru->get(createString(12));
 
       if(m1 == nullptr || m2 == nullptr || m3 == nullptr) {
-        printf("---[LruCache Test {put()} case2] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case2]");
         return 1;
       }
 
       if(m1->i != 14 && m2->i != 13 && m3->i != 12) {
-        printf("---[LruCache Test {put()} case3] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case3]");
         return 1;
       }
 
-      printf("---[LruCache Test {put()} case4] [OK]--- \n");
+      TEST_OK("[LruCache Test {put()} case4]");
       break;
     }
 
@@ -66,7 +67,7 @@ int testLruAdd() {
       MyData m2 = lru->at(1); //13
       MyData m3 = lru->at(2); //12
       if(m1->i != 14 && m2->i != 13 && m3->i != 12) {
-        printf("---[LruCache Test {put()} case5] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case5]");
         return 1;
       }
 
@@ -75,7 +76,7 @@ int testLruAdd() {
       m2 = lru->at(1); //14
       m3 = lru->at(2); //12
       if(m1->i != 13 && m2->i != 14 && m3->i != 12) {
-        printf("---[LruCache Test {put()} case6] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case6]");
         return 1;
       }
 
@@ -84,7 +85,7 @@ int testLruAdd() {
       m2 = lru->at(1); //13
       m3 = lru->at(2); //14
       if(m1->i != 12 && m2->i != 13 && m3->i != 14) {
-        printf("---[LruCache Test {put()} case7] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case7]");
         return 1;
       }
 
@@ -93,11 +94,13 @@ int testLruAdd() {
       m2 = lru->at(1); //12
       m3 = lru->at(2); //13
       if(m1->i != 14 && m2->i != 12 && m3->i != 13) {
-        printf("---[LruCache Test {put()} case8] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {put()} case8]");
         return 1;
       }
 
-      printf("---[LruCache Test {put()} case9] [OK]--- \n");
+      TEST_OK("[LruCache Test {put()} case9]");
       break;
     }
+
+    return 0;
 }

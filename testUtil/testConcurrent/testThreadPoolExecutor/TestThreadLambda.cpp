@@ -10,6 +10,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -26,7 +27,7 @@ void testThreadLambda() {
 
         sleep(1);
         if(value != 123) {
-            printf("---[testThreadLambda value case1] [FAIL]--- \n");
+            TEST_FAIL("[testThreadLambda value case1]");
             break;
         }
         break;
@@ -42,7 +43,7 @@ void testThreadLambda() {
 
         sleep(1);
         if(value != 123) {
-            printf("---[testThreadLambda value case2] [FAIL]--- \n");
+            TEST_FAIL("[testThreadLambda value case2]");
         }
         break;
     }
@@ -57,12 +58,12 @@ void testThreadLambda() {
 
         f->wait();
         if(value != 123) {
-            printf("---[testThreadLambda value case3] [FAIL]--- \n");
+            TEST_FAIL("[testThreadLambda value case3]");
         }
         break;
     }
 
     t->shutdown();
     sleep(1);
-    printf("---[testThreadLambda value case5] [OK]--- \n");
+    TEST_OK("[testThreadLambda value case5]");
 }

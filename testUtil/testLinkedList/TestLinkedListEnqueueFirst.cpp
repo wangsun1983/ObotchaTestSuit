@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testPutFirst() {
         mList->putFirst(createString("c"));
 
         if(mList->size() != 3) {
-            printf("LinkedList Enqueue First test1-------[FAIL] \n");
+            TEST_FAIL("LinkedList Enqueue First test1");
             break;
         }
 
@@ -29,11 +30,11 @@ void testPutFirst() {
         String v3 = mList->at(2);
 
         if(!v1->equals("c") ||!v2->equals("b") ||!v3->equals("a")) {
-            printf("v1 is %s ,v2 is %s,v3 is %s \n",v1->toChars(),v2->toChars(),v3->toChars());
-            printf("LinkedList Enqueue First test2-------[FAIL] \n");
+            TEST_FAIL("LinkedList Enqueue First test2,v1 is %s ,v2 is %s,v3 is %s ",v1->toChars(),v2->toChars(),v3->toChars());
+            
             break;
         }
-        printf("LinkedList Enqueue First test3-------[OK] \n");
+        TEST_OK("LinkedList Enqueue First test3");
         break;
     }
 
@@ -43,17 +44,17 @@ void testPutFirst() {
 
         mList->putFirst(createString("a"));
         if(mList->size() != 1) {
-            printf("LinkedList Enqueue First test4-------[FAIL] \n");
+            TEST_FAIL("LinkedList Enqueue First test4");
             break;
         }
 
         String v1 = mList->at(0);
         if(!v1->equals("a")) {
-            printf("v1 is %s \n",v1->toChars());
-            printf("LinkedList Enqueue First test5-------[FAIL] \n");
+            TEST_FAIL("LinkedList Enqueue First test5,v1 is %s ",v1->toChars());
+            
             break;
         }
-        printf("LinkedList Enqueue First test6-------[OK] \n");
+        TEST_OK("LinkedList Enqueue First test6");
         break;
     }
 

@@ -6,6 +6,7 @@
 #include "ConfReader.hpp"
 #include "Log.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,7 +14,8 @@ int testcreate() {
 
     try {
         ConfReader reader = createConfReader("abcd.conf");
-        printf("---[ConfReader create test} case1] [FAILED]--- \n");
+        TEST_FAIL("[ConfReader create test} case1]");
     } catch(InitializeException e) {}
 
+    return 0;
 }

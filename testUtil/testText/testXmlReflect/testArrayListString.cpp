@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -49,7 +50,7 @@ void testArrayListString() {
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
-        printf("---[JsonReflect ArrayList String Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList String Test case1]");
         break;
       }
 
@@ -58,7 +59,7 @@ void testArrayListString() {
         ||!list2->get(2)->equals("val3")
         ||!list2->get(3)->equals("val4")
         ||!list2->get(4)->equals("val5")) {
-          printf("---[JsonReflect ArrayList String Test case2] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect ArrayList String Test case2]");
           break;
       }
       break;
@@ -88,7 +89,7 @@ void testArrayListString() {
       auto list2 = ll2->lists;
 
       if(list2->size() != 5) {
-        printf("---[JsonReflect ArrayList String Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList String Test case3]");
         break;
       }
 
@@ -97,11 +98,11 @@ void testArrayListString() {
         ||!list2->get(2)->equals("val3")
         ||!list2->get(3)->equals("val4")
         ||!list2->get(4)->equals("val5")) {
-          printf("---[JsonReflect ArrayList String Test case4] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect ArrayList String Test case4]");
           break;
       }
       break;
     }
 
-    printf("---[JsonReflect ArrayList String Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect ArrayList String Test case100]");
 }

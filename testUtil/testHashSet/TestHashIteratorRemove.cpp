@@ -3,6 +3,7 @@
 
 #include "HashSet.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void testHashIteratorRemove() {
         }
 
         if(set->size() != 3) {
-          printf("HashSet iterator remove test1-------[FAIL] \n");
+          TEST_FAIL("HashSet iterator remove test1");
           break;
         }
 
@@ -44,7 +45,7 @@ void testHashIteratorRemove() {
         }
 
         if(count != 3) {
-          printf("HashSet iterator remove test2-------[FAIL] \n");
+          TEST_FAIL("HashSet iterator remove test2");
         }
 
         break;
@@ -69,7 +70,7 @@ void testHashIteratorRemove() {
         }
 
         if(set->size() != 3) {
-          printf("HashSet iterator remove test3-------[FAIL] \n");
+          TEST_FAIL("HashSet iterator remove test3");
           break;
         }
 
@@ -86,11 +87,11 @@ void testHashIteratorRemove() {
         }
 
         if(count != 3) {
-          printf("HashSet iterator remove test4-------[FAIL] \n");
+          TEST_FAIL("HashSet iterator remove test4");
         }
 
         break;
     }
 
-    printf("HashSet iterator remove test100-------[OK] \n");
+    TEST_OK("HashSet iterator remove test100");
 }

@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 #define TEST_DEVIATION 50 //ms
 #define TEST_SLEEP_INTERVAL 100 //s
@@ -52,12 +53,12 @@ void testThreadSleepInterrupt() {
         sleep(1);
 
         if(mySleepExceptionTest1 != 1 || mySleepReleaseTest1 != 1) {
-            printf("---[Thread Test {Sleep Interrupt()} special case1] [FAILED]--- mySleepExceptionTest1 is %d,mySleepReleaseTest1 is %d\n",
+            TEST_FAIL("[Thread Test {Sleep Interrupt()} special case1] mySleepExceptionTest1 is %d,mySleepReleaseTest1 is %d",
                 mySleepExceptionTest1,mySleepReleaseTest1);
             break;
         }
 
-        printf("---[Thread Test {Sleep Interrupt()} special case2] [OK]--- \n");
+        TEST_OK("[Thread Test {Sleep Interrupt()} special case2]");
         break;
     }
 

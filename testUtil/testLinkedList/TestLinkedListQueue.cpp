@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -28,7 +29,7 @@ void testLinkeListQueue() {
       while(size > 0) {
         String ss = list->takeFirst();
         if(!ss->equals(vect[count])) {
-          printf("LinkedList queue test1-------[FAIL]\n");
+          TEST_FAIL("LinkedList queue test1");
         }
         count++;
         size--;
@@ -57,7 +58,7 @@ void testLinkeListQueue() {
       while(size > 0) {
         int ss = list->takeFirst()->toValue();
         if(ss != vect[count]) {
-          printf("LinkedList queue test2-------[FAIL]\n");
+          TEST_FAIL("LinkedList queue test2");
         }
         count++;
         size--;
@@ -86,7 +87,7 @@ void testLinkeListQueue() {
       while(size > 0) {
         String ss = list->takeLast();
         if(!ss->equals(vect[count])) {
-          printf("LinkedList queue test3-------[FAIL]\n");
+          TEST_FAIL("LinkedList queue test3");
         }
         count++;
         size--;
@@ -115,7 +116,7 @@ void testLinkeListQueue() {
       while(size > 0) {
         int ss = list->takeLast()->toValue();
         if(ss != vect[count]) {
-          printf("LinkedList queue test4-------[FAIL]\n");
+          TEST_FAIL("LinkedList queue test4");
         }
         count++;
         size--;
@@ -123,7 +124,7 @@ void testLinkeListQueue() {
       break;
     }
 
-    printf("LinkedList queue test100-------[OK]\n");
+    TEST_OK("LinkedList queue test100");
 
 
 }

@@ -11,6 +11,7 @@
 #include "ExecutorBuilder.hpp"
 #include "Error.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,7 +35,7 @@ void testThreadPoolSubmit_Wait() {
     });
     long value = watcher->stop();
     if(value < 0 || value > 205) {
-      printf("---[ThreadPoolExecutor Submit_Wait test1 value is %ld] [FAILED]--- \n",value);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test1 value is %ld]",value);
       break;
     }
     break;
@@ -54,7 +55,7 @@ void testThreadPoolSubmit_Wait() {
     });
     long value = watcher->stop();
     if(value < 0 || value > 405) {
-      printf("---[ThreadPoolExecutor Submit_Wait test2 value is %ld] [FAILED]--- \n",value);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test2 value is %ld]",value);
       break;
     }
     break;
@@ -80,7 +81,7 @@ void testThreadPoolSubmit_Wait() {
     long value = watcher->stop();
 
     if(value < 0 || value > 5) {
-      printf("---[ThreadPoolExecutor Submit_Wait test3 value is %ld] [FAILED]--- \n",value);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test3 value is %ld]",value);
       break;
     }
 
@@ -113,7 +114,7 @@ void testThreadPoolSubmit_Wait() {
     long value = watcher->stop();
 
     if(value < 0 || value > 205) {
-      printf("---[ThreadPoolExecutor Submit_Wait test4 value is %ld] [FAILED]--- \n",value);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test4 value is %ld]",value);
       break;
     }
 
@@ -139,7 +140,7 @@ void testThreadPoolSubmit_Wait() {
     f2->wait();
     long result = watcher->stop();
     if(result > 5 || result < 0) {
-      printf("---[ThreadPoolExecutor Submit_Wait test5 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test5 result is %ld]",result);
       break;
     }
     pool2->awaitTermination();
@@ -162,7 +163,7 @@ void testThreadPoolSubmit_Wait() {
 
     long result = watcher->stop();
     if(result > 5 || result < 0) {
-      printf("---[ThreadPoolExecutor Submit_Wait test6 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test6 result is %ld]",result);
       break;
     }
     pool2->awaitTermination();
@@ -183,7 +184,7 @@ void testThreadPoolSubmit_Wait() {
     });
     long result = watcher->stop();
     if(result > 5 || result < 0) {
-      printf("---[ThreadPoolExecutor Submit_Wait test7 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test7 result is %ld]",result);
       break;
     }
 
@@ -192,7 +193,7 @@ void testThreadPoolSubmit_Wait() {
     });
     result = watcher->stop();
     if(result > 5 || result < 0) {
-      printf("---[ThreadPoolExecutor Submit_Wait test8 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test8 result is %ld]",result);
       break;
     }
 
@@ -201,7 +202,7 @@ void testThreadPoolSubmit_Wait() {
     });
     result = watcher->stop();
     if(result > 205 || result < 200) {
-      printf("---[ThreadPoolExecutor Submit_Wait test9 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test9 result is %ld]",result);
       break;
     }
     pool2->shutdown();
@@ -230,7 +231,7 @@ void testThreadPoolSubmit_Wait() {
     f3->wait();
     long result = watcher->stop();
     if(result > 605 || result < 600) {
-      printf("---[ThreadPoolExecutor Submit_Wait test10 result is %ld] [FAILED]--- \n",result);
+      TEST_FAIL("[ThreadPoolExecutor Submit_Wait test10 result is %ld]",result);
       break;
     }
     break;
@@ -239,5 +240,5 @@ void testThreadPoolSubmit_Wait() {
   pool->shutdown();
   pool->awaitTermination();
 
-  printf("---[ThreadPoolExecutor Submit_Wait test100] [OK]--- \n");
+  TEST_OK("[ThreadPoolExecutor Submit_Wait test100]");
 }

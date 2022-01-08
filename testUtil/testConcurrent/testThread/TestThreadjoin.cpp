@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -113,11 +114,11 @@ void testThreadJoin() {
     sleep(15);
 
     if(!t2->isWake() || !t3->isWake()) {
-        printf("---[Thread Test {ThreadJoin()} special case1] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case1]");
         break;
     }
 
-    printf("---[Thread Test {ThreadJoin()} special case2] [OK]--- \n");
+    TEST_OK("[Thread Test {ThreadJoin()} special case2]");
     break;;
   }
 
@@ -126,18 +127,18 @@ void testThreadJoin() {
     t4->start();
     sleep(1);
     if(!t4->isWake()) {
-        printf("---[Thread Test {ThreadJoin()} special case3] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case3]");
         break;
     }
 
     long t1 = st(System)::currentTimeMillis();
     t4->join();
     if((st(System)::currentTimeMillis() - t1)>2) {
-        printf("---[Thread Test {ThreadJoin()} special case4] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case4]");
         break;
     }
 
-    printf("---[Thread Test {ThreadJoin()} special case5] [OK]--- \n");
+    TEST_OK("[Thread Test {ThreadJoin()} special case5]");
     break;
   }
 
@@ -146,18 +147,18 @@ void testThreadJoin() {
     t4->start();
     sleep(1);
     if(!t4->isWake()) {
-        printf("---[Thread Test {ThreadJoin()} special case7] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case7]");
         break;
     }
 
     long t1 = st(System)::currentTimeMillis();
     t4->join();
     if((st(System)::currentTimeMillis() - t1)>2) {
-        printf("---[Thread Test {ThreadJoin()} special case8] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case8]");
         break;
     }
 
-    printf("---[Thread Test {ThreadJoin()} special case9] [OK]--- \n");
+    TEST_OK("[Thread Test {ThreadJoin()} special case9]");
     break;
   }
 
@@ -170,17 +171,17 @@ void testThreadJoin() {
     t5->join(2000);
     long v = st(System)::currentTimeMillis() - t1;
     if(v < 2000 || v > 2010) {
-        printf("---[Thread Test {ThreadJoin()} special case10] [FAILED],v is %ld--- \n",v);
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case10]");
         break;
     }
 
     if(t5->isWake()) {
-        printf("---[Thread Test {ThreadJoin()} special case11] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {ThreadJoin()} special case11]");
         break;
     }
 
     //t5->quit();
-    printf("---[Thread Test {ThreadJoin()} special case12] [OK]--- \n");
+    TEST_OK("[Thread Test {ThreadJoin()} special case12]");
     break;
   }
 

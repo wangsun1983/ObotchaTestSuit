@@ -9,15 +9,16 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 DECLARE_CLASS(StartTestThread1) IMPLEMENTS(Thread) {
 public:
     void run() {
-        //printf("startTest trace1 \n");
+        //TEST_FAIL("startTest trace1 ");
         sleep(1);
-        //printf("startTest trace2 \n");
+        //TEST_FAIL("startTest trace2 ");
     }
 };
 
@@ -28,9 +29,9 @@ public:
     }
 
     void run() {
-        //printf("startTest trace1 \n");
+        //TEST_FAIL("startTest trace1 ");
         sleep(1);
-        //printf("startTest trace2 \n");
+        //TEST_FAIL("startTest trace2 ");
     }
 };
 
@@ -48,18 +49,18 @@ void testThreadStart() {
         t1->start();
         int ret = t1->start();
         if(ret != -AlreadyExecute) {
-            printf("---[Thread TestStart {start()} case1] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestStart {start()} case1]");
             break;
         }
 
         sleep(2);
         ret = t1->start();
         if(ret != -AlreadyExecute) {
-            printf("---[Thread TestStart {start()} case2] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestStart {start()} case2]");
             break;
         }
 
-        printf("---[Thread TestStart {start()} case3] [OK]--- \n");
+        TEST_OK("[Thread TestStart {start()} case3]");
         break;
     }
 
@@ -68,11 +69,11 @@ void testThreadStart() {
         t1->start();
         int ret = t1->start();
         if(ret != -AlreadyExecute) {
-            printf("---[Thread TestStart {start()} case4] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestStart {start()} case4]");
             break;
         }
 
-        printf("---[Thread TestStart {start()} case5] [OK]--- \n");
+        TEST_OK("[Thread TestStart {start()} case5]");
         break;
     }
 
@@ -83,11 +84,11 @@ void testThreadStart() {
         t1->start();
         int ret = t1->start();
         if(ret != -AlreadyExecute) {
-            printf("---[Thread TestStart {start()} case6] [FAILED]--- \n");
+            TEST_FAIL("[Thread TestStart {start()} case6]");
             break;
         }
 
-        printf("---[Thread TestStart {start()} case7] [OK]--- \n");
+        TEST_OK("[Thread TestStart {start()} case7]");
         break;
     }
 
@@ -95,12 +96,12 @@ void testThreadStart() {
         for(int i = 0;i<1024*32;i++) {
             StartTestThread3 r = createStartTestThread3();
             if(r->start() != 0) {
-                printf("---[Thread TestStart {start()} case8] [FAILED]--- \n");
+                TEST_FAIL("[Thread TestStart {start()} case8]");
                 break;
             }
 
             if(r->start() != -AlreadyExecute) {
-                printf("---[Thread TestStart {start()} case9] [FAILED]--- \n");
+                TEST_FAIL("[Thread TestStart {start()} case9]");
                 break;
             }
         }

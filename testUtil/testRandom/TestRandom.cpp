@@ -2,12 +2,11 @@
 #include <unistd.h>
 #include "Math.hpp"
 #include "Random.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int main() {
-
-    printf("---[Random Test Start]--- \n");
 
     //int nextInt()
     while(1) {
@@ -18,7 +17,6 @@ int main() {
             int v1 = rand->nextInt();
             for(int ckindex = 0;ckindex < index;ckindex++) {
                 if(v1 == array[ckindex]) {
-                    std::cout<<"v1 is "<<v1<<";array["<<ckindex<<"] = "<<array[ckindex]<<std::endl;
                     isOk = false;
                     break;
                 }
@@ -27,13 +25,13 @@ int main() {
             array[index] = v1;
 
             if(!isOk) {
-                printf("---[TestRandom Test {nextInt(int)} case1] [FAILED]--- \n");
+                TEST_FAIL("[TestRandom Test {nextInt(int)} case1]");
                 break;
             }
         }
 
         if(isOk) {
-            printf("---[TestRandom Test {nextInt(int)} case2] [Success]--- \n");
+            TEST_OK("[TestRandom Test {nextInt(int)} case2]");
             break;
         }
 
@@ -48,12 +46,12 @@ int main() {
         for(int index = 0;index < 100000;index++) {
             int v = rand->nextInt(min,max);
             if(v > max || v < min) {
-                printf("---[TestRandom Test {nextInt(int,int)} case1] [FAIL]--- \n");
+                TEST_FAIL("[TestRandom Test {nextInt(int,int)} case1] [FAIL] ");
                 break;
             }
         }
 
-        printf("---[TestRandom Test {nextInt(int,int)} case2] [Success]--- \n");
+        TEST_OK("[TestRandom Test {nextInt(int,int)} case2]");
         break;
     }
 
@@ -64,12 +62,12 @@ int main() {
         for(int index = 0;index < 100000;index++) {
             int v = rand->nextInt(min);
             if(v < min) {
-                printf("---[TestRandom Test {nextInt(int)} case1] [FAIL]--- \n");
+                TEST_FAIL("[TestRandom Test {nextInt(int)} case1] [FAIL] ");
                 break;
             }
         }
 
-        printf("---[TestRandom Test {nextInt(int)} case2] [Success]--- \n");
+        TEST_OK("[TestRandom Test {nextInt(int)} case2]");
         break;
     }
 
@@ -93,13 +91,13 @@ int main() {
             array[index] = v1;
 
             if(!isOk) {
-                printf("---[TestRandom Test {nextDouble()} case1] [FAILED]--- \n");
+                TEST_FAIL("[TestRandom Test {nextDouble()} case1]");
                 break;
             }
         }
 
         if(isOk) {
-            printf("---[TestRandom Test {nextDouble()} case2] [Success]--- \n");
+            TEST_OK("[TestRandom Test {nextDouble()} case2]");
             break;
         }
 
@@ -116,12 +114,12 @@ int main() {
             double max = 15.00001;
             double t = rand->nextDouble(min,max);
             if(st(Math)::compare(t,min) == CompareParam2Larger || st(Math)::compare(t,max) == CompareParam1Larger) {
-                printf("---[TestRandom Test {nextDouble(double,double)} case1] [FAILED]--- \n");
+                TEST_FAIL("[TestRandom Test {nextDouble(double,double)} case1]");
                 break;
             }
         }
 
-        printf("---[TestRandom Test {nextDouble(double,double)} case2] [Success]--- \n");
+        TEST_OK("[TestRandom Test {nextDouble(double,double)} case2]");
         break;
     }
 
@@ -132,12 +130,12 @@ int main() {
             double min = 10.0001;
             double t = rand->nextDouble(min);
             if(st(Math)::compare(t,min) == CompareParam2Larger) {
-                printf("---[TestRandom Test {nextDouble(double)} case1] [FAILED]--- \n");
+                TEST_FAIL("[TestRandom Test {nextDouble(double)} case1]");
                 break;
             }
         }
 
-        printf("---[TestRandom Test {nextDouble(double)} case2] [Success]--- \n");
+        TEST_OK("[TestRandom Test {nextDouble(double)} case2]");
         break;
     }
 

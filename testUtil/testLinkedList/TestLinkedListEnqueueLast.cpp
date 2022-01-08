@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testPutLast() {
         mList->putLast(createString("c"));
 
         if(mList->size() != 3) {
-            printf("LinkedList Enqueue Last test1-------[FAIL] \n");
+            TEST_FAIL("LinkedList Enqueue Last test1");
             break;
         }
 
@@ -24,17 +25,17 @@ void testPutLast() {
         String v3 = mList->takeLast();
 
         if(!v1->equals("c") ||!v2->equals("b") ||!v3->equals("a")) {
-            printf("v1 is %s ,v2 is %s,v3 is %s \n",v1->toChars(),v2->toChars(),v3->toChars());
-            printf("LinkedList Dequeue Last test2-------[FAIL] \n");
+            TEST_FAIL("v1 is %s ,v2 is %s,v3 is %s ",v1->toChars(),v2->toChars(),v3->toChars());
+            TEST_FAIL("LinkedList Dequeue Last test2");
             break;
         }
 
         if(mList->takeLast() != nullptr) {
-            printf("LinkedList Dequeue Last test3-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test3");
             break;
         }
 
-        printf("LinkedList Dequeue Last test4-------[OK] \n");
+        TEST_OK("LinkedList Dequeue Last test4");
         break;
     }
 
@@ -42,10 +43,10 @@ void testPutLast() {
     while(1) {
         LinkedList<String> mList = createLinkedList<String>();
         if(mList->takeLast() != nullptr) {
-          printf("LinkedList Dequeue Last test5-------[FAIL] \n");
+          TEST_FAIL("LinkedList Dequeue Last test5");
           break;
         }
-        printf("LinkedList Dequeue Last test6-------[OK] \n");
+        TEST_OK("LinkedList Dequeue Last test6");
         break;
     }
 

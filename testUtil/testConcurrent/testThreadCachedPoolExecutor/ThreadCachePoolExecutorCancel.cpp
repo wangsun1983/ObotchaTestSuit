@@ -12,6 +12,7 @@
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
 #include "ThreadCachedPoolExecutor.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,7 +36,7 @@ public:
 
 int cancelTest() {
     while(1) {
-        //printf("start test \n");
+        //TEST_FAIL("start test ");
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
         ThreadCachedPoolExecutor pool = createExecutorBuilder()
                                         ->setQueueSize(1024*32)
@@ -45,31 +46,31 @@ int cancelTest() {
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();
-        //printf("start trace \n");
+        //TEST_FAIL("start trace ");
         for(int i = 0;i < 1024*32;i++) {
-         //   printf("submit task num is %d \n",i);
+         //   TEST_FAIL("submit task num is %d ",i);
             Future f = pool->submit(createCancelRunnable());
             cancellists->add(f);
         }
 
         for(int i = 0;i < 1024*32;i++) {
-         //   printf("submit task num is %d \n",i);
+         //   TEST_FAIL("submit task num is %d ",i);
             Future f = cancellists->get(i);
             f->cancel();
         }
 
         sleep(5);
         if(cancelNum != 1024*32) {
-            printf("---[CacheThreadPool Test {cancel()} case1,cancelNum is %d] [FAIL]--- \n",cancelNum);
+            TEST_FAIL("[CacheThreadPool Test {cancel()} case1,cancelNum is %d]",cancelNum);
         }
         pool->shutdown();
 
-        printf("---[CacheThreadPool Test {cancel()}case2] [OK]--- \n");
+        TEST_OK("[CacheThreadPool Test {cancel()}case2]");
         break;
     }
 
     while(1) {
-        //printf("start test \n");
+        //TEST_FAIL("start test ");
         cancelNum = 0;
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
         ThreadCachedPoolExecutor pool = createExecutorBuilder()
@@ -80,9 +81,9 @@ int cancelTest() {
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();
-        //printf("start trace \n");
+        //TEST_FAIL("start trace ");
         for(int i = 0;i < 1024*32;i++) {
-         //   printf("submit task num is %d \n",i);
+         //   TEST_FAIL("submit task num is %d ",i);
             Future f = pool->submit(createCancelRunnable());
             cancellists->add(f);
         }
@@ -90,9 +91,11 @@ int cancelTest() {
         sleep(5);
 
         if(cancelNum != 1024*32) {
-            printf("---[CacheThreadPool Test {cancel()} case3,cancelNum is %d] [FAIL]--- \n",cancelNum);
+            TEST_FAIL("[CacheThreadPool Test {cancel()} case3,cancelNum is %d]",cancelNum);
         }
-        printf("---[CacheThreadPool Test {cancel()}case4] [OK]--- \n");
+        TEST_OK("[CacheThreadPool Test {cancel()}case4]");
         break;
     }
+
+    return 0;
 }

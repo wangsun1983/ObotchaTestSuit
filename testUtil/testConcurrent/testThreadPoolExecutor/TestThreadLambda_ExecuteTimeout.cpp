@@ -11,6 +11,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -34,7 +35,7 @@ void testThreadLambdaExecuteTimeout() {
     });
     long result = watcher->stop();
     if(result < 100 || result > 105) {
-      printf("---[ThreadPoolExecutor execute_Timeout test1] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor execute_Timeout test1],result is %ld ",result);
       break;
     }
     pool->shutdown();
@@ -53,7 +54,7 @@ void testThreadLambdaExecuteTimeout() {
     });
     long result = watcher->stop();
     if(result < 0 || result > 5) {
-      printf("---[ThreadPoolExecutor execute_Timeout test2] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor execute_Timeout test2],result is %ld ",result);
       break;
     }
     pool->shutdown();
@@ -81,7 +82,7 @@ void testThreadLambdaExecuteTimeout() {
 
     long result = watcher->stop();
     if(result < 200 || result > 205) {
-      printf("---[ThreadPoolExecutor execute_Timeout test3] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[ThreadPoolExecutor execute_Timeout test3],result is %ld ",result);
       break;
     }
     pool->shutdown();
@@ -89,5 +90,5 @@ void testThreadLambdaExecuteTimeout() {
     break;
   }
 
-  printf("---[ThreadPoolExecutor execute_Timeout test100] [OK]--- \n");
+  TEST_OK("[ThreadPoolExecutor execute_Timeout test100]");
 }

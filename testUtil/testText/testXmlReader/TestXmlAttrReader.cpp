@@ -7,6 +7,7 @@
 #include "XmlReader.hpp"
 #include "XmlValue.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 const char *testdata[46][3] = {
@@ -60,18 +61,17 @@ const char *testdata[46][3] = {
 
 
 void simpleattrtest() {
-    printf("---[XmlReader Test Start]--- \n");
     XmlReader reader = createXmlReader(createFile("test.xml"));
     XmlDocument doc = reader->get();
 
     String content = doc->toString();
-    //printf("content is %s \n",content->toChars());
+    //TEST_FAIL("content is %s \n",content->toChars());
 
     XmlValue root = doc->getRootNode();
-    //printf("name is %s \n",root->getName()->toChars());
+    //TEST_FAIL("name is %s \n",root->getName()->toChars());
     String name = root->getName();
     if(name == nullptr ||!name->equals("EllipsoidParams")) {
-        printf("---[XmlReader Test parse()} case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReader Test parse()} case1]");
         return;;
     }
 
@@ -85,7 +85,7 @@ void simpleattrtest() {
         attrcount = 0;
         while(attriterator->hasValue()) {
             if(!attriterator->getValue()->equals(testdata[nodecount][attrcount])) {
-               printf("---[XmlReader Test parse()} case1] [FAILED]--- \n");
+               TEST_FAIL("[XmlReader Test parse()} case1]");
             }
             attriterator->next();
             attrcount++;
@@ -95,6 +95,6 @@ void simpleattrtest() {
         nodecount++;
     }
 
-    printf("---[XmlReader Test parse()} case1] [OK]--- \n");
+    TEST_OK("[XmlReader Test parse()} case1]");
     return;;
 }

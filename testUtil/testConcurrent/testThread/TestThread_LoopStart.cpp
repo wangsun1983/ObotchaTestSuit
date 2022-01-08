@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,15 +19,15 @@ void testThreadLoopStart() {
 
     });
     if(t->start() != 0) {
-      printf("---[Thread Loop start case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Loop start case1]");
       break;
     }
 
     if(t->start() != -AlreadyExecute) {
-      printf("---[Thread Loop start case2] [FAILED]--- \n");
+      TEST_FAIL("[Thread Loop start case2]");
       break;
     }
     break;
   }
-  printf("---[Thread Loop start case100] [OK]--- \n");
+  TEST_OK("[Thread Loop start case100]");
 }

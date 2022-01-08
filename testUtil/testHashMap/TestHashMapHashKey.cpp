@@ -6,6 +6,7 @@
 #include "Boolean.hpp"
 #include "Boolean.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -52,7 +53,7 @@ void testHashMapHashKey() {
       map->put(key2,createString("aaa"));
 
       if(map->size() != 1) {
-        printf("---[HashMap test HashKey} test1] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test1]");
         break;
       }
 
@@ -60,12 +61,12 @@ void testHashMapHashKey() {
       key3->value = 1;
       String str = map->get(key3);
       if(str == nullptr) {
-        printf("---[HashMap test HashKey} test2] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test2]");
         break;
       }
 
       if(!str->equals("aaa")) {
-        printf("---[HashMap test HashKey} test3] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test3]");
         break;
       }
 
@@ -83,26 +84,26 @@ void testHashMapHashKey() {
       map->put(key2,createString("aaa"));
 
       if(map->size() != 2) {
-        printf("---[HashMap test HashKey} test4] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test4]");
         break;
       }
 
       TestHashKey2 key3 = createTestHashKey2();
       key3->value = 1;
       if(map->get(key3)!= nullptr) {
-        printf("---[HashMap test HashKey} test5] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test5]");
         break;
       }
 
       String str1 = map->get(key);
       if(str1 == nullptr || !str1->equals("aaa")) {
-        printf("---[HashMap test HashKey} test6] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test6]");
         break;
       }
 
       String str2 = map->get(key2);
       if(str2 == nullptr || !str2->equals("aaa")) {
-        printf("---[HashMap test HashKey} test7] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test7]");
         break;
       }
 
@@ -120,26 +121,26 @@ void testHashMapHashKey() {
       map->put(key2,createString("bbb"));
 
       if(map->size() != 2) {
-        printf("---[HashMap test HashKey} test8] [FAIL]---,map size is %d \n",map->size());
+        TEST_FAIL("[HashMap test HashKey} test8] [FAIL],map size is %d ",map->size());
         break;
       }
 
       TestHashKey3 key3 = createTestHashKey3();
       key3->value = 1;
       if(map->get(key3)!= nullptr) {
-        printf("---[HashMap test HashKey} test9] [FAIL]--- \n");
+        TEST_FAIL("[HashMap test HashKey} test9]");
         break;
       }
 
       String str1 = map->get(key);
       if(str1 == nullptr || !str1->equals("aaa")) {
-        printf("---[HashMap test HashKey} test10] [FAIL]--- str1 is %s \n",str1->toChars());
+        TEST_FAIL("[HashMap test HashKey} test10]str1 is %s ",str1->toChars());
         break;
       }
 
       String str2 = map->get(key2);
       if(str2 == nullptr || !str2->equals("bbb")) {
-        printf("---[HashMap test HashKey} test11] [FAIL]--- str2 is %s \n",str2->toChars());
+        TEST_FAIL("[HashMap test HashKey} test11]str2 is %s ",str2->toChars());
         break;
       }
 
@@ -148,5 +149,5 @@ void testHashMapHashKey() {
 
     
 
-    printf("---[HashMap test HashKey} test100] [OK]--- \n");
+    TEST_OK("[HashMap test HashKey} test100]");
 }

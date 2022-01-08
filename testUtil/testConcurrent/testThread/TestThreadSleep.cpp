@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 
 using namespace obotcha;
@@ -30,7 +31,6 @@ public:
 
 
 void testThreadSleep() {
-  printf("---[TestThread Sleep Start]--- \n");
 
   while(1) {
     for(int i = 0;i < 1024*32;i++) {
@@ -39,7 +39,7 @@ void testThreadSleep() {
       t->interrupt();
       t->join();
     }
-    printf("---[Thread Test {sleep()} Interrupt case1] [Success],count is %d--- \n",count);
+    TEST_OK("[Thread Test {sleep()} Interrupt case1] count is %d ",count);
     break;
   }
 }

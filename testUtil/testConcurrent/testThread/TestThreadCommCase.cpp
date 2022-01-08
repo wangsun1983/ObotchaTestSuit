@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 #define TEST_DEVIATION 50 //ms
 #define TEST_SLEEP_INTERVAL 100 //s
@@ -93,7 +94,7 @@ public:
     }
 
     ~_Thread4() {
-        //printf("destroy thread4 \n");
+        //TEST_FAIL("destroy thread4 ");
     }
 };
 
@@ -125,22 +126,20 @@ int testPriorityret = 0;
 DECLARE_CLASS(Thread7) IMPLEMENTS(Thread) {
 public:
     void run() {
-        //printf("thread7 start 1 \n");
+        //TEST_FAIL("thread7 start 1 ");
         st(Thread)::setThreadSchedPolicy(st(Thread)::SchedFifo);
-        //printf("thread7 start 2 \n");
+        //TEST_FAIL("thread7 start 2 ");
         st(Thread)::setThreadPriority(st(Thread)::HighPriority);
         if(st(Thread)::getThreadPriority() == st(Thread)::HighPriority) {
           testPriorityret = 1;
         }
-        //printf("thread7 start 4 \n");
+        //TEST_FAIL("thread7 start 4 ");
     }
 };
 #endif
 
 void testThreadCommonCase() {
-  printf("---[TestThread Test Start]--- \n");
-
-
+  
   //_Thread(String name,Runnable run);
   while(1) {
     {
@@ -152,11 +151,11 @@ void testThreadCommonCase() {
     st(Thread)::interruptableSleep(1000);
 
     if(TestData1 != 100 || disposeVal != 0) {
-      printf("---[Thread Test {create()} case1] [FAILED],TestData1 is %d,disposeVal is %d--- \n",TestData1,disposeVal);
+      TEST_FAIL("[Thread Test {create()} case1]");
       break;
     }
 
-    printf("---[Thread Test {create()} case2] [OK]--- \n");
+    TEST_OK("[Thread Test {create()} case2]");
     break;
   }
 
@@ -175,11 +174,11 @@ void testThreadCommonCase() {
     st(Thread)::interruptableSleep(1000);
 
     if(TestData1 != 100 || disposeVal != 0) {
-      printf("---[Thread Test {create()} case3] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {create()} case3]");
       break;
   }
 
-    printf("---[Thread Test {create()} case4] [OK]--- \n");
+    TEST_OK("[Thread Test {create()} case4]");
     break;
 }
 
@@ -194,11 +193,11 @@ void testThreadCommonCase() {
     }
     sleep(1); //wait thread remove
     if(TestData2 != 100 || disposeData2 != 0) {
-      printf("---[Thread Test {create()} case5] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {create()} case5]");
       break;
     }
 
-    printf("---[Thread Test {create()} case6] [OK]--- \n");
+    TEST_OK("[Thread Test {create()} case6]");
     break;
   }
 
@@ -213,11 +212,11 @@ void testThreadCommonCase() {
     long int end = st(System)::currentTimeMillis();
     int v = (end - start);
     if((end - start - 5000) > 10) {
-      printf("---[Thread Test {join(long)} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {join(long)} case1]");
       break;
     }
 
-    printf("---[Thread Test {join(long)} case1] [OK]--- \n");
+    TEST_OK("[Thread Test {join(long)} case1]");
     break;
   }
 
@@ -229,18 +228,18 @@ void testThreadCommonCase() {
     t2->start();
     int status = t2->getStatus();
     if(status != st(Thread)::Running && status != st(Thread)::Idle) {
-      printf("---[Thread Test {getStatus()} case1,status is %d] [FAILED]--- \n",status);
+      TEST_FAIL("[Thread Test {getStatus()} case1]");
       break;
     }
 
     sleep(1);
     status = t2->getStatus();
     if(status != st(Thread)::Running) {
-      printf("---[Thread Test {getStatus()} case2,status is %d] [FAILED]--- \n",status);
+      TEST_FAIL("[Thread Test {getStatus()} case2]");
       break;
     }
 
-    printf("---[Thread Test {getStatus(long)} case1] [OK]--- \n");
+    TEST_OK("[Thread Test {getStatus(long)} case1]");
     break;
   }
 
@@ -255,10 +254,10 @@ void testThreadCommonCase() {
     t2->setSchedPolicy(st(Thread)::SchedFifo);
     int sched = t2->getSchedPolicy();
     if(sched != st(Thread)::SchedFifo || oldSched != st(Thread)::SchedOther) {
-      printf("---[Thread Test {setSchedPolicy()} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {setSchedPolicy()} case1]");
       break;
     }
-    printf("---[Thread Test {setSchedPolicy()} case2] [OK]--- \n");
+    TEST_FAIL("[Thread Test {setSchedPolicy()} case2] [OK] ");
     break;
   }
 
@@ -273,20 +272,20 @@ void testThreadCommonCase() {
     int result = t2->setPriority(st(Thread)::HighestPriority);
     int policy = t2->getSchedPolicy();
     if(policy != st(Thread)::SchedOther || result == -1) {
-      printf("---[Thread Test {setPriority()} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {setPriority()} case1]");
       break;
     }
 
-    printf("start priority test \n");
+    TEST_FAIL("start priority test ");
     int result1 = t2->setSchedPolicy(st(Thread)::SchedFifo);
     int result2 = t2->setPriority(st(Thread)::HighestPriority);
-    printf("result1 is %d,result2 is %d \n",result1,result2);
+    TEST_FAIL("result1 is %d,result2 is %d ",result1,result2);
     if(t2->getPriority() != st(Thread)::HighestPriority) {
-      printf("---[Thread Test {setPriority()} case2] [FAILED],t2->getPriority() is %d--- \n",t2->getPriority());
+      TEST_FAIL("[Thread Test {setPriority()} case2] [FAILED],t2->getPriority() is %d ",t2->getPriority());
       break;
     }
 
-    printf("---[Thread Test {setPriority()} case3] [OK]--- \n");
+    TEST_FAIL("[Thread Test {setPriority()} case3] [OK] ");
     break;
   }
 #endif
@@ -296,24 +295,24 @@ void testThreadCommonCase() {
     Thread2 t2 = createThread2();
     t2->setName("testsetname");
     t2->start();
-    //printf("t2_1 status is %d \n",t2->getStatus());
+    //TEST_FAIL("t2_1 status is %d ",t2->getStatus());
     t2->setName("mysetnametest");
-    //printf("t2_2 status is %d \n",t2->getStatus());
+    //TEST_FAIL("t2_2 status is %d ",t2->getStatus());
     sleep(1);
     String name = t2->getName();
     //if(name == nullptr) {
-    //  printf("name is nullptr \n");
+    //  TEST_FAIL("name is nullptr ");
     //} else {
-    //  printf("name is %s \n",name->toChars());
+    //  TEST_FAIL("name is %s ",name->toChars());
     //}
 
     if(name == nullptr || !name->equals("mysetnametest")) {
-      printf("---[Thread Test {setName()} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {setName()} case1]");
       break;
     }
 
 
-    printf("---[Thread Test {setName()} case2] [OK]--- \n");
+    TEST_OK("[Thread Test {setName()} case2]");
     break;
   }
 
@@ -325,19 +324,19 @@ void testThreadCommonCase() {
 
     String name = t2->getName();
     if(name == nullptr || !name->equals("mygetnametest")) {
-      printf("---[Thread Test {getName()} case1] [FAILED]--- \n");
+      TEST_FAIL("[Thread Test {getName()} case1]");
       break;
     }
 
 
-    printf("---[Thread Test {getName()} case2] [OK]--- \n");
+    TEST_OK("[Thread Test {getName()} case2]");
     break;
   }
 
   //static void yield();
   while(1) {
       //not test
-      printf("---[Thread Test {yield()} case1] [Not Test]--- \n");
+      TEST_FAIL("[Thread Test {yield()} case1] [Not Test] ");
       break;
   }
 
@@ -349,11 +348,11 @@ void testThreadCommonCase() {
 
       long current2 = st(System)::currentTimeMillis();
       if((current2 - current) > 1005) {
-          printf("---[Thread Test {interruptableSleep()} case1] [FAILED]--- \n");
+          TEST_FAIL("[Thread Test {interruptableSleep()} case1]");
           break;
       }
 
-      printf("---[Thread Test {interruptableSleep()} case2] [OK]--- \n");
+      TEST_OK("[Thread Test {interruptableSleep()} case2] ");
       break;
   }
 
@@ -365,12 +364,12 @@ void testThreadCommonCase() {
     sleep(1);
     int policy = t1->getSchedPolicy();
     if(policy != st(Thread)::SchedFifo) {
-        printf("---[Thread Test {setThreadSchedPolicy()} case1] [FAILED],policy is %d--- \n",policy);
+        TEST_FAIL("[Thread Test {setThreadSchedPolicy()} case1] [FAILED],policy is %d ",policy);
         break;
     }
 
 
-    printf("---[Thread Test {setThreadSchedPolicy()} case2] [OK]--- \n");
+    TEST_FAIL("[Thread Test {setThreadSchedPolicy()} case2] [OK] ");
     break;
   }
 
@@ -383,11 +382,11 @@ void testThreadCommonCase() {
     t1->join();
     sleep(1);
     if(policytestret != 1) {
-        printf("---[Thread Test {getThreadPriority()} case1] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {getThreadPriority()} case1]");
         break;
     }
 
-    printf("---[Thread Test {getsetThreadSchedPolicyThreadPriority()} case2] [OK]--- \n");
+    TEST_FAIL("[Thread Test {getsetThreadSchedPolicyThreadPriority()} case2] [OK] ");
     break;
   }
 
@@ -399,13 +398,13 @@ void testThreadCommonCase() {
     t1->start();
     sleep(1);
     //t1->setPriority(ThreadPriority::ThreadHighPriority);
-    //printf("t1 priority is %d \n",t1->getPriority());
+    //TEST_FAIL("t1 priority is %d ",t1->getPriority());
     if(t1->getPriority() != st(Thread)::HighPriority) {
-        printf("---[Thread Test {setThreadPriority()} case1] [FAILED]--- \n");
+        TEST_FAIL("[Thread Test {setThreadPriority()} case1]");
         break;
     }
 
-    printf("---[Thread Test {setThreadPriority()} case1] [OK]--- \n");
+    TEST_FAIL("[Thread Test {setThreadPriority()} case1] [OK] ");
     break;
   }
 
@@ -413,19 +412,19 @@ void testThreadCommonCase() {
   while(1) {
       Thread7 t1 = createThread7();
       t1->setName("getThreadPriority");
-      //printf("abc1 \n");
+      //TEST_FAIL("abc1 ");
       t1->start();
-      //printf("abc2 \n");
+      //TEST_FAIL("abc2 ");
       t1->join();
-      //printf("abc3 \n");
+      //TEST_FAIL("abc3 ");
 
       if(testPriorityret != 1) {
-          printf("---[Thread Test {getThreadPriority()} case1__] [FAILED]--- \n");
+          TEST_FAIL("[Thread Test {getThreadPriority()} case1__]");
           break;
       }
 
 
-      printf("---[Thread Test {getThreadPriority()} case2] [OK]--- \n");
+      TEST_FAIL("[Thread Test {getThreadPriority()} case2] [OK] ");
       break;
   }
 #endif

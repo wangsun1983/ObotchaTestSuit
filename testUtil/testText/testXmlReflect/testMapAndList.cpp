@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -67,49 +68,49 @@ void testMapList() {
 
       auto ll = data2->lists;
       if(ll == nullptr || ll->size() != 3) {
-        printf("---[JsonReflect Map And List UserData Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case1]");
         break;
       }
 
       if(ll->get(0)->data1 != 1 || ll->get(0)->data2 != 2) {
-        printf("---[JsonReflect Map And List UserData Test case2] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case2]");
         break;
       }
 
       if(ll->get(1)->data1 != 3 || ll->get(1)->data2 != 4) {
-        printf("---[JsonReflect Map And List UserData Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case3]");
         break;
       }
 
       if(ll->get(2)->data1 != 5 || ll->get(2)->data2 != 6) {
-        printf("---[JsonReflect Map And List UserData Test case4] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case4]");
         break;
       }
 
       auto mm = data2->maps;
 
       if(mm->size() != 3) {
-        printf("---[JsonReflect Map And List UserData Test case5] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case5]");
         break;
       }
 
       if(mm->get("a") == nullptr ||mm->get("a")->data1 != 1 ||mm->get("a")->data2 != 2) {
-        printf("---[JsonReflect Map And List UserData Test case6] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case6]");
         break;
       }
 
       if(mm->get("b") == nullptr ||mm->get("b")->data1 != 3 ||mm->get("b")->data2 != 4) {
-        printf("---[JsonReflect Map And List UserData Test case7] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case7]");
         break;
       }
 
       if(mm->get("c") == nullptr ||mm->get("c")->data1 != 5 ||mm->get("c")->data2 != 6) {
-        printf("---[JsonReflect Map And List UserData Test case8] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect Map And List UserData Test case8]");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect HashMap UserData Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect HashMap UserData Test case100]");
 }

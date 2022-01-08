@@ -9,6 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,75 +19,73 @@ public:
         setPriority(st(Thread)::ThreadPriority::High);
         int priority = getPriority();
         if(priority != -NotSupport) {
-            printf("---[Thread Test {Set Priority()} case1][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case1],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Low);
         priority = getPriority();
         if(priority != -NotSupport) {
-            printf("---[Thread Test {Set Priority()} case2][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case2],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Normal);
         priority = getPriority();
         if(priority != -NotSupport) {
-            printf("---[Thread Test {Set Priority()} case3][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case3],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Highest);
         priority = getPriority();
         if(priority != -NotSupport) {
-            printf("---[Thread Test {Set Priority()} case4][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case4],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Realtime);
         priority = getPriority();
         if(priority != -NotSupport) {
-            printf("---[Thread Test {Set Priority()} case5][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case5],priority is %d",priority);
         }
 
         /////////////////////////////////policy changed
         setSchedPolicy(st(Thread)::SchedType::Fifo);
         int policy = getSchedPolicy();
         if(policy != st(Thread)::SchedType::Fifo) {
-            printf("---[Thread Test {Set Priority()} case6][FAILED]---,policy is %d \n",policy);
+            TEST_OK("[Thread Test {Set Priority()} case6],policy is %d",policy);
         }
 
         int ret = setPriority(st(Thread)::ThreadPriority::Low);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Low) {
-            printf("---[Thread Test {Set Priority()} case7][FAILED]---,priority is %d,ret is %d \n",priority,ret);
+            TEST_OK("[Thread Test {Set Priority()} case7],priority is %d,ret is %d",priority,ret);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Normal);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Normal) {
-            printf("---[Thread Test {Set Priority()} case8][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case8],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Highest);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Highest) {
-            printf("---[Thread Test {Set Priority()} case9][FAILED]---,priority is %d \n",priority);
+            TEST_OK("[Thread Test {Set Priority()} case9],priority is %d",priority);
         }
 
         sleep(100);
         setPriority(st(Thread)::ThreadPriority::Realtime);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Realtime) {
-            printf("---[Thread Test {Set Priority()} case10][FAILED]---,priority is %d \n",priority);
+
+            TEST_OK("[Thread Test {Set Priority()} case10],priority is %d",priority);
         }
 
-
-
-
-        printf("---[Thread Test {Set Priority()} case20][OK]---\n");
+        TEST_OK("[Thread Test {Set Priority()} case20]");
     }
 };
 

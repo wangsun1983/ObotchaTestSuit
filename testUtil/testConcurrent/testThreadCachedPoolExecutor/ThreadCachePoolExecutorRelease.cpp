@@ -12,6 +12,7 @@
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
 #include "ThreadCachedPoolExecutor.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +37,9 @@ int releaseTest() {
         }
         sleep(200);
         pool->shutdown();
-        printf("---[CacheThreadPool Test {release()}case4] [Success]--- \n");
+        TEST_OK("[CacheThreadPool Test {release()}case4]");
         break;
     }
+
+    return 0;
 }

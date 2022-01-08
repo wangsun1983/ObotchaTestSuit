@@ -12,6 +12,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -58,22 +59,22 @@ void testArrayUserData() {
       doc2->reflectTo(list2);
 
       if(list2->size() != 3) {
-        printf("---[JsonReflect ArrayList Userdata Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case1]");
         break;
       }
 
       if(list2->get(0)->data1 != 1 || list2->get(0)->data2 != 1) {
-        printf("---[JsonReflect ArrayList Userdata Test case2] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case2]");
         break;
       }
 
       if(list2->get(1)->data1 != 2 || list2->get(1)->data2 != 2) {
-        printf("---[JsonReflect ArrayList Userdata Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case3]");
         break;
       }
 
       if(list2->get(2)->data1 != 3 || list2->get(2)->data2 != 3) {
-        printf("---[JsonReflect ArrayList Userdata Test case4] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case4]");
         break;
       }
 
@@ -113,27 +114,27 @@ void testArrayUserData() {
       ArrayList<ArrayItemUserdata> list2 = data2->item;
 
       if(list2->size() != 3) {
-        printf("---[JsonReflect ArrayList Userdata Test case5] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case5]");
         break;
       }
 
       if(list2->get(0)->data1 != 1 || list2->get(0)->data2 != 1) {
-        printf("---[JsonReflect ArrayList Userdata Test case6] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case6]");
         break;
       }
 
       if(list2->get(1)->data1 != 2 || list2->get(1)->data2 != 2) {
-        printf("---[JsonReflect ArrayList Userdata Test case7] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case7]");
         break;
       }
 
       if(list2->get(2)->data1 != 3 || list2->get(2)->data2 != 3) {
-        printf("---[JsonReflect ArrayList Userdata Test case8] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect ArrayList Userdata Test case8]");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect ArrayList Userdata Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect ArrayList Userdata Test case100]");
 }

@@ -4,13 +4,12 @@
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
 #include "JsonValue.hpp"
-
+#include "TestLog.hpp"
 #include "Log.hpp"
 
 using namespace obotcha;
 
 int dataFailTest() {
-    printf("---[JsonReader Data Fail Test Start]--- \n");
     //String getString(String tag);
     while(1) {
       for(int index = 1;index <=33;index++) {
@@ -18,11 +17,11 @@ int dataFailTest() {
         JsonReader reader = createJsonReader(createFile(str));
         JsonValue value = reader->get();
         if(value != nullptr) {
-          printf("---[JsonReader Data Fail Test case%d] [FAILED]--- \n",index);
+          TEST_FAIL("---[JsonReader Data Fail Test case%d]",index);
           continue;
         }
 
-        printf("---[JsonReader Data Fail Test case%d] [OK]--- \n",index);
+        TEST_OK("---[JsonReader Data Fail Test case%d]",index);
       }
 
       break;

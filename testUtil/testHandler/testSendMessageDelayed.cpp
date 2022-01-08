@@ -7,6 +7,7 @@
 #include "System.hpp"
 #include "Random.hpp"
 #include "AutoLock.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -51,10 +52,9 @@ void testSendMessageDelayed() {
 
   for(int i = 0;i<1024;i++) {
       DelayTestData *data = datas[i];
-      //printf("trace start is %ld,finished is %ld,interval is %ld,real interval is %ld \n",data->start,data->finished,data->interval,data->finished - data->start);
+      //TEST_FAIL("trace start is %ld,finished is %ld,interval is %ld,real interval is %ld ",data->start,data->finished,data->interval,data->finished - data->start);
       if((data->finished - data->start) > (data->interval + 10)) {
-        printf("!!!!error,start is %ld,finished is %ld,interval is %ld \n",data->start,data->finished,data->interval);
-        printf("---[Handler Test {Test SendMessageDelayed} case1] [FAILED]--- \n");
+        TEST_FAIL("[Handler Test {Test SendMessageDelayed} case1] !!!!error,start is %ld,finished is %ld,interval is %ld ",data->start,data->finished,data->interval);
       }
       delete data;
   }

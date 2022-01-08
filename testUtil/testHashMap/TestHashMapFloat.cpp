@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Float.hpp"
 #include "Float.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,29 +24,29 @@ void testHashMapFloat() {
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
-            printf("---[HashMap Float Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap Float Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
 
         TT5 tt2 = map->get(tag);
         if(tt2 == nullptr || tt2->i != 100) {
-          printf("---[HashMap Float Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put(createFloat(2),nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap Float Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
 
         TT5 TT5 = map->get(nullptr);
         if(TT5 != nullptr) {
-          printf("---[HashMap Float Test {put(T t,U u)/get(T t)} case4] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {put(T t,U u)/get(T t)} case4]");
           break;
         }
 
-        printf("---[HashMap Float Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap Float Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -60,7 +61,7 @@ void testHashMapFloat() {
       int size = map->size();
       map->remove(createFloat(1));
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap Float Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {remove(T t)} case1]");
         break;
       }
 
@@ -68,17 +69,17 @@ void testHashMapFloat() {
       size = map->size();
       map->remove(nullptr);
       if(map->size() != 1) {
-        printf("---[HashMap Float Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {remove(T t)} case2]");
         break;
       }
 
       map->remove(createFloat(1));
       if(map->size() != 0) {
-        printf("---[HashMap Float Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap Float Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {remove(T t)} case4]");
       break;
     }
 
@@ -91,17 +92,17 @@ void testHashMapFloat() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap Float Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {isEmpty()} case1]");
         break;
       }
 
       map->remove(createFloat(1));
       if(!map->isEmpty()) {
-        printf("---[HashMap Float Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap Float Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {isEmpty()} case3]");
       break;
     }
 
@@ -117,18 +118,18 @@ void testHashMapFloat() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap Float Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {clear()} case1]");
         break;
       }
 
       HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap Float Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap Float Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {clear()} case3]");
       break;
     }
 
@@ -141,11 +142,11 @@ void testHashMapFloat() {
       map->put(tag,tt);
       map->put(createFloat(2),tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap Float Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap Float Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {size()} case1]");
       break;
     }
 
@@ -161,15 +162,15 @@ void testHashMapFloat() {
       ArrayList<Float> keys = map->keySet();
       int size = keys->size();
       if(size != 100) {
-        printf("---[HashMap Float Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Float Test {keySet()} case1]");
         break;
       }
 
       for(int index = 0;index < size;index++) {
         Float key1 = keys->get(index);
         if(map->get(key1) == nullptr) {
-          //printf("key1->int is %d,index is %d \n",key1->toValue(),index);
-          printf("---[HashMap Float Test {keySet()} case2] [FAILED]--- \n");
+          //TEST_FAIL("key1->int is %d,index is %d ",key1->toValue(),index);
+          TEST_FAIL("[HashMap Float Test {keySet()} case2]");
           break;
         }
       }
@@ -177,11 +178,11 @@ void testHashMapFloat() {
       HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
       ArrayList<Float>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap Float Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap Float Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {keySet()} case4]");
       break;
     }
 
@@ -199,7 +200,7 @@ void testHashMapFloat() {
       for(int index = 0;index < size;index++) {
         TT5 key1 = keys->get(index);
         if(map->get(createFloat(key1->i)) == nullptr) {
-          printf("---[HashMap Float Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {entrySet()} case1]");
           break;
         }
       }
@@ -207,11 +208,11 @@ void testHashMapFloat() {
       HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
       ArrayList<TT5>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap Float Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Float Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap Float Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Float Test {entrySet()} case3]");
       break;
     }
 
@@ -230,20 +231,20 @@ void testHashMapFloat() {
       while(iterator->hasValue()) {
           Float key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator Float Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Float Test {getKey/getValue()} case1]");
             break;
           }
 
           TT5 t1 = iterator->getValue();
           if(t1->i != key->toValue()) {
-            printf("---[MapIterator Float Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Float Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator Float Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator Float Test {getKey/getValue()} case3]");
       break;
 
     }

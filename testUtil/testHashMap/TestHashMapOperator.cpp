@@ -4,6 +4,7 @@
 #include "Thread.hpp"
 #include "HashMap.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -24,16 +25,16 @@ void testHashMapOperator() {
     HashMapOperatorData data2 = map[createString("bbb")];
 
     if(data2 == nullptr) {
-      printf("---[HashMap Operator Test case1] [FAILED]--- \n");
+      TEST_FAIL("[HashMap Operator Test case1]");
       break;
     }
 
     if(data2->i != 100 || data2->j != 101) {
-      printf("---[HashMap Operator Test case2] [FAILED]--- \n");
+      TEST_FAIL("[HashMap Operator Test case2]");
       break;
     }
 
-    printf("---[HashMap Operator Test case3] [OK]--- \n");
+    TEST_OK("[HashMap Operator Test case3]");
     break;
   }
 

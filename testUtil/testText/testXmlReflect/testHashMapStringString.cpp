@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -50,7 +51,7 @@ void testHashMapStringString() {
       doc2->reflectTo(map2);
 
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap String String Test case1]");
         break;
       }
 
@@ -59,7 +60,7 @@ void testHashMapStringString() {
         ||!map2->get("tag3")->equals("val3")
         ||!map2->get("tag4")->equals("val4")
         ||!map2->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case2] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect HashMap String String Test case2]");
           break;
       }
       break;
@@ -86,7 +87,7 @@ void testHashMapStringString() {
 
       auto map2 = checkValue->maps;
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap String String Test case3]");
         break;
       }
 
@@ -95,7 +96,7 @@ void testHashMapStringString() {
         ||!map2->get("tag3")->equals("val3")
         ||!map2->get("tag4")->equals("val4")
         ||!map2->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case4] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect HashMap String String Test case4]");
           break;
       }
       break;
@@ -129,7 +130,7 @@ void testHashMapStringString() {
 
       auto map1 = checkValue->maps1;
       if(map1->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case6] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap String String Test case6]");
         break;
       }
 
@@ -138,13 +139,13 @@ void testHashMapStringString() {
         ||!map1->get("tag3")->equals("val3")
         ||!map1->get("tag4")->equals("val4")
         ||!map1->get("tag5")->equals("val5")) {
-          printf("---[JsonReflect HashMap String String Test case7] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect HashMap String String Test case7]");
           break;
       }
 
       auto map2 = checkValue->maps2;
       if(map2->size() != 5) {
-        printf("---[JsonReflect HashMap String String Test case8] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap String String Test case8]");
         break;
       }
 
@@ -153,11 +154,11 @@ void testHashMapStringString() {
         ||!map2->get("2_tag3")->equals("2_val3")
         ||!map2->get("2_tag4")->equals("2_val4")
         ||!map2->get("2_tag5")->equals("2_val5")) {
-          printf("---[JsonReflect HashMap String String Test case9] [FAILED]--- \n");
+          TEST_FAIL("[XmlReflect HashMap String String Test case9]");
           break;
       }
       break;
     }
 
-    printf("---[JsonReflect HashMap String String Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect HashMap String String Test case100]");
 }

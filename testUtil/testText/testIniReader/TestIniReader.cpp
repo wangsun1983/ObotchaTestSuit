@@ -7,6 +7,7 @@
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "InitializeException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,36 +17,36 @@ void testIniReader() {
         IniReader reader = createIniReader(createFile("./testData.ini"));
         auto maps = reader->getAll();
         if(maps->size() != 5) {
-          printf("IniReader test1-------[FAILED] \n");
+          TEST_FAIL("IniReader test1");
           break;
         }
 
         //L0
         auto map1 = maps->get(createString(""));
         if(map1->size() != 1) {
-          printf("IniReader test2-------[FAILED] \n");
+          TEST_FAIL("IniReader test2");
           break;
         }
 
         auto str1 = map1->get(S("abc1"));
         if(str1 == nullptr || !str1->equals("1")) {
-          printf("IniReader test3-------[FAILED] \n");
+          TEST_FAIL("IniReader test3");
           break;
         }
 
         //L1
         auto map2 = maps->get(createString("l1"));
         if(map2->size() != 6) {
-          printf("IniReader test4-------[FAILED] \n");
+          TEST_FAIL("IniReader test4");
           break;
         }
 
         if(map2->get(S("a")) == nullptr || !map2->get(S("a"))->equals("1")) {
-          printf("IniReader test4-------[FAILED] \n");
+          TEST_FAIL("IniReader test5");
           break;
         }
 
-        printf("IniReader test100-------[OK] \n");
+        TEST_OK("IniReader test100");
         break;
     }
 }

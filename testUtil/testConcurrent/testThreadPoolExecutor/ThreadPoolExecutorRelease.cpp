@@ -11,6 +11,7 @@
 #include "Error.hpp"
 #include "ThreadPoolExecutor.hpp"
 #include "ExecutorBuilder.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ int releaseCount;
 DECLARE_CLASS(ReleaseunTest1) IMPLEMENTS(Runnable) {
 public:
     _ReleaseunTest1() {
-        //printf("create this is %lx \n",this);
+        //TEST_FAIL("create this is %lx ",this);
     }
 
     void run() {
@@ -32,13 +33,13 @@ public:
 
     ~_ReleaseunTest1() {
         //decDebugReferenctCount();
-        //printf("numMutex1 count is %d,this is %lx \n",numMutex->getStrongCount(),this);
+        //TEST_FAIL("numMutex1 count is %d,this is %lx ",numMutex->getStrongCount(),this);
         //{
         AutoLock ll(numMutex);
-            //printf("numMutex2 count is %d \n",numMutex->getStrongCount());
+            //TEST_FAIL("numMutex2 count is %d ",numMutex->getStrongCount());
         releaseCount++;
         //}
-        //printf("numMutex2 count is %d,this is %lx \n",numMutex->getStrongCount(),this);
+        //TEST_FAIL("numMutex2 count is %d,this is %lx ",numMutex->getStrongCount(),this);
 
     }
 
@@ -56,21 +57,21 @@ void releaseTest() {
             pool->shutdown();
             sleep(10);
             if(pool->getThreadsNum() != 8) {
-                printf("---[TestThreadPoolExecutor Test {release()},thread num is %d case2] [FAIL]--- \n",pool->getThreadsNum());
+                TEST_FAIL("[TestThreadPoolExecutor Test {release()},thread num is %d case2]",pool->getThreadsNum());
                 break;
             }
 
             if(releaseCount != 50) {
-                printf("---[TestThreadPoolExecutor Test {release()},count is %d case3] [FAIL]--- \n",releaseCount);
+                TEST_FAIL("[TestThreadPoolExecutor Test {release()},count is %d case3]",releaseCount);
                 break;
             }
 
-            printf("---[TestThreadPoolExecutor Test {release()}, case4] [OK]--- \n");
+            TEST_OK("[TestThreadPoolExecutor Test {release()}, case4]");
             break;
         }
 
         sleep(1);
-        printf("---[TestThreadPoolExecutor Test {release()} case5] [OK]--- \n");
+        TEST_OK("[TestThreadPoolExecutor Test {release()} case5]");
         break;
     }
 

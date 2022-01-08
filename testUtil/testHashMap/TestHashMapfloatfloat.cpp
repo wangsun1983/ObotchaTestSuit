@@ -6,6 +6,7 @@
 #include "Boolean.hpp"
 #include "Boolean.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testHashMapFloatFloat() {
       map->put(1.1,100.01);
       float v = map->get(1.1);
       if(st(Math)::compareFloat(v,100.01) != st(Math)::AlmostEqual) {
-        printf("---[HashMap<float,float>} test1] [FAILED]---,v is %f \n",v);
+        TEST_FAIL("[HashMap<float,float>} test1],v is %f ",v);
         break;
       }
       break;
@@ -32,7 +33,7 @@ void testHashMapFloatFloat() {
       }
 
       if(!isExcpetion) {
-        printf("---[HashMap<float,float>} test2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<float,float>} test2] ");
         break;
       }
       break;
@@ -44,7 +45,7 @@ void testHashMapFloatFloat() {
       map->put(1.1,200.01);
       map->put(2.1,100.01);
       if(map->size() != 2) {
-        printf("---[HashMap<float,float>} test3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<float,float>} test3] ");
         break;
       }
 
@@ -53,11 +54,11 @@ void testHashMapFloatFloat() {
 
       if(st(Math)::compareFloat(v1,200.01) != st(Math)::AlmostEqual
       || st(Math)::compareFloat(v2,100.01) != st(Math)::AlmostEqual) {
-        printf("---[HashMap<float,float>} test4] [FAILED]---,v1 is %f,v2 is %f \n",v1,v2);
+        TEST_FAIL("[HashMap<float,float>} test4],v1 is %f,v2 is %f ",v1,v2);
         break;
       }
       break;
     }
 
-    printf("---[HashMap<float,float>} test100] [OK]--- \n");
+    TEST_OK("[HashMap<float,float>} test100]");
 }

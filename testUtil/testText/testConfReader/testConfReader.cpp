@@ -5,41 +5,42 @@
 //#include "ArrayList.hpp"
 #include "ConfReader.hpp"
 #include "Log.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int basetest() {
-    printf("---[ConfReader Test Start]--- \n");
     ConfReader reader = createConfReader("simple.conf");
 
     //getConf(String);
     while(1) {
       String v1 = reader->get(createString("Desktop-Picture"));
       if(!v1->equals("/usr/images/earth.jpg")) {
-        printf("---[ConfReader Test {getConf(String)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ConfReader Test {getConf(String)} case2] ");
         break;
       }
 
       String v2 = reader->get(createString("Position"));
       if(!v2->equals("Centered")) {
-        printf("---[ConfReader Test {getConf(String)} case3] [FAILED]--- \n");
+        TEST_FAIL("[ConfReader Test {getConf(String)} case3] ");
         break;
       }
 
       String v3 = reader->get(S("Background Color"));
       if(!v3->equals("Black")) {
-        printf("---[ConfReader Test {getConf(String)} case4] [FAILED]--- \n");
+        TEST_FAIL("[ConfReader Test {getConf(String)} case4] ");
         break;
       }
 
       String v4 = reader->get(S("NULL"));
       if(v4 != nullptr) {
-        printf("---[ConfReader Test {getConf(String)} case5] [FAILED]--- \n");
+        TEST_FAIL("[ConfReader Test {getConf(String)} case5] ");
         break;
       }
 
-      printf("---[ConfReader Test {getConf(String)} case6] [OK]--- \n");
+      TEST_OK("[ConfReader Test {getConf(String)} case6]");
       break;
     }
 
+    return 0;
 }

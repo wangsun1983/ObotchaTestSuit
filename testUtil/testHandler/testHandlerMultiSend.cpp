@@ -4,6 +4,7 @@
 #include "Handler.hpp"
 #include "Message.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ public:
   }
 
   void handleMessage(Message msg) {
-      //printf("msg arg1 is %d \n",msg->arg1);
+      //TEST_FAIL("msg arg1 is %d \n",msg->arg1);
       count++;
   }
 
@@ -55,14 +56,13 @@ void testHandlerMultiSend() {
     t5->join();
     sleep(10);
     if(mulitHandler->count != 1024*5*5) {
-      printf("mulitHandler->count is %d \n",mulitHandler->count);
-      printf("---[Handler Test {MultiSend} case1] [FAIL]--- \n");
+      TEST_FAIL("[Handler Test {MultiSend} case1],mulitHandler->count is %d \n",mulitHandler->count);
       break;
     }
 
-    printf("---[Handler Test {MultiSend} case2] [OK]--- \n");
+    TEST_OK("[Handler Test {MultiSend} case2]");
     break;
   }
 
-  printf("---[Handler Test {MultiSend} case3] [OK]--- \n");
+  TEST_OK("[Handler Test {MultiSend} case3]");
 }

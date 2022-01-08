@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,25 +40,25 @@ void testHashMapByteByte() {
       HashMap<Byte,Byte> maps2 = createHashMap<Byte,Byte>();
       doc2->reflectTo(maps2);
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Byte Byte Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case1]");
         break;
       }
 
       auto v1 = maps2->get(createByte(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Byte Byte Test case2] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case2]");
         break;
       }
 
       auto v2 = maps2->get(createByte(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Byte Byte Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case3]");
         break;
       }
 
       auto v3 = maps2->get(createByte(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Byte Byte Test case4] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case4]");
         break;
       }
 
@@ -83,30 +84,30 @@ void testHashMapByteByte() {
 
       HashMap<Byte,Byte> maps2 = data2->maps;
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Byte Byte Test case5] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case5]");
         break;
       }
 
       auto v1 = maps2->get(createByte(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Byte Byte Test case6] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case6]");
         break;
       }
 
       auto v2 = maps2->get(createByte(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Byte Byte Test case7] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case7]");
         break;
       }
 
       auto v3 = maps2->get(createByte(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Byte Byte Test case8] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap Byte Byte Test case8]");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect HashMap Byte Byte Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect HashMap Byte Byte Test case100]");
 }

@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "LruCache.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ public:
   int i;
 
   ~_MyTestData() {
-    //printf("release mydata : %d \n",i);
+    //TEST_FAIL("release mydata : %d ",i);
   }
 };
 
@@ -31,29 +32,28 @@ int testLruRemove() {
       }
 
       if(lru->size() != 3) {
-        printf("---[LruCache Test {remove()} case1] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case1]");
         return 1;
       }
       //[14,13,12]
       lru->remove(createString(14));
       if(lru->size() != 2) {
-        printf("---[LruCache Test {remove()} case2] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case2]");
         return 1;
       }
 
       MyTestData m1 = lru->at(0); //13
       MyTestData m2 = lru->at(1); //12
       if(m1 == nullptr || m2 == nullptr) {
-        printf("---[LruCache Test {remove()} case3] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case3]");
         return 1;
       }
 
       if(m1->i != 13 || m2->i != 12) {
-        printf("m1->i is %d,m2->i is %d \n",m1->i,m2->i);
-        printf("---[LruCache Test {remove()} case4] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case4],m1->i is %d,m2->i is %d ",m1->i,m2->i);
         return 1;
       }
-      printf("---[LruCache Test {remove()} case4] [OK]--- \n");
+      TEST_OK("[LruCache Test {remove()} case4]");
       break;
     }
 
@@ -67,29 +67,29 @@ int testLruRemove() {
       }
 
       if(lru->size() != 3) {
-        printf("---[LruCache Test {remove()} case5] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case5]");
         return 1;
       }
       //[14,13,12]
       lru->remove(createString(13));
       if(lru->size() != 2) {
-        printf("---[LruCache Test {remove()} case6] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case6]");
         return 1;
       }
 
       MyTestData m1 = lru->at(0); //14
       MyTestData m2 = lru->at(1); //12
       if(m1 == nullptr || m2 == nullptr) {
-        printf("---[LruCache Test {remove()} case7] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case7]");
         return 1;
       }
 
       if(m1->i != 14 || m2->i != 12) {
-        printf("m1->i is %d,m2->i is %d \n",m1->i,m2->i);
-        printf("---[LruCache Test {remove()} case8] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case8],m1->i is %d,m2->i is %d ",m1->i,m2->i);
+        
         return 1;
       }
-      printf("---[LruCache Test {remove()} case9] [OK]--- \n");
+      TEST_OK("[LruCache Test {remove()} case9]");
       break;
     }
 
@@ -103,31 +103,31 @@ int testLruRemove() {
       }
 
       if(lru->size() != 3) {
-        printf("---[LruCache Test {remove()} case10] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case10]");
         return 1;
       }
       //[14,13,12]
       lru->remove(createString(12));
       if(lru->size() != 2) {
-        printf("---[LruCache Test {remove()} case11] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case11]");
         return 1;
       }
 
       MyTestData m1 = lru->at(0); //14
       MyTestData m2 = lru->at(1); //13
       if(m1 == nullptr || m2 == nullptr) {
-        printf("---[LruCache Test {remove()} case12] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case12]");
         return 1;
       }
 
       if(m1->i != 14 || m2->i != 13) {
-        printf("m1->i is %d,m2->i is %d \n",m1->i,m2->i);
-        printf("---[LruCache Test {remove()} case13] [FAILED]--- \n");
+        TEST_FAIL("[LruCache Test {remove()} case13],m1->i is %d,m2->i is %d ",m1->i,m2->i);
+        
         return 1;
       }
 
-      printf("---[LruCache Test {remove()} case14] [OK]--- \n");
+      TEST_OK("[LruCache Test {remove()} case14]");
       break;
     }
-
+    return 0;
 }

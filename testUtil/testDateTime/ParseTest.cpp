@@ -58,10 +58,8 @@ void parseISO8601()
 		 dt->minute() != 0||
 		 dt->second() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseISO8601 test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
  			        dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-
-      TEST_FAIL("DateTime parseISO8601 test4");
 	}
 	TEST_OK("DateTime parseISO8601 test5");
 }
@@ -93,10 +91,8 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-
-			TEST_FAIL("DateTime testISO8601Frac test2");
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00-01:00");
@@ -109,10 +105,8 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-
-			TEST_FAIL("DateTime testISO8601Frac test3");
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00");
@@ -125,10 +119,8 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-
-			TEST_FAIL("DateTime testISO8601Frac test4");
 	}
 
 	dt = createDateTime("2005-01-08");
@@ -141,10 +133,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test5,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test5");
+			
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00.1Z");
@@ -157,10 +149,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 100||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 0) {
-			 printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,millsecond is %d,microsecond is %d,tzd is %d \n",
+			 TEST_FAIL("DateTime testISO8601Frac test6,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,millsecond is %d,microsecond is %d,tzd is %d \n",
  							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->millisecond(),dt->microsecond(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test6");
+			
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00.123+01:00");
@@ -173,10 +165,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 123||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test7,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test7");
+			
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00.12345-01:00");
@@ -189,10 +181,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 123||
 		 dt->microsecond() != 450||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test8,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test8");
+			
 	}
 
 	dt = createDateTime("2010-09-23T16:17:01.2817002+02:00");
@@ -205,10 +197,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 281||
 		 dt->microsecond() != 700||
 		 dt->tzd() != 7200) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test9,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test9");
+			
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00");
@@ -221,10 +213,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test10,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test10");
+			
 	}
 
 	dt = createDateTime("2005-01-08T12:30:00.123456");
@@ -237,10 +229,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 123||
 		 dt->microsecond() != 456||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test11,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test11");
+			
 	}
 
 	dt = createDateTime("2005-01-08");
@@ -253,10 +245,10 @@ void parseISO8601Frac()
 		 dt->millisecond() != 0||
 		 dt->microsecond() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime testISO8601Frac test12,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime testISO8601Frac test12");
+			
 	}
 
   TEST_OK("DateTime testISO8601Frac test13");
@@ -272,10 +264,10 @@ void parseRFC822() {
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test1");
+			
 	}
 
 	dt = createDateTime("Sat, 8 Jan 05 12:30:00 +0100");
@@ -286,10 +278,10 @@ void parseRFC822() {
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test2");
+			
 	}
 
 	dt = createDateTime("Sat, 8 Jan 05 12:30:00 -0100");
@@ -300,10 +292,10 @@ void parseRFC822() {
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test3");
+			
 	}
 
 	dt = createDateTime("Tue, 18 Jan 05 12:30:00 CDT");
@@ -314,10 +306,10 @@ void parseRFC822() {
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != -18000) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test4");
+			
 	}
 
 	dt = createDateTime("Wed, 12 Sep 73 02:01:12 CST");
@@ -328,10 +320,10 @@ void parseRFC822() {
 		 dt->minute() != 1||
 		 dt->second() != 12||
 		 dt->tzd() != -21600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test4");
+			
 	}
 
 	dt = createDateTime("12 Sep 73 02:01:12 EST");
@@ -342,10 +334,10 @@ void parseRFC822() {
 		 dt->minute() != 1||
 		 dt->second() != 12||
 		 dt->tzd() != -18000) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC822 test5,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseRFC822 test5");
+			
 	}
 	TEST_OK("DateTime parseRFC822 test6");
 }
@@ -360,10 +352,10 @@ void parseRFC1123()
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test1");
+			
 	}
 
 
@@ -375,10 +367,10 @@ void parseRFC1123()
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test2");
+			
 	}
 
 	dt = createDateTime("Sat, 8 Jan 2005 12:30:00 -0100");
@@ -389,10 +381,10 @@ void parseRFC1123()
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test3");
+			
 	}
 
 	dt = createDateTime("Tue, 18 Jan 2005 12:30:00 CDT");
@@ -403,10 +395,10 @@ void parseRFC1123()
 		 dt->minute() != 30||
 		 dt->second() != 0||
 		 dt->tzd() != -18000) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test4");
+			
 	}
 
 	dt = createDateTime("Wed, 12 Sep 1973 02:01:12 CST");
@@ -417,10 +409,10 @@ void parseRFC1123()
 		 dt->minute() != 1||
 		 dt->second() != 12||
 		 dt->tzd() != -21600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test5,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test5");
+			
 	}
 
 	dt = createDateTime("12 Sep 1973 02:01:12 EST");
@@ -431,10 +423,10 @@ void parseRFC1123()
 		 dt->minute() != 1||
 		 dt->second() != 12||
 		 dt->tzd() != -18000) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime RFC1123 test6,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime RFC1123 test6");
+			
 	}
   TEST_OK("DateTime RFC1123 test7");
 }
@@ -448,10 +440,10 @@ void parseHTTP()
 		 dt->hour() != 12||
 		 dt->minute() != 30||
 		 dt->second() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseHttp test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseHttp test1");
+			
 	}
 
 	dt = createDateTime("Sat, 08 Jan 2005 12:30:00 +0100");
@@ -462,10 +454,10 @@ void parseHTTP()
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 	   dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseHttp test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 
-			TEST_FAIL("DateTime parseHttp test2");
+			
 	}
 
 	dt = createDateTime("Sat, 08 Jan 2005 12:30:00 -0100");
@@ -476,9 +468,9 @@ void parseHTTP()
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseHttp test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseHttp test3");
+			
 	}
   TEST_OK("DateTime parseHttp test4");
 }
@@ -493,9 +485,9 @@ void parseRFC850()
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC850 test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC850 test1");
+			
 	}
 
 	dt = createDateTime("Saturday, 8-Jan-05 12:30:00 +0100");
@@ -506,9 +498,9 @@ void parseRFC850()
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC850 test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC850 test2");
+			
 	}
 
 	dt = createDateTime("Saturday, 8-Jan-05 12:30:00 -0100");
@@ -519,9 +511,9 @@ void parseRFC850()
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC850 test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC850 test3");
+			
 	}
 
 	dt = createDateTime("Wed, 12-Sep-73 02:01:12 CST");
@@ -532,9 +524,9 @@ void parseRFC850()
 		 dt->minute() != 1||
 		 dt->second() != 12 ||
 		 dt->tzd() != -21600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC850 test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC850 test4");
+			
 	}
 	TEST_OK("DateTime parseRFC850 test5");
 }
@@ -548,9 +540,9 @@ void parseRFC1036() {
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC1036 test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC1036 test1");
+			
 	}
 
 	dt = createDateTime("Saturday, 8 Jan 05 12:30:00 +0100");
@@ -561,9 +553,9 @@ void parseRFC1036() {
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC1036 test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC1036 test2");
+			
 	}
 
 	dt = createDateTime("Saturday, 8 Jan 05 12:30:00 -0100");
@@ -574,9 +566,9 @@ void parseRFC1036() {
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != -3600) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseRFC1036 test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseRFC1036 test3");
+			
 	}
 	TEST_OK("DateTime parseRFC1036 test4");
 }
@@ -590,9 +582,9 @@ void parseASCTIME() {
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseASCTIME test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseASCTIME test1");
+			
 	}
 	TEST_OK("DateTime parseASCTIME test1");
 }
@@ -606,9 +598,9 @@ void parseSORTABLE() {
 		 dt->minute() != 30||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseSORTABLE test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseSORTABLE test1");
+			
 	}
 
 	dt = createDateTime("2005-01-08");
@@ -619,9 +611,9 @@ void parseSORTABLE() {
 		 dt->minute() != 0||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseSORTABLE test2,DateTime parseCustom test1year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseSORTABLE test2");
+			
 	}
 	TEST_OK("DateTime parseSORTABLE test3");
 }
@@ -635,9 +627,9 @@ void parseCustom() {
 		 dt->minute() != 0||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseCustom test1,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseCustom test1");
+			
 	}
 
 	dt = createDateTime(createString("%m/%d/%y"),createString("01/18/05"));
@@ -648,27 +640,27 @@ void parseCustom() {
 		 dt->minute() != 0||
 		 dt->second() != 0 ||
 		 dt->tzd() != 0) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseCustom test2,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseCustom test2");
+			
 	}
 
 	dt = createDateTime(createString("%h:%M %a"),createString("12:30 am"));
 	if(dt->hour() != 0||
 		 dt->minute() != 30||
 		 dt->second() != 0 ) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseCustom test3,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseCustom test3");
+			
 	}
 
 	dt = createDateTime(createString("%h:%M %a"),createString("12:30 PM"));
 	if(dt->hour() != 12||
 		 dt->minute() != 30||
 		 dt->second() != 0 ) {
-			printf("year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
+			TEST_FAIL("DateTime parseCustom test4,year is %d,month is %d,dayOfMonth is %d,hour is %d,minute is %d,second is %d,tzd is %d \n",
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
-			TEST_FAIL("DateTime parseCustom test4");
+			
 	}
 
 	TEST_OK("DateTime parseCustom test5");

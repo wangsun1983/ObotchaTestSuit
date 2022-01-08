@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,7 +30,7 @@ void testHashMapLambda() {
   map->put(3,t3);
 
   map->foreach([](int key,Lambda1 value) {
-    printf("key is %d,value is %d \n",key,value->i);
+    TEST_FAIL("key is %d,value is %d ",key,value->i);
     return 1;
   });
 }

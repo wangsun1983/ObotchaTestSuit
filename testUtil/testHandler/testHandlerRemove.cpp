@@ -4,6 +4,7 @@
 #include "Handler.hpp"
 #include "Message.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,7 +14,7 @@ public:
   }
 
   void handleMessage(Message msg) {
-      //printf("msg arg1 is %d \n",msg->arg1);
+      //TEST_FAIL("msg arg1 is %d",msg->arg1);
       count++;
   }
 
@@ -31,11 +32,10 @@ void testHandlerRemove() {
 
     handler->removeMessages(1);
     if(handler->size() != 0) {
-      printf("handler size is %d \n",handler->size());
-      printf("---[Handler Test {Handler Remove} case1] [FAIL]--- \n");
+      TEST_FAIL("[Handler Test {Handler Remove} case1],handler size is %d",handler->size());
     }
 
-    printf("---[Handler Test {Handler Remove} case2] [OK]--- \n");
+    TEST_OK("[Handler Test {Handler Remove} case2]");
     break;
   }
 
@@ -48,13 +48,12 @@ void testHandlerRemove() {
 
     handler->removeMessages(1);
     if(handler->size() != 2) {
-      printf("handler size is %d \n",handler->size());
-      printf("---[Handler Test {Handler Remove} case3] [FAIL]--- \n");
+      TEST_FAIL("[Handler Test {Handler Remove} case3],handler size is %d",handler->size());
     }
 
-    printf("---[Handler Test {Handler Remove} case4] [OK]--- \n");
+    TEST_OK("[Handler Test {Handler Remove} case4]");
     break;
   }
 
-  printf("---[Handler Test {Handler Remove} case5] [OK]--- \n");
+  TEST_OK("[Handler Test {Handler Remove} case5]");
 }

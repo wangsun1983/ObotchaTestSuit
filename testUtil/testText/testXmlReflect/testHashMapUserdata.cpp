@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -52,30 +53,30 @@ void testHashMapUserdata() {
       HashMap<Integer,MapUserData> maps2 = createHashMap<Integer,MapUserData>();
       doc2->reflectTo(maps2);
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap UserData Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap UserData Test case1]");
         break;
       }
 
       auto v1 = maps2->get(createInteger(1));
       if(v1 == nullptr || v1->data1 != 1 || v1->data2 != 2) {
-        printf("---[JsonReflect HashMap UserData Test case2] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap UserData Test case2]");
         break;
       }
 
       auto v2 = maps2->get(createInteger(2));
       if(v2 == nullptr || v2->data1 != 3 || v2->data2 != 4) {
-        printf("---[JsonReflect HashMap UserData Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap UserData Test case3]");
         break;
       }
 
       auto v3 = maps2->get(createInteger(3));
       if(v3 == nullptr || v3->data1 != 5 || v3->data2 != 6) {
-        printf("---[JsonReflect HashMap UserData Test case4] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap UserData Test case4]");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect HashMap UserData Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect HashMap UserData Test case100]");
 }

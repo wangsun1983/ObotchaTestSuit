@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Boolean.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,23 +23,23 @@ void testHashMapSimpleBoolean() {
         tt->i = true;
         map->put(true,tt);
         if(map->size() != 1) {
-            printf("---[HashMap Simple bool Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap Simple bool Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
 
         SimpleTestData tt2 = map->get(true);
         if(tt2 == nullptr || tt2->i != true) {
-          printf("---[HashMap Simple bool Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Simple bool Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put(false,nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap Simple bool Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Simple bool Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
 
-        printf("---[HashMap Simple bool Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap Simple bool Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -53,24 +54,24 @@ void testHashMapSimpleBoolean() {
       int size = map->size();
       map->remove(true);
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap Simple bool Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {remove(T t)} case1]");
         break;
       }
 
       map->put(tag,tt);
       size = map->size();
       if(map->size() != 1) {
-        printf("---[HashMap Simple bool Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {remove(T t)} case2]");
         break;
       }
 
       map->remove(true);
       if(map->size() != 0) {
-        printf("---[HashMap Simple bool Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap Simple bool Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {remove(T t)} case4]");
       break;
     }
 
@@ -83,17 +84,17 @@ void testHashMapSimpleBoolean() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap Simple bool Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {isEmpty()} case1]");
         break;
       }
 
       map->remove(true);
       if(!map->isEmpty()) {
-        printf("---[HashMap Simple bool Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap Simple bool Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {isEmpty()} case3]");
       break;
     }
 
@@ -109,18 +110,18 @@ void testHashMapSimpleBoolean() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap Simple bool Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {clear()} case1]");
         break;
       }
 
       HashMap<bool,SimpleTestData> map2 = createHashMap<bool,SimpleTestData>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap Simple bool Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap Simple bool Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {clear()} case3]");
       break;
     }
 
@@ -133,11 +134,11 @@ void testHashMapSimpleBoolean() {
       map->put(tag,tt);
       map->put(false,tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap Simple bool Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap Simple bool Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {size()} case1]");
       break;
     }
 
@@ -155,18 +156,18 @@ void testHashMapSimpleBoolean() {
       ArrayList<bool> keys = map->keySet();
       int size = keys->size();
       if(size != 2) {
-        printf("---[HashMap Simple bool Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Simple bool Test {keySet()} case1]");
         break;
       }
 
       HashMap<bool,SimpleTestData> map2 = createHashMap<bool,SimpleTestData>();
       ArrayList<bool>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap Simple bool Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Simple bool Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap Simple bool Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {keySet()} case4]");
       break;
     }
 
@@ -186,7 +187,7 @@ void testHashMapSimpleBoolean() {
       for(int index = 0;index < size;index++) {
         SimpleTestData key1 = keys->get(index);
         if(map->get(key1->i) == nullptr) {
-          printf("---[HashMap Simple bool Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Simple bool Test {entrySet()} case1]");
           break;
         }
       }
@@ -194,11 +195,11 @@ void testHashMapSimpleBoolean() {
       HashMap<Boolean,SimpleTestData> map2 = createHashMap<Boolean,SimpleTestData>();
       ArrayList<SimpleTestData>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap Simple bool Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Simple bool Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap Simple bool Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Simple bool Test {entrySet()} case3]");
       break;
     }
 
@@ -219,20 +220,20 @@ void testHashMapSimpleBoolean() {
       while(iterator->hasValue()) {
           bool key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator Boolean Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Boolean Test {getKey/getValue()} case1]");
             break;
           }
 
           SimpleTestData t1 = iterator->getValue();
           if(t1->i != key) {
-            printf("---[MapIterator Boolean Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Boolean Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator Boolean Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator Boolean Test {getKey/getValue()} case3]");
       break;
     }
 

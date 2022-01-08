@@ -6,11 +6,11 @@
 #include "HashMap.hpp"
 #include "ConfReader.hpp"
 #include "Log.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testConfIterator() {
-    printf("---[ConfIterator Test Start]--- \n");
     ConfReader reader = createConfReader("simple.conf");
     //ConfIterator(String);
     while(1) {
@@ -22,35 +22,35 @@ void testConfIterator() {
       }
 
       if(mHashMap->size() != 4) {
-          printf("---[ConfIterator Test {getValue()/next()} case1] [FAILED]---,mHashMap size is %d \n",mHashMap->size());
+          TEST_FAIL("[ConfIterator Test {getValue()/next()} case1],mHashMap size is %d ",mHashMap->size());
           break;
       }
 
       String v1 = mHashMap->get(createString("Desktop-Picture"));
       if(!v1->equals("/usr/images/earth.jpg")) {
-        printf("---[ConfIterator Test {getValue()/next()} case2] [FAILED]--- \n");
+        TEST_FAIL("[ConfIterator Test {getValue()/next()} case2] ");
         break;
       }
 
       String v2 = mHashMap->get(createString("Position"));
       if(!v2->equals("Centered")) {
-        printf("---[ConfIterator Test {getValue()/next()} case3] [FAILED]--- \n");
+        TEST_FAIL("[ConfIterator Test {getValue()/next()} case3] ");
         break;
       }
 
       String v3 = mHashMap->get(createString("Background Color"));
       if(!v3->equals("Black")) {
-        printf("---[ConfIterator Test {getValue()/next()} case4] [FAILED]--- \n");
+        TEST_FAIL("[ConfIterator Test {getValue()/next()} case4] ");
         break;
       }
 
       String v4 = mHashMap->get(createString("NULL"));
       if(v4->size() != 0) {
-        printf("---[ConfIterator Test {getValue()/next()} case5] [FAILED]--- \n");
+        TEST_FAIL("[ConfIterator Test {getValue()/next()} case5] ");
         break;
       }
 
-      printf("---[ConfIterator Test {getValue()/next()} case100] [OK]--- \n");
+      TEST_OK("[ConfIterator Test {getValue()/next()} case100]");
       break;
     }
 

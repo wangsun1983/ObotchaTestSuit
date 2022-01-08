@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -24,27 +25,27 @@ void testHashMapString() {
         map->put(tag,tt);
 
         if(map->size() != 1) {
-            printf("---[HashMap String Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
         TT1 tt2 = map->get(tag);
         if(tt2 == nullptr || tt2->i != 100) {
-          printf("---[HashMap String Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put("tag2",nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap String Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
         TT1 tt3 = map->get(nullptr);
         if(tt3 != nullptr) {
-          printf("---[HashMap String Test {put(T t,U u)/get(T t)} case4] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {put(T t,U u)/get(T t)} case4]");
           break;
         }
 
-        printf("---[HashMap String Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap String Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -59,7 +60,7 @@ void testHashMapString() {
       int size = map->size();
       map->remove(createString("tag1"));
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap String Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case1]");
         break;
       }
 
@@ -67,17 +68,17 @@ void testHashMapString() {
       size = map->size();
       map->remove(nullptr);
       if(map->size() != 1) {
-        printf("---[HashMap String Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case2]");
         break;
       }
 
       map->remove("tag2");
       if(map->size() != 1) {
-        printf("---[HashMap String Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap String Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap String Test {remove(T t)} case4]");
       break;
     }
 
@@ -90,17 +91,17 @@ void testHashMapString() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap String Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {isEmpty()} case1]");
         break;
       }
 
       map->remove("tag1");
       if(!map->isEmpty()) {
-        printf("---[HashMap String Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap String Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {isEmpty()} case3]");
       break;
     }
 
@@ -116,18 +117,18 @@ void testHashMapString() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap String Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {clear()} case1]");
         break;
       }
 
       HashMap<String,TT1> map2 = createHashMap<String,TT1>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap String Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap String Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {clear()} case3]");
       break;
     }
 
@@ -140,11 +141,11 @@ void testHashMapString() {
       map->put(tag,tt);
       map->put(createString("tag2"),tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap String Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap String Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap String Test {size()} case1]");
       break;
     }
 
@@ -154,22 +155,22 @@ void testHashMapString() {
       for(int index = 0;index < 100;index++) {
         TT1 tt = createTT1();
         tt->i = index;
-        //printf("put index is %d \n",index);
+        //TEST_FAIL("put index is %d ",index);
         map->put(createString(index),tt);
       }
 
       ArrayList<String> keys = map->keySet();
       int size = keys->size();
       if(size != 100) {
-        printf("---[HashMap String Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap String Test {keySet()} case1]");
         break;
       }
 
       for(int index = 0;index < size;index++) {
         String key1 = keys->get(index);
         if(map->get(key1) == nullptr) {
-          //printf("key1->int is %d,index is %d \n",key1->toBasicInt(),index);
-          printf("---[HashMap String Test {keySet(),index is %d} case2] [FAILED]--- \n",index);
+          //TEST_FAIL("key1->int is %d,index is %d ",key1->toBasicInt(),index);
+          TEST_FAIL("[HashMap String Test {keySet(),index is %d} case2]",index);
           break;
         }
       }
@@ -177,11 +178,11 @@ void testHashMapString() {
       HashMap<String,TT1> map2 = createHashMap<String,TT1>();
       ArrayList<String>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap String Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap String Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap String Test {keySet()} case4]");
       break;
     }
 
@@ -199,7 +200,7 @@ void testHashMapString() {
       for(int index = 0;index < size;index++) {
         TT1 key1 = keys->get(index);
         if(map->get(createString(key1->i)) == nullptr) {
-          printf("---[HashMap String Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {entrySet()} case1]");
           break;
         }
       }
@@ -207,11 +208,11 @@ void testHashMapString() {
       HashMap<String,TT1> map2 = createHashMap<String,TT1>();
       ArrayList<TT1>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap String Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap String Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap String Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap String Test {entrySet()} case3]");
       break;
     }
 
@@ -230,20 +231,20 @@ void testHashMapString() {
       while(iterator->hasValue()) {
           String key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator String Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator String Test {getKey/getValue()} case1]");
             break;
           }
 
           TT1 t1 = iterator->getValue();
           if(t1->i != key->toBasicInt()) {
-            printf("---[MapIterator String Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator String Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator String Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator String Test {getKey/getValue()} case3]");
       break;
 
     }

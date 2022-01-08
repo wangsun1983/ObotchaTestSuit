@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Boolean.hpp"
 #include "Boolean.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testHashMapIntInt() {
       map->put(1,100);
       int v = map->get(1);
       if(v != 100) {
-        printf("---[HashMap<int,int>} test1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<int,int>} test1]");
         break;
       }
       break;
@@ -31,7 +32,7 @@ void testHashMapIntInt() {
       }
 
       if(!isExcpetion) {
-        printf("---[HashMap<int,int>} test2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<int,int>} test2]");
         break;
       }
       break;
@@ -43,7 +44,7 @@ void testHashMapIntInt() {
       map->put(1,200);
       map->put(2,100);
       if(map->size() != 2) {
-        printf("---[HashMap<int,int>} test3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<int,int>} test3]");
         break;
       }
 
@@ -51,11 +52,11 @@ void testHashMapIntInt() {
       int v2 = map->get(2);
 
       if(v1 != 200 || v2 != 100) {
-        printf("---[HashMap<int,int>} test4] [FAILED]--- \n");
+        TEST_FAIL("[HashMap<int,int>} test4]");
         break;
       }
       break;
     }
 
-    printf("---[HashMap<int,int>} test100] [OK]--- \n");
+    TEST_OK("[HashMap<int,int>} test100]");
 }

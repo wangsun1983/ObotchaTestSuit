@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "ThreadPoolExecutor.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -30,21 +31,21 @@ void testThreadQuickShutDown() {
     //TestThread onInterrupt case1
     while(1) {
         for(int i = 0;i < 32*1024;i++) {
-            //printf("trace1 \n");
+            //TEST_FAIL("trace1 ");
             ThreadPoolExecutor t = createThreadPoolExecutor(4,4);
-            //printf("trace2 \n");
+            //TEST_FAIL("trace2 ");
             t->submit(createMySleepWaitRun());
             t->submit(createMySleepWaitRun());
             t->submit(createMySleepWaitRun());
             t->submit(createMySleepWaitRun());
-            //printf("trace3 \n");
+            //TEST_FAIL("trace3 ");
             t->shutdown();
-            //printf("trace4 \n");
+            //TEST_FAIL("trace4 ");
             t->awaitTermination();
-            //printf("trace5 \n");
+            //TEST_FAIL("trace5 ");
         }
 
-        printf("---[ThreadPoolExecutor Test {QuickShutDown()} special case1] [OK],count is %d--- \n",count);
+        TEST_OK("[ThreadPoolExecutor Test {QuickShutDown()} special case1],count is %d ",count);
         break;
     }
 

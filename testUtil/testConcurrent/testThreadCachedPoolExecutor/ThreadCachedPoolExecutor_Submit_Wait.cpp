@@ -12,6 +12,7 @@
 #include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -36,13 +37,13 @@ void CachedPoolSubmit_Wait() {
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor SubmitWait test1] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor SubmitWait test1]");
       break;
     }
 
     usleep(250*1000);
     if(pool->getThreadsNum() != 0) {
-      printf("---[TestCachedPoolExecutor SubmitWait test2] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor SubmitWait test2]");
       break;
     }
     break;
@@ -62,7 +63,7 @@ void CachedPoolSubmit_Wait() {
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor SubmitWait test3] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[TestCachedPoolExecutor SubmitWait test3]result is %ld ",result);
       break;
     }
 
@@ -70,13 +71,13 @@ void CachedPoolSubmit_Wait() {
     f3->wait();
     result = watch->stop();
     if(result < 100 || result > 105) {
-      printf("---[TestCachedPoolExecutor SubmitWait test4] [FAILED]---,result is %ld \n",result);
+      TEST_FAIL("[TestCachedPoolExecutor SubmitWait test4]result is %ld ",result);
       break;
     }
 
     usleep(250*1000);
     if(pool->getThreadsNum() != 0) {
-      printf("---[TestCachedPoolExecutor SubmitWait test5] [FAILED]--- \n");
+      TEST_FAIL("[TestCachedPoolExecutor SubmitWait test5]");
       break;
     }
     break;
@@ -84,5 +85,5 @@ void CachedPoolSubmit_Wait() {
 
   pool->shutdown();
   pool->awaitTermination();
-  printf("---[TestCachedPoolExecutor SubmitWait test100] [OK]--- \n");
+  TEST_OK("[TestCachedPoolExecutor SubmitWait test100]");
 }

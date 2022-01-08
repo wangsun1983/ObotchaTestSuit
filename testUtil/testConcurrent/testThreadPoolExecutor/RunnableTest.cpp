@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "InterruptedException.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ int interruptVal = 1;
 DECLARE_CLASS(RunTest1) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        //printf("i am running \n");
+        //TEST_FAIL("i am running ");
         try {
             st(Thread)::interruptableSleep(10*1000);
         } catch(InterruptedException &e) {
@@ -28,7 +29,7 @@ public:
     }
 
     ~_RunTest1() {
-        //printf("i am release \n");
+        //TEST_FAIL("i am release ");
         //unDestory = 0;
         //interruptVal = 1;
     }
@@ -37,7 +38,7 @@ public:
 
 
 void testRunnable_onInterrupt() {
-    printf("---[TestThreadPoolExecutor Test Start]--- \n");
+    TEST_FAIL("[TestThreadPoolExecutor Test Start] ");
 
     //void shutdown();
     while(1) {
@@ -47,11 +48,11 @@ void testRunnable_onInterrupt() {
         pool->shutdown();
         sleep(5);
         if(interruptVal != 2) {
-            printf("---[TestThreadPoolExecutor TestOnInterrupt {onInterrupt(),interruptVal is %d} case1] [FAIL]--- \n",interruptVal);
+            TEST_FAIL("[TestThreadPoolExecutor TestOnInterrupt {onInterrupt(),interruptVal is %d} case1]  ",interruptVal);
             break;
         }
 
-        printf("---[TestThreadPoolExecutor TestOnInterrupt {onInterrupt()} case1] [OK]--- \n");
+        TEST_OK("[TestThreadPoolExecutor TestOnInterrupt {onInterrupt()} case1]");
         break;
     }
 

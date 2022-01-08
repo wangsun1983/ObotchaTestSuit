@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "ExecutorBuilder.hpp"
 #include "Error.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,23 +40,23 @@ void testPoolReferenceCount() {
         }
 
         if(pool->getStrongCount() != 9) {
-          printf("---[ThreadPoolExecutor Test Reference count is %d case1] [FAIL]--- \n",pool->getStrongCount());
+          TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case1]",pool->getStrongCount());
           //break;
         }
 
         pool->shutdown();
         sleep(11);
         if(pool->getStrongCount() != 1) {
-          printf("---[ThreadPoolExecutor Test Reference count is %d case2] [FAIL]--- \n",pool->getStrongCount());
+          TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case2]",pool->getStrongCount());
           //break;
         }
         sleep(5);
         if(pool->getStrongCount() != 1) {
-          printf("---[ThreadPoolExecutor Test Reference count is %d case3] [FAIL]--- \n",pool->getStrongCount());
+          TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case3]",pool->getStrongCount());
           //break;
         }
 
-        printf("---[ThreadPoolExecutor Test Reference case4] [OK]--- \n");
+        TEST_OK("[ThreadPoolExecutor Test Reference case4]");
         break;
     }
 

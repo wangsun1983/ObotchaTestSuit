@@ -4,6 +4,7 @@
 #include "Handler.hpp"
 #include "Message.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,14 +23,14 @@ void testHasMessage() {
    }
 
    if(!h->hasMessage(1)) {
-    printf("---[Handler Test {hasMessage} case1] [FAILED]--- \n");
+    TEST_FAIL("[Handler Test {hasMessage} case1]");
    }
 
    h->removeMessages(1);
    if(h->hasMessage(1)) {
-    printf("---[Handler Test {hasMessage} case2] [FAILED]--- \n");
+    TEST_FAIL("[Handler Test {hasMessage} case2]");
    }
 
-  printf("---[Handler Test {hasMessage} case3] [OK]--- \n");
+  TEST_OK("[Handler Test {hasMessage} case3]");
 
 }

@@ -12,6 +12,7 @@
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
 #include "Timer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void testTimerSchedule() {
 
     usleep(150*1000);
     if(finish - now < 100 || finish - now > 105) {
-      printf("---[TestTimer Schedule Test case1] [FAILED]--- \n");
+      TEST_FAIL("[TestTimer Schedule Test case1]");
       break;
     }
 
@@ -44,13 +45,13 @@ void testTimerSchedule() {
 
     usleep(250*1000);
     if(finish - now < 200 || finish - now > 205) {
-      printf("---[TestTimer Schedule Test case2] [FAILED]--- \n");
+      TEST_FAIL("[TestTimer Schedule Test case2]");
       break;
     }
 
     break;
   }
 
-  printf("---[TestTimer Schedule Test case100] [OK]--- \n");
+  TEST_OK("[TestTimer Schedule Test case100]");
 
 }

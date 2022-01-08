@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Integer.hpp"
 #include "String.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -29,7 +30,7 @@ void testHashMapKeyCompare() {
 
     String v1 = map->get(k2);
     if(v1 != nullptr) {
-        printf("---[HashMap KeyCompare Test case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap KeyCompare Test case1]");
         return;
     }
 
@@ -37,11 +38,11 @@ void testHashMapKeyCompare() {
     k3->value = 1;
     String v3 = map->get(k3);
     if(v3 != nullptr) {
-        printf("---[HashMap KeyCompare Test case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap KeyCompare Test case3]");
         return;
     }
 
-    printf("---[HashMap KeyCompare Test case4] [OK]--- \n");
+    TEST_OK("[HashMap KeyCompare Test case4]");
     return;
 
 }

@@ -10,6 +10,7 @@
 #include "System.hpp"
 #include "Error.hpp"
 #include "AtomicInteger.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -45,8 +46,8 @@ void testThreadLoopCreate() {
 
   sleep(1);
   if(value->get() != (1024*32)) {
-    printf("value is %d \n",value->get());
-    printf("---[Thread Test {Loop create()} special case1] [FAIL]--- \n");
+    printf("value is %d ",value->get());
+    TEST_FAIL("[Thread Test {Loop create()} special case1]");
   }
 
   //test2
@@ -57,10 +58,10 @@ void testThreadLoopCreate() {
 
   sleep(1);
   if(MyCompleteLoopValue->get() != (1024*32)) {
-    printf("value1 is %d \n",MyCompleteLoopValue->get());
-    printf("---[Thread Test {Loop create()} special case2] [FAIL]--- \n");
+    printf("value1 is %d ",MyCompleteLoopValue->get());
+    TEST_FAIL("[Thread Test {Loop create()} special case2]");
   }
 
-  printf("---[Thread Test {Loop create()} special case3] [OK]--- \n");
+  TEST_OK("[Thread Test {Loop create()} special case3]");
 
 }

@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "Stack.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -21,7 +22,7 @@ void testStackSize() {
     stack->push(2);
 
     if(stack->size() != 2) {
-      printf("testStack size test1-------[FAIL] \n");
+      TEST_FAIL("testStack size test1");
       break;
     }
 
@@ -29,7 +30,7 @@ void testStackSize() {
     int v2 = stack->pop();
 
     if(v1 != 2 || v2 != 1) {
-      printf("testStack size test2-------[FAIL] \n");
+      TEST_FAIL("testStack size test2");
       break;
     }
 
@@ -41,7 +42,7 @@ void testStackSize() {
     }
 
     if(!isException) {
-      printf("testStack size test3-------[FAIL] \n");
+      TEST_FAIL("testStack size test3");
       break;
     }
     break;
@@ -53,7 +54,7 @@ void testStackSize() {
     stack->push(createTestSizeData(2));
 
     if(stack->size() != 2) {
-      printf("testStack size test4-------[FAIL] \n");
+      TEST_FAIL("testStack size test4");
       break;
     }
 
@@ -61,16 +62,16 @@ void testStackSize() {
     auto v2 = stack->pop();
 
     if(v1->v != 2 || v2->v != 1) {
-      printf("testStack size test5-------[FAIL] \n");
+      TEST_FAIL("testStack size test5");
       break;
     }
     auto v3 = stack->pop();
 
     if(v3 != nullptr) {
-      printf("testStack size test6-------[FAIL] \n");
+      TEST_FAIL("testStack size test6");
       break;
     }
     break;
   }
-  printf("testStack size test100-------[OK] \n");
+  TEST_OK("testStack size test100");
 }

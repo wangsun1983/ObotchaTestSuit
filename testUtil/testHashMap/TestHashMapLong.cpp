@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Long.hpp"
 #include "Long.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,29 +24,29 @@ void testHashMapLong() {
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
-            printf("---[HashMap Long Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap Long Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
 
         TT4 tt2 = map->get(tag);
         if(tt2 == nullptr || tt2->i != 100) {
-          printf("---[HashMap Long Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put(createLong(2),nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap Long Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
 
         TT4 TT4 = map->get(nullptr);
         if(TT4 != nullptr) {
-          printf("---[HashMap Long Test {put(T t,U u)/get(T t)} case4] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {put(T t,U u)/get(T t)} case4]");
           break;
         }
 
-        printf("---[HashMap Long Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap Long Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -60,7 +61,7 @@ void testHashMapLong() {
       int size = map->size();
       map->remove(createLong(1));
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap Long Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {remove(T t)} case1]");
         break;
       }
 
@@ -68,17 +69,17 @@ void testHashMapLong() {
       size = map->size();
       map->remove(nullptr);
       if(map->size() != 1) {
-        printf("---[HashMap Long Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {remove(T t)} case2]");
         break;
       }
 
       map->remove(createLong(1));
       if(map->size() != 0) {
-        printf("---[HashMap Long Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap Long Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {remove(T t)} case4]");
       break;
     }
 
@@ -91,17 +92,17 @@ void testHashMapLong() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap Long Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {isEmpty()} case1]");
         break;
       }
 
       map->remove(createLong(1));
       if(!map->isEmpty()) {
-        printf("---[HashMap Long Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap Long Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {isEmpty()} case3]");
       break;
     }
 
@@ -117,18 +118,18 @@ void testHashMapLong() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap Long Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {clear()} case1]");
         break;
       }
 
       HashMap<Long,TT4> map2 = createHashMap<Long,TT4>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap Long Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap Long Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {clear()} case3]");
       break;
     }
 
@@ -141,11 +142,11 @@ void testHashMapLong() {
       map->put(tag,tt);
       map->put(createLong(2),tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap Long Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap Long Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {size()} case1]");
       break;
     }
 
@@ -161,15 +162,15 @@ void testHashMapLong() {
       ArrayList<Long> keys = map->keySet();
       int size = keys->size();
       if(size != 100) {
-        printf("---[HashMap Long Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Long Test {keySet()} case1]");
         break;
       }
 
       for(int index = 0;index < size;index++) {
         Long key1 = keys->get(index);
         if(map->get(key1) == nullptr) {
-          //printf("key1->int is %d,index is %d \n",key1->toValue(),index);
-          printf("---[HashMap Long Test {keySet()} case2] [FAILED]--- \n");
+          //TEST_FAIL("key1->int is %d,index is %d ",key1->toValue(),index);
+          TEST_FAIL("[HashMap Long Test {keySet()} case2]");
           break;
         }
       }
@@ -177,11 +178,11 @@ void testHashMapLong() {
       HashMap<Long,TT4> map2 = createHashMap<Long,TT4>();
       ArrayList<Long>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap Long Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap Long Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {keySet()} case4]");
       break;
     }
 
@@ -199,7 +200,7 @@ void testHashMapLong() {
       for(int index = 0;index < size;index++) {
         TT4 key1 = keys->get(index);
         if(map->get(createLong(key1->i)) == nullptr) {
-          printf("---[HashMap Long Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {entrySet()} case1]");
           break;
         }
       }
@@ -207,11 +208,11 @@ void testHashMapLong() {
       HashMap<Long,TT4> map2 = createHashMap<Long,TT4>();
       ArrayList<TT4>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap Long Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Long Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap Long Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Long Test {entrySet()} case3]");
       break;
     }
 
@@ -230,20 +231,20 @@ void testHashMapLong() {
       while(iterator->hasValue()) {
           Long key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator Long Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Long Test {getKey/getValue()} case1]");
             break;
           }
 
           TT4 t1 = iterator->getValue();
           if(t1->i != key->toValue()) {
-            printf("---[MapIterator Long Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Long Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator Long Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator Long Test {getKey/getValue()} case3]");
       break;
 
     }

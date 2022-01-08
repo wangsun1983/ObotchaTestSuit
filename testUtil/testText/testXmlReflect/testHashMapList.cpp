@@ -13,6 +13,7 @@
 #include "XmlDocument.hpp"
 #include "XmlReader.hpp"
 #include "XmlWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -76,54 +77,54 @@ void testHashMapList() {
       doc2->reflectTo(map2);
 
       if(map2->size() != 2) {
-        printf("---[JsonReflect HashMap List Test case1] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case1]");
         break;
       }
 
       auto l1 = map2->get(createInteger(0));
       if(l1->size() != 3) {
-        printf("---[JsonReflect HashMap List Test case2] [FAILED],size is %d--- \n",l1->size());
-        printf("data1 is %d,data2 is %d",l1->get(0)->data1,l1->get(1)->data1);
+        TEST_FAIL("[XmlReflect HashMap List Test case2] [FAILED],size is %d \n",l1->size());
+        TEST_FAIL("data1 is %d,data2 is %d",l1->get(0)->data1,l1->get(1)->data1);
         break;
       }
 
       if(l1->get(0)->data1 != 1 ||l1->get(0)->data2 != 2) {
-        printf("---[JsonReflect HashMap List Test case3] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case3]");
         break;
       }
 
       if(l1->get(1)->data1 != 3 ||l1->get(1)->data2 != 4) {
-        printf("---[JsonReflect HashMap List Test case4] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case4]");
         break;
       }
 
       if(l1->get(2)->data1 != 5 ||l1->get(2)->data2 != 6) {
-        printf("---[JsonReflect HashMap List Test case5] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case5]");
         break;
       }
 
       auto l2 = map2->get(createInteger(1));
       if(l2->size() != 3) {
-        printf("---[JsonReflect HashMap List Test case6] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case6]");
         break;
       }
 
       if(l2->get(0)->data1 != 11 ||l2->get(0)->data2 != 21) {
-        printf("---[JsonReflect HashMap List Test case7] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case7]");
         break;
       }
 
       if(l2->get(1)->data1 != 31 ||l2->get(1)->data2 != 41) {
-        printf("---[JsonReflect HashMap List Test case8] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case8]");
         break;
       }
 
       if(l2->get(2)->data1 != 51 ||l2->get(2)->data2 != 61) {
-        printf("---[JsonReflect HashMap List Test case9] [FAILED]--- \n");
+        TEST_FAIL("[XmlReflect HashMap List Test case9]");
         break;
       }
       break;
     }
 
-    printf("---[JsonReflect HashMap List Test case100] [OK]--- \n");
+    TEST_OK("[XmlReflect HashMap List Test case100]");
 }

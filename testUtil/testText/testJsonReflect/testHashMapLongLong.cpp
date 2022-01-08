@@ -12,6 +12,7 @@
 #include "Long.hpp"
 #include "JsonReader.hpp"
 #include "JsonWriter.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -38,25 +39,25 @@ void testHashMapLongLong() {
       HashMap<Long,Long> maps2 = createHashMap<Long,Long>();
       value2->reflectTo(maps2);
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Long Long Test case1] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case1]  ");
         break;
       }
 
       auto v1 = maps2->get(createLong(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Long Long Test case2] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case2]  ");
         break;
       }
 
       auto v2 = maps2->get(createLong(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Long Long Test case3] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case3]  ");
         break;
       }
 
       auto v3 = maps2->get(createLong(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Long Long Test case4] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case4]  ");
         break;
       }
 
@@ -83,30 +84,30 @@ void testHashMapLongLong() {
       value2->reflectTo(data2);
       HashMap<Long,Long> maps2 = data2->maps;
       if(maps2->size() != 3) {
-        printf("---[JsonReflect HashMap Long Long Test case5] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case5]  ");
         break;
       }
 
       auto v1 = maps2->get(createLong(1));
       if(v1 == nullptr || v1->toValue() != 10) {
-        printf("---[JsonReflect HashMap Long Long Test case6] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case6]  ");
         break;
       }
 
       auto v2 = maps2->get(createLong(2));
       if(v2 == nullptr || v2->toValue() != 20) {
-        printf("---[JsonReflect HashMap Long Long Test case7] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case7]  ");
         break;
       }
 
       auto v3 = maps2->get(createLong(3));
       if(v3 == nullptr || v3->toValue() != 30) {
-        printf("---[JsonReflect HashMap Long Long Test case8] [FAILED]--- \n");
+        TEST_FAIL("[JsonReflect HashMap Long Long Test case8]  ");
         break;
       }
 
       break;
     }
 
-    printf("---[JsonReflect HashMap Long Long Test case100] [OK]--- \n");
+    TEST_OK("[JsonReflect HashMap Long Long Test case100]");
 }

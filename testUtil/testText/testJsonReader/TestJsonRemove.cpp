@@ -7,6 +7,8 @@
 #include "File.hpp"
 
 #include "Log.hpp"
+#include "TestLog.hpp"
+
 
 using namespace obotcha;
 
@@ -17,19 +19,19 @@ int testremove() {
     JsonValue arr = root->getValue("arr");
     arr->removeAt(1);
     if(arr->size() != 2) {
-      printf("---[JsonReader testRemove case1...,size is %d ] [FAIL]--- \n",arr->size());
+      TEST_FAIL("[JsonReader testRemove case1,size is %d ]",arr->size());
     }
 
     String attr1 = arr->getStringAt(0);
     if(!attr1->equals("abc1")) {
-      printf("---[JsonReader testRemove case2...] [FAIL]--- \n");
+      TEST_FAIL("[JsonReader testRemove case2]");
     }
 
     String attr2 = arr->getStringAt(1);
     if(!attr2->equals("abc3")) {
-      printf("---[JsonReader testRemove case3...] [FAIL]--- \n");
+      TEST_FAIL("[JsonReader testRemove case3]");
     }
 
-    printf("---[JsonReader testRemove case...] [OK]--- \n");
+    TEST_OK("[JsonReader testRemove case]");
     return 0;
 }

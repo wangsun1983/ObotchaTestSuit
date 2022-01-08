@@ -3,6 +3,7 @@
 
 #include "HashSet.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ void testHashAdd() {
         set->add(createString("abc3"));
 
         if(set->size() != 4) {
-          printf("HashSet base test1-------[FAIL] \n");
+          TEST_FAIL("HashSet base test1");
           break;
         }
 
@@ -35,7 +36,7 @@ void testHashAdd() {
         }
 
         if(count != 4) {
-          printf("HashSet base test2-------[FAIL] \n");
+          TEST_FAIL("HashSet base test2");
           break;
         }
 
@@ -53,7 +54,7 @@ void testHashAdd() {
         }
 
         if(count != 3) {
-          printf("HashSet base test3-------[FAIL] \n");
+          TEST_FAIL("HashSet base test3");
           break;
         }
 
@@ -70,7 +71,7 @@ void testHashAdd() {
         set->add(4);
 
         if(set->size() != 4) {
-          printf("HashSet base test4-------[FAIL] \n");
+          TEST_FAIL("HashSet base test4");
           break;
         }
 
@@ -87,7 +88,7 @@ void testHashAdd() {
         }
 
         if(count != 4) {
-          printf("HashSet base test5-------[FAIL] \n");
+          TEST_FAIL("HashSet base test5");
           break;
         }
 
@@ -105,7 +106,7 @@ void testHashAdd() {
         }
 
         if(count != 3) {
-          printf("HashSet base test6-------[FAIL] \n");
+          TEST_FAIL("HashSet base test6");
           break;
         }
 
@@ -122,7 +123,7 @@ void testHashAdd() {
         set->add(createString("abc3"));
 
         if(set->size() != 4) {
-          printf("HashSet base test7-------[FAIL] \n");
+          TEST_FAIL("HashSet base test7");
           break;
         }
 
@@ -132,7 +133,7 @@ void testHashAdd() {
         set->remove(createString("abc3"));
 
         if(set->size() != 0) {
-          printf("HashSet base test8-------[FAIL] \n");
+          TEST_FAIL("HashSet base test8");
         }
         break;
     }
@@ -147,7 +148,7 @@ void testHashAdd() {
         set->add(4);
 
         if(set->size() != 4) {
-          printf("HashSet base test8-------[FAIL] \n");
+          TEST_FAIL("HashSet base test8");
           break;
         }
 
@@ -157,10 +158,10 @@ void testHashAdd() {
         set->remove(4);
 
         if(set->size() != 0) {
-          printf("HashSet base test9-------[FAIL] \n");
+          TEST_FAIL("HashSet base test9");
         }
         break;
     }
 
-    printf("HashSet base test100-------[OK] \n");
+    TEST_OK("HashSet base test100");
 }

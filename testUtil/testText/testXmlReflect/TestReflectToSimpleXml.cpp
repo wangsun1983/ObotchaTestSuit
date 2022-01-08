@@ -12,10 +12,11 @@
 #include "XmlWriter.hpp"
 #include "XmlReader.hpp"
 #include "XmlDocument.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
-DECLARE_CLASS(ReflectWriteMember) {
+DECLARE_CLASS(XmlReflectWriteMember) {
 public:
   int intData;
   byte byteData;
@@ -28,24 +29,24 @@ public:
   uint32_t uint32Data;
   uint64_t uint64Data;
   bool boolData;
-  DECLARE_REFLECT_FIELD(ReflectWriteMember,intData,byteData,doubleData,
+  DECLARE_REFLECT_FIELD(XmlReflectWriteMember,intData,byteData,doubleData,
                         floatData,longData,stringData,uint8Data,uint16Data,uint32Data,
                         uint64Data,boolData)
 };
 
-DECLARE_CLASS(ReflectData) {
+DECLARE_CLASS(XmlReflectData) {
 public:
-  ReflectWriteMember member1;
-  ReflectWriteMember member2;
-  DECLARE_REFLECT_FIELD(ReflectData,member1,member2)
+  XmlReflectWriteMember member1;
+  XmlReflectWriteMember member2;
+  DECLARE_REFLECT_FIELD(XmlReflectData,member1,member2)
 };
 
 void testReflectToSimpleXml() {
   //test1
   while(1) {
-    ReflectData data = createReflectData();
-    data->member1 = createReflectWriteMember();
-    data->member2 = createReflectWriteMember();
+    XmlReflectData data = createXmlReflectData();
+    data->member1 = createXmlReflectWriteMember();
+    data->member2 = createXmlReflectWriteMember();
     data->member1->intData = 1;
     data->member1->byteData = 2;
     data->member1->doubleData = 1.1;
@@ -77,68 +78,68 @@ void testReflectToSimpleXml() {
 
     XmlReader reader = createXmlReader(createFile("output4.xml"));
     XmlDocument doc2 = reader->get();
-    ReflectData rdata3 = createReflectData();
+    XmlReflectData rdata3 = createXmlReflectData();
     doc2->reflectTo(rdata3);
 
     if(data->member1->intData != rdata3->member1->intData) {
-      printf("Reflect to xml test1-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test1");
       break;
     }
 
     if(data->member1->byteData != rdata3->member1->byteData) {
-      printf("data1 is %d,data2 is %d \n",data->member1->byteData,rdata3->member1->byteData);
-      printf("Reflect to xml test2-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test2,data1 is %d,data2 is %d \n",data->member1->byteData,rdata3->member1->byteData);
+      
       break;
     }
 
     if(data->member1->doubleData != rdata3->member1->doubleData) {
-      printf("Reflect to xml test3-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test3");
       break;
     }
 
     if(data->member1->floatData != rdata3->member1->floatData) {
-      printf("Reflect to xml test4-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test4");
       break;
     }
 
     if(data->member1->longData != rdata3->member1->longData) {
-      printf("Reflect to xml test5-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test5");
       break;
     }
 
     if(!data->member1->stringData->equals(rdata3->member1->stringData)) {
-      printf("member string is %s,member2 string is %s \n",data->member1->stringData->toChars(),rdata3->member1->stringData->toChars());
-      printf("Reflect to xml test6-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test6,member string is %s,member2 string is %s \n",data->member1->stringData->toChars(),rdata3->member1->stringData->toChars());
+      
       break;
     }
 
     if(data->member1->uint8Data != rdata3->member1->uint8Data) {
-      printf("Reflect to xml test7-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test7");
       break;
     }
 
     if(data->member1->uint16Data != rdata3->member1->uint16Data) {
-      printf("Reflect to xml test8-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test8");
       break;
     }
 
     if(data->member1->uint32Data != rdata3->member1->uint32Data) {
-      printf("Reflect to xml test9-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test9");
       break;
     }
 
     if(data->member1->uint64Data != rdata3->member1->uint64Data) {
-      printf("data1 is %lu,data2 is %lu \n",data->member1->uint64Data,rdata3->member1->uint64Data);
-      printf("Reflect to xml test10-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test10,data1 is %lu,data2 is %lu \n",data->member1->uint64Data,rdata3->member1->uint64Data);
+      
       break;
     }
 
     if(data->member1->boolData != rdata3->member1->boolData) {
-      printf("Reflect to xml test11-------[FAIL] \n");
+      TEST_FAIL("XmlReflect to xml test11");
       break;
     }
 
-    printf("Reflect to xml test12-------[OK] \n");
+    TEST_OK("XmlReflect to xml test12");
     break;
   }
 }

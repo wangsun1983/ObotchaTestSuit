@@ -5,6 +5,7 @@
 #include "HashMap.hpp"
 #include "Integer.hpp"
 #include "Integer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -26,11 +27,11 @@ void testHashMapInteger() {
       map->put(createInteger(0),tt2);
 
       if(map->get(createInteger(0))->i != 1) {
-        printf("---[HashMap Integer Test {null test} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {null test} case1]");
         break;
       }
 
-      printf("---[HashMap Integer Test {null test} case2] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {null test} case2]");
       break;
     }
 
@@ -42,29 +43,29 @@ void testHashMapInteger() {
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
-            printf("---[HashMap Integer Test {put(T t,U u)/get(T t)} case1] [FAILED]--- \n");
+            TEST_FAIL("[HashMap Integer Test {put(T t,U u)/get(T t)} case1]");
             break;
         }
 
         TT2 tt2 = map->get(tag);
         if(tt2 == nullptr || tt2->i != 100) {
-          printf("---[HashMap Integer Test {put(T t,U u)/get(T t)} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {put(T t,U u)/get(T t)} case2]");
           break;
         }
 
         map->put(createInteger(2),nullptr);
         if(map->size() != 2) {
-          printf("---[HashMap Integer Test {put(T t,U u)/get(T t)} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {put(T t,U u)/get(T t)} case3]");
           break;
         }
 
         TT2 tt3 = map->get(nullptr);
         if(tt3 != nullptr) {
-          printf("---[HashMap Integer Test {put(T t,U u)/get(T t)} case4] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {put(T t,U u)/get(T t)} case4]");
           break;
         }
 
-        printf("---[HashMap Integer Test {put(T t,U u)/get(T t)} case5] [OK]--- \n");
+        TEST_OK("[HashMap Integer Test {put(T t,U u)/get(T t)} case5]");
         break;
     }
 
@@ -79,7 +80,7 @@ void testHashMapInteger() {
       int size = map->size();
       map->remove(createInteger(1));
       if(size != 1 && map->size() != 0) {
-        printf("---[HashMap Integer Test {remove(T t)} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {remove(T t)} case1]");
         break;
       }
 
@@ -87,17 +88,17 @@ void testHashMapInteger() {
       size = map->size();
       map->remove(nullptr);
       if(map->size() != 1) {
-        printf("---[HashMap Integer Test {remove(T t)} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {remove(T t)} case2]");
         break;
       }
 
       map->remove(createInteger(1));
       if(map->size() != 0) {
-        printf("---[HashMap Integer Test {remove(T t)} case3] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {remove(T t)} case3]");
         break;
       }
 
-      printf("---[HashMap Integer Test {remove(T t)} case4] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {remove(T t)} case4]");
       break;
     }
 
@@ -110,17 +111,17 @@ void testHashMapInteger() {
       map->put(tag,tt);
 
       if(map->isEmpty()) {
-        printf("---[HashMap Integer Test {isEmpty()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {isEmpty()} case1]");
         break;
       }
 
       map->remove(createInteger(1));
       if(!map->isEmpty()) {
-        printf("---[HashMap Integer Test {isEmpty()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {isEmpty()} case2]");
         break;
       }
 
-      printf("---[HashMap Integer Test {isEmpty()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {isEmpty()} case3]");
       break;
     }
 
@@ -136,18 +137,18 @@ void testHashMapInteger() {
       int size = map->size();
       map->clear();
       if(size != 2 || map->size() != 0) {
-        printf("---[HashMap Integer Test {clear()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {clear()} case1]");
         break;
       }
 
       HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
       map2->clear();
       if(map2->size() != 0) {
-        printf("---[HashMap Integer Test {clear()} case2] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {clear()} case2]");
         break;
       }
 
-      printf("---[HashMap Integer Test {clear()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {clear()} case3]");
       break;
     }
 
@@ -160,11 +161,11 @@ void testHashMapInteger() {
       map->put(tag,tt);
       map->put(createInteger(2),tt);
       if(map->size() != 2 ) {
-        printf("---[HashMap Integer Test {size()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {size()} case1]");
         break;
       }
 
-      printf("---[HashMap Integer Test {size()} case1] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {size()} case1]");
       break;
     }
 
@@ -180,15 +181,15 @@ void testHashMapInteger() {
       ArrayList<Integer> keys = map->keySet();
       int size = keys->size();
       if(size != 100) {
-        printf("---[HashMap Integer Test {keySet()} case1] [FAILED]--- \n");
+        TEST_FAIL("[HashMap Integer Test {keySet()} case1]");
         break;
       }
 
       for(int index = 0;index < size;index++) {
         Integer key1 = keys->get(index);
         if(map->get(key1) == nullptr) {
-          //printf("key1->int is %d,index is %d \n",key1->toValue(),index);
-          printf("---[HashMap Integer Test {keySet()} case2] [FAILED]--- \n");
+          //TEST_FAIL("key1->int is %d,index is %d ",key1->toValue(),index);
+          TEST_FAIL("[HashMap Integer Test {keySet()} case2]");
           break;
         }
       }
@@ -196,11 +197,11 @@ void testHashMapInteger() {
       HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
       ArrayList<Integer>keys2 = map2->keySet();
       if(keys2->size() != 0) {
-          printf("---[HashMap Integer Test {keySet()} case3] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {keySet()} case3]");
           break;
       }
 
-      printf("---[HashMap Integer Test {keySet()} case4] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {keySet()} case4]");
       break;
     }
 
@@ -218,7 +219,7 @@ void testHashMapInteger() {
       for(int index = 0;index < size;index++) {
         TT2 key1 = keys->get(index);
         if(map->get(createInteger(key1->i)) == nullptr) {
-          printf("---[HashMap Integer Test {entrySet()} case1] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {entrySet()} case1]");
           break;
         }
       }
@@ -226,11 +227,11 @@ void testHashMapInteger() {
       HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
       ArrayList<TT2>values = map2->entrySet();
       if(values->size() != 0) {
-          printf("---[HashMap Integer Test {entrySet()} case2] [FAILED]--- \n");
+          TEST_FAIL("[HashMap Integer Test {entrySet()} case2]");
           break;
       }
 
-      printf("---[HashMap Integer Test {entrySet()} case3] [OK]--- \n");
+      TEST_OK("[HashMap Integer Test {entrySet()} case3]");
       break;
     }
 
@@ -249,20 +250,20 @@ void testHashMapInteger() {
       while(iterator->hasValue()) {
           Integer key = iterator->getKey();
           if(map->get(key) == nullptr) {
-            printf("---[MapIterator Integer Test {getKey/getValue()} case1] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Integer Test {getKey/getValue()} case1]");
             break;
           }
 
           TT2 t1 = iterator->getValue();
           if(t1->i != key->toValue()) {
-            printf("---[MapIterator Integer Test {getKey/getValue()} case2] [FAILED]--- \n");
+            TEST_FAIL("[MapIterator Integer Test {getKey/getValue()} case2]");
             break;
           }
           iterator->next();
           index++;
       }
 
-      printf("---[MapIterator Integer Test {getKey/getValue()} case3] [OK]--- \n");
+      TEST_OK("[MapIterator Integer Test {getKey/getValue()} case3]");
       break;
 
     }
@@ -273,16 +274,16 @@ void testHashMapInteger() {
       map->put(createInteger(1),createString("hello3"));
       String str = map->get(createInteger(1));
       if(str == nullptr) {
-        printf("---[MapIterator Integer Test special equal case1] [FAIL]--- \n");
+        TEST_FAIL("[MapIterator Integer Test special equal case1] [FAIL] ");
         break;
       }
 
       if(!str->equals("hello3")) {
-        printf("---[MapIterator Integer Test special equal case2] [FAIL]--- \n");
+        TEST_FAIL("[MapIterator Integer Test special equal case2] [FAIL] ");
         break;
       }
 
-      printf("---[MapIterator Integer Test special equal case3] [OK]--- \n");
+      TEST_OK("[MapIterator Integer Test special equal case3]");
       break;
     }
 }

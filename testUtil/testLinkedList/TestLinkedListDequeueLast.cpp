@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "LinkedList.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testTakeLast() {
         mList->putLast(createString("c"));
 
         if(mList->size() != 3) {
-            printf("LinkedList Dequeue Last test1-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test1");
             break;
         }
 
@@ -24,17 +25,16 @@ void testTakeLast() {
         String v3 = mList->takeLast();
 
         if(!v1->equals("c") ||!v2->equals("b") ||!v3->equals("a")) {
-            printf("v1 is %s ,v2 is %s,v3 is %s \n",v1->toChars(),v2->toChars(),v3->toChars());
-            printf("LinkedList Dequeue Last test2-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test2,v1 is %s ,v2 is %s,v3 is %s",v1->toChars(),v2->toChars(),v3->toChars());
             break;
         }
 
         if(mList->takeLast() != nullptr) {
-            printf("LinkedList Dequeue Last test3-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test3");
             break;
         }
 
-        printf("LinkedList Dequeue Last test4-------[OK] \n");
+        TEST_OK("LinkedList Dequeue Last test4");
         break;
     }
 
@@ -44,23 +44,23 @@ void testTakeLast() {
 
         mList->putLast(createString("a"));
         if(mList->size() != 1) {
-            printf("LinkedList Dequeue Last test5-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test5");
             break;
         }
 
         String v1 = mList->takeLast();
         if(!v1->equals("a")) {
-            printf("v1 is %s \n",v1->toChars());
-            printf("LinkedList Dequeue Last test6-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test6,v1 is %s ",v1->toChars());
+            
             break;
         }
 
         if(mList->takeLast() != nullptr) {
-            printf("LinkedList Dequeue Last test7-------[FAIL] \n");
+            TEST_FAIL("LinkedList Dequeue Last test7");
             break;
         }
 
-        printf("LinkedList Enqueue Last test8-------[OK] \n");
+        TEST_OK("LinkedList Enqueue Last test8");
         break;
     }
 
