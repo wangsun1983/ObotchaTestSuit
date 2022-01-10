@@ -20,12 +20,12 @@ void testBlockingLinkedListTryPutLast() {
 
         bool result = list->tryPutLast(createString("d"));
         if(result) {
-          printf("BlockingLinkedList tryPutLast test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList tryPutLast test1 \n");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingLinkedList tryPutLast test1_1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList tryPutLast test1_1 \n");
           break;
         }
         break;
@@ -38,7 +38,7 @@ void testBlockingLinkedListTryPutLast() {
       list->tryPutLast(createString("c"));
       list->tryPutLast(createString("d"));
       if(list->size() != 3) {
-        printf("BlockingLinkedList tryPutLast test2-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList tryPutLast test2 \n");
         break;
       }
 
@@ -51,7 +51,7 @@ void testBlockingLinkedListTryPutLast() {
         auto v = iterator->getValue();
         auto v2 = list->takeFirst();
         if(!v->equals(v2)) {
-          printf("BlockingLinkedList tryPutLast test3-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+          TEST_FAIL("BlockingLinkedList tryPutLast test3,v is %s,v2 is %s \n",v->toChars(),v2->toChars());
           break;
         }
         iterator->next();
@@ -65,11 +65,11 @@ void testBlockingLinkedListTryPutLast() {
       list->putLast(createString("e"));
       ArrayList<String> ll2 = list->toArray();
       if(ll2->size() != 3 || !ll2->get(0)->equals("b")|| !ll2->get(1)->equals("c")|| !ll2->get(2)->equals("e")) {
-        printf("BlockingLinkedList tryPutLast test4-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList tryPutLast test4 \n");
         break;
       }
       break;
     }
 
-    printf("BlockingLinkedList tryPutLast test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList tryPutLast test100");
 }

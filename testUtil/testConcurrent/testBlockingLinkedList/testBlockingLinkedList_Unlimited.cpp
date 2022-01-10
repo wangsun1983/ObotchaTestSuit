@@ -19,12 +19,12 @@ void testBlockingLinkedListUnlimited() {
         }
 
         if(list->size() != 1024) {
-          printf("BlockingLinkedList unlimited capacity test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList unlimited capacity test1 \n");
         }
 
         list->clear();
         if(list->size() != 0) {
-          printf("BlockingLinkedList unlimited capacity test2-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList unlimited capacity test2 \n");
         }
 
         break;
@@ -41,17 +41,17 @@ void testBlockingLinkedListUnlimited() {
         String str = list->take();
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingLinkedList unlimited capacity-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingLinkedList unlimited capacity,value is %ld \n",time2 - time1);
           break;
         }
 
         if(str == nullptr || !str->equals("a")) {
-          printf("BlockingLinkedList unlimited capacity test3-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList unlimited capacity test3 \n");
           break;
         }
         break;
     }
 
 
-    printf("BlockingLinkedList destroy test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList destroy test100");
 }

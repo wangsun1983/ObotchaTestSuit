@@ -21,7 +21,7 @@ void testBlockingLinkedListToArray() {
         if(ll->size() != 3 || !ll->get(0)->equals("a")
         || !ll->get(1)->equals("b")
         || !ll->get(2)->equals("c")) {
-          printf("BlockingLinkedList toArray test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList toArray test1 \n");
           break;
         }
 
@@ -32,7 +32,7 @@ void testBlockingLinkedListToArray() {
         BlockingLinkedList<int> list = createBlockingLinkedList<int>(3);
         ArrayList<int> ll = list->toArray();
         if(ll->size() != 0) {
-          printf("BlockingLinkedList toArray test2-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList toArray test2 \n");
           break;
         }
 
@@ -49,7 +49,7 @@ void testBlockingLinkedListToArray() {
         int start = 0;
         while(iterator->hasValue()) {
           if(iterator->getValue() != start) {
-            printf("BlockingLinkedList toArray test3-------[FAIL] \n");
+            TEST_FAIL("BlockingLinkedList toArray test3 \n");
             break;
           }
           start++;
@@ -58,5 +58,5 @@ void testBlockingLinkedListToArray() {
         break;
     }
 
-    printf("BlockingLinkedList destroy test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList destroy test100");
 }

@@ -15,13 +15,13 @@ void testConcurrentQueue_MultiThread_Case2() {
 
       //get result
       long result = 0;
-      for(int i = 1;i<1024*32;i++) {
+      for(int i = 1;i<1024;i++) {
         result += i;
       }
 
-      for(int j = 0;j<16;j++) {
+      for(int j = 0;j<4;j++) {
         Thread t = createThread([&list] {
-          for(int i = 1;i<1024*32;i++) {
+          for(int i = 1;i<1024;i++) {
             list->putLast(createString(i));
           }
           list->putLast(createString(-1));
@@ -32,7 +32,7 @@ void testConcurrentQueue_MultiThread_Case2() {
 
       long sum = 0;
       int finishCount = 0;
-      while(finishCount != 16) {
+      while(finishCount != 4) {
         String str = list->takeFirst();
         int v = str->toBasicInt();
         if(v == -1) {
@@ -42,7 +42,7 @@ void testConcurrentQueue_MultiThread_Case2() {
         sum += v;
       }
 
-      if(sum != 16*result) {
+      if(sum != 4*result) {
         TEST_FAIL("ConcurrentQueue MultiThread Case2 test1");
       }
       break;

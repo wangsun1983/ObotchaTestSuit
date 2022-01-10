@@ -22,12 +22,12 @@ void testBlockingLinkedListTakeFirst() {
 
         String v = list->takeFirst();
         if(v == nullptr || !v->equals("a")) {
-          printf("BlockingLinkedList takeFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList takeFirst test1 \n");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingLinkedList takeFirst test2-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList takeFirst test2 \n");
           break;
         }
         break;
@@ -45,21 +45,21 @@ void testBlockingLinkedListTakeFirst() {
       String v = list->takeFirst();
       long interval = watcher->stop();
       if(v == nullptr || !v->equals("a")) {
-        printf("BlockingLinkedList takeFirst test3-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList takeFirst test3 \n");
         break;
       }
 
       if(interval < 100 || interval > 105) {
-        printf("BlockingLinkedList takeFirst test4-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList takeFirst test4 \n");
         break;
       }
 
       if(list->size() != 0) {
-        printf("BlockingLinkedList takeFirst test5-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList takeFirst test5 \n");
         break;
       }
       break;
     }
 
-    printf("BlockingLinkedList takeFirst test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList takeFirst test100");
 }

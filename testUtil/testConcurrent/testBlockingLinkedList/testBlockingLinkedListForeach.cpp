@@ -26,12 +26,12 @@ void testBlockingLinkedListForeach() {
         });
 
         if(sum != 15) {
-          printf("BlockingLinkedList<int> Foreach test1-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList<int> Foreach test1");
         }
 
         break;
     }
 
-    printf("BlockingLinkedList<int> Foreach test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList<int> Foreach test100");
 
 }

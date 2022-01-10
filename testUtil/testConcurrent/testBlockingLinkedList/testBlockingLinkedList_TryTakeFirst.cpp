@@ -18,7 +18,7 @@ void testBlockingLinkedListTryTakeFirst() {
         BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
         String v = list->tryTakeFirst();
         if(v != nullptr) {
-          printf("BlockingLinkedList tryTakeFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList tryTakeFirst test1 \n");
           break;
         }
 
@@ -35,7 +35,7 @@ void testBlockingLinkedListTryTakeFirst() {
       }
 
       if(!isException) {
-        printf("BlockingLinkedList tryTakeFirst test2-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList tryTakeFirst test2 \n");
         break;
       }
       break;
@@ -50,17 +50,17 @@ void testBlockingLinkedListTryTakeFirst() {
         String v2 = list->tryTakeFirst();
         String v3 = list->tryTakeFirst();
         if(v1 == nullptr || v2 == nullptr || v3 != nullptr) {
-          printf("BlockingLinkedList tryTakeFirst test3-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList tryTakeFirst test3 \n");
           break;
         }
 
         if(!v1->equals("a") || !v2->equals("b")) {
-          printf("BlockingLinkedList tryTakeFirst test4-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList tryTakeFirst test4 \n");
           break;
         }
 
         break;
     }
 
-    printf("BlockingLinkedList tryTakeFirst test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList tryTakeFirst test100");
 }

@@ -20,12 +20,12 @@ void testBlockingLinkedListPeekFirst() {
 
         String v = list->peekFirst();
         if(v == nullptr || !v->equals("a")) {
-          printf("BlockingLinkedList PeekFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList PeekFirst test1 \n");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingLinkedList PeekFirst test2-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList PeekFirst test2 \n");
           break;
         }
         break;
@@ -36,16 +36,16 @@ void testBlockingLinkedListPeekFirst() {
 
       String v = list->peekFirst();
       if(v != nullptr) {
-        printf("BlockingLinkedList PeekFirst test3-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList PeekFirst test3 \n");
         break;
       }
 
       if(list->size() != 0) {
-        printf("BlockingLinkedList PeekFirst test4-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList PeekFirst test4 \n");
         break;
       }
       break;
     }
 
-    printf("BlockingLinkedList PeekFirst test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList PeekFirst test100");
 }

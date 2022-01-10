@@ -38,8 +38,6 @@ public:
 
 
 void testRunnable_onInterrupt() {
-    TEST_FAIL("[TestThreadPoolExecutor Test Start] ");
-
     //void shutdown();
     while(1) {
         ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(100)->setThreadNum(100)->newThreadPool();

@@ -62,5 +62,5 @@ void testReadLock_Lock() {
     break;
   }
 
-  TEST_FAIL("[TestReadLock ReadLock Lock case100] [OK] \n");
+  TEST_OK("[TestReadLock ReadLock Lock case100]");
 }

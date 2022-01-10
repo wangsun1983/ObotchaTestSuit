@@ -20,12 +20,12 @@ void testBlockingLinkedListRemoveAt() {
 
         String v = list->removeAt(1);
         if(v == nullptr || !v->equals("b")) {
-          printf("BlockingLinkedList removeAt test1-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList removeAt test1");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingLinkedList removeAt test2-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList removeAt test2");
           break;
         }
         break;
@@ -41,7 +41,7 @@ void testBlockingLinkedListRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingLinkedList removeAt test3-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList removeAt test3");
           break;
         }
 
@@ -58,7 +58,7 @@ void testBlockingLinkedListRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingLinkedList removeAt test4-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList removeAt test4");
           break;
         }
 
@@ -76,12 +76,12 @@ void testBlockingLinkedListRemoveAt() {
         }
 
         if(!isException) {
-          printf("BlockingLinkedList removeAt test5-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList removeAt test5");
           break;
         }
 
         break;
     }
 
-    printf("BlockingLinkedList removeAt test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList removeAt test100");
 }

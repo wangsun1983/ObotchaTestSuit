@@ -29,7 +29,7 @@ void testBlockingLinkedListPutLast() {
         long time2 = st(System)::currentTimeMillis();
 
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingLinkedList PutLast test1-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingLinkedList PutLast test1,value is %ld \n",time2 - time1);
           break;
         }
 
@@ -42,7 +42,7 @@ void testBlockingLinkedListPutLast() {
           auto v = iterator->getValue();
           auto v2 = list->takeFirst();
           if(!v->equals(v2)) {
-            printf("BlockingLinkedList PutLast test2-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+            TEST_FAIL("BlockingLinkedList PutLast test2,v is %s,v2 is %s \n",v->toChars(),v2->toChars());
             break;
           }
           iterator->next();
@@ -52,5 +52,5 @@ void testBlockingLinkedListPutLast() {
     }
 
 
-    printf("BlockingLinkedList PutLast test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList PutLast test100");
 }

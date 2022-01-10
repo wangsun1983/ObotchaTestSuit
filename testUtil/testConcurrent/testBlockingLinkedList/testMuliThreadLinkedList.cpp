@@ -55,7 +55,7 @@ void testMultiThreadQueue() {
     }
 
     for(int i = 0;i < 32;i++) {
-      queue->putFirst(createMultiThreadData(-1));
+      queue->putLast(createMultiThreadData(-1));
     }
 
     for(int i = 0;i<threads->size();i++) {
@@ -63,9 +63,9 @@ void testMultiThreadQueue() {
     }
 
     if(count->get() != 32*1024*16) {
-      printf("BlockingLinkedList testMultiThreadQueue test1-------[FAIL] \n");
+      TEST_FAIL("BlockingLinkedList testMultiThreadQueue test1,value is %d",count->get());
     } else {
-      printf("BlockingLinkedList testMultiThreadQueue test1-------[OK] \n");
+      TEST_OK("BlockingLinkedList testMultiThreadQueue test1");
     }
 
 }

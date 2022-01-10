@@ -45,12 +45,21 @@ void testBlockingQueueTryTakeFirst() {
         BlockingQueue<String> list = createBlockingQueue<String>(3);
         list->put(createString("a"));
         list->put(createString("b"));
-
         String v1 = list->tryTakeFirst();
         String v2 = list->tryTakeFirst();
         String v3 = list->tryTakeFirst();
-        if(v1 == nullptr || v2 == nullptr || v3 != nullptr) {
-          TEST_FAIL("BlockingQueue tryTakeFirst test3");
+        if(v1 == nullptr) {
+          TEST_FAIL("BlockingQueue tryTakeFirst test3_1");
+          break;
+        }
+
+        if(v2 == nullptr) {
+          TEST_FAIL("BlockingQueue tryTakeFirst test3_2");
+          break;
+        }
+
+        if(v3 != nullptr) {
+          TEST_FAIL("BlockingQueue tryTakeFirst test3_3");
           break;
         }
 

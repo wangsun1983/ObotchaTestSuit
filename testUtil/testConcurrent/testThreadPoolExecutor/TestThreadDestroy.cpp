@@ -41,7 +41,7 @@ void testThreadDestroy() {
         //    break;
         //}
 
-        TEST_FAIL("[ThreadPoolExecutor Test {destroy()} special case1] [OK] ");
+        TEST_OK("[ThreadPoolExecutor Test {destroy()} special case1]");
         break;
     }
 

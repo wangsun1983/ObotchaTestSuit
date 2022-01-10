@@ -20,12 +20,12 @@ void testBlockingLinkedListTryPutFirst() {
 
         bool result = list->tryPutFirst(createString("d"));
         if(result) {
-          printf("BlockingLinkedList TryPutFirst test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList TryPutFirst test1 \n");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingLinkedList TryPutFirst test1_1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList TryPutFirst test1_1 \n");
           break;
         }
         break;
@@ -46,7 +46,7 @@ void testBlockingLinkedListTryPutFirst() {
         auto v = iterator->getValue();
         auto v2 = list->takeFirst();
         if(!v->equals(v2)) {
-          printf("BlockingLinkedList TryPutFirst test2-------[FAIL],v is %s,v2 is %s \n",v->toChars(),v2->toChars());
+          TEST_FAIL("BlockingLinkedList TryPutFirst test2,v is %s,v2 is %s \n",v->toChars(),v2->toChars());
           break;
         }
         iterator->next();
@@ -54,5 +54,5 @@ void testBlockingLinkedListTryPutFirst() {
       break;
     }
 
-    printf("BlockingLinkedList TryPutFirst test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList TryPutFirst test100");
 }

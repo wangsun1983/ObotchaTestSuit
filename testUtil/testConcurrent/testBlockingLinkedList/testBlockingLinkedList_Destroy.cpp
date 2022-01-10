@@ -27,7 +27,7 @@ void testBlockingLinkedListDestroy() {
         list->put(createString("d"));
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingLinkedList destroy test1-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingLinkedList destroy test1,value is %ld \n",time2 - time1);
           break;
         }
 
@@ -45,17 +45,17 @@ void testBlockingLinkedListDestroy() {
         String str = list->take();
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
-          printf("BlockingLinkedList destroy test2-------[FAIL],value is %ld \n",time2 - time1);
+          TEST_FAIL("BlockingLinkedList destroy test2,value is %ld \n",time2 - time1);
           break;
         }
 
         if(str != nullptr) {
-          printf("BlockingLinkedList destroy test3-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList destroy test3 \n");
           break;
         }
         break;
     }
 
 
-    printf("BlockingLinkedList destroy test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList destroy test100");
 }

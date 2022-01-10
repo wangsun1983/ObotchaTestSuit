@@ -20,12 +20,12 @@ void testBlockingLinkedListPeekLast() {
 
         String v = list->peekLast();
         if(v == nullptr || !v->equals("c")) {
-          printf("BlockingLinkedList PeekLast test1-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList PeekLast test1 \n");
           break;
         }
 
         if(list->size() != 3) {
-          printf("BlockingLinkedList PeekLast test2-------[FAIL] \n");
+          TEST_FAIL("BlockingLinkedList PeekLast test2 \n");
           break;
         }
         break;
@@ -36,16 +36,16 @@ void testBlockingLinkedListPeekLast() {
 
       String v = list->peekLast();
       if(v != nullptr) {
-        printf("BlockingLinkedList PeekLast test3-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList PeekLast test3 \n");
         break;
       }
 
       if(list->size() != 0) {
-        printf("BlockingLinkedList PeekLast test4-------[FAIL] \n");
+        TEST_FAIL("BlockingLinkedList PeekLast test4 \n");
         break;
       }
       break;
     }
 
-    printf("BlockingLinkedList PeekLast test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList PeekLast test100");
 }

@@ -20,28 +20,28 @@ void testBlockingLinkedListRemove() {
 
         list->remove(createString("b"));
         if(list->size() != 2) {
-          printf("BlockingLinkedList remove test1-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test1");
           break;
         }
 
         ArrayList<String> ll = list->toArray();
         if(ll->size() != 2) {
-          printf("BlockingLinkedList remove test2-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test2");
           break;
         }
 
         if(!ll->get(0)->equals("a") || !ll->get(1)->equals("c")) {
-          printf("BlockingLinkedList remove test3-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test3");
           break;
         }
 
         if(list->remove("f") != -1) {
-          printf("BlockingLinkedList remove test3_1-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test3_1");
           break;
         }
 
         if(list->size() != 2) {
-          printf("BlockingLinkedList remove test3_2-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test3_2");
           break;
         }
 
@@ -51,7 +51,7 @@ void testBlockingLinkedListRemove() {
     while(1) {
         BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
         if(list->remove(createString("a"))!= -1) {
-          printf("BlockingLinkedList remove test4-------[FAILED] \n");
+          TEST_FAIL("BlockingLinkedList remove test4");
           break;
         }
 
@@ -59,5 +59,5 @@ void testBlockingLinkedListRemove() {
     }
 
 
-    printf("BlockingLinkedList remove test100-------[OK] \n");
+    TEST_OK("BlockingLinkedList remove test100");
 }

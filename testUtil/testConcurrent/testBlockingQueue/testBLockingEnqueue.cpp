@@ -74,6 +74,7 @@ DECLARE_CLASS(DequeueThread2) IMPLEMENTS(Thread) {
 public:
     _DequeueThread2(BlockingQueue<EnqueueData> queue) {
         mQueue = queue;
+        value = 0;
     }
 
     void run() {
@@ -114,7 +115,7 @@ void testEnqueueDequeue() {
         list->putFirst(createEnqueueData(5));
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) < 5000 || (time2 - time1) > 5005) {
-            TEST_FAIL("BlockingQueue putFirst test1");
+            TEST_FAIL("BlockingQueue putFirst test1,time is %d",time2 - time1);
             break;
         }
 

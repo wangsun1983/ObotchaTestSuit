@@ -40,11 +40,11 @@ void testBlockingLinkedListInt() {
         list->putFirst(6);
         long time2 = st(System)::currentTimeMillis();
         if((time2 - time1) > 5005 ||(time2 - time1) < 5000 ) {
-            printf("BlockingLinkedList<int> putFirst test1-------[FAIL],value is %ld \n",time2 - time1);
+            TEST_FAIL("BlockingLinkedList<int> putFirst test1,value is %ld ",time2 - time1);
             break;
         }
 
-        printf("BlockingLinkedList<int> putFirst test2-------[OK] \n");
+        TEST_OK("BlockingLinkedList<int> putFirst test2");
         break;
     }
 
@@ -58,11 +58,11 @@ void testBlockingLinkedListInt() {
         for(int i = 0;i<5;i++) {
             int v = list->takeFirst();
             if(v != i) {
-                printf("BlockingLinkedList<int> putFirst test3-------[FAIL],v is %d i is %d\n",v,i);
+                TEST_FAIL("BlockingLinkedList<int> putFirst test3,v is %d i is %d",v,i);
                 break;
             }
         }
-        printf("BlockingLinkedList<int> putFirst test4-------[OK] \n");
+        TEST_OK("BlockingLinkedList<int> putFirst test4");
         break;
     }
 
@@ -77,16 +77,16 @@ void testBlockingLinkedListInt() {
         }
         long time2 = st(System)::currentTimeMillis();
         if(!isException) {
-            printf("BlockingLinkedList<int> takeFirst test3-------[FAIL] \n");
+            TEST_FAIL("BlockingLinkedList<int> takeFirst test3 ");
             break;
         }
 
         if((time2 - time1) > 105 || (time2 - time1) < 100) {
-            printf("BlockingLinkedList<int> takeFirst test3-------[FAIL],interval is %ld \n",time2-time1);
+            TEST_FAIL("BlockingLinkedList<int> takeFirst test3,interval is %ld ",time2-time1);
             break;
         }
 
-        printf("BlockingLinkedList<int> takeFirst test4-------[OK] \n");
+        TEST_OK("BlockingLinkedList<int> takeFirst test4");
         break;
     }
 
