@@ -7,13 +7,11 @@
 
 #include "Log.hpp"
 #include "TestLog.hpp"
-
+#include "Math.hpp"
 
 using namespace obotcha;
 
 int realDataTest() {
-    TEST_FAIL("[JsonReader Real Data Test Start] ");
-
     while(1) {
       JsonReader reader = createJsonReader(createFile("./test/data/test_real_01.json"));
       JsonValue value = reader->get();
@@ -78,8 +76,8 @@ int realDataTest() {
 
       Double v_int = value->getDouble();
       if(v_int == nullptr || v_int->toValue() != 1.2345678) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case11]");
+        TEST_FAIL("[JsonReader Real Data Test case11],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -97,7 +95,6 @@ int realDataTest() {
 
       Double v_int = value->getDouble();
       if(v_int == nullptr || v_int->toValue() != 1234567.8) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
         TEST_FAIL("[JsonReader Real Data Test case11] [FAILED],v is %lf ",v_int->toValue());
         break;
       }
@@ -116,8 +113,8 @@ int realDataTest() {
 
       Double v_int = value->getDouble();
       if(v_int == nullptr || v_int->toValue() != -1.2345678) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case14]");
+        TEST_FAIL("[JsonReader Real Data Test case14],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -135,8 +132,8 @@ int realDataTest() {
 
       Double v_int = value->getDouble();
       if(v_int == nullptr || v_int->toValue() != -1234567.8) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case14]");
+        TEST_FAIL("[JsonReader Real Data Test case14],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -154,8 +151,8 @@ int realDataTest() {
 
       Double v_int = value->getDouble();
       if(v_int == nullptr || v_int->toValue() != -1234567.8) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case14]");
+        TEST_FAIL("[JsonReader Real Data Test case14],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -173,8 +170,8 @@ int realDataTest() {
 
       Uint64 v_int = value->getUint64();
       if(v_int == nullptr || v_int->toValue() != 4300000001) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case17]");
+        TEST_FAIL("[JsonReader Real Data Test case17],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -191,9 +188,8 @@ int realDataTest() {
       }
 
       Double v_int = value->getDouble();
-      if(v_int == nullptr || v_int->toValue() != 1.9e+19) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case20]");
+      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),1.9e+19) != st(Math)::AlmostEqual) {
+        TEST_FAIL("[JsonReader Real Data Test case20],v_int is %lf,v2 is %lf ",v_int->toValue(),1.9e+19);
         break;
       }
 
@@ -205,14 +201,14 @@ int realDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_real_10.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
-        TEST_FAIL("[JsonReader Real Data Test case19]");
+        TEST_FAIL("[JsonReader Real Data Test case22]");
         break;
       }
 
       Long v_int = value->getLong();
-      if(v_int == nullptr || v_int->toValue() != -2200000001) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case20]");
+      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),-2200000001) != st(Math)::AlmostEqual) {
+        TEST_FAIL("[JsonReader Real Data Test case23],v_int is %lf ",v_int->toValue());
+
         break;
       }
 
@@ -229,9 +225,9 @@ int realDataTest() {
       }
 
       Double v_int = value->getDouble();
-      if(v_int == nullptr || v_int->toValue() != -9300000000000000001) {
-        TEST_FAIL("v_int is %lf ",v_int->toValue());
-        TEST_FAIL("[JsonReader Real Data Test case20]");
+      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),-9.3e+18) != st(Math)::AlmostEqual) {
+        TEST_FAIL("[JsonReader Real Data Test case20],v_int is %lf ",v_int->toValue());
+
         break;
       }
 

@@ -154,7 +154,7 @@ int integerDataTest() {
         break;
       }
 
-      TEST_OK("[JsonReader Integer Data Test case22] [OK] ");
+      TEST_OK("[JsonReader Integer Data Test case22]");
       break;
     }
     return 0;

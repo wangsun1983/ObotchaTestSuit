@@ -61,7 +61,7 @@ int basicDataTest() {
         break;
       }
 
-      TEST_FAIL("[JsonReader basicDataTest case8]");
+      TEST_OK("[JsonReader basicDataTest case8]");
       break;
     }
 

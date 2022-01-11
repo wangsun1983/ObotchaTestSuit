@@ -17,11 +17,11 @@ int dataFailTest() {
         JsonReader reader = createJsonReader(createFile(str));
         JsonValue value = reader->get();
         if(value != nullptr) {
-          TEST_FAIL("---[JsonReader Data Fail Test case%d]",index);
+          TEST_FAIL("[JsonReader Data Fail Test case%d]",index);
           continue;
         }
 
-        TEST_OK("---[JsonReader Data Fail Test case%d]",index);
+        TEST_OK("[JsonReader Data Fail Test case%d]",index);
       }
 
       break;

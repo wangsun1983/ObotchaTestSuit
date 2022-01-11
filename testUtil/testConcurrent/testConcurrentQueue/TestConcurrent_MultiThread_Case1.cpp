@@ -34,14 +34,13 @@ void testConcurrentQueue_MultiThread_Case1() {
       int finishCount = 0;
       while(finishCount != 16) {
         try {
-          
-        }
-        int v = list->takeFirst();
-        if(v == -1) {
-          finishCount++;
-          continue;
-        }
-        sum += v;
+          int v = list->takeFirst();
+          if(v == -1) {
+            finishCount++;
+            continue;
+          }
+          sum += v;
+        } catch(...) {}
       }
 
       if(sum != 16*result) {

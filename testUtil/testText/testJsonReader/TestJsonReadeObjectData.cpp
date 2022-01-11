@@ -12,18 +12,11 @@
 using namespace obotcha;
 
 int objectDataTest() {
-    TEST_FAIL("[JsonReader Object Data Test Start] ");
-
     while(1) {
       JsonReader reader = createJsonReader(createFile("./test/data/test_object_01.json"));
       JsonValue value = reader->get();
-      if(value == nullptr) {
+      if(value != nullptr) {
         TEST_FAIL("[JsonReader Object Data Test case1]");
-        break;
-      }
-
-      if(!value->isNull()) {
-        TEST_FAIL("[JsonReader Object Data Test case1_1]");
         break;
       }
 

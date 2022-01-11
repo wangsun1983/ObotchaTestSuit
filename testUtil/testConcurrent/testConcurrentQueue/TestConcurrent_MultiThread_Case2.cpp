@@ -33,13 +33,16 @@ void testConcurrentQueue_MultiThread_Case2() {
       long sum = 0;
       int finishCount = 0;
       while(finishCount != 4) {
-        String str = list->takeFirst();
-        int v = str->toBasicInt();
-        if(v == -1) {
-          finishCount++;
-          continue;
+        try {
+          String str = list->takeFirst();
+          int v = str->toBasicInt();
+          if(v == -1) {
+            finishCount++;
+            continue;
+          }
+          sum += v;
+        } catch(...) {
         }
-        sum += v;
       }
 
       if(sum != 4*result) {

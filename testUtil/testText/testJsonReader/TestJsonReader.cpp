@@ -330,7 +330,6 @@ int basetest() {
 
       //start check
       JsonValue testArray = value->getValue("testarr1");
-      TEST_FAIL("testArray trace1 ");
       String t1 = testArray->getStringAt(0);
       if(!t1->equals("abc1")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case24]");
