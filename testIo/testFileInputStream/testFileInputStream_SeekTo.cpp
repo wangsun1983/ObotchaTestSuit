@@ -4,10 +4,12 @@
 #include "FileInputStream.hpp"
 #include "FileNotFoundException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testFileInputStreamSeekTo() {
+
   while(1) {
     File f = createFile("./tmp/data.txt");
 
@@ -35,7 +37,7 @@ void testFileInputStreamSeekTo() {
     long size0 = f->length();
 
     if(size1 != (size0-32*1024)) {
-      printf("---testFileInputStreamSeekTo test1 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamSeekTo test1 ");
     }
 
     FileInputStream stream2 = createFileInputStream(f);
@@ -48,7 +50,7 @@ void testFileInputStreamSeekTo() {
 
     for(long i = 0; i < size1;i++) {
       if(data[i+32*1024] != data2[i]) {
-        printf("---testFileInputStreamSeekTo test2 [FAILED]--- \n");
+        TEST_FAIL("testFileInputStreamSeekTo test2 ");
       }
     }
 
@@ -70,11 +72,12 @@ void testFileInputStreamSeekTo() {
     String v3 = md5->encrypt(createFile("./tmp/data.txt"));
     String v4 = md5->encrypt(createFile("./tmp/read_to_case2.txt"));
     if(v3 != v4) {
-      printf("---testFileInputStreamRead test4 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamRead test4 ");
       break;
     }
 
     break;
   }
-  printf("---testFileInputStreamSeekTo test100 [OK]--- \n");
+
+  TEST_OK("testFileInputStreamSeekTo test100");
 }

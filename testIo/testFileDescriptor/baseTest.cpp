@@ -8,6 +8,7 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "FileDescriptor.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,12 +19,12 @@ void baseTest() {
       FileDescriptor descripor = createFileDescriptor(fd);
 
       if(descripor->isClosed()) {
-        printf("---[FileDescriptor isClosed Test case1] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case1]");
       }
       close(fd);
 
       if(!descripor->isClosed()) {
-        printf("---[FileDescriptor isClosed Test case2] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case2]");
       }
       break;
     }
@@ -34,18 +35,18 @@ void baseTest() {
       FileDescriptor descripor = createFileDescriptor(fd);
 
       if(descripor->isAsync()) {
-        printf("---[FileDescriptor isClosed Test case3] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case3]");
       }
 
       descripor->setAsync(false);
 
       if(descripor->isAsync()) {
-        printf("---[FileDescriptor isClosed Test case4] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case4]");
       }
 
       descripor->setAsync(true);
       if(!descripor->isAsync()) {
-        printf("---[FileDescriptor isClosed Test case5] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case5]");
       }
 
       close(fd);
@@ -57,11 +58,11 @@ void baseTest() {
       int fd = open("./tmp/base_data",O_RDONLY);
       FileDescriptor descripor = createFileDescriptor(fd);
       if(descripor->hashcode() != fd) {
-        printf("---[FileDescriptor isClosed Test case6] [FAILED]--- \n");
+        TEST_FAIL("[FileDescriptor isClosed Test case6]");
       }
       close(fd);
       break;
     }
 
-    printf("---[FileDescriptor isClosed Test case100] [OK]--- \n");
+    TEST_OK("[FileDescriptor isClosed Test case100]");
 }

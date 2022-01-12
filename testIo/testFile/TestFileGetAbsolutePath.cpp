@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,21 +19,21 @@ void testFileGetAbsPath() {
     file = createFile("abc.cpp");
     name = file->getAbsolutePath();
     if(name != nullptr ) {
-      printf("---[File Test {getAbsolutePath()} case1] [FAIL]--- \n");
+      TEST_FAIL("[File Test {getAbsolutePath()} case1]");
     }
 
     //test2
     file = createFile("makefile");
     name = file->getAbsolutePath();
     if(name == nullptr ) {
-      printf("---[File Test {getAbsolutePath()} case2] [FAIL]--- \n");
+      TEST_FAIL("[File Test {getAbsolutePath()} case2]");
     }
 
     char buff1[512];
     snprintf(buff1,512,"%s/%s",buff,"makefile");
     if(!name->equals(buff1)) {
-        printf("---[File Test {getAbsolutePath()} case3] [FAIL]--- \n");
+        TEST_FAIL("[File Test {getAbsolutePath()} case3]");
     }
 
-    printf("---[File Test {getAbsolutePath()} case100] [OK]--- \n");
+    TEST_OK("[File Test {getAbsolutePath()} case100]");
 }

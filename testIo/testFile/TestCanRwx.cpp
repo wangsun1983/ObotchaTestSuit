@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,43 +14,43 @@ void testCanRwx() {
 
     //test read
     if(!readFile->canRead()) {
-        printf("---[File Test {CanRead()} case1] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanRead()} case1]");
     }
 
     if(executeFile->canRead()) {
-        printf("---[File Test {CanRead()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanRead()} case2]");
     }
 
     if(writeFile->canRead()) {
-        printf("---[File Test {CanRead()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanRead()} case2]");
     }
 
     //testwrite
     if(readFile->canWrite()) {
-        printf("---[File Test {CanWrite()} case1] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanWrite()} case1]");
     }
 
     if(executeFile->canWrite()) {
-        printf("---[File Test {CanWrite()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanWrite()} case2]");
     }
 
     if(!writeFile->canWrite()) {
-        printf("---[File Test {CanWrite()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {CanWrite()} case2]");
     }
 
     //testexe
     if(readFile->canExecute()) {
-        printf("---[File Test {canExecute()} case1] [FAIL]--- \n");
+        TEST_FAIL("[File Test {canExecute()} case1]");
     }
 
     if(!executeFile->canExecute()) {
-        printf("---[File Test {canExecute()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {canExecute()} case2]");
     }
 
     if(writeFile->canExecute()) {
-        printf("---[File Test {canExecute()} case2] [FAIL]--- \n");
+        TEST_FAIL("[File Test {canExecute()} case2]");
     }
 
-    printf("---[File Test {canRead/canWrite/canExecute()} case100] [OK]--- \n");
+    TEST_OK("[File Test {canRead/canWrite/canExecute()} case100]");
 
 }

@@ -9,7 +9,7 @@
 #include "ByteArrayReader.hpp"
 #include "ByteArrayWriter.hpp"
 #include <string.h>
-
+#include "TestLog.hpp"
 using namespace obotcha;
 
 
@@ -25,23 +25,23 @@ void testByteArrayBigEndian() {
 
       short int v1 = d1[0]<<8 | d1[1];
       if(v1 != 1) {
-        printf("---[TestByteArrayWriter BigEndian case1] [FAILED]---v1 is %d \n",v1);
+        TEST_FAIL("[TestByteArrayWriter BigEndian case1]v1 is %d ",v1);
       }
 
       writer->reset();
       writer->writeInt(12);
       writer->writeInt(198);
       //for(int i = 0;i<8;i++) {
-      //  printf("d[%d] is %x \n",i,d1[i]);
+      //  TEST_FAIL("d[%d] is %x ",i,d1[i]);
       //}
       int v2 = d1[3] | d1[2]<<8 |d1[1]<<16 |d1[0]<<24;
       if(v2 != 12) {
-        printf("---[TestByteArrayWriter BigEndian case2] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter BigEndian case2]");
       }
 
       int v3 = d1[7] | d1[6]<<8 |d1[5]<<16 |d1[4]<<24;
       if(v3 != 198) {
-        printf("---[TestByteArrayWriter BigEndian case3] [FAILED]---,v3 is %d \n",v3);
+        TEST_FAIL("[TestByteArrayWriter BigEndian case3],v3 is %d ",v3);
       }
 
       writer->reset();
@@ -49,7 +49,7 @@ void testByteArrayBigEndian() {
       long v4 =  (long)d1[7] | (long)d1[6]<<8 |(long)d1[5]<<16 |(long)d1[4]<<24|(long)d1[3]<<32
                 |(long)d1[2]<<40|(long)d1[1]<<48|(long)d1[0]<<56;
       if(v4 != 12345678) {
-        printf("---[TestByteArrayWriter BigEndian case4] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter BigEndian case4]");
       }
 
       writer->reset();
@@ -63,10 +63,10 @@ void testByteArrayBigEndian() {
       writer->writeByte(8);
       for(int i = 0;i<8;i++) {
         if(d1[i] != i + 1) {
-          printf("---[TestByteArrayWriter BigEndian case5] [FAILED]---,d1[%d] is %d\n",i,d1[i]);
+          TEST_FAIL("[TestByteArrayWriter BigEndian case5],d1[%d] is %d",i,d1[i]);
         }
       }
       break;
     }
-    printf("---[TestByteArrayWriter BigEndian case100] [OK]--- \n");
+    TEST_OK("[TestByteArrayWriter BigEndian case100]");
 }

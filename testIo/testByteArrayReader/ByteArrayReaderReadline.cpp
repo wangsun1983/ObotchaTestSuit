@@ -10,6 +10,7 @@
 #include "File.hpp"
 #include "FileInputStream.hpp"
 #include "FileOutputStream.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,16 +40,16 @@ void testReadline() {
 
     for(int i = 0;i<4;i++) {
         String t = reader->readLine();
-        //printf("t is %s \n",t->toChars());
+        //TEST_FAIL("t is %s \n",t->toChars());
         if(!t->equals(contents->get(i))) {
-          printf("---[TestByteArrayReader ReadLine case1] [FAILED]--- \n");
+          TEST_FAIL("[TestByteArrayReader ReadLine case1]");
         }
     }
-    //printf("------------- \n");
+    //TEST_FAIL("- \n");
     String t2 = reader->readLine();
     if(t2 != nullptr) {
-      printf("---[TestByteArrayReader ReadLine case2] [FAILED]--- \n");
+      TEST_FAIL("[TestByteArrayReader ReadLine case2]");
     }
 
-    printf("---[TestByteArrayReader ReadLine case100] [OK]--- \n");
+    TEST_OK("[TestByteArrayReader ReadLine case100]");
 }

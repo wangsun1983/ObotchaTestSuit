@@ -4,6 +4,7 @@
 #include "FileInputStream.hpp"
 #include "FileNotFoundException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,11 +23,11 @@ void testFileInputStreamReadNode() {
     read(fd,buff,32);
     int v2 = atoi(buff);
     if(v != v2) {
-      printf("---testFileInputNodeRead test1 [FAILED]---,v is %d,v2 is %d \n",v,v2);
+      TEST_FAIL("testFileInputNodeRead test1,v is %d,v2 is %d ",v,v2);
     }
 
     break;
   }
 
-  printf("---testFileInputNodeRead test100 [OK]--- \n");
+  TEST_OK("testFileInputNodeRead test100");
 }

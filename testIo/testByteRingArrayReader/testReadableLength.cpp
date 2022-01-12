@@ -6,6 +6,8 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "ByteRingArrayReader.hpp"
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 
@@ -25,10 +27,10 @@ void testReadableLength() {
       reader->setCursor(0);
       int length = reader->getReadableLength();
       if(length != 5) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case1] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case1],length is %d",length);
         return;
       }
-      printf("---[ByteRingArrayReader Test {testReadableLength} case2] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case2]");
       break;
     }
 
@@ -44,10 +46,10 @@ void testReadableLength() {
       reader->setCursor(1);
       int length = reader->getReadableLength();
       if(length != 4) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case3] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case3],length is %d",length);
         return;
       }
-      printf("---[ByteRingArrayReader Test {testReadableLength} case4] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case4]");
       break;
     }
 
@@ -63,10 +65,10 @@ void testReadableLength() {
       reader->setCursor(2);
       int length = reader->getReadableLength();
       if(length != 3) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case5] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case5],length is %d",length);
         return;
       }
-      printf("---[ByteRingArrayReader Test {testReadableLength} case6] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case6]");
       break;
     }
 
@@ -82,10 +84,10 @@ void testReadableLength() {
       reader->setCursor(3);
       int length = reader->getReadableLength();
       if(length != 2) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case7] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case7],length is %d",length);
         return;
       }
-      printf("---[ByteRingArrayReader Test {testReadableLength} case8] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case8]");
       break;
     }
 
@@ -101,13 +103,13 @@ void testReadableLength() {
       reader->setCursor(4);
       int length = reader->getReadableLength();
       if(length != 1) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case9] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case9],length is %d",length);
         return;
       }
-      printf("---[ByteRingArrayReader Test {testReadableLength} case10] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case10]");
       break;
     }
-    
+
     //
     while(1) {
       ByteRingArray ringarray = createByteRingArray(5);
@@ -125,35 +127,35 @@ void testReadableLength() {
       reader->setCursor(0);
       int length = reader->getReadableLength();
       if(length != 1) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case9] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case9],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 5) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case10] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case10],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 4) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case11] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case11],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 3) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case12] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case12],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 2) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case13] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case13],length is %d",length);
         return;
       }
 
@@ -165,35 +167,35 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 2) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case14] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case14],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 1) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case15] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case15],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 5) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case16] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case16],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 4) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case17] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case17],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 3) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case18] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case18],length is %d",length);
         return;
       }
 
@@ -206,35 +208,35 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 3) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case19] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case19],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 2) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case20] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case20],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 1) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case21] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case21],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 5) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case22] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case22],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 4) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case23] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case23],length is %d",length);
         return;
       }
 
@@ -246,39 +248,39 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 4) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case24] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case24],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 3) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case25] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case25],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 2) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case26] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case26],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 1) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case27] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case27],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 5) {
-        printf("---[ByteRingArrayReader Test {testReadableLength} case28] [FAILED]---,length is %d \n",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case28],length is %d",length);
         return;
       }
 
-      printf("---[ByteRingArrayReader Test {testReadableLength} case100] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test {testReadableLength} case100]");
       break;
     }
 }

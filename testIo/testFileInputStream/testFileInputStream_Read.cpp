@@ -4,11 +4,12 @@
 #include "FileInputStream.hpp"
 #include "FileNotFoundException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testFileInputStreamRead() {
-  printf("testFileInputStreamRead trace1 \n");
+
   while(1) {
     File f = createFile("./tmp/data.txt");
 
@@ -33,12 +34,12 @@ void testFileInputStreamRead() {
     String v1 = md5->encrypt(createFile("./tmp/data.txt"));
     String v2 = md5->encrypt(createFile("./tmp/test_read.txt"));
     if(v1 != v2) {
-      printf("---testFileInputStreamRead test1 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamRead test1 ");
       break;
     }
     break;
   }
-  printf("testFileInputStreamRead trace2 \n");
+  
   while(1) {
     File f = createFile("./tmp/data.txt");
 
@@ -65,12 +66,12 @@ void testFileInputStreamRead() {
     String v1 = md5->encrypt(createFile("./tmp/data.txt"));
     String v2 = md5->encrypt(createFile("./tmp/test_read_by_bytearray.txt"));
     if(v1 != v2) {
-      printf("---testFileInputStreamRead test2 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamRead test2 ");
       break;
     }
     break;
   }
-  printf("testFileInputStreamRead trace3 \n");
+  
   while(1) {
     File f = createFile("./tmp/data.txt");
 
@@ -97,11 +98,11 @@ void testFileInputStreamRead() {
     String v1 = md5->encrypt(createFile("./tmp/data.txt"));
     String v2 = md5->encrypt(createFile("./tmp/test_read_by_bytearray2.txt"));
     if(v1 != v2) {
-      printf("---testFileInputStreamRead test3 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamRead test3 ");
       break;
     }
     break;
   }
 
-  printf("---testFileInputStreamRead test100 [OK]--- \n");
+  TEST_OK("testFileInputStreamRead test100");
 }

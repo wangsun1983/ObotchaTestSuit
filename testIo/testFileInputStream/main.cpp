@@ -18,7 +18,6 @@ extern void testFileInputStreamReadNode();
 int main() {
   //prepare data
   File file = createFile("./tmp/data.txt");
-  printf("start main test \n");
   if(!file->exists()) {
     file->createNewFile();
       for(int i = 0;i<1024;i++) {
@@ -32,7 +31,6 @@ int main() {
       stream->close();
     }
   }
-  printf("start main trace1 \n");
   testFileInputStreamReadNode();
   testFileInputStreamClose();
   testFileInputStreamReadAll();

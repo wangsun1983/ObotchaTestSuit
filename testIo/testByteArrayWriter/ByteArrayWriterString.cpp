@@ -9,7 +9,7 @@
 #include "ByteArrayReader.hpp"
 #include "ByteArrayWriter.hpp"
 #include <string.h>
-
+#include "TestLog.hpp"
 using namespace obotcha;
 
 
@@ -21,7 +21,7 @@ void testByteArrayWriterString() {
       writer->writeString((const char *)array);
 
       if(!d1->toString()->equals("hello")) {
-        printf("---[TestByteArrayWriter Write String case1] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter Write String case1]");
       }
       break;
     }
@@ -33,10 +33,10 @@ void testByteArrayWriterString() {
       writer->writeString(array);
 
       if(!d1->toString()->equals("hello")) {
-        printf("---[TestByteArrayWriter Write String case2] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter Write String case2]");
       }
       break;
     }
 
-    printf("---[TestByteArrayWriter Write String case100] [OK]--- \n");
+    TEST_OK("[TestByteArrayWriter Write String case100]");
 }

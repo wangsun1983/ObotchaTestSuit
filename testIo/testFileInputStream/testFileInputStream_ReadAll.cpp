@@ -4,6 +4,7 @@
 #include "FileInputStream.hpp"
 #include "FileNotFoundException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,10 +24,10 @@ void testFileInputStreamReadAll() {
     String v1 = md5->encrypt(createFile("./tmp/data.txt"));
     String v2 = md5->encrypt(createFile("./tmp/read_all_case1.txt"));
     if(v1 != v2) {
-      printf("---testFileInputStreamReadAll test1 [FAILED]--- \n");
+      TEST_FAIL("testFileInputStreamReadAll test1 ");
       break;
     }
     break;
   }
-  printf("---testFileInputStreamReadAll test100 [OK]--- \n");
+  TEST_OK("testFileInputStreamReadAll test100");
 }

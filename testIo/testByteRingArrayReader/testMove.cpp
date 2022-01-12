@@ -6,6 +6,8 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "ByteRingArrayReader.hpp"
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 
@@ -25,41 +27,41 @@ void testMove() {
 
       int cursor = reader->move(1);
       if(cursor != 1) {
-        printf("---[ByteRingArrayReader Test move case1] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test move case1]");
         break;
       }
 
       cursor = reader->move(1);
       if(cursor != 2) {
-        printf("---[ByteRingArrayReader Test move case2] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test move case2]");
         break;
       }
 
       cursor = reader->move(1);
       if(cursor != 3) {
-        printf("---[ByteRingArrayReader Test move case3] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test move case3]");
         break;
       }
 
       cursor = reader->move(1);
       if(cursor != 4) {
-        printf("---[ByteRingArrayReader Test move case4] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test move case4]");
         break;
       }
 
       cursor = reader->move(1);
       if(cursor != 0) {
-        printf("---[ByteRingArrayReader Test move case5] [FAILED]---,cursor is %d \n",cursor);
+        TEST_FAIL("[ByteRingArrayReader Test move case5],cursor is %d",cursor);
         break;
       }
 
       cursor = reader->move(1);
       if(cursor != 1) {
-        printf("---[ByteRingArrayReader Test move case6] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test move case6]");
         break;
       }
 
-      printf("---[ByteRingArrayReader Test move case100] [OK]--- \n");
+      TEST_OK("[ByteRingArrayReader Test move case100]");
       break;
     }
 }

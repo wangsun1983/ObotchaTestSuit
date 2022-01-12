@@ -4,6 +4,7 @@
 #include "FileInputStream.hpp"
 #include "FileNotFoundException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +19,7 @@ void testFileInputStreamClose() {
     char data[1024];
     int len = read(fd,data,1024);
     if(len != 1024) {
-      printf("---testFileInputStreamClose test1 [FAILED]---,len is %d \n",len);
+      TEST_FAIL("testFileInputStreamClose test1,len is %d ",len);
     }
     break;
   }
@@ -33,9 +34,9 @@ void testFileInputStreamClose() {
     char data[1024];
     int len = read(fd,data,1024);
     if(len != -1) {
-      printf("---testFileInputStreamClose test1 [FAILED]--- ,len is %d\n",len);
+      TEST_FAIL("testFileInputStreamClose test1 ,len is %d",len);
     }
     break;
   }
-  printf("---testFileInputStreamClose test100 [OK]--- \n");
+  TEST_OK("testFileInputStreamClose test100 [OK] ");
 }

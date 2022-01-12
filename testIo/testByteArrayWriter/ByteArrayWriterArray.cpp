@@ -8,6 +8,7 @@
 #include "Barrier.hpp"
 #include "ByteArrayReader.hpp"
 #include "ByteArrayWriter.hpp"
+#include "TestLog.hpp"
 #include <string.h>
 
 using namespace obotcha;
@@ -25,7 +26,7 @@ void testByteArrayWriterArray() {
 
       for(int i = 0;i<8;i++) {
         if(array[i] != i + 1) {
-          printf("---[TestByteArrayWriter Write Array case1] [FAILED]--- \n");
+          TEST_FAIL("[TestByteArrayWriter Write Array case1]");
         }
       }
 
@@ -40,7 +41,7 @@ void testByteArrayWriterArray() {
       ByteArray d2 = createByteArray((const byte *)data,6);
       writer->writeByteArray(d2,2,3);
       if(d1[0] != 3 || d1[1] != 4 || d1[2] != 5) {
-        printf("---[TestByteArrayWriter Write Array case2] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter Write Array case2]");
       }
       break;
     }
@@ -52,10 +53,10 @@ void testByteArrayWriterArray() {
       byte data[] = {1,2,3,4,5,6};
       writer->write(data+1,3);
       if(d1[0] != 2 || d1[1] != 3 || d1[2] != 4) {
-        printf("---[TestByteArrayWriter Write Array case3] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayWriter Write Array case3]");
       }
       break;
     }
 
-    printf("---[TestByteArrayWriter Write Array case100] [OK]--- \n");
+    TEST_OK("[TestByteArrayWriter Write Array case100]");
 }

@@ -7,14 +7,12 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "ByteArrayReader.hpp"
-
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 
 void basetest() {
-    printf("---[ByteArrayReader Test Start]--- \n");
-
   /*
     for(int i = 0;i<16;i++) {
       array[i] = (byte)i;
@@ -36,11 +34,11 @@ void basetest() {
     byte v3 = reader->readByte();
     int v4 = reader->readInt();
     if(v1 != 283686952306183 || v2 != 2057 || v3 != 10 || v4 != 185339150) {
-        printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case1] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case1]");
         break;
     }
 
-    printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case2] [Success]--- \n");
+    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case2]");
     break;
   }
 
@@ -66,11 +64,11 @@ void basetest() {
     byte v3 = reader->readByte();
     int v4 = reader->readInt();
     if(v1 != 2315169217770759719 || v2 != 10281 || v3 != 42 || v4 != 724315438) {
-        printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case3] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case3]");
         break;
     }
 
-    printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case4] [Success]--- \n");
+    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case4]");
     break;
   }
 
@@ -97,11 +95,11 @@ void basetest() {
     byte v3 = reader->readByte();
     int v4 = reader->readInt();
     if(v1 != 4630054748589213255 || v2 != 18505 || v3 != 74 || v4 != 1263291726) {
-        printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case5] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case5]");
         break;
     }
 
-    printf("---[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case6] [Success]--- \n");
+    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case6]");
     break;
   }
 
@@ -117,18 +115,18 @@ void basetest() {
     ByteArray readarray = createByteArray(64);
     int len = reader->readByteArray(readarray);
     if(len != 16) {
-        printf("---[TestByteArrayReader Test {readByteArray} case1] [FAILED]--- \n");
+        TEST_FAIL("[TestByteArrayReader Test {readByteArray} case1]");
         break;
     }
 
     for(int j = 0;j<16;j++) {
         if(readarray->at(j) != data->at(j)) {
-            printf("---[TestByteArrayReader Test {readByteArray} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestByteArrayReader Test {readByteArray} case2]");
             break;
         }
     }
 
-    printf("---[TestByteArrayReader Test {readByteArray} case3] [Success]--- \n");
+    TEST_OK("[TestByteArrayReader Test {readByteArray} case3]");
     break;
   }
 }

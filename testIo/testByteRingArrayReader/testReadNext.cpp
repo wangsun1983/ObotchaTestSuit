@@ -6,6 +6,8 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "ByteRingArrayReader.hpp"
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 
@@ -28,62 +30,62 @@ void testReadNext() {
     int endIndex = ringarray->getEndIndex();
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case1]");
         return;
     }
     if(v1 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case1_1]");
         return;
     }
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case2]");
         return;
     }
     if(v2 != 2) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case2_1]");
         return;
     }
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case3]");
         return;
     }
     if(v3 != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case3_1]");
         return;
     }
     if(reader->readNext(v4) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case4] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case4]");
         return;
     }
     if(v4 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case4_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case4_1]");
         return;
     }
 
     if(reader->readNext(v5) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case5] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case5]");
         return;
     }
     if(v5 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case5_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case5_1]");
         return;
     }
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case6]");
         return;
     }
     ByteArray popdata = reader->pop();
     if(popdata->size() != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case7]");
         return;
     }
     if(popdata[0]!= 1 ||popdata[1] != 2||popdata[2] != 3||popdata[3] != 4||popdata[4] != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext} case9] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext} case9]");
     break;
   }
 
@@ -105,69 +107,69 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case1]");
         return;
     }
     if(v1 != 2) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case1_1] [FAIL]---,v is %d \n",v1);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case1_1] [FAIL],v is %d",v1);
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case2]");
         return;
     }
     if(v2 != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case2_1]");
         return;
     }
 
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case3]");
         return;
     }
     if(v3 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case3_1]");
         return;
     }
 
     if(reader->readNext(v4) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case4] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4]");
         return;
     }
     if(v4 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case4_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4_1]");
         return;
     }
 
     if(reader->readNext(v5) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case4_2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4_2]");
         return;
     }
     if(v5 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case4_3] [FAIL]---,v5 is %d \n",v5);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4_3] [FAIL],v5 is %d",v5);
         return;
     }
 
     byte end;
     int result = reader->readNext(end);
     if(result != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case7]");
         return;
     }
 
     if(popdata[0]!= 2 ||popdata[1] != 3||popdata[2] != 4||popdata[3] != 5 ||popdata[4] != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition2} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition2} case7] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition2} case7]");
     break;
   }
 
@@ -190,50 +192,50 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case1]");
         return;
     }
     if(v1 != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case2]");
         return;
     }
     if(v2 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case2_1]");
         return;
     }
 
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case3]");
         return;
     }
     if(v3 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case3_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case7]");
         return;
     }
 
     if(popdata[0]!= 3 ||popdata[1] != 4||popdata[2] != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition3} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition3} case7] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition3} case7]");
     break;
   }
 
@@ -256,41 +258,41 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case1]");
         return;
     }
     if(v1 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case2]");
         return;
     }
     if(v2 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case2_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 2) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case7]");
         return;
     }
 
     if(popdata[0]!= 4 ||popdata[1] != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition4} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition4} case7] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition4} case7]");
     break;
   }
 
@@ -314,32 +316,32 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition5} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case1]");
         return;
     }
     if(v1 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition5} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case1_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition5} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition5} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case7]");
         return;
     }
 
     if(popdata[0]!= 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition5} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition5} case7] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition5} case7]");
     break;
   }
 
@@ -362,68 +364,68 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case1]");
         return;
     }
     if(v1 != 2) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case2]");
         return;
     }
     if(v2 != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case2_1]");
         return;
     }
 
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case3]");
         return;
     }
     if(v3 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case3_1]");
         return;
     }
 
     if(reader->readNext(v4) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case4] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case4]");
         return;
     }
     if(v4 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case4_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case4_1]");
         return;
     }
 
     if(reader->readNext(v5) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case5] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case5]");
         return;
     }
     if(v5 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case5_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case5_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case7]");
         return;
     }
 
     if(popdata[0]!= 2 ||popdata[1]!= 3||popdata[2]!= 4||popdata[3]!= 5||popdata[4]!= 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition6} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition6} case8] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition6} case8]");
     break;
   }
 
@@ -446,59 +448,59 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case1]");
         return;
     }
     if(v1 != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case2]");
         return;
     }
     if(v2 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case2_1]");
         return;
     }
 
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case3]");
         return;
     }
     if(v3 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case3_1]");
         return;
     }
 
     if(reader->readNext(v4) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case4] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case4]");
         return;
     }
     if(v4 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case4_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case4_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case7]");
         return;
     }
 
     if(popdata[0]!= 3 ||popdata[1]!= 4||popdata[2]!= 5||popdata[3]!= 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition7} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition7} case8] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition7} case8]");
     break;
   }
 
@@ -521,50 +523,50 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case1]");
         return;
     }
     if(v1 != 4) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case2]");
         return;
     }
     if(v2 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case2_1]");
         return;
     }
 
     if(reader->readNext(v3) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case3] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case3]");
         return;
     }
     if(v3 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case3_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case3_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 3) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case7]");
         return;
     }
 
     if(popdata[0]!= 4 ||popdata[1]!= 5||popdata[2]!= 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition8} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition8} case8] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition8} case8]");
     break;
   }
 
@@ -587,41 +589,41 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case1]");
         return;
     }
     if(v1 != 5) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case1_1]");
         return;
     }
 
     if(reader->readNext(v2) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case2] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case2]");
         return;
     }
     if(v2 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case2_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case2_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 2) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case7]");
         return;
     }
 
     if(popdata[0]!= 5 ||popdata[1]!= 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition9} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition9} case8] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition9} case8]");
     break;
   }
 
@@ -644,32 +646,32 @@ void testReadNext() {
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
     if(reader->readNext(v1) != st(ByteRingArrayReader)::Continue) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition10} case1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case1]");
         return;
     }
     if(v1 != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition10} case1_1] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case1_1]");
         return;
     }
 
     byte end;
     if(reader->readNext(end) != st(ByteRingArrayReader)::NoContent) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition10} case6] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case6]");
         return;
     }
 
     ByteArray popdata = reader->pop();
     if(popdata->size() != 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition10} case7] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case7]");
         return;
     }
 
     if(popdata[0]!= 1) {
-        printf("---[ByteRingArrayReader Test {testReadNext condition10} case8] [FAIL]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case8]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {testReadNext condition10} case8] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {testReadNext condition10} case8]");
     break;
   }
 

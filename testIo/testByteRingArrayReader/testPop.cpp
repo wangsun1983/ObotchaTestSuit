@@ -6,6 +6,8 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "ByteRingArrayReader.hpp"
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 ByteRingArray createStartBiggerThanEnd() {
@@ -55,7 +57,7 @@ void test_pop() {
     if(poparray->size() != 2 ||
        poparray->at(0) != 1 ||
        poparray->at(1) != 2 ) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case0] [FAILED]---,size is %d,array[0] is %d,array[1] is %d \n",
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case0],size is %d,array[0] is %d,array[1] is %d",
           poparray->size(),poparray->at(0),poparray->at(1));
         return;
     }
@@ -66,7 +68,7 @@ void test_pop() {
     if(poparray->size() != 2 ||
        poparray->at(0) != 3 ||
        poparray->at(1) != 4 ) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case1] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case1]");
         return;
     }
 
@@ -75,13 +77,13 @@ void test_pop() {
     poparray = reader->pop();
     if(poparray->size() != 1 ||
        poparray->at(0) != 5 ) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case2] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case2]");
         return;
     }
 
     poparray = reader->pop();
     if(poparray != nullptr) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case3] [FAILED]---,poparray size is %d \n",poparray->size());
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case3],poparray size is %d",poparray->size());
         poparray->dump("--pop(byte)--");
         return;
     }
@@ -112,7 +114,7 @@ void test_pop() {
         }
 
         if(value != ind) {
-            printf("---[ByteRingArrayReader Test {pop(byte val)} case3_1] [FAILED]---,value is %d,ind is %d \n",value,ind);
+            TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case3_1],value is %d,ind is %d",value,ind);
             break;
         }
         ind++;
@@ -125,7 +127,7 @@ void test_pop() {
        poparray->at(3) != 5 ||
        poparray->at(4) != 6 ||
        poparray->at(5) != 7 ) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case4] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case4]");
         return;
     }
 
@@ -143,16 +145,16 @@ void test_pop() {
 
     poparray = reader->pop();
     if(poparray->size() != 4) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case6] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case6]");
         return;
     }
     if(poparray->at(0) != 5 ||
        poparray->at(1) != 6 ||
        poparray->at(2) != 7 ||
        poparray->at(3) != 8 ) {
-        printf("---[ByteRingArrayReader Test {pop(byte val)} case7] [FAILED]--- \n");
+        TEST_FAIL("[ByteRingArrayReader Test {pop(byte val)} case7]");
         return;
     }
 
-    printf("---[ByteRingArrayReader Test {pop(byte val)} case10] [OK]--- \n");
+    TEST_OK("[ByteRingArrayReader Test {pop(byte val)} case10]");
 }
