@@ -169,4 +169,6 @@ int normaltest() {
     TEST_OK("[Barrier Test func {await()} case2]");
     break;
   }
+
+  return 0;
 }

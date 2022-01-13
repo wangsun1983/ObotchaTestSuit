@@ -22,28 +22,28 @@ public:
             TEST_OK("[Thread Test {Set Priority()} case1],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Low);
         priority = getPriority();
         if(priority != -NotSupport) {
             TEST_OK("[Thread Test {Set Priority()} case2],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Normal);
         priority = getPriority();
         if(priority != -NotSupport) {
             TEST_OK("[Thread Test {Set Priority()} case3],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Highest);
         priority = getPriority();
         if(priority != -NotSupport) {
             TEST_OK("[Thread Test {Set Priority()} case4],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Realtime);
         priority = getPriority();
         if(priority != -NotSupport) {
@@ -63,21 +63,21 @@ public:
             TEST_OK("[Thread Test {Set Priority()} case7],priority is %d,ret is %d",priority,ret);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Normal);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Normal) {
             TEST_OK("[Thread Test {Set Priority()} case8],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Highest);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Highest) {
             TEST_OK("[Thread Test {Set Priority()} case9],priority is %d",priority);
         }
 
-        sleep(100);
+        sleep(1);
         setPriority(st(Thread)::ThreadPriority::Realtime);
         priority = getPriority();
         if(priority != st(Thread)::ThreadPriority::Realtime) {

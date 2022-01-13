@@ -8,13 +8,13 @@ using namespace obotcha;
 
 void testSubAndGet() {
     while(1) {
-        for(int testLoop = 0;testLoop < 1024;testLoop++) {
-            AtomicLong value = createAtomicLong(64*64*1024);
+        for(int testLoop = 0;testLoop < 128;testLoop++) {
+            AtomicLong value = createAtomicLong(64*64*256);
             ArrayList<Thread> list = createArrayList<Thread>();
 
             for(int i = 0;i < 32;i++) {
                 Thread t = createThread([&value] {
-                    for(int j = 0;j<64*1024;j++) {
+                    for(int j = 0;j<64*256;j++) {
                         value->subAndGet(2);
                     }
                 });

@@ -31,13 +31,13 @@ int main() {
     testSubmitTask();
     testSubmitTimeout();
     testAwaitTermination();
-#if 0
+
     testThreadLambda();
     baseTest();
     scheduleTest();
     ReleaseTest();
     scheduleloopsubmit();
-#endif
+
     sleep(10);
 
 }

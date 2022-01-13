@@ -30,7 +30,7 @@ private:
 
 void testThreadjoinCase2() {
   //sleep(1ms)
-  for(int i = 0;i<1024*32;i++) {
+  for(int i = 0;i<64;i++) {
     Thread t = createThread(createJoinRunCase2(1));
     t->start();
     t->join();
@@ -38,14 +38,14 @@ void testThreadjoinCase2() {
 
   TEST_OK("[Thread Test {JoinCase()} case1]");
 
-  for(int i = 0;i<1024*32;i++) {
+  for(int i = 0;i<64;i++) {
     Thread t = createThread(createJoinRunCase2(10));
     t->start();
     t->join();
   }
   TEST_OK("[Thread Test {JoinCase()} case2]");
 
-  for(int i = 0;i<1024;i++) {
+  for(int i = 0;i<64;i++) {
     Thread t = createThread(createJoinRunCase2(100));
     t->start();
     t->join();
@@ -53,7 +53,7 @@ void testThreadjoinCase2() {
   TEST_OK("[Thread Test {JoinCase()} case3]");
 
   //wait(1ms)
-  for(int i = 0;i<1024;i++) {
+  for(int i = 0;i<64;i++) {
     Thread t = createThread(createJoinRunCase2(1));
     t->start();
     st(Thread)::interruptableSleep(1);
@@ -61,7 +61,7 @@ void testThreadjoinCase2() {
   }
   TEST_OK("[Thread Test {JoinCase()} case4]");
 
-  for(int i = 0;i<1024;i++) {
+  for(int i = 0;i<64;i++) {
     Thread t = createThread(createJoinRunCase2(10));
     t->start();
     st(Thread)::interruptableSleep(10);

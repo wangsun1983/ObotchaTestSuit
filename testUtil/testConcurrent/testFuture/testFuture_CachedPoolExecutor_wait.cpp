@@ -152,7 +152,7 @@ void testCachedPoolExecutor_Wait() {
     latch->await();
     long result = watcher->stop();
     if(result < 95 || result > 105) {
-      TEST_FAIL("[Future CahcedPoolExecutor Wait case5");
+      TEST_FAIL("[Future CahcedPoolExecutor Wait case5,result is %ld",result);
       break;
     }
 

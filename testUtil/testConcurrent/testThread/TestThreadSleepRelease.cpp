@@ -42,7 +42,6 @@ void testThreadSleepRelease() {
       MyLongSleepTest1Thread t = createMyLongSleepTest1Thread();
       t->start();
       sleep(1);
-      TEST_FAIL("t count is %d ",t->getStrongCount());
       t->interrupt();
     }
     sleep(1);

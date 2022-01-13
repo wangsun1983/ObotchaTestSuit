@@ -9,13 +9,13 @@ using namespace obotcha;
 
 void testGetAndDecrement() {
     while(1) {
-        for(int testLoop = 0;testLoop < 1024;testLoop++) {
-            AtomicInteger value = createAtomicInteger(128*64*1024);
+        for(int testLoop = 0;testLoop < 64;testLoop++) {
+            AtomicInteger value = createAtomicInteger(128*64*32);
             ArrayList<Thread> list = createArrayList<Thread>();
 
             for(int i = 0;i < 128;i++) {
                 Thread t = createThread([&value] {
-                    for(int j = 0;j<64*1024;j++) {
+                    for(int j = 0;j<64*32;j++) {
                         value->getAndDecrement();
                     }
                 });

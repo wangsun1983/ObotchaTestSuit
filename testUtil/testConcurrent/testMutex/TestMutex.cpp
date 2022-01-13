@@ -172,7 +172,7 @@ int testMutexNormal() {
     while(1) {
         Mutex t = createMutex();
         int ret = t->unlock();
-        if(ret == 0) {
+        if(ret != 0) {
             TEST_FAIL("[TestMutex Test {unlock()} case1]");
             break;
         }

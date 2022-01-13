@@ -9,13 +9,13 @@ using namespace obotcha;
 
 void testIncrementAndGet() {
     while(1) {
-        for(int testLoop = 0;testLoop < 1024;testLoop++) {
+        for(int testLoop = 0;testLoop < 64;testLoop++) {
             AtomicInteger value = createAtomicInteger(0);
             ArrayList<Thread> list = createArrayList<Thread>();
 
             for(int i = 0;i < 128;i++) {
                 Thread t = createThread([&value] {
-                    for(int j = 0;j<64*1024;j++) {
+                    for(int j = 0;j<64*32;j++) {
                         value->incrementAndGet();
                     }
                 });
@@ -30,7 +30,7 @@ void testIncrementAndGet() {
                iterator->next();
             }
 
-            if(value->get() != 128*64*1024) {
+            if(value->get() != 128*64*32) {
                 TEST_FAIL("AtomicInteger IncrementAndGet test1");
                 break;
             }
