@@ -93,7 +93,7 @@ void testCachedPoolExecutor_Wait() {
     long time = watcher->stop();
     if(time < 95 || time > 105) {
       TEST_FAIL("[Future CahcedPoolExecutor Wait case4");
-      break;
+      //break;
     }
     pool->shutdown();
     pool->awaitTermination();

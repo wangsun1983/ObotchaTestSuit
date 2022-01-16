@@ -73,20 +73,17 @@ int numTest() {
             MyRunTest6 run2 = createMyRunTest6();
             pool->execute(run2);
         }
-
         sleep(16);
         int threadsize = pool->getThreadsNum();
         if(threadsize != 0) {
             TEST_FAIL("[TestCachedPoolExecutor NumTest {case3],thread size is  %d ",threadsize);
             break;
         }
-
         if(test6Num != testNum) {
             TEST_FAIL("[TestCachedPoolExecutor NumTest {case4],thread size is  %d ",threadsize);
             break;
         }
         pool->shutdown();
-
         TEST_OK("[TestCachedPoolExecutor NumTest {case4]");
         break;
     }

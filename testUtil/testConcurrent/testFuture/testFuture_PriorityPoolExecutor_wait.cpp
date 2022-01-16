@@ -87,8 +87,8 @@ void testPriorityPoolExecutor_Wait() {
     int ret = f1->wait(100);
     long time = watcher->stop();
     if(time < 95 || time > 105) {
-      TEST_FAIL("[Future PriorityThreadPool Wait case4");
-      break;
+      TEST_FAIL("[Future PriorityThreadPool Wait case4,time is %d",time);
+      //break;
     }
     pool->shutdown();
     pool->awaitTermination();
@@ -147,7 +147,7 @@ void testPriorityPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 95 || result > 105) {
       TEST_FAIL("[Future PriorityThreadPool Wait case5");
-      break;
+      //break;
     }
 
     pool->shutdown();
@@ -176,7 +176,7 @@ void testPriorityPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 10 || result > 15) {
       TEST_FAIL("[Future PriorityThreadPool Wait case6");
-      break;
+      //break;
     }
 
     pool->awaitTermination();

@@ -26,18 +26,24 @@ extern void testPriorityPoolExecutor_Multithread();
 extern void testPriorityPoolExecutor_Cancel();
 
 int main() {
+
+
     testPriorityPoolExecutor_Cancel();
     testPriorityPoolExecutor_Wait();
     testPriorityPoolExecutor_Multithread();
-
+printf("1 \n");
     testScheduledPoolExecutor_Multithread();
+printf("2 \n");    
     testScheduledPoolExecutor_Cancel();
+printf("3 \n");    
     testScheduledPoolExecutor_Wait();
+printf("4 \n");    
     testCachedPoolExecutor_Multithread();
     testCachedPoolExecutor_Cancel();
     testCachedPoolExecutor_Wait();
 
     testThreadPoolExecutor_GetResult_Interrupt();
+
     testThreadPoolExecutor_getStatus();
     testThreadPoolExecutor_GetResult();
     testThreadPoolExecutor_Cancel();
@@ -46,5 +52,7 @@ int main() {
     testThreadPoolExecutor_Wait();
     testThreadPoolExecutor_Multithread();
 
+    testCachedPoolExecutor_Wait();
+    
     return 1;
 }

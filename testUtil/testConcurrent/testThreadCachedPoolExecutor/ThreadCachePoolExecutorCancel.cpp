@@ -13,6 +13,7 @@
 #include "Mutex.hpp"
 #include "ThreadCachedPoolExecutor.hpp"
 #include "TestLog.hpp"
+#include "TimeWatcher.hpp"
 
 using namespace obotcha;
 
@@ -47,6 +48,8 @@ int cancelTest() {
 
         ArrayList<Future> cancellists = createArrayList<Future>();
         //TEST_FAIL("start trace ");
+        TimeWatcher watcher = createTimeWatcher();
+        watcher->start();
         for(int i = 0;i < 1024*32;i++) {
          //   TEST_FAIL("submit task num is %d ",i);
             Future f = pool->submit(createCancelRunnable());

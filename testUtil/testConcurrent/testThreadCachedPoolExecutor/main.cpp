@@ -23,7 +23,6 @@ extern void CachedPoolSubmit_ThreadNum();
 extern void CachedPoolSubmit_AwaitTermination();
 extern void CachedPoolSubmit_Timeout();
 
-
 int main() {
 
     normalTest();
@@ -31,6 +30,7 @@ int main() {
     releaseTest();
     loopsubmittest();
     cancelTest();
+
     testThreadLambda();
     sleep(10);
 
@@ -38,5 +38,7 @@ int main() {
     CachedPoolSubmit_ThreadNum();
     CachedPoolSubmit_AwaitTermination();
     CachedPoolSubmit_Timeout();
+
+    //cancelTestOne();
     return 0;
 }
