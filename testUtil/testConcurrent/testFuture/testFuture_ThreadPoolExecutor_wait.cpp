@@ -18,6 +18,7 @@ using namespace obotcha;
 
 void testThreadPoolExecutor_Wait() {
 
+
   TimeWatcher watcher = createTimeWatcher();
 
   while(1) {
@@ -37,7 +38,6 @@ void testThreadPoolExecutor_Wait() {
 
       if(time < 200 || time > 205) {
         TEST_FAIL("[Future ThreadPoolExecutor Wait case1");
-        break;
       }
       pool->shutdown();
       pool->awaitTermination();
@@ -61,17 +61,16 @@ void testThreadPoolExecutor_Wait() {
 
       if(time < 100 || time > 105) {
         TEST_FAIL("[Future ThreadPoolExecutor Wait case2");
-        break;
       }
 
       if(ret != -WaitTimeout) {
         TEST_FAIL("[Future ThreadPoolExecutor Wait case2_1");
-        break;
       }
       pool->shutdown();
       pool->awaitTermination();
       break;
   }
+
 
   while(1) {
     auto pool = createExecutorBuilder()->setThreadNum(1)->newThreadPool();
@@ -87,13 +86,13 @@ void testThreadPoolExecutor_Wait() {
     int ret = f1->wait(100);
     long time = watcher->stop();
     if(time < 95 || time > 105) {
-      TEST_FAIL("[Future ThreadPoolExecutor Wait case4");
-      break;
+      TEST_FAIL("[Future ThreadPoolExecutor Wait case4,time is %d",time);
     }
     pool->shutdown();
     pool->awaitTermination();
     break;
   }
+
 
   while(1) {
     auto pool = createExecutorBuilder()
@@ -147,7 +146,6 @@ void testThreadPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 95 || result > 105) {
       TEST_FAIL("[Future ThreadPoolExecutor Wait case5,result is %ld",result);
-      break;
     }
 
     pool->shutdown();
@@ -176,7 +174,6 @@ void testThreadPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 10 || result > 15) {
       TEST_FAIL("[Future ThreadPoolExecutor Wait case6");
-      break;
     }
 
     pool->awaitTermination();

@@ -38,7 +38,6 @@ void testPriorityPoolExecutor_Cancel() {
       usleep(150*1000);
       if(value != 222) {
         TEST_FAIL("[Future PriorityPoolExecutor Cancel case2");
-        break;
       }
 
       bool isException = false;
@@ -50,7 +49,6 @@ void testPriorityPoolExecutor_Cancel() {
 
       if(!isException) {
         TEST_FAIL("[Future PriorityPoolExecutor Cancel case3");
-        break;
       }
       pool->shutdown();
       pool->awaitTermination();
@@ -72,12 +70,10 @@ void testPriorityPoolExecutor_Cancel() {
 
     if(value != 222) {
       TEST_FAIL("[Future PriorityPoolExecutor Cancel case4");
-      break;
     }
 
     if(f1->getResult<int>() != 333) {
       TEST_FAIL("[Future PriorityPoolExecutor Cancel case5");
-      break;
     }
     pool->shutdown();
     pool->awaitTermination();

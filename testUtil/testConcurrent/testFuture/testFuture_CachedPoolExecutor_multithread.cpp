@@ -16,7 +16,6 @@
 using namespace obotcha;
 
 void testCachedPoolExecutor_Multithread() {
-  printf("testCachedPoolExecutor_Multithread trace1 \n");
   while(1) {
     auto pool = createExecutorBuilder()
               ->setMaxThreadNum(32)
@@ -31,7 +30,6 @@ void testCachedPoolExecutor_Multithread() {
       });
       lists->add(t);
     }
-    printf("testCachedPoolExecutor_Multithread trace2 \n");
     latch->await();
     auto iterator = lists->getIterator();
     int sum = 0;
@@ -39,7 +37,6 @@ void testCachedPoolExecutor_Multithread() {
       sum += iterator->getValue()->getResult<int>();
       iterator->next();
     }
-    printf("testCachedPoolExecutor_Multithread trace3 \n");
     int expectSum = 0;
     for(int i = 0;i <32*1024;i++) {
       expectSum += i;
@@ -47,9 +44,7 @@ void testCachedPoolExecutor_Multithread() {
 
     if(sum != expectSum) {
       TEST_FAIL("[Future CachedPoolExecutor Multithread case1");
-      break;
     }
-    printf("testCachedPoolExecutor_Multithread trace4 \n");
     pool->shutdown();
     pool->awaitTermination();
     break;

@@ -38,8 +38,8 @@ void testCachedPoolExecutor_Wait() {
 
       if(time < 200 || time > 205) {
         TEST_FAIL("[Future CahcedPoolExecutor Wait case1");
-        break;
       }
+
       pool->shutdown();
       pool->awaitTermination();
       break;
@@ -63,12 +63,10 @@ void testCachedPoolExecutor_Wait() {
 
       if(time < 100 || time > 105) {
         TEST_FAIL("[Future CahcedPoolExecutor Wait case2");
-        break;
       }
 
       if(ret != -WaitTimeout) {
         TEST_FAIL("[Future CahcedPoolExecutor Wait case2_1");
-        break;
       }
       pool->shutdown();
       pool->awaitTermination();
@@ -153,7 +151,6 @@ void testCachedPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 95 || result > 105) {
       TEST_FAIL("[Future CahcedPoolExecutor Wait case5,result is %ld",result);
-      break;
     }
 
     pool->shutdown();
@@ -185,7 +182,6 @@ void testCachedPoolExecutor_Wait() {
     long result = watcher->stop();
     if(result < 10 || result > 15) {
       TEST_FAIL("[Future CahcedPoolExecutor Wait case6");
-      break;
     }
 
     pool->awaitTermination();

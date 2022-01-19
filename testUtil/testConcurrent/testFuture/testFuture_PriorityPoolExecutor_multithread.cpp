@@ -46,7 +46,6 @@ void testPriorityPoolExecutor_Multithread() {
 
     if(sum != expectSum) {
       TEST_FAIL("[Future PriorityPoolExecutor Multithread case1");
-      break;
     }
 
     pool->shutdown();
