@@ -22,9 +22,10 @@ public:
         sleep(10);
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         //TEST_FAIL("i am interrupt ");
         runDestory = 2;
+        return false;
     }
 
     ~_MyRunTest1() {

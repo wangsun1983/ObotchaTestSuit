@@ -28,9 +28,6 @@ public:
         sleep(1);
     }
 
-    void onInterrupt() {
-    }
-
     ~_ReleaseunTest1() {
         //decDebugReferenctCount();
         //TEST_FAIL("numMutex1 count is %d,this is %lx ",numMutex->getStrongCount(),this);

@@ -21,9 +21,6 @@ public:
         //TEST_FAIL("i am running123 ");
         sleep(10);
     }
-
-    void onInterrupt() {
-    }
 };
 
 DECLARE_CLASS(MyShutdownRunTest2) IMPLEMENTS(Runnable) {

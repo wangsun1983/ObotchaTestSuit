@@ -27,8 +27,9 @@ public:
         //TEST_FAIL("MyReleaseTest running2 \n");
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         //TEST_FAIL("MyReleaseTest interrupt \n");
+        return false;
     }
 
     ~_MyReleaseTest() {

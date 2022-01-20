@@ -21,8 +21,6 @@ public:
         sleep(5);
     }
 
-    void onInterrupt() {
-    }
 };
 
 void testThreadDestroy() {

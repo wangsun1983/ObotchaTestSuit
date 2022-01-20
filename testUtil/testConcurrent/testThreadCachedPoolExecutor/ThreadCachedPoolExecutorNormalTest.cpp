@@ -26,8 +26,6 @@ public:
         }
     }
 
-    void onInterrupt() {
-    }
 
     ~_RunTest1() {
         runDestory = 0;
@@ -39,10 +37,6 @@ DECLARE_CLASS(RunTest2) IMPLEMENTS(Runnable) {
 public:
     void run() {
         runTest2Mutex->lock();
-    }
-
-    void onInterrupt() {
-        
     }
 };
 

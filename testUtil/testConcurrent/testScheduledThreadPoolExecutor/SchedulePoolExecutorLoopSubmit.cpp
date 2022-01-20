@@ -25,8 +25,9 @@ public:
         myloopvalue->incrementAndGet();
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         //TEST_FAIL("MyLoopSubmit interrupt \n");
+        return false;
     }
 };
 
@@ -41,8 +42,9 @@ public:
         currentTimeList->add(st(System)::currentTimeMillis());
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         //TEST_FAIL("MyLoopSubmit interrupt \n");
+        return false;
     }
 };
 

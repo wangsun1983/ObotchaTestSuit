@@ -22,9 +22,6 @@ public:
     void run() {
         value->incrementAndGet();
     }
-
-    void onInterrupt() {
-    }
 };
 
 DECLARE_CLASS(MyLoopSubmitRunnable2) IMPLEMENTS(Runnable) {

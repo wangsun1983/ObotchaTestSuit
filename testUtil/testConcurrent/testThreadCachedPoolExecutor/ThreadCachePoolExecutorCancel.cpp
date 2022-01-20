@@ -28,9 +28,10 @@ public:
       }catch(InterruptedException e){}
    }
 
-   void onInterrupt() {
+   bool onInterrupt() {
      AutoLock l(cancelmutex);
      cancelNum++;
+     return false;
    }
 };
 

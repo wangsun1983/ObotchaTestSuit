@@ -24,9 +24,9 @@ extern void testScheduledPoolExecutor_Multithread();
 extern void testPriorityPoolExecutor_Wait();
 extern void testPriorityPoolExecutor_Multithread();
 extern void testPriorityPoolExecutor_Cancel();
+extern void testThreadPoolExecutor_CancelRunningTask();
 
 int main() {
-
     testPriorityPoolExecutor_Cancel();
     testPriorityPoolExecutor_Wait();
     testPriorityPoolExecutor_Multithread();
@@ -39,7 +39,7 @@ int main() {
     testCachedPoolExecutor_Wait();
 
     testThreadPoolExecutor_GetResult_Interrupt();
-
+    testThreadPoolExecutor_CancelRunningTask();
     testThreadPoolExecutor_getStatus();
     testThreadPoolExecutor_GetResult();
     testThreadPoolExecutor_Cancel();
