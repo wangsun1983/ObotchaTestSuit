@@ -23,7 +23,7 @@ void testCountDownLatch_CountDown() {
       latch->await();
       long result = watcher->stop();
       if(result < 100 || result > 105) {
-        TEST_FAIL("---[TestCountDownLatch CountDown case1]");
+        TEST_FAIL("[TestCountDownLatch CountDown case1]");
         break;
       }
       break;
@@ -40,7 +40,7 @@ void testCountDownLatch_CountDown() {
       latch->await(200);
       long result = watcher->stop();
       if(result < 200 || result > 205) {
-        TEST_FAIL("---[TestCountDownLatch CountDown case2]");
+        TEST_FAIL("[TestCountDownLatch CountDown case2]");
         break;
       }
       break;
@@ -49,21 +49,21 @@ void testCountDownLatch_CountDown() {
     while(1) {
       CountDownLatch latch = createCountDownLatch(2);
       if(latch->countDown() != 0) {
-        TEST_FAIL("---[TestCountDownLatch CountDown case3]");
+        TEST_FAIL("[TestCountDownLatch CountDown case3]");
         break;
       }
 
       if(latch->countDown() != 0) {
-        TEST_FAIL("---[TestCountDownLatch CountDown case4]");
+        TEST_FAIL("[TestCountDownLatch CountDown case4]");
         break;
       }
 
       if(latch->countDown() != -AlreadyDestroy) {
-        TEST_FAIL("---[TestCountDownLatch CountDown case5]");
+        TEST_FAIL("[TestCountDownLatch CountDown case5]");
         break;
       }
       break;
     }
 
-    TEST_OK("---[TestCountDownLatch CountDown case100]");
+    TEST_OK("[TestCountDownLatch CountDown case100]");
 }

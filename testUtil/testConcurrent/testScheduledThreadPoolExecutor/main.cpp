@@ -25,8 +25,10 @@ extern void testSubmitWait();
 extern void testSubmitTask();
 extern void testSubmitTimeout();
 extern void testAwaitTermination();
+extern void testShutdownCount();
 
 int main() {
+
     testSubmitWait();
     testSubmitTask();
     testSubmitTimeout();
@@ -37,6 +39,7 @@ int main() {
     scheduleTest();
     ReleaseTest();
     scheduleloopsubmit();
+    testShutdownCount();
 
     sleep(10);
 

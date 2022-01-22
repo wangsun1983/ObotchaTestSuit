@@ -16,10 +16,15 @@
 
 using namespace obotcha;
 
+std::atomic_int count{0};
+
 DECLARE_CLASS(ReleaseTestRunnable) IMPLEMENTS(Runnable) {
 public:
    void run() {
       sleep(1);
+      count++;
+      //int v = count;
+      //printf("count is %d \n",v);
    }
 };
 
@@ -35,11 +40,11 @@ int releaseTest() {
         for(int i = 0;i < 100;i++) {
             pool->submit(createReleaseTestRunnable());
         }
-        sleep(200);
+        sleep(10);
         pool->shutdown();
-        TEST_OK("[CacheThreadPool Test {release()}case4]");
+        pool->awaitTermination();
         break;
     }
-
+    TEST_OK("[CacheThreadPool Test {release()}case4]");
     return 0;
 }

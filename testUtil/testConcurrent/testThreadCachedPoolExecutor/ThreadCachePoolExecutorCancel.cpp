@@ -24,7 +24,7 @@ DECLARE_CLASS(CancelRunnable) IMPLEMENTS(Runnable) {
 public:
    void run() {
       try{
-        st(Thread)::msleep(5000);
+        st(Thread)::msleep(1000 * 500);
       }catch(InterruptedException e){}
    }
 
@@ -37,6 +37,7 @@ public:
 
 
 int cancelTest() {
+#if 0
     while(1) {
         //TEST_FAIL("start test ");
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
@@ -72,6 +73,7 @@ int cancelTest() {
         TEST_OK("[CacheThreadPool Test {cancel()}case2]");
         break;
     }
+#endif
 
     while(1) {
         //TEST_FAIL("start test ");
@@ -91,6 +93,7 @@ int cancelTest() {
             Future f = pool->submit(createCancelRunnable());
             cancellists->add(f);
         }
+
         pool->shutdown();
         sleep(5);
 

@@ -19,12 +19,12 @@ void testCountDownLatch_Construct() {
       }
 
       if(!isException) {
-        TEST_FAIL("---[TestCountDownLatch Construct case1]");
+        TEST_FAIL("[TestCountDownLatch Construct case1]");
         break;
       }
 
       break;
     }
 
-    TEST_OK("---[TestCountDownLatch Construct case100]");
+    TEST_OK("[TestCountDownLatch Construct case100]");
 }

@@ -39,9 +39,10 @@ extern void testThreadLoopStart();
 extern void testThreadInterruptSleep();
 
 int main() {
+    testThreadInterruptCase();
+#if 0
     testThreadInterruptSleep();
     testThreadStart();
-    testThreadInterruptCase();
     testThreadJoin();
     testThreadInterruptCase();
     testThreadCommonCase();
@@ -56,6 +57,7 @@ int main() {
     testThreadSleepRelease();
     testThreadPriority();
     testThreadLoopStart();
+#endif
     sleep(10);
     return 0;
 }

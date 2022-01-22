@@ -24,7 +24,7 @@ void testCountDownLatch_MultiThread() {
       usleep(100*1000);
 
       if(l->await() != -AlreadyDestroy) {
-        TEST_FAIL("---[TestCountDownLatch MultiThread case1]");
+        TEST_FAIL("[TestCountDownLatch MultiThread case1]");
         break;
       }
       break;
@@ -43,18 +43,18 @@ void testCountDownLatch_MultiThread() {
       }
 
       if(finishCount->get() != 0) {
-        TEST_FAIL("---[TestCountDownLatch MultiThread case2]");
+        TEST_FAIL("[TestCountDownLatch MultiThread case2]");
         break;
       }
 
       l->countDown();
       usleep(100*1000);
       if(finishCount->get() != 15) {
-        TEST_FAIL("---[TestCountDownLatch MultiThread case3]");
+        TEST_FAIL("[TestCountDownLatch MultiThread case3]");
         break;
       }
       break;
     }
 
-    TEST_OK("---[TestCountDownLatch MultiThread case100]");
+    TEST_OK("[TestCountDownLatch MultiThread case100]");
 }

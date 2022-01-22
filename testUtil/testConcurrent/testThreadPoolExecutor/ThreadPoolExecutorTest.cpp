@@ -42,8 +42,9 @@ public:
         runTest2Mutex->lock();
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         //TEST_FAIL("RunTest2 onInterrupt 2");
+        return false;
     }
 
     ~_RunTest2() {
@@ -111,7 +112,7 @@ void normalTest() {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case1]");
             break;
         }
-        
+
         runTest2Mutex = createMutex();
         runTest2Mutex->lock();
 

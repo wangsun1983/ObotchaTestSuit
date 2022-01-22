@@ -24,7 +24,7 @@ void testCountDownLatch_Await() {
       latch->await(100);
       long result = watcher->stop();
       if(result < 100 || result > 105) {
-        TEST_FAIL("---[TestCountDownLatch await case1]");
+        TEST_FAIL("[TestCountDownLatch await case1]");
         break;
       }
 
@@ -33,7 +33,7 @@ void testCountDownLatch_Await() {
       latch->await(100);
       result = watcher->stop();
       if(result > 5) {
-        TEST_FAIL("---[TestCountDownLatch await case2]");
+        TEST_FAIL("[TestCountDownLatch await case2]");
         break;
       }
       break;
@@ -41,5 +41,5 @@ void testCountDownLatch_Await() {
 
 
 
-    TEST_OK("---[TestCountDownLatch CountDown case100]");
+    TEST_OK("[TestCountDownLatch CountDown case100]");
 }

@@ -36,7 +36,20 @@ public:
         //TEST_FAIL("m2 ");
         myTest1 = 1;
     }
+};
 
+std::atomic_int mytest2count{0};
+
+DECLARE_CLASS(MyTest2Run) IMPLEMENTS(Runnable) {
+public:
+    void run() {
+        usleep(1000 * 200);
+    }
+
+    bool onInterrupt() {
+        mytest2count++;
+        return false;
+    }
 };
 
 void testThreadInterruptCase() {
@@ -51,9 +64,26 @@ void testThreadInterruptCase() {
             TEST_FAIL("[Thread Test {Interrupt()} special case1]");
             break;
         }
-
-        TEST_OK("[Thread Test {Interrupt()} special case2]");
         break;
     }
+
+    while(1) {
+        MyTest2Run r2 = createMyTest2Run();
+        Thread t = createThread(r2);
+        t->start();
+
+        usleep(1000*100);
+
+        t->interrupt();
+
+        if(mytest2count != 1) {
+            TEST_FAIL("[Thread Test {Interrupt()} special case3]");
+        }
+
+        t->join();
+        break;
+    }
+
+    TEST_OK("[Thread Test {Interrupt()} special case100]");
 
 }

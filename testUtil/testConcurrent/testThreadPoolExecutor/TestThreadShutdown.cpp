@@ -35,9 +35,10 @@ public:
         sleep(10);
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
         AutoLock ll(mMutex);
         count++;
+        return false;
     }
 
     int getCount() {

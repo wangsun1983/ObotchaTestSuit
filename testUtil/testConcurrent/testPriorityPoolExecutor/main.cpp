@@ -17,11 +17,15 @@ extern void testSubmitWait();
 extern void testSubmitPriority();
 extern void testSubmitMultiThread();
 extern void testAwaitTermination();
+extern void testShutdownCount();
 
 int main() {
+
     testSubmitWait();
     testSubmitPriority();
     testSubmitMultiThread();
     testAwaitTermination();
+    testShutdownCount();
+
     return 1;
 }

@@ -30,7 +30,8 @@ public:
         value->decrementAndGet();
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
+      return false;
     }
 };
 
@@ -40,7 +41,8 @@ public:
         sleep(5);
     }
 
-    void onInterrupt() {
+    bool onInterrupt() {
+      return false;
     }
 };
 
@@ -76,7 +78,7 @@ void testThreadPoolLoopSubmit() {
       TEST_FAIL("[ThreadPoolExecutor Loop Submit} special case3],interval is %ld ",interval);
     }
     executor3->shutdown();
-    
+
     TEST_OK("[ThreadPoolExecutor Loop Submit} special case100]");
 
 }

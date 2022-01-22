@@ -24,6 +24,7 @@ void CachedPoolSubmit_ThreadNum() {
             ->newCachedThreadPool();
   TimeWatcher watch = createTimeWatcher();
 
+
   while(1) {
     Future f1 = pool->submit([]{
       usleep(100*1000);
@@ -128,6 +129,7 @@ void CachedPoolSubmit_ThreadNum() {
     break;
   }
 
+
   while(1) {
     auto pool2 = createExecutorBuilder()
               ->setQueueSize(1024*4)
@@ -145,7 +147,7 @@ void CachedPoolSubmit_ThreadNum() {
       break;
     }
 
-    usleep(150*1000);
+    usleep(250*1000);
     if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
       TEST_FAIL("[TestCachedPoolExecutor ThreadNum test10] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
       break;

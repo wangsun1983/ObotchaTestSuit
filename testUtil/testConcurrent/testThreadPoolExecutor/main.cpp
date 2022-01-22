@@ -26,16 +26,15 @@ extern void testThreadPoolSubmit_ShutDown();
 extern void testThreadLambdaSubmitTimeout();
 extern void testThreadLambdaExecuteTimeout();
 extern void testThreadPool_MultiThread();
+extern void testThreadPoolInterruptNum();
 
 int main() {
+    testThreadPoolInterruptNum();
     testThreadPool_MultiThread();
-
     testThreadLambdaExecuteTimeout();
     testThreadLambdaSubmitTimeout();
-
     testThreadPoolSubmit_ShutDown();
     testThreadPoolSubmit_Wait();
-
     normalTest();
     sleep(1);
     testRunnable_onInterrupt();
@@ -49,6 +48,5 @@ int main() {
     testThreadQuickShutDown();
     testPoolReferenceCount();
 
-    st(Thread)::msleep(10*1000);
     return 0;
 }

@@ -87,8 +87,8 @@ void testSubmitTask() {
     watch->start();
     latch->await(300);
     long result = watch->stop();
-    if(result < 100 || result > 105 ) {
-      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case3]");
+    if(result < 100 || result > 120 ) {
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTask case3],result is %d",result);
       break;
     }
     pool->shutdown();
