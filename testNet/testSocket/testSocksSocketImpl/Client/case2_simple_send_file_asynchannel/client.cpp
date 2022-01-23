@@ -7,6 +7,10 @@
 #include "FileInputStream.hpp"
 #include "System.hpp"
 #include "Md.hpp"
+#include "Log.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -17,8 +21,8 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Disconnect: 
-      mCond->notify();
+      case st(NetEvent)::Disconnect: 
+        mCond->notify();
       break;
     }
   }
@@ -27,6 +31,8 @@ public:
 int main() {
     //prepare file
     File file = createFile("data");
+
+    int port = getEnvPort();
 
     if(!file->exists()) {
       file->createNewFile();
@@ -42,7 +48,7 @@ int main() {
       }
     }
 
-    InetAddress addr = createInet4Address(1236);
+    InetAddress addr = createInet4Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
@@ -73,10 +79,13 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket case2_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestTcpSocket case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
       return 0;
     }
 
-    printf("---TestDataGramSocket case2_simple_send_file test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+    monitor->close();
+    TEST_OK("TestTcpSocket case2_simple_send_file test100");
     return 0;
 }

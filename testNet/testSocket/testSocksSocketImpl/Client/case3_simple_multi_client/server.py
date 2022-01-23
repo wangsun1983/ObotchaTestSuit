@@ -4,12 +4,15 @@ import threading
 import socket
 import time
 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 class SendThread(threading.Thread):
     def __init__(self,c,s):
         threading.Thread.__init__(self)
         self.mconn = c
         self.maddr = s
-        print "new connection,fd is " + str(self.mconn.fileno())
+        #print "new connection,fd is " + str(self.mconn.fileno())
 
     def run(self):
         count = 1024*32 - 1
@@ -24,7 +27,7 @@ class SendThread(threading.Thread):
 
 
 host="127.0.0.1"
-port = 1233
+port = getEnvPort()
 
 s = socket.socket() 
 s.bind((host,port))

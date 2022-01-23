@@ -1,8 +1,11 @@
 import socket
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
 
 s = socket.socket() 
 host = socket.gethostname()
-port = 1213
+port = getEnvPort()
 
 s.bind(("127.0.0.1", port))
 
@@ -13,7 +16,7 @@ receive_data = c.recv(1024)
 count = 0
 
 while count < 50:
-    print(receive_data.decode("utf-8"))
+    #print(receive_data.decode("utf-8"))
     c.sendto(receive_data.decode("utf-8"),client)
     count = count + 1
 

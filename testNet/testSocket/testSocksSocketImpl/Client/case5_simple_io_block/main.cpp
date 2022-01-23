@@ -4,6 +4,9 @@
 #include "Handler.hpp"
 #include "Inet4Address.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -16,18 +19,12 @@ Condition disconnectCond = createCondition();
 String message = createString("");
 
 int main() {
-    InetAddress addr = createInet4Address(1218);
+    int port = getEnvPort();
+
+    InetAddress addr = createInet4Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
-
-    //int fd = client->getFileDescriptor()->getFd();
-    //printf("fd is %d \n",fd);
-    //if(fcntl(fd, F_GETFL, 0) & O_NONBLOCK != 0) {
-    //  printf("it is a nonblock \n");
-    //} else {
-    //  printf("it is a block io \n");
-    //}
 
     String resp = createString("hello server");
     client->getOutputStream()->write(resp->toByteArray());
@@ -39,7 +36,7 @@ int main() {
     while(count < 1024) {
       ByteArray data = createByteArray(128);
       watcher->start();
-      int len =client->getInputStream()->read(data);
+      int len = client->getInputStream()->read(data);
       long interval = watcher->stop();
 
       if(len == 0) {
@@ -48,13 +45,17 @@ int main() {
 
       if(interval < 500 || interval > 505) {
         if(!isFirst) {
-          printf("---TestSocket IO Block test2 [FAILED]---,interval is %ld,len is %ld\n",interval,len);
+          TEST_FAIL("TestSocket case5_simple_io_block test2,interval is %ld,len is %ld",interval,len);
         }
         isFirst = false;
       }
       count++;
     }
+    client->close();
 
-    printf("---TestSocket IO Block test2 [OK]---\n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestSocket case5_simple_io_block test100");
     return 0;
 }

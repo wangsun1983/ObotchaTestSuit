@@ -4,6 +4,9 @@ import threading
 import socket
 import time
 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 class ShutDownThread(threading.Thread):
     def __init__(self,c,s):
         threading.Thread.__init__(self)
@@ -15,7 +18,7 @@ class ShutDownThread(threading.Thread):
 
 
 host="127.0.0.1"
-port = 1234
+port = getEnvPort()
 
 s = socket.socket() 
 s.bind((host,port))
@@ -25,7 +28,7 @@ print "start test"
 threads= []
 s.listen(256)
 
-while index < 1024*32:    
+while index < 1024:    
     #print "trace1"
     myconn,myaddr = s.accept()
     t = ShutDownThread(myconn,myaddr);

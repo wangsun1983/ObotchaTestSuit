@@ -5,9 +5,13 @@ import os
 import socket
 import time
 
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
 
-s.bind(("127.0.0.1", 1236))
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+port = getEnvPort()
+
+s.bind(("127.0.0.1", port))
 
 print "start"
 path = "file"
