@@ -1,9 +1,14 @@
 import socket
 import time
 
-s=socket.socket()
-s.connect(("127.0.0.1",1222))
-print "123"
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
+s = socket.socket()
+
+s.connect(("127.0.0.1",getEnvPort()))
+
 s.send(str("hello server").encode("utf-8"))
 
 sendData = s.recv(1024).decode()

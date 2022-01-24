@@ -4,6 +4,9 @@
 #include "Inet4Address.hpp"
 #include "AutoLock.hpp"
 #include "Condition.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -18,7 +21,7 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message: {
+      case st(NetEvent)::Message: {
         if(isFirst) {
           int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
           isFirst = false;
@@ -34,10 +37,10 @@ public:
 };
 
 int main() {
-  InetAddress addr = createInet4Address(1222);
+  int port = getEnvPort();
+  InetAddress addr = createInet4Address(port);
   ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
-  printf("result is %d \n",result);
   SocketMonitor monitor = createSocketMonitor();
   MyListener l = createMyListener();
   monitor->bind(sock,l);
@@ -48,9 +51,12 @@ int main() {
   int count = message->counts(createString("hello client"));
     
   if(message->counts(createString("hello client")) != 50) {
-    printf("---TestDataGramSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+    TEST_FAIL("---TestDataGramSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
   }
+  monitor->close();
 
-  printf("---TestDataGramSocket Server case1_simple_sync test3 [OK]--- \n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("---TestDataGramSocket Server case1_simple_sync test3");
 
 }
