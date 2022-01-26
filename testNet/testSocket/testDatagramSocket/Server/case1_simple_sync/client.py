@@ -5,8 +5,7 @@ import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
 
-s = socket.socket()
-
+s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 s.connect(("127.0.0.1",getEnvPort()))
 
 s.send(str("hello server").encode("utf-8"))
@@ -20,4 +19,4 @@ while (count < 50):
     time.sleep(0.01)
     count = count + 1
 
-#print("send complete")
+print("send complete")

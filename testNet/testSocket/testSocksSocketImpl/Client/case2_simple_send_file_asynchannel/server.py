@@ -7,6 +7,7 @@ import time
 
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
+from NetProt import setEnvPort
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
 port = getEnvPort()
@@ -34,5 +35,8 @@ while True:
 f.close()
 s.close()
 conn.close()
+
+port = port + 1
+setEnvPort(port)
 
 print "File Donwloaded"

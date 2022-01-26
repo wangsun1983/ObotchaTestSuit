@@ -1,30 +1,27 @@
 import socket
+
 import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
 from NetPort import setEnvPort
 
-s = socket.socket() 
-host = socket.gethostname()
+
+s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 port = getEnvPort()
 
-s.bind(("127.0.0.1", port))
-
-s.listen(5)
-c,client = s.accept()
-
-receive_data = c.recv(1024)
+s.bind(("127.0.0.1",port))
 count = 0
+receive_data,client = s.recvfrom(1024)
 
 while count < 50:
     #print(receive_data.decode("utf-8"))
-    c.sendto(receive_data.decode("utf-8"),client)
+    s.sendto(receive_data.decode("utf-8"),client)
     count = count + 1
 
-c.close()
+client.close()
 s.close()
 
-port = port+1
+port = port + 1
 setEnvPort(port)
 
 exit()

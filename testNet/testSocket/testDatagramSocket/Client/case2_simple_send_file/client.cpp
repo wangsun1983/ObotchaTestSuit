@@ -7,32 +7,21 @@
 #include "FileInputStream.hpp"
 #include "System.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
 Mutex mMutex = createMutex();
 Condition mCond = createCondition();
 
-FileOutputStream stream = createFileOutputStream("file");
-long filesize = 0;
-
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message:
-        printf("i get a data,data size is %d \n",data->size());
-        stream->write(data);
-        filesize-= data->size();
-        if(filesize == 0) {
-          mCond->notify();
-        }
-        s->getOutputStream()->write(createString(" ")->toByteArray());
-      break;
-
-      case Disconnect:
-      //printf("disconnect!!!! \n");
-      //mCond->notify();
+      case st(NetEvent)::Message: 
+      mCond->notify();
       break;
     }
   }
@@ -41,7 +30,6 @@ public:
 int main() {
     //prepare file
     File file = createFile("data");
-    filesize = file->length();
 
     if(!file->exists()) {
       file->createNewFile();
@@ -57,33 +45,45 @@ int main() {
       }
     }
 
-    File f = createFile("file");
-    f->removeAll();
+    int port = getEnvPort();
 
-    stream->open();
-
-    InetAddress addr = createInet4Address(1233);
-
+    InetAddress addr = createInet4Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
-    client->bind();
-
-    stream->open(st(OutputStream)::Append);
-
+    
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(client,createMyListener());
 
-    AutoLock l(mMutex);
-    mCond->wait(mMutex);
+    int ret = client->connect();
+    ByteArray fileBuff = createByteArray(1024*4);
+    FileInputStream stream = createFileInputStream(file);
+    stream->open();
+    long index = 0;
+    long filesize = file->length();
+    while(1) {
+      long length = stream->readTo(fileBuff);
+      int ret = client->getOutputStream()->write(fileBuff);
+      AutoLock l(mMutex);
+      mCond->wait(mMutex,200);
+      
+      filesize -= length;
+      if(filesize == 0) {
+        break;
+      }
+    }
+    stream->close();
+
     usleep(1000*1000);
     Md md5 = createMd();
     String v1 = md5->encrypt(createFile("data"));
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket Server case3_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-      return 0;
+      TEST_FAIL("TestDataGramSocket case2_simple_send_file test1 v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
     }
 
-    printf("---TestDataGramSocket Server case3_simple_send_file test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestDataGramSocket case2_simple_send_file test100");
     return 0;
 }

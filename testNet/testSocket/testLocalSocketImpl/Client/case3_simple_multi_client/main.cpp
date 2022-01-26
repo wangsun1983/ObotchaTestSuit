@@ -10,6 +10,10 @@
 #include "CountDownLatch.hpp"
 #include "InetLocalAddress.hpp"
 
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+
+
 #include <signal.h>
 
 using namespace obotcha;
@@ -26,14 +30,14 @@ public:
 
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message: {
+      case st(NetEvent)::Message: {
         //printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
         array[index] += data->toString()->toBasicLong();
         s->getOutputStream()->write(createString("abc")->toByteArray());
       }
       break;
 
-      case Disconnect: {
+      case st(NetEvent)::Disconnect: {
         //printf("disconnect index is %d\n",index);
         latch->countDown();
       }
@@ -58,8 +62,8 @@ int main() {
       auto addr = createInetLocalAddress("case3_socket");
       Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
       if(client->connect() != 0) {
-        printf("---TestLocalSocket Client case3_simple_multi_test test1 [FAILED]--- ,i is %d\n",i);
-        return 1;
+        TEST_FAIL("TestLocalSocket Client case3_simple_multi_test test1,i is %d",i);
+        return -1;
       }
       array[i] = 0;
       monitor->bind(client,createMyListener(i));
@@ -68,10 +72,10 @@ int main() {
     latch->await();
     for(int i = 0;i <128;i++) {
       if(array[i] != sum) {
-        printf("---TestLocalSocket Client case3_simple_multi_test test2 [FAILED]--- ,index is %d,array is %ld,sum is %ld\n",i,array[i],sum);
+        TEST_FAIL("TestLocalSocket Client case3_simple_multi_test test2,index is %d,array is %ld,sum is %ld",i,array[i],sum);
       }
     }
-    printf("trace3 \n");
-    printf("---TestLocalSocket Client case3_simple_multi_test test100 [OK]--- \n");
+    
+    TEST_OK("TestLocalSocket Client case3_simple_multi_test test100");
     return 0;
 }

@@ -9,6 +9,9 @@
 #include "Md.hpp"
 #include "InetLocalAddress.hpp"
 
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 Mutex mMutex = createMutex();
@@ -18,8 +21,8 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Disconnect: 
-      mCond->notify();
+      case st(NetEvent)::Disconnect: 
+        mCond->notify();
       break;
     }
   }
@@ -27,7 +30,7 @@ public:
 
 int main() {
     //prepare file
-    signal(SIGPIPE, SIG_IGN);
+    //signal(SIGPIPE, SIG_IGN);
     File file = createFile("data");
 
     if(!file->exists()) {
@@ -79,10 +82,10 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestLocalSocket Client case2_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestLocalSocket Client case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
       return 0;
     }
 
-    printf("---TestLocalSocket Client case2_simple_send_file test100 [OK]--- \n");
+    TEST_OK("TestLocalSocket Client case2_simple_send_file test100");
     return 0;
 }

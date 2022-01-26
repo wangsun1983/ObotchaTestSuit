@@ -1,13 +1,17 @@
 import socket
 import time
 
-s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-s.connect(("127.0.0.1",1222))
-print "123"
+# Create a UDS socket
+s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+ 
+# Connect the socket to the port where the server is listening
+server_address = 'case1_socket'
+
+s.connect(server_address)
+
 s.send(str("hello server").encode("utf-8"))
 
 sendData = s.recv(1024).decode()
-print "222"
 count = 0
 
 while (count < 50):

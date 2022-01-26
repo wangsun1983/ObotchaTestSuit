@@ -4,9 +4,13 @@ import select
 import os
 import time
 
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 host="127.0.0.1"
 
-port = 1233
+port = getEnvPort()
 
 s = socket(AF_INET,SOCK_DGRAM)
 addr = (host,port)
@@ -17,12 +21,15 @@ f = open("file",'wb')
 print "cccc"
 with open('data', 'r') as fp:
     while True:
-        print "aaaa"
         data = fp.read(1024*4)
         s.sendto(data,addr)
-        time.sleep(0.1)
+        
         if not data:
             break;
 
+        data1,addr2 = s.recvfrom(buf)
+
+port = port + 1
+setEnvPort(port)
 
 print "Upload Donwloaded"

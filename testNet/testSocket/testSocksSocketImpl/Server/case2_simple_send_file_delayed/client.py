@@ -22,7 +22,6 @@ f = open("file",'wb')
 print "cccc"
 with open('data', 'r') as fp:
     while True:
-        print "aaaa"
         data = fp.read(1024*4)
         s.send(data)
         time.sleep(0.1)
@@ -30,4 +29,4 @@ with open('data', 'r') as fp:
             break;
 
 
-print "Upload Donwloaded"
+#print "Upload Donwloaded"

@@ -3,6 +3,7 @@
 #include "FileOutputStream.hpp"
 #include "CipherCreator.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -115,4 +116,6 @@ void testDesEncryptEcb() {
 
     break;
   }
+
+  TEST_OK("[TestDes Ecb case100]");
 }

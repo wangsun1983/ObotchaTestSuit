@@ -4,6 +4,9 @@
 #include "Handler.hpp"
 #include "InetLocalAddress.hpp"
 
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 int messageCount = 0;
@@ -28,17 +31,17 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message:
-      h->removeMessages(1);
-      message = message->append(data->toString());
-      messageCount++;
-      h->sendEmptyMessageDelayed(1,100);
+      case st(NetEvent)::Message:
+          h->removeMessages(1);
+          message = message->append(data->toString());
+          messageCount++;
+          h->sendEmptyMessageDelayed(1,100);
       break;
 
-      case Disconnect:
-      //disconnectCount++;
-      //AutoLock l(disconnectMutex);
-      //disconnectCond->notify();
+      case st(NetEvent)::Disconnect:
+          //disconnectCount++;
+          //AutoLock l(disconnectMutex);
+          //disconnectCond->notify();
       break;
     }
   }
@@ -46,7 +49,7 @@ public:
 
 
 int main() {
-    signal(SIGPIPE, SIG_IGN);
+    //signal(SIGPIPE, SIG_IGN);
     InetAddress addr = createInetLocalAddress("case1_socket");
     Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
 
@@ -61,9 +64,9 @@ int main() {
     
     int count = message->counts("hello server");
     if(message->counts("hello server") != 50) {
-      printf("---TestLocalSocket Client case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+      TEST_FAIL("TestLocalSocket Client case1_simple_sync test2 count is %d,message is %s",count,message->toChars());
     }
 
-    printf("---TestLocalSocket Client case1_simple_sync test3 [OK]--- \n");
+    TEST_OK("TestLocalSocket Client case1_simple_sync test3");
     return 0;
 }

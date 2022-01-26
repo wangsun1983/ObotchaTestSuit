@@ -20,6 +20,8 @@ cflags = -fpic \
 		-I ../../../external/crc32/include \
 		-I ../../../external/openssl/include \
 		-I ../../../external/libco \
+		-I ../../../external/glog/include \
+		-I ../../common \
 		-g \
 		-std=c++14 \
 		-fsanitize=address \

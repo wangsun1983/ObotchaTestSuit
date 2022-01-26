@@ -21,7 +21,7 @@ class SendThread(threading.Thread):
             if(count != 1):
                 data = self.mconn.recv(1024)
             count = count -1
-        print "send finished"
+        #print "send finished"
         self.mconn.close()
 
 

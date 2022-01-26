@@ -3,6 +3,7 @@
 #include "FileOutputStream.hpp"
 #include "CipherCreator.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -48,12 +49,12 @@ void testRsa3Pcks1() {
       String result = md5sum->encrypt(createFile("./tmp/rsa3_pcks1_encrypt_outdata_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestRsa3Pcks1 Ecb PKCS5Padding case1] [FAILED]--- \n");
+        TEST_FAIL("[TestRsa3Pcks1 Ecb PKCS5Padding case1]");
       }
       break;
     }
 
     break;
   }
-  printf("---[TestRsa3Pcks1 cbc case100] [OK]--- \n");
+  TEST_OK("[TestRsa3Pcks1 cbc case100]");
 }

@@ -4,7 +4,7 @@ import time
 import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
-
+from NetPort import setEnvPort
 
 s = socket.socket() 
 host = socket.gethostname()
@@ -26,5 +26,8 @@ while count < 1024:
 
 c.close()
 s.close()
+
+port = port + 1
+setEnvPort(port)
 
 exit()

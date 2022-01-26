@@ -3,6 +3,10 @@
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
 #include "Inet4Address.hpp"
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+#include "NetPort.hpp"
+
 
 using namespace obotcha;
 
@@ -28,14 +32,14 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message:
+      case st(NetEvent)::Message:
       h->removeMessages(1);
       message = message->append(data->toString());
       messageCount++;
       h->sendEmptyMessageDelayed(1,100);
       break;
 
-      case Disconnect:
+      case st(NetEvent)::Disconnect:
       //disconnectCount++;
       //AutoLock l(disconnectMutex);
       //disconnectCond->notify();
@@ -46,7 +50,8 @@ public:
 
 
 int main() {
-    InetAddress addr = createInet4Address(1213);
+    int port = getEnvPort();
+    InetAddress addr = createInet4Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
 
     int ret = client->connect();
@@ -60,9 +65,12 @@ int main() {
     
     int count = message->counts("hello server");
     if(message->counts("hello server") != 50) {
-      printf("---TestDataGramSocket case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+      TEST_FAIL("TestDataGramSocket case1_simple_sync test2 count is %d,message is %s",count,message->toChars());
     }
 
-    printf("---TestDataGramSocket case1_simple_sync test3 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestDataGramSocket case1_simple_sync test3");
     return 0;
 }

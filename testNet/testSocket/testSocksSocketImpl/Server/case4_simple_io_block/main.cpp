@@ -36,12 +36,15 @@ int main() {
     if(result < 100 || result > 105) {
       TEST_FAIL("Test Tcp Server case4_block_io test1");
     }
+    stream->close();
   }
 
   port++;
   setEnvPort(port);
   sock->close();
-  
+  client->close();
+
+
   TEST_OK("Test Tcp Server case4_block_io test100");
 
 }

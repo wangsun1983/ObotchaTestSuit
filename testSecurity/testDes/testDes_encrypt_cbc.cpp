@@ -3,6 +3,7 @@
 #include "FileOutputStream.hpp"
 #include "CipherCreator.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -48,7 +49,7 @@ void testDesEncryptCbc() {
       String result = md5sum->encrypt(createFile("./tmp/des_encrypt_cbc_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestDes cbc PKCS5Padding case1] [FAILED]--- \n");
+        TEST_FAIL("[TestDes cbc PKCS5Padding case1]");
       }
       break;
     }
@@ -68,7 +69,7 @@ void testDesEncryptCbc() {
       String result = md5sum->encrypt(createFile("./tmp/des_encrypt_cbc_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestDes cbc PKCS5Padding case1] [FAILED]--- \n");
+        TEST_FAIL("[TestDes cbc PKCS5Padding case1]");
       }
       break;
     }
@@ -88,7 +89,7 @@ void testDesEncryptCbc() {
       String result = md5sum->encrypt(createFile("./tmp/des_encrypt_cbc_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestDes cbc PKCS7Padding case2] [FAILED]--- \n");
+        TEST_FAIL("[TestDes cbc PKCS7Padding case2]");
       }
       break;
     }
@@ -108,11 +109,13 @@ void testDesEncryptCbc() {
       String result = md5sum->encrypt(createFile("./tmp/des_encrypt_cbc_outdata_pksc0_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestDes cbc ZeroPading case3] [FAILED]--- \n");
+        TEST_FAIL("[TestDes cbc ZeroPading case3]");
       }
       break;
     }
 
     break;
   }
+
+  TEST_OK("[TestDes cbc case100]");
 }

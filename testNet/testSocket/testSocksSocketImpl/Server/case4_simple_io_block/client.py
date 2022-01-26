@@ -10,9 +10,9 @@ s.connect(("127.0.0.1",getEnvPort()))
 
 count = 0
 
-while (count < 1024):
+while (count < 512):
     time.sleep(0.10)
     s.send(str("hello server").encode("utf-8"))
     count = count + 1
 
-print("send complete")
+#print("send complete")

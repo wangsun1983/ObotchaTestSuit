@@ -6,6 +6,7 @@ import time
 
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
+from NetProt import setEnvPort
 
 class ShutDownThread(threading.Thread):
     def __init__(self,c,s):
@@ -39,5 +40,8 @@ while index < 1024:
 for t in threads:
     #print "start join"
     t.join()
+
+port = port + 1
+setEnvPort(port)
 
 print "finish!!!"

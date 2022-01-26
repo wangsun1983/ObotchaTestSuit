@@ -6,6 +6,9 @@
 #include "Condition.hpp"
 #include "InetLocalAddress.hpp"
 
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 String message = createString("");
@@ -19,7 +22,7 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message: {
+      case st(NetEvent)::Message: {
         if(isFirst) {
           int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
           isFirst = false;
@@ -54,9 +57,9 @@ int main() {
   int count = message->counts("hello client");
     
   if(message->counts("hello client") != 50) {
-    printf("---TestLocalSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+    TEST_FAIL("TestLocalSocket Server case1_simple_sync test2 count is %d,message is %s",count,message->toChars());
   }
 
-  printf("---TestLocalSocket Server case1_simple_sync test3 [OK]--- \n");
+  TEST_OK("TestLocalSocket Server case1_simple_sync test3");
 
 }

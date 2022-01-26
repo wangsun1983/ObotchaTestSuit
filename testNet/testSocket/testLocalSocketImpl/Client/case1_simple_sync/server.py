@@ -1,7 +1,7 @@
 import socket
 import sys
 import os
- 
+
 server_address = 'case1_socket'
  
 # Make sure the socket does not already exist

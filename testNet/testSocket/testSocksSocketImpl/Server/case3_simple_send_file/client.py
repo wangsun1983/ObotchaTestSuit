@@ -30,4 +30,4 @@ with open('data', 'r') as fp:
         data1 = s.recv(1024)
 
 
-print "Upload Donwloaded"
+#print "Upload Donwloaded"

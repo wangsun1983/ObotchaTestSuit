@@ -1,14 +1,18 @@
-import socket
-
+from socket import *
 import sys
 import select
 import os
 
-host="::1"
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
 
-port = 1234
+host="127.0.0.1"
 
-s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+port = getEnvPort()
+
+s = socket(AF_INET,SOCK_DGRAM)
 s.bind((host,port))
 addr = (host,port)
 
@@ -32,5 +36,8 @@ try:
 except timeout:
     f.close()
     s.close()
+
+port = port + 1
+setEnvPort(port)
 
 print "File Donwloaded"

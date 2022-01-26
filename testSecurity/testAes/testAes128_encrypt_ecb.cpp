@@ -3,6 +3,7 @@
 #include "FileOutputStream.hpp"
 #include "CipherCreator.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -35,6 +36,7 @@ void testAes128EncryptEcb() {
     //pkcs5
     while(1) {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES128");
+
       enckey->loadEncryptKey("./tmp/test_AES128_encrypt_ecb_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("AES128/ECB/PKCS5Padding");
       AES128->init(st(Cipher)::Encrypt,enckey);
@@ -48,7 +50,29 @@ void testAes128EncryptEcb() {
       String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_ecb_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestAES128 Ecb PKCS5Padding case1] [FAILED]--- \n");
+        TEST_FAIL("[TestAES128 Ecb PKCS5Padding case1]");
+      }
+
+      TEST_OK("[TestAES128 Ecb PKCS5Padding case2]");
+      break;
+    }
+
+    while(1) {
+      SecretKey enckey = st(SecretKeyCreator)::getInstance("AES128");
+      enckey->loadEncryptKey("./tmp/test_AES128_encrypt_ecb_enckey");
+      Cipher AES128 = st(CipherCreator)::getInstance("AES128/ECB/PKCS7Padding");
+      AES128->init(st(Cipher)::Encrypt,enckey);
+      AES128->encrypt(data,"./tmp/AES128_encrypt_ecb_outdata_pksc7");
+
+      SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
+      deckey->loadDecryptKey("./tmp/test_AES128_encrypt_ecb_deckey");
+      Cipher AES1282 = st(CipherCreator)::getInstance("AES128/ECB/PKCS7Padding");
+      AES1282->init(st(Cipher)::Decrypt,deckey);
+      AES1282->decrypt("./tmp/AES128_encrypt_ecb_outdata_pksc7","./tmp/AES128_encrypt_ecb_outdata_pksc7_dec");
+      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_ecb_outdata_pksc7_dec"));
+
+      if(!result->equals(testDataMd5)) {
+        TEST_FAIL("[TestAES128 Ecb PKCS5Padding case3]");
       }
       break;
     }
@@ -68,27 +92,7 @@ void testAes128EncryptEcb() {
       String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_ecb_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestAES128 Ecb PKCS5Padding case1] [FAILED]--- \n");
-      }
-      break;
-    }
-
-    while(1) {
-      SecretKey enckey = st(SecretKeyCreator)::getInstance("AES128");
-      enckey->loadEncryptKey("./tmp/test_AES128_encrypt_ecb_enckey");
-      Cipher AES128 = st(CipherCreator)::getInstance("AES128/ECB/PKCS7Padding");
-      AES128->init(st(Cipher)::Encrypt,enckey);
-      AES128->encrypt(data,"./tmp/AES128_encrypt_ecb_outdata_pksc7");
-
-      SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
-      deckey->loadDecryptKey("./tmp/test_AES128_encrypt_ecb_deckey");
-      Cipher AES1282 = st(CipherCreator)::getInstance("AES128/ECB/PKCS7Padding");
-      AES1282->init(st(Cipher)::Decrypt,deckey);
-      AES1282->decrypt("./tmp/AES128_encrypt_ecb_outdata_pksc7","./tmp/AES128_encrypt_ecb_outdata_pksc7_dec");
-      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_ecb_outdata_pksc7_dec"));
-
-      if(!result->equals(testDataMd5)) {
-        printf("---[TestAES128 Ecb PKCS7Padding case2] [FAILED]--- \n");
+        TEST_FAIL("[TestAES128 Ecb PKCS7Padding case4]");
       }
       break;
     }
@@ -108,12 +112,13 @@ void testAes128EncryptEcb() {
       String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_ecb_outdata_pksc0_dec"));
 
       if(!result->equals(testDataMd5)) {
-        printf("---[TestAES128 Ecb ZeroPading case3] [FAILED]--- \n");
+        TEST_FAIL("[TestAES128 Ecb ZeroPading case5]");
       }
       break;
     }
 
     break;
   }
-  printf("---[TestAES128 cbc case100] [OK]--- \n");
+
+  TEST_OK("[TestAES128 cbc case100]");
 }

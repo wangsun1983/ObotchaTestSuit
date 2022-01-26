@@ -2,11 +2,15 @@
 #include "SocketBuilder.hpp"
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
-#include "Inet4Address.hpp"
+#include "Inet6Address.hpp"
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "System.hpp"
 #include "Md.hpp"
+
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -28,7 +32,8 @@ int main() {
       }
     }
 
-    InetAddress addr = createInet4Address(1234);
+    int port = getEnvPort();
+    InetAddress addr = createInet6Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
 
     int ret = client->connect();
@@ -55,11 +60,10 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket case2_simple_send_file_delayed test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestDataGramSocket case2_simple_send_file_delayed test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
       return 0;
     }
 
-    printf("---TestDataGramSocket case2_simple_send_file_delayed test100 [OK]--- \n");
-    return 0;
+    TEST_OK("TestDataGramSocket case2_simple_send_file_delayed test100");
     return 0;
 }

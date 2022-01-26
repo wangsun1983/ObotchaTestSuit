@@ -11,6 +11,9 @@
 #include "Message.hpp"
 #include "InetLocalAddress.hpp"
 
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+
 #include <signal.h>
 using namespace obotcha;
 
@@ -35,12 +38,12 @@ public:
 
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message: {
+      case st(NetEvent)::Message: {
         
       }
       break;
 
-      case Disconnect: {
+      case st(NetEvent)::Disconnect: {
         //printf("count is %d \n",latch->getCount());
         latch->countDown();
         h->removeMessages(0);
@@ -64,7 +67,7 @@ int main() {
       InetAddress addr = createInetLocalAddress("case4_socket");
       Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
       if(client->connect() != 0) {
-        printf("---TestLocalSocket Client case4_simple_multi_test test1 [FAILED]--- ,i is %d\n",i);
+        TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test1,i is %d",i);
         continue;
       }
 
@@ -77,9 +80,9 @@ int main() {
     }
 
     if(latch->getCount() != 0) {
-      printf("---TestLocalSocket Client case4_simple_multi_test test2 [FAILED]--- cout is %d\n",latch->getCount());
+      TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test2 cout is %d",latch->getCount());
     }
 
-    printf("---TestLocalSocket Client case4_simple_multi_test test100 [OK]--- \n");
+    TEST_OK("TestLocalSocket Client case4_simple_multi_test test100");
     return 0;
 }
