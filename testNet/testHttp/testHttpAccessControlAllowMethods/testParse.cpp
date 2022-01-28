@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAccessControlAllowMethods.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,23 +19,23 @@ void testParse() {
     c->import("POST, GET, OPTIONS");
     auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
-      printf("---[HttpHeaderAccessControlAllowMethods test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowMethods test Parse case1]");
       break;
     }
 
     if(list->get(1)->toValue() != st(HttpMethod)::Get) {
-      printf("---[HttpHeaderAccessControlAllowMethods test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowMethods test Parse case2]");
       break;
     }
 
     if(list->get(2)->toValue() != st(HttpMethod)::Options) {
-      printf("---[HttpHeaderAccessControlAllowMethods test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowMethods test Parse case3]");
       break;
     }
     break;
   }
 
 
-  printf("---[HttpHeaderAccessControlAllowMethods test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlAllowMethods test Parse case100]");
 
 }

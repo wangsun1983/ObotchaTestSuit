@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
 #include "HttpHeaderAccessControlAllowHeaders.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,12 +18,12 @@ void testParse() {
     c->import("X-Custom-Header, Upgrade-Insecure-Requests");
     auto list = c->get();
     if(!list->get(0)->equals("X-Custom-Header")) {
-      printf("---[HttpHeaderAccessControlAllowHeaders test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowHeaders test Parse case1]");
       break;
     }
 
     if(!list->get(1)->equals("Upgrade-Insecure-Requests")) {
-      printf("---[HttpHeaderAccessControlAllowHeaders test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowHeaders test Parse case2]");
       break;
     }
     break;
@@ -33,12 +34,12 @@ void testParse() {
     c->import("*");
     auto list = c->get();
     if(!list->get(0)->equals("*")) {
-      printf("---[HttpHeaderAccessControlAllowHeaders test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowHeaders test Parse case3]");
       break;
     }
 
     break;
   }
-  printf("---[HttpAccessControlAllowCredentials test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpAccessControlAllowCredentials test Parse case100]");
 
 }

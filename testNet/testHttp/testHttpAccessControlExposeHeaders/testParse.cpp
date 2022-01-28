@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAccessControlExposeHeaders.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,18 +20,18 @@ void testParse() {
     auto list = c->get();
     String v0 = list->get(0);
     if(!v0->equals("Content-Length")) {
-      printf("---[HttpHeaderAccessControlExposeHeaders test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case1]");
       break;
     }
 
     String v1 = list->get(1);
     if(!v1->equals("X-Kuma-Revision")) {
-      printf("---[HttpHeaderAccessControlExposeHeaders test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlExposeHeaders test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlExposeHeaders test Parse case100]");
 
 }

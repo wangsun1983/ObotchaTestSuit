@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderAllow.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testToString() {
     HttpHeaderAllow c = createHttpHeaderAllow();
     c->import("POST, GET, OPTIONS");
     if(!c->toString()->equals("POST, GET, OPTIONS")) {
-      printf("---[HttpHeaderAllow test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
+      TEST_FAIL("[HttpHeaderAllow test toString case1],str is %s\n",c->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAllow test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAllow test toString case100]");
 
 }

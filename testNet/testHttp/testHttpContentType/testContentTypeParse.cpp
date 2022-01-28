@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentType.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,23 +15,23 @@ void testContentTypeParse() {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
     contentType1->import("text/html; charset=utf-8");
     if(!contentType1->getType()->equals("text/html")) {
-      printf("---[HttpHeaderContentType test Parse case1] [FAILED]---,type is %s \n",contentType1->getType()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case1],type is %s",contentType1->getType()->toChars());
       return;
     }
 
     if(!contentType1->getCharSet()->equals("utf-8")) {
-      printf("---[HttpHeaderContentType test Parse case2] [FAILED]---,value is %s \n",contentType1->getCharSet()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case2],value is %s",contentType1->getCharSet()->toChars());
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
     contentType2->import("multipart/form-data; boundary=something");
     if(!contentType2->getType()->equals("multipart/form-data")) {
-      printf("---[HttpHeaderContentType test Parse case3] [FAILED]---,type is %s \n",contentType2->getType()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case3],type is %s",contentType2->getType()->toChars());
       return;
     }
 
     if(!contentType2->getBoundary()->equals("something")) {
-      printf("---[HttpHeaderContentType test Parse case4] [FAILED]---,value is %s \n",contentType1->getBoundary()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case4],value is %s",contentType1->getBoundary()->toChars());
     }
     break;
   }
@@ -39,27 +40,27 @@ void testContentTypeParse() {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
     contentType1->import("text/html; charset = utf-8 ");
     if(!contentType1->getType()->equals("text/html")) {
-      printf("---[HttpHeaderContentType test Parse case5] [FAILED]---,type is %s \n",contentType1->getType()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case5],type is %s",contentType1->getType()->toChars());
       return;
     }
 
     if(!contentType1->getCharSet()->equals("utf-8")) {
-      printf("---[HttpHeaderContentType test Parse case6] [FAILED]---,value is %s \n",contentType1->getCharSet()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case6],value is %s",contentType1->getCharSet()->toChars());
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
     contentType2->import("multipart/form-data; boundary = something");
     if(!contentType2->getType()->equals("multipart/form-data")) {
-      printf("---[HttpHeaderContentType test Parse case7] [FAILED]---,type is %s \n",contentType2->getType()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case7],type is %s",contentType2->getType()->toChars());
       return;
     }
 
     if(!contentType2->getBoundary()->equals("something")) {
-      printf("---[HttpHeaderContentType test Parse case8] [FAILED]---,value is %s \n",contentType1->getBoundary()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test Parse case8],value is %s",contentType1->getBoundary()->toChars());
     }
     break;
   }
 
-  printf("---[HttpHeaderContentType test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentType test Parse case100]");
 
 }

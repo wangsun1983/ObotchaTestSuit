@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
 #include "HttpHeaderAccessControlRequestHeaders.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,12 +18,12 @@ void testParse() {
     c->import("X-PINGOTHER, Content-Type");
     auto list = c->get();
     if(!list->get(0)->equals("X-PINGOTHER")) {
-      printf("---[HttpHeaderAccessControlRequestHeaders test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case1]");
       break;
     }
 
     if(!list->get(1)->equals("Content-Type")) {
-      printf("---[HttpHeaderAccessControlRequestHeaders test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case2]");
       break;
     }
     break;
@@ -33,11 +34,11 @@ void testParse() {
     c->import("X-PINGOTHER");
     auto list = c->get();
     if(!list->get(0)->equals("X-PINGOTHER")) {
-      printf("---[HttpHeaderAccessControlRequestHeaders test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case3]");
       break;
     }
     break;
   }
-  printf("---[HttpHeaderAccessControlRequestHeaders test Parse case100] [OK]--- \n");
 
+  TEST_OK("[HttpHeaderAccessControlRequestHeaders test Parse case100]");
 }

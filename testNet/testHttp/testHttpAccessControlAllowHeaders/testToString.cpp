@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderAccessControlAllowHeaders.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testToString() {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->import("X-Custom-Header, Upgrade-Insecure-Requests");
     if(!c->toString()->equals("X-Custom-Header, Upgrade-Insecure-Requests")) {
-      printf("---[HttpHeaderAccessControlAllowCredentials test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
+      TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case1] [FAILED] ,str is %s",c->toString()->toChars());
       break;
     }
     break;
@@ -25,12 +26,12 @@ void testToString() {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->import("*");
     if(!c->toString()->equals("*")) {
-      printf("---[HttpHeaderAccessControlAllowCredentials test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlAllowCredentials test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlAllowCredentials test toString case100]");
 
 }

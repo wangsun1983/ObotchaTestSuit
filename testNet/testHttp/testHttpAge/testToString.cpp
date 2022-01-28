@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderAge.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testToString() {
     HttpHeaderAge c = createHttpHeaderAge();
     c->import("600");
     if(!c->toString()->equals("600")) {
-      printf("---[HttpHeaderAge test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAge test toString case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAge test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAge test toString case100]");
 
 }

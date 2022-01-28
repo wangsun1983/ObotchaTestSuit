@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderCacheControl.hpp"
 #include "HttpPacket.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,37 +19,37 @@ void testToString() {
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Request));
 
     if(c->noCache() != c2->noCache()) {
-      printf("---[HttpHeaderCacheControl test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case1]");
       break;
     }
 
     if(c->noStore() != c2->noStore()) {
-      printf("---[HttpHeaderCacheControl test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case2]");
       break;
     }
 
     if(c->isPrivate() != c2->isPrivate()) {
-      printf("---[HttpHeaderCacheControl test toString case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case3]");
       break;
     }
 
     //if(c->isPublic() != c2->isPublic()) {
-    //  printf("---[HttpHeaderCacheControl test toString case4] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpHeaderCacheControl test toString case4]");
     //  break;
     //}
 
     //if(c->mustRevalidate() != c2->mustRevalidate()) {
-    //  printf("---[HttpHeaderCacheControl test toString case5] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpHeaderCacheControl test toString case5]");
     //  break;
     //}
 
     if(c->onlyIfCached() != c2->onlyIfCached()) {
-      printf("---[HttpHeaderCacheControl test toString case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case6]");
       break;
     }
 
     if(c->noTransform() != c2->noTransform()) {
-      printf("---[HttpHeaderCacheControl test toString case7] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case7]");
       break;
     }
     break;
@@ -60,37 +61,37 @@ void testToString() {
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->noCache() != c2->noCache()) {
-      printf("---[HttpHeaderCacheControl test toString case8] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case8]");
       break;
     }
 
     if(c->noStore() != c2->noStore()) {
-      printf("---[HttpHeaderCacheControl test toString case9] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case9]");
       break;
     }
 
     if(c->isPrivate() != c2->isPrivate()) {
-      printf("---[HttpHeaderCacheControl test toString case10] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case10]");
       break;
     }
 
     if(c->isPublic() != c2->isPublic()) {
-      printf("---[HttpHeaderCacheControl test toString case11] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case11]");
       break;
     }
 
     if(c->mustRevalidate() != c2->mustRevalidate()) {
-      printf("---[HttpHeaderCacheControl test toString case12] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case12]");
       break;
     }
 
     //if(c->onlyIfCached() != c2->onlyIfCached()) {
-    //  printf("---[HttpHeaderCacheControl test toString case13] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpHeaderCacheControl test toString case13]");
     //  break;
     //}
 
     if(c->noTransform() != c2->noTransform()) {
-      printf("---[HttpHeaderCacheControl test toString case14] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case14]");
       break;
     }
     break;
@@ -102,22 +103,22 @@ void testToString() {
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->maxAgeSeconds() != c2->maxAgeSeconds()) {
-      printf("---[HttpHeaderCacheControl test toString case15] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case15]");
       break;
     }
 
     if(c->sMaxAgeSeconds() != c2->sMaxAgeSeconds()) {
-      printf("---[HttpHeaderCacheControl test toString case16] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case16]");
       break;
     }
 
     //if(c->minFreshSeconds() != c2->minFreshSeconds()) {
-    //  printf("---[HttpHeaderCacheControl test toString case17] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpHeaderCacheControl test toString case17]");
     //  break;
     //}
 
     if(c->maxStaleSeconds() != c2->maxStaleSeconds()) {
-      printf("---[HttpHeaderCacheControl test toString case18] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case18]");
       break;
     }
     break;
@@ -128,12 +129,12 @@ void testToString() {
     c->import("public");
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
     if(c->isPublic() != c2->isPublic()) {
-      printf("---[HttpHeaderCacheControl test toString case19] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderCacheControl test toString case19]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderCacheControl test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderCacheControl test toString case100]");
 
 }

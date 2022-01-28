@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderContentLocation.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testParse() {
     HttpHeaderContentLocation location = createHttpHeaderContentLocation();
     location->import("/index.html");
     if(location->get() == nullptr || !location->get()->equals("/index.html")) {
-      printf("---[HttpHeaderContentLocation test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderContentLocation test Parse case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderContentLocation test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentLocation test Parse case100]");
 
 }

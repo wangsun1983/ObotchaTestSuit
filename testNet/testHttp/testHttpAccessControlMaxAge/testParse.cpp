@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAccessControlMaxAge.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,11 +18,11 @@ void testParse() {
     HttpHeaderAccessControlMaxAge c = createHttpHeaderAccessControlMaxAge();
     c->import("600");
     if(c->get() != 600) {
-      printf("---[HttpHeaderAccessControlMaxAge test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlMaxAge test Parse case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlMaxAge test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlMaxAge test Parse case100]");
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentRange.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,12 +15,12 @@ void testToString() {
     HttpHeaderContentRange range = createHttpHeaderContentRange();
     range->import("bytes 200-1000/67589");
     if(!range->toString()->equals("bytes 200-1000/67589")) {
-      printf("---[HttpHeaderContentRange test toSring case1] [FAILED]--- range is %s\n",range->toString()->toChars());
+      TEST_FAIL("[HttpHeaderContentRange test toSring case1] range is %s",range->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderContentRange test toSring case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentRange test toSring case100]");
 
 }

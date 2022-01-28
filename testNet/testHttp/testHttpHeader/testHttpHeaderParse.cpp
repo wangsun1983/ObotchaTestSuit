@@ -11,6 +11,7 @@
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -54,5 +55,5 @@ void testHttpHeaderParse() {
      HttpHeaderParser parser = createHttpHeaderParser(reader);
      HttpHeader header1 = parser->doParse();
 
-     printf("---[HttpHeader test Set case100] [OK]--- \n");
+     TEST_TODO("[HttpHeader test Set case100]");
 }

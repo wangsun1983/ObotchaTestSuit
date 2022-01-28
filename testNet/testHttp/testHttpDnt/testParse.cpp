@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderDnt.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testParse() {
     dnt->import("1");
     int val = dnt->get();
     if(val != 1) {
-      printf("---[HttpHeaderDnt test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderDnt test Parse case1]");
       break;
     }
     break;
@@ -27,12 +28,12 @@ void testParse() {
     dnt->import("0");
     int val = dnt->get();
     if(val != 0) {
-      printf("---[HttpHeaderDnt test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderDnt test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderDnt test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderDnt test Parse case100]");
 
 }

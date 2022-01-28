@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAllow.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,23 +19,23 @@ void testParse() {
     c->import("POST, GET, OPTIONS");
     auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
-      printf("---[HttpHeaderAllow test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAllow test Parse case1]");
       break;
     }
 
     if(list->get(1)->toValue() != st(HttpMethod)::Get) {
-      printf("---[HttpHeaderAllow test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAllow test Parse case2]");
       break;
     }
 
     if(list->get(2)->toValue() != st(HttpMethod)::Options) {
-      printf("---[HttpHeaderAllow test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAllow test Parse case3]");
       break;
     }
     break;
   }
 
 
-  printf("---[HttpHeaderAllow test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAllow test Parse case100]");
 
 }

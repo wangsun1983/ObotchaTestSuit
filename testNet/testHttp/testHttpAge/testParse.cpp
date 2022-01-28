@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAge.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,11 +18,11 @@ void testParse() {
     HttpHeaderAge c = createHttpHeaderAge();
     c->import("600");
     if(c->get() != 600) {
-      printf("---[HttpHeaderAge test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAge test Parse case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAge test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAge test Parse case100]");
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderDnt.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
     dnt->import("1");
     if(!dnt->toString()->equals("1")) {
-      printf("---[HttpHeaderDnt test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderDnt test toString case1]");
       break;
     }
     break;
@@ -24,12 +25,12 @@ void testToString() {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
     dnt->import("0");
     if(!dnt->toString()->equals("0")) {
-      printf("---[HttpHeaderDnt test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderDnt test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderDnt test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderDnt test toString case100]");
 
 }

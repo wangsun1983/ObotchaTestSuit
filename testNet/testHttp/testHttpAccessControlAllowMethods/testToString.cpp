@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderAccessControlAllowMethods.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testToString() {
     HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
     c->import("POST, GET, OPTIONS");
     if(!c->toString()->equals("POST, GET, OPTIONS")) {
-      printf("---[HttpHeaderAccessControlAllowMethods test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
+      TEST_FAIL("---[HttpHeaderAccessControlAllowMethods test toString case1] ,str is %s",c->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlAllowMethods test toString case100] [OK]--- \n");
+  TEST_OK("---[HttpHeaderAccessControlAllowMethods test toString case100]");
 
 }

@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAccessControlRequestMethod.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,12 +18,12 @@ void testParse() {
     HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
     c->import("POST");
     if(c->get() != st(HttpMethod)::Post){
-      printf("---[HttpHeaderAccessControlRequestMethod test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlRequestMethod test Parse case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlRequestMethod test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlRequestMethod test Parse case100]");
 
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentSecurityPolicy.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,11 +15,11 @@ void testToString() {
     HttpHeaderContentSecurityPolicy policy = createHttpHeaderContentSecurityPolicy();
     policy->import("default-src   'self'; img-src *;  media-src media1.com   media2.com; script-src   userscripts.example.com");
     if(!policy->toString()->equals("default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com")) {
-      printf("---[HttpHeaderContentSecurityPolicy test toString case1] [FAILED]---,str is %s \n",policy->toString()->toChars());
+      TEST_FAIL("[HttpHeaderContentSecurityPolicy test toString case1],str is %s",policy->toString()->toChars());
     }
     break;
   }
 
-  printf("---[HttpHeaderContentSecurityPolicy test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentSecurityPolicy test toString case100]");
 
 }

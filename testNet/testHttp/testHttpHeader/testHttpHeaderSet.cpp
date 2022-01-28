@@ -11,26 +11,27 @@
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testHttpHeaderSet() {
   while(1) {
-    const char *raw= "GET /demo HTTP/1.1\r\n"
-                 "Accept-Charset: utf-8, iso-8859-1;q=0.5\r\n"
-                 "Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r\n"
-                 "Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5\r\n"
-                 "Accept-Patch: application/example, text/example\r\n"
-                 "Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8\r\n"
-                 "Allow: GET, POST, HEAD\r\n"
-                 "Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l\r\n"
-                 "Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"\r\n"
-                 "Content-Encoding: identity\r\n"
-                 "Cache-Control: max-age=1000\r\n"
-                 "Content-Length: 2000\r\n"
-                 "Link: <https://example.com>; rel=\"preload\"\r\n"
-                 "X-Frame-Options: allow-from https://example.com/\r\n"
-                 "\r\n"
+    const char *raw= "GET /demo HTTP/1.1\r"
+                 "Accept-Charset: utf-8, iso-8859-1;q=0.5\r"
+                 "Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r"
+                 "Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5\r"
+                 "Accept-Patch: application/example, text/example\r"
+                 "Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8\r"
+                 "Allow: GET, POST, HEAD\r"
+                 "Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l\r"
+                 "Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"\r"
+                 "Content-Encoding: identity\r"
+                 "Cache-Control: max-age=1000\r"
+                 "Content-Length: 2000\r"
+                 "Link: <https://example.com>; rel=\"preload\"\r"
+                 "X-Frame-Options: allow-from https://example.com/\r"
+                 "\r"
                  "Hot diggity dogg";
 
     HttpHeader header = createHttpHeader();
@@ -57,84 +58,84 @@ void testHttpHeaderSet() {
 
     //check
     if(header->getMethod() != st(HttpMethod)::Get) {
-      printf("---[HttpHeader test Set case1] [FAILED]--- method is %d\n",header->getMethod());
+      TEST_FAIL("[HttpHeader test Set case1]  method is %d",header->getMethod());
       break;
     }
 
     if(!header->getUrl()->toString()->equals("/demo")) {
-      printf("---[HttpHeader test Set case2] [FAILED]--- url is %s\n",header->getUrl()->toString()->toChars());
+      TEST_FAIL("[HttpHeader test Set case2]  url is %s",header->getUrl()->toString()->toChars());
       break;
     }
 
     if(!header->getVersion()->toString()->equals("HTTP/1.1")) {
-      printf("---[HttpHeader test Set case3] [FAILED]--- ver is %s\n",header->getVersion()->toString()->toChars());
+      TEST_FAIL("[HttpHeader test Set case3]  ver is %s",header->getVersion()->toString()->toChars());
       break;
     }
 
     //Charset
     auto charset = header->getAcceptCharSet();
     if(charset == nullptr) {
-      printf("---[HttpHeader test Set case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case4]");
       break;
     }
 
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 2) {
-      printf("---[HttpHeader test Set case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case5]");
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem1 = charsets->get(0);
     if(!charSetItem1->type->equalsIgnoreCase("utf-8")) {
-      printf("---[HttpHeader test Set case6] [FAILED]--- char set is %s \n",charSetItem1->type->toChars());
+      TEST_FAIL("[HttpHeader test Set case6]  char set is %s ",charSetItem1->type->toChars());
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem2 = charsets->get(1);
     if(!charSetItem2->type->equalsIgnoreCase("iso-8859-1")) {
-      printf("---[HttpHeader test Set case7] [FAILED]--- char set is %s \n",charSetItem2->type->toChars());
+      TEST_FAIL("[HttpHeader test Set case7]  char set is %s ",charSetItem2->type->toChars());
       break;
     }
 
     if(st(Math)::compareFloat(charSetItem2->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case8] [FAILED]--- char set is %s \n",charSetItem2->type->toChars());
+      TEST_FAIL("[HttpHeader test Set case8]  char set is %s ",charSetItem2->type->toChars());
       break;
     }
 
     //Encoding
-    //Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r\n
+    //Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5\r
     HttpHeaderAcceptEncoding encoding = header->getAcceptEncoding();
     ArrayList<HttpHeaderAcceptEncodingItem> encodings = encoding->get();
     if(encodings->size() != 3) {
-      printf("---[HttpHeader test Set case9] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem0 = encodings->get(0);
     if(!encodingItem0->type->equals("deflate")) {
-      printf("---[HttpHeader test Set case9] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem1 = encodings->get(1);
     if(!encodingItem1->type->equals("gzip")) {
-      printf("---[HttpHeader test Set case10] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case10]");
       break;
     }
 
     if(st(Math)::compareFloat(encodingItem1->weight,1.0) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case11] [FAILED]--- weight is %lf \n",encodingItem1->weight);
+      TEST_FAIL("[HttpHeader test Set case11]  weight is %lf ",encodingItem1->weight);
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem2 = encodings->get(2);
     if(!encodingItem2->type->equals("*")) {
-      printf("---[HttpHeader test Set case12] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case12]");
       break;
     }
 
     if(st(Math)::compareFloat(encodingItem2->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case13] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case13]");
       break;
     }
 
@@ -142,57 +143,57 @@ void testHttpHeaderSet() {
     HttpHeaderAcceptLanguage mAcceptLang = header->getAcceptLanguage();
     ArrayList<HttpHeaderAcceptLanguageItem> langs = mAcceptLang->get();
     if(langs->size() != 5) {
-      printf("---[HttpHeader test Set case14] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case14]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem1 = langs->get(0);
     if(!langItem1->lang->equals("fr-CH")) {
-      printf("---[HttpHeader test Set case15] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case15]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem2 = langs->get(1);
     if(!langItem2->lang->equals("fr")) {
-      printf("---[HttpHeader test Set case16] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case16]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem2->weight,0.9) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case17] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case17]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem3 = langs->get(2);
     if(!langItem3->lang->equals("en")) {
-      printf("---[HttpHeader test Set case18] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case18]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem3->weight,0.8) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case19] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case19]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem4 = langs->get(3);
     if(!langItem4->lang->equals("de")) {
-      printf("---[HttpHeader test Set case20] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case20]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem4->weight,0.7) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case21] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case21]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem5 = langs->get(4);
     if(!langItem5->lang->equals("*")) {
-      printf("---[HttpHeader test Set case22] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case22]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem5->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case23] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case23]");
       break;
     }
 
@@ -201,13 +202,13 @@ void testHttpHeaderSet() {
     ArrayList<HttpHeaderAcceptPatchItem> patches = patch->get();
     HttpHeaderAcceptPatchItem patchItem1 = patches->get(0);
     if(!patchItem1->type->equals("application/example")) {
-      printf("---[HttpHeader test Set case24] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case24]");
       break;
     }
 
     HttpHeaderAcceptPatchItem patchItem2 = patches->get(1);
     if(!patchItem2->type->equals("text/example")) {
-      printf("---[HttpHeader test Set case25] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case25]");
       break;
     }
 
@@ -215,133 +216,133 @@ void testHttpHeaderSet() {
     HttpHeaderAccept accept = header->getAccept();
     ArrayList<HttpHeaderAcceptItem> accepts = accept->get();
     if(accepts->size() != 4) {
-      printf("---[HttpHeader test Set case26_0] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case26_0]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem1 = accepts->get(0);
     if(!acceptItem1->type->equals("text/html")) {
-      printf("---[HttpHeader test Set case26] [FAILED]--- ,type is %s\n",acceptItem1->type->toChars());
+      TEST_FAIL("[HttpHeader test Set case26]  ,type is %s",acceptItem1->type->toChars());
       break;
     }
 
     HttpHeaderAcceptItem acceptItem2 = accepts->get(1);
     if(!acceptItem2->type->equals("application/xhtml+xml")) {
-      printf("---[HttpHeader test Set case27] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case27]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem3 = accepts->get(2);
     if(!acceptItem3->type->equals("application/xml")) {
-      printf("---[HttpHeader test Set case28] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case28]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem3->weight,0.9) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case29] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case29]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem4 = accepts->get(3);
     if(!acceptItem4->type->equals("*/*")) {
-      printf("---[HttpHeader test Set case30] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case30]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem4->weight,0.8) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeader test Set case31] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case31]");
       break;
     }
 
-    //"Allow: GET, POST, HEAD\r\n"
+    //"Allow: GET, POST, HEAD\r"
     String allow = header->get("Allow");
     if(!allow->equals("GET, POST, HEAD")) {
-      printf("---[HttpHeader test Set case32] [FAILED]--- ,allow is %s\n",allow->toChars());
+      TEST_FAIL("[HttpHeader test Set case32]  ,allow is %s",allow->toChars());
       break;
     }
 
     //Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
     HttpHeaderAuthorization authorization = header->getAuthorization();
     if(!authorization->type->equals("Basic")) {
-      printf("---[HttpHeader test Set case33] [FAILED]--- ,allow is %s\n",allow->toChars());
+      TEST_FAIL("[HttpHeader test Set case33]  ,allow is %s",allow->toChars());
       break;
     }
 
     if(!authorization->credentials->equals("YWxhZGRpbjpvcGVuc2VzYW1l")) {
-      printf("---[HttpHeader test Set case34] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case34]");
       break;
     }
 
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
     HttpHeaderContentDisposition contentDisp = header->getContentDisposition();
     if(!contentDisp->type->equals("form-data")) {
-      printf("---[HttpHeader test Set case35] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case35]");
       break;
     }
 
     if(!contentDisp->name->equals("fieldName")) {
-      printf("---[HttpHeader test Set case36] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case36]");
       break;
     }
 
     if(!contentDisp->filename->equals("filename.jpg")) {
-      printf("---[HttpHeader test Set case37] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case37]");
       break;
     }
 
     //Content-Encoding: identity
     String contentEncoding = header->get("Content-Encoding");
     if(!contentEncoding->equals("identity")) {
-      printf("---[HttpHeader test Set case38] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case38]");
       break;
     }
 
     //Cache-Control: max-age=1000
     HttpHeaderCacheControl cachecontrol = header->getCacheControl();
     if(cachecontrol->maxAgeSeconds() != 1000) {
-      printf("---[HttpHeader test Set case39] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case39]");
       break;
     }
 
     //Content-Length: 2000
     int contentLen = header->getContentLength()->get();
     if(contentLen != 2000) {
-      printf("---[HttpHeader test Set case40] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case40]");
       break;
     }
 
     //Link: <https://example.com>; rel="preload"
     ArrayList<HttpHeaderLink> links = header->getLinks();
     if(links->size() != 1) {
-      printf("---[HttpHeader test Set case41] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case41]");
       break;
     }
 
     HttpHeaderLink link = links->get(0);
     if(!link->url->equals("https://example.com")) {
-      printf("---[HttpHeader test Set case42] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case42]");
       break;
     }
 
     if(!link->rel->equals("preload")) {
-      printf("---[HttpHeader test Set case43] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case43]");
       break;
     }
 
     //X-Frame-Options: allow-from https://example.com/
     HttpHeaderXFrameOptions xframeoption = header->getXFrameOptions();
     if(!xframeoption->option->equals("allow-from")) {
-      printf("---[HttpHeader test Set case44] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case44]");
       break;
     }
 
     if(!xframeoption->uri->equals("https://example.com/")) {
-      printf("---[HttpHeader test Set case45] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeader test Set case45]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeader test Set case100] [OK]--- \n");
+  TEST_OK("[HttpHeader test Set case100] [OK] ");
 
 }

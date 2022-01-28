@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptPatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testPatchToString() {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("application/example,text/example");
     if(!encoding1->toString()->equals("application/example,text/example")) {
-      printf("---[HttpHeaderAcceptPatch test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAcceptPatch test Parse case1]");
     }
     break;
   }
@@ -23,7 +24,7 @@ void testPatchToString() {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("text/example;charset=utf-8");
     if(!encoding1->toString()->equals("text/example;charset=utf-8")) {
-      printf("---[HttpHeaderAcceptPatch test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAcceptPatch test Parse case2]");
     }
 
     break;
@@ -33,11 +34,11 @@ void testPatchToString() {
     HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
     encoding1->import("application/merge-patch+json");
     if(!encoding1->toString()->equals("application/merge-patch+json")) {
-      printf("---[HttpHeaderAcceptPatch test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAcceptPatch test Parse case3]");
     }
     break;
   }
 
-  printf("---[HttpHeaderAcceptPatch test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAcceptPatch test toString case100]");
 
 }

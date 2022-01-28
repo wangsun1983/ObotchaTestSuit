@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAllow.hpp"
 #include "HttpHeaderClearSiteData.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,27 +18,26 @@ void testParse() {
     HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
     c->import("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
     if(!c->isCache()) {
-      printf("---[HttpHeaderClearSiteData test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderClearSiteData test Parse case1]");
       break;
     }
 
     if(!c->isCookies()) {
-      printf("---[HttpHeaderClearSiteData test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderClearSiteData test Parse case2]");
       break;
     }
 
     if(!c->isStorage()) {
-      printf("---[HttpHeaderClearSiteData test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderClearSiteData test Parse case3]");
       break;
     }
 
     if(!c->isExecutionContexts()) {
-      printf("---[HttpHeaderClearSiteData test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderClearSiteData test Parse case4]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderClearSiteData test Parse case100] [OK]--- \n");
-
+  TEST_OK("[HttpHeaderClearSiteData test Parse case100]");
 }

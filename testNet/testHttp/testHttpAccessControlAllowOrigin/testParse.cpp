@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderAccessControlAllowOrigin.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +18,7 @@ void testParse() {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->import("https://developer.mozilla.org");
     if(!c->get()->equals("https://developer.mozilla.org")) {
-      printf("---[HttpHeaderAccessControlAllowOrigin test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test Parse case1]");
       break;
     }
     break;
@@ -27,12 +28,12 @@ void testParse() {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->import("*");
     if(!c->get()->equals("*")) {
-      printf("---[HttpHeaderAccessControlAllowOrigin test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlAllowOrigin test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlAllowOrigin test Parse case100]");
 
 }

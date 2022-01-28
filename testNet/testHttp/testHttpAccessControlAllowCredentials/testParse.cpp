@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
 #include "HttpHeaderAccessControlAllowCredentials.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testParse() {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->import("true");
     if(!c->get()) {
-      printf("---[HttpHeaderAccessControlAllowCredentials test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test Parse case1]");
       break;
     }
     break;
@@ -26,12 +27,12 @@ void testParse() {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->import("false");
     if(c->get()) {
-      printf("---[HttpHeaderAccessControlAllowCredentials test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlAllowCredentials test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlAllowCredentials test Parse case100]");
 
 }

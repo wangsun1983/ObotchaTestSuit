@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptCh.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,12 +15,12 @@ void testToString() {
     HttpHeaderAcceptCh acceptCh = createHttpHeaderAcceptCh();
     acceptCh->import("DPR, Viewport-Width, Width");
     if(!acceptCh->toString()->equals("DPR, Viewport-Width, Width")) {
-      printf("---[HttpHeaderAcceptCh test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAcceptCh test toString case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAcceptCh test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAcceptCh test toString case100]");
 
 }

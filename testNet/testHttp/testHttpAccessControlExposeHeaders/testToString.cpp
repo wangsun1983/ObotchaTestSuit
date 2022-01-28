@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderAccessControlExposeHeaders.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testToString() {
     HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
     c->import("Content-Length, X-Kuma-Revision");
     if(c->toString()->equals("Content-Length, X-Kuma-Revision")) {
-      printf("---[HttpHeaderAccessControlAllowOrigin test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]n");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccessControlAllowOrigin test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccessControlAllowOrigin test toString case100]");
 
 }

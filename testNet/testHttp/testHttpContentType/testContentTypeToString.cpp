@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentType.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,18 +15,18 @@ void testContentTypeToString() {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
     contentType1->import("text/html;charset=utf-8");
     if(!contentType1->toString()->equals("text/html;charset=utf-8")) {
-      printf("---[HttpHeaderContentType test toString case1] [FAILED]---,type is %s \n",contentType1->toString()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test toString case1],type is %s",contentType1->toString()->toChars());
       return;
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
     contentType2->import("multipart/form-data;boundary=something");
     if(!contentType2->toString()->equals("multipart/form-data;boundary=something")) {
-      printf("---[HttpHeaderContentType test toString case3] [FAILED]---,type is %s \n",contentType1->toString()->toChars());
+      TEST_FAIL("[HttpHeaderContentType test toString case3],type is %s",contentType1->toString()->toChars());
       return;
     }
     break;
   }
-  printf("---[HttpHeaderContentType test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentType test toString case100]");
 
 }

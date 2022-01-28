@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderContentLanguage.hpp"
 #include "HttpPacket.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,11 +17,11 @@ void testToString() {
     HttpHeaderContentLanguage c = createHttpHeaderContentLanguage();
     c->import("de-DE, en-CA");
     if(c->toString()->equals("de-DE, en-CA ")) {
-      printf("---[HttpHeaderContentLanguage test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderContentLanguage test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderContentLanguage test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderContentLanguage test toString case100]");
 
 }

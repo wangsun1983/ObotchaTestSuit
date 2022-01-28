@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptRanges.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testToString() {
     ranges->import("none");
 
     if(!ranges->toString()->equals("none")) {
-        printf("---[HttpHeaderAcceptRanges test toString case2] [FAILED]--- \n");
+        TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");
         break;
     }
     break;
@@ -26,12 +27,12 @@ void testToString() {
     ranges->import("bytes");
 
     if(!ranges->toString()->equals("bytes")) {
-        printf("---[HttpHeaderAcceptRanges test toString case2] [FAILED]--- \n");
+        TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");
         break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAccept test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAccept test toString case100]");
 
 }
