@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderLink.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,10 +14,10 @@ void testLinkToString() {
   while(1) {
     HttpHeaderLink link1 = createHttpHeaderLink("<https://example.com>; rel=\"preload\"");
     if(!link1->toString()->equals("<https://example.com>; rel=\"preload\"")) {
-      printf("---[HttpHeaderLink test toString case1] [FAILED]--- link is %s\n",link1->toString()->toChars());
+      TEST_FAIL("[HttpHeaderLink test toString case1] link is %s",link1->toString()->toChars());
     }
     break;
   }
 
-  printf("---[HttpHeaderLink test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderLink test toString case100]");
 }

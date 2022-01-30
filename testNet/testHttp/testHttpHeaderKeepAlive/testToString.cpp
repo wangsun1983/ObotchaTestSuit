@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderKeepAlive.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->import("timeout=5, max=1000");
     if(!keepAlive->toString()->equals("timeout=5, max=1000")) {
-      printf("---[HttpHeaderKeepAlive test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case1]");
       break;
     }
     break;
@@ -24,7 +25,7 @@ void testToString() {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->import("1000");
     if(!keepAlive->toString()->equals("timeout=1000")) {
-      printf("---[HttpHeaderKeepAlive test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case2]");
       break;
     }
     break;
@@ -34,7 +35,7 @@ void testToString() {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->import("timeout=5");
     if(!keepAlive->toString()->equals("timeout=5")) {
-      printf("---[HttpHeaderKeepAlive test toString case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case3]");
       break;
     }
     break;
@@ -44,11 +45,11 @@ void testToString() {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->import("Max=5");
     if(!keepAlive->toString()->equals("max=5")) {
-      printf("---[HttpHeaderKeepAlive test toString case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case4]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderKeepAlive test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderKeepAlive test toString case100]");
 }

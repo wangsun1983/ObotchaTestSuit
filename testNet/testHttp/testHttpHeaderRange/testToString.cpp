@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderReferer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,11 +15,11 @@ void testToString() {
     HttpHeaderReferer range = createHttpHeaderReferer();
     range->import("bytes=200-1000, 2000-6576, 19000-");
     if(!range->toString()->equals("bytes=200-1000, 2000-6576, 19000-")) {
-      printf("---[HttpHeaderReferer test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderReferer test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderReferer test toString case100]");
 
 }

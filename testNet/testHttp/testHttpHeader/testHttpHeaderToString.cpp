@@ -75,35 +75,35 @@ void testHttpHeaderToString() {
     auto charset1 = header1->getAcceptCharSet();
     auto charset2 = header2->getAcceptCharSet();
     if(charset1 == nullptr || charset2 == nullptr) {
-      TEST_FAIL("[HttpHeaderToString test Parse case4] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case4]");
       break;
     }
 
     ArrayList<HttpHeaderAcceptCharSetItem> charsets1 = charset1->get();
     ArrayList<HttpHeaderAcceptCharSetItem> charsets2 = charset1->get();
     if(charsets1->size() != 2 || charsets2->size() != 2) {
-      TEST_FAIL("[HttpHeaderToString test Parse case5] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case5]");
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem1_0 = charsets1->get(0);
     HttpHeaderAcceptCharSetItem charSetItem2_0 = charsets2->get(0);
     if(!charSetItem1_0->type->equalsIgnoreCase(charSetItem2_0->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case6] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case6]");
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem1_1 = charsets1->get(1);
     HttpHeaderAcceptCharSetItem charSetItem2_1 = charsets2->get(1);
     if(!charSetItem1_1->type->equalsIgnoreCase(charSetItem2_1->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case7] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case7]");
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem1_2 = charsets1->get(1);
     HttpHeaderAcceptCharSetItem charSetItem2_2 = charsets2->get(1);
     if(st(Math)::compareFloat(charSetItem1_2->weight,charSetItem2_2->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case8] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case8]");
       break;
     }
 
@@ -115,21 +115,21 @@ void testHttpHeaderToString() {
     ArrayList<HttpHeaderAcceptEncodingItem> encodings1 = encoding1->get();
     ArrayList<HttpHeaderAcceptEncodingItem> encodings2 = encoding2->get();
     if(encodings1->size() != 3 || encodings2->size() != 3) {
-      TEST_FAIL("[HttpHeaderToString test Parse case9] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem1_0 = encodings1->get(0);
     HttpHeaderAcceptEncodingItem encodingItem2_0 = encodings2->get(0);
     if(!encodingItem1_0->type->equals(encodingItem1_0->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case9] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem1_1 = encodings1->get(1);
     HttpHeaderAcceptEncodingItem encodingItem2_1 = encodings2->get(1);
     if(!encodingItem1_1->type->equals(encodingItem2_1->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case10] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case10]");
       break;
     }
 
@@ -141,12 +141,12 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptEncodingItem encodingItem1_2 = encodings1->get(2);
     HttpHeaderAcceptEncodingItem encodingItem2_2 = encodings2->get(2);
     if(!encodingItem1_2->type->equals(encodingItem2_2->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case12] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case12]");
       break;
     }
 
     if(st(Math)::compareFloat(encodingItem1_2->weight,encodingItem2_2->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case13] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case13]");
       break;
     }
 
@@ -158,7 +158,7 @@ void testHttpHeaderToString() {
     ArrayList<HttpHeaderAcceptLanguageItem> langs2 = mAcceptLang2->get();
 
     if(langs1->size() != 5 || langs2->size() != 5) {
-      TEST_FAIL("[HttpHeaderToString test Parse case14] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case14]");
       break;
     }
 
@@ -166,7 +166,7 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptLanguageItem langItem2_0 = langs2->get(0);
 
     if(!langItem1_0->lang->equals(langItem2_0->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case15] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case15]");
       break;
     }
 
@@ -174,48 +174,48 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptLanguageItem langItem2_1 = langs2->get(1);
 
     if(!langItem1_1->lang->equals(langItem2_1->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case16] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case16]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem1_1->weight,langItem2_1->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case17] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case17]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem1_2 = langs1->get(2);
     HttpHeaderAcceptLanguageItem langItem2_2 = langs2->get(2);
     if(!langItem1_2->lang->equals(langItem2_2->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case18] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case18]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem1_2->weight,langItem2_2->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case19] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case19]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem1_3 = langs1->get(3);
     HttpHeaderAcceptLanguageItem langItem2_3 = langs2->get(3);
     if(!langItem1_3->lang->equals(langItem2_3->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case20] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case20]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem1_3->weight,langItem2_3->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case21] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case21]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem1_4 = langs1->get(4);
     HttpHeaderAcceptLanguageItem langItem2_4 = langs2->get(4);
     if(!langItem1_4->lang->equals(langItem2_4->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case22] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case22]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem1_4->weight,langItem2_4->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case23] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case23]");
       break;
     }
 
@@ -229,14 +229,14 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptPatchItem patchItem1_0 = patches1->get(0);
     HttpHeaderAcceptPatchItem patchItem2_0 = patches2->get(0);
     if(!patchItem1_0->type->equals(patchItem2_0->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case24] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case24]");
       break;
     }
 
     HttpHeaderAcceptPatchItem patchItem1_1 = patches1->get(1);
     HttpHeaderAcceptPatchItem patchItem2_1 = patches2->get(1);
     if(!patchItem1_1->type->equals(patchItem2_1->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case25] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case25]");
       break;
     }
 
@@ -246,7 +246,7 @@ void testHttpHeaderToString() {
     ArrayList<HttpHeaderAcceptItem> accepts1 = accept1->get();
     ArrayList<HttpHeaderAcceptItem> accepts2 = accept2->get();
     if(accepts1->size() != accepts2->size()) {
-      TEST_FAIL("[HttpHeaderToString test Parse case26_0] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case26_0]");
       break;
     }
 
@@ -260,31 +260,31 @@ void testHttpHeaderToString() {
     HttpHeaderAcceptItem acceptItem1_1 = accepts1->get(1);
     HttpHeaderAcceptItem acceptItem2_1 = accepts2->get(1);
     if(!acceptItem1_1->type->equals(acceptItem2_1->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case27] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case27]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem1_2 = accepts1->get(2);
     HttpHeaderAcceptItem acceptItem2_2 = accepts2->get(2);
     if(!acceptItem1_2->type->equals(acceptItem2_2->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case28] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case28]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem1_2->weight,acceptItem2_2->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case29] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case29]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem1_3 = accepts1->get(3);
     HttpHeaderAcceptItem acceptItem2_3 = accepts2->get(3);
     if(!acceptItem1_3->type->equals(acceptItem2_3->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case30] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case30]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem1_3->weight,acceptItem2_3->weight) != st(Math)::AlmostEqual) {
-      TEST_FAIL("[HttpHeaderToString test Parse case31] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case31]");
       break;
     }
 
@@ -300,12 +300,12 @@ void testHttpHeaderToString() {
     HttpHeaderAuthorization authorization1 = header1->getAuthorization();
     HttpHeaderAuthorization authorization2 = header2->getAuthorization();
     if(!authorization1->type->equals(authorization2->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case33] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case33]");
       break;
     }
 
     if(!authorization1->credentials->equals(authorization2->credentials)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case34] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case34]");
       break;
     }
 
@@ -313,17 +313,17 @@ void testHttpHeaderToString() {
     HttpHeaderContentDisposition contentDisp1 = header1->getContentDisposition();
     HttpHeaderContentDisposition contentDisp2 = header2->getContentDisposition();
     if(!contentDisp1->type->equals(contentDisp2->type)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case35] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case35]");
       break;
     }
 
     if(!contentDisp1->name->equals(contentDisp2->name)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case36] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case36]");
       break;
     }
 
     if(!contentDisp1->filename->equals(contentDisp2->filename)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case37] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case37]");
       break;
     }
 
@@ -331,7 +331,7 @@ void testHttpHeaderToString() {
     String contentEncoding1 = header1->get("Content-Encoding");
     String contentEncoding2 = header2->get("Content-Encoding");
     if(!contentEncoding1->equals(contentEncoding2)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case38] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case38]");
       break;
     }
 
@@ -339,7 +339,7 @@ void testHttpHeaderToString() {
     HttpHeaderCacheControl cachecontrol1 = header1->getCacheControl();
     HttpHeaderCacheControl cachecontrol2 = header2->getCacheControl();
     if(cachecontrol1->maxAgeSeconds() != cachecontrol2->maxAgeSeconds()) {
-      TEST_FAIL("[HttpHeaderToString test Parse case39] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case39]");
       break;
     }
 
@@ -347,7 +347,7 @@ void testHttpHeaderToString() {
     int contentLen1 = header1->getContentLength()->get();
     int contentLen2 = header2->getContentLength()->get();
     if(contentLen1 != contentLen2) {
-      TEST_FAIL("[HttpHeaderToString test Parse case40] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case40]");
       break;
     }
 
@@ -355,19 +355,19 @@ void testHttpHeaderToString() {
     ArrayList<HttpHeaderLink> links1 = header1->getLinks();
     ArrayList<HttpHeaderLink> links2 = header2->getLinks();
     if(links1->size() != 1 || links2->size() != 1) {
-      TEST_FAIL("[HttpHeaderToString test Parse case41] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case41]");
       break;
     }
 
     HttpHeaderLink link1_0 = links1->get(0);
     HttpHeaderLink link2_0 = links2->get(0);
     if(!link1_0->url->equals(link2_0->url)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case42] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case42]");
       break;
     }
 
     if(!link1_0->rel->equals(link2_0->rel)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case43] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case43]");
       break;
     }
 
@@ -375,18 +375,18 @@ void testHttpHeaderToString() {
     HttpHeaderXFrameOptions xframeoption1 = header1->getXFrameOptions();
     HttpHeaderXFrameOptions xframeoption2 = header2->getXFrameOptions();
     if(!xframeoption1->option->equals(xframeoption2->option)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case44] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case44]");
       break;
     }
 
     if(!xframeoption1->uri->equals(xframeoption2->uri)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case45] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderToString test Parse case45]");
       break;
     }
 
     break;
   }
 
-  TEST_FAIL("[HttpHeader test toString case100] [OK] \n");
+  TEST_OK("[HttpHeader test toString case100]");
 
 }

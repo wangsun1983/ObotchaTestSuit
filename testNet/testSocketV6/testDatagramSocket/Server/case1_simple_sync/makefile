@@ -22,6 +22,7 @@ cflags = -fpic \
 		-I ../../../../../../external/libco \
 		-I ../../../../../../external/uuid/include \
 		-I ../../../../../../external/glog/include \
+		-I ../../../../../common \
 		-g \
 		-std=c++14 \
 		-fsanitize=address\
@@ -39,7 +40,8 @@ sharelib = -Wl,-rpath=../../../../../../out/lib/ \
 
 files =
 link =
-libname	= testDatagramServer
+libname	= testServer
+
 
 everything : $(libname)
 

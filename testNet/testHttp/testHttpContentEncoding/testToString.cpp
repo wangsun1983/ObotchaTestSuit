@@ -16,12 +16,12 @@ void testToString() {
     HttpHeaderContentEncoding c = createHttpHeaderContentEncoding();
     c->import("gzip, deflate");
     if(!c->toString()->equals("gzip, deflate")) {
-      TEST_FAIL("[HttpHeaderClearSiteData test toString case1] [OK] \n");
+      TEST_FAIL("[HttpHeaderContentEncoding test toString case1]");
       break;
     }
     break;
   }
 
-  TEST_FAIL("[HttpHeaderClearSiteData test toString case100] [OK] \n");
+  TEST_OK("[HttpHeaderContentEncoding test toString case100]");
 
 }

@@ -12,6 +12,7 @@
 #include "Exception.hpp"
 #include "MethodNotSupportException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ void testZipDecompress() {
     ZipFileStream stream = createZipFileStream();
     File baseZipFile = createFile("./tmp/base_zip.zip");
     if(!baseZipFile->exists()) {
-      printf("---[LibraryFile Decompress Test case1] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case1]");
       break;
     }
 
@@ -30,7 +31,7 @@ void testZipDecompress() {
     stream->deCompress("./tmp/base_zip.zip","./tmp/decompress_data/");
     File f = createFile("./tmp/decompress_data");
     if(!f->exists()) {
-      printf("---[LibraryFile Decompress Test case2] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case2]");
       break;
     }
 
@@ -39,7 +40,7 @@ void testZipDecompress() {
     String decompress1 = md->encrypt(createFile("./tmp/decompress_data/tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
-      printf("---[LibraryFile Decompress Test case3] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case3]");
       break;
     }
     break;
@@ -49,7 +50,7 @@ void testZipDecompress() {
     ZipFileStream stream = createZipFileStream();
     File baseZipFile = createFile("./tmp/base_password_data.zip");
     if(!baseZipFile->exists()) {
-      printf("---[LibraryFile Decompress Test case4] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case4]");
       break;
     }
 
@@ -59,7 +60,7 @@ void testZipDecompress() {
     stream->deCompressWithPassword("./tmp/base_password_data.zip","./tmp/decompress_password_data/","123456");
     File f = createFile("./tmp/decompress_password_data");
     if(!f->exists()) {
-      printf("---[LibraryFile Decompress Test case5] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case5]");
       break;
     }
 
@@ -68,7 +69,7 @@ void testZipDecompress() {
     String decompress1 = md->encrypt(createFile("./tmp/decompress_password_data/tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
-      printf("---[LibraryFile Decompress Test case6] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case6]");
       break;
     }
     break;
@@ -81,7 +82,7 @@ void testZipDecompress() {
     ZipFileStream stream = createZipFileStream();
     File baseZipFile = createFile("./tmp/base_zip.zip");
     if(!baseZipFile->exists()) {
-      printf("---[LibraryFile Decompress Test case7] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case7]");
       break;
     }
 
@@ -89,11 +90,11 @@ void testZipDecompress() {
     String decompress1 = md->encrypt(createFile("./tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
-      printf("---[LibraryFile Decompress Test case8] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Decompress Test case8]");
       break;
     }
     break;
   }
 
-  printf("---[LibraryFile Decompress Test case100] [OK]--- \n");
+  TEST_OK("[LibraryFile Decompress Test case100]");
 }

@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderSaveData.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testParse() {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->import("ON");
     if(!save->get()->equals("on")) {
-      printf("---[HttpHeaderSaveData test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSaveData test Parse case1]");
       break;
     }
     break;
@@ -25,12 +26,12 @@ void testParse() {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->import("OFF");
     if(!save->get()->equals("off")) {
-      printf("---[HttpHeaderSaveData test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSaveData test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSaveData test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSaveData test Parse case100]");
 
 }

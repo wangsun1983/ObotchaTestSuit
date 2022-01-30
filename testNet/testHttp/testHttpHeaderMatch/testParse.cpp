@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderMatch.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,13 +17,13 @@ void testParse() {
     match->import("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 1){
-      printf("---[HttpHeaderMatch test parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case1] ");
       break;
     }
 
     auto item = list->get(0);
     if(item == nullptr || !item->tag->equals("bfc13a64729c4290ef5b2c2730249c88ca92d82d")) {
-      printf("---[HttpHeaderMatch test parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case2] ");
     }
     break;
   }
@@ -32,23 +33,23 @@ void testParse() {
     match->import("W/\"67ab43\", \"54ed21\", \"7892dd\"");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 3){
-      printf("---[HttpHeaderMatch test parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case3] ");
       break;
     }
 
     auto item = list->get(0);
     if(item == nullptr || !item->tag->equals("67ab43") || !item->isWeakAlg) {
-      printf("---[HttpHeaderMatch test parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case4] ");
     }
 
     item = list->get(1);
     if(item == nullptr || !item->tag->equals("54ed21") || item->isWeakAlg) {
-      printf("---[HttpHeaderMatch test parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case5] ");
     }
 
     item = list->get(2);
     if(item == nullptr || !item->tag->equals("7892dd") || item->isWeakAlg) {
-      printf("---[HttpHeaderMatch test parse case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case6] ");
     }
     break;
   }
@@ -58,17 +59,17 @@ void testParse() {
     match->import("*");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 1){
-      printf("---[HttpHeaderMatch test parse case7] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case7] ");
       break;
     }
 
     auto item = list->get(0);
     if(item == nullptr || !item->tag->equals("*") || item->isWeakAlg) {
-      printf("---[HttpHeaderMatch test parse case8] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test parse case8] ");
     }
 
     break;
   }
 
-  printf("---[HttpHeaderMatch test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderMatch test Parse case100]");
 }

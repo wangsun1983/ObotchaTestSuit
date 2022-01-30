@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderServerTiming.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,12 +15,12 @@ void testToString() {
     HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
     timing->import("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     if(!timing->toString()->equals("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
-      printf("---[HttpHeaderServerTiming test toString case1] [FAILED]---,str is %s \n",timing->toString()->toChars());
+      TEST_FAIL("[HttpHeaderServerTiming test toString case1],str is %s \n",timing->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderServerTiming test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderServerTiming test toString case100]");
 
 }

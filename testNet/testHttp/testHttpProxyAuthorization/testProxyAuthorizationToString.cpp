@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderProxyAuthorization.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,10 +15,10 @@ void testProxyAUthorizationToString() {
     HttpHeaderProxyAuthorization proxy = createHttpHeaderProxyAuthorization();
     proxy->import("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
     if(!proxy->toString()->equals("Basic YWxhZGRpbjpvcGVuc2VzYW1l")) {
-      printf("---[HttpHeaderProxyAuthorization test toString case10] [OK]--- \n");
+      TEST_FAIL("[HttpHeaderProxyAuthorization test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderProxyAuthorization test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderProxyAuthorization test toString case100]");
 }

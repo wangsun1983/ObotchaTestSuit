@@ -61,9 +61,10 @@ int main() {
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket case2_simple_send_file_delayed test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
-      return 0;
     }
 
+    client->close();
+    
     TEST_OK("TestDataGramSocket case2_simple_send_file_delayed test100");
     return 0;
 }

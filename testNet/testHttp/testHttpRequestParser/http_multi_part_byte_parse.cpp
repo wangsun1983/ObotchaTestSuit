@@ -1,4 +1,4 @@
-#include "HttpPacketParser.hpp"
+#include "HttpPacketParserImpl.hpp"
 
 using namespace obotcha;
 
@@ -29,7 +29,7 @@ void testMultiPartOneByteParse() {
         "----------------------------7d93b91e2404d--"
         "\r\n";
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
     //parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
     int i = 0;

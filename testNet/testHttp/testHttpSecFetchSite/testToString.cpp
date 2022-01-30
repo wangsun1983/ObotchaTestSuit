@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderSecFetchMode.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->import("navigate");
     if(!save->toString()->equals("navigate")) {
-      printf("---[HttpHeaderSecFetchMode test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchMode test toString case1]");
       break;
     }
     break;
@@ -24,12 +25,12 @@ void testToString() {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->import("nested-navigate");
     if(!save->toString()->equals("nested-navigate")) {
-      printf("---[HttpHeaderSecFetchMode test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchMode test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSecFetchMode test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSecFetchMode test toString case100]");
 
 }

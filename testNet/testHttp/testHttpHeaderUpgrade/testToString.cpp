@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderUpgrade.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,10 +16,10 @@ void testToString() {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
     upgrade->import(" websocket ");
     if(!upgrade->toString()->equals("websocket")) {
-      printf("---[HttpHeaderUpgrade test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderUpgrade test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderUpgrade test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderUpgrade test toString case100]");
 }

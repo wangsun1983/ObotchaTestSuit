@@ -10,7 +10,7 @@ extern void testMultiPartOneByteParse();
 int main() {
   //testMultiMessageParse();
   //testChunkOneByteParse();
-  testMultiPartOneByteParse();
-  //testHttpParse();
+  //testMultiPartOneByteParse();
+  testHttpParse();
   return 0;
 }

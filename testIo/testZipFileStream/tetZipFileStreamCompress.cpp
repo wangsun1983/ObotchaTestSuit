@@ -12,6 +12,7 @@
 #include "Exception.hpp"
 #include "MethodNotSupportException.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -23,7 +24,7 @@ void testZipCompress() {
     File f = createFile("./tmp/base_data_genzip.zip");
 
     if(!f->exists()) {
-      printf("---[LibraryFile Compress Test case1] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Compress Test case1]");
       break;
     }
 
@@ -37,7 +38,7 @@ void testZipCompress() {
     String decompress1 = md->encrypt(createFile("./tmp/deCompress_check1/base_data"));
 
     if(!base1->equals(decompress1)) {
-      printf("---[LibraryFile Compress Test case2] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Compress Test case2]");
       break;
     }
     break;
@@ -50,7 +51,7 @@ void testZipCompress() {
     File f = createFile("./tmp/base_data_pwd_genzip.zip");
 
     if(!f->exists()) {
-      printf("---[LibraryFile Compress Test case3] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Compress Test case3]");
       break;
     }
 
@@ -64,11 +65,11 @@ void testZipCompress() {
     String decompress1 = md->encrypt(createFile("./tmp/deCompress_check2/base_data"));
 
     if(!base1->equals(decompress1)) {
-      printf("---[LibraryFile Compress Test case4] [FAILED]--- \n");
+      TEST_FAIL("[LibraryFile Compress Test case4]");
       break;
     }
     break;
   }
 
-  printf("---[LibraryFile Compress Test case100] [OK]--- \n");
+  TEST_OK("[LibraryFile Compress Test case100]");
 }

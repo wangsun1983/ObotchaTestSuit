@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderRetryAfter.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testToString() {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     retryAfter->import(" Wed, 21 Oct 2015 07:28:00 GMT ");
     if(!retryAfter->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
-      printf("---[HttpHeaderRetryAfter test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderRetryAfter test toString case1]");
     }
     break;
   }
@@ -24,10 +25,10 @@ void testToString() {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     retryAfter->import(" 120 ");
     if(!retryAfter->toString()->equals("120")) {
-      printf("---[HttpHeaderRetryAfter test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderRetryAfter test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderRetryAfter test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderRetryAfter test toString case100]");
 }

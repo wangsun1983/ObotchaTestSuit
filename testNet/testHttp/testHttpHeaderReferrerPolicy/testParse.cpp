@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderReferrerPolicy.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,16 +18,16 @@ void testParse() {
 
     ArrayList<String> list = match->get();
     if(list->size() != 2) {
-      printf("---[HttpHeaderReferrerPolicy test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferrerPolicy test Parse case1] ");
       break;
     }
 
     if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("strict-origin-when-cross-origin")) {
-      printf("---[HttpHeaderReferrerPolicy test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferrerPolicy test Parse case2] ");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderReferrerPolicy test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderReferrerPolicy test Parse case100]");
 }

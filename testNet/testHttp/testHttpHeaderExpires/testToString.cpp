@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderExpires.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,11 +16,11 @@ void testToString() {
     HttpHeaderExpires headerDate = createHttpHeaderExpires();
     headerDate->import(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(!headerDate->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
-      printf("---[HttpHeaderExpires test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderExpires test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderExpires test toString case100]");
 
 }

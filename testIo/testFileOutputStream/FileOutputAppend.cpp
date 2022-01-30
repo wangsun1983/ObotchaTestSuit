@@ -5,6 +5,7 @@
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void fileoutput_append_test() {
         stream2->close();
 
         if(file->length() != 2) {
-            printf("---[TestFileOutputStream Test {open(Append)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {open(Append)} case1]");
             break;
         }
 
@@ -35,13 +36,13 @@ void fileoutput_append_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 2 ||content->at(0) != 'a' || content->at(1) != 'b') {
-            printf("---[TestFileOutputStream Test {open(Append)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {open(Append)} case2]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {open(Append)} case3] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {open(Append)} case3]");
         break;
     }
 

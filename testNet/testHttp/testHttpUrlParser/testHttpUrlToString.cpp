@@ -8,6 +8,7 @@
 #include "HttpHeaderParser.hpp"
 #include "ByteRingArrayReader.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testHttpUrlToString() {
     const char *raw= "/demo";
     HttpUrl url = createHttpUrl(raw);
     if(!url->toString()->equals("/demo")) {
-      printf("---[HttpUrlToString test case1_1] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlToString test case1_1]");
     }
     break;
   }
@@ -25,7 +26,7 @@ void testHttpUrlToString() {
     String request =  "http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss";
     HttpUrl url = createHttpUrl(request);
     if(!url->toString()->equals("http://su:abc@localhost:1234/test.cgi?c=d&a=b#fffsss")) {
-      printf("---[HttpUrlToString test case2] [FAILED]--- url is %s\n",url->toString()->toChars());
+      TEST_FAIL("[HttpUrlToString test case2] url is %s",url->toString()->toChars());
     }
     break;
   }
@@ -34,7 +35,7 @@ void testHttpUrlToString() {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
     HttpUrl url = createHttpUrl(request);
     if(!url->toString()->equals("http://abdd@localhost/test.cgi?c=d&a=b")) {
-      printf("---[HttpUrlToString test case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlToString test case3]");
     }
     break;
   }
@@ -42,7 +43,7 @@ void testHttpUrlToString() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://su:abc@localhost/test/wangsl/01234");
     if(!url->toString()->equals("https://su:abc@localhost/test/wangsl/01234")) {
-      printf("---[HttpUrlToString test case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlToString test case4]");
     }
     break;
   }
@@ -50,7 +51,7 @@ void testHttpUrlToString() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb/test/wangsl/01234");
     if(!url->toString()->equals("https://ssaabb/test/wangsl/01234")) {
-      printf("---[HttpUrlToString test case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlToString test case5]");
     }
     break;
   }
@@ -58,7 +59,7 @@ void testHttpUrlToString() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123");
     if(!url->toString()->equals("https://ssaabb:123")) {
-      printf("---[HttpUrlToString test case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlToString test case6]");
     }
     break;
   }
@@ -66,7 +67,7 @@ void testHttpUrlToString() {
   while(1) {
     HttpUrl url =  createHttpUrl("su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss");
     if(!url->toString()->equals("su:abc@localhost:1234/test.cgi?c=d&a=b#fffsss")) {
-      printf("---[HttpUrlToString test case7] [FAILED]---,url is %s \n",url->toString()->toChars());
+      TEST_FAIL("[HttpUrlToString test case7] [FAILED],url is %s",url->toString()->toChars());
     }
     break;
   }
@@ -74,11 +75,11 @@ void testHttpUrlToString() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
     if(!url->toString()->equals("https://ssaabb:123#frag")) {
-      printf("---[HttpUrlToString test case8] [FAILED]--- ,url is %s\n",url->toString()->toChars());
+      TEST_FAIL("[HttpUrlToString test case8] [FAILED] ,url is %s",url->toString()->toChars());
     }
     break;
   }
 
-  printf("---[HttpUrlToString test case100] [OK]--- \n");
+  TEST_OK("[HttpUrlToString test case100]");
 
 }

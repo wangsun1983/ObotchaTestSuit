@@ -7,7 +7,6 @@
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
-#include "TcpServer.hpp"
 #include "AtomicInteger.hpp"
 #include "TimeWatcher.hpp"
 #include "AutoLock.hpp"
@@ -29,7 +28,7 @@ Mutex listenersMutex1 = createMutex("listeners1");
 ArrayList<sp<_BaseTestListener2>> listener2s = createArrayList<sp<_BaseTestListener2>>();
 Mutex listenersMutex2 = createMutex("listeners2");
 
-DECLARE_CLASS(BaseTestListener2) EXTENDS(EPollFileObserverListener) {
+DECLARE_CLASS(BaseTestListener2) IMPLEMENTS(EPollFileObserverListener) {
 public:
     _BaseTestListener2() {
 
@@ -47,7 +46,7 @@ public:
         }
 
         //printf("fd is %d,data is %s \n",fd,data->toString()->toChars());
-        
+
         return 0;
     }
 };
@@ -110,7 +109,7 @@ public:
         }
 
         printf("BaseTest trace3 sock is %d \n",sock);
-        
+
         int ret = listen(sock, 1024*64);
         {
             printf("start create epoll \n");

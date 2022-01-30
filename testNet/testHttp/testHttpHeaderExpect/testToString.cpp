@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderExpect.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,9 +14,9 @@ void testToString() {
   HttpHeaderExpect expect = createHttpHeaderExpect();
   expect->import("100-continue");
   if(!expect->toString()->equals("100-continue")) {
-    printf("---[HttpHeaderExpect test toString case1] [FAILED]--- \n");
+    TEST_FAIL("[HttpHeaderExpect test toString case1]");
   }
 
-  printf("---[HttpHeaderExpect test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderExpect test toString case100]");
 
 }

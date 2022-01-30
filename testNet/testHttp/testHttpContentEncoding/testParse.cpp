@@ -19,17 +19,17 @@ void testParse() {
     c->import("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->equals("gzip")) {
-      TEST_FAIL("[HttpHeaderClearSiteData test Parse case1] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderContentEncoding test Parse case1]");
       break;
     }
 
     if(!list->get(1)->equals("deflate")) {
-      TEST_FAIL("[HttpHeaderClearSiteData test Parse case2] [FAILED] \n");
+      TEST_FAIL("[HttpHeaderContentEncoding test Parse case2]");
       break;
     }
     break;
   }
 
-  TEST_FAIL("[HttpHeaderClearSiteData test Parse case100] [OK] \n");
+  TEST_OK("[HttpHeaderContentEncoding test Parse case100]");
 
 }

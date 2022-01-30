@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderUserAgent.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,10 +16,10 @@ void testToString() {
     HttpHeaderUserAgent useragent = createHttpHeaderUserAgent();
     useragent->import(" Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
     if(!useragent->toString()->equals("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0")){
-      printf("---[HttpHeaderUserAgent test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderUserAgent test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderUserAgent test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderUserAgent test toString case100]");
 }

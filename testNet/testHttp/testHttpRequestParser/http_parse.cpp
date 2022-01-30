@@ -4,6 +4,7 @@
 #include "http_parser.h"
 
 #include "HttpPacketParser.hpp"
+#include "HttpPacketParserImpl.hpp"
 
 using namespace obotcha;
 
@@ -108,7 +109,7 @@ const struct message requests[] =
                  "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\n"
                  "Accept-Language: en-us,en;q=0.5\r\n"
                  "Accept-Encoding: gzip,deflate\r\n"
-                 "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7\r\n"
+                 "Accept-Charset: ISO-8859-1, utf-8;q=0.7, *;q=0.7\r\n"
                  "Keep-Alive: 300\r\n"
                  "Connection: keep-alive\r\n"
                  "\r\n"
@@ -129,7 +130,7 @@ const struct message requests[] =
         , { "Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" }
         , { "Accept-Language", "en-us,en;q=0.5" }
         , { "Accept-Encoding", "gzip,deflate" }
-        , { "Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.7" }
+        , { "Accept-Charset", "ISO-8859-1, utf-8;q=0.7, *;q=0.7" }
         , { "Keep-Alive", "300" }
         , { "Connection", "keep-alive" }
         }
@@ -1322,10 +1323,11 @@ void testHttpParse() {
     //struct message requests
     int size = sizeof(requests)/sizeof(struct message);
 
-    for(int i = 0;i<31;i++) {
+    //for(int i = 0;i<31;i++) {
+    for(int i = 8;i<9;i++) {
         printf("////HttpPacketParser start %d ////\n",i);
 
-        HttpPacketParser parser = createHttpPacketParser();
+        HttpPacketParserImpl parser = createHttpPacketParserImpl();
         struct message msg = requests[i];
         printf("%s\n",msg.raw);
 
@@ -1370,12 +1372,13 @@ void testHttpParse() {
             String path = url->getPath();
 
             String f1 = createString(msg.request_path);
-            if(f1->size() != 1) {
-                f1 = createString("/")->append(f1);
-            }
+            //path does not contain /
+            //if(f1->size() != 1) {
+            //    f1 = createString("/")->append(f1);
+            //}
 
             if(path == nullptr || !path->equals(f1)) {
-                printf("HttpPacketParse CheckPath failed,msg.request_path is %s,parse result is %s \n",msg.request_path,path->toChars());
+                printf("HttpPacketParse CheckPath failed,msg.path is [%s],parse result is [%s] \n",msg.request_path,f1->toChars());
                 continue;
             }
         }
@@ -1410,6 +1413,8 @@ void testHttpParse() {
                 printf("HttpPacketParse CheckBody failed,msg.body is %s,parse result is %s \n",msg.body,content->toChars());
                 continue;
             }
+
+            printf("check body success!!!,body is %s \n",content->toChars());
         }
 
         //check host

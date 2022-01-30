@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderPragma.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,11 +15,11 @@ void testToString() {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
     pragma->import(" no-cache ");
     if(!pragma->toString()->equals("no-cache")){
-      printf("---[HttpHeaderPragma test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderPragma test toString case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderPragma test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderPragma test toString case100]");
 }

@@ -1,4 +1,4 @@
-#include "HttpPacketParser.hpp"
+#include "HttpPacketParserImpl.hpp"
 
 using namespace obotcha;
 
@@ -17,7 +17,7 @@ void testMultiMessageParse() {
                 "Accept: */*\r\n"
                 "\r\n";
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
     parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
@@ -38,7 +38,7 @@ void testMultiMessageParse() {
                               "\r\n"
                               "WORLD";
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
     parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
@@ -72,7 +72,7 @@ void testMultiMessageParse() {
                               "conTENT-Length: 5\r\n";
 
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
     parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
@@ -111,7 +111,7 @@ void testMultiMessageParse() {
                  "conTENT-Length: 5\r\n"
                  "\r\n"
                  "HELLO";
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
     ArrayList<HttpPacket> packets;
     int i = 0;
 
@@ -146,7 +146,7 @@ void testMultiMessageParse() {
                               "\r\n"
                               "WORLD";
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
     ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
     int i = 0;
 

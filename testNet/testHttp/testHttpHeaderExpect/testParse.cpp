@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderExpect.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testParse() {
     expect->import("100-continue");
     auto str = expect->get();
     if(!str->equals("100-continue")) {
-      printf("---[HttpHeaderExpect test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpect test Parse case1]");
       break;
     }
     break;
@@ -32,12 +33,12 @@ void testParse() {
     }
 
     if(!isException) {
-      printf("---[HttpHeaderExpect test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpect test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderExpect test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderExpect test Parse case100]");
 
 }

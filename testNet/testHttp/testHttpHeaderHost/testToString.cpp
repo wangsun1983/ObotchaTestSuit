@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderHost.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->import(" developer.mozilla.org:1234");
     if(!digest->toString()->equals("developer.mozilla.org:1234")) {
-      printf("---[HttpHeaderHost test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderHost test toString case1]");
       break;
     }
     break;
@@ -24,10 +25,11 @@ void testToString() {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->import(" developer.mozilla.org");
     if(!digest->toString()->equals("developer.mozilla.org")) {
-      printf("---[HttpHeaderHost test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderHost test toString case2]");
       break;
     }
     break;
   }
-  printf("---[HttpHeaderHost test toString case100] [OK]--- \n");
+
+  TEST_OK("[HttpHeaderHost test toString case100]");
 }

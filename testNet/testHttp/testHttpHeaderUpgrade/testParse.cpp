@@ -8,6 +8,7 @@
 #include "HttpHeaderUpgrade.hpp"
 #include "Math.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,10 +17,10 @@ void testParse() {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
     upgrade->import(" websocket ");
     if(!upgrade->get()->equals("websocket")) {
-      printf("---[HttpHeaderUpgrade test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderUpgrade test Parse case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderUpgrade test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderUpgrade test Parse case100]");
 }

@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderSecFetchUser.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testParse() {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->import("?1");
     if(!save->get()->equals("?1")) {
-      printf("---[HttpHeaderSecFetchUser test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchUser test Parse case1]");
       break;
     }
     break;
@@ -25,12 +26,12 @@ void testParse() {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->import("?0");
     if(!save->get()->equals("?0")) {
-      printf("---[HttpHeaderSecFetchUser test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchUser test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSecFetchUser test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSecFetchUser test Parse case100]");
 
 }

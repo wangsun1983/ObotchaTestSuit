@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderReferer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testToString() {
     match->import("");
 
     if(!match->toString()->equals("")){
-      printf("---[HttpHeaderReferer test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test toString case1]");
       break;
     }
 
@@ -26,12 +27,12 @@ void testToString() {
     HttpHeaderReferer match = createHttpHeaderReferer();
     match->import("https://developer.mozilla.org:1234");
     if(!match->toString()->equals("https://developer.mozilla.org:1234")){
-      printf("---[HttpHeaderReferer test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test toString case2]");
       break;
     }
 
     break;
   }
 
-  printf("---[HttpHeaderReferer test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderReferer test toString case100]");
 }

@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderVary.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,16 +18,16 @@ void testParse() {
 
     ArrayList<String> list = match->get();
     if(list->size() != 2) {
-      printf("---[HttpHeaderVary test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderVary test Parse case1]");
       break;
     }
 
     if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("User-Agent")) {
-      printf("---[HttpHeaderVary test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderVary test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderVary test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderVary test Parse case100]");
 }

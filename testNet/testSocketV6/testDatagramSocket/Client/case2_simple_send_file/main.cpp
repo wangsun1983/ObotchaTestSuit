@@ -79,10 +79,10 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      TEST_FAIL("---TestDataGramSocket case2_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestDataGramSocket case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
       return 0;
     }
 
-    TEST_OK("---TestDataGramSocket case2_simple_send_file test100 [OK]--- \n");
+    TEST_OK("TestDataGramSocket case2_simple_send_file test100");
     return 0;
 }

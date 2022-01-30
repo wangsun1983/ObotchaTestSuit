@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderXFrameOptions.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testXFrameOptionsToString() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("deny");
     if(!options->toString()->equals("deny")) {
-      printf("---[HttpHeaderXFrameOptions test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderXFrameOptions test toString case1]");
       break;
     }
     break;
@@ -24,7 +25,7 @@ void testXFrameOptionsToString() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("sameorigin");
     if(!options->toString()->equals("sameorigin")) {
-      printf("---[HttpHeaderXFrameOptions test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderXFrameOptions test toString case2]");
       break;
     }
     break;
@@ -34,13 +35,13 @@ void testXFrameOptionsToString() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("allow-from https://example.com/");
     if(!options->toString()->equals("allow-from https://example.com/")) {
-      printf("---[HttpHeaderXFrameOptions test toString case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderXFrameOptions test toString case3]");
       break;
     }
 
     break;
   }
 
-  printf("---[HttpHeaderXFrameOptions test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderXFrameOptions test toString case100]");
 
 }

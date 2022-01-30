@@ -10,6 +10,7 @@
 #include "HttpMethod.hpp"
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -39,47 +40,47 @@ void testHttpHeaderParse() {
     HttpHeader header = parser->doParse();
 
     if(header->getMethod() != st(HttpMethod)::Get) {
-      printf("---[HttpHeaderParse test Parse case1] [FAILED]--- method is %d\n",header->getMethod());
+      TEST_FAIL("[HttpHeaderParse test Parse case1] method is %d",header->getMethod());
       break;
     }
 
     if(!header->getUrl()->toString()->equals("/demo")) {
-      printf("---[HttpHeaderParse test Parse case2] [FAILED]--- url is %s\n",header->getUrl()->toString()->toChars());
+      TEST_FAIL("[HttpHeaderParse test Parse case2] url is %s",header->getUrl()->toString()->toChars());
       break;
     }
 
     if(!header->getVersion()->toString()->equals("HTTP/1.1")) {
-      printf("---[HttpHeaderParse test Parse case3] [FAILED]--- ver is %s\n",header->getVersion()->toString()->toChars());
+      TEST_FAIL("[HttpHeaderParse test Parse case3] ver is %s",header->getVersion()->toString()->toChars());
       break;
     }
 
     //Charset
     auto charset = header->getAcceptCharSet();
     if(charset == nullptr) {
-      printf("---[HttpHeaderParse test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case4]");
       break;
     }
 
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 2) {
-      printf("---[HttpHeaderParse test Parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case5]");
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem1 = charsets->get(0);
     if(!charSetItem1->type->equalsIgnoreCase("utf-8")) {
-      printf("---[HttpHeaderParse test Parse case6] [FAILED]--- char set is %s \n",charSetItem1->type->toChars());
+      TEST_FAIL("[HttpHeaderParse test Parse case6] char set is %s",charSetItem1->type->toChars());
       break;
     }
 
     HttpHeaderAcceptCharSetItem charSetItem2 = charsets->get(1);
     if(!charSetItem2->type->equalsIgnoreCase("iso-8859-1")) {
-      printf("---[HttpHeaderParse test Parse case7] [FAILED]--- char set is %s \n",charSetItem2->type->toChars());
+      TEST_FAIL("[HttpHeaderParse test Parse case7] char set is %s",charSetItem2->type->toChars());
       break;
     }
 
     if(st(Math)::compareFloat(charSetItem2->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case8] [FAILED]--- charSetItem2->weight is %lf \n",charSetItem2->weight);
+      TEST_FAIL("[HttpHeaderParse test Parse case8] charSetItem2->weight is %lf",charSetItem2->weight);
       break;
     }
 
@@ -88,35 +89,35 @@ void testHttpHeaderParse() {
     HttpHeaderAcceptEncoding encoding = header->getAcceptEncoding();
     ArrayList<HttpHeaderAcceptEncodingItem> encodings = encoding->get();
     if(encodings->size() != 3) {
-      printf("---[HttpHeaderParse test Parse case9] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem0 = encodings->get(0);
     if(!encodingItem0->type->equals("deflate")) {
-      printf("---[HttpHeaderParse test Parse case9] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem1 = encodings->get(1);
     if(!encodingItem1->type->equals("gzip")) {
-      printf("---[HttpHeaderParse test Parse case10] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case10]");
       break;
     }
 
     if(st(Math)::compareFloat(encodingItem1->weight,1.0) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case11] [FAILED]--- weight is %lf \n",encodingItem1->weight);
+      TEST_FAIL("[HttpHeaderParse test Parse case11] weight is %lf",encodingItem1->weight);
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem2 = encodings->get(2);
     if(!encodingItem2->type->equals("*")) {
-      printf("---[HttpHeaderParse test Parse case12] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case12]");
       break;
     }
 
     if(st(Math)::compareFloat(encodingItem2->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case13] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case13]");
       break;
     }
 
@@ -124,57 +125,57 @@ void testHttpHeaderParse() {
     HttpHeaderAcceptLanguage mAcceptLang = header->getAcceptLanguage();
     ArrayList<HttpHeaderAcceptLanguageItem> langs = mAcceptLang->get();
     if(langs->size() != 5) {
-      printf("---[HttpHeaderParse test Parse case14] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case14]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem1 = langs->get(0);
     if(!langItem1->lang->equals("fr-CH")) {
-      printf("---[HttpHeaderParse test Parse case15] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case15]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem2 = langs->get(1);
     if(!langItem2->lang->equals("fr")) {
-      printf("---[HttpHeaderParse test Parse case16] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case16]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem2->weight,0.9) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case17] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case17]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem3 = langs->get(2);
     if(!langItem3->lang->equals("en")) {
-      printf("---[HttpHeaderParse test Parse case18] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case18]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem3->weight,0.8) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case19] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case19]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem4 = langs->get(3);
     if(!langItem4->lang->equals("de")) {
-      printf("---[HttpHeaderParse test Parse case20] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case20]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem4->weight,0.7) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case21] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case21]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem5 = langs->get(4);
     if(!langItem5->lang->equals("*")) {
-      printf("---[HttpHeaderParse test Parse case22] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case22]");
       break;
     }
 
     if(st(Math)::compareFloat(langItem5->weight,0.5) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case23] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case23]");
       break;
     }
 
@@ -183,13 +184,13 @@ void testHttpHeaderParse() {
     ArrayList<HttpHeaderAcceptPatchItem> patches = patch->get();
     HttpHeaderAcceptPatchItem patchItem1 = patches->get(0);
     if(!patchItem1->type->equals("application/example")) {
-      printf("---[HttpHeaderParse test Parse case24] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case24]");
       break;
     }
 
     HttpHeaderAcceptPatchItem patchItem2 = patches->get(1);
     if(!patchItem2->type->equals("text/example")) {
-      printf("---[HttpHeaderParse test Parse case25] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case25]");
       break;
     }
 
@@ -197,153 +198,153 @@ void testHttpHeaderParse() {
     HttpHeaderAccept accept = header->getAccept();
     ArrayList<HttpHeaderAcceptItem> accepts = accept->get();
     if(accepts->size() != 4) {
-      printf("---[HttpHeaderParse test Parse case26_0] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case26_0]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem1 = accepts->get(0);
     if(!acceptItem1->type->equals("text/html")) {
-      printf("---[HttpHeaderParse test Parse case26] [FAILED]--- ,type is %s\n",acceptItem1->type->toChars());
+      TEST_FAIL("[HttpHeaderParse test Parse case26] ,type is %s\n",acceptItem1->type->toChars());
       break;
     }
 
     HttpHeaderAcceptItem acceptItem2 = accepts->get(1);
     if(!acceptItem2->type->equals("application/xhtml+xml")) {
-      printf("---[HttpHeaderParse test Parse case27] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case27]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem3 = accepts->get(2);
     if(!acceptItem3->type->equals("application/xml")) {
-      printf("---[HttpHeaderParse test Parse case28] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case28]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem3->weight,0.9) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case29] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case29]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem4 = accepts->get(3);
     if(!acceptItem4->type->equals("*/*")) {
-      printf("---[HttpHeaderParse test Parse case30] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case30]");
       break;
     }
 
     if(st(Math)::compareFloat(acceptItem4->weight,0.8) != st(Math)::AlmostEqual) {
-      printf("---[HttpHeaderParse test Parse case31] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case31]");
       break;
     }
 
     //"Allow: GET, POST, HEAD\r\n"
     ArrayList<Integer> allows = header->getAllow()->get();
     if(allows->size() != 3) {
-      printf("---[HttpHeaderParse test Parse case32] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case32]");
       break;
     }
 
     if(allows->get(0)->toValue() != st(HttpMethod)::Get) {
-      printf("---[HttpHeaderParse test Parse case32_1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case32_1]");
       break;
     }
 
     if(allows->get(1)->toValue() != st(HttpMethod)::Post) {
-      printf("---[HttpHeaderParse test Parse case32_2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case32_2]");
       break;
     }
 
     if(allows->get(2)->toValue() != st(HttpMethod)::Head) {
-      printf("---[HttpHeaderParse test Parse case32_3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case32_3]");
       break;
     }
 
     //Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
     HttpHeaderAuthorization authorization = header->getAuthorization();
     if(!authorization->type->equals("Basic")) {
-      printf("---[HttpHeaderParse test Parse case33] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case33]");
       break;
     }
 
     if(!authorization->credentials->equals("YWxhZGRpbjpvcGVuc2VzYW1l")) {
-      printf("---[HttpHeaderParse test Parse case34] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case34]");
       break;
     }
 
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
     HttpHeaderContentDisposition contentDisp = header->getContentDisposition();
     if(!contentDisp->type->equals("form-data")) {
-      printf("---[HttpHeaderParse test Parse case35] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case35]");
       break;
     }
 
     if(!contentDisp->name->equals("fieldName")) {
-      printf("---[HttpHeaderParse test Parse case36] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case36]");
       break;
     }
 
     if(!contentDisp->filename->equals("filename.jpg")) {
-      printf("---[HttpHeaderParse test Parse case37] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case37]");
       break;
     }
 
     //Content-Encoding: identity
     ArrayList<String> contentEncoding = header->getContentEncoding()->get();
     if(contentEncoding->size() != 1) {
-      printf("---[HttpHeaderParse test Parse case38] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case38]");
       break;
     }
 
     if(!contentEncoding->get(0)->equals("identity")) {
-      printf("---[HttpHeaderParse test Parse case38_1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case38_1]");
       break;
     }
 
     //Cache-Control: max-age=1000
     HttpHeaderCacheControl cachecontrol = header->getCacheControl();
     if(cachecontrol->maxAgeSeconds() != 1000) {
-      printf("---[HttpHeaderParse test Parse case39] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case39]");
       break;
     }
 
     //Content-Length: 2000
     int contentLen = header->getContentLength()->get();
     if(contentLen != 2000) {
-      printf("---[HttpHeaderParse test Parse case40] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case40]");
       break;
     }
 
     //Link: <https://example.com>; rel="preload"
     ArrayList<HttpHeaderLink> links = header->getLinks();
     if(links->size() != 1) {
-      printf("---[HttpHeaderParse test Parse case41] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case41]");
       break;
     }
 
     HttpHeaderLink link = links->get(0);
     if(!link->url->equals("https://example.com")) {
-      printf("---[HttpHeaderParse test Parse case42] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case42]");
       break;
     }
 
     if(!link->rel->equals("preload")) {
-      printf("---[HttpHeaderParse test Parse case43] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case43]");
       break;
     }
 
     //X-Frame-Options: allow-from https://example.com/
     HttpHeaderXFrameOptions xframeoption = header->getXFrameOptions();
     if(!xframeoption->option->equals("allow-from")) {
-      printf("---[HttpHeaderParse test Parse case44] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case44]");
       break;
     }
 
     if(!xframeoption->uri->equals("https://example.com/")) {
-      printf("---[HttpHeaderParse test Parse case45] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderParse test Parse case45]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderParse test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderParse test Parse case100]");
 
 }

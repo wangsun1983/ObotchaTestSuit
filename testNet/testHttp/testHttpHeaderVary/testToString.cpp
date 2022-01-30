@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderVary.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,10 +15,10 @@ void testToString() {
     HttpHeaderVary match = createHttpHeaderVary();
     match->import("no-referrer, User-Agent");
     if(!match->toString()->equals("no-referrer, User-Agent")) {
-      printf("---[HttpHeaderVary test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderVary test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderVary test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderVary test toString case100]");
 }

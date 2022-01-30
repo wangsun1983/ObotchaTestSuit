@@ -8,6 +8,7 @@
 #include "HttpHeaderParser.hpp"
 #include "ByteRingArrayReader.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,11 +17,11 @@ void testHttpUrlParse() {
     const char *raw= "/demo";
     HttpUrl url = createHttpUrl(raw);
     if(!url->getPath()->equals("demo")) {
-        printf("---[HttpUrlParse test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case1]");
     }
 
     if(!url->toString()->equals("/demo")) {
-      printf("---[HttpUrlParse test Parse case1_1] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case1_1]");
     }
     break;
   }
@@ -31,37 +32,37 @@ void testHttpUrlParse() {
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
     if(!url->getScheme()->equals("http")) {
-      printf("---[HttpUrlParse test Parse case2] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case2],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(!url->getUser()->equals("su")) {
-      printf("---[HttpUrlParse test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case3]");
       break;
     }
 
     if(!url->getHost()->equals("localhost")) {
-      printf("---[HttpUrlParse test Parse case3_1] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case3_1]");
       break;
     }
 
     if(url->getPort() != 1234) {
-      printf("---[HttpUrlParse test Parse case3_2] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case3_2]");
       break;
     }
 
     if(!url->getPassword()->equals("abc")) {
-      printf("---[HttpUrlParse test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case4]");
       break;
     }
 
     if(!url->getPath()->equals("test.cgi")) {
-      printf("---[HttpUrlParse test Parse case5] [FAILED]--- path is %s\n",url->getPath()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case5] path is %s",url->getPath()->toChars());
       break;
     }
 
     if(!url->getFragment()->equals("fffsss")) {
-      printf("---[HttpUrlParse test Parse case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case6]");
       break;
     }
 
@@ -69,12 +70,12 @@ void testHttpUrlParse() {
     auto map = query->getValues();
 
     if(!map->get("a")->equals("b")) {
-      printf("---[HttpUrlParse test Parse case8] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case8]");
       break;
     }
 
     if(!map->get("c")->equals("d")) {
-      printf("---[HttpUrlParse test Parse case10] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case10]");
       break;
     }
     break;
@@ -84,49 +85,49 @@ void testHttpUrlParse() {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
     HttpUrl url = createHttpUrl(request);
     if(!url->getScheme()->equals("http")) {
-      printf("---[HttpUrlParse test Parse case11] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case11],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(!url->getUser()->equals("abdd")) {
-      printf("---[HttpUrlParse test Parse case12] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case12]");
       break;
     }
 
     if(!url->getHost()->equals("localhost")) {
-      printf("---[HttpUrlParse test Parse case13] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case13]");
       break;
     }
 
     if(url->getPort() != -1) {
-      printf("---[HttpUrlParse test Parse case14] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case14]");
       break;
     }
 
     if(url->getPassword() != nullptr) {
-      printf("---[HttpUrlParse test Parse case15] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case15]");
       break;
     }
 
     if(!url->getPath()->equals("test.cgi")) {
-      printf("---[HttpUrlParse test Parse case16] [FAILED]--- path is %s\n",url->getPath()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case16] path is %s",url->getPath()->toChars());
       break;
     }
 
     if(url->getFragment() != nullptr) {
-      printf("---[HttpUrlParse test Parse case17] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case17]");
       break;
     }
 
     auto query = url->getQuery();
     auto map = query->getValues();
     if(!map->get("a")->equals("b")) {
-      printf("---[HttpUrlParse test Parse case19] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case19]");
       break;
     }
 
     if(!map->get("c")->equals("d")) {
-      printf("---[HttpUrlParse test Parse case21] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case21]");
       break;
     }
     break;
@@ -135,27 +136,27 @@ void testHttpUrlParse() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://su:abc@localhost/test/wangsl/01234");
     if(!url->getScheme()->equals("https")) {
-      printf("---[HttpUrlParse test Parse case22] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case22],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(!url->getUser()->equals("su")) {
-      printf("---[HttpUrlParse test Parse case23] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case23]");
       break;
     }
 
     if(!url->getPassword()->equals("abc")) {
-      printf("---[HttpUrlParse test Parse case24] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case24]");
       break;
     }
 
     if(!url->getHost()->equals("localhost")) {
-      printf("---[HttpUrlParse test Parse case25] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case25]");
       break;
     }
 
     if(!url->getPath()->equals("test/wangsl/01234")) {
-      printf("---[HttpUrlParse test Parse case26] [FAILED]--- path is %s\n",url->getPath()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case26] path is %s",url->getPath()->toChars());
       break;
     }
 
@@ -165,27 +166,27 @@ void testHttpUrlParse() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb/test/wangsl/01234");
     if(!url->getScheme()->equals("https")) {
-      printf("---[HttpUrlParse test Parse case27] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case27],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(url->getUser() != nullptr) {
-      printf("---[HttpUrlParse test Parse case28] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case28]");
       break;
     }
 
     if(url->getPassword() != nullptr) {
-      printf("---[HttpUrlParse test Parse case29] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case29]");
       break;
     }
 
     if(!url->getHost()->equals("ssaabb")) {
-      printf("---[HttpUrlParse test Parse case30] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case30]");
       break;
     }
 
     if(!url->getPath()->equals("test/wangsl/01234")) {
-      printf("---[HttpUrlParse test Parse case31] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case31]");
       break;
     }
     break;
@@ -194,32 +195,32 @@ void testHttpUrlParse() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123");
     if(!url->getScheme()->equals("https")) {
-      printf("---[HttpUrlParse test Parse case32] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case32],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(url->getUser() != nullptr) {
-      printf("---[HttpUrlParse test Parse case33] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case33]");
       break;
     }
 
     if(url->getPassword() != nullptr) {
-      printf("---[HttpUrlParse test Parse case34] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case34]");
       break;
     }
 
     if(!url->getHost()->equals("ssaabb")) {
-      printf("---[HttpUrlParse test Parse case35] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case35]");
       break;
     }
 
     if(url->getPort() != 123) {
-      printf("---[HttpUrlParse test Parse case36] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case36]");
       break;
     }
 
     if(url->getPath() != nullptr) {
-      printf("---[HttpUrlParse test Parse case37] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case37]");
       break;
     }
     break;
@@ -231,37 +232,37 @@ void testHttpUrlParse() {
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
     if(url->getScheme() != nullptr) {
-      printf("---[HttpUrlParse test Parse case38] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case38],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(!url->getUser()->equals("su")) {
-      printf("---[HttpUrlParse test Parse case39] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case39]");
       break;
     }
 
     if(!url->getHost()->equals("localhost")) {
-      printf("---[HttpUrlParse test Parse case40] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case40]");
       break;
     }
 
     if(url->getPort() != 1234) {
-      printf("---[HttpUrlParse test Parse case41] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case41]");
       break;
     }
 
     if(!url->getPassword()->equals("abc")) {
-      printf("---[HttpUrlParse test Parse case42] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case42]");
       break;
     }
 
     if(!url->getPath()->equals("test.cgi")) {
-      printf("---[HttpUrlParse test Parse case43] [FAILED]--- path is %s\n",url->getPath()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case43] path is %s",url->getPath()->toChars());
       break;
     }
 
     if(!url->getFragment()->equals("fffsss")) {
-      printf("---[HttpUrlParse test Parse case44] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case44]");
       break;
     }
 
@@ -269,12 +270,12 @@ void testHttpUrlParse() {
     auto map = query->getValues();
 
     if(!map->get("a")->equals("b")) {
-      printf("---[HttpUrlParse test Parse case46] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case46]");
       break;
     }
 
     if(!map->get("c")->equals("d")) {
-      printf("---[HttpUrlParse test Parse case48] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case48]");
       break;
     }
     break;
@@ -283,42 +284,42 @@ void testHttpUrlParse() {
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
     if(!url->getScheme()->equals("https")) {
-      printf("---[HttpUrlParse test Parse case49] [FAILED]--- ,scheme is %s\n",url->getScheme()->toChars());
+      TEST_FAIL("[HttpUrlParse test Parse case49],scheme is %s",url->getScheme()->toChars());
       break;
     }
 
     if(url->getUser() != nullptr) {
-      printf("---[HttpUrlParse test Parse case50] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case50]");
       break;
     }
 
     if(url->getPassword() != nullptr) {
-      printf("---[HttpUrlParse test Parse case51] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case51]");
       break;
     }
 
     if(!url->getHost()->equals("ssaabb")) {
-      printf("---[HttpUrlParse test Parse case52] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case52]");
       break;
     }
 
     if(url->getPort() != 123) {
-      printf("---[HttpUrlParse test Parse case53] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case53]");
       break;
     }
 
     if(url->getPath() != nullptr) {
-      printf("---[HttpUrlParse test Parse case54] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case54]");
       break;
     }
 
     if(!url->getFragment()->equals("frag")) {
-      printf("---[HttpUrlParse test Parse case55] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlParse test Parse case55]");
       break;
     }
     break;
   }
 
-  printf("---[HttpUrlParse test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpUrlParse test Parse case100]");
 
 }

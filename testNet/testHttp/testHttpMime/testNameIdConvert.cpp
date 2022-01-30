@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentType.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -110,15 +111,15 @@ void testNameIdConvert() {
       mime->setTypeId(i);
       String f1 = mime->getTypeName();
       if(!f1->equals(names[i].name)) {
-        printf("---[TestHttpMime name to id case1] [FAILED]--- \n");
+        TEST_FAIL("[TestHttpMime name to id case1]");
       }
 
       mime->setTypeName(f1);
       if(mime->getTypeId() != i) {
-        printf("---[TestHttpMime name to id case2] [FAILED]---,i is %d,id is %d \n",i,mime->getTypeId());
+        TEST_FAIL("[TestHttpMime name to id case2] ,i is %d,id is %d",i,mime->getTypeId());
       }
   }
 
-  printf("---[TestHttpMime name to id case100] [OK]--- \n");
+  TEST_OK("[TestHttpMime name to id case100]");
 
 }

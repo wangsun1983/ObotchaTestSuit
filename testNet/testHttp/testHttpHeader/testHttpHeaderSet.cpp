@@ -343,6 +343,6 @@ void testHttpHeaderSet() {
     break;
   }
 
-  TEST_OK("[HttpHeader test Set case100] [OK] ");
+  TEST_OK("[HttpHeader test Set case100]");
 
 }

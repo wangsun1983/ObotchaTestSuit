@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderXFrameOptions.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,7 +16,7 @@ void testXFrameOptionsParse() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("deny");
     if(!options->option->equals("deny")) {
-      printf("---[HttpHeaderXFrameOptions test Parse case1] [FAILED]---,option is %s \n",options->option->toChars());
+      TEST_FAIL("[HttpHeaderXFrameOptions test Parse case1] ,option is %s ",options->option->toChars());
       break;
     }
     break;
@@ -25,7 +26,7 @@ void testXFrameOptionsParse() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("sameorigin");
     if(!options->option->equals("sameorigin")) {
-      printf("---[HttpHeaderXFrameOptions test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderXFrameOptions test Parse case2]");
       break;
     }
     break;
@@ -35,17 +36,17 @@ void testXFrameOptionsParse() {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->import("allow-from https://example.com/");
     if(!options->option->equals("allow-from")) {
-      printf("---[HttpHeaderXFrameOptions test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderXFrameOptions test Parse case3]");
       break;
     }
 
     if(!options->uri->equals("https://example.com/")) {
-      printf("---[HttpHeaderXFrameOptions test Parse case4] [FAILED]---,uri is %s \n",options->uri->toChars());
+      TEST_FAIL("[HttpHeaderXFrameOptions test Parse case4],uri is %s",options->uri->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderXFrameOptions test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderXFrameOptions test Parse case100]");
 
 }

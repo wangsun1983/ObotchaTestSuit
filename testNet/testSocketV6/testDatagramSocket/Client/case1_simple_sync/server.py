@@ -13,7 +13,7 @@ receive_data,client = s.recvfrom(1024)
 
 
 while count < 50:
-    print(receive_data.decode("utf-8"))
+    #print(receive_data.decode("utf-8"))
     s.sendto(receive_data.decode("utf-8"),client)
     count = count + 1
 

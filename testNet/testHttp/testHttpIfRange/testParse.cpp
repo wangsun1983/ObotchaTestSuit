@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderIfRange.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,38 +16,38 @@ void testParse() {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
     range->import(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(range->getDate() == nullptr) {
-      printf("---[HttpHeaderIfRange test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case1]");
       break;
     }
 
     auto date = range->getDate()->toDateTime();
     if(date->year() != 2015) {
-      printf("---[HttpHeaderIfRange test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case2]");
       break;
     }
 
     if(date->month() != st(Calendar)::October) {
-      printf("---[HttpHeaderIfRange test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case3]");
       break;
     }
 
     if(date->dayOfWeek() != st(Calendar)::Wednesday) {
-      printf("---[HttpHeaderIfRange test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case4]");
       break;
     }
 
     if(date->hour() != 7) {
-      printf("---[HttpHeaderIfRange test Parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case5]");
       break;
     }
 
     if(date->minute() != 28) {
-      printf("---[HttpHeaderIfRange test Parse case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case6]");
       break;
     }
 
     if(date->second() != 0) {
-      printf("---[HttpHeaderIfRange test Parse case7] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case7]");
       break;
     }
 
@@ -57,12 +58,12 @@ void testParse() {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
     range->import("\"abcds\"");
     if(range->getTag()== nullptr || !range->getTag()->equals("abcds")) {
-      printf("---[HttpHeaderIfRange test Parse case8] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderIfRange test Parse case8]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderIfRange test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderIfRange test Parse case100]");
 
 }

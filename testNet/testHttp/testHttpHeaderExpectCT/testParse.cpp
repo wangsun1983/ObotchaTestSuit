@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderExpectCT.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,23 +16,23 @@ void testParse() {
     HttpHeaderExpectCT expect = createHttpHeaderExpectCT();
     expect->import("max-age=86400; enforce; report-uri=\"https://foo.example/report\"");
     if(expect->getMaxAge() != 86400) {
-      printf("---[HttpHeaderExpectCT test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpectCT test Parse case1]");
       break;
     }
 
     if(!expect->isEnforce()) {
-      printf("---[HttpHeaderExpectCT test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpectCT test Parse case2]");
       break;
     }
 
     if(!expect->getReportUri()->toString()->equals("https://foo.example/report")) {
-      printf("---[HttpHeaderExpectCT test Parse case3] [FAILED]---,url is [%s] \n",expect->getReportUri()->toString()->toChars());
+      TEST_FAIL("[HttpHeaderExpectCT test Parse case3],url is [%s]",expect->getReportUri()->toString()->toChars());
       break;
     }
     break;
   }
 
 
-  printf("---[HttpHeaderExpectCT test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderExpectCT test Parse case100]");
 
 }

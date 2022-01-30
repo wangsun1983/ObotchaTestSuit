@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderServer.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,10 +15,10 @@ void testToString() {
     HttpHeaderServer match = createHttpHeaderServer();
     match->import("Apache/2.4.1 (Unix)");
     if(!match->toString()->equals("Apache/2.4.1 (Unix)")) {
-        printf("---[HttpHeaderServer test toString case1] [FAILED]--- \n");
+        TEST_FAIL("[HttpHeaderServer test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpHeaderServer test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderServer test toString case100]");
 }

@@ -1,5 +1,5 @@
 #include "HttpPacketParser.hpp"
-
+#include "HttpPacketParserImpl.hpp"
 using namespace obotcha;
 
 void testChunkOneByteParse() {
@@ -14,7 +14,7 @@ void testChunkOneByteParse() {
                  "000\r\n"
                  "\r\n";
 
-    HttpPacketParser parser = createHttpPacketParser();
+    HttpPacketParserImpl parser = createHttpPacketParserImpl();
     ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
     int i = 0;
     for(;i<strlen(content);i++) {

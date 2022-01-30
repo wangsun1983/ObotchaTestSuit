@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderReferer.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testParse() {
     match->import("");
     HttpUrl url = match->get();
     if(url == nullptr){
-      printf("---[HttpHeaderReferer test parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test parse case1]");
       break;
     }
 
@@ -28,26 +29,26 @@ void testParse() {
     match->import("https://developer.mozilla.org:1234");
     HttpUrl url = match->get();
     if(url == nullptr){
-      printf("---[HttpHeaderReferer test parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test parse case2]");
       break;
     }
 
     if(!url->getScheme()->equals("https")) {
-      printf("---[HttpHeaderReferer test parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test parse case3]");
       break;
     }
 
     if(!url->getHost()->equals("developer.mozilla.org")) {
-      printf("---[HttpHeaderReferer test parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test parse case4]");
       break;
     }
 
     if(url->getPort() != 1234) {
-      printf("---[HttpHeaderReferer test parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferer test parse case5]");
       break;
     }
 
     break;
   }
-  printf("---[HttpHeaderReferer test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderReferer test Parse case100]");
 }

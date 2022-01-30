@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderSourceMap.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testParse() {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
     timing->import("/path/to/file.js.map");
     if(!timing->get()->equals("/path/to/file.js.map")) {
-      printf("---[HttpHeaderSourceMap test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSourceMap test Parse case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSourceMap test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSourceMap test Parse case100]");
 
 }

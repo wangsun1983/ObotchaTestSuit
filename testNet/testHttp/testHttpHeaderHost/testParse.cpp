@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderHost.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,12 +17,12 @@ void testParse() {
     digest->import(" developer.mozilla.org:1234");
     auto host = digest->getHost();
     if(!host->equals("developer.mozilla.org")) {
-      printf("---[HttpHeaderHost test Parse case1] [FAILED]--- host is%s\n",host->toChars());
+      TEST_FAIL("[HttpHeaderHost test Parse case1] host is%s\n",host->toChars());
       break;
     }
 
     if(digest->getPort() != 1234) {
-      printf("---[HttpHeaderHost test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderHost test Parse case2]");
       break;
     }
     break;
@@ -32,12 +33,12 @@ void testParse() {
     digest->import(" developer.mozilla.org");
     auto host = digest->getHost();
     if(!host->equals("developer.mozilla.org")) {
-      printf("---[HttpHeaderHost test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderHost test Parse case3]");
       break;
     }
     break;
   }
 
 
-  printf("---[HttpHeaderHost test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderHost test Parse case100]");
 }

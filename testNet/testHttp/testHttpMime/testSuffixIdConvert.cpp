@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderContentType.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,7 +14,7 @@ void check(String suffix,int expectedId) {
   HttpMime mime = createHttpMime();
   mime->setSuffix(suffix);
   if(mime->getTypeId() != expectedId) {
-    printf("---[TestHttpMime suffix to id case1] [FAILED]---,id is %d,expectedId is %d,suffix is %s \n",mime->getTypeId(),expectedId,suffix->toChars());
+    TEST_FAIL("[TestHttpMime suffix to id case1],id is %d,expectedId is %d,suffix is %s",mime->getTypeId(),expectedId,suffix->toChars());
   }
 }
 
@@ -205,5 +206,5 @@ void testSuffixIdConvert() {
 
   check(st(HttpMime)::SuffixAvi,st(HttpMime)::TypeVideoXMsVideo);
 
-  printf("---[TestHttpMime suffix to id case100] [OK]--- \n");
+  TEST_OK("[TestHttpMime suffix to id case100]");
 }

@@ -9,6 +9,7 @@
 #include "Math.hpp"
 #include "HttpHeaderSecWebSocketExtensions.hpp"
 #include "HttpMethod.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -18,17 +19,17 @@ void testParse() {
     c->import(" permessage-deflate, client_max_window_bits");
     auto list = c->get();
     if(!list->get(0)->equals("permessage-deflate")) {
-      printf("---[HttpHeaderSecWebSocketExtensions test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecWebSocketExtensions test Parse case1]");
       break;
     }
 
     if(!list->get(1)->equals("client_max_window_bits")) {
-      printf("---[HttpHeaderSecWebSocketExtensions test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecWebSocketExtensions test Parse case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSecWebSocketExtensions test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSecWebSocketExtensions test Parse case100]");
 
 }

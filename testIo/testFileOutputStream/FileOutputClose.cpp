@@ -5,6 +5,7 @@
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,7 +23,7 @@ void fileoutput_close_test() {
         byte buf[2] = {0x1,0x2};
         int len = write(fd,buf,2);
         if(len != 2) {
-          printf("---[TestFileOutputStream Test close case1] [FAILED]--- ,len is %d\n",len);
+          TEST_FAIL("[TestFileOutputStream Test close case1] [FAILED] ,len is %d\n",len);
           break;
         }
 
@@ -41,7 +42,7 @@ void fileoutput_close_test() {
         byte buf[2] = {0x1,0x2};
         int len = write(fd,buf,2);
         if(len != -1) {
-          printf("---[TestFileOutputStream Test close case2] [FAILED]--- \n");
+          TEST_FAIL("[TestFileOutputStream Test close case2]");
           break;
         }
 
@@ -49,5 +50,5 @@ void fileoutput_close_test() {
         break;
     }
 
-    printf("---[TestFileOutputStream Test close case3] [OK]--- \n");
+    TEST_OK("[TestFileOutputStream Test close case3]");
 }

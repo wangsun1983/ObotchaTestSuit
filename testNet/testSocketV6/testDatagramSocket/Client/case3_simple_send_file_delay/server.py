@@ -7,6 +7,7 @@ host="::1"
 import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
+from NetPort import setEnvPort
 
 port = getEnvPort()
 
@@ -15,10 +16,10 @@ s.bind((host,port))
 addr = (host,port)
 
 buf=4096
-print "start"
+#print "start"
 f = open("file",'wb')
 data,addr = s.recvfrom(buf)
-print "start1"
+#print "start1"
 try:
 
     while(data):

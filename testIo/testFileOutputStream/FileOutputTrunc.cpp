@@ -5,6 +5,7 @@
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -27,7 +28,7 @@ void fileoutput_trunc_test() {
         stream2->close();
 
         if(file->length() != 1) {
-            printf("---[TestFileOutputStream Test {open(Trunc)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {open(Trunc)} case1]");
             break;
         }
 
@@ -35,13 +36,13 @@ void fileoutput_trunc_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 1 ||content->at(0) != 'b') {
-            printf("---[TestFileOutputStream Test {open(Trunc)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {open(Trunc)} case2]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {open(Trunc)} case3] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {open(Trunc)} case3]");
         break;
     }
 
@@ -59,7 +60,7 @@ void fileoutput_trunc_test() {
         stream->flush();
 
         if(file->length() != 3) {
-          printf("---[TestFileOutputStream Test {open(Trunc)} case4] [FAILED]---,len is %ld \n",file->length());
+          TEST_FAIL("[TestFileOutputStream Test {open(Trunc)} case4] [FAILED],len is %ld \n",file->length());
           break;
         }
 
@@ -68,11 +69,11 @@ void fileoutput_trunc_test() {
         read(fd,readbuf,3);
 
         if(readbuf[0] != 3 || readbuf[1] != 4 || readbuf[2] != 5) {
-          printf("---[TestFileOutputStream Test {open(Trunc)} case5] [FAILED]--- \n");
+          TEST_FAIL("[TestFileOutputStream Test {open(Trunc)} case5]");
         }
         close(fd);
 
-        printf("---[TestFileOutputStream Test {open(Trunc)} case6] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {open(Trunc)} case6]");
         break;
     }
 

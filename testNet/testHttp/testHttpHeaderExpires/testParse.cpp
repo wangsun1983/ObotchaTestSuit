@@ -8,6 +8,7 @@
 #include "HttpHeaderExpires.hpp"
 #include "Math.hpp"
 #include "Calendar.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,38 +18,38 @@ void testParse() {
     headerDate->import(" Wed, 21 Oct 2015 07:28:00 GMT");
     auto date = headerDate->get()->toDateTime();
     if(date->year() != 2015) {
-      printf("---[HttpHeaderExpires test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case1]");
       break;
     }
 
     if(date->month() != st(Calendar)::October) {
-      printf("---[HttpHeaderExpires test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case2]");
       break;
     }
 
     if(date->dayOfWeek() != st(Calendar)::Wednesday) {
-      printf("---[HttpHeaderExpires test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case3]");
       break;
     }
 
     if(date->hour() != 7) {
-      printf("---[HttpHeaderExpires test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case4]");
       break;
     }
 
     if(date->minute() != 28) {
-      printf("---[HttpHeaderExpires test Parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case5]");
       break;
     }
 
     if(date->second() != 0) {
-      printf("---[HttpHeaderExpires test Parse case6] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderExpires test Parse case6]");
       break;
     }
 
     break;
   }
 
-  printf("---[HttpHeaderExpires test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderExpires test Parse case100]");
 
 }

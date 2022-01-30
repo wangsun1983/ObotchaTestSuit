@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderSecFetchDest.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
     save->import("track");
     if(!save->toString()->equals("track")) {
-      printf("---[HttpHeaderSecFetchDest test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchDest test toString case1]");
       break;
     }
     break;
@@ -24,12 +25,12 @@ void testToString() {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
     save->import("audio");
     if(!save->toString()->equals("audio")) {
-      printf("---[HttpHeaderSecFetchDest test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSecFetchDest test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSecFetchDest test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSecFetchDest test toString case100]");
 
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderReferrerPolicy.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,10 +15,10 @@ void testToString() {
     HttpHeaderReferrerPolicy match = createHttpHeaderReferrerPolicy();
     match->import("no-referrer, strict-origin-when-cross-origin");
     if(!match->toString()->equals("no-referrer, strict-origin-when-cross-origin")) {
-      printf("---[HttpHeaderReferrerPolicy test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderReferrerPolicy test toString case1] ");
     }
     break;
   }
 
-  printf("---[HttpHeaderReferrerPolicy test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderReferrerPolicy test toString case100]");
 }

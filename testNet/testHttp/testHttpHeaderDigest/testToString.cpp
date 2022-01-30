@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderDigest.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderDigest digest = createHttpHeaderDigest();
     digest->import(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
-      printf("---[testHttpHeaderDigest test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[testHttpHeaderDigest test toString case1]");
     }
 
     break;
@@ -24,10 +25,10 @@ void testToString() {
     HttpHeaderDigest digest = createHttpHeaderDigest();
     digest->import(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637");
     if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
-      printf("---[testHttpHeaderDigest test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[testHttpHeaderDigest test toString case2]");
     }
     break;
   }
 
-  printf("---[testHttpHeaderDigest test toString case100] [OK]--- \n");
+  TEST_OK("[testHttpHeaderDigest test toString case100]");
 }

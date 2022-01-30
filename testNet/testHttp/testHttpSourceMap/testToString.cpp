@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderSourceMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,12 +15,12 @@ void testToString() {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
     timing->import("/path/to/file.js.map");
     if(!timing->toString()->equals("/path/to/file.js.map")) {
-      printf("---[HttpHeaderSourceMap test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSourceMap test toString case1]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderServerTiming test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderServerTiming test toString case100]");
 
 }

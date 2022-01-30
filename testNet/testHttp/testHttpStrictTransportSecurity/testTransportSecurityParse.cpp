@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderStrictTransportSecurity.hpp"
 #include "Math.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,17 +16,17 @@ void testTransportSecurityParse() {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->import("max-age=31536000; includeSubDomains;preload");
     if(security->maxAge != 31536000) {
-      printf("---[HttpHeaderStrictTransportSecurity test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case1]");
       break;
     }
 
     if(!security->includeSubDomains) {
-      printf("---[HttpHeaderStrictTransportSecurity test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case2]");
       break;
     }
 
     if(!security->preload) {
-      printf("---[HttpHeaderStrictTransportSecurity test Parse case3] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case3]");
       break;
     }
     break;
@@ -35,12 +36,13 @@ void testTransportSecurityParse() {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->import("max-age=31536000");
     if(security->maxAge != 31536000) {
-      printf("---[HttpHeaderStrictTransportSecurity test Parse case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case1]");
       break;
     }
 
     break;
   }
-  printf("---[HttpHeaderStrictTransportSecurity test Parse case100] [OK]--- \n");
+
+  TEST_OK("[HttpHeaderStrictTransportSecurity test Parse case100]");
 
 }

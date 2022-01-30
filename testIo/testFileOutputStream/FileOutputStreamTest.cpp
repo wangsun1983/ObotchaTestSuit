@@ -5,13 +5,11 @@
 #include "FileOutputStream.hpp"
 #include "FileInputStream.hpp"
 #include "File.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 void fileoutput_base_test() {
-    //writeline
-    printf("---[FileOutputStream Test Start]--- \n");
-
     //bool _FileOutputStream::write(char c)
     while(1) {
         File file = createFile("./tmp/base_test_1.txt");
@@ -23,7 +21,7 @@ void fileoutput_base_test() {
         stream->close();
 
         if(file->length() != 1) {
-            printf("---[TestFileOutputStream Test {write(char)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(char)} case1]");
             break;
         }
 
@@ -31,13 +29,13 @@ void fileoutput_base_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 1 ||content->at(0) != 'a') {
-            printf("---[TestFileOutputStream Test {write(char)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(char)} case2]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {write(char)} case3] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {write(char)} case3]");
         break;
     }
 
@@ -53,7 +51,7 @@ void fileoutput_base_test() {
         stream->close();
 
         if(file->length() != 5) {
-            printf("---[TestFileOutputStream Test {write(ByteArray)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray)} case1]");
             break;
         }
 
@@ -61,19 +59,19 @@ void fileoutput_base_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 5) {
-            printf("---[TestFileOutputStream Test {write(ByteArray)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray)} case2]");
             break;
         }
 
         String cc = content->toString();
         if(!cc->equals("hello")) {
-            printf("---[TestFileOutputStream Test {write(ByteArray)} case3] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray)} case3]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {write(ByteArray)} case4] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {write(ByteArray)} case4]");
         break;
     }
 
@@ -90,7 +88,7 @@ void fileoutput_base_test() {
         stream->close();
 
         if(file->length() != 5) {
-            printf("---[TestFileOutputStream Test {write(ByteArray,long)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray,long)} case1]");
             break;
         }
 
@@ -98,19 +96,19 @@ void fileoutput_base_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 5) {
-            printf("---[TestFileOutputStream Test {write(ByteArray,long)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray,long)} case2]");
             break;
         }
 
         String cc = content->toString();
         if(!cc->equals("world")) {
-            printf("---[TestFileOutputStream Test {write(ByteArray,long)} case3] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(ByteArray,long)} case3]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {write(ByteArray,long)} case4] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {write(ByteArray,long)} case4]");
         break;
     }
 
@@ -125,7 +123,7 @@ void fileoutput_base_test() {
         stream->close();
 
         if(file->length() != 9) {
-            printf("---[TestFileOutputStream Test {write(String)} case1] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(String)} case1]");
             break;
         }
 
@@ -133,19 +131,19 @@ void fileoutput_base_test() {
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 9) {
-            printf("---[TestFileOutputStream Test {write(String)} case2] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(String)} case2]");
             break;
         }
 
         String cc = content->toString();
         if(!cc->equals("nihao,abc")) {
-            printf("---[TestFileOutputStream Test {write(String)} case3] [FAILED]--- \n");
+            TEST_FAIL("[TestFileOutputStream Test {write(String)} case3]");
             break;
         }
 
         //file->removeAll();
 
-        printf("---[TestFileOutputStream Test {write(String)} case4] [OK]--- \n");
+        TEST_OK("[TestFileOutputStream Test {write(String)} case4]");
         break;
     }
 }

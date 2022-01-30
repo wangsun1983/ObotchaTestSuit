@@ -8,30 +8,33 @@
 #include "System.hpp"
 #include "Md.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 Mutex mMutex = createMutex();
 Condition mCond = createCondition();
 
 FileOutputStream stream = createFileOutputStream("file");
+
 long filesize = 0;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
-      case Message:
-        printf("i get a data,data size is %d ,fd is %d\n",data->size(),s->getFileDescriptor()->getFd());
+      case st(NetEvent)::Message:
         stream->write(data);
-        filesize-= data->size();
+        filesize -= data->size();
         if(filesize == 0) {
           mCond->notify();
         }
-        s->getOutputStream()->write(createString(" ")->toByteArray());
       break;
 
-      case Disconnect:
-      //printf("disconnect!!!! \n");
+      case st(NetEvent)::Disconnect:
+      //TEST_FAIL("disconnect!!!! \n");
       //mCond->notify();
       break;
     }
@@ -62,7 +65,8 @@ int main() {
 
     stream->open();
 
-    InetAddress addr = createInet6Address(1233);
+    int port = getEnvPort();
+    InetAddress addr = createInet6Address(port);
 
     Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
     client->bind();
@@ -80,10 +84,12 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket Server case3_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-      return 0;
+      TEST_FAIL("TestDataGramSocket Server case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
     }
 
-    printf("---TestDataGramSocket Server case3_simple_send_file test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestDataGramSocket Server case2_simple_send_file test100");
     return 0;
 }

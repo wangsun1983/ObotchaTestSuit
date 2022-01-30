@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderMatch.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->import("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
     if(!match->toString()->equals("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"")) {
-      printf("---[HttpHeaderMatch test toString case1] [FAILED]---,s is %s \n",match->toString()->toChars());
+      TEST_FAIL("[HttpHeaderMatch test toString case1],s is %s",match->toString()->toChars());
     }
     break;
   }
@@ -23,7 +24,7 @@ void testToString() {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->import("W/\"67ab43\", \"54ed21\", \"7892dd\"");
     if(!match->toString()->equals("W/\"67ab43\", \"54ed21\", \"7892dd\"")) {
-      printf("---[HttpHeaderMatch test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderMatch test toString case2]");
     }
     break;
   }
@@ -32,11 +33,11 @@ void testToString() {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->import("*");
     if(!match->toString()->equals("*")) {
-      printf("---[HttpHeaderMatch test toString case3] [FAILED]---,match is %s \n",match->toString()->toChars());
+      TEST_FAIL("[HttpHeaderMatch test toString case3],match is %s",match->toString()->toChars());
     }
 
     break;
   }
 
-  printf("---[HttpHeaderMatch test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderMatch test toString case100]");
 }

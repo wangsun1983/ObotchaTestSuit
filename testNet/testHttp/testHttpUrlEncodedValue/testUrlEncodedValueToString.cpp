@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpUrlEncodedValue.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -17,12 +18,12 @@ void testUrlEncodedValueToString() {
     v->set("abc","1");
     v->set("bbb","qq");
     v->set("ccc","ffds");
-    if(!v->toString()->equals("ccc=ffds&bbb=qq&abc=1")) {
-      printf("---[HttpUrlEncodedValue test toString case1] [FAILED]--- v is %s\n",v->toString()->toChars());
+    if(!v->toString()->equals("ccc=ffds&abc=1&bbb=qq")) {
+      TEST_FAIL("[HttpUrlEncodedValue test toString case1] v is %s",v->toString()->toChars());
     }
     break;
   }
 
-  printf("---[HttpUrlEncodedValue test toString case100] [OK]--- \n");
+  TEST_OK("[HttpUrlEncodedValue test toString case100]");
 
 }

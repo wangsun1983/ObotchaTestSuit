@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderConnection.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,11 +15,11 @@ void testConnectionToString() {
     HttpHeaderConnection connection = createHttpHeaderConnection();
     connection->import(" keep-alive");
     if(!connection->toString()->equals("keep-alive")) {
-      printf("---[HttpHeaderConnection test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderConnection test toString case1]");
     }
     break;
   }
 
-  printf("---[HttpForwarded test toString case100] [OK]--- \n");
+  TEST_OK("[HttpForwarded test toString case100]");
 
 }

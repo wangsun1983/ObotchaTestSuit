@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAltSvc.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,12 +15,12 @@ void testToString() {
     HttpHeaderAltSvc svc = createHttpHeaderAltSvc();
     svc->import(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1");
     if(!svc->toString()->equals("h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1")) {
-      printf("---[HttpHeaderAltSvc test toSring case1] [FAILED]--- svc is %s\n",svc->toString()->toChars());
+      TEST_FAIL("[HttpHeaderAltSvc test toSring case1] svc is %s",svc->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderAltSvc test toSring case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderAltSvc test toSring case100]");
 
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderSaveData.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testToString() {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->import("ON");
     if(!save->toString()->equals("on")) {
-      printf("---[HttpHeaderSaveData test toString case1] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSaveData test toString case1]");
       break;
     }
     break;
@@ -24,12 +25,12 @@ void testToString() {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->import("OFF");
     if(!save->toString()->equals("off")) {
-      printf("---[HttpHeaderSaveData test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderSaveData test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSaveData test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSaveData test toString case100]");
 
 }

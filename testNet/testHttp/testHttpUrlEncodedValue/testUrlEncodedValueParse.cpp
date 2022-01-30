@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "Math.hpp"
 #include "HttpUrlEncodedValue.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,40 +17,40 @@ void testUrlEncodedValueParse() {
     auto map = v->getValues();
     //KeyValuePair<String,String> l0 = list->get(0);
     //if(!l0->getKey()->equals("abc")) {
-    //  printf("---[HttpUrlEncodedValue test Parse case1] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpUrlEncodedValue test Parse case1]");
     //  break;
     //}
 
     if(!map->get("abc")->equals("1")) {
-      printf("---[HttpUrlEncodedValue test Parse case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlEncodedValue test Parse case2]");
       break;
     }
 
     //KeyValuePair<String,String> l1 = list->get(1);
     //if(!l1->getKey()->equals("bbb")) {
-    //  printf("---[HttpUrlEncodedValue test Parse case3] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpUrlEncodedValue test Parse case3]");
     //  break;
     //}
 
     if(!map->get("bbb")->equals("qq")) {
-      printf("---[HttpUrlEncodedValue test Parse case4] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlEncodedValue test Parse case4]");
       break;
     }
 
     //KeyValuePair<String,String> l2 = list->get(2);
     //if(!l2->getKey()->equals("ccc")) {
-    //  printf("---[HttpUrlEncodedValue test Parse case3] [FAILED]--- \n");
+    //  TEST_FAIL("[HttpUrlEncodedValue test Parse case3]");
     //  break;
     //}
 
     if(!map->get("ccc")->equals("ffds")) {
-      printf("---[HttpUrlEncodedValue test Parse case5] [FAILED]--- \n");
+      TEST_FAIL("[HttpUrlEncodedValue test Parse case5]");
       break;
     }
 
     break;
   }
 
-  printf("---[HttpUrlEncodedValue test Parse case100] [OK]--- \n");
+  TEST_OK("[HttpUrlEncodedValue test Parse case100]");
 
 }

@@ -6,6 +6,7 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderStrictTransportSecurity.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -14,7 +15,7 @@ void testTransportSecurityToString() {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->import("max-age=31536000;preload,includeSubDomains");
     if(!security->toString()->equals("max-age=31536000;preload;includeSubDomains")) {
-      printf("---[HttpHeaderStrictTransportSecurity test toString case1] [FAILED]---,security is %s \n",security->toString()->toChars());
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test toString case1],security is %s",security->toString()->toChars());
       break;
     }
     break;
@@ -24,11 +25,11 @@ void testTransportSecurityToString() {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->import("max-age=31536000");
     if(!security->toString()->equals("max-age=31536000")) {
-      printf("---[HttpHeaderStrictTransportSecurity test toString case2] [FAILED]--- \n");
+      TEST_FAIL("[HttpHeaderStrictTransportSecurity test toString case2]");
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderStrictTransportSecurity test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderStrictTransportSecurity test toString case100]");
 }

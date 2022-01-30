@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderSecWebSocketExtensions.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -15,12 +16,12 @@ void testToString() {
     HttpHeaderSecWebSocketExtensions c = createHttpHeaderSecWebSocketExtensions();
     c->import(" permessage-deflate, client_max_window_bits");
     if(!c->toString()->equals("permessage-deflate, client_max_window_bits")) {
-      printf("---[HttpHeaderSecWebSocketExtensions test toString case1] [FAILED]--- ,str is %s\n",c->toString()->toChars());
+      TEST_FAIL("[HttpHeaderSecWebSocketExtensions test toString case1],str is %s",c->toString()->toChars());
       break;
     }
     break;
   }
 
-  printf("---[HttpHeaderSecWebSocketExtensions test toString case100] [OK]--- \n");
+  TEST_OK("[HttpHeaderSecWebSocketExtensions test toString case100]");
 
 }
