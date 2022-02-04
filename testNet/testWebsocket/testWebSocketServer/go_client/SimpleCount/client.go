@@ -2,24 +2,35 @@ package main
 
 import (
     //"fmt"
-    "../../../../../3rdparty/go/net/websocket"
-    "log"
+    "../../../../../3rdparty/go/src/golang.org/x/net/websocket"
+    "../../../../../common"
+    //"log"
+    "strconv"
+    "fmt"
+    "time"
 )
 
 func main() {
+    port := testnet.GetEnvPort()
     origin := "http://localhost/"
-    url := "ws://localhost:1114/mytest"
+    url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
+
     for i:= 0;i<16*1024;i++ {
         ws, err := websocket.Dial(url, "", origin)
         if err != nil {
-            log.Fatal(err)
+            //log.Fatal(err)
+            fmt.Println("connect fail,err is ",err)
         }
         
         if _, err := ws.Write([]byte("Hello, World")); err != nil {
-            log.Fatal(err)
+            //log.Fatal(err)
+            fmt.Println("write fail,err is ",err)
         }
-        ws.Close();
+
+        ws.Close()
     }
+
+    time.Sleep(5 * time.Second) 
     
     //var msg = make([]byte, 512)
     //var n int

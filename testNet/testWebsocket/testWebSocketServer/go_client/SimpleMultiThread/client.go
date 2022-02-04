@@ -2,16 +2,21 @@ package main
 
 import (
     "fmt"
-    "../../../../../3rdparty/go/net/websocket"
+    "../../../../../3rdparty/go/src/golang.org/x/net/websocket"
+    "../../../../../common"
     "log"
     "sync"
+    "time"
+    "strconv"
 )
 
 var wg sync.WaitGroup
 
 func doSend(id int) {
+  port := testnet.GetEnvPort()
   origin := "http://localhost/"
-  url := "ws://localhost:1111/mytest"
+  url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
+
   fmt.Println("start: " ,id)
   for i:= 0;i<80;i++ {
       ws, err := websocket.Dial(url, "", origin)
@@ -34,5 +39,6 @@ func main() {
     go doSend(i)
   }
   wg.Wait()
+  time.Sleep(5 * time.Second) 
 
 }

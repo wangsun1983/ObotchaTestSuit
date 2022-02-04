@@ -26,6 +26,7 @@ cflags = -fpic \
 		-I ../../../../../../external/libco \
 		-I ../../../../../../external/glog/include \
 		-I ../../../../../../external/uuid/include \
+		-I ../../../../../common \
 		-g \
 		-std=c++14 \
 		-fsanitize=address\

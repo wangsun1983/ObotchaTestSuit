@@ -15,6 +15,8 @@
 #include "FileOutputStream.hpp"
 #include "WebSocketHybi13Parser.hpp"
 
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
 static inline char *mask(char key[4], char *payload, size_t length) {
@@ -67,18 +69,18 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
-      printf("testFrameParser case1 size check failed,it is 0 \n");
+      TEST_FAIL("testFrameParser case1 size check failed,it is 0 ");
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case1 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case1 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case1 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case1 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
 
@@ -95,28 +97,28 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
-      printf("testFrameParser case1_1 size check failed,it is 0 \n");
+      TEST_FAIL("testFrameParser case1_1 size check failed,it is 0 ");
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case1_2 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case1_2 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case1_3 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case1_3 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
 
     WebSocketFrame frame1 = msgDatas->get(1);
     if(frame1->getData() == nullptr) {
-      printf("testFrameParser case1_4 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case1_4 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame1->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case1_5 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case1_5 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
 
@@ -132,28 +134,28 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
-      printf("testFrameParser case2 size is error,now is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case2 size is error,now is %d ",msgDatas->size());
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case2 frame1 check failed frame is null \n");
+      TEST_FAIL("testFrameParser case2 frame1 check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case2 frame1 check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case2 frame1 check failed frame is %s ",frame->getData()->toString()->toChars());
     }
 
     frame = msgDatas->get(1);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case2 frame2 check failed frame is null \n");
+      TEST_FAIL("testFrameParser case2 frame2 check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case2 frame2 check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case2 frame2 check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
   }
@@ -178,18 +180,18 @@ int testFrameParser() {
       parser->pushParseData(loadData);
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
       if(msgDatas->size() != 1) {
-        printf("testFrameParser case3 size is error,now is %d \n",msgDatas->size());
+        TEST_FAIL("testFrameParser case3 size is error,now is %d ",msgDatas->size());
         return -1;
       }
 
       WebSocketFrame frame = msgDatas->get(0);
       if(frame->getData() == nullptr) {
-        printf("testFrameParser case3 frame check failed frame is null \n");
+        TEST_FAIL("testFrameParser case3 frame check failed frame is null ");
         return -1;
       }
 
       if(!frame->getData()->toString()->equals(payload)) {
-        printf("testFrameParser case3 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+        TEST_FAIL("testFrameParser case3 frame check failed frame is %s ",frame->getData()->toString()->toChars());
         return -1;
       }
       free(payload_copy);
@@ -225,18 +227,18 @@ int testFrameParser() {
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
     if(msgDatas->size() != 1) {
-      printf("testFrameParser case4 size is error,now is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case4 size is error,now is %d ",msgDatas->size());
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case4 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case4 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals(payload)) {
-      printf("testFrameParser case4 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case4 frame check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
     free(payload_copy);
@@ -252,18 +254,18 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
-      printf("testFrameParser case7 size check failed,it is 0 \n");
+      TEST_FAIL("testFrameParser case7 size check failed,it is 0 ");
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case7 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case7 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case7 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case7 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
 
@@ -277,18 +279,18 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
-      printf("testFrameParser case7 size check failed,it is 0 \n");
+      TEST_FAIL("testFrameParser case7 size check failed,it is 0 ");
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getData() == nullptr) {
-      printf("testFrameParser case7 frame check failed frame is null \n");
+      TEST_FAIL("testFrameParser case7 frame check failed frame is null ");
       return -1;
     }
 
     if(!frame->getData()->toString()->equals("Hello")) {
-      printf("testFrameParser case7 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testFrameParser case7 frame check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
   }
@@ -303,90 +305,90 @@ int testFrameParser() {
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check1 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check1 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[1],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check2 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check2 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[2],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check3 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check3 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[3],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check4 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check4 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[4],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check5 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check5 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[5],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check6 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check6 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[6],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check7 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check7 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[7],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check7 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check7 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[8],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check8 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check8 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[9],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
-      printf("testFrameParser case8 frame check9 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check9 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     parser->pushParseData(createByteArray((byte *)&payload[10],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 1) {
-      printf("testFrameParser case8 frame check10 size failed,current is %d \n",msgDatas->size());
+      TEST_FAIL("testFrameParser case8 frame check10 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     String message = frame->getData()->toString();
     if(message == nullptr || !message->equals("Hello")) {
-      printf("testFrameParser case8 frame check frame failed,current is %s \n",message->toChars());
+      TEST_FAIL("testFrameParser case8 frame check frame failed,current is %s ",message->toChars());
       return -1;
     }
 
   }
 
-  printf("testFrameParser OK \n");
+  TEST_OK("testFrameParser OK ");
 
   return 0;
 }

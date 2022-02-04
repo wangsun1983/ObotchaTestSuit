@@ -16,6 +16,10 @@
 #include "AtomicInteger.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "CountDownLatch.hpp"
+#include "Inet4Address.hpp"
+
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -29,9 +33,9 @@ public:
 
     int onData(WebSocketFrame message,sp<_WebSocketLinker> client) {
         String data = message->getData()->toString();
-        printf("data is %s \n",data->toChars());
+        //printf("data is %s \n",data->toChars());
         if(!data->equals("Hello, World")) {
-            printf("---WebSocketServer Simple Connect By Golang test1 [FAILED]--- \n");
+            TEST_FAIL("WebSocketServer Simple Connect By Golang test1");
         }
         latch->countDown();
 
@@ -40,12 +44,12 @@ public:
 
     int onConnect(WebSocketLinker client) {
         //connectCount->incrementAndGet();
-        printf("on connect \n");
+        //printf("on connect \n");
         return 0;
     }
 
     int onDisconnect(WebSocketLinker client) {
-        printf("on disconnect \n");
+        //printf("on disconnect \n");
         return 0;
     }
 
@@ -63,8 +67,9 @@ public:
 int main() {
     MyWsListener l = createMyWsListener();
 
-    
-    InetAddress address = createInetAddress(1114);
+    int port = getEnvPort();
+
+    InetAddress address = createInet4Address(port);
     WebSocketServer server = createWebSocketServerBuilder()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
@@ -75,7 +80,11 @@ int main() {
 
     latch->await();
     
-    printf("---WebSocketServer Simple Connect By Golang test100 [OK]--- \n");
+    TEST_OK("WebSocketServer Simple Connect By Golang test100");
+    
+    port++;
+    setEnvPort(port);
+     TEST_OK("WebSocketServer Simple Connect By Golang test101");
 
     server->close();
 }

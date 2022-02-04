@@ -14,6 +14,7 @@
 #include "File.hpp"
 #include "FileOutputStream.hpp"
 #include "WebSocketHybi13Parser.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -87,25 +88,25 @@ int testWebFrameOneByteParser() {
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 */
       if(msgDatas->size() != 1) {
-        printf("testFrameOneByteParser case3 size is error,now is %d \n",msgDatas->size());
+        TEST_FAIL("testFrameOneByteParser case3 size is error,now is %d ",msgDatas->size());
         return -1;
       }
 
       WebSocketFrame frame = msgDatas->get(0);
       if(frame->getData() == nullptr) {
-        printf("testFrameOneByteParser case3 frame check failed frame is null \n");
+        TEST_FAIL("testFrameOneByteParser case3 frame check failed frame is null ");
         return -1;
       }
 
       if(!frame->getData()->toString()->equals(payload)) {
-        printf("testFrameOneByteParser case3 frame check failed frame is %s \n",frame->getData()->toString()->toChars());
+        TEST_FAIL("testFrameOneByteParser case3 frame check failed frame is %s ",frame->getData()->toString()->toChars());
         return -1;
       }
       free(payload_copy);
   }
 
 
-  printf("testFrameOneByteParser OK \n");
+  TEST_OK("testFrameOneByteParser");
 
   return 0;
 }

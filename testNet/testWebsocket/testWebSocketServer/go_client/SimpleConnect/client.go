@@ -2,13 +2,22 @@ package main
 
 import (
     //"fmt"
-    "../../../../../3rdparty/go/net/websocket"
+    "../../../../../3rdparty/go/src/golang.org/x/net/websocket"
+    "../../../../../common"
     "log"
+    //"fmt"
+    "strconv"
 )
 
+//export GOPATH=/home/sunliwang/mysource/Obotcha/ObotchaTestSuite/common
+
 func main() {
+    port := testnet.GetEnvPort()
+    //fmt.Println("port is ",port)
+
     origin := "http://localhost/"
-    url := "ws://localhost:1114/mytest"
+    url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
+    
     ws, err := websocket.Dial(url, "", origin)
     if err != nil {
         log.Fatal(err)
@@ -17,7 +26,8 @@ func main() {
     if _, err := ws.Write([]byte("Hello, World")); err != nil {
         log.Fatal(err)
     }
-    
+
+    //ws.Close()
     //var msg = make([]byte, 512)
     //var n int
     //if n, err = ws.Read(msg); err != nil {

@@ -16,6 +16,11 @@
 #include "AtomicInteger.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "CountDownLatch.hpp"
+#include "Inet4Address.hpp"
+
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -29,9 +34,9 @@ public:
 
     int onData(WebSocketFrame message,sp<_WebSocketLinker> client) {
         String data = message->getData()->toString();
-        printf("data is %s \n",data->toChars());
+        //TEST_FAIL("data is %s \n",data->toChars());
         if(!data->equals("Hello, World")) {
-            printf("---WebSocketServer Simple Connect test1 [FAILED]--- \n");
+            TEST_FAIL("WebSocketServer Simple Connect test1");
         }
         latch->countDown();
 
@@ -40,12 +45,12 @@ public:
 
     int onConnect(WebSocketLinker client) {
         //connectCount->incrementAndGet();
-        printf("on connect \n");
+        //TEST_FAIL("on connect \n");
         return 0;
     }
 
     int onDisconnect(WebSocketLinker client) {
-        printf("on disconnect \n");
+        //TEST_FAIL("on disconnect \n");
         return 0;
     }
 
@@ -62,9 +67,10 @@ public:
 
 int main() {
     MyWsListener l = createMyWsListener();
-
+    int port = getEnvPort();
     
-    InetAddress address = createInetAddress(1114);
+    InetAddress address = createInet4Address(port);
+    printf("port is %d \n",port);
     WebSocketServer server = createWebSocketServerBuilder()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
@@ -75,7 +81,10 @@ int main() {
 
     latch->await();
     
-    printf("---WebSocketServer Simple Connect test100 [OK]--- \n");
+    TEST_OK("WebSocketServer Simple Connect test100");
+
+    port++;
+    setEnvPort(port);
 
     server->close();
 }

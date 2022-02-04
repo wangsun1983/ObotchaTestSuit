@@ -15,6 +15,7 @@
 #include "FileOutputStream.hpp"
 #include "WebSocketHybi13Parser.hpp"
 #include "WebSocketProtocol.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -38,7 +39,6 @@ static void scripted_data_feed_init(struct scripted_data_feed *df,
 
 int testSimpleFrameParser() {
 
-#if 0
   //case 1
   {
       uint8_t msg[] = { 0x81u, 0x85u, 0x37u, 0xfau, 0x21u, 0x3du, 0x7fu, 0x9fu,
@@ -49,16 +49,16 @@ int testSimpleFrameParser() {
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
       WebSocketFrame frame = msgDatas->get(0);
       if(frame->getHeader()->getOpCode() != 0x1) {
-        printf("testSimpleFrameParser case1 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
+        TEST_FAIL("testSimpleFrameParser case1 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
         return -1;
       }
 
       if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hello")) {
-        printf("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
+        TEST_FAIL("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
         return -1;
       }
 
-      //printf("msg is %s\n",frame->getData()->toChars());
+      //TEST_FAIL("msg is %s\n",frame->getData()->toChars());
 
   }
 
@@ -75,25 +75,24 @@ int testSimpleFrameParser() {
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getHeader()->getOpCode() != 0x1) {
-      printf("testSimpleFrameParser case2 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
+      TEST_FAIL("testSimpleFrameParser case2 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
       return -1;
     }
 
     if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hel")) {
-      printf("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
+      TEST_FAIL("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
       return -1;
     }
 
     frame = msgDatas->get(1);
-    printf("opcode is %d,length is %d \n",frame->getHeader()->getOpCode(),frame->getHeader()->getFrameLength());
-
+    
     if(frame->getHeader()->getOpCode() != 0x0) {
-      printf("testSimpleFrameParser case2 trace1 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
+      TEST_FAIL("testSimpleFrameParser case2 trace1 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
       return -1;
     }
 
     if(frame->getData() == nullptr ) {
-      printf("testSimpleFrameParser case2  trace1 error,tframe is nullptr\n");
+      TEST_FAIL("testSimpleFrameParser case2  trace1 error,tframe is nullptr\n");
       return -1;
     }
   }
@@ -111,59 +110,58 @@ int testSimpleFrameParser() {
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
     if(msgDatas->size() != 3) {
-      printf("testSimpleFrameParser case3 trace1 size is error,current is %d \n",msgDatas->size());
+      TEST_FAIL("testSimpleFrameParser case3 trace1 size is error,current is %d",msgDatas->size());
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     if(frame->getHeader()->isFinalFrame()) {
-      printf("testSimpleFrameParser case3 trace2 not final frame \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace2 not final frame");
       return -1;
     }
 
     ByteArray data = frame->getData();
     if(data == nullptr || !data->toString()->equals("Hel")) {
-      printf("testSimpleFrameParser case3 trace3 frame content is not equal \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace3 frame content is not equal");
       return -1;
     }
 
     if(frame->getHeader()->getOpCode() != st(WebSocketProtocol)::OPCODE_TEXT) {
-      printf("testSimpleFrameParser case3 trace4 opcode is error,current is %d \n",frame->getHeader()->getOpCode());
+      TEST_FAIL("testSimpleFrameParser case3 trace4 opcode is error,current is %d",frame->getHeader()->getOpCode());
       return -1;
     }
 
     frame = msgDatas->get(1);
     if(!frame->getHeader()->isFinalFrame()) {
-      printf("testSimpleFrameParser case3 trace5 not final frame \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace5 not final frame");
       return -1;
     }
 
     data = frame->getData();
-    printf("data is %d \n",data->size());
     if(data == nullptr || !data->toString()->equals("Hello")) {
-      printf("testSimpleFrameParser case3 trace6 frame content is not equal \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace6 frame content is not equal");
       return -1;
     }
 
     if(frame->getHeader()->getOpCode() != st(WebSocketProtocol)::OPCODE_CONTROL_PING) {
-      printf("testSimpleFrameParser case3 trace7 opcode is error,current is %d \n",frame->getHeader()->getOpCode());
+      TEST_FAIL("testSimpleFrameParser case3 trace7 opcode is error,current is %d",frame->getHeader()->getOpCode());
       return -1;
     }
 
     frame = msgDatas->get(2);
     if(!frame->getHeader()->isFinalFrame()) {
-      printf("testSimpleFrameParser case3 trace8 not final frame \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace8 not final frame");
       return -1;
     }
 
     data = frame->getData();
     if(data == nullptr || !data->toString()->equals("lo")) {
-      printf("testSimpleFrameParser case3 trace9 frame content is not equal \n");
+      TEST_FAIL("testSimpleFrameParser case3 trace9 frame content is not equal");
       return -1;
     }
 
     if(frame->getHeader()->getOpCode() != st(WebSocketProtocol)::OPCODE_CONTINUATION) {
-      printf("testSimpleFrameParser case3 trace10 opcode is error,current is %d \n",frame->getHeader()->getOpCode());
+      TEST_FAIL("testSimpleFrameParser case3 trace10 opcode is error,current is %d",frame->getHeader()->getOpCode());
       return -1;
     }
   }
@@ -178,18 +176,17 @@ int testSimpleFrameParser() {
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
     if(msgDatas->size() != 1) {
-      printf("testSimpleFrameParser case4 trace1 frame size,current is %d \n",msgDatas->size());
+      TEST_FAIL("testSimpleFrameParser case4 trace1 frame size,current is %d",msgDatas->size());
       return -1;
     }
 
     WebSocketFrame frame = msgDatas->get(0);
     ByteArray data = frame->getData();
     if(data != nullptr && data->size() != 0) {
-      printf("testSimpleFrameParser case4 trace2 data size is incorrect \n");
+      TEST_FAIL("testSimpleFrameParser case4 trace2 data size is incorrect");
       return -1;
     }
   }
- #endif
 
   //case5
   {
@@ -197,17 +194,18 @@ int testSimpleFrameParser() {
 
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
     ByteArray loadData = createByteArray((const byte *)msg,sizeof(msg)/sizeof(uint8_t));
-    printf("loadData size is %d \n",loadData->size());
 
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
     if(msgDatas->size() != 0) {
-      printf("testSimpleFrameParser case5 trace1 frame size,current is %d \n",msgDatas->size());
+      TEST_FAIL("testSimpleFrameParser case5 trace1 frame size,current is %d",msgDatas->size());
       return -1;
     }
   }
 
+
+  TEST_OK("testSimpleFrameParser case100");
   return 0;
 
 }
