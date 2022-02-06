@@ -16,6 +16,9 @@
 #include "CountDownLatch.hpp"
 #include "Md.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -27,12 +30,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
-        case HttpEvent::Connect: {
+        case st(NetEvent)::Connect: {
             //connectCount->incrementAndGet();
         }
         break;
 
-        case HttpEvent::Message: {
+        case st(NetEvent)::Message: {
             //messageCount->incrementAndGet();
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -43,7 +46,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
         }
         break;
 
-        case HttpEvent::Disconnect:{
+        case st(NetEvent)::Disconnect:{
             //disConnectCount->incrementAndGet();
         }
         break;
@@ -71,9 +74,10 @@ int main() {
     }
   }
   
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1123))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
@@ -86,8 +90,7 @@ int main() {
   File tmpDir = createFile("./tmp");
   ArrayList<File> files = tmpDir->listFiles();
   if(files->size() != 128 *16) {
-    printf("---TestHttpServer testConcurrentChunckFileServer test1 [FAILED]---,download file num is %d\n",files->size());
-    return 0;
+    TEST_FAIL("TestHttpServer testConcurrentChunckFileServer test1,download file num is %d",files->size());
   }
 
   auto iter = files->getIterator();
@@ -96,12 +99,15 @@ int main() {
 
     String v1 = md5->encrypt(f);
     if(!base->equals(v1)) {
-      printf("---TestHttpServer testConcurrentChunckFileServer test1 [FAILED]---,path is %s \n",f->getAbsolutePath()->toChars());
+      TEST_FAIL("TestHttpServer testConcurrentChunckFileServer test1,path is %s",f->getAbsolutePath()->toChars());
     }
 
     iter->next();
   }
 
-  printf("---TestHttpServer testConcurrentChunckFileServer test100 [OK]--- \n");
+  TEST_OK("TestHttpServer testConcurrentChunckFileServer test100");
+
+  port++;
+  setEnvPort(port);
   return 0;
 }

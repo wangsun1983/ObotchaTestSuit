@@ -15,6 +15,11 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 
+
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 AtomicInteger connectCount = createAtomicInteger(0);
@@ -35,14 +40,14 @@ public:
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               auto data = msg->getEntity()->getContent()->toString();
-              //printf("get data is %s \n",data->toChars());
+              printf("get data is %s \n",data->toChars());
               if(data->equals("hello world")) {
                 messageLatch->countDown();
               }
@@ -58,7 +63,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               //disconnetlatch->countDown();
           }
           break;
@@ -67,9 +72,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1256))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
@@ -78,5 +84,7 @@ int main() {
   messageLatch->await();
   server->close();
   
-  printf("---TestHttpServer MultiClientMessage test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttpServer MultiClientMessage test100");
 }

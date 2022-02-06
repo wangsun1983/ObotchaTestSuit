@@ -5,6 +5,11 @@ import http.client
 import requests
 import os
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
+
 
 class DownloadThread(threading.Thread):
     def __init__(self,id):
@@ -14,15 +19,14 @@ class DownloadThread(threading.Thread):
     def run(self):
         count = 0
         while count < 16:
-            r = requests.get("http://127.0.0.1:1123/index")
+            url = "http://127.0.0.1:" + str(getEnvPort()) + "/index"
+            r = requests.get(url)
             filename = "./tmp/"+"_id_" + str(self.threadid) + "_" + str(count)
-            print("trace2")
             with open(os.path.join(os.path.dirname(os.path.abspath("__file__")),filename),"wb") as f:
                 f.write(r.content)
-            print("trace3")
             count = count + 1
             r.close()
-            print("send complete")
+            #print("send complete")
 
 threads= []
 index = 0
@@ -37,4 +41,3 @@ for t in threads:
     t.join()
 
 print("finish!!!")
-print("get response")

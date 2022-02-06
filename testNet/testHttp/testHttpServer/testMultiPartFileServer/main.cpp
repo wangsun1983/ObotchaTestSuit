@@ -16,9 +16,13 @@
 #include "Handler.hpp"
 #include "Md.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1024);
+CountDownLatch latch = createCountDownLatch(32);
 long prepareFilesize = 0;
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -40,13 +44,13 @@ public:
 
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //TODO
-              printf("Connect !!!! \n");
+              //printf("Connect !!!! \n");
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               //printf("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
@@ -65,7 +69,7 @@ public:
                     String v1 = md5->encrypt(createFile("data"));
                     String v2 = md5->encrypt(createFile(f->getAbsolutePath()->toChars()));
                     if(v1 != v2) {
-                      printf("---TestHttpServer MultiPartFileServer test error,path is %s [FAILED]---\n",f->getAbsolutePath()->toChars());
+                      TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
                     } 
                     return 1;
                   });
@@ -78,7 +82,7 @@ public:
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               //disConnectCount->incrementAndGet();
               //printf("disconnect !!!! \n");
           }
@@ -111,9 +115,11 @@ int main() {
   MyHandler h = createMyHandler();
   h->sendEmptyMessageDelayed(0,10*1024);
 
+  int port = getEnvPort();
+
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1256))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
@@ -122,6 +128,9 @@ int main() {
 
   server->close();
 
-  printf("---TestHttpServer MultiPartFileServer test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+
+  TEST_OK("TestHttpServer MultiPartFileServer test100");
   
 }

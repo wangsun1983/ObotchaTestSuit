@@ -16,22 +16,33 @@
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 
 CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 
+DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
+public:
+  void handleMessage(Message msg) {
+    printf("connectlatch is %d \n",connectlatch->getCount());
+    this->sendEmptyMessageDelayed(0,10*1024);
+  }
+};
+
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               
           }
           break;
 
-          case HttpEvent::Message: {
-              printf("write response connect!!! \n");
+          case st(NetEvent)::Message: {
               if(step == 0) {
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -41,14 +52,14 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else {
                 String entity = msg->getEntity()->getContent()->toString();
                 if(!entity->equals("hello this is server")) {
-                  printf("---TestHttpServer SimpleClientContent test1 [FAILED]---,entity is %s\n",entity->toChars());
+                  TEST_FAIL("TestHttpServer SimpleClientContent test1,entity is %s",entity->toChars());
                 }
                 connectlatch->countDown();
               }
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
           }
           break;
       }
@@ -56,17 +67,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1260))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
+  MyHandler h = createMyHandler();
+  h->sendEmptyMessageDelayed(0,10*1024);
+
   connectlatch->await();
   server->close();
 
-  printf("---TestHttpServer SimpleClientContent test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+
+  TEST_OK("TestHttpServer SimpleClientContent test100");
 
   return 0;
 }

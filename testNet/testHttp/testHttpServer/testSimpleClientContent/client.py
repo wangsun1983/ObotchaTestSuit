@@ -3,9 +3,17 @@ import threading
 import time
 import http.client
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
+
 count = 0
 
-client = http.client.HTTPConnection("127.0.0.1:1260")
+port = getEnvPort()
+url = "127.0.0.1:" + str(port)
+
+client = http.client.HTTPConnection(url)
 client.request("GET","/index")
 r1 = client.getresponse()
 #print(r1.read().decode("utf-8"))

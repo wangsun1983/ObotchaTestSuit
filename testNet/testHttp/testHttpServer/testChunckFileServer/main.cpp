@@ -16,7 +16,9 @@
 #include "CountDownLatch.hpp"
 #include "Md.hpp"
 
-
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -28,12 +30,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
-        case HttpEvent::Connect: {
+        case st(NetEvent)::Connect: {
             //connectCount->incrementAndGet();
         }
         break;
 
-        case HttpEvent::Message: {
+        case st(NetEvent)::Message: {
             //messageCount->incrementAndGet();
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -44,7 +46,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
         }
         break;
 
-        case HttpEvent::Disconnect:{
+        case st(NetEvent)::Disconnect:{
             //disConnectCount->incrementAndGet();
         }
         break;
@@ -72,9 +74,10 @@ int main() {
     }
   }
 
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1123))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
@@ -91,7 +94,7 @@ int main() {
 
     String v1 = md5->encrypt(f);
     if(!base->equals(v1)) {
-      printf("---TestHttpServer testChunckFileServer test1 [FAILED]---,path is %s \n",f->getAbsolutePath()->toChars());
+      TEST_FAIL("TestHttpServer testChunckFileServer test1 ,path is %s",f->getAbsolutePath()->toChars());
     }
 
     iter->next();
@@ -99,6 +102,8 @@ int main() {
 
   server->close();
 
-  printf("---TestHttpServer testChunckFileServer test100 [OK]--- \n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttpServer testChunckFileServer test100");
   
 }

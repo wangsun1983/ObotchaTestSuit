@@ -14,6 +14,10 @@
 #include "Inet4Address.hpp"
 #include "CountDownLatch.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 CountDownLatch latch = createCountDownLatch(1);
@@ -23,24 +27,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
-        case HttpEvent::Connect: {
+        case st(NetEvent)::Connect: {
             //connectCount->incrementAndGet();
         }
         break;
 
-        case HttpEvent::Message: {
+        case st(NetEvent)::Message: {
             //messageCount->incrementAndGet();
             HttpHeader header = msg->getHeader();
             HttpUrl url = header->getUrl();
             auto queryParams = url->getQuery();
             auto v1 = queryParams->get("tag1");
             if(!v1->equals("value1")) {
-                printf("---TestHttpServer Request Url Encode test1 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Url Encode test1");
             }
 
             auto v2 = queryParams->get("tag2");
             if(!v2->equals("value2")) {
-                printf("---TestHttpServer Request Url Encode test2 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Url Encode test2");
             }
 
             HttpResponse response = createHttpResponse();
@@ -50,7 +54,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
         }
         break;
 
-        case HttpEvent::Disconnect:{
+        case st(NetEvent)::Disconnect:{
             //disConnectCount->incrementAndGet();
         }
         break;
@@ -60,13 +64,17 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
 };
 
 int main() {
+  
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1124))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
   latch->await();
 
-  printf("---TestHttpServer Request Encode test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttpServer Request Encode test100");
 }

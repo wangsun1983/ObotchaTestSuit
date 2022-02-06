@@ -26,8 +26,7 @@ public:
         if(!message->equals("i am server")) {
             TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
         }
-        printf("message is %s \n",message->toChars());
-
+        
         latch->countDown();
         return 0;
     }

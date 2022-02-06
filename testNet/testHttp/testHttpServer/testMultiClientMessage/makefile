@@ -1,7 +1,4 @@
-outlib = ../../out/lib
-outtmp = ../../out/tmp
-
-gcc = g++
+gcc = clang++
 
 cflags = -fpic \
 		-lrt \
@@ -22,10 +19,8 @@ cflags = -fpic \
 		-I ../../../../../external/yaml/include \
 		-I ../../../../../external/crc32/include \
 		-I ../../../../../external/openssl/include \
-		-I ../../../../../external/http_parser/include \
 		-I ../../../../../external/libco \
-		-I ../../../../../external/glog/include \
-		-I ../../../../../external/uuid/include \
+		-I ../../../../common/ \
 		-g \
 		-std=c++14 \
 		-fsanitize=address \
@@ -35,12 +30,17 @@ external = -lpthread \
 				-ldl \
 				../../../../../out/lib/libobotcha.so \
 
+sharelib = -Wl,-rpath=../../../../../out/lib/ \
+           -L ../../../../../out/lib/ \
+           -lcrypto \
+           -L ../../../../../out/lib/ \
+           -lssl \
 
 files =
 link =
-libname	= testMultiClientMessage
+libname	= testHttpServer
 
 everything : $(libname)
 
 $(libname): $(link)
-	clang++ *.cpp $(cflags) -o mytest $(external)
+	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)

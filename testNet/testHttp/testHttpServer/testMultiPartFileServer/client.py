@@ -7,8 +7,15 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 import random
 import os
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
+
+url = "http://127.0.0.1:" + str(getEnvPort()) + "/index"
+
 count = 0
-while count < 1024:
+while count < 32:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0',
     }
@@ -26,7 +33,7 @@ while count < 1024:
     headers['Content-Type'] = multipart_encoder.content_type
 
     print("send start")
-    requests.post('http://127.0.0.1:1256', data=multipart_encoder, headers=headers)
+    requests.post(url, data=multipart_encoder, headers=headers)
     #responseStr.read();
     count = count + 1
     print("send complete")

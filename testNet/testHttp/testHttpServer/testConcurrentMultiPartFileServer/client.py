@@ -7,6 +7,10 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 import random
 import os
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
 
 class UploadThread(threading.Thread):
     def __init__(self,id):
@@ -33,7 +37,9 @@ class UploadThread(threading.Thread):
             headers['Content-Type'] = multipart_encoder.content_type
 
             print("send start")
-            requests.post('http://127.0.0.1:1256', data=multipart_encoder, headers=headers)
+            url = "http://127.0.0.1:" + str(getEnvPort());
+
+            requests.post(url, data=multipart_encoder, headers=headers)
             #responseStr.read();
             count = count + 1
             print("send complete")

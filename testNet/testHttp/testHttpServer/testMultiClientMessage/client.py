@@ -3,6 +3,11 @@ import threading
 import time
 import http.client
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
+
 count = 0
 
 #sudo sysctl -w net.ipv4.tcp_timestamps=1
@@ -14,17 +19,19 @@ class ConnectThread(threading.Thread):
 
     def run(self):
         self.count = 0
-        self.client = http.client.HTTPConnection("127.0.0.1:1256")
+        url = "127.0.0.1:" + str(getEnvPort());
+
+        self.client = http.client.HTTPConnection(url)
         while count < 1024*32:
             try:
-                print("trace1,id" + str(self.threadid))
+                #print("trace1,id" + str(self.threadid))
                 params = str(self.threadid)
                 self.client.request("GET","/index",params)
-                print("trace2,id" + str(self.threadid))
+                #print("trace2,id" + str(self.threadid))
                 #response.read()
                 self.resp = self.client.getresponse()
                 data = self.resp.read().decode('utf-8')
-                print("trace3,id" + str(self.threadid))
+                #print("trace3,id" + str(self.threadid))
 
                 #self.r1.read();
                 #print(r1.read().decode("utf-8"))

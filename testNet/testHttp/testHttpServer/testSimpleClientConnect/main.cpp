@@ -15,8 +15,15 @@
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
+#include "HttpMethod.hpp"
+#include "NetEvent.hpp"
+
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
+
+bool testResult = false;
 
 AtomicInteger connectCount = createAtomicInteger(0);
 AtomicInteger disConnectCount = createAtomicInteger(0);
@@ -36,22 +43,31 @@ public:
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
-              printf("connect!!! \n");
+          case st(NetEvent)::Connect: {
               connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
-              printf("write response connect!!! \n");
-              HttpResponse response = createHttpResponse();
-              response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-              w->write(response);
+          case st(NetEvent)::Message: {
+              if(msg->getHeader()->getMethod() == st(HttpMethod)::Get) {
+                HttpResponse response = createHttpResponse();
+                HttpEntity entity = createHttpEntity();
+                entity->setContent(createString("this is server")->toByteArray());
+                response->setEntity(entity);
+                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                w->write(response);
+              } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Put) {
+                String str = msg->getEntity()->getContent()->toString();
+                if(!str->equals("i am client")) {
+                  TEST_FAIL("TestHttpServer SimpleClientConnect test1");
+                } else {
+                  testResult = true;
+                }
+              }
           }
           break;
 
-          case HttpEvent::Disconnect:{
-              printf("write response disconnect!!! \n");
+          case st(NetEvent)::Disconnect:{
               disconnetlatch->countDown();
           }
           break;
@@ -60,9 +76,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1260))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
@@ -73,5 +90,13 @@ int main() {
   disconnetlatch->await();
   server->close();
   
-  printf("---TestHttpServer SimpleClientConnect test100 [OK]---\n");
+  if(testResult) {
+    TEST_OK("TestHttpServer SimpleClientConnect test100");
+  } else {
+    TEST_FAIL("TestHttpServer SimpleClientConnect test2");
+  }
+
+  port++;
+  setEnvPort(port);
+  
 }

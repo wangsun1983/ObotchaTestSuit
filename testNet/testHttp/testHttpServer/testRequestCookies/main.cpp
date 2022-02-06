@@ -14,6 +14,10 @@
 #include "Inet4Address.hpp"
 #include "CountDownLatch.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 CountDownLatch latch = createCountDownLatch(1);
@@ -23,33 +27,32 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
-        case HttpEvent::Connect: {
+        case st(NetEvent)::Connect: {
             //connectCount->incrementAndGet();
         }
         break;
 
-        case HttpEvent::Message: {
+        case st(NetEvent)::Message: {
             //messageCount->incrementAndGet();
             HttpHeader header = msg->getHeader();
             auto cookies = header->getCookies();
-            printf("cookies size is %d \n",cookies->size());
             
             auto v1 = cookies->get(0);
             if(!v1->getName()->equals("tag1")) {
-                printf("---TestHttpServer Request Cookie test1 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Cookie test1");
             }
 
             if(!v1->getValue()->equals("value1")) {
-                printf("---TestHttpServer Request Cookie test2 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Cookie test2");
             }
 
             auto v2 = cookies->get(1);
             if(!v2->getName()->equals("tag2")) {
-                printf("---TestHttpServer Request Cookie test3 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Cookie test3");
             }
 
             if(!v2->getValue()->equals("value2")) {
-                printf("---TestHttpServer Request Cookie test4 [FAILED]---\n");
+                TEST_FAIL("TestHttpServer Request Cookie test4");
             }
 
             HttpResponse response = createHttpResponse();
@@ -59,7 +62,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
         }
         break;
 
-        case HttpEvent::Disconnect:{
+        case st(NetEvent)::Disconnect:{
             //disConnectCount->incrementAndGet();
         }
         break;
@@ -69,13 +72,17 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1124))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
   latch->await();
 
-  printf("---TestHttpServer Request Cookie test100[OK]---\n");
+  port++;
+  setEnvPort(port);
+
+  TEST_OK("TestHttpServer Request Cookie test100");
 }
