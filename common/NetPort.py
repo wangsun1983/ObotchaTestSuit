@@ -12,7 +12,7 @@ def setEnvPort(port):
     if port > 60000:
         port = 2001
     fo = open("/tmp/obotcha_test_suit_port.txt", "w")
-    fo.write(port)
+    fo.write(str(port))
     fo.close()
 
 def resetEnvPort():

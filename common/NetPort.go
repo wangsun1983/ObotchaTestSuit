@@ -12,7 +12,7 @@ func GetEnvPort() int{
     data, err := ioutil.ReadFile("/tmp/obotcha_test_suit_port.txt")
     if err != nil {
         fmt.Println("File reading error", err)
-        return -1
+        return 2001
     }
     int5, err := strconv.Atoi(string(data))
     return int5

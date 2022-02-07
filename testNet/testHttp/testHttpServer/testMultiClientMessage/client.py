@@ -22,10 +22,11 @@ class ConnectThread(threading.Thread):
         url = "127.0.0.1:" + str(getEnvPort());
 
         self.client = http.client.HTTPConnection(url)
-        while count < 1024*32:
+        while self.count < 1024:
             try:
                 #print("trace1,id" + str(self.threadid))
-                params = str(self.threadid)
+                #params = str(self.threadid)
+                params = "hello world"
                 self.client.request("GET","/index",params)
                 #print("trace2,id" + str(self.threadid))
                 #response.read()
