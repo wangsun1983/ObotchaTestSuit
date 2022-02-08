@@ -16,6 +16,10 @@
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "NetEvent.hpp"
+
 using namespace obotcha;
 
 AtomicInteger connectCount = createAtomicInteger(0);
@@ -36,19 +40,19 @@ public:
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               HttpResponse response = createHttpResponse();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
               w->write(response);
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               disconnetlatch->countDown();
           }
           break;
@@ -57,9 +61,11 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
+
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1259))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
@@ -70,5 +76,7 @@ int main() {
   disconnetlatch->await();
   server->close();
   
-  printf("---TestHttpServer MultiClientConnect test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttpServer MultiClientConnect test100");
 }
