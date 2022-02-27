@@ -22,11 +22,9 @@
 
 using namespace obotcha;
 
-
 CountDownLatch latch = createCountDownLatch(32);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-
 
 void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
@@ -40,7 +38,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             File file = createFile("data");
-            response->getEntity()->setChunkFile(file);
+            response->getEntity()->setChunk(file);
             w->write(response);
             latch->countDown();
         }
@@ -105,5 +103,5 @@ int main() {
   port++;
   setEnvPort(port);
   TEST_OK("TestHttpServer testChunckFileServer test100");
-  
+
 }

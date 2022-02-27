@@ -8,6 +8,7 @@
 #include "HttpHeaderReferer.hpp"
 #include "Math.hpp"
 #include "TestLog.hpp"
+#include "NetProtocol.hpp"
 
 using namespace obotcha;
 
@@ -33,7 +34,7 @@ void testParse() {
       break;
     }
 
-    if(!url->getScheme()->equals("https")) {
+    if(url->getScheme() != st(NetProtocol)::Https) {
       TEST_FAIL("[HttpHeaderReferer test parse case3]");
       break;
     }

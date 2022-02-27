@@ -38,7 +38,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
           case st(NetEvent)::Connect: {
-              
+
           }
           break;
 
@@ -51,8 +51,8 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 step = 1;
               } else {
                 String entity = msg->getEntity()->getContent()->toString();
-                if(!entity->equals("hello this is server")) {
-                  TEST_FAIL("TestHttpServer SimpleClientContent test1,entity is %s",entity->toChars());
+                if(!entity->equals("hello this is client")) {
+                  TEST_FAIL("TestHttpServer_Go SimpleClientContent test1,entity is %s",entity->toChars());
                 }
                 connectlatch->countDown();
               }
@@ -84,7 +84,7 @@ int main() {
   port++;
   setEnvPort(port);
 
-  TEST_OK("TestHttpServer SimpleClientContent test100");
+  TEST_OK("TestHttpServer_Go SimpleClientContent test100");
 
   return 0;
 }

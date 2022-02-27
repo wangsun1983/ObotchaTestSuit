@@ -1,7 +1,7 @@
 package main
- 
+
 import (
-    "fmt"
+    //"fmt"
     "io/ioutil"
     "net/http"
     "strings"
@@ -10,7 +10,7 @@ import (
     //"fmt"
     "strconv"
 )
- 
+
 func main() {
     port := testnet.GetEnvPort()
     url := "http://127.0.0.1:" + strconv.Itoa(port) + "/mytest"
@@ -19,14 +19,23 @@ func main() {
     if err != nil {
         return
     }
-        //执行close之前一定要判断错误，如没有body会崩溃
+    //执行close之前一定要判断错误，如没有body会崩溃
     defer res.Body.Close()
-        //重用连接一定要执行上和下两步
+    //重用连接一定要执行上和下两步
     body, _ := ioutil.ReadAll(res.Body)
-    fmt.Println(string(body))
-        fmt.Println(res.Status)
-    for k, v := range res.Header {
-        fmt.Println(k, strings.Join(v, ""))
+    //fmt.Println(string(body))
+    //    fmt.Println(res.Status)
+    //for k, v := range res.Header {
+    //    fmt.Println(k, strings.Join(v, ""))
+    //}
+    if string(body) == "hello this is server" {
+      client := &http.Client{}
+      req, err := http.NewRequest("POST", url, strings.NewReader("hello this is client"))
+      if err != nil {
+          // handle error
+      }
+
+      client.Do(req)
+      //defer resp.Body.Close()
     }
- 
 }

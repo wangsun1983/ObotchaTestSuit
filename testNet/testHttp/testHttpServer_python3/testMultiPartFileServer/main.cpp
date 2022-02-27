@@ -55,7 +55,7 @@ public:
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
               if(multiPart != nullptr && multiPart->contents != nullptr) {
-                multiPart->contents->foreach([](KeyValuePair<String,String> pair){
+                multiPart->contents->foreach([](Pair<String,String> pair){
                   //printf("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
                   return 1;
                 });
@@ -70,7 +70,7 @@ public:
                     String v2 = md5->encrypt(createFile(f->getAbsolutePath()->toChars()));
                     if(v1 != v2) {
                       TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
-                    } 
+                    }
                     return 1;
                   });
               }
