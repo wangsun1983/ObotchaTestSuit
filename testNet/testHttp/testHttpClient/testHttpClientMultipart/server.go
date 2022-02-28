@@ -9,18 +9,23 @@ import (
   "strings"
   "archive/zip"
   "bytes"
+  "../../../../common"
+  "strconv"
 )
 
 func main() {
+  port := testnet.GetEnvPort()
 	testHandler := http.HandlerFunc(onTest)
 	http.Handle("/test", testHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":" + strconv.Itoa(port) , nil)
+  port = port + 1
+  testnet.SetEnvPort(port)
 }
 
 
 func onTest(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseMultipartForm(32 << 20) // maxMemory 32MB
-  log.Printf("err is %d \n",err)
+  log.Printf("err is %v \n",err)
 
   if r.MultipartForm.Value != nil {
       parseMultipartFormValue(r.MultipartForm.Value)

@@ -39,6 +39,8 @@ void testMultipartRequest() {
 
   HttpMultiPart multipart = createHttpMultiPart();
   //TODO
+  multipart->addFile(createFile("data"),createString("haha"));
+
   post->getEntity()->setMultiPart(multipart);
 
   HttpClient client = createHttpClient();
