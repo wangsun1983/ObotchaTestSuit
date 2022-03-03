@@ -107,16 +107,15 @@ NameMap names[1024] = {
 
 void testNameIdConvert() {
   for(int i = st(HttpMime)::TypeTextHtml;i <st(HttpMime)::TypeMax;i++ ) {
-      HttpMime mime = createHttpMime();
-      mime->setTypeId(i);
-      String f1 = mime->getTypeName();
+      HttpMime mime = st(HttpMime)::createById(i);
+      //mime->setTypeId(i);
+      String f1 = mime->getName();
       if(!f1->equals(names[i].name)) {
         TEST_FAIL("[TestHttpMime name to id case1]");
       }
 
-      mime->setTypeName(f1);
-      if(mime->getTypeId() != i) {
-        TEST_FAIL("[TestHttpMime name to id case2] ,i is %d,id is %d",i,mime->getTypeId());
+      if(mime->getId() != i) {
+        TEST_FAIL("[TestHttpMime name to id case2] ,i is %d,id is %d",i,mime->getId());
       }
   }
 

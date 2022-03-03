@@ -49,14 +49,14 @@ int main() {
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Append);
+        FileOutputStream stream1 = createFileOutputStream(file);
+        stream1->open(st(OutputStream)::Append);
         String data = createString("");
         for(int i = 0;i < 1024;i++) {
           data = data->append(createString(st(System)::currentTimeMillis()));
         }
-        stream->write(data->toByteArray());
-        stream->close();
+        stream1->write(data->toByteArray());
+        stream1->close();
       }
     }
 

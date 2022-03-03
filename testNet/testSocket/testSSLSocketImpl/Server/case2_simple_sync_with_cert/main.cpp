@@ -13,7 +13,10 @@ using namespace obotcha;
 
 //openssl genrsa -out server.key 2048
 //openssl req -new -key server.key -out server.csr
-//openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt -extensions v3_req
+
+//echo subjectAltName = IP:127.0.0.1 > extfile.cnf
+//openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt -extfile extfile.cnf
+
 
 String message = createString("");
 bool isFirst = true;
@@ -25,7 +28,6 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
-    printf("onSocketMessage,event is %d \n",event);
     switch(event) {
       case st(NetEvent)::Message: {
         if(isFirst) {
@@ -62,7 +64,7 @@ int main() {
   port++;
   setEnvPort(port);
   monitor->close();
-  
+
   TEST_OK("testSSLSocketImpl simple sync case100");
 
 }

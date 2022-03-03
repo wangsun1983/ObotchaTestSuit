@@ -11,10 +11,10 @@
 using namespace obotcha;
 
 void check(String suffix,int expectedId) {
-  HttpMime mime = createHttpMime();
-  mime->setSuffix(suffix);
-  if(mime->getTypeId() != expectedId) {
-    TEST_FAIL("[TestHttpMime suffix to id case1],id is %d,expectedId is %d,suffix is %s",mime->getTypeId(),expectedId,suffix->toChars());
+  HttpMime mime = st(HttpMime)::createBySuffix(suffix);
+  //mime->setSuffix(suffix);
+  if(mime->getId() != expectedId) {
+    TEST_FAIL("[TestHttpMime suffix to id case1],id is %d,expectedId is %d,suffix is %s",mime->getId(),expectedId,suffix->toChars());
   }
 }
 

@@ -24,7 +24,7 @@ void testFileInputStreamSeekTo() {
 
     ByteArray buff = createByteArray(32*1024);
     while(1) {
-        int length = stream->readTo(buff);
+        int length = stream->read(buff);
         if(length == 0) {
           break;
         }
@@ -61,7 +61,7 @@ void testFileInputStreamSeekTo() {
 
     fd = open("./tmp/read_to_case2.txt",O_CREAT|O_WRONLY|O_APPEND,0666);
     while(1) {
-        int length = stream->readTo(buff);
+        int length = stream->read(buff);
         if(length == 0) {
           break;
         }

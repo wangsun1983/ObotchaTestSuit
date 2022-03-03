@@ -16,7 +16,7 @@ s = socket(AF_INET,SOCK_DGRAM)
 addr = (host,port)
 
 buf=4096*32
-f = open("file",'wb')
+#f = open("data",'wb')
 
 with open('data', 'r') as fp:
     while True:

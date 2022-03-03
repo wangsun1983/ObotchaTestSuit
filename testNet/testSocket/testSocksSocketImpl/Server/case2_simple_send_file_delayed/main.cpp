@@ -26,6 +26,7 @@ public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
       case st(NetEvent)::Message:
+        //printf("i accept message \n");
         stream->write(data);
         filesize -= data->size();
         if(filesize == 0) {

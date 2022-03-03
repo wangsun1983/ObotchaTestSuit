@@ -42,19 +42,29 @@ void testOrpcHashMap() {
     value1->m2 = 111222;
 
     MyTestMapKey key2 = createMyTestMapKey();
-    key1->v1 = 222;
+    key2->v1 = 222;
 
     MyTestMapValue value2 = createMyTestMapValue();
     value2->m1 = createString("value2");
     value2->m2 = 333444;
 
+    mm->map->put(key1,value1);
     mm->map->put(key2,value2);
 
-    ByteArray data = mm->toByteArray();
+    ByteArray data = mm->serialize();
     printf("data size is %d \n",data->size());
 
     MyTestDataMap mm2 = createMyTestDataMap();
-    mm2->import(data);
+    mm2->deserialize(data);
 
     printf("mm2 size is %d \n",mm2->map->size());
+    MapIterator<MyTestMapKey,MyTestMapValue> iterator = mm2->map->getIterator();
+    while(iterator->hasValue()) {
+        MyTestMapKey key = iterator->getKey();
+        printf("key v1 is %d \n",key->v1);
+
+        MyTestMapValue value = iterator->getValue();
+        printf("value m1 is %s,m2 is %d \n",value->m1->toChars(),value->m2);
+        iterator->next();
+    }
 }

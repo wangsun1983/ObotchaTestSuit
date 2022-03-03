@@ -28,8 +28,10 @@ extern void testArrayList_Iterator_GetValue();
 extern void testArrayListForEach();
 extern void testArrayList_RemoveAt();
 extern void testArrayList_Iterator_Insert();
+extern void testArrayList_Contains();
 
 int main() {
+  testArrayList_Contains();
   testArrayList_Integer();
   testArrayList_MyData();
   testArrayList_String();

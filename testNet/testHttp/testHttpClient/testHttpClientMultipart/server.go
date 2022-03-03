@@ -8,13 +8,18 @@ import (
   "io/ioutil"
   "strings"
   "archive/zip"
-  "bytes"
+  //"bytes"
   "../../../../common"
   "strconv"
+  "os"
+  "fmt"
+  "time"
 )
 
 func main() {
   port := testnet.GetEnvPort()
+  fmt.Println("port is ",port)
+
 	testHandler := http.HandlerFunc(onTest)
 	http.Handle("/test", testHandler)
 	http.ListenAndServe(":" + strconv.Itoa(port) , nil)
@@ -22,6 +27,10 @@ func main() {
   testnet.SetEnvPort(port)
 }
 
+func close() {
+  time.Sleep(time.Duration(1)*time.Second)
+  os.Exit(0);
+}
 
 func onTest(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseMultipartForm(32 << 20) // maxMemory 32MB
@@ -34,6 +43,10 @@ func onTest(w http.ResponseWriter, r *http.Request) {
   if r.MultipartForm.File != nil {
       parseMultipartFormFile(r, r.MultipartForm.File)
   }
+
+  w.WriteHeader(http.StatusOK)
+  io.WriteString(w, "finish")
+  go close()
 	return
 }
 
@@ -71,9 +84,17 @@ func parseMultipartFormFile(r *http.Request, formFiles map[string][]*multipart.F
                 log.Printf("     formfile[%d]: filename=[%s], size=%d, content=[%s]\n", i, zipMember.Name, len(buf), strings.TrimSuffix(string(buf), "\n"))
             }
         } else {
-            var b bytes.Buffer
-            _, _ = io.Copy(&b, formFile)
-            log.Printf("     formfile: content=[%s]\n", strings.TrimSuffix(b.String(), "\n"))
+            fmt.Println("sssss")
+            //var b bytes.Buffer
+            //_, _ = io.Copy(&b, formFile)
+            //log.Printf("     formfile: content=[%s]\n", strings.TrimSuffix(b.String(), "\n"))
+            of,err2 := os.Create("./tmp/file1.text")
+            if err2 != nil {
+              fmt.Println("create file failed")
+              return
+            }
+            defer of.Close()
+            io.Copy(of,formFile)
         }
     }
 }

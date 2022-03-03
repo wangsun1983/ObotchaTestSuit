@@ -38,10 +38,10 @@ void testOrpcArrayList() {
     list->ll->add(member1);
     list->ll->add(member2);
 
-    ByteArray array = list->toByteArray();
+    ByteArray array = list->serialize();
 
     MyTestDataList list2 = createMyTestDataList();
-    list2->import(array);
+    list2->deserialize(array);
 
     MyTestArrayListMember member1_X = list2->ll->get(0);
     printf("m1 is %s,m2 is %d \n",member1_X->m1->toChars(),member1_X->m2);

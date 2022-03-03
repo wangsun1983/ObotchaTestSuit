@@ -23,13 +23,10 @@ with open('data', 'r') as fp:
     while True:
         data = fp.read(1024*4)
         s.sendto(data,addr)
-        
+
         if not data:
             break;
 
         data1,addr2 = s.recvfrom(buf)
-
-port = port + 1
-setEnvPort(port)
 
 print "Upload Donwloaded"

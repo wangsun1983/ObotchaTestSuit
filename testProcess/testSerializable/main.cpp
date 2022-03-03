@@ -11,9 +11,13 @@ using namespace obotcha;
 extern void testOrpcSimpleCase();
 extern void testOrpcArrayList();
 extern void testOrpcHashMap();
+extern void testInnerClass();
+extern void testByteArray();
 
 int main() {
   //testOrpcSimpleCase();
   //testOrpcArrayList();
-    testOrpcHashMap();
+  // testOrpcHashMap();
+  //testInnerClass();
+  testByteArray();
 }
