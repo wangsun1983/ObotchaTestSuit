@@ -33,7 +33,7 @@ int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
-    /*
+    
       switch(event) {
           case HttpEvent::Connect: {
               
@@ -62,7 +62,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
       }
-      */
+      
   }
 };
 

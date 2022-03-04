@@ -16,6 +16,7 @@
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
 #include "Http2Server.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
@@ -33,43 +34,34 @@ int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
-    /*
+    
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               printf("write response connect!!! \n");
-              //if(step == 0) {
-              //  HttpResponse response = createHttpResponse();
-              //  response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-              //  response->getEntity()->setContent(createString("hello this is server")->toByteArray());
-              //  w->write(response);
-              //  step = 1;
-              //} else {
-              //  String entity = msg->getEntity()->getContent()->toString();
-              //  if(!entity->equals("hello this is server")) {
-              //    printf("---TestHttpServer SimpleClientContent test1 [FAILED]---,entity is %s\n",entity->toChars());
-              //  }
-              //  connectlatch->countDown();
-              //}
+              ByteArray data = createString("hello,this is server!!!")->toByteArray();
+              HttpHeader h = createHttpHeader();
+              h->set("a","valuea");
+              Http2Packet packet = createHttp2Packet(h,data);
+              w->write(packet);
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
           }
           break;
       }
-      */
   }
 };
 
 int main() {
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1268))
+                    ->setAddress(createInet4Address(1372))
                     ->setHttp2Listener(listener)
                     ->setProtocol(st(HttpProtocol)::Http_H2C)
                     ->buildHttp2Server();
