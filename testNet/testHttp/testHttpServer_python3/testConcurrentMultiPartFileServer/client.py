@@ -46,7 +46,7 @@ class UploadThread(threading.Thread):
 
 threads= []
 index = 0
-while index < 128:    
+while index < 32:    
     #print "trace1"
     t = UploadThread(index);
     t.start()

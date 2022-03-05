@@ -15,6 +15,7 @@ import (
 func main() {
   port := testnet.GetEnvPort()
   url := "http://127.0.0.1:" + strconv.Itoa(port) + "/mytest"
+  fmt.Println("url is ",url)
 
   for i := 0; i < 32; i++ {
   	req, _ := newfileUploadRequest(url, nil, "file", "data")

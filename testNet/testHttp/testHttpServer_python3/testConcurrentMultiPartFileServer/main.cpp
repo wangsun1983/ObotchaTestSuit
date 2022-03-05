@@ -22,7 +22,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(16*128);
+CountDownLatch latch = createCountDownLatch(16*32);
 long prepareFilesize = 0;
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -54,15 +54,17 @@ public:
               //TEST_FAIL("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
-              if(multiPart != nullptr && multiPart->contents != nullptr) {
-                multiPart->contents->foreach([](KeyValuePair<String,String> pair){
+              auto contents = multiPart->getContents();
+              if(contents != nullptr) {
+                contents->foreach([](Pair<String,String> pair){
                   //TEST_FAIL("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
                   return 1;
                 });
               }
 
-              if(multiPart != nullptr && multiPart->files != nullptr) {
-                  multiPart->files->foreach([](HttpMultiPartFile file){
+              auto files = multiPart->getFiles();
+              if(files != nullptr) {
+                  files->foreach([](HttpMultiPartFile file){
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
@@ -127,6 +129,22 @@ int main() {
   latch->await();
 
   server->close();
+
+  //md5 sum
+  File f = createFile("tmp");
+  Md md5sum = createMd();
+
+  String base = md5sum->encrypt(createFile("data"));
+
+  auto files = f->listFiles();
+  auto iterator = files->getIterator();
+  while(iterator->hasValue()) {
+    File f1 = iterator->getValue();
+    if(!md5sum->encrypt(f1)->equals(base)) {
+      TEST_FAIL("TestHttpServer MultiPartFileServer test1,file is %s \n",f1->getAbsolutePath()->toChars());
+    }
+    iterator->next();
+  }
 
   port++;
   setEnvPort(port);

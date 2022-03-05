@@ -51,18 +51,20 @@ public:
           break;
 
           case st(NetEvent)::Message: {
-              //printf("i get a message \n");
+              printf("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
-              if(multiPart != nullptr && multiPart->contents != nullptr) {
-                multiPart->contents->foreach([](KeyValuePair<String,String> pair){
+              auto contents = multiPart->getContents();
+              if(multiPart != nullptr && contents != nullptr) {
+                contents->foreach([](Pair<String,String> pair){
                   //printf("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
                   return 1;
                 });
               }
 
-              if(multiPart != nullptr && multiPart->files != nullptr) {
-                  multiPart->files->foreach([](HttpMultiPartFile file){
+              auto files = multiPart->getFiles();
+              if(multiPart != nullptr && files != nullptr) {
+                  files->foreach([](HttpMultiPartFile file){
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
@@ -116,6 +118,7 @@ int main() {
   h->sendEmptyMessageDelayed(0,10*1024);
 
   int port = getEnvPort();
+  printf("port is %d \n",port);
 
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
@@ -123,7 +126,7 @@ int main() {
                     ->setListener(listener)
                     ->build();
   server->start();
-
+  
   latch->await();
 
   server->close();

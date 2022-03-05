@@ -37,7 +37,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             //messageCount->incrementAndGet();
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-            File file = createFile("data");
+            File file = createFile("./data");
             response->getEntity()->setChunk(file);
             w->write(response);
             latch->countDown();

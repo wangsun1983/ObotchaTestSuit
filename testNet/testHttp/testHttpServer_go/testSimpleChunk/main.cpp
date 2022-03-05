@@ -47,22 +47,23 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               if(isFirst) {
                 HttpResponse response = createHttpResponse();
                 HttpHeader header = createHttpHeader();
-                header->set(st(HttpHeader)::TransferEncoding,"chunked");
-                auto encoding = header->getTransferEncoding();
-                if(encoding == nullptr) {
-                  printf("encoding is nullptr \n");
-                }
+                //header->set(st(HttpHeader)::TransferEncoding,"chunked");
+                //auto encoding = header->getTransferEncoding();
+                //if(encoding == nullptr) {
+                //  printf("encoding is nullptr \n");
+                //}
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 response->setHeader(header);
                 
                 HttpEntity entity = createHttpEntity();
 
                 String arg1 = createString("hello1hello2hello3");
-                entity->setContent(arg1->toByteArray());
+                entity->setChunk(arg1->toByteArray());
 
                 response->setEntity(entity);
 
                 w->write(response);
+                isFirst = false;
               } else {
                 ByteArray arr = msg->getEntity()->getContent();
                 if(arr->toString()->equals("failed")) {
