@@ -29,12 +29,12 @@ func main() {
       }
 
       for i := 0; i < 16; i++ {
-        fmt.Fprintf(writer, "chunk [%02d]: %v\n", i, time.Now())
+        fmt.Fprintf(writer, "hello,i am client,number: %d\n", i)
         flusher.Flush()
-        time.Sleep(time.Second)
+        //time.Sleep(time.Second)
       }
 
-      go close()
+      //go close()
   })
 
   http.ListenAndServe(":" + strconv.Itoa(port), nil)
