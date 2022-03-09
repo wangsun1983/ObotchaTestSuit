@@ -2,7 +2,7 @@
 
 #include "Filament.hpp"
 #include "ArrayList.hpp"
-#include "FilaCroutine.hpp"
+#include "FilaRoutine.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 
@@ -47,12 +47,12 @@ int main(void) {
     MyRun2 f2 = createMyRun2();
     MyRun3 f3 = createMyRun3();
 
-    FilaCroutine croutine = createFilaCroutine();
+    FilaRoutine croutine = createFilaRoutine();
     croutine->start();
 
-    croutine->submit(f1);
-    croutine->submit(f2);
-    croutine->submit(f3);
+    croutine->execute(f1);
+    croutine->execute(f2);
+    croutine->execute(f3);
     latch->await();
     TEST_OK("Filament simple run case100");
   }

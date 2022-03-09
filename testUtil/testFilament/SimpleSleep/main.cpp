@@ -11,11 +11,9 @@
 using namespace std;
 using namespace obotcha;
 
-extern void testSimpleLock();
-extern void testRoutineLock();
+extern void testSimpleSleep();
 
 int main() {
-  testSimpleLock();
-  testRoutineLock();
+  testSimpleSleep();
   return 0;
 }

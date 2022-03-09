@@ -2,7 +2,7 @@
 
 #include "Filament.hpp"
 #include "ArrayList.hpp"
-#include "FilaCroutine.hpp"
+#include "FilaRoutine.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 
@@ -12,24 +12,24 @@ using namespace obotcha;
 CountDownLatch latch = createCountDownLatch(150);
 
 int main(void) {
-    FilaCroutine croutine = createFilaCroutine();
+    FilaRoutine croutine = createFilaRoutine();
     croutine->start();
 
-    croutine->submit([] {
+    croutine->execute([] {
       for(int i = 0;i<50;i++) {
           latch->countDown();
           poll(NULL, 0, 500);
       }
     });
 
-    croutine->submit([] {
+    croutine->execute([] {
       for(int i = 0;i<50;i++) {
           latch->countDown();
           poll(NULL, 0, 1000);
       }
     });
 
-    croutine->submit([] {
+    croutine->execute([] {
       for(int i = 0;i<50;i++) {
           latch->countDown();
           poll(NULL, 0, 200);

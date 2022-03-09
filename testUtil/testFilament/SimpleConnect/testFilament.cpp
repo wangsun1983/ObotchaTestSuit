@@ -36,17 +36,17 @@ int main(void) {
     FilaCroutine croutine = createFilaCroutine();
     croutine->start();
 
-    croutine->submit([] {
+    croutine->execute([] {
         doConnect();
         latch->countDown();
     });
 
-    croutine->submit([] {
+    croutine->execute([] {
         doConnect();
         latch->countDown();
     });
 
-    croutine->submit([] {
+    croutine->execute([] {
         doConnect();
         latch->countDown();
     });
