@@ -26,14 +26,10 @@ void testRoutineLock() {
   usleep(1000*100);
 
   croutine->execute([]{
-    printf("routine2 trace1 \n");
     routineMutex->lock();
-    printf("routine2 trace2 \n");
     poll(NULL, 0, 100);
     routineMutex->unlock();
-    printf("routine2 trace3 \n");
     routinelatch->countDown();
-    printf("routine2 trace4 \n");
   });
 
   routinelatch->await();

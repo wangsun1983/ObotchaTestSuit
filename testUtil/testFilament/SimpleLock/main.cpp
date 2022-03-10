@@ -13,8 +13,10 @@ using namespace obotcha;
 
 extern void testSimpleLock();
 extern void testRoutineLock();
+extern void testAutoLock();
 
 int main() {
+  testAutoLock();
   testSimpleLock();
   testRoutineLock();
   return 0;
