@@ -7,7 +7,6 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "NetEvent.hpp"
-#include "CountDownLatch.hpp"
 
 using namespace obotcha;
 
@@ -17,20 +16,24 @@ bool isFirst = true;
 Mutex mMutex = createMutex();
 Condition mCond = createCondition();
 
-CountDownLatch latch = createCountDownLatch(1024*12);
-
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
       case st(NetEvent)::Message: {
-        if(data != nullptr && data->toString()->equals("hello world")) {
-          latch->countDown();
+        if(isFirst) {
+          int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+          isFirst = false;
+          mCond->notify();
+          return;
         }
+
+        message = message->append(data->toString());
       }
     }
   }
+
 };
 
 int main() {
@@ -38,23 +41,22 @@ int main() {
   InetAddress addr = createInet4Address(port);
   ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor(16);
+  SocketMonitor monitor = createSocketMonitor();
   MyListener l = createMyListener();
   monitor->bind(sock,l);
+  AutoLock ll(mMutex);
+  mCond->wait(mMutex);
 
-  Thread t = createThread([] {
-    while(1) {
-      usleep(1000*1000);
-      printf("count is %d \n",latch->getCount());
-    }
-  });
-  t->start();
-
-  latch->await();
+  sleep(1);
+  int count = message->counts(createString("hello client"));
+    
+  if(message->counts(createString("hello client")) != 50) {
+    TEST_FAIL("---TestDataGramSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+  }
   monitor->close();
 
   port++;
   setEnvPort(port);
-  TEST_OK("Test Tcp Server case5_simple_multi_client test100");
+  TEST_OK("---TestDataGramSocket Server case1_simple_sync test3");
 
 }
