@@ -312,17 +312,17 @@ void testHttpHeaderToString() {
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
     HttpHeaderContentDisposition contentDisp1 = header1->getContentDisposition();
     HttpHeaderContentDisposition contentDisp2 = header2->getContentDisposition();
-    if(!contentDisp1->type->equals(contentDisp2->type)) {
+    if(contentDisp1->getType() != contentDisp2->getType()) {
       TEST_FAIL("[HttpHeaderToString test Parse case35]");
       break;
     }
 
-    if(!contentDisp1->name->equals(contentDisp2->name)) {
+    if(!contentDisp1->getName()->equals(contentDisp2->getName())) {
       TEST_FAIL("[HttpHeaderToString test Parse case36]");
       break;
     }
 
-    if(!contentDisp1->filename->equals(contentDisp2->filename)) {
+    if(!contentDisp1->getFileName()->equals(contentDisp2->getFileName())) {
       TEST_FAIL("[HttpHeaderToString test Parse case37]");
       break;
     }

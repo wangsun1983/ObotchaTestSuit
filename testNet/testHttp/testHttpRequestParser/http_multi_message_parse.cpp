@@ -19,7 +19,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       printf("HttpPacketParser multi message parse case1 [FAILED] \n");
@@ -40,7 +40,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       printf("HttpPacketParser multi message parse case2 [FAILED] \n");
@@ -74,7 +74,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 1) {
       printf("HttpPacketParser multi message parse case3 [FAILED] \n");
@@ -89,7 +89,7 @@ void testMultiMessageParse() {
 
     const char* content2 = "\r\n"
                             "WORLD";
-    parser->pushHttpData(createByteArray((const byte *)content2,strlen(content2)));
+    parser->pushData(createByteArray((const byte *)content2,strlen(content2)));
     packets = parser->doParse();
     if(packets->size() != 1) {
       printf("HttpPacketParser multi message parse case5 [FAILED] \n");
@@ -118,7 +118,7 @@ void testMultiMessageParse() {
     for(;i<strlen(content);i++) {
       ByteArray data = createByteArray(1);
       data[0] = (byte)content[i];
-      parser->pushHttpData(data);
+      parser->pushData(data);
       packets = parser->doParse();
     }
 
@@ -153,7 +153,7 @@ void testMultiMessageParse() {
     for(;i<strlen(content);i++) {
       ByteArray data = createByteArray(1);
       data[0] = (byte)content[i];
-      parser->pushHttpData(data);
+      parser->pushData(data);
       auto ret = parser->doParse();
       packets->add(ret);
     }

@@ -17,10 +17,11 @@ void testChunkOneByteParse() {
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
     ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
     int i = 0;
+    printf("len is %d \n",strlen(content));
     for(;i<strlen(content);i++) {
       ByteArray data = createByteArray(1);
       data[0] = (byte)content[i];
-      parser->pushHttpData(data);
+      parser->pushData(data);
       packets->add(parser->doParse());
     }
 

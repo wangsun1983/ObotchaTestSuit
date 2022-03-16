@@ -21,6 +21,7 @@ CountDownLatch latch = createCountDownLatch(2);
 //Mutex mu = createMutex();
 //Condition cond = createCondition();
 FilaCondition cond = createFilaCondition();
+FilaMutex mu = createFilaMutex();
 
 int value = 0;
 
@@ -29,24 +30,31 @@ int main(void) {
     croutine->start();
 
     croutine->execute([] {
-        //AutoLock l(mu);
-        cond->wait();
+        AutoLock l(mu);
+        printf("c1 start wait\n");
+        cond->wait(mu);
+        printf("c1 finish wait\n");
         value++;
         latch->countDown();
     });
 
     croutine->execute([] {
-        //AutoLock l(mu);
-        cond->wait();
+        printf("c2222 start wait\n");
+        AutoLock l(mu);
+        printf("c2 start wait\n");
+        cond->wait(mu);
+        printf("c2 finish wait\n");
         value++;
         latch->countDown();
     });
 
-
     Thread t = createThread([]{
         sleep(1);
+        printf("start notify all \n");
         cond->notifyAll();
+        printf("finish notify all \n");
     });
+
     t->start();
     latch->await();
     if(value != 2) {

@@ -275,17 +275,17 @@ void testHttpHeaderSet() {
 
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
     HttpHeaderContentDisposition contentDisp = header->getContentDisposition();
-    if(!contentDisp->type->equals("form-data")) {
+    if(contentDisp->getType() != st(HttpHeaderContentDisposition)::FormData) {
       TEST_FAIL("[HttpHeader test Set case35]");
       break;
     }
 
-    if(!contentDisp->name->equals("fieldName")) {
+    if(!contentDisp->getName()->equals("fieldName")) {
       TEST_FAIL("[HttpHeader test Set case36]");
       break;
     }
 
-    if(!contentDisp->filename->equals("filename.jpg")) {
+    if(!contentDisp->getFileName()->equals("filename.jpg")) {
       TEST_FAIL("[HttpHeader test Set case37]");
       break;
     }

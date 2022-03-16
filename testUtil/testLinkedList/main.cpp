@@ -14,9 +14,10 @@ extern void testTakeLast();
 extern void testTakeFirst();
 extern void testLinkedListRemoveAt();
 extern void testLinkedListRemove();
+extern void testLinkeListQueueIterator();
 
 int main() {
-
+    testLinkeListQueueIterator();
     testLinkeListBase();
     testLinkeListQueue();
     testPutFirst();

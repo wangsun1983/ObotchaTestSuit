@@ -8,9 +8,9 @@ extern void testChunkOneByteParse();
 extern void testMultiPartOneByteParse();
 
 int main() {
-  //testMultiMessageParse();
-  //testChunkOneByteParse();
-  //testMultiPartOneByteParse();
+  testMultiMessageParse();
+  testChunkOneByteParse();
+  testMultiPartOneByteParse();
   testHttpParse();
   return 0;
 }

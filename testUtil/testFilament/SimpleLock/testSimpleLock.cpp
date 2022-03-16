@@ -33,7 +33,5 @@ void testSimpleLock() {
       TEST_FAIL("Filament Simple lock case1");
     }
     latch->await();
-    printf("ret is %ld \n",ret);
-
     TEST_OK("Filament Simple lock case100");
   }

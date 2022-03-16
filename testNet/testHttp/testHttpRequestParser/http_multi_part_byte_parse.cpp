@@ -30,13 +30,13 @@ void testMultiPartOneByteParse() {
         "\r\n";
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
-    //parser->pushHttpData(createByteArray((const byte *)content,strlen(content)));
+    //parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
     int i = 0;
     for(;i<strlen(content);i++) {
       ByteArray data = createByteArray(1);
       data[0] = (byte)content[i];
-      parser->pushHttpData(data);
+      parser->pushData(data);
       ArrayList<HttpPacket> r = parser->doParse();
       if(r != nullptr && r->size() != 0) {
         packets->add(r);

@@ -15,8 +15,8 @@ void testDispositionParse() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->import("attachment");
-    if(!disposition->type->equals("attachment")) {
-        TEST_FAIL("[HttpHeaderContentDisposition test Parse case1]");
+    if(disposition->getType() != st(HttpHeaderContentDisposition)::Attachment) {
+        TEST_FAIL("[HttpHeaderContentDisposition test Parse case1],type is %d",disposition->getType());
         break;
     }
     break;
@@ -25,12 +25,12 @@ void testDispositionParse() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->import("attachment; filename=\"filename.jpg\"");
-    if(!disposition->type->equals("attachment")) {
+    if(disposition->getType() != st(HttpHeaderContentDisposition)::Attachment) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case2]");
         break;
     }
 
-    if(!disposition->filename->equals("filename.jpg")) {
+    if(!disposition->getFileName()->equals("filename.jpg")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case3]");
         break;
     }
@@ -40,17 +40,17 @@ void testDispositionParse() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->import("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
-    if(!disposition->type->equals("form-data")) {
+    if(disposition->getType() != st(HttpHeaderContentDisposition)::FormData) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case4]");
         break;
     }
 
-    if(!disposition->filename->equals("filename.jpg")) {
+    if(!disposition->getFileName()->equals("filename.jpg")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case5]");
         break;
     }
 
-    if(!disposition->name->equals("fieldName")) {
+    if(!disposition->getName()->equals("fieldName")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case6]");
         break;
     }

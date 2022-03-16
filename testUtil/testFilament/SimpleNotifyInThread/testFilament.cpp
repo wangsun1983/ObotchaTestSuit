@@ -18,6 +18,7 @@
 using namespace std;
 using namespace obotcha;
 
+FilaMutex fmutex = createFilaMutex();
 FilaCondition cond = createFilaCondition();
 TimeWatcher watcher = createTimeWatcher();
 CountDownLatch latch = createCountDownLatch(2);
@@ -30,15 +31,27 @@ int main(void) {
       usleep(1000*100);
       printf("routine start notify \n");
       cond->notify();
+      latch->countDown();
       printf("routine finish notify \n");
     });
 
     Thread t = createThread([]{
       printf("thread start wait \n");
-      cond->wait();
+      AutoLock l(fmutex);
+      cond->wait(fmutex);
+      latch->countDown();
       printf("thread finish wait \n");
     });
     t->start();
+
+    latch->await();
+	TimeWatcher watcher = createTimeWatcher();
+    watcher->start();
+    t->join();
+    long rs = watcher->stop();
+    if(rs < 95 || rs > 105) {
+      TEST_FAIL("SimpleNotifyInThread case1");
+    }
 
     TEST_OK("SimpleNotifyInThread case100");
   }

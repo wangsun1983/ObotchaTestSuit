@@ -2,7 +2,7 @@
 
 #include "Filament.hpp"
 #include "ArrayList.hpp"
-#include "FilaCroutine.hpp"
+#include "FilaRoutine.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 #include "Inet4Address.hpp"
@@ -33,7 +33,7 @@ void doConnect() {
 }
 
 int main(void) {
-    FilaCroutine croutine = createFilaCroutine();
+    FilaRoutine croutine = createFilaRoutine();
     croutine->start();
 
     croutine->execute([] {

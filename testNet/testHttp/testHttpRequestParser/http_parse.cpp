@@ -1331,7 +1331,7 @@ void testHttpParse() {
         struct message msg = requests[i];
         printf("%s\n",msg.raw);
 
-        parser->pushHttpData(createByteArray((const byte *)msg.raw,strlen(msg.raw)));
+        parser->pushData(createByteArray((const byte *)msg.raw,strlen(msg.raw)));
         ArrayList<HttpPacket> packets = parser->doParse();
         //check size
         if(packets->size() != 1) {
@@ -1499,7 +1499,7 @@ void testHttpParse() {
 
         //check upgrade
         if(msg.upgrade != nullptr && strlen(msg.upgrade) > 0) {
-            String upgrade = entity->getUpgrade();
+            String upgrade = header->getUpgrade()->get();
             if(upgrade == nullptr || !upgrade->equals(msg.upgrade)) {
               printf("HttpPacketParse CheckUpgrade failed,msg.upgrade is %s,parse result is %s \n",msg.upgrade,upgrade->toChars());
               continue;

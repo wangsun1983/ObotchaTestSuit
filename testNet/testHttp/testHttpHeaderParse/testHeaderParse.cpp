@@ -272,17 +272,17 @@ void testHttpHeaderParse() {
 
     //Content-Disposition: form-data; name=\"fieldName\"; filename=\"filename.jpg\"
     HttpHeaderContentDisposition contentDisp = header->getContentDisposition();
-    if(!contentDisp->type->equals("form-data")) {
+    if(contentDisp->getType() != st(HttpHeaderContentDisposition)::FormData) {
       TEST_FAIL("[HttpHeaderParse test Parse case35]");
       break;
     }
 
-    if(!contentDisp->name->equals("fieldName")) {
+    if(!contentDisp->getName()->equals("fieldName")) {
       TEST_FAIL("[HttpHeaderParse test Parse case36]");
       break;
     }
 
-    if(!contentDisp->filename->equals("filename.jpg")) {
+    if(!contentDisp->getFileName()->equals("filename.jpg")) {
       TEST_FAIL("[HttpHeaderParse test Parse case37]");
       break;
     }

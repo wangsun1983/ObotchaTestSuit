@@ -18,6 +18,7 @@
 using namespace std;
 using namespace obotcha;
 
+FilaMutex mm = createFilaMutex();
 FilaCondition cond = createFilaCondition();
 TimeWatcher watcher = createTimeWatcher();
 CountDownLatch latch = createCountDownLatch(2);
@@ -28,7 +29,8 @@ int main(void) {
 
     croutine->execute([] {
         watcher->start();
-        cond->wait();
+        AutoLock l(mm);
+        cond->wait(mm);
         long ret = watcher->stop();
         if(ret < 200 || ret > 205) {
           TEST_FAIL("SimpleNotifyInRoutine case1");
@@ -50,6 +52,6 @@ int main(void) {
     if(rs < 200 || rs > 205) {
       TEST_FAIL("SimpleNotifyInRoutine case2");
     }
-    
+
     TEST_OK("SimpleNotifyInRoutine case100");
   }
