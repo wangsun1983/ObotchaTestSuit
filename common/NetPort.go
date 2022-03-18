@@ -19,7 +19,7 @@ func GetEnvPort() int{
 }
 
 func SetEnvPort(port int) {
-    if err := ioutil.WriteFile("/tmp/obotcha_test_suit_port.txt", []byte(strconv.Itoa(port)), 666); err != nil{
+    if err := ioutil.WriteFile("/tmp/obotcha_test_suit_port.txt", []byte(strconv.Itoa(port)), 0666); err != nil{
         os.Exit(111)
         log.Println(err.Error())
     }

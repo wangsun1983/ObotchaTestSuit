@@ -48,7 +48,7 @@ print("start!!!")
 
 threads= []
 index = 0
-while index < 128:    
+while index < 32:    
     #print "trace1"
     t = ConnectThread(index);
     t.start()

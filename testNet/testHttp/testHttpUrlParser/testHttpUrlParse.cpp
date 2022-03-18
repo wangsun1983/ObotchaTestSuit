@@ -31,8 +31,8 @@ void testHttpUrlParse() {
     //HttpUrlParser parser = createHttpUrl(request);
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
-    if(!url->getScheme()->equals("http")) {
-      TEST_FAIL("[HttpUrlParse test Parse case2],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Http) {
+      TEST_FAIL("[HttpUrlParse test Parse case2],scheme is %d",url->getScheme());
       break;
     }
 
@@ -84,8 +84,8 @@ void testHttpUrlParse() {
   while(1) {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
     HttpUrl url = createHttpUrl(request);
-    if(!url->getScheme()->equals("http")) {
-      TEST_FAIL("[HttpUrlParse test Parse case11],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Http) {
+      TEST_FAIL("[HttpUrlParse test Parse case11],scheme is %d",url->getScheme());
       break;
     }
 
@@ -99,8 +99,8 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(url->getPort() != -1) {
-      TEST_FAIL("[HttpUrlParse test Parse case14]");
+    if(url->getPort() != 80) {
+      TEST_FAIL("[HttpUrlParse test Parse case14],port is %d",url->getPort());
       break;
     }
 
@@ -135,8 +135,8 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://su:abc@localhost/test/wangsl/01234");
-    if(!url->getScheme()->equals("https")) {
-      TEST_FAIL("[HttpUrlParse test Parse case22],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Https) {
+      TEST_FAIL("[HttpUrlParse test Parse case22],scheme is %d",url->getScheme());
       break;
     }
 
@@ -165,8 +165,8 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb/test/wangsl/01234");
-    if(!url->getScheme()->equals("https")) {
-      TEST_FAIL("[HttpUrlParse test Parse case27],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Https) {
+      TEST_FAIL("[HttpUrlParse test Parse case27],scheme is %d",url->getScheme());
       break;
     }
 
@@ -194,8 +194,8 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123");
-    if(!url->getScheme()->equals("https")) {
-      TEST_FAIL("[HttpUrlParse test Parse case32],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Https) {
+      TEST_FAIL("[HttpUrlParse test Parse case32],scheme is %d",url->getScheme());
       break;
     }
 
@@ -231,8 +231,8 @@ void testHttpUrlParse() {
     //HttpUrlParser parser = createHttpUrl(request);
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
-    if(url->getScheme() != nullptr) {
-      TEST_FAIL("[HttpUrlParse test Parse case38],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != -1) {
+      TEST_FAIL("[HttpUrlParse test Parse case38],scheme is %d",url->getScheme());
       break;
     }
 
@@ -283,8 +283,8 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
-    if(!url->getScheme()->equals("https")) {
-      TEST_FAIL("[HttpUrlParse test Parse case49],scheme is %s",url->getScheme()->toChars());
+    if(url->getScheme() != st(NetProtocol)::Https) {
+      TEST_FAIL("[HttpUrlParse test Parse case49],scheme is %d",url->getScheme());
       break;
     }
 

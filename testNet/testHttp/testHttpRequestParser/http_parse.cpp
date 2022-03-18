@@ -519,6 +519,7 @@ const struct message requests[] =
     ,.body= ""
     }
 
+#if 0
 #define CONNECT_REQUEST 17
 , {.name = "connect request"
     ,.type= st(HttpHeader)::Type::Request
@@ -545,6 +546,7 @@ const struct message requests[] =
                          }
     ,.body= ""
     }
+#endif
 
 #define REPORT_REQ 18
 , {.name= "report request"
@@ -567,7 +569,7 @@ const struct message requests[] =
     }
 
 
-/*
+
 #define NO_HTTP_VERSION 19
 , {.name= "request with no http version"
     ,.type= st(HttpHeader)::Type::Request
@@ -587,7 +589,7 @@ const struct message requests[] =
     ,.headers= {}
     ,.body= ""
     }
-*/
+
 #define MSEARCH_REQ 20
 , {.name= "m-search request"
     ,.type= st(HttpHeader)::Type::Request
@@ -1108,6 +1110,7 @@ const struct message requests[] =
     ,.body= "sweet post body"
     }
 
+#if 0
 #define CONNECT_WITH_BODY_REQUEST 39
 , {.name = "connect with body request"
     ,.type= st(HttpHeader)::Type::Request
@@ -1132,6 +1135,7 @@ const struct message requests[] =
                          }
     ,.body= ""
     }
+#endif
 
 /* Examples from the Internet draft for LINK/UNLINK methods:
  * https://tools.ietf.org/id/draft-snell-link-method-01.html#rfc.section.5
@@ -1323,8 +1327,7 @@ void testHttpParse() {
     //struct message requests
     int size = sizeof(requests)/sizeof(struct message);
 
-    //for(int i = 0;i<31;i++) {
-    for(int i = 8;i<9;i++) {
+    for(int i = 0;i<size;i++) {
         printf("////HttpPacketParser start %d ////\n",i);
 
         HttpPacketParserImpl parser = createHttpPacketParserImpl();
@@ -1408,7 +1411,15 @@ void testHttpParse() {
 
         //check body
         if(strlen(msg.body) > 0) {
-            String content = entity->getContent()->toString();
+            String content = nullptr;
+            if(msg.num_chunks_complete != 0) {
+              printf("get trace1 \n");
+              content = entity->getChunk()->getData()->toString();
+            } else {
+              printf("get trace2 \n");
+              content = entity->getContent()->toString();
+            }
+
             if(content == nullptr || !content->equals(msg.body)) {
                 printf("HttpPacketParse CheckBody failed,msg.body is %s,parse result is %s \n",msg.body,content->toChars());
                 continue;

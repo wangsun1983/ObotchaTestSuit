@@ -31,28 +31,21 @@ int main(void) {
 
     croutine->execute([] {
         AutoLock l(mu);
-        printf("c1 start wait\n");
         cond->wait(mu);
-        printf("c1 finish wait\n");
         value++;
         latch->countDown();
     });
 
     croutine->execute([] {
-        printf("c2222 start wait\n");
         AutoLock l(mu);
-        printf("c2 start wait\n");
         cond->wait(mu);
-        printf("c2 finish wait\n");
         value++;
         latch->countDown();
     });
 
     Thread t = createThread([]{
         sleep(1);
-        printf("start notify all \n");
         cond->notifyAll();
-        printf("finish notify all \n");
     });
 
     t->start();

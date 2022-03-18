@@ -19,14 +19,14 @@ using namespace obotcha;
 CountDownLatch latch = createCountDownLatch(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
-public:    
+public:
 
     int onData(WebSocketFrame data) {
         String message = data->getData()->toString();
         if(!message->equals("i am server")) {
             TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
         }
-        
+
         latch->countDown();
         return 0;
     }
@@ -56,7 +56,6 @@ public:
 
 int main() {
     MyWsListener l = createMyWsListener();
-
     WebSocketClient client = createWebSocketClient();
     int port = getEnvPort();
     String url = createString("ws://127.0.0.1:")->append(createString(port));

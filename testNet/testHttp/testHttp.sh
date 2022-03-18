@@ -9,7 +9,17 @@ function start(){
         echo $element
         if [ -d $element ]
         then
-            prebuild $element
+            if [ "$element" == "./testHttpServer_go" ];then
+              cd $element
+              ./testHttpServer_go.sh
+              cd ..
+            elif [ "$element" == "./testHttpServer_python3" ];then
+              cd $element
+              ./testHttpServer_python3.sh
+              cd ..
+            else
+              prebuild $element
+            fi
         else
             echo ------------No build $element !!!!!!!!------------
         fi

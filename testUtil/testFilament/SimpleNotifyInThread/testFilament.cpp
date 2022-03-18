@@ -14,6 +14,7 @@
 #include "Thread.hpp"
 #include "FilaCondition.hpp"
 #include "TimeWatcher.hpp"
+#include "System.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -28,26 +29,23 @@ int main(void) {
     croutine->start();
 
     croutine->execute([] {
-      usleep(1000*100);
-      printf("routine start notify \n");
+      usleep(1000*200);
+      AutoLock l(fmutex);
       cond->notify();
       latch->countDown();
-      printf("routine finish notify \n");
     });
 
     Thread t = createThread([]{
-      printf("thread start wait \n");
       AutoLock l(fmutex);
       cond->wait(fmutex);
       latch->countDown();
-      printf("thread finish wait \n");
     });
     t->start();
+    usleep(1000*100);
 
-    latch->await();
-	TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = createTimeWatcher();
     watcher->start();
-    t->join();
+    latch->await();
     long rs = watcher->stop();
     if(rs < 95 || rs > 105) {
       TEST_FAIL("SimpleNotifyInThread case1");

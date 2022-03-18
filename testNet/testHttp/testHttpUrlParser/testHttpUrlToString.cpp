@@ -17,7 +17,7 @@ void testHttpUrlToString() {
     const char *raw= "/demo";
     HttpUrl url = createHttpUrl(raw);
     if(!url->toString()->equals("/demo")) {
-      TEST_FAIL("[HttpUrlToString test case1_1]");
+      TEST_FAIL("[HttpUrlToString test case1_1,url is %s]",url->toString()->toChars());
     }
     break;
   }

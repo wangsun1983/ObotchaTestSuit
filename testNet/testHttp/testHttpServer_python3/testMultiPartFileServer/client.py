@@ -32,11 +32,11 @@ while count < 32:
 
     headers['Content-Type'] = multipart_encoder.content_type
 
-    print("send start")
+    #print("send start")
     requests.post(url, data=multipart_encoder, headers=headers)
     #responseStr.read();
     count = count + 1
-    print("send complete")
+    #print("send complete")
 
 print("get response")
     #print(response.text)

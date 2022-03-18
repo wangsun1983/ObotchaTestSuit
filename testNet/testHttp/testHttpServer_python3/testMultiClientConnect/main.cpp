@@ -33,7 +33,7 @@ DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
   void handleMessage(Message msg) {
     printf("connect is %d,disconnect is %d \n",connectlatch->getCount(),disconnetlatch->getCount());
-    this->sendEmptyMessageDelayed(0,10*1024);
+    this->sendEmptyMessageDelayed(0,10*1000);
   }
 };
 
@@ -68,10 +68,9 @@ int main() {
                     ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
-  //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
   MyHandler h = createMyHandler();
-  h->sendEmptyMessageDelayed(0,10*1024);
+  h->sendEmptyMessageDelayed(0,10*1000);
   connectlatch->await();
   disconnetlatch->await();
   server->close();

@@ -26,7 +26,7 @@ AtomicInteger connectCount = createAtomicInteger(0);
 AtomicInteger disConnectCount = createAtomicInteger(0);
 AtomicInteger messageCount = createAtomicInteger(0);
 
-CountDownLatch messageLatch = createCountDownLatch(1024*128);
+CountDownLatch messageLatch = createCountDownLatch(1024*32);
 
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {

@@ -2,47 +2,63 @@
 #include "SocketMonitor.hpp"
 #include "File.hpp"
 #include "FileInputStream.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+#include "Inet4Address.hpp"
+#include "CountDownLatch.hpp"
+#include "Md.hpp"
+#include "SampleFile.hpp"
+#include "NetEvent.hpp"
 
 using namespace obotcha;
 
+CountDownLatch latch = createCountDownLatch(1);
+
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
-    void onSocketMessage(int,Socket,ByteArray) {
-
+    void onSocketMessage(int event,Socket,ByteArray) {
+      if(event == st(NetEvent)::Disconnect) {
+        latch->countDown();
+      }
     }
 };
 
 int main() {
+    //create testFile;
+    createSampleFile(createFile("data"),1024*1024*16);
+
+    int port = 2007;//getEnvPort();
     Socket s = createSocketBuilder()
-                ->setAddress(createInetAddress(createString("192.168.1.6"),1234))
+                ->setAddress(createInet4Address(port))
                 ->newSocket();
 
     s->connect();
 
     SocketMonitor monitor = createSocketMonitor();
     monitor->bind(s,createMyListener());
-    
+
     OutputStream stream = s->getOutputStream();
+
     long index = 0;
- 
-    File file = createFile("testdata.img");
+
+    File file = createFile("data");
+
     FileInputStream inputstream = createFileInputStream(file);
     inputstream->open();
-    
+
     while(1) {
         ByteArray data = createByteArray(1024*4);
-        int length = inputstream->read(index,data);
+        int length = inputstream->read(data);
         index += length;
-        //printf("start write,data size is %d,length is %d,index is %ld \n",data->size(),length,index);
-        stream->write(data,length);
+        data->quickShrink(length);
+        stream->write(data);
+        data->quickRestore();
         if(index >= file->length()) {
             break;
         }
     }
 
     printf("index is %ld \n",index);
+    latch->await();
 
-    while(1) {
-        sleep(1);
-    }
 }

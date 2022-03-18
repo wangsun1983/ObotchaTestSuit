@@ -34,9 +34,9 @@ void testParse() {
 
   ByteRingArrayReader reader = createByteRingArray(array);
   HttpChunkParser parser = createHttpChunkParser(reader);
-  ByteArray rs = parser->doParse();
-  if(!rs->toString()->equals(result)) {
-    TEST_FAIL("HttpHeaderSecFetchMode test Parse case1,rs is %s \n",rs->toString()->toChars());
+  HttpChunk rs = parser->doParse();
+  if(!rs->getData()->toString()->equals(result)) {
+    TEST_FAIL("HttpHeaderSecFetchMode test Parse case1,rs is %s \n",rs->getData()->toString()->toChars());
   }
 
   TEST_OK("HttpHeaderSecFetchMode test Parse case100");

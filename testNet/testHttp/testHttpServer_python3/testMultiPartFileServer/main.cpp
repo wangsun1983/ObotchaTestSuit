@@ -54,15 +54,15 @@ public:
               //printf("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
-              if(multiPart != nullptr && multiPart->contents != nullptr) {
-                multiPart->contents->foreach([](Pair<String,String> pair){
+              if(multiPart != nullptr && multiPart->getContents() != nullptr) {
+                multiPart->getContents()->foreach([](Pair<String,String> pair){
                   //printf("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
                   return 1;
                 });
               }
 
-              if(multiPart != nullptr && multiPart->files != nullptr) {
-                  multiPart->files->foreach([](HttpMultiPartFile file){
+              if(multiPart != nullptr && multiPart->getFiles() != nullptr) {
+                  multiPart->getFiles()->foreach([](HttpMultiPartFile file){
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
