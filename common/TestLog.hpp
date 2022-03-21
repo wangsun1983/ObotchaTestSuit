@@ -1,5 +1,6 @@
 #ifndef __OBOTCHA_TEST_LOG_HPP__
 #define __OBOTCHA_TEST_LOG_HPP__
+#include <string.h>
 
 #define TEST_OK(...) \
     {\
