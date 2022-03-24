@@ -7,7 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Long.hpp"
 #include "Reflect.hpp"
-#include "MySqlClient.hpp"
+#include "MySqlConnection.hpp"
 #include "SqlConnection.hpp"
 #include "MySqlConnectParam.hpp"
 #include "TestLog.hpp"
@@ -25,7 +25,7 @@ public:
 
 int main() {
     
-    MySqlClient c = createMySqlClient();
+    SqlConnection c = createMySqlConnection();
     MySqlConnectParam param = createMySqlConnectParam();
     param->setHost("127.0.0.1");
     param->setUser("wangsun");

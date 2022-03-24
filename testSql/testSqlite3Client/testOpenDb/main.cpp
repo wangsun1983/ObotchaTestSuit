@@ -7,7 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Long.hpp"
 #include "Reflect.hpp"
-#include "Sqlite3Client.hpp"
+#include "Sqlite3Connection.hpp"
 #include "SqlConnection.hpp"
 #include "Sqlite3ConnectParam.hpp"
 #include "TestLog.hpp"
@@ -31,7 +31,7 @@ public:
 int main() {
     Sqlite3ConnectParam param = createSqlite3ConnectParam();
     param->setPath("abc");
-    Sqlite3Client c = createSqlite3Client();
+    SqlConnection c = createSqlite3Connection();
     c->connect(param);
     int count = c->count(createSqlQuery("select count(*) from student"));
     if(count != 4) {

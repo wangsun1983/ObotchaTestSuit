@@ -7,7 +7,7 @@
 #include "StrongPointer.hpp"
 #include "Long.hpp"
 #include "Reflect.hpp"
-#include "Sqlite3Client.hpp"
+#include "Sqlite3Connection.hpp"
 #include "SqlConnection.hpp"
 #include "Sqlite3ConnectParam.hpp"
 #include "TestLog.hpp"
@@ -30,7 +30,7 @@ int main() {
 
     Sqlite3ConnectParam param = createSqlite3ConnectParam();
     param->setPath("abc");
-    Sqlite3Client c = createSqlite3Client();
+    SqlConnection c = createSqlite3Connection();
     c->connect(param);
 
     File f = createFile("./abc");
@@ -85,7 +85,7 @@ int main() {
     }
     c->close();
 
-    c = createSqlite3Client();
+    c = createSqlite3Connection();
     c->connect(param);
     list = c->query<Company>(createSqlQuery("select * from Company"));
     if(list->size() != 4) {
