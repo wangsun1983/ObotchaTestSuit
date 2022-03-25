@@ -34,7 +34,7 @@ func main() {
         //time.Sleep(time.Second)
       }
 
-      //go close()
+      go close()
   })
 
   http.ListenAndServe(":" + strconv.Itoa(port), nil)

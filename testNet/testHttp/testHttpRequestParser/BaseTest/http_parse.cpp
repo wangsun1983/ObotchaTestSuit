@@ -5,6 +5,7 @@
 
 #include "HttpPacketParser.hpp"
 #include "HttpPacketParserImpl.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -1075,7 +1076,7 @@ const struct message requests[] =
     ,.content_length= -1
     ,.num_headers= 2
     ,.upgrade="Hot diggity dogg"
-    ,.headers= { { "Connection", "keep-alive,  upgrade" }
+    ,.headers= { { "Connection", "keep-alive, upgrade" }
                          , { "Upgrade", "WebSocket" }
                          }
     ,.body= ""
@@ -1326,212 +1327,233 @@ const struct message requests[] =
 void testHttpParse() {
     //struct message requests
     int size = sizeof(requests)/sizeof(struct message);
-
-    for(int i = 0;i<size;i++) {
-        printf("////HttpPacketParser start %d ////\n",i);
-
-        HttpPacketParserImpl parser = createHttpPacketParserImpl();
-        struct message msg = requests[i];
-        printf("%s\n",msg.raw);
-
-        parser->pushData(createByteArray((const byte *)msg.raw,strlen(msg.raw)));
-        ArrayList<HttpPacket> packets = parser->doParse();
-        //check size
-        if(packets->size() != 1) {
-            printf("HttpPacketParse CheckSize failed,packet size is %d \n",packets->size());
-            continue;
-        }
-
-        HttpPacket packet = packets->get(0);
-        HttpEntity entity = packet->getEntity();
-        HttpHeader header = packet->getHeader();
-
-        //check Type
-        if(header->getType() != msg.type) {
-            printf("HttpPacketParse CheckType failed,msg.type is %d,parse result is %d \n",msg.type,header->getType());
-            continue;
-        }
-
-        //check method
-        if(header->getMethod() != msg.method) {
-            printf("HttpPacketParse CheckMethod failed,msg.method is %d,parse result is %d \n",msg.method,header->getMethod());
-            continue;
-        }
-
-        //check request url
-        if(strlen(msg.request_url) > 0) {
-            HttpUrl url = header->getUrl();
-            String rawDataUrl = url->getRawUrl();
-            if(rawDataUrl == nullptr || !rawDataUrl->equals(msg.request_url)) {
-                printf("HttpPacketParse CheckRequestUrl failed,msg.request_url is %s,parse result is %s \n",msg.request_url,rawDataUrl->toChars());
-                printf("HttpPacketParse CheckRequestUrl failed,msg.request_url size is %zu,parse result is %d \n",strlen(msg.request_url),rawDataUrl->size());
+    printf("size is %d \n",size);
+    for(int turn = 0; turn < 2;turn++) {
+        for(int i = 0;i<size;i++) {
+            //printf("////HttpPacketParser start %d ////\n",i);
+            HttpPacketParserImpl parser = createHttpPacketParserImpl();
+            struct message msg = requests[i];
+            printf("turn is %d msg is %s \n",turn,msg.raw);
+            ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
+            if(turn == 0) {
+                parser->pushData(createByteArray((const byte *)msg.raw,strlen(msg.raw)));
+                packets = parser->doParse();
+            } else {
+                int index = 0;
+                for(;index<strlen(msg.raw);index++) {
+                  ByteArray data = createByteArray(1);
+                  data[0] = (byte)msg.raw[index];
+                  parser->pushData(data);
+                  auto result = parser->doParse();
+                  if(result != nullptr && result->size() != 0) {
+                    packets->add(result);
+                  }
+                }
+            }
+            
+            //check size
+            if(packets->size() != 1) {
+                TEST_FAIL("HttpPacketParse CheckSize failed,packet size is %d",packets->size());
                 continue;
             }
-        }
 
-        //check path
-        if(strlen(msg.request_path) > 0) {
-            HttpUrl url = header->getUrl();
-            String path = url->getPath();
+            HttpPacket packet = packets->get(0);
+            HttpEntity entity = packet->getEntity();
+            HttpHeader header = packet->getHeader();
 
-            String f1 = createString(msg.request_path);
-            //path does not contain /
-            //if(f1->size() != 1) {
-            //    f1 = createString("/")->append(f1);
+            //check Type
+            if(header->getType() != msg.type) {
+                TEST_FAIL("HttpPacketParse CheckType failed,msg.type is %d,parse result is %d",msg.type,header->getType());
+                continue;
+            }
+
+            //check method
+            if(header->getMethod() != msg.method) {
+                TEST_FAIL("HttpPacketParse CheckMethod failed,msg.method is %d,parse result is %d",msg.method,header->getMethod());
+                continue;
+            }
+
+            //check request url
+            if(strlen(msg.request_url) > 0) {
+                HttpUrl url = header->getUrl();
+                String rawDataUrl = url->getRawUrl();
+                if(rawDataUrl == nullptr || !rawDataUrl->equals(msg.request_url)) {
+                    TEST_FAIL("HttpPacketParse CheckRequestUrl failed,msg.request_url is %s,parse result is %s",msg.request_url,rawDataUrl->toChars());
+                    TEST_FAIL("HttpPacketParse CheckRequestUrl failed,msg.request_url size is %zu,parse result is %d",strlen(msg.request_url),rawDataUrl->size());
+                    continue;
+                }
+            }
+
+            //check path
+            if(strlen(msg.request_path) > 0) {
+                HttpUrl url = header->getUrl();
+                String path = url->getPath();
+
+                String f1 = createString(msg.request_path);
+                //path does not contain /
+                //if(f1->size() != 1) {
+                //    f1 = createString("/")->append(f1);
+                //}
+
+                if(path == nullptr || !path->equals(f1)) {
+                    TEST_FAIL("HttpPacketParse CheckPath failed,msg.path is [%s],parse result is [%s]",msg.request_path,f1->toChars());
+                    continue;
+                }
+            }
+
+            //fragment
+            if(strlen(msg.fragment) > 0) {
+                HttpUrl url = header->getUrl();
+                String fragment = url->getFragment();
+                if(fragment == nullptr || !fragment->equals(msg.fragment)) {
+                    TEST_FAIL("HttpPacketParse CheckFragment failed,msg.request_path is %s,parse result is %s",msg.fragment,fragment->toChars());
+                    continue;
+                }
+            }
+
+            //check query_string
+            if(strlen(msg.query_string) > 0) {
+                HttpUrl url = header->getUrl();
+                String rawQuery = url->getRawQuery();
+                
+                if(rawQuery == nullptr || !rawQuery->equals(msg.query_string)) {
+                    TEST_FAIL("HttpPacketParse CheckQuery failed,msg.query_string is %s,parse result is %s",msg.query_string,rawQuery->toChars());
+                    continue;
+                }
+            }
+
+            //check body
+            if(strlen(msg.body) > 0) {
+                String content = nullptr;
+                if(msg.num_chunks_complete != 0) {
+                  content = entity->getChunk()->getData()->toString();
+                } else {
+                  content = entity->getContent()->toString();
+                }
+
+                if(content == nullptr || !content->equals(msg.body)) {
+                    TEST_FAIL("HttpPacketParse CheckBody failed,msg.body is %s,parse result is %s",msg.body,content->toChars());
+                    continue;
+                }
+            }
+
+            //check host
+            if(msg.host != nullptr) {
+                HttpUrl url = header->getUrl();
+                String host = url->getHost();
+                if(host == nullptr || !host->equals(msg.host)) {
+                    TEST_FAIL("HttpPacketParse CheckHost failed,msg.host is %s,parse result is %s",msg.host,host->toChars());
+                    continue;
+                }
+            }
+
+            //check userinfo
+            if(msg.userinfo != nullptr) {
+                HttpUrl url = header->getUrl();
+                String username = url->getUser();
+                String password = url->getPassword();
+                String userInfo = username->append(":")->append(password);
+                if(!userInfo->equals(msg.userinfo)) {
+                    TEST_FAIL("HttpPacketParse CheckUserInfo failed,msg.userinfo is %s,parse result is %s",msg.userinfo,userInfo->toChars());
+                    continue;
+                }
+            }
+
+            //check headers
+            int num_headers = msg.num_headers;
+            for(int i = 0;i<num_headers;i++) {
+                String key = createString(msg.headers[i][0]);
+                String value = createString(msg.headers[i][1]);
+                String fValue = packet->getHeader()->get(key->toLowerCase());
+                if(fValue == nullptr && !key->equalsIgnoreCase("Link")) {
+                    //maybe it is a trailing_headers
+                    HttpChunk chunk = packet->getEntity()->getChunk();
+                    if(chunk != nullptr) {
+                        HttpHeader h = chunk->getTrailingHeader();
+                        if(h != nullptr) {
+                            fValue = h->get(key->toLowerCase());
+                        }
+                    }
+
+                    if(fValue == nullptr) {
+                        TEST_FAIL("HttpPacketParser CheckHeader Fail,packet value is null,key is %s",key->toChars());
+                    }
+                    continue;
+                }
+                printf("start key is %s \n",key->toChars());
+                if(key->equalsIgnoreCase("Keep-Alive")) {
+                    int timeout = packet->getHeader()->getKeepAlive()->getTimeout();
+                    if(timeout != value->toBasicInt()) {
+                        TEST_FAIL("HttpPacketParser CheckHeader Keep-Alive,msg.key is %s,msg.value is %s,parse value is %d",
+                                                              key->toChars(),value->toChars(),timeout);
+                    }
+                } else if(key->equalsIgnoreCase("Link")) {
+                    ArrayList<HttpHeaderLink> links = packet->getHeader()->getLinks();
+                    HttpHeaderLink link = links->removeAt(0);
+                    if(!value->equalsIgnoreCase(link->toString())) {
+                        TEST_FAIL("HttpPacketParser CheckHeader Link,msg.key is %s,msg.value is %s,parse value is %s",
+                                                              key->toChars(),value->toChars(),link->toString()->toChars());
+                    }
+                } else if(!fValue->equals(value)) {
+                    TEST_FAIL("HttpPacketParser CheckHeader,msg.key is %s,msg.value is %s,parse value is %s",
+                                                              key->toChars(),value->toChars(),fValue->toChars());
+                    continue;
+                }
+            }
+
+            //TODO:check chunk
+
+            //check key_value
+            if(msg.key_value_size > 0) {
+                String content = entity->getContent()->toString();
+                HttpUrlEncodedValue encodeValue = createHttpUrlEncodedValue(entity->getContent()->toString());
+                HashMap<String,String> map = encodeValue->getValues();
+                if(map == nullptr) {
+                    TEST_FAIL("HttpPacketParser CheckKeyValue,parse EncodedKeyValues size is 0");
+                    continue;
+                }
+
+                int count = 0;
+                for(int i = 0;i < msg.key_value_size;i++) {
+                    const char *key = msg.key_value[i];
+                    i++;
+                    const char *value = msg.key_value[i];
+
+                    String findValue = map->get(createString(key));
+                    if(!findValue->equals(value)) {
+                        TEST_FAIL("HttpPacketParser CheckKeyValue Fail,parsed key is %s,parser value is %s",
+                                    key,findValue->toChars());
+                    }
+                    count++;
+                }
+            }
+
+
+            //check upgrade
+            //if(msg.upgrade != nullptr && strlen(msg.upgrade) > 0) {
+            //    String upgrade = packet->getEntity()->getContent()->toString();
+            //    if(upgrade == nullptr || !upgrade->equals(msg.upgrade)) {
+            //      TEST_FAIL("HttpPacketParse CheckUpgrade failed,msg.upgrade is %s,parse result is %s",msg.upgrade,upgrade->toChars());
+            //      continue;
+            //    }
             //}
 
-            if(path == nullptr || !path->equals(f1)) {
-                printf("HttpPacketParse CheckPath failed,msg.path is [%s],parse result is [%s] \n",msg.request_path,f1->toChars());
-                continue;
-            }
-        }
-
-        //fragment
-        if(strlen(msg.fragment) > 0) {
-            HttpUrl url = header->getUrl();
-            String fragment = url->getFragment();
-            if(fragment == nullptr || !fragment->equals(msg.fragment)) {
-                printf("HttpPacketParse CheckFragment failed,msg.request_path is %s,parse result is %s \n",msg.fragment,fragment->toChars());
-                continue;
-            }
-        }
-
-        //check query_string
-        if(strlen(msg.query_string) > 0) {
-            HttpUrl url = header->getUrl();
-            String rawQuery = url->getRawQuery();
-            if(rawQuery == nullptr) {
-              printf("it is nullptr \n");
-            }
-            if(rawQuery == nullptr || !rawQuery->equals(msg.query_string)) {
-                printf("HttpPacketParse CheckQuery failed,msg.query_string is %s,parse result is %s \n",msg.query_string,rawQuery->toChars());
-                continue;
-            }
-        }
-
-        //check body
-        if(strlen(msg.body) > 0) {
-            String content = nullptr;
-            if(msg.num_chunks_complete != 0) {
-              printf("get trace1 \n");
-              content = entity->getChunk()->getData()->toString();
-            } else {
-              printf("get trace2 \n");
-              content = entity->getContent()->toString();
-            }
-
-            if(content == nullptr || !content->equals(msg.body)) {
-                printf("HttpPacketParse CheckBody failed,msg.body is %s,parse result is %s \n",msg.body,content->toChars());
+            //check http major version
+            HttpHeaderVersion ver = header->getVersion();
+            if(ver == nullptr) {
+                TEST_FAIL("HttpPacketParse CheckVersion failed,version is null");
                 continue;
             }
 
-            printf("check body success!!!,body is %s \n",content->toChars());
-        }
-
-        //check host
-        if(msg.host != nullptr) {
-            HttpUrl url = header->getUrl();
-            String host = url->getHost();
-            if(host == nullptr || !host->equals(msg.host)) {
-                printf("HttpPacketParse CheckHost failed,msg.host is %s,parse result is %s \n",msg.host,host->toChars());
-                continue;
-            }
-        }
-
-        //check userinfo
-        if(msg.userinfo != nullptr) {
-            HttpUrl url = header->getUrl();
-            String username = url->getUser();
-            String password = url->getPassword();
-            String userInfo = username->append(":")->append(password);
-            if(!userInfo->equals(msg.userinfo)) {
-                printf("HttpPacketParse CheckUserInfo failed,msg.userinfo is %s,parse result is %s \n",msg.userinfo,userInfo->toChars());
-                continue;
-            }
-        }
-
-        //check headers
-        int num_headers = msg.num_headers;
-        if(header->size() != num_headers) {
-            //check link size
-            if(header->getMethod() == st(HttpMethod)::Link) {
-              if(header->getLinks()->size() != num_headers) {
-                  printf("HttpPacketParse CheckHeaderSize failed,msg.num_headers is %d,header size is %d \n",msg.num_headers,header->size());
-                  continue;
-              }
+            if(ver->getMajorVer() != msg.http_major) {
+               TEST_FAIL("HttpPacketParse CheckMajorVersion failed,Msg.http_major is %d,parse major version is %d",msg.http_major,ver->getMajorVer());
+               continue;
             }
 
-        }
-
-        for(int i = 0;i<num_headers;i++) {
-            char *key = msg.headers[i][0];
-            char *value = msg.headers[i][1];
-            printf("key is %s,value is %s \n",key,value);
-            String fValue = packet->getHeader()->get(createString(key)->toLowerCase());
-            if(fValue == nullptr) {
-                printf("HttpPacketParser CheckHeader Fail,packet value is null,key is %s \n",key);
-                continue;
+            if(ver->getMinorVer() != msg.http_minor) {
+               TEST_FAIL("HttpPacketParse CheckMinorVersion failed,Msg.http_minor is %d,parse minor version is %d",msg.http_major,ver->getMajorVer());
+               continue;
             }
-
-            if(!fValue->equals(value)) {
-                printf("HttpPacketParser CheckHeader Fail,msg.key is %s,msg.value is %s,parse value is %s \n",
-                                                          key,value,fValue->toChars());
-                continue;
-            }
-        }
-
-        //TODO:check chunk
-
-        //check key_value
-        if(msg.key_value_size > 0) {
-            String content = entity->getContent()->toString();
-            HttpUrlEncodedValue encodeValue = createHttpUrlEncodedValue(entity->getContent()->toString());
-            HashMap<String,String> map = encodeValue->getValues();
-            if(map == nullptr) {
-                printf("HttpPacketParser CheckKeyValue,parse EncodedKeyValues size is 0\n");
-                continue;
-            }
-
-            int count = 0;
-            for(int i = 0;i < msg.key_value_size;i++) {
-                const char *key = msg.key_value[i];
-                i++;
-                const char *value = msg.key_value[i];
-
-                String findValue = map->get(createString(key));
-                if(!findValue->equals(value)) {
-                    printf("HttpPacketParser CheckKeyValue Fail,parsed key is %s,parser value is %s\n",
-                                key,findValue->toChars());
-                }
-                count++;
-            }
-        }
-
-
-        //check upgrade
-        if(msg.upgrade != nullptr && strlen(msg.upgrade) > 0) {
-            String upgrade = header->getUpgrade()->get();
-            if(upgrade == nullptr || !upgrade->equals(msg.upgrade)) {
-              printf("HttpPacketParse CheckUpgrade failed,msg.upgrade is %s,parse result is %s \n",msg.upgrade,upgrade->toChars());
-              continue;
-            }
-        }
-
-        //check http major version
-        HttpHeaderVersion ver = header->getVersion();
-        if(ver == nullptr) {
-            printf("HttpPacketParse CheckVersion failed,version is null \n");
-            continue;
-        }
-
-        if(ver->getMajorVer() != msg.http_major) {
-           printf("HttpPacketParse CheckMajorVersion failed,Msg.http_major is %d,parse major version is %d \n",msg.http_major,ver->getMajorVer());
-           continue;
-        }
-
-        if(ver->getMinorVer() != msg.http_minor) {
-           printf("HttpPacketParse CheckMinorVersion failed,Msg.http_minor is %d,parse minor version is %d \n",msg.http_major,ver->getMajorVer());
-           continue;
         }
     }
 }

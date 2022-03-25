@@ -1,4 +1,5 @@
 #include "HttpPacketParserImpl.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -22,7 +23,7 @@ void testMultiMessageParse() {
     parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
-      printf("HttpPacketParser multi message parse case1 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case1");
     }
     break;
   }
@@ -43,19 +44,19 @@ void testMultiMessageParse() {
     parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
-      printf("HttpPacketParser multi message parse case2 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case2");
       break;
     }
 
     auto pac0 = packets->get(0);
     if(!pac0->getEntity()->getContent()->toString()->equals("HELLO")) {
-      printf("HttpPacketParser multi message parse case3 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case3");
       break;
     }
 
     auto pac1 = packets->get(1);
     if(!pac1->getEntity()->getContent()->toString()->equals("WORLD")) {
-      printf("HttpPacketParser multi message parse case4 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case4");
       break;
     }
 
@@ -77,13 +78,13 @@ void testMultiMessageParse() {
     parser->pushData(createByteArray((const byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 1) {
-      printf("HttpPacketParser multi message parse case3 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case3");
       break;
     }
 
     auto pac0 = packets->get(0);
     if(!pac0->getEntity()->getContent()->toString()->equals("HELLO")) {
-      printf("HttpPacketParser multi message parse case4 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case4");
       break;
     }
 
@@ -92,13 +93,13 @@ void testMultiMessageParse() {
     parser->pushData(createByteArray((const byte *)content2,strlen(content2)));
     packets = parser->doParse();
     if(packets->size() != 1) {
-      printf("HttpPacketParser multi message parse case5 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case5");
       break;
     }
 
     auto pac1 = packets->get(0);
     if(!pac1->getEntity()->getContent()->toString()->equals("WORLD")) {
-      printf("HttpPacketParser multi message parse case6 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case6");
       break;
     }
 
@@ -123,13 +124,13 @@ void testMultiMessageParse() {
     }
 
     if(i != strlen(content)) {
-      printf("HttpPacketParser multi message parse case7 [FAILED],i is %d,strlen(content) is %d \n",i,strlen(content));
+      TEST_FAIL("HttpPacketParser multi message parse case7,i is %d,strlen(content) is %d",i,strlen(content));
       break;
     }
 
     auto pac1 = packets->get(0);
     if(!pac1->getEntity()->getContent()->toString()->equals("HELLO")) {
-      printf("HttpPacketParser multi message parse case8 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case8");
       break;
     }
     break;
@@ -159,23 +160,23 @@ void testMultiMessageParse() {
     }
 
     if(i != strlen(content)) {
-      printf("HttpPacketParser multi message parse case9 [FAILED],i is %d,strlen(content) is %d \n",i,strlen(content));
+      TEST_FAIL("HttpPacketParser multi message parse case9,i is %d,strlen(content) is %d",i,strlen(content));
       break;
     }
 
     auto pac1 = packets->get(0);
     if(!pac1->getEntity()->getContent()->toString()->equals("HELLO")) {
-      printf("HttpPacketParser multi message parse case10 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case10");
       break;
     }
 
     auto pac2 = packets->get(1);
     if(!pac2->getEntity()->getContent()->toString()->equals("WORLD")) {
-      printf("HttpPacketParser multi message parse case11 [FAILED] \n");
+      TEST_FAIL("HttpPacketParser multi message parse case11");
       break;
     }
     break;
   }
 
-  printf("HttpPacketParser multi message parse case100 [OK] \n");
+  TEST_OK("HttpPacketParser multi message parse case100");
 }

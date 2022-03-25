@@ -1,4 +1,5 @@
 #include "HttpPacketParserImpl.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -44,7 +45,7 @@ void testMultiPartOneByteParse() {
     }
 
     if(packets->size() != 1) {
-      printf("HttpPacketParser chunk message one byte parse case11 [FAILED],packets is %d \n",packets->size());
+      TEST_FAIL("HttpPacketParser chunk message one byte parse case11,packets is %d",packets->size());
       break;
     }
 
@@ -52,5 +53,5 @@ void testMultiPartOneByteParse() {
   }
 
 
-  printf("HttpPacketParser chunk message one byte parse case100 [OK] \n");
+  TEST_OK("HttpPacketParser chunk message one byte parse case100");
 }

@@ -34,8 +34,17 @@ void testClientCrawler() {
     HttpGet get = createHttpGet(testUrl[i]);
     HttpClient client = createHttpClient();
     HttpResponse response = client->execute(get);
-    if(response->getEntity() != nullptr) {
-      printf("entity is %s \n",response->getEntity()->getContent()->toString()->toChars());
+
+    if(response->isChunked()) {
+      HttpChunk chunk = response->getEntity()->getChunk();
+      if(chunk->getData() != nullptr) {
+        printf("entity1 is %s \n",chunk->getData()->toString()->toChars());
+      }
+    } else {
+      ByteArray data = response->getEntity()->getContent();
+      if(data != nullptr) {
+        printf("entity2 is %s \n",data->toString()->toChars());
+      }
     }
   }
 

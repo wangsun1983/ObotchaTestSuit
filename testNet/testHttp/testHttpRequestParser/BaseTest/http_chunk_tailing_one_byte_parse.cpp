@@ -1,17 +1,21 @@
 #include "HttpPacketParser.hpp"
 #include "HttpPacketParserImpl.hpp"
+#include "TestLog.hpp"
+
 using namespace obotcha;
 
-void testChunkOneByteParse() {
+void testChunkTailingOneByteParse() {
 
   //case 1
   while(1) {
-    const char *content = "POST /two_chunks_mult_zero_end HTTP/1.1\r\n"
+    const char *content = "POST /chunked_w_trailing_headers HTTP/1.1\r\n"
                  "Transfer-Encoding: chunked\r\n"
                  "\r\n"
                  "5\r\nhello\r\n"
                  "6\r\n world\r\n"
-                 "000\r\n"
+                 "0\r\n"
+                 "Vary: *\r\n"
+                 "Content-Type: text/plain\r\n"
                  "\r\n";
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
@@ -29,14 +33,13 @@ void testChunkOneByteParse() {
     }
 
     if(packets->size() != 1) {
-      printf("HttpPacketParser chunk message one byte parse case11 [FAILED],packets is %d \n",packets->size());
+      TEST_FAIL("HttpPacketParser chunk tailing message one byte parse case11 ,packets is %d",packets->size());
       break;
     }
 
-    printf("get Content is %s \n",packets->get(0)->getEntity()->getChunk()->getData()->toString()->toChars());
     break;
   }
 
 
-  printf("HttpPacketParser chunk message one byte parse case100 [OK] \n");
+  TEST_OK("HttpPacketParser chunk tailing message one byte parse case100");
 }
