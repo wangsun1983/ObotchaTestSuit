@@ -24,7 +24,7 @@ DECLARE_CLASS(CancelRunnable) IMPLEMENTS(Runnable) {
 public:
    void run() {
       try{
-        st(Thread)::msleep(1000 * 500);
+        st(Thread)::sleep(1000 * 500);
       }catch(InterruptedException e){}
    }
 
@@ -45,7 +45,7 @@ int cancelTest() {
                                         ->setQueueSize(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setTimeout(1000)
+                                        ->setCacheTimeout(1000)
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();
@@ -83,7 +83,7 @@ int cancelTest() {
                                         ->setQueueSize(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setTimeout(1000)
+                                        ->setCacheTimeout(1000)
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();

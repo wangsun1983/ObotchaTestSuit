@@ -24,7 +24,7 @@ std::atomic_int scheduleShutdownCount{0};
 DECLARE_CLASS(ScheduleShutDownTask) IMPLEMENTS(Runnable){
 public:
     void run() {
-      usleep(1000 * 5000);
+      usleep(1000 * 15000);
     }
 
     bool onInterrupt() {
@@ -42,7 +42,7 @@ void testShutdownCount() {
               ->newScheduledThreadPool();
 
     for(int i = 0;i<32*1024;i++) {
-      pool->submit(30000,createScheduleShutDownTask());
+      pool->schedule(30000,createScheduleShutDownTask());
     }
 
     usleep(1000*100);

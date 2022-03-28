@@ -19,7 +19,7 @@ void testThreadLambda() {
 
     while(1) {
         int value = 100;
-        t->execute([&value]() {
+        t->submit([&value]() {
             if(value == 100) {
                 value = 123;
             }
@@ -35,7 +35,7 @@ void testThreadLambda() {
 
     while(1) {
         int value = 100;
-        t->execute([&value](int v) {
+        t->submit([&value](int v) {
             if(v == 100) {
                 value = 123;
             }

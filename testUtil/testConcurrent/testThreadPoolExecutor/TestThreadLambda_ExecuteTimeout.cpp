@@ -21,16 +21,19 @@ void testThreadLambdaExecuteTimeout() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(1)
                 ->setQueueSize(1)
+                ->setQueueTimeout(100)
                 ->newThreadPool();
-    pool->execute([]{
+
+    pool->submit([]{
       usleep(200*1000);
     });
 
-    pool->execute([]{
+    pool->submit([]{
     });
 
     watcher->start();
-    pool->executeWithInTime(100,[]{
+
+    pool->submit([]{
 
     });
     long result = watcher->stop();
@@ -47,9 +50,10 @@ void testThreadLambdaExecuteTimeout() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(1)
                 ->setQueueSize(1)
+                ->setQueueTimeout(100)
                 ->newThreadPool();
     watcher->start();
-    pool->executeWithInTime(100,[]{
+    pool->submit([]{
       usleep(200*1000);
     });
     long result = watcher->stop();
@@ -66,17 +70,18 @@ void testThreadLambdaExecuteTimeout() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(1)
                 ->setQueueSize(1)
+                ->setQueueTimeout(300)
                 ->newThreadPool();
     watcher->start();
-    pool->execute([]{
+    pool->submit([]{
       usleep(200*1000);
     });
 
-    pool->execute([]{
+    pool->submit([]{
     });
 
     watcher->start();
-    pool->executeWithInTime(300,[]{
+    pool->submit([]{
 
     });
 

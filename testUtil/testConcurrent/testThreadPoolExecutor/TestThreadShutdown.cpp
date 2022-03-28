@@ -114,7 +114,7 @@ void testThreadShutdown() {
         sleep(1);
         pool->shutdown();
         sleep(1);
-        if(run->getCount() != 4) {
+        if(run->getCount() != 5) {
             TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case4,run->getCount is %d ] ",run->getCount());
             break;
         }

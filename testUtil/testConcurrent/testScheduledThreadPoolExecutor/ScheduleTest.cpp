@@ -51,8 +51,8 @@ int scheduleTest() {
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
         long current = st(System)::currentTimeMillis();
-        pool->submit(5000,createScheduleRunTest1());
-        pool->submit(5000,createScheduleRunTest2());
+        pool->schedule(5000,createScheduleRunTest1());
+        pool->schedule(5000,createScheduleRunTest2());
         sleep(15);
         long v = (RunTestTime1 - RunTestTime2);
         if(v > 50 || v < -50) {

@@ -20,7 +20,7 @@ void CachedPoolSubmit_Wait() {
   auto pool = createExecutorBuilder()
             ->setQueueSize(1)
             ->setMaxThreadNum(1)
-            ->setTimeout(200)
+            ->setCacheTimeout(200)
             ->newCachedThreadPool();
   TimeWatcher watch = createTimeWatcher();
 

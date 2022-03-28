@@ -22,8 +22,9 @@ void CachedPoolSubmit_Timeout() {
   while(1) {
     auto pool = createExecutorBuilder()
               ->setQueueSize(1)
+              ->setQueueTimeout(100)
               ->setMaxThreadNum(1)
-              ->setTimeout(200)
+              ->setCacheTimeout(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{
@@ -34,7 +35,7 @@ void CachedPoolSubmit_Timeout() {
     });
 
     watch->start();
-    Future f3 = pool->submitWithInTime(100,[]{
+    Future f3 = pool->submit([]{
 
     });
     long result = watch->stop();
@@ -51,8 +52,9 @@ void CachedPoolSubmit_Timeout() {
   while(1) {
     auto pool = createExecutorBuilder()
               ->setQueueSize(1)
+              ->setQueueTimeout(200)
               ->setMaxThreadNum(1)
-              ->setTimeout(200)
+              ->setCacheTimeout(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{
@@ -69,7 +71,7 @@ void CachedPoolSubmit_Timeout() {
     t->start();
 
     watch->start();
-    Future f3 = pool->submitWithInTime(200,[]{
+    Future f3 = pool->submit([]{
     });
     long result = watch->stop();
     if(result < 100 || result > 105) {

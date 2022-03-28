@@ -20,7 +20,7 @@ int testThreadLambda() {
         long time1 = 0;
         long time2 = st(System)::currentTimeMillis();
 
-        t->submit(5000,[&time1]() {
+        t->schedule(5000,[&time1]() {
             time1 = st(System)::currentTimeMillis();
         });
 

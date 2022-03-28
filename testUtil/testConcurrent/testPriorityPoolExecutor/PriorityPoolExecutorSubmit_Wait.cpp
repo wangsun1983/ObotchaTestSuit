@@ -23,16 +23,16 @@ void testSubmitWait() {
               ->setThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(100*1000);
     });
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(100*1000);
     });
 
     watch->start();
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
 
     });
     long result = watch->stop();
@@ -52,16 +52,16 @@ void testSubmitWait() {
               ->setMaxThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(100*1000);
     });
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
 
     });
 
     watch->start();
-    pool->submit(st(Executor)::High,[]{
+    pool->preempt(st(Executor)::High,[]{
 
     });
     long result = watch->stop();
@@ -78,18 +78,19 @@ void testSubmitWait() {
   while(1) {
     auto pool = createExecutorBuilder()
               ->setQueueSize(1)
+              ->setQueueTimeout(100)
               ->setThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(200*1000);
     });
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
     });
 
     watch->start();
-    pool->submitWithInTime(100,st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
     });
 
     long result = watch->stop();

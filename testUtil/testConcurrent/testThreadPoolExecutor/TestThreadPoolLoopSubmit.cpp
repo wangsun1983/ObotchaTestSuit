@@ -50,7 +50,7 @@ void testThreadPoolLoopSubmit() {
     //test1
     ThreadPoolExecutor executor = createThreadPoolExecutor(4,4);
     for(int i = 0;i<1024*8;i++){
-      executor->execute(createMyLoopSubmitRunnable1());
+      executor->submit(createMyLoopSubmitRunnable1());
     }
     sleep(1);
     if(value->get() != 1024*8) {

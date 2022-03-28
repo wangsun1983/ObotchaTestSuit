@@ -24,7 +24,7 @@ void testPriorityPoolExecutor_Multithread() {
     CountDownLatch latch = createCountDownLatch(32*1024);
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
-      Future t = pool->submit(st(Executor)::High,[&latch,i]{
+      Future t = pool->preempt(st(Executor)::High,[&latch,i]{
         st(TaskResult)::set(i);
         latch->countDown();
       });

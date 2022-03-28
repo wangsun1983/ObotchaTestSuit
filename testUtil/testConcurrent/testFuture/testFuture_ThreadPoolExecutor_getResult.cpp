@@ -198,7 +198,7 @@ DECLARE_CLASS(RunTestSleep10) IMPLEMENTS(Runnable) {
 public:
     void run() {
         try {
-          st(Thread)::msleep(10*1000);
+          st(Thread)::sleep(10*1000);
         } catch(...) {}
 
     }

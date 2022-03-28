@@ -19,7 +19,7 @@ DECLARE_CLASS(MySleepWaitRun) IMPLEMENTS(Runnable) {
 public:
     void run() {
         try {
-            st(Thread)::interruptableSleep();
+            st(Thread)::sleep();
         } catch(InterruptedException &e) {}
         count++;
     }

@@ -22,13 +22,13 @@ void testPriorityPoolExecutor_Cancel() {
                 ->newPriorityThreadPool();
 
       int value = 100;
-      Future f1 = pool->submit(st(Executor)::High,[&value](){
+      Future f1 = pool->preempt(st(Executor)::High,[&value](){
         usleep(200*1000);
         value = 222;
         st(TaskResult)::set(333);
       });
 
-      Future f2 = pool->submit(st(Executor)::High,[](){
+      Future f2 = pool->preempt(st(Executor)::High,[](){
         st(TaskResult)::set(100);
       });
 
@@ -61,7 +61,7 @@ void testPriorityPoolExecutor_Cancel() {
                 ->newPriorityThreadPool();
 
     int value = 123;
-    Future f1 = pool->submit(st(Executor)::High,[&value](){
+    Future f1 = pool->preempt(st(Executor)::High,[&value](){
       value = 222;
       st(TaskResult)::set(333);
     });
@@ -84,13 +84,13 @@ void testPriorityPoolExecutor_Cancel() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(1)
                 ->newPriorityThreadPool();
-    pool->submit(st(Executor)::High,[]{
+    pool->preempt(st(Executor)::High,[]{
       usleep(100*1000);
     });
 
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i < 1024;i++) {
-      Future f = pool->submit(st(Executor)::High,[] {
+      Future f = pool->preempt(st(Executor)::High,[] {
 
       });
       lists->add(f);
@@ -115,13 +115,13 @@ void testPriorityPoolExecutor_Cancel() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(12)
                 ->newPriorityThreadPool();
-    pool->submit(st(Executor)::High,[]{
+    pool->preempt(st(Executor)::High,[]{
       usleep(100*1000);
     });
 
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i < 1024*32;i++) {
-      Future f = pool->submit(st(Executor)::High,[] {
+      Future f = pool->preempt(st(Executor)::High,[] {
         usleep(1*1000);
       });
       lists->add(f);

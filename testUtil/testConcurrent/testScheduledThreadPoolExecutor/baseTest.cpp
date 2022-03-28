@@ -54,7 +54,7 @@ int baseTest() {
     //void shutdown();
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        pool->submit(0,createBaseRunTest1());
+        pool->schedule(0,createBaseRunTest1());
         pool->shutdown();
         sleep(5);
         //if(!pool->isShutdown()) {
@@ -62,13 +62,13 @@ int baseTest() {
         //    break;
         //}
 
-        Future task = pool->submit(0,createBaseRunTest1());
+        Future task = pool->schedule(0,createBaseRunTest1());
         if(task != nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {shutdown()} case2]");
             break;
         }
 
-        auto result = pool->submit(0,createBaseRunTest1());
+        auto result = pool->schedule(0,createBaseRunTest1());
         if(result != nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {shutdown()} case3]");
             break;
@@ -91,7 +91,7 @@ int baseTest() {
         //runTest2Mutex = createMutex();
         //runTest2Mutex->lock();
 
-        pool->submit(0,createBaseRunTest2());
+        pool->schedule(0,createBaseRunTest2());
         sleep(1);
         pool->shutdown();
 
@@ -121,7 +121,7 @@ int baseTest() {
             break;
         }
 
-        pool->submit(0,createBaseRunTest1());
+        pool->schedule(0,createBaseRunTest1());
         int v = pool->shutdown();
 
         long current = st(System)::currentTimeMillis();
@@ -147,7 +147,7 @@ int baseTest() {
     //int awaitTermination(long timeout = max);
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        pool->submit(0,createBaseRunTest1());
+        pool->schedule(0,createBaseRunTest1());
         pool->shutdown();
 
         long current = st(System)::currentTimeMillis();
@@ -167,7 +167,7 @@ int baseTest() {
     //submit(Runnable task);
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        Future task = pool->submit(0,createBaseRunTest1());
+        Future task = pool->schedule(0,createBaseRunTest1());
         if(task == nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {submit()} case1]");
             break;

@@ -29,7 +29,7 @@ void testSubmitTask() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    auto f1 = pool->submit(100,[&taskMutex,&condition]{
+    auto f1 = pool->schedule(100,[&taskMutex,&condition]{
       AutoLock l(taskMutex);
       condition->notify();
     });
@@ -55,7 +55,7 @@ void testSubmitTask() {
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     for(int i = 0;i<32;i++) {
-      auto f1 = pool->submit(100,[&latch]{
+      auto f1 = pool->schedule(100,[&latch]{
         latch->countDown();
       });
     }
@@ -79,7 +79,7 @@ void testSubmitTask() {
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
     for(int i = 0;i<256;i++) {
-      auto f1 = pool->submit(100,[&latch]{
+      auto f1 = pool->schedule(100,[&latch]{
         latch->countDown();
       });
     }
@@ -103,7 +103,7 @@ void testSubmitTask() {
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
     for(int i = 0;i<31;i++) {
-      auto f1 = pool->submit(100,[&latch]{
+      auto f1 = pool->schedule(100,[&latch]{
         latch->countDown();
       });
     }

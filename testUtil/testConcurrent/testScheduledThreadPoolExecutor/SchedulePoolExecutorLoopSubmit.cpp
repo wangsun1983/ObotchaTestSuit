@@ -53,7 +53,7 @@ int scheduleloopsubmit() {
     ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
     long time = st(System)::currentTimeMillis();
     for(int i = 0; i < 32*1024;i++) {
-        pool->submit(0,createMyLoopSubmit());
+        pool->schedule(0,createMyLoopSubmit());
     }
 
     sleep(1);
@@ -66,7 +66,7 @@ int scheduleloopsubmit() {
     myloopvalue = createAtomicInteger(0);
     pool = createExecutorBuilder()->newScheduledThreadPool();
     for(int i = 0; i < 32*1024;i++) {
-        pool->submit(100,createMyLoopSubmit());
+        pool->schedule(100,createMyLoopSubmit());
     }
 
     sleep(5);

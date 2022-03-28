@@ -22,7 +22,7 @@ public:
 
   void run() {
       try {
-        st(Thread)::interruptableSleep(100000000);
+        st(Thread)::sleep(100000000);
       } catch(InterruptedException e){}
       count++;
   }

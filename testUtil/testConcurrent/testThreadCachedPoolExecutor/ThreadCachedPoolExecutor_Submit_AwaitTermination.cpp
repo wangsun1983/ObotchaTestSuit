@@ -23,7 +23,7 @@ void CachedPoolSubmit_AwaitTermination() {
     auto pool = createExecutorBuilder()
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
-              ->setTimeout(200)
+              ->setCacheTimeout(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{

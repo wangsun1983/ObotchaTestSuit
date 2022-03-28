@@ -24,7 +24,7 @@ void testScheduledPoolExecutor_Wait() {
                 ->setQueueSize(1)
                 ->newScheduledThreadPool();
       int value = 100;
-      Future f1 = pool->submit(200,[&value](){
+      Future f1 = pool->schedule(200,[&value](){
         value = 222;
         st(TaskResult)::set(333);
       });
@@ -46,7 +46,7 @@ void testScheduledPoolExecutor_Wait() {
               ->newScheduledThreadPool();
 
       int value = 100;
-      Future f1 = pool->submit(200,[&value](){
+      Future f1 = pool->schedule(200,[&value](){
         value = 222;
         st(TaskResult)::set(333);
       });
@@ -75,7 +75,7 @@ void testScheduledPoolExecutor_Wait() {
               ->newScheduledThreadPool();
 
     int value = 100;
-    Future f1 = pool->submit(200,[&value](){
+    Future f1 = pool->schedule(200,[&value](){
       usleep(200*1000);
       value = 222;
       st(TaskResult)::set(333);
@@ -100,27 +100,27 @@ void testScheduledPoolExecutor_Wait() {
               ->newScheduledThreadPool();
 
     CountDownLatch latch = createCountDownLatch(3);
-    pool->submit(100,[]{
+    pool->schedule(100,[]{
       usleep(100*1000);
     });
 
-    pool->submit(100,[]{
+    pool->schedule(100,[]{
       usleep(100*1000);
     });
 
-    pool->submit(100,[]{
+    pool->schedule(100,[]{
       usleep(100*1000);
     });
 
-    Future f1 = pool->submit(200,[]{
+    Future f1 = pool->schedule(200,[]{
       //
     });
 
-    Future f2 = pool->submit(200,[]{
+    Future f2 = pool->schedule(200,[]{
       //
     });
 
-    Future f3 = pool->submit(200,[]{
+    Future f3 = pool->schedule(200,[]{
       //
     });
 
@@ -159,11 +159,11 @@ void testScheduledPoolExecutor_Wait() {
     auto pool = createExecutorBuilder()
               ->setQueueSize(32)
               ->newScheduledThreadPool();
-    pool->submit(100,[]{
+    pool->schedule(100,[]{
       //TODO
     });
 
-    Future f = pool->submit(100,[]{
+    Future f = pool->schedule(100,[]{
       //TODO
     });
 

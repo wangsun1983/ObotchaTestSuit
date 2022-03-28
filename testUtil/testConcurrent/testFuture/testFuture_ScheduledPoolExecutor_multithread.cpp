@@ -24,7 +24,7 @@ void testScheduledPoolExecutor_Multithread() {
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
       //TEST_FAIL("trace2 \n");
-      Future t = pool->submit(10,[&latch,i]{
+      Future t = pool->schedule(10,[&latch,i]{
         //TEST_FAIL("thread_start \n");
         st(TaskResult)::set(i);
         latch->countDown();

@@ -22,19 +22,19 @@ void testPoolReferenceCount() {
             pool = createExecutorBuilder()->setThreadNum(4)->newThreadPool();
             pool->submit([]() {
               try {
-                st(Thread)::interruptableSleep(10);
+                st(Thread)::sleep(10);
               } catch(InterruptedException &e){}
             });
 
             pool->submit([]() {
               try {
-                st(Thread)::interruptableSleep(10);
+                st(Thread)::sleep(10);
               } catch(InterruptedException &e){}
             });
 
             pool->submit([]() {
               try {
-                st(Thread)::interruptableSleep(10);
+                st(Thread)::sleep(10);
               } catch(InterruptedException &e){}
             });
         }

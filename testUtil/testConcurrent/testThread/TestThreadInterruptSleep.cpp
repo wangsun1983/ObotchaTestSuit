@@ -21,7 +21,7 @@ void testThreadInterruptSleep() {
     bool isInterrupt = false;
     Thread t = createThread([&isInterrupt]{
       try {
-        st(Thread)::interruptableSleep(100);
+        st(Thread)::sleep(100);
       } catch(...) {
         isInterrupt = true;
       }
@@ -39,7 +39,7 @@ void testThreadInterruptSleep() {
   while(1) {
     Thread t = createThread([]{
       try {
-        st(Thread)::interruptableSleep(100);
+        st(Thread)::sleep(100);
       } catch(...) {
       }
     });

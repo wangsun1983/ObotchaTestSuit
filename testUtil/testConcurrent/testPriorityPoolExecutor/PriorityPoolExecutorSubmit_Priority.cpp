@@ -23,7 +23,7 @@ void testSubmitPriority() {
               ->setThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(100*1000);
     });
     usleep(10*1000);
@@ -31,17 +31,17 @@ void testSubmitPriority() {
     long task1time;
     long task2time;
     long task3time;
-    pool->submit(st(Executor)::Medium,[&task1time]{
+    pool->preempt(st(Executor)::Medium,[&task1time]{
       task1time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });
 
-    pool->submit(st(Executor)::High,[&task2time]{
+    pool->preempt(st(Executor)::High,[&task2time]{
       task2time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });
 
-    pool->submit(st(Executor)::High,[&task3time]{
+    pool->preempt(st(Executor)::High,[&task3time]{
       task3time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });
@@ -68,7 +68,7 @@ void testSubmitPriority() {
               ->setThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->submit(st(Executor)::Medium,[]{
+    pool->preempt(st(Executor)::Medium,[]{
       usleep(100*1000);
     });
     usleep(10*1000);
@@ -77,17 +77,17 @@ void testSubmitPriority() {
     long task2time;
     long task3time;
 
-    pool->submit(st(Executor)::Low,[&task1time]{
+    pool->preempt(st(Executor)::Low,[&task1time]{
       task1time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });
 
-    pool->submit(st(Executor)::Medium,[&task2time]{
+    pool->preempt(st(Executor)::Medium,[&task2time]{
       task2time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });
 
-    pool->submit(st(Executor)::High,[&task3time]{
+    pool->preempt(st(Executor)::High,[&task3time]{
       task3time = st(System)::currentTimeMillis();
       usleep(10*1000);
     });

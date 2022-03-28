@@ -144,7 +144,7 @@ void testThreadPoolExecutor_Wait() {
     watcher->start();
     latch->await();
     long result = watcher->stop();
-    if(result < 95 || result > 105) {
+    if(result < 90 || result > 105) {
       TEST_FAIL("[Future ThreadPoolExecutor Wait case5,result is %ld",result);
     }
 

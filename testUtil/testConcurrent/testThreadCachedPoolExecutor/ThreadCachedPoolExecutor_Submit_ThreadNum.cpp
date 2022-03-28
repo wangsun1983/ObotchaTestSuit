@@ -20,7 +20,7 @@ void CachedPoolSubmit_ThreadNum() {
   auto pool = createExecutorBuilder()
             ->setQueueSize(1)
             ->setMaxThreadNum(3)
-            ->setTimeout(200)
+            ->setCacheTimeout(200)
             ->newCachedThreadPool();
   TimeWatcher watch = createTimeWatcher();
 
@@ -89,7 +89,7 @@ void CachedPoolSubmit_ThreadNum() {
     auto pool2 = createExecutorBuilder()
               ->setQueueSize(12)
               ->setMaxThreadNum(12)
-              ->setTimeout(100)
+              ->setCacheTimeout(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024;i++) {
       Future f1 = pool2->submit([]{
@@ -111,7 +111,7 @@ void CachedPoolSubmit_ThreadNum() {
     auto pool2 = createExecutorBuilder()
               ->setQueueSize(32)
               ->setMaxThreadNum(12)
-              ->setTimeout(100)
+              ->setCacheTimeout(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024;i++) {
       Future f1 = pool2->submit([]{
@@ -134,7 +134,7 @@ void CachedPoolSubmit_ThreadNum() {
     auto pool2 = createExecutorBuilder()
               ->setQueueSize(1024*4)
               ->setMaxThreadNum(12)
-              ->setTimeout(100)
+              ->setCacheTimeout(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024*4;i++) {
       Future f1 = pool2->submit([]{

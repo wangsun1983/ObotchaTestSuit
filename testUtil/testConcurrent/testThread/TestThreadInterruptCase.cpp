@@ -26,7 +26,7 @@ DECLARE_CLASS(MyTest1Thread) IMPLEMENTS(Thread) {
 public:
     void run() {
         try {
-            st(Thread)::interruptableSleep();
+            st(Thread)::sleep();
         }catch(InterruptedException &e){
             myTest1Interrupt = 1;
         }
@@ -70,6 +70,7 @@ void testThreadInterruptCase() {
     while(1) {
         MyTest2Run r2 = createMyTest2Run();
         Thread t = createThread(r2);
+        mytest2count = 0;
         t->start();
 
         usleep(1000*100);
@@ -77,7 +78,8 @@ void testThreadInterruptCase() {
         t->interrupt();
 
         if(mytest2count != 1) {
-            TEST_FAIL("[Thread Test {Interrupt()} special case3]");
+            int val = mytest2count;
+            TEST_FAIL("[Thread Test {Interrupt()} special case3],mytest2count is %d ",val);
         }
 
         t->join();

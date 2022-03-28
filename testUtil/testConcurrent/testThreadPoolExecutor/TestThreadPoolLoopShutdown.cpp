@@ -22,7 +22,7 @@ DECLARE_CLASS(MyLoopShutdownRunnable1) IMPLEMENTS(Runnable) {
 public:
     void run() {
       try {
-        st(Thread)::msleep(100);
+        st(Thread)::sleep(100);
       }catch(InterruptedException &e) {
         //interruptCount->add(1);
       }
@@ -34,7 +34,7 @@ void testThreadPoolLoopShutdown() {
     //test1
     ThreadPoolExecutor executor = createThreadPoolExecutor(8*1024,4);
     for(int i = 0;i<8*1024;i++){
-      int v = executor->execute(createMyLoopShutdownRunnable1());
+      executor->submit(createMyLoopShutdownRunnable1());
     }
 
     int ret = executor->shutdown();

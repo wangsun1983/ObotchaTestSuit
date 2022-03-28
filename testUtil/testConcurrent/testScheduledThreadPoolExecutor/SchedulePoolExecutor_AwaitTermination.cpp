@@ -26,7 +26,7 @@ void testAwaitTermination() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    pool->submit(100,[]{
+    pool->schedule(100,[]{
 
     });
 
@@ -45,7 +45,7 @@ void testAwaitTermination() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    pool->submit(0,[]{
+    pool->schedule(0,[]{
       usleep(200*1000);
     });
     usleep(100*1000);
@@ -64,7 +64,7 @@ void testAwaitTermination() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    pool->submit(0,[]{
+    pool->schedule(0,[]{
       usleep(200*1000);
     });
     usleep(100*1000);
@@ -83,7 +83,7 @@ void testAwaitTermination() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    pool->submit(0,[]{
+    pool->schedule(0,[]{
     });
     usleep(100*1000);
     pool->shutdown();
@@ -101,7 +101,7 @@ void testAwaitTermination() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    pool->submit(0,[]{
+    pool->schedule(0,[]{
       usleep(200*1000);
     });
     usleep(100*1000);

@@ -21,12 +21,12 @@ void testScheduledPoolExecutor_Cancel() {
 
   while(1) {
       int value = 100;
-      Future f1 = pool->submit(200,[&value](){
+      Future f1 = pool->schedule(200,[&value](){
         value = 222;
         st(TaskResult)::set(333);
       });
 
-      Future f2 = pool->submit(0,[](){
+      Future f2 = pool->schedule(0,[](){
         st(TaskResult)::set(100);
       });
 
@@ -51,7 +51,7 @@ void testScheduledPoolExecutor_Cancel() {
 
   while(1) {
     int value = 123;
-    Future f1 = pool->submit(0,[&value](){
+    Future f1 = pool->schedule(0,[&value](){
       usleep(200*100);
       value = 222;
       st(TaskResult)::set(333);

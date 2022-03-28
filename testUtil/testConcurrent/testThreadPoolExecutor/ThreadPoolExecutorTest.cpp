@@ -94,9 +94,9 @@ void normalTest() {
             break;
         }
 
-        int result = pool->execute(createMyRunTest1());
-        if(result != -InvalidStatus) {
-            TEST_FAIL("[TestThreadPoolExecutor Test {shutdown()} case3],result is %d",result);
+        auto result = pool->submit(createMyRunTest1());
+        if(result != nullptr) {
+            TEST_FAIL("[TestThreadPoolExecutor Test {shutdown()} case3]");
             break;
         }
 

@@ -47,7 +47,7 @@ int loopsubmittest() {
                                         ->setQueueSize(100)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setTimeout(1000)
+                                        ->setCacheTimeout(1000)
                                         ->newCachedThreadPool();
         for(int i = 0;i < 100000;i++) {
             //TEST_FAIL("trace 1,i is %d ",i);

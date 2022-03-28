@@ -79,6 +79,7 @@ void testThreadPoolSubmit_ShutDown() {
     auto pool = createExecutorBuilder()
                 ->setThreadNum(1)
                 ->setQueueSize(1)
+                ->setQueueTimeout(300)
                 ->newThreadPool();
     Future f1 = pool->submit([]{
       usleep(200*1000);
@@ -94,7 +95,7 @@ void testThreadPoolSubmit_ShutDown() {
     t->start();
 
     watcher->start();
-    Future f3 = pool->submitWithInTime(300,[]{
+    Future f3 = pool->submit([]{
     });
     long result = watcher->stop();
     if(result < 100 || result > 105) {

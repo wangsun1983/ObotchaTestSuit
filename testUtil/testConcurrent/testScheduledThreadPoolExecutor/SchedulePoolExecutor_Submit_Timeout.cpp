@@ -24,13 +24,14 @@ void testSubmitTimeout() {
     auto pool = createExecutorBuilder()
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
+              ->setQueueTimeout(50)
               ->newScheduledThreadPool();
-    auto f1 = pool->submit(200,[]{
+    auto f1 = pool->schedule(200,[]{
 
     });
 
     watch->start();
-    auto f2 = pool->submitWithInTime(50,100,[]{
+    auto f2 = pool->schedule(100,[]{
 
     });
 
@@ -49,14 +50,15 @@ void testSubmitTimeout() {
     auto pool = createExecutorBuilder()
               ->setQueueSize(2)
               ->setMaxThreadNum(3)
+              ->setQueueTimeout(50)
               ->newScheduledThreadPool();
 
-    auto f1 = pool->submit(200,[]{
+    auto f1 = pool->schedule(200,[]{
 
     });
 
     watch->start();
-    auto f2 = pool->submitWithInTime(50,100,[]{
+    auto f2 = pool->schedule(100,[]{
 
     });
 

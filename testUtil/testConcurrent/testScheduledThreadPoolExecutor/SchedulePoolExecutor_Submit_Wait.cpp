@@ -25,12 +25,12 @@ void testSubmitWait() {
               ->setQueueSize(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    auto f1 = pool->submit(100,[]{
+    auto f1 = pool->schedule(100,[]{
 
     });
 
     watch->start();
-    auto f2 = pool->submit(100,[]{
+    auto f2 = pool->schedule(100,[]{
 
     });
 
@@ -50,16 +50,16 @@ void testSubmitWait() {
               ->setQueueSize(2)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
-    auto f1 = pool->submit(200,[]{
+    auto f1 = pool->schedule(200,[]{
 
     });
 
-    auto f2 = pool->submit(300,[]{
+    auto f2 = pool->schedule(300,[]{
 
     });
 
     watch->start();
-    auto f3 = pool->submit(100,[]{
+    auto f3 = pool->schedule(100,[]{
 
     });
     long result = watch->stop();

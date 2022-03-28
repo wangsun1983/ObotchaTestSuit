@@ -46,7 +46,7 @@ int numTest() {
     mutex = createMutex();
     ThreadCachedPoolExecutor pool = createExecutorBuilder()
                                     ->setMaxThreadNum(4)
-                                    ->setTimeout(1000)
+                                    ->setCacheTimeout(1000)
                                     ->newCachedThreadPool();
     while(1) {
         //start test 1
@@ -54,7 +54,7 @@ int numTest() {
         //int maxThreadNum = 0;
         for(int i = 0;i < testNum;i++) {
             MyRunTest5 run1 = createMyRunTest5();
-            pool->execute(run1);
+            pool->submit(run1);
             usleep(1000);
         }
         sleep(1);
@@ -71,7 +71,7 @@ int numTest() {
         pool = createExecutorBuilder()->newCachedThreadPool();
         for(int i = 0;i < testNum;i++) {
             MyRunTest6 run2 = createMyRunTest6();
-            pool->execute(run2);
+            pool->submit(run2);
         }
         sleep(16);
         int threadsize = pool->getThreadsNum();
