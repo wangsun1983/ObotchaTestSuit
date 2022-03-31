@@ -15,14 +15,14 @@ void testIniReader() {
 
     while(1) {
         IniReader reader = createIniReader(createFile("./testData.ini"));
-        auto maps = reader->getAll();
+        auto maps = reader->parse()->getAll();
         if(maps->size() != 5) {
           TEST_FAIL("IniReader test1");
           break;
         }
 
         //L0
-        auto map1 = maps->get(createString(""));
+        auto map1 = maps->get(createString(st(IniValue)::RootSection));
         if(map1->size() != 1) {
           TEST_FAIL("IniReader test2");
           break;

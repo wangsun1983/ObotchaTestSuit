@@ -10,14 +10,14 @@ using namespace obotcha;
 void testIniValue() {
     while(1) {
       IniReader reader = createIniReader(createFile("testData.ini"));
-      HashMap<String,HashMap<String,String>> iniValues = reader->getAll();
+      HashMap<String,HashMap<String,String>> iniValues = reader->parse()->getAll();
       if(iniValues == nullptr) {
         TEST_FAIL("IniValue test1");
         break;
       }
 
       //root(no Section)
-      HashMap<String,String> v1 = iniValues->get(S(""));
+      HashMap<String,String> v1 = iniValues->get(st(IniValue)::RootSection);
       if(v1 == nullptr || v1->size() != 1) {
         TEST_FAIL("IniValue test2");
         break;
@@ -132,10 +132,10 @@ void testIniValue() {
 
     while(1) {
       IniReader reader = createIniReader(createFile("twisted.ini"));
-      HashMap<String,HashMap<String,String>> iniValues = reader->getAll();
+      HashMap<String,HashMap<String,String>> iniValues = reader->parse()->getAll();
 
       //root(no Section)
-      HashMap<String,String> v1 = iniValues->get(S(""));
+      HashMap<String,String> v1 = iniValues->get(st(IniValue)::RootSection);
       if(v1 == nullptr || v1->size() != 1) {
         TEST_FAIL("IniValue test21");
         break;
