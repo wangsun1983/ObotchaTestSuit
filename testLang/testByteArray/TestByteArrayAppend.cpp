@@ -49,7 +49,7 @@ void testappend() {
       }
 
       byte data4[12];
-      if(data3->append(data4,-1) != -InvalidParam) {
+      if(data3->append(data4,-1) != -EINVAL) {
         TEST_FAIL("ByteArray testappend test 3");
         break;
       }

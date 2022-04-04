@@ -83,7 +83,7 @@ int baseTest() {
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
         int result = pool->awaitTermination(1000);
-        if(result != -InvalidStatus) {
+        if(result != -1) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case1]");
             break;
         }
@@ -116,7 +116,7 @@ int baseTest() {
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
         int result = pool->awaitTermination(0);
-        if(result != -InvalidStatus) {
+        if(result != -1) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case5]");
             break;
         }

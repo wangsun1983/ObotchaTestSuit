@@ -33,8 +33,9 @@ void testMutex_TryLock() {
       watch->start();
       int result = t->tryLock();
       long interval = watch->stop();
-      if(result != -LockBusy) {
-        TEST_FAIL("[TestMutex tryLock case1]");
+      th->join();
+      if(result != -EBUSY) {
+        TEST_FAIL("[TestMutex tryLock case1],result is %d",result);
         break;
       }
 
@@ -42,8 +43,6 @@ void testMutex_TryLock() {
         TEST_FAIL("[TestMutex tryLock case2]");
         break;
       }
-
-      th->join();
       break;
     }
 

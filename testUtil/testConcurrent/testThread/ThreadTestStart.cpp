@@ -48,14 +48,14 @@ void testThreadStart() {
         StartTestThread1 t1 = createStartTestThread1();
         t1->start();
         int ret = t1->start();
-        if(ret != -AlreadyExecute) {
+        if(ret != -EALREADY) {
             TEST_FAIL("[Thread TestStart {start()} case1]");
             break;
         }
 
         sleep(2);
         ret = t1->start();
-        if(ret != -AlreadyExecute) {
+        if(ret != -EALREADY) {
             TEST_FAIL("[Thread TestStart {start()} case2]");
             break;
         }
@@ -68,7 +68,7 @@ void testThreadStart() {
         StartTestThread1 t1 = createStartTestThread1();
         t1->start();
         int ret = t1->start();
-        if(ret != -AlreadyExecute) {
+        if(ret != -EALREADY) {
             TEST_FAIL("[Thread TestStart {start()} case4]");
             break;
         }
@@ -83,7 +83,7 @@ void testThreadStart() {
         });
         t1->start();
         int ret = t1->start();
-        if(ret != -AlreadyExecute) {
+        if(ret != -EALREADY) {
             TEST_FAIL("[Thread TestStart {start()} case6]");
             break;
         }
@@ -100,7 +100,7 @@ void testThreadStart() {
                 break;
             }
 
-            if(r->start() != -AlreadyExecute) {
+            if(r->start() != -EALREADY) {
                 TEST_FAIL("[Thread TestStart {start()} case9]");
                 break;
             }

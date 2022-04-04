@@ -65,7 +65,7 @@ void testCachedPoolExecutor_Wait() {
         TEST_FAIL("[Future CahcedPoolExecutor Wait case2");
       }
 
-      if(ret != -WaitTimeout) {
+      if(ret != -ETIMEDOUT) {
         TEST_FAIL("[Future CahcedPoolExecutor Wait case2_1");
       }
       pool->shutdown();
@@ -149,7 +149,7 @@ void testCachedPoolExecutor_Wait() {
     watcher->start();
     latch->await();
     long result = watcher->stop();
-    if(result < 95 || result > 105) {
+    if(result < 90 || result > 105) {
       TEST_FAIL("[Future CahcedPoolExecutor Wait case5,result is %ld",result);
     }
 

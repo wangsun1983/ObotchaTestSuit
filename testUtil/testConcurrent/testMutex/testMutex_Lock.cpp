@@ -56,7 +56,7 @@ int testMutex_Lock() {
       watch->start();
       long ret = t->lock(100);
       long result = watch->stop();
-      if(ret != -WaitTimeout) {
+      if(ret != -ETIMEDOUT) {
         TEST_FAIL("[TestMutex Lock case3_1]");
         break;
       }

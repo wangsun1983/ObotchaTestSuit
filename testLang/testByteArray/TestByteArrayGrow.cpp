@@ -45,7 +45,7 @@ void testgrow() {
 
       //case2
       ByteArray arr2 = createByteArray(8);
-      if(arr2->growTo(2) != -InvalidParam) {
+      if(arr2->growTo(2) != -EINVAL) {
         TEST_FAIL("ByteArray testgrow test 4");
         break;
       }

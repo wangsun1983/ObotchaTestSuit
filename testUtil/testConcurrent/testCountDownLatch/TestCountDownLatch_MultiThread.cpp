@@ -23,7 +23,7 @@ void testCountDownLatch_MultiThread() {
 
       usleep(100*1000);
 
-      if(l->await() != -AlreadyDestroy) {
+      if(l->await() != -1) {
         TEST_FAIL("[TestCountDownLatch MultiThread case1]");
         break;
       }

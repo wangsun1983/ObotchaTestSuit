@@ -64,7 +64,7 @@ void testPriorityPoolExecutor_Wait() {
         break;
       }
 
-      if(ret != -WaitTimeout) {
+      if(ret != -ETIMEDOUT) {
         TEST_FAIL("[Future PriorityThreadPool Wait case2_1");
         break;
       }

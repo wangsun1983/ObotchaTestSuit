@@ -63,7 +63,7 @@ void testThreadPoolExecutor_Wait() {
         TEST_FAIL("[Future ThreadPoolExecutor Wait case2");
       }
 
-      if(ret != -WaitTimeout) {
+      if(ret != -ETIMEDOUT) {
         TEST_FAIL("[Future ThreadPoolExecutor Wait case2_1");
       }
       pool->shutdown();

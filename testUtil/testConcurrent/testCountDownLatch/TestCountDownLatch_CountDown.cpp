@@ -58,7 +58,7 @@ void testCountDownLatch_CountDown() {
         break;
       }
 
-      if(latch->countDown() != -AlreadyDestroy) {
+      if(latch->countDown() != -1) {
         TEST_FAIL("[TestCountDownLatch CountDown case5]");
         break;
       }

@@ -7,7 +7,7 @@
         char buff[1024];\
         memset(buff,0,1024);\
         sprintf(buff,__VA_ARGS__);\
-        printf("%-128s :\033[32m%s \033[37m\n",buff,"[OK]");\
+        printf("%-100s :\033[32m%s \033[37m\n",buff,"[OK]");\
     }
 
 #define TEST_FAIL(...) \
@@ -15,7 +15,7 @@
         char buff[1024];\
         memset(buff,0,1024);\
         sprintf(buff,__VA_ARGS__);\
-        printf("%-128s :\033[31m%s \033[37m\n",buff,"[FAIL]");\
+        printf("%-100s :\033[31m%s \033[37m\n",buff,"[FAIL]");\
     }
 
 #define TEST_TODO(...) \
@@ -23,6 +23,6 @@
         char buff[1024];\
         memset(buff,0,1024);\
         sprintf(buff,__VA_ARGS__);\
-        printf("%-128s :\033[31m%s \033[37m\n",buff,"[TODO]");\
+        printf("%-100s :\033[31m%s \033[37m\n",buff,"[TODO]");\
     }
 #endif

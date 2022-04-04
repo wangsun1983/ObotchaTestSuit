@@ -11,11 +11,11 @@ function start(){
         then
           if [ "$element" == "./testConcurrent" ];then
               cd $element
-              sh testConcurrent.sh
+              ./testConcurrent.sh
               cd ..
           elif [ "$element" == "./testText" ];then
               cd $element
-              sh testText.sh
+              ./testText.sh
               cd ..
           else
               prebuild $element
@@ -32,8 +32,8 @@ function start(){
     do
         if [ -d $element ]
         then
-            #test $element
-        #else
+            test $element
+        else
             echo ------------No Test $element !!!!!!!!------------
         fi
     done

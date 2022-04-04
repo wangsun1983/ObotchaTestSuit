@@ -43,8 +43,8 @@ void testConditionWait() {
       AutoLock l(mMutex);
       watch->start();
       int ret = c->wait(mMutex,300);
-      if(ret != -WaitTimeout) {
-        TEST_FAIL("Condition Wait Case1 test3");
+      if(ret != -ETIMEDOUT) {
+        TEST_FAIL("Condition Wait Case1 test3,ret is %d",ret);
         break;
       }
       long interval = watch->stop();

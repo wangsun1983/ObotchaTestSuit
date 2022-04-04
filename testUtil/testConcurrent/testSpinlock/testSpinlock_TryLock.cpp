@@ -34,8 +34,8 @@ int testSpinlockTryLock() {
 			break;
 		}
 
-		if(ret != -LockBusy) {
-			TEST_FAIL("[TestSpinlock TryLock case2]");
+		if(ret != -EBUSY) {
+			TEST_FAIL("[TestSpinlock TryLock case2],ret is %d \n",ret);
 			break;
 		}
 

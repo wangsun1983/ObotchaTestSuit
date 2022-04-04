@@ -35,7 +35,7 @@ int testMutex_UnLock() {
       t->unlock();
       int v = t->lock(100);
       long result = watch->stop();
-      if(v != -WaitTimeout) {
+      if(v != -ETIMEDOUT) {
         TEST_FAIL("[TestMutex UnLock case1],v is %d",v);
         break;
       }

@@ -108,7 +108,7 @@ void normalTest() {
     while(1) {
         ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(1)->setThreadNum(1)->newThreadPool();
         int result = pool->awaitTermination(1000);
-        if(result != -InvalidStatus) {
+        if(result != -1) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case1]");
             break;
         }
@@ -125,7 +125,7 @@ void normalTest() {
         long current = st(System)::currentTimeMillis();
         result = pool->awaitTermination(5000);
         //TEST_FAIL("awaitTermination result is %d ",result);
-        if(result != -WaitTimeout) {
+        if(result != -ETIMEDOUT) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case2],result is %d ",result);
             break;
         }

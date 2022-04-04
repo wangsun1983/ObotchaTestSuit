@@ -21,7 +21,7 @@ void testReadLock_TryLock() {
     AtomicInteger value = createAtomicInteger();
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
-      if(ret != -LockBusy) {
+      if(ret != -EBUSY) {
         TEST_FAIL("[TestReadLock ReadLock TryLock case1]");
       }
       value->incrementAndGet();
@@ -42,7 +42,7 @@ void testReadLock_TryLock() {
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
       if(ret != 0) {
-        TEST_FAIL("[TestReadLock ReadLock TryLock case3]");
+        TEST_FAIL("[TestReadLock ReadLock TryLock case3],ret is %d",ret);
       }
       value->incrementAndGet();
     });

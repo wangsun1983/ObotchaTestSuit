@@ -88,7 +88,7 @@ void testThreadShutdown() {
         pool->shutdown();
         int ret = pool->shutdown();
 
-        if(ret != -AlreadyDestroy) {
+        if(ret != 0) {
             TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case1],ret is %d ",ret);
             break;
         }

@@ -18,35 +18,35 @@ public:
     void run() {
         setPriority(st(Thread)::ThreadPriority::High);
         int priority = getPriority();
-        if(priority != -NotSupport) {
+        if(priority != -EOPNOTSUPP) {
             TEST_OK("[Thread Test {Set Priority()} case1],priority is %d",priority);
         }
 
         sleep(1);
         setPriority(st(Thread)::ThreadPriority::Low);
         priority = getPriority();
-        if(priority != -NotSupport) {
+        if(priority != -EOPNOTSUPP) {
             TEST_OK("[Thread Test {Set Priority()} case2],priority is %d",priority);
         }
 
         sleep(1);
         setPriority(st(Thread)::ThreadPriority::Normal);
         priority = getPriority();
-        if(priority != -NotSupport) {
+        if(priority != -EOPNOTSUPP) {
             TEST_OK("[Thread Test {Set Priority()} case3],priority is %d",priority);
         }
 
         sleep(1);
         setPriority(st(Thread)::ThreadPriority::Highest);
         priority = getPriority();
-        if(priority != -NotSupport) {
+        if(priority != -EOPNOTSUPP) {
             TEST_OK("[Thread Test {Set Priority()} case4],priority is %d",priority);
         }
 
         sleep(1);
         setPriority(st(Thread)::ThreadPriority::Realtime);
         priority = getPriority();
-        if(priority != -NotSupport) {
+        if(priority != -EOPNOTSUPP) {
             TEST_OK("[Thread Test {Set Priority()} case5],priority is %d",priority);
         }
 

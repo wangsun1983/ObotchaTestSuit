@@ -23,7 +23,7 @@ void testThreadLoopStart() {
       break;
     }
 
-    if(t->start() != -AlreadyExecute) {
+    if(t->start() == 0) {
       TEST_FAIL("[Thread Loop start case2]");
       break;
     }
