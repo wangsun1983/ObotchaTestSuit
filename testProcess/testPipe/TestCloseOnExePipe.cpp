@@ -9,6 +9,7 @@
 #include "Log.hpp"
 #include "Pipe.hpp"
 #include "ByteArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,90 +21,87 @@ int testCloseOnExecPipe() {
     testData[i] = i;
   }
 
-  //int writeTo(PipeType type,ByteArray data);
-  //int readFrom(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(PipeCloseOnExec);
-  pp->init();
+  //int write(PipeType type,ByteArray data);
+  //int read(PipeType type,ByteArray buff);
+  Pipe pp = createPipe(st(Pipe)::CloseOnExec);
 
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray(&testData[0],testDatalength);
-     pp->writeTo(array);
+     ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+     pp->write(array);
      exit(0);
   } else {
      ByteArray array = createByteArray(testDatalength);
-     int length = pp->readFrom(array);
+     int length = pp->read(array);
 
      if(length < testDatalength) {
-         printf("---[Pipe Test {closeonexe writeTo/readFrom()} case1] [FAILED]--- \n");
+         TEST_FAIL("[Pipe Test {closeonexe write/read()} case1]");
          return 1;
      }
 
      for(int i = 0; i < testDatalength;i++) {
        if(array->at(i) != i) {
-         printf("---[Pipe Test {closeonexe writeTo/readFrom()} case2] [FAILED]--- \n");
+         TEST_FAIL("[Pipe Test {closeonexe write/read()} case2]");
          break;
        }
      }
    }
 
-   printf("---[Pipe Test {closeonexe writeTo/readFrom()} case3] [Success]--- \n");
+   TEST_OK("[Pipe Test {closeonexe write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(PipeCloseOnExec);
-   pp2->init();
+   Pipe pp2 = createPipe(st(Pipe)::CloseOnExec);
 
    pid = fork();
    if(pid == 0) {
       //child process
-      pp2->closeReadPipe();
-      ByteArray array = createByteArray(&testData[0],testDatalength);
-      pp2->writeTo(array);
+      pp2->closeReadChannel();
+      ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+      pp2->write(array);
       exit(0);
    } else {
-      pp2->closeWritePipe();
+      pp2->closeWriteChannel();
       ByteArray array = createByteArray(testDatalength);
-      int length = pp2->readFrom(array);
+      int length = pp2->read(array);
 
       if(length < testDatalength) {
-          printf("---[Pipe Test {closeonexe closePipe()} case1] [FAILED]--- \n");
+          TEST_FAIL("[Pipe Test {closeonexe closePipe()} case1]");
           return 1;
       }
 
       for(int i = 0; i < testDatalength;i++) {
         if(array->at(i) != i) {
-          printf("---[Pipe Test {closeonexe closePipe()} case2] [FAILED]--- \n");
+          TEST_FAIL("[Pipe Test {closeonexe closePipe()} case2]");
           break;
         }
       }
     }
 
-    printf("---[Pipe Test {closeonexe closePipe()} case3] [Success]--- \n");
+    TEST_OK("[Pipe Test {closeonexe closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(PipeCloseOnExec);
-    pp3->init();
+    Pipe pp3 = createPipe(st(Pipe)::CloseOnExec);
 
     pid = fork();
     if(pid == 0) {
        //child process
-       pp3->closeWritePipe();
+       pp3->closeWriteChannel();
        ByteArray array = createByteArray(testDatalength);
-       int length = pp3->readFrom(array);
+       int length = pp3->read(array);
        if(length > 0) {
-           printf("---[Pipe Test {closeonexe closePipe()} case4] [FAILED]--- \n");
+           TEST_FAIL("[Pipe Test {closeonexe closePipe()} case4]");
        }
        exit(0);
     } else {
-       pp3->closeWritePipe();
-       ByteArray array = createByteArray(&testData[0],testDatalength);
-       int result = pp3->writeTo(array);
+       pp3->closeWriteChannel();
+       ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+       int result = pp3->write(array);
        if(result >= 0) {
-           printf("---[Pipe Test {closeonexe closePipe()} case5] [FAILED]--- \n");
+           TEST_FAIL("[Pipe Test {closeonexe closePipe()} case5]");
        }
      }
 
-     printf("---[Pipe Test {closeonexe closePipe()} case6] [Success]--- \n");
+     TEST_OK("[Pipe Test {closeonexe closePipe()} case6]");
 
 }

@@ -1,5 +1,12 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include <limits.h>
 
 //#include "Thread.hpp"
 //#include "ArrayList.hpp"
@@ -9,15 +16,18 @@
 #include "Log.hpp"
 #include "FifoPipe.hpp"
 #include "ByteArray.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
 
 using namespace obotcha;
 
-int main() {
+void testSyncFifoPipe() {
 
-  printf("---[FifoPipe Test Start]--- \n");
-  //Pipe pp = createPipe();
-  //pp->init();
+  //int res = mkfifo("a.fifo",0666);
+  //printf("res is %d \n",res);
 
+  //int fd = open("a.fifo",O_WRONLY);
+  //printf("fd is %d \n",fd);
 
   const int testDatalength = 32;
   char testData[testDatalength];
@@ -25,54 +35,64 @@ int main() {
     testData[i] = i;
   }
 
-  //int writeTo(ByteArray data);
-  //int readFrom(ByteArray buff);
+
+  //int write(ByteArray data);
+  //int read(ByteArray buff);
   int pid = fork();
   if(pid == 0) {
     //child process,start write
-    FifoPipe fifo = createFifoPipe("mytest123",FifoWritePipe);
-    fifo->init();
-    sleep(1);
-    ByteArray array = createByteArray(&testData[0],testDatalength);
-    fifo->writeTo(array);
-    return 1;
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Write);
+    ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+    fifo->write(array);
+    return;
   } else {
     ByteArray array = createByteArray(testDatalength);
-    FifoPipe fifo = createFifoPipe("mytest123",FifoReadPipe);
-    fifo->init();
-    int length = fifo->readFrom(array);
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Read);
+    int length = fifo->read(array);
     if(length != testDatalength) {
-      printf("---[FifoPipe Test {writeTo/readFrom()} case1] [FAILED]--- \n");
+      TEST_FAIL("[FifoPipe Test {write/read()} case1,length is %d,err is %s]",length,CurrentError);
     }
 
     for(int i = 0; i < testDatalength;i++) {
       if(array->at(i) != i) {
-        printf("---[FifoPipe Test {writeTo/readFrom()} case2] [FAILED]--- \n");
+        TEST_FAIL("[FifoPipe Test {write/read()} case2]");
         break;
       }
     }
-    printf("---[FifoPipe Test {writeTo/readFrom()} case3] [Success]--- \n");
+    TEST_OK("[FifoPipe Test {write/read()} case3]");
   }
+
 
   //int release();
   pid = fork();
   if(pid == 0) {
     //child process,start write
-    FifoPipe fifo = createFifoPipe("mytest123",FifoWritePipe);
-    fifo->init();
-    sleep(1);
-    fifo->release();
-    return 1
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Write);
+    fifo->close();
+    return;
   } else {
     ByteArray array = createByteArray(testDatalength);
-    FifoPipe fifo = createFifoPipe("mytest123",FifoReadPipe);
-    fifo->init();
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Read);
+    
     sleep(1);
-    int length = fifo->readFrom(array);
-    if(length != 0) {
-      printf("---[FifoPipe Test {release()} case1] [FAILED]--- \n");
+    int length = fifo->read(array);
+    if(length > 0) {
+      TEST_FAIL("[FifoPipe Test {close()} case1],length is %d",length);
     }
 
-    printf("---[FifoPipe Test {release()} case2] [Success]--- \n");
+    fifo->clear();
+    TEST_OK("[FifoPipe Test {close()} case2]");
   }
+
+  //check clean
+  FifoPipe fifo = createFifoPipe("mytest1ab",st(FifoPipe)::AsyncRead);
+  if(access(fifo->getName()->toChars(),F_OK) != 0) {
+    TEST_FAIL("[FifoPipe Test {clear()} case1]");
+  }
+  fifo->clear();
+  if(access(fifo->getName()->toChars(),F_OK) == 0) {
+    TEST_FAIL("[FifoPipe Test {clear()} case2]");
+  }
+
+  TEST_OK("[FifoPipe Test {clear()} case3]");
 }

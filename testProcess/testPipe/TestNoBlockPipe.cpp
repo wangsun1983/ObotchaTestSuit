@@ -9,6 +9,7 @@
 #include "Log.hpp"
 #include "Pipe.hpp"
 #include "ByteArray.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -20,115 +21,112 @@ int testNoBlockPipe() {
     testData[i] = i;
   }
 
-  //int writeTo(PipeType type,ByteArray data);
-  //int readFrom(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(PipeNonBlock);
-  pp->init();
-
+  //int write(PipeType type,ByteArray data);
+  //int read(PipeType type,ByteArray buff);
+  Pipe pp = createPipe(st(Pipe)::NonBlock);
+  
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray(&testData[0],testDatalength);
-     pp->writeTo(array);
+     ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+     pp->write(array);
      exit(0);
   } else {
      sleep(1);
      ByteArray array = createByteArray(testDatalength);
-     int length = pp->readFrom(array);
+     int length = pp->read(array);
 
      if(length < testDatalength) {
-         printf("---[Pipe Test {noblock writeTo/readFrom()} case1] [FAILED]--- \n");
+         TEST_FAIL("[Pipe Test {noblock write/read()} case1]");
          return 1;
      }
 
      for(int i = 0; i < testDatalength;i++) {
        if(array->at(i) != i) {
-         printf("---[Pipe Test {noblock writeTo/readFrom()} case2] [FAILED]--- \n");
+         TEST_FAIL("[Pipe Test {noblock write/read()} case2]");
          break;
        }
      }
    }
 
-   printf("---[Pipe Test {noblock writeTo/readFrom()} case3] [Success]--- \n");
+   TEST_OK("[Pipe Test {noblock write/read()} case3]");
 
 
-   Pipe pp1_1 = createPipe(PipeNonBlock);
-   pp1_1->init();
+   Pipe pp1_1 = createPipe(st(Pipe)::NonBlock);
 
    pid = fork();
    if(pid == 0) {
       //child process
       sleep(1);
-      ByteArray array = createByteArray(&testData[0],testDatalength);
-      pp->writeTo(array);
+      ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+      pp->write(array);
       exit(0);
    } else {
       ByteArray array = createByteArray(testDatalength);
-      int length = pp->readFrom(array);
+      int length = pp->read(array);
       if(length != -1) {
-          printf("---[Pipe Test {noblock writeTo/readFrom()} case4] [FAILED]--- \n");
+          TEST_FAIL("[Pipe Test {noblock write/read()} case4]");
           return 1;
       }
     }
 
-    printf("---[Pipe Test {noblock writeTo/readFrom()} case5] [Success]--- \n");
+    TEST_OK("[Pipe Test {noblock write/read()} case5]");
 
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(PipeNonBlock);
-   pp2->init();
+   Pipe pp2 = createPipe(st(Pipe)::NonBlock);
+   
 
    pid = fork();
    if(pid == 0) {
       //child process
-      pp2->closeReadPipe();
-      ByteArray array = createByteArray(&testData[0],testDatalength);
-      pp2->writeTo(array);
+      pp2->closeReadChannel();
+      ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+      pp2->write(array);
       exit(0);
    } else {
       sleep(1);
-      pp2->closeWritePipe();
+      pp2->closeWriteChannel();
       ByteArray array = createByteArray(testDatalength);
-      int length = pp2->readFrom(array);
+      int length = pp2->read(array);
 
       if(length < testDatalength) {
-          printf("---[Pipe Test {noblock closePipe()} case1] [FAILED]--- \n");
+          TEST_FAIL("[Pipe Test {noblock closePipe()} case1]");
           return 1;
       }
 
       for(int i = 0; i < testDatalength;i++) {
         if(array->at(i) != i) {
-          printf("---[Pipe Test {noblock closePipe()} case2] [FAILED]--- \n");
+          TEST_FAIL("[Pipe Test {noblock closePipe()} case2]");
           break;
         }
       }
     }
 
-    printf("---[Pipe Test {noblock closePipe()} case3] [Success]--- \n");
+    TEST_OK("[Pipe Test {noblock closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(PipeNonBlock);
-    pp3->init();
+    Pipe pp3 = createPipe(st(Pipe)::NonBlock);
 
     pid = fork();
     if(pid == 0) {
        //child process
-       pp3->closeWritePipe();
+       pp3->closeWriteChannel();
        ByteArray array = createByteArray(testDatalength);
-       int length = pp3->readFrom(array);
+       int length = pp3->read(array);
        if(length > 0) {
-           printf("---[Pipe Test {noblock closePipe()} case4] [FAILED]--- \n");
+           TEST_FAIL("[Pipe Test {noblock closePipe()} case4]");
        }
        exit(0);
     } else {
-       pp3->closeWritePipe();
-       ByteArray array = createByteArray(&testData[0],testDatalength);
-       int result = pp3->writeTo(array);
+       pp3->closeWriteChannel();
+       ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+       int result = pp3->write(array);
        if(result >= 0) {
-           printf("---[Pipe Test {noblock closePipe()} case5] [FAILED]--- \n");
+           TEST_FAIL("[Pipe Test {noblock closePipe()} case5]");
        }
      }
 
-     printf("---[Pipe Test {noblock closePipe()} case6] [Success]--- \n");
+     TEST_OK("[Pipe Test {noblock closePipe()} case6]");
 
 }
