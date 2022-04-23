@@ -12,16 +12,9 @@
 
 using namespace obotcha;
 
-extern int testDefaultPipe();
-extern int testDirectPipe();
-extern int testCloseOnExecPipe();
-extern int testNoBlockPipe();
+extern void testSignalCatcher();
 
 int main() {
-
-    testDefaultPipe();
-    testDirectPipe();
-    testCloseOnExecPipe();
-    testNoBlockPipe();
+    testSignalCatcher();
     return 0;
 }

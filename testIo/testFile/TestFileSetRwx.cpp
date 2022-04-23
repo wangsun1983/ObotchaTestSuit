@@ -8,7 +8,10 @@
 using namespace obotcha;
 
 void testFileSetRwx() {
-    File file = createFile("setpropfle.data");
+    File file = createFile("./tmp/setreadonly.data");
+    if(!file->exists()) {
+        file->createNewFile();
+    }
     //test1
     int value = file->setReadOnly();
 
@@ -25,6 +28,10 @@ void testFileSetRwx() {
     }
 
     //test2
+    file = createFile("./tmp/setwriteonly.data");
+    if(!file->exists()) {
+        file->createNewFile();
+    }
     file->setWriteOnly();
     if(!file->canWrite()) {
         TEST_FAIL("[File Test {setReadOnly/setWriteOnle/SetExecuteOnly()} case4]");
@@ -39,6 +46,10 @@ void testFileSetRwx() {
     }
 
     //test3
+    file = createFile("./tmp/setexecuteonly.data");
+    if(!file->exists()) {
+        file->createNewFile();
+    }
     file->setExecuteOnly();
     if(file->canWrite()) {
         TEST_FAIL("[File Test {setReadOnly/setWriteOnle/SetExecuteOnly()} case7]");

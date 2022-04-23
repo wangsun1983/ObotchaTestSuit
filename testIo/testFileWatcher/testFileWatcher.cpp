@@ -9,9 +9,9 @@ using namespace obotcha;
 
 int testCount = 0;
 
-DECLARE_CLASS(MyFileObserver) IMPLEMENTS(FileObserver){
+DECLARE_CLASS(MyFileObserver) IMPLEMENTS(FileUpdateListener){
 public:
-    void onFileUpdate(String filepath,int op) {
+    void onFileUpdate(String filepath,int op,int origid,int currentid) {
         printf("------------------------------------file %s,is %x \n",filepath->toChars(),op);
         //testCount++;
     }

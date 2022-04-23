@@ -33,8 +33,10 @@ extern void TestStringEquals();
 extern void TestCounts();
 extern void trimPerformance();
 extern void StringContentEqualsTest();
+extern void testStringFind();
 
 int main() {
+  testStringFind();
 
   StringContentEqualsTest();
   

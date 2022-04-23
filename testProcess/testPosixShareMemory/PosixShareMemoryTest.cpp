@@ -6,11 +6,11 @@
 #include "Object.hpp"
 #include "StrongPointer.hpp"
 #include "PosixShareMemory.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
-int main() {
-  printf("---[PosixShareMemory Test Start]--- \n");
+void testPosixShareMemory() {
   const int testDatalength = 32;
   char testData[testDatalength];
   for(int i = 0;i<testDatalength;i++) {
@@ -23,32 +23,32 @@ int main() {
   //int read(int);
   int pid = fork();
   if(pid == 0) {
-      PosixShareMemory memory = createPosixShareMemory("/shareMemoryabc",testDatalength,PosixShareMemoryWriteRead);
-      memory->init();
-      ByteArray arr = createByteArray(&testData[0],32);
+      PosixShareMemory memory = createPosixShareMemory("shareMemoryabc",testDatalength,st(PosixShareMemory)::WriteRead);
+      
+      ByteArray arr = createByteArray((const byte *)&testData[0],32);
       memory->write(arr);
-      return 0;
+      exit(0);
   } else {
       sleep(1);
-      PosixShareMemory memory = createPosixShareMemory("/shareMemoryabc",testDatalength,PosixShareMemoryRead);
-      memory->init();
+      PosixShareMemory memory = createPosixShareMemory("shareMemoryabc",testDatalength,st(PosixShareMemory)::Read);
+      
 
       ByteArray b = createByteArray(32);
       int length = memory->read(b);
 
       if(length < testDatalength) {
-          printf("---[PosixShareMemory Test {write/read()} case1] [FAILED]--- \n");
-          return 1;
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case1]");
+          return;
       }
 
       for(int i = 0; i < testDatalength;i++) {
         if(b->at(i) != i) {
-          printf("---[PosixShareMemory Test {write/read()} case2] [FAILED]--- \n");
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case2]");
           break;
         }
 
         if(memory->read(i) != i) {
-          printf("---[PosixShareMemory Test {write/read()} case3] [FAILED]--- \n");
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case3]");
           break;
         }
       }
@@ -56,34 +56,34 @@ int main() {
       ByteArray b2 = createByteArray(64);
       int length2 = memory->read(b2);
       if(length2 < testDatalength) {
-          printf("---[PosixShareMemory Test {write/read()} case4] [FAILED]--- \n");
-          return 1;
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case4]");
+          return;
       }
 
       for(int i = 0; i < testDatalength;i++) {
         if(b2->at(i) != i) {
-          printf("---[PosixShareMemory Test {write/read()} case5] [FAILED]--- \n");
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case5]");
           break;
         }
       }
 
       ByteArray b3 = createByteArray(64);
-      if(memory->read(256,b3) != -PosixShmReadOverSize) {
-        printf("---[PosixShareMemory Test {write/read()} case6] [FAILED]--- \n");
+      if(memory->read(256,b3) != -EINVAL) {
+        TEST_FAIL("[PosixShareMemory Test {write/read()} case6]");
       }
 
       if(memory->read(16,b3) < 0) {
-        printf("---[PosixShareMemory Test {write/read()} case7] [FAILED]--- \n");
+        TEST_FAIL("[PosixShareMemory Test {write/read()} case7]");
       }
 
       for(int i = 0; i < (testDatalength-16);i++) {
         if(b3->at(i) != i) {
-          printf("---[PosixShareMemory Test {write/read()} case8] [FAILED]--- \n");
+          TEST_FAIL("[PosixShareMemory Test {write/read()} case8]");
           break;
         }
       }
 
-      printf("---[PosixShareMemory Test {write/read()} case9] [Success]--- \n");
+      TEST_OK("[PosixShareMemory Test {write/read()} case9]");
 
       //while(1) {}
   }
@@ -93,28 +93,28 @@ int main() {
   //int write(int index,char v);
   pid = fork();
   if(pid == 0) {
-    PosixShareMemory memory = createPosixShareMemory("/shareMemoryabc",testDatalength,PosixShareMemoryWriteRead);
-    memory->init();
-    ByteArray arr = createByteArray(&testData[0],32);
-    if(memory->write(256,arr) != -PosixShmWriteOverSize) {
-      printf("---[PosixShareMemory Test {write/read()} case10] [FAILED]--- \n");
+    PosixShareMemory memory = createPosixShareMemory("shareMemoryabc",testDatalength,st(PosixShareMemory)::WriteRead);
+    
+    ByteArray arr = createByteArray((const byte *)&testData[0],32);
+    if(memory->write(256,arr) != -EINVAL) {
+      TEST_FAIL("[PosixShareMemory Test {write/read()} case10]");
     }
 
-    if(memory->write(256,'c') != -PosixShmWriteOverSize) {
-      printf("---[PosixShareMemory Test {write/read()} case11] [FAILED]--- \n");
+    if(memory->write(256,'c') != -EINVAL) {
+      TEST_FAIL("[PosixShareMemory Test {write/read()} case11]");
     }
 
     memory->write(16,'c');
-    return 1;
+    exit(0);
   } else {
     sleep(1);
-    PosixShareMemory memory = createPosixShareMemory("/shareMemoryabc",testDatalength,PosixShareMemoryWriteRead);
-    memory->init();
+    PosixShareMemory memory = createPosixShareMemory("shareMemoryabc",testDatalength,st(PosixShareMemory)::WriteRead);
+    
     if(memory->read(16) != 'c') {
-      printf("---[PosixShareMemory Test {write/read()} case12] [FAILED]--- \n");
+      TEST_FAIL("[PosixShareMemory Test {write/read()} case12]");
     }
 
-    printf("---[PosixShareMemory Test {write/read()} case13] [Success]--- \n");
+    TEST_OK("[PosixShareMemory Test {write/read()} case13]");
   }
 
 }

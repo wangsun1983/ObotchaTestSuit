@@ -6,11 +6,11 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "String.hpp"
-#include "LineReader.hpp"
+#include "BufferedReader.hpp"
 #include "FileOutputStream.hpp"
 
 using namespace obotcha;
-extern void testLineReader();
+extern void testBufferedReader();
 
 int main() {
   //prepare data
@@ -24,6 +24,6 @@ int main() {
     stream->close();
   }
 
-  testLineReader();
+  testBufferedReader();
   return 0;
 }

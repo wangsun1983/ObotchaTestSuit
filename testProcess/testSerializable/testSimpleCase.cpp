@@ -6,6 +6,7 @@
 #include "String.hpp"
 #include "Serializable.hpp"
 #include "Reflect.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,6 +14,11 @@ DECLARE_CLASS(MyTestMember) IMPLEMENTS(Serializable) {
 public:
     String m1;
     int m2;
+    
+    bool equals(MyTestMember s) {
+      return m2 == s->m2 && m1->equals(s->m1);
+    }
+
     DECLARE_REFLECT_FIELD(MyTestMember,m1,m2);
 };
 
@@ -23,6 +29,11 @@ public:
     Integer t3;
 
     MyTestMember member1;
+
+    bool equals(MyTestData s) {
+      return t1->equals(s->t1) && t2 == s->t2 && t3->toValue() == s->t3->toValue();
+    }
+
     DECLARE_REFLECT_FIELD(MyTestData,t1,t2,t3,member1);
 };
 
@@ -37,17 +48,11 @@ void testOrpcSimpleCase() {
   data1->t3 = createInteger(2211);
   ByteArray d1 = data1->serialize();
 
-  printf("d1 size is %d\n",d1->size());
-  for(int i = 0;i < d1->size();i++) {
-    printf("%x \n",d1->at(i));
+  MyTestData data2 = DeSerialize<MyTestData>(d1);
+  if(!data2->equals(data1)) {
+    TEST_FAIL("testSerializable testSimpleCase case1");
   }
 
-  MyTestData data2 = createMyTestData();
-  data2->deserialize(d1);
-  printf("t1 is %s \n",data2->t1->toChars());
-  printf("t2 is %d \n",data2->t2);
-  printf("t3 is %d \n",data2->t3->toValue());
-
-  printf("m1 is %s \n",data2->member1->m1->toChars());
-  printf("m22 is %d \n",data2->member1->m2);
+  TEST_OK("testSerializable testSimpleCase case100");
+  
 }

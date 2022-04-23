@@ -28,8 +28,10 @@ extern void testHashMapUserdata();
 extern void testHashMapList();
 extern void testArrayListMap();
 extern void testMapList();
+extern void testNullReflect();
 
 int main() {
+  testNullReflect();
   testReflectNumber();
   testReflectToArrayXml();
   testReflectToSimpleArrayXml();

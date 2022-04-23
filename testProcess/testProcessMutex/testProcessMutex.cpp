@@ -15,12 +15,12 @@ using namespace obotcha;
 void testProcessMutex() {
   int pid = fork();
   if(pid == 0) {
-    ProcessMutex mu = createProcessMutex("./abc");
+    ProcessMutex mu = createProcessMutex("abc");
     AutoLock l(mu);
     sleep(5);
     return;
   } else {
-    ProcessMutex mu = createProcessMutex("./abc");
+    ProcessMutex mu = createProcessMutex("abc");
     sleep(1);
     TimeWatcher w = createTimeWatcher();
     w->start();

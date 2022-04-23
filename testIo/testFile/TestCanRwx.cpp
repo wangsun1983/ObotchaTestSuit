@@ -8,9 +8,14 @@
 using namespace obotcha;
 
 void testCanRwx() {
-    File readFile = createFile("readonly");
-    File executeFile = createFile("executeonly");
-    File writeFile = createFile("writeonly");
+
+    int fd1 = open("./tmp/readonly",O_RDWR|O_CREAT,0444);
+    int fd2 = open("./tmp/executeonly",O_RDWR|O_CREAT,0111);
+    int fd3 = open("./tmp/writeonly",O_RDWR|O_CREAT,0222);
+
+    File readFile = createFile("./tmp/readonly");
+    File executeFile = createFile("./tmp/executeonly");
+    File writeFile = createFile("./tmp/writeonly");
 
     //test read
     if(!readFile->canRead()) {

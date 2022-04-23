@@ -127,35 +127,35 @@ void testReadableLength() {
       reader->setCursor(0);
       int length = reader->getReadableLength();
       if(length != 1) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case9],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case11],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 5) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case10],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case12],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 4) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case11],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case13],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 3) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case12],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case14],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 2) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case13],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case15],length is %d",length);
         return;
       }
 
@@ -167,35 +167,35 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 2) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case14],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case16],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 1) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case15],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case17],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 5) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case16],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case18],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 4) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case17],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case19],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 3) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case18],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case20],length is %d",length);
         return;
       }
 
@@ -208,35 +208,35 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 3) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case19],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case21],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 2) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case20],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case22],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 1) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case21],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case23],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 5) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case22],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case24],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 4) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case23],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case25],length is %d",length);
         return;
       }
 
@@ -248,35 +248,35 @@ void testReadableLength() {
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 4) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case24],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case26],length is %d",length);
         return;
       }
 
       reader->setCursor(1);
       length = reader->getReadableLength();
       if(length != 3) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case25],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case27],length is %d",length);
         return;
       }
 
       reader->setCursor(2);
       length = reader->getReadableLength();
       if(length != 2) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case26],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case28],length is %d",length);
         return;
       }
 
       reader->setCursor(3);
       length = reader->getReadableLength();
       if(length != 1) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case27],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case29],length is %d",length);
         return;
       }
 
       reader->setCursor(4);
       length = reader->getReadableLength();
       if(length != 5) {
-        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case28],length is %d",length);
+        TEST_FAIL("[ByteRingArrayReader Test {testReadableLength} case30],length is %d",length);
         return;
       }
 

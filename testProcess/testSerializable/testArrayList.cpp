@@ -6,6 +6,7 @@
 #include "String.hpp"
 #include "Serializable.hpp"
 #include "Reflect.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -13,6 +14,11 @@ DECLARE_CLASS(MyTestArrayListMember) IMPLEMENTS(Serializable) {
 public:
     String m1;
     int m2;
+
+    bool equals(MyTestArrayListMember s) {
+        return m1->equals(s->m1) && m2 == s->m2;        
+    }
+
     DECLARE_REFLECT_FIELD(MyTestArrayListMember,m1,m2);
 };
 
@@ -43,6 +49,19 @@ void testOrpcArrayList() {
     MyTestDataList list2 = createMyTestDataList();
     list2->deserialize(array);
 
-    MyTestArrayListMember member1_X = list2->ll->get(0);
-    printf("m1 is %s,m2 is %d \n",member1_X->m1->toChars(),member1_X->m2);
+    
+    if(list2->ll->size() != list->ll->size()) {
+        TEST_FAIL("testSerializable ArrayList case1");
+    }
+
+    for(int i = 0;i < list->ll->size();i++) {
+        auto data1 = list->ll->get(i);
+        auto data2 = list2->ll->get(i);
+        if(!data1->equals(data2)) {
+            TEST_FAIL("testSerializable ArrayList case2");
+            break;
+        }
+    }
+
+    TEST_OK("testSerializable ArrayList case100");
 }

@@ -12,8 +12,10 @@ extern void testEqual();
 extern void testReferenceCount();
 extern void testReferenceArraylist();
 extern void testReferenceHashMap();
+extern void testAutoCreator();
 
 int main() {
+    testAutoCreator();
     testEqual();
     testReferenceCount();
     testReferenceArraylist();

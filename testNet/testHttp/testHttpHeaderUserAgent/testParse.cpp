@@ -15,6 +15,14 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderUserAgent useragent = createHttpHeaderUserAgent();
+    useragent->import("apifox/1.0.0 (https://www.apifox.cn)");
+
+    break;
+  }
+
+ 
+  while(1) {
+    HttpHeaderUserAgent useragent = createHttpHeaderUserAgent();
     useragent->import(" Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
     ArrayList<HttpUserAgentDetail> lists = useragent->get();
     auto detail1 = lists->get(0);

@@ -15,6 +15,6 @@ extern void testToString();
 
 int main() {
     testParse();
-    testToString();
+    //testToString();
     return 0;
 }

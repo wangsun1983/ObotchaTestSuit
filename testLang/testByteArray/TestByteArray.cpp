@@ -23,8 +23,10 @@ extern void testByteArrayClear();
 extern void testByteArrayStruct();
 extern void testByteArrayStringConvert();
 extern void testPriority();
+extern void testByteArrayEquals();
 
 int main() {
+  testByteArrayEquals();
   testByteArrayStringConvert();
   testByteArrayStruct();
   basetest();

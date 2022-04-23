@@ -7,12 +7,18 @@
 #include "Serializable.hpp"
 #include "Reflect.hpp"
 #include "HashMap.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 DECLARE_CLASS(MyTestMapKey) IMPLEMENTS(Serializable) {
 public:
     int v1;
+    
+    bool equals(MyTestMapKey s) {
+        return v1 == s->v1;
+    }
+
     DECLARE_REFLECT_FIELD(MyTestMapKey,v1);
 };
 
@@ -20,6 +26,10 @@ DECLARE_CLASS(MyTestMapValue) IMPLEMENTS(Serializable) {
 public:
     String m1;
     int m2;
+
+    bool equals(MyTestMapValue s) {
+        return m1->equals(s->m1) && m2 == s->m2;
+    }
     DECLARE_REFLECT_FIELD(MyTestMapValue,m1,m2);
 };
 
@@ -52,19 +62,35 @@ void testOrpcHashMap() {
     mm->map->put(key2,value2);
 
     ByteArray data = mm->serialize();
-    printf("data size is %d \n",data->size());
 
-    MyTestDataMap mm2 = createMyTestDataMap();
-    mm2->deserialize(data);
+    
+    MyTestDataMap result = DeSerialize<MyTestDataMap>(data);
 
-    printf("mm2 size is %d \n",mm2->map->size());
-    MapIterator<MyTestMapKey,MyTestMapValue> iterator = mm2->map->getIterator();
-    while(iterator->hasValue()) {
-        MyTestMapKey key = iterator->getKey();
-        printf("key v1 is %d \n",key->v1);
-
-        MyTestMapValue value = iterator->getValue();
-        printf("value m1 is %s,m2 is %d \n",value->m1->toChars(),value->m2);
-        iterator->next();
+    if(result->map->size() != mm->map->size()) {
+        TEST_FAIL("testSerializable testHashmap case1");
     }
+
+    auto keysets1 = result->map->keySet();
+    auto keysets2 = mm->map->keySet();
+    for(int i = 0;i < keysets1->size();i++) {
+        auto v1 = keysets1->get(i);
+        auto v2 = keysets2->get(keysets1->size() - i - 1);
+        if(!v1->equals(v2)) {
+            TEST_FAIL("testSerializable testHashmap case2");
+            break;
+        }
+    }
+
+    auto entrySets1 = result->map->entrySet();
+    auto entrySets2 = mm->map->entrySet();
+    for(int i = 0;i < entrySets1->size();i++) {
+        auto v1 = entrySets1->get(i);
+        auto v2 = entrySets1->get(i);
+        if(!v1->equals(v2)) {
+            TEST_FAIL("testSerializable testHashmap case3");
+            break;
+        }
+    }
+
+    TEST_OK("testSerializable testHashmap case100");
 }

@@ -6,163 +6,186 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "String.hpp"
-#include "LineReader.hpp"
+#include "BufferedReader.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
-void testLineReader() {
+void testBufferedReader() {
   //readLine();
   while(1) {
       String str = createString("hello\nworld\nni\nhao");
-      LineReader reader = createLineReader(str);
+      BufferedReader reader = createBufferedReader(str);
       if(!reader->readLine()->equals(createString("hello"))) {
-          TEST_FAIL("[LineReader Test {readLine()} case1]");
+          TEST_FAIL("[BufferedReader Test {readLine()} case1]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("world"))) {
-          TEST_FAIL("[LineReader Test {readLine()} case2]");
+          TEST_FAIL("[BufferedReader Test {readLine()} case2]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("ni"))) {
-          TEST_FAIL("[LineReader Test {readLine()} case3]");
+          TEST_FAIL("[BufferedReader Test {readLine()} case3]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("hao"))) {
-          TEST_FAIL("[LineReader Test {readLine()} case4]");
+          TEST_FAIL("[BufferedReader Test {readLine()} case4]");
           break;
       }
 
-      TEST_OK("[LineReader Test {readLine()} case5]");
+      TEST_OK("[BufferedReader Test {readLine()} case5]");
       break;
   }
 
   //reset
   while(1) {
       String str = createString("hello\nworld\nni\nhao");
-      LineReader reader = createLineReader(str);
+      BufferedReader reader = createBufferedReader(str);
       if(!reader->readLine()->equals(createString("hello"))) {
-          TEST_FAIL("[LineReader Test {reset()} case1]");
+          TEST_FAIL("[BufferedReader Test {reset()} case1]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("world"))) {
-          TEST_FAIL("[LineReader Test {reset()} case2]");
+          TEST_FAIL("[BufferedReader Test {reset()} case2]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("ni"))) {
-          TEST_FAIL("[LineReader Test {reset()} case3]");
+          TEST_FAIL("[BufferedReader Test {reset()} case3]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("hao"))) {
-          TEST_FAIL("[LineReader Test {reset()} case4]");
+          TEST_FAIL("[BufferedReader Test {reset()} case4]");
           break;
       }
 
       reader->reset();
       if(!reader->readLine()->equals(createString("hello"))) {
-          TEST_FAIL("[LineReader Test {reset()} case5]");
+          TEST_FAIL("[BufferedReader Test {reset()} case5]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("world"))) {
-          TEST_FAIL("[LineReader Test {reset()} case6]");
+          TEST_FAIL("[BufferedReader Test {reset()} case6]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("ni"))) {
-          TEST_FAIL("[LineReader Test {reset()} case7]");
+          TEST_FAIL("[BufferedReader Test {reset()} case7]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("hao"))) {
-          TEST_FAIL("[LineReader Test {reset()} case8]");
+          TEST_FAIL("[BufferedReader Test {reset()} case8]");
           break;
       }
 
-      TEST_OK("[LineReader Test {readLine()} case9]");
+      TEST_OK("[BufferedReader Test {readLine()} case9]");
       break;
   }
 
   //read file
   while(1) {
-    LineReader reader = createLineReader(createFile("./tmp/base_data"));
+    BufferedReader reader = createBufferedReader(createFile("./tmp/base_data"));
     if(!reader->readLine()->equals(createString("hello"))) {
-        TEST_FAIL("[LineReader Test {readLine()} case10]");
+        TEST_FAIL("[BufferedReader Test {readLine()} case10]");
         break;
     }
 
     if(!reader->readLine()->equals(createString("world"))) {
-        TEST_FAIL("[LineReader Test {readLine()} case11]");
+        TEST_FAIL("[BufferedReader Test {readLine()} case11]");
         break;
     }
 
     if(!reader->readLine()->equals(createString("ni"))) {
-        TEST_FAIL("[LineReader Test {readLine()} case12]");
+        TEST_FAIL("[BufferedReader Test {readLine()} case12]");
         break;
     }
 
     if(!reader->readLine()->equals(createString("hao"))) {
-        TEST_FAIL("[LineReader Test {readLine()} case13]");
+        TEST_FAIL("[BufferedReader Test {readLine()} case13]");
         break;
     }
 
-    TEST_OK("[LineReader Test {readLine()} case14]");
+    TEST_OK("[BufferedReader Test {readLine()} case14]");
     break;
   }
 
   //reset file
   while(1) {
-      LineReader reader = createLineReader(createFile("./tmp/base_data"));
+      BufferedReader reader = createBufferedReader(createFile("./tmp/base_data"));
       if(!reader->readLine()->equals(createString("hello"))) {
-          TEST_FAIL("[LineReader Test {reset()} case15]");
+          TEST_FAIL("[BufferedReader Test {reset()} case15]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("world"))) {
-          TEST_FAIL("[LineReader Test {reset()} case16]");
+          TEST_FAIL("[BufferedReader Test {reset()} case16]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("ni"))) {
-          TEST_FAIL("[LineReader Test {reset()} case17]");
+          TEST_FAIL("[BufferedReader Test {reset()} case17]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("hao"))) {
-          TEST_FAIL("[LineReader Test {reset()} case18]");
+          TEST_FAIL("[BufferedReader Test {reset()} case18]");
           break;
       }
 
       reader->reset();
       if(!reader->readLine()->equals(createString("hello"))) {
-          TEST_FAIL("[LineReader Test {reset()} case19]");
+          TEST_FAIL("[BufferedReader Test {reset()} case19]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("world"))) {
-          TEST_FAIL("[LineReader Test {reset()} case20]");
+          TEST_FAIL("[BufferedReader Test {reset()} case20]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("ni"))) {
-          TEST_FAIL("[LineReader Test {reset()} case21]");
+          TEST_FAIL("[BufferedReader Test {reset()} case21]");
           break;
       }
 
       if(!reader->readLine()->equals(createString("hao"))) {
-          TEST_FAIL("[LineReader Test {reset()} case22]");
+          TEST_FAIL("[BufferedReader Test {reset()} case22]");
           break;
       }
 
-      TEST_OK("[LineReader Test {readLine()} case23]");
+      TEST_OK("[BufferedReader Test {readLine()} case23]");
       break;
   }
 
-  TEST_OK("[LineReader Test {readLine()} case100]");
+  //lines
+  while(1) {
+      BufferedReader reader = createBufferedReader(createFile("./tmp/base_data"));
+      ArrayList<String> lines = reader->lines();
+      if(lines->size() != 4) {
+        TEST_FAIL("[BufferedReader Test {reset()} case24]");
+        break;
+      }
+
+      auto iterator = lines->getIterator();
+      std::string vv[] =  {"hello","world","ni","hao"};
+      int index = 0;
+      while(iterator->hasValue()) {
+        String v = iterator->getValue();
+        if(!v->equals(vv[index])) {
+          TEST_FAIL("[BufferedReader Test {reset()} case25],v is %s,vv is %s",v->toChars(),vv[index].c_str());
+        }
+        index++;
+        iterator->next();
+      }
+      break;
+  }
+
+  TEST_OK("[BufferedReader Test {readLine()} case100]");
 }

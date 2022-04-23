@@ -34,6 +34,8 @@ extern void testHashMapUserdata();
 extern void testHashMapList();
 extern void testArrayListMap();
 extern void testMapList();
+extern void testReflectNullItems();
+
 int main() {
     //testReflect();
     //testImport();
@@ -65,4 +67,5 @@ int main() {
     testUserDataReflect();
     testHashMapStringString();
     testArrayListString();
+    testReflectNullItems();
 }

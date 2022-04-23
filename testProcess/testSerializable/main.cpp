@@ -13,11 +13,15 @@ extern void testOrpcArrayList();
 extern void testOrpcHashMap();
 extern void testInnerClass();
 extern void testByteArray();
+extern void testOrpcSimpleNullCase();
+extern void testSimpleMsg();
 
 int main() {
-  //testOrpcSimpleCase();
-  //testOrpcArrayList();
-  // testOrpcHashMap();
-  //testInnerClass();
+  testSimpleMsg();
+  testOrpcSimpleNullCase();
+  testOrpcSimpleCase();
+  testOrpcArrayList();
+  testOrpcHashMap();
+  testInnerClass();
   testByteArray();
 }

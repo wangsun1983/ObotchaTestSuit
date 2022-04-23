@@ -6,65 +6,77 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "StrongPointer.hpp"
-#include "LocalSocketClient.hpp"
 #include "PosixSem.hpp"
 #include "System.hpp"
-
+#include "TimeWatcher.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
 int main() {
-  printf("---[PosixSem Test Start]--- \n");
+ 
+  {
+    PosixSem sem = createPosixSem("sem_test1",0);
+    sem->clear();
 
+    PosixSem sem2 = createPosixSem("sem_test2",0);
+    sem2->clear();
+
+    PosixSem sem3 = createPosixSem("sem_test3",100);
+    sem3->clear();
+  }
   //wait()
   int pid = fork();
   if(pid == 0) {
       PosixSem sem = createPosixSem("sem_test1",0);
-      sem->init();
       int ret = sem->wait();
-      return 1;
+      exit(0);
   } else {
       PosixSem sem = createPosixSem("sem_test1",0);
-      sem->init();
       sleep(1);
       sem->post();
+      TimeWatcher t = createTimeWatcher();
+      t->start();
       wait(nullptr);//wait for child process
-      printf("---[PosixSem Test {wait()} case1] [Success]--- \n");
+      long v = t->stop();
+      if(v > 100) {
+        TEST_FAIL("[PosixSem Test {wait()} case1] v is %ld",v);
+      }
+      sem->clear();
+      TEST_OK("[PosixSem Test {wait()} case2]");
   }
 
   //wait(long)
   pid = fork();
   if(pid == 0) {
       PosixSem sem = createPosixSem("sem_test2",0);
-      sem->init();
       sleep(1);
       int ret = sem->post();
-      return 1;
+      exit(0);
   } else {
       PosixSem sem = createPosixSem("sem_test2",0);
-      sem->init();
       long current = st(System)::currentTimeMillis();
       sem->wait();
       long waittime = (st(System)::currentTimeMillis() - current);
+
+      sem->clear();
       if(waittime > 1005 || waittime <1000) {
-          printf("---[PosixSem Test {wait(long)} case1] [FAILED]--- \n");
+          TEST_FAIL("[PosixSem Test {wait(long)} case1],waittime is %ld",waittime);
           return 1;
       }
 
-      printf("---[PosixSem Test {wait()} case1] [Success]--- \n");
+      TEST_OK("[PosixSem Test {wait(long)} case2]");
   }
+
 
   //int getValue();
   {
-      PosixSem sem3 = createPosixSem("sem_test3",100);
-      sem3->clean();
-      sem3->init();
+      auto sem3 = createPosixSem("sem_test3",0);
       sem3->post();
-      if(sem3->getValue() != 101) {
-        printf("sem3 value is %d \n",sem3->getValue());
-        printf("---[PosixSem Test {getValue()} case1] [FAILED]--- \n");
+      if(sem3->getValue() != 1) {
+        TEST_FAIL("[PosixSem Test {getValue()} case1]");
       }
-      printf("---[PosixSem Test {getValue()} case2] [Success]--- \n");
+      TEST_OK("[PosixSem Test {getValue()} case2]");
   }
 
 }

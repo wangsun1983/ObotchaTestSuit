@@ -13,8 +13,12 @@ extern void test_pop();
 //extern void testPopAll();
 extern void testReadableLength();
 extern void testMove();
+extern void testReadLittleEndian();
+extern void testReadBigEndian();
 
 int main() {
+  testReadLittleEndian();
+  testReadBigEndian();
   //test_readnext();
   //testPopAll();
   testReadNext();
