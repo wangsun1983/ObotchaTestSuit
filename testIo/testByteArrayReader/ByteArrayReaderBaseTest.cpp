@@ -20,7 +20,7 @@ void basetest() {
     long is 283686952306183
     short is 2057
     byte is 10
-    readInt is 185339150
+    read<int> is 185339150
   */
   while(1) {
     ByteArray data = createByteArray(16);
@@ -29,16 +29,16 @@ void basetest() {
     }
 
     ByteArrayReader reader = createByteArrayReader(data);
-    long v1 = reader->readLong();
-    short v2 = reader->readShort();
-    byte v3 = reader->readByte();
-    int v4 = reader->readInt();
+    long v1 = reader->read<long>();
+    short v2 = reader->read<short int>();
+    byte v3 = reader->read<byte>();
+    int v4 = reader->read<int>();
     if(v1 != 283686952306183 || v2 != 2057 || v3 != 10 || v4 != 185339150) {
-        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case1]");
+        TEST_FAIL("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case1]");
         break;
     }
 
-    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case2]");
+    TEST_OK("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case2]");
     break;
   }
 
@@ -49,7 +49,7 @@ void basetest() {
     long is 2315169217770759719
     short is 10281
     byte is 42
-    readInt is 724315438
+    read<int> is 724315438
   */
   while(1) {
     ByteArray data = createByteArray(16);
@@ -59,16 +59,16 @@ void basetest() {
     }
 
     ByteArrayReader reader = createByteArrayReader(data);
-    long v1 = reader->readLong();
-    short v2 = reader->readShort();
-    byte v3 = reader->readByte();
-    int v4 = reader->readInt();
+    long v1 = reader->read<long>();
+    short v2 = reader->read<short int>();
+    byte v3 = reader->read<byte>();
+    int v4 = reader->read<int>();
     if(v1 != 2315169217770759719 || v2 != 10281 || v3 != 42 || v4 != 724315438) {
-        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case3]");
+        TEST_FAIL("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case3]");
         break;
     }
 
-    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case4]");
+    TEST_OK("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case4]");
     break;
   }
 
@@ -80,7 +80,7 @@ void basetest() {
     long is 4630054748589213255
     short is 18505
     byte is 74
-    readInt is 1263291726
+    read<int> is 1263291726
   */
   while(1) {
     ByteArray data = createByteArray(16);
@@ -90,20 +90,20 @@ void basetest() {
     }
 
     ByteArrayReader reader = createByteArrayReader(data);
-    long v1 = reader->readLong();
-    short v2 = reader->readShort();
-    byte v3 = reader->readByte();
-    int v4 = reader->readInt();
+    long v1 = reader->read<long>();
+    short v2 = reader->read<short int>();
+    byte v3 = reader->read<byte>();
+    int v4 = reader->read<int>();
     if(v1 != 4630054748589213255 || v2 != 18505 || v3 != 74 || v4 != 1263291726) {
-        TEST_FAIL("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case5]");
+        TEST_FAIL("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case5]");
         break;
     }
 
-    TEST_OK("[TestByteArrayReader Test {readLong/readShort/readByte/readInt} case6]");
+    TEST_OK("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case6]");
     break;
   }
 
-  //int readByteArray(ByteArray);
+  //int read(ByteArray);
   while(1) {
     ByteArray data = createByteArray(16);
     for(int i = 0;i<16;i++) {
@@ -113,20 +113,20 @@ void basetest() {
 
     ByteArrayReader reader = createByteArrayReader(data);
     ByteArray readarray = createByteArray(64);
-    int len = reader->readByteArray(readarray);
+    int len = reader->read(readarray);
     if(len != 16) {
-        TEST_FAIL("[TestByteArrayReader Test {readByteArray} case1]");
+        TEST_FAIL("[TestByteArrayReader Test {read} case1]");
         break;
     }
 
     for(int j = 0;j<16;j++) {
         if(readarray->at(j) != data->at(j)) {
-            TEST_FAIL("[TestByteArrayReader Test {readByteArray} case2]");
+            TEST_FAIL("[TestByteArrayReader Test {read} case2]");
             break;
         }
     }
 
-    TEST_OK("[TestByteArrayReader Test {readByteArray} case3]");
+    TEST_OK("[TestByteArrayReader Test {read} case3]");
     break;
   }
 }

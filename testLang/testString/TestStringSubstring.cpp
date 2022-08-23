@@ -49,19 +49,32 @@ void TestStringSubString() {
             break;
         }
 
-        str2 = str->subString(0,6);
+        str2 = nullptr;
+
+        try {
+            str2 = str->subString(0,6);
+        } catch(...) {}
+
         if(str2 != nullptr) {
             TEST_FAIL("String SubString test6");
             break;
         }
 
-        str2 = str->subString(0,-1);
+        str2 = nullptr;
+
+        try {
+            str2 = str->subString(0,-1);
+        } catch(...) {}
+
         if(str2 != nullptr) {
             TEST_FAIL("String SubString test7");
             break;
         }
 
-        str2 = str->subString(-1,3);
+        try {
+            str2 = str->subString(-1,3);
+        } catch(...) {}
+        
         if(str2 != nullptr) {
             TEST_FAIL("String SubString test8");
             break;

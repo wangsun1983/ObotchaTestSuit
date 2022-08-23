@@ -16,7 +16,7 @@ void testLongParseWrong() {
   while(1) {
    Long v1 = st(Long)::parseDecLong("xd");
    if(v1 != nullptr) {
-    TEST_FAIL("Long testLongParseWrong test1");
+    TEST_FAIL("Long testLongParseWrong test1,v is %ld",v1->toValue());
     break;
    }
 

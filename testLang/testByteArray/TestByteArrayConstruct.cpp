@@ -32,10 +32,10 @@ void testConstruct() {
       }
 
       data = createByteArray(128);
-      data->setSafe();
+      //data->setSafe();
       data[16] = 12;
 
-      val = data->toValue();
+      val = data->toValue(true);
       val[16] = 32;
       if(data[16] == 32) {
         TEST_FAIL("ByteArray test Construct test 3");
@@ -70,7 +70,7 @@ void testConstruct() {
       }
 
       arr1 = createByteArray(data+32,16);
-      arr1->setSafe();
+      //arr1->setSafe();
       for(int i = 0;i < 16;i++) {
         if(arr1[i] != i+32) {
           TEST_FAIL("ByteArray test Construct test 4");
@@ -78,7 +78,7 @@ void testConstruct() {
         }
       }
 
-      val = arr1->toValue();
+      val = arr1->toValue(true);
       val[8] = 32;
       if(arr1[8] == 32) {
         TEST_FAIL("ByteArray test Construct test 5");
@@ -111,7 +111,7 @@ void testConstruct() {
       }
 
       ByteArray arr2 = createByteArray(data->toValue(),32);
-      arr2->setSafe();
+      //arr2->setSafe();
       for(int i = 0;i<32;i++) {
         if(arr2[i] != i) {
           TEST_FAIL("ByteArray test Construct test 8");
@@ -119,7 +119,7 @@ void testConstruct() {
         }
       }
 
-      val = arr2->toValue();
+      val = arr2->toValue(true);
       val[16] = 22;
       if(arr2[16] == 22) {
         TEST_FAIL("ByteArray test Construct test 9");

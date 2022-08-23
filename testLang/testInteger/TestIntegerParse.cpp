@@ -137,7 +137,7 @@ void testIntegerParse() {
       int v = st(Integer)::parseOctInt(createString(OctTable[i]))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test4-------[FAIL],index is %d,v is %d,str is %s\n",i,v,OctTable[i].c_str());
-          TEST_FAIL("Integer testIntegerParse test5");
+          TEST_FAIL("Integer testIntegerParse test5,v is %d,i is %d",v,i);
           break;
       }
      }

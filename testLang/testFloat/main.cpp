@@ -13,11 +13,13 @@ extern void basetest();
 extern void equaltest();
 extern void updatetest();
 extern void hashcodetest();
+extern void parseWrongTest();
 
 int main() {
     basetest();
     equaltest();
     updatetest();
     hashcodetest();
+    parseWrongTest();
     return 0;
 }

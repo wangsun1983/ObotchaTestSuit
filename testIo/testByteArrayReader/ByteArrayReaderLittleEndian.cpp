@@ -23,28 +23,28 @@ void testByteArrayLittleEndian() {
       //test short
       short int v1 = 0;
       v1 = array[0]|(array[1]<<8);
-      int v1_chk = reader->readShort();
+      int v1_chk = reader->read<short int>();
       if(v1 != v1_chk) {
-        TEST_FAIL("[TestByteArrayReader LittleEndia case1],v1 is %d,v1_chk is %d",v1,v1_chk);
+        TEST_FAIL("[TestByteArrayReader LittleEndia case1],v1 is %x,v1_chk is %x",v1,v1_chk);
       }
 
       short int v2 = 0;
       v2 = array[2]|(array[3]<<8);
-      int v2_chk = reader->readShort();
+      int v2_chk = reader->read<short int>();
       if(v2 != v2_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case2],v2 is %d,v2_chk is %d",v2,v2_chk);
       }
 
       short int v3 = 0;
       v3 = array[4]|(array[5]<<8);
-      int v3_chk = reader->readShort();
+      int v3_chk = reader->read<short int>();
       if(v3 != v3_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case3],v3 is %d,v3_chk is %d",v3,v3_chk);
       }
 
       short int v4 = 0;
       v4 = array[6]|(array[7]<<8);
-      int v4_chk = reader->readShort();
+      int v4_chk = reader->read<short int>();
       if(v4 != v4_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case4],v4 is %d,v4_chk is %d",v4,v4_chk);
       }
@@ -56,14 +56,14 @@ void testByteArrayLittleEndian() {
       ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
       int v1 = 0;
       v1 = array[0]|(array[1]<<8)|(array[2]<<16)|(array[3]<<24);
-      int v1_chk = reader->readInt();
+      int v1_chk = reader->read<int>();
       if(v1 != v1_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case5],v1 is %d,v1_chk is %d",v1,v1_chk);
       }
 
       int v2 = 0;
       v2 = array[4]|(array[5]<<8)|(array[6]<<16)|(array[7]<<24);
-      int v2_chk = reader->readInt();
+      int v2_chk = reader->read<int>();
       if(v2 != v2_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case6],v2 is %d,v2_chk is %d",v2,v2_chk);
       }
@@ -75,7 +75,7 @@ void testByteArrayLittleEndian() {
       ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
       long v1 = 0;
       v1 = (long)array[0]|((long)array[1]<<8)|((long)array[2]<<16)|((long)array[3]<<24)|((long)array[4]<<32)|((long)array[5]<<40)|((long)array[6]<<48)|((long)array[7]<<56);
-      long v1_chk = reader->readLong();
+      long v1_chk = reader->read<long>();
       if(v1 != v1_chk) {
         TEST_FAIL("[TestByteArrayReader LittleEndia case7],v1 is %lx,v1_chk is %lx",v1,v1_chk);
       }
@@ -88,7 +88,7 @@ void testByteArrayLittleEndian() {
       ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
 
       for(int i = 0;i<8;i++) {
-        byte v = reader->readByte();
+        byte v = reader->read<byte>();
         if(v != array[i]) {
           TEST_FAIL("[TestByteArrayReader LittleEndia case8],v is %d,array[%d] is %d",v,i,array[i]);
         }

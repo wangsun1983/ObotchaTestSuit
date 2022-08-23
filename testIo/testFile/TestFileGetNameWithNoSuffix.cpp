@@ -42,7 +42,7 @@ void testFileGetNameWithNoSuffix() {
     file = createFile("abc/tt");
     name = file->getNameWithNoSuffix();
     if(!name->equals("tt")) {
-       TEST_FAIL("[File Test {getNameWithNoSuffix()} case5]");
+       TEST_FAIL("[File Test {getNameWithNoSuffix()} case5],name is %s",name->toChars());
     }
 
     //test6

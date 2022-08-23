@@ -17,10 +17,10 @@ void testByteArrayLittleEndian() {
     while(1) {
       ByteArray data = createByteArray(8);
       ByteArrayWriter writer = createByteArrayWriter(data);
-      writer->writeShort(1);
-      writer->writeShort(2);
-      writer->writeShort(3);
-      writer->writeShort(4);
+      writer->write<short int>(1);
+      writer->write<short int>(2);
+      writer->write<short int>(3);
+      writer->write<short int>(4);
       byte *d1 = data->toValue();
 
       short int v1 = d1[0] | d1[1]<<8;
@@ -29,8 +29,8 @@ void testByteArrayLittleEndian() {
       }
 
       writer->reset();
-      writer->writeInt(12);
-      writer->writeInt(198);
+      writer->write<int>(12);
+      writer->write<int>(198);
       //for(int i = 0;i<8;i++) {
       //  TEST_FAIL("d[%d] is %x ",i,d1[i]);
       //}
@@ -45,7 +45,7 @@ void testByteArrayLittleEndian() {
       }
 
       writer->reset();
-      writer->writeLong(12345678);
+      writer->write<long>(12345678);
       long v4 =  (long)d1[0] | (long)d1[1]<<8 |(long)d1[2]<<16 |(long)d1[3]<<24|(long)d1[4]<<32
                 |(long)d1[5]<<40|(long)d1[6]<<48|(long)d1[7]<<56;
       if(v4 != 12345678) {
@@ -53,14 +53,14 @@ void testByteArrayLittleEndian() {
       }
 
       writer->reset();
-      writer->writeByte(1);
-      writer->writeByte(2);
-      writer->writeByte(3);
-      writer->writeByte(4);
-      writer->writeByte(5);
-      writer->writeByte(6);
-      writer->writeByte(7);
-      writer->writeByte(8);
+      writer->write<byte>(1);
+      writer->write<byte>(2);
+      writer->write<byte>(3);
+      writer->write<byte>(4);
+      writer->write<byte>(5);
+      writer->write<byte>(6);
+      writer->write<byte>(7);
+      writer->write<byte>(8);
       for(int i = 0;i<8;i++) {
         if(d1[i] != i + 1) {
           TEST_FAIL("[TestByteArrayWriter LittleEndia case5],d1[%d] is %d",i,d1[i]);
@@ -75,7 +75,7 @@ void testByteArrayLittleEndian() {
 
       byte testData[8] = {0};
       long val = 12345678;
-      writer->writeLong(val);
+      writer->write<long>(val);
       memcpy(testData,&val,sizeof(long));
       for(int i = 0;i<8;i++) {
         if(testData[i] != data[i]) {
@@ -93,8 +93,8 @@ void testByteArrayLittleEndian() {
       byte testData[8] = {0};
       int val1 = 1234;
       int val2 = 4567;
-      writer->writeInt(val1);
-      writer->writeInt(val2);
+      writer->write<int>(val1);
+      writer->write<int>(val2);
 
       memcpy(testData,&val1,sizeof(int));
       memcpy(testData + 4,&val2,sizeof(int));

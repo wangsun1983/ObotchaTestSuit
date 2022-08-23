@@ -58,7 +58,7 @@ int testSimpleFrameParser() {
         return -1;
       }
 
-      //TEST_FAIL("msg is %s\n",frame->getData()->toChars());
+      
 
   }
 

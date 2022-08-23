@@ -21,8 +21,8 @@ void testByteArrayWriterArray() {
       byte arr2[] = {5,6,7,8};
 
       ByteArrayWriter writer = createByteArrayWriter(array);
-      writer->writeByteArray(createByteArray((const byte *)arr1,4));
-      writer->writeByteArray(createByteArray((const byte *)arr2,4));
+      writer->write(createByteArray((const byte *)arr1,4));
+      writer->write(createByteArray((const byte *)arr2,4));
 
       for(int i = 0;i<8;i++) {
         if(array[i] != i + 1) {
@@ -39,7 +39,7 @@ void testByteArrayWriterArray() {
 
       byte data[] = {1,2,3,4,5,6};
       ByteArray d2 = createByteArray((const byte *)data,6);
-      writer->writeByteArray(d2,2,3);
+      writer->write(d2,2,3);
       if(d1[0] != 3 || d1[1] != 4 || d1[2] != 5) {
         TEST_FAIL("[TestByteArrayWriter Write Array case2]");
       }

@@ -9,10 +9,9 @@ using namespace obotcha;
 
 DECLARE_EXCEPTION(MyException) {
 public:
-    MyException(const char * str):Exception(str){
+    MyException():Exception(){
 
     }
-    MyException(String str):Exception(str) {}
 };
 
 
@@ -22,7 +21,7 @@ void doException() {
                                     createString(1),
                                     "index is ",
                                     createString(1));
-    Trigger(MyException,exception);
+    Trigger(MyException,"ByteArray[] fail");
 }
 
 

@@ -6,6 +6,7 @@
 #include "FileNotFoundException.hpp"
 #include "System.hpp"
 #include "MappedFile.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,11 +17,16 @@ void testMapRead() {
     close(fd);
 
     while(1) {
-      MappedFile f = createMappedFileBuilder("./tmp/abc.txt")->setSize(256)->create();
-      ByteArray data = f->getData();
-      String str = data->toString();
+      MappedFile f = createMappedFile("./tmp/abc.txt",256);
+      auto stream = f->getInputStream();
+      stream->open();
+      ByteArray data = createByteArray(1024);
+      String str = nullptr;     
+      stream->read(data);
+
+      str = data->toString();
       if(!str->equals(txt)) {
-        printf("---[TestMappedFile read case1] [FAILED]--- \n");
+        TEST_FAIL("TestMappedFile read case1,str is %s \n",str->toChars());
         break;
       }
 
@@ -28,12 +34,15 @@ void testMapRead() {
       char *tt = "write again";
       write(fd,tt,strlen(tt));
 
+      stream->read(data);
       str = data->toString();
       //printf("dump2 str is %s \n",str->toChars());
       if(!str->equals(tt)) {
-        printf("---[TestMappedFile read case2] [FAILED]--- \n");
+        TEST_FAIL("TestMappedFile read case2,str is %s \n",str->toChars());
         break;
       }
+
+      TEST_OK("TestMappedFile read case100");
       break;
     }
 }

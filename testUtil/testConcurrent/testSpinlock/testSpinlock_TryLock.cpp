@@ -56,7 +56,7 @@ int testSpinlockTryLock() {
 		l->lock();
 		long v = watcher->stop();
 		if(v < 100 || v > 105) {
-			TEST_FAIL("[TestSpinlock TryLock case3]");
+			TEST_FAIL("[TestSpinlock TryLock case3],v is %d",v);
 			break;
 		}
 		t->join();

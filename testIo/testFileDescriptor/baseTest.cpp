@@ -9,10 +9,13 @@
 #include "Barrier.hpp"
 #include "FileDescriptor.hpp"
 #include "TestLog.hpp"
+#include "File.hpp"
 
 using namespace obotcha;
 
 void baseTest() {
+    File f = createFile("./tmp/base_data");
+    f->createNewFile();
     //isClosed
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);

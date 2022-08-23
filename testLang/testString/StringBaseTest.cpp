@@ -439,13 +439,21 @@ void basetest() {
       break;
     }
 
-    String str2 = abc->subString(20,30);
+    String str2 = nullptr;
+    try {
+        abc->subString(20,30);
+    } catch(...){}
+
     if(str2 != nullptr) {
       TEST_FAIL("BaseTest String subString test2");
       break;
     }
 
-    String str3 = abc->subString(1,100);
+    String str3 = nullptr;
+    try {
+      str3 = abc->subString(1,100);
+    }catch(...) {}
+
     if(str3 != nullptr) {
       TEST_FAIL("BaseTest String subString test3");
       break;
@@ -846,14 +854,14 @@ void basetest() {
   //    static String valueOf(Integer v);
   while(1) {
     Integer v1 = createInteger(100);
-    String a1 = st(String)::valueOf(v1);
+    String a1 = createString(v1);
     if(!a1->equals("100")) {
       TEST_FAIL("BaseTest String valueOf test1");
       break;
     }
 /*
     Integer v2;
-    String a2 = st(String)::valueOf(v2);
+    String a2 = createString(v2);
     if(a2 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test2");
       break;
@@ -866,21 +874,21 @@ void basetest() {
   //    static String valueOf(Boolean v);
   while(1) {
     Boolean v1 = createBoolean(true);
-    String a1 = st(String)::valueOf(v1);
+    String a1 = createString(v1);
     if(!a1->equals("true")) {
       TEST_FAIL("BaseTest String valueOf test3");
       break;
     }
 
     Boolean v2 = createBoolean(false);
-    String a2 = st(String)::valueOf(v2);
+    String a2 = createString(v2);
     if(!a2->equals("false")) {
       TEST_FAIL("BaseTest String valueOf test4");
       break;
     }
 /*
     Boolean v3;
-    String a3 = st(String)::valueOf(v3);
+    String a3 = createString(v3);
     if(a3 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test5");
       break;
@@ -893,7 +901,7 @@ void basetest() {
   //static String valueOf(Double v);
   while(1) {
     Double v1 = createDouble(100);
-    String a1 = st(String)::valueOf(v1);
+    String a1 = createString(v1);
     if(!a1->equals("100")) {
       //TODO
       TEST_FAIL("BaseTest String valueOf test7");
@@ -902,7 +910,7 @@ void basetest() {
 
 /*
     Double v2;
-    String a2 = st(String)::valueOf(v2);
+    String a2 = createString(v2);
     if(a2 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test8");
       break;
@@ -916,14 +924,14 @@ void basetest() {
   //static String valueOf(Float v);
   while(1) {
     Float v1 = createFloat(100);
-    String a1 = st(String)::valueOf(v1);
+    String a1 = createString(v1);
     if(!a1->equals("100")) {
       TEST_FAIL("BaseTest String valueOf test10");
       break;
     }
 /*
     Float v2;
-    String a2 = st(String)::valueOf(v2);
+    String a2 = createString(v2);
     if(a2 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test11");
       break;
@@ -936,14 +944,14 @@ void basetest() {
   //static String valueOf(int v);
   while(1) {
     int i = -1;
-    String v1 = st(String)::valueOf(i);
+    String v1 = createString(i);
     if(!v1->equals("-1")) {
       TEST_FAIL("BaseTest String valueOf test13");
       break;
     }
 
     int i2 = 10;
-    String v2 = st(String)::valueOf(i2);
+    String v2 = createString(i2);
     if(!v2->equals("10")) {
       TEST_FAIL("BaseTest String valueOf test14");
       break;
@@ -956,14 +964,14 @@ void basetest() {
   //  static String valueOf(bool v);
   while(1) {
     bool i = false;
-    String v1 = st(String)::valueOf(i);
+    String v1 = createString(i);
     if(!v1->equals("false")) {
       TEST_FAIL("BaseTest String valueOf test16");
       break;
     }
 
     bool i2 = true;
-    String v2 = st(String)::valueOf(i2);
+    String v2 = createString(i2);
     if(!v2->equals("true")) {
       TEST_FAIL("BaseTest String valueOf test17");
       break;
@@ -976,14 +984,14 @@ void basetest() {
   //  static String valueOf(double v);
   while(1) {
     double i = -1.0;
-    String v1 = st(String)::valueOf(i);
+    String v1 = createString(i);
     if(!v1->equals("-1")) {
       TEST_FAIL("BaseTest String valueOf test19");
       break;
     }
 
     double i2 = 10;
-    String v2 = st(String)::valueOf(i2);
+    String v2 = createString(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->equals("10")) {
       TEST_FAIL("BaseTest String valueOf test20");
@@ -997,14 +1005,14 @@ void basetest() {
   //  static String valueOf(float v);
   while(1) {
     float i = -1.0f;
-    String v1 = st(String)::valueOf(i);
+    String v1 = createString(i);
     if(!v1->equals("-1")) {
       TEST_FAIL("BaseTest String valueOf test22");
       break;
     }
 
     float i2 = 10;
-    String v2 = st(String)::valueOf(i2);
+    String v2 = createString(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->equals("10")) {
       TEST_FAIL("BaseTest String valueOf test23");
@@ -1018,14 +1026,19 @@ void basetest() {
   //  static String valueOf(char *p);
   while(1) {
     const char *p1 = "abc";
-    String s1 = st(String)::valueOf(p1);
+    String s1 = createString(p1);
     if(!s1->equals("abc")) {
       TEST_FAIL("BaseTest String valueOf test25");
       break;
     }
 
     const char *p2 = nullptr;
-    String s2 = st(String)::valueOf(p2);
+    String s2 = nullptr;
+
+    try {
+      s2 = createString(p2);
+    } catch(...) {}
+    
     if(s2 != nullptr) {
         TEST_FAIL("BaseTest String valueOf test26");
         break;

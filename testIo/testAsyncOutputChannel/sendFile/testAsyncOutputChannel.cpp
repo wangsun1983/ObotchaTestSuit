@@ -25,7 +25,7 @@ public:
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("data"),1024*1024*16);
+    createSampleFile(createFile("./temp/data"),1024*1024*16);
 
     int port = 2007;//getEnvPort();
     Socket s = createSocketBuilder()
@@ -41,7 +41,7 @@ int main() {
 
     long index = 0;
 
-    File file = createFile("data");
+    File file = createFile("./temp/data");
 
     FileInputStream inputstream = createFileInputStream(file);
     inputstream->open();

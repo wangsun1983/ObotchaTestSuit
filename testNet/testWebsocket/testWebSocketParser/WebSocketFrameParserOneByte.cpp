@@ -58,6 +58,7 @@ static void *WSS_copy(void *ptr, size_t size) {
 
 int testWebFrameOneByteParser() {
   //case 1
+#if 0
   {
       size_t offset = 0;
       const char *header = "\x81\xFE";
@@ -82,11 +83,7 @@ int testWebFrameOneByteParser() {
         ArrayList<WebSocketFrame> datas = parser->doParse();
         msgDatas->add(datas);
       }
-/*
-      ByteArray loadData = createByteArray((const byte *)payload_frame,(2+2+4+length));
-      parser->pushParseData(loadData);
-      ArrayList<WebSocketFrame> msgDatas = parser->doParse();
-*/
+
       if(msgDatas->size() != 1) {
         TEST_FAIL("testFrameOneByteParser case3 size is error,now is %d ",msgDatas->size());
         return -1;
@@ -104,9 +101,69 @@ int testWebFrameOneByteParser() {
       }
       free(payload_copy);
   }
+#endif
 
+  //case2
+  {
+    uint8_t msg[] = { 0x81u, 0x85u, 0x37u, 0xfau, 0x21u, 0x3du, 0x7fu, 0x9fu,
+                  0x4du, 0x51u, 0x58u };
+    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
+    ArrayList<WebSocketFrame> msgDatas = nullptr;
 
-  TEST_OK("testFrameOneByteParser");
+    for(int i = 0; i < sizeof(msg)/sizeof(uint8_t);i++) {
+      ByteArray loadData = createByteArray(1);
+      loadData[0] = msg[i];
+      parser->pushParseData(loadData);
+      msgDatas = parser->doParse();
+      if(msgDatas != nullptr && msgDatas->size()!= 0 && i != sizeof(msg)/sizeof(uint8_t) - 1) {
+        TEST_FAIL("testFrameOneByteParser case4,index is %d,msgData size is %d",i,msgDatas->size());
+        return -1;
+      }
+    }
+
+    WebSocketFrame frame = msgDatas->get(0);
+    if(frame->getHeader()->getOpCode() != 0x1) {
+      TEST_FAIL("testFrameOneByteParser case5 opcode  error,opcode is %d\n",frame->getHeader()->getOpCode());
+      return -1;
+    }
+
+    if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hello")) {
+      TEST_FAIL("testFrameOneByteParser case6  error,frame is %s\n",frame->getData()->toString()->toChars());
+      return -1;
+    }
+  }
+
+  //case3
+  {
+    uint8_t msg[] = { 0x81, 0x00 };
+    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
+    ArrayList<WebSocketFrame> msgDatas = nullptr;
+
+    for(int i = 0; i < sizeof(msg)/sizeof(uint8_t);i++) {
+      ByteArray loadData = createByteArray(1);
+      loadData[0] = msg[i];
+      parser->pushParseData(loadData);
+      msgDatas = parser->doParse();
+      if(msgDatas != nullptr && msgDatas->size()!= 0 && i != sizeof(msg)/sizeof(uint8_t) - 1) {
+        TEST_FAIL("testFrameOneByteParser case7,index is %d,msgData size is %d",i,msgDatas->size());
+        return -1;
+      }
+    }
+
+    if(msgDatas->size() != 1) {
+      TEST_FAIL("testSimpleFrameParser case8 trace1 frame size,current is %d",msgDatas->size());
+      return -1;
+    }
+
+    WebSocketFrame frame = msgDatas->get(0);
+    ByteArray data = frame->getData();
+    if(data != nullptr && data->size() != 0) {
+      TEST_FAIL("testSimpleFrameParser case9 trace2 data size is incorrect");
+      return -1;
+    }
+  }
+
+  TEST_OK("testFrameOneByteParser case100");
 
   return 0;
 }

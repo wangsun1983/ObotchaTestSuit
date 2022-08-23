@@ -21,7 +21,7 @@ void testReaderArray() {
 
       //2 byte
       ByteArray d1 = createByteArray(2);
-      reader->readByteArray(d1);
+      reader->read(d1);
       if(d1[0] != 0x01 ||d1[1] != 0x02) {
         TEST_FAIL("[TestByteArrayReader Read Array case1]");
         break;
@@ -29,7 +29,7 @@ void testReaderArray() {
 
       //4 byte
       ByteArray d2 = createByteArray(4);
-      reader->readByteArray(d2);
+      reader->read(d2);
       if(d2[0] != 0x03 ||d2[1] != 0x04 ||d2[2] != 0x05 || d2[3] != 0x06) {
         TEST_FAIL("[TestByteArrayReader Read Array case2]");
         break;
@@ -37,7 +37,7 @@ void testReaderArray() {
 
       //2 byte
       ByteArray d3 = createByteArray(2);
-      reader->readByteArray(d3);
+      reader->read(d3);
       if(d3[0] != 0x07 ||d3[1] != 0x08) {
         TEST_FAIL("[TestByteArrayReader Read Array case3]");
         break;
@@ -51,14 +51,14 @@ void testReaderArray() {
 
       //2 byte
       ByteArray d1 = createByteArray(2);
-      reader->readByteArray(d1);
+      reader->read(d1);
       if(d1[0] != 0x01 ||d1[1] != 0x02) {
         TEST_FAIL("[TestByteArrayReader Read Array case4]");
         break;
       }
 
       ByteArray d2 = createByteArray(16);
-      int len = reader->readByteArray(d2);
+      int len = reader->read(d2);
       if(len != 6) {
         TEST_FAIL("[TestByteArrayReader Read Array case5]");
         break;

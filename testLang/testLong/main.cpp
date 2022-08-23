@@ -15,6 +15,7 @@ extern void equaltest();
 extern void hashcodeTest();
 extern void testLongParse();
 extern void testLongParseWrong();
+extern void testLongWithCRLF();
 
 int main() {
     basetest();
@@ -23,5 +24,6 @@ int main() {
     hashcodeTest();
     testLongParse();
     testLongParseWrong();
+    testLongWithCRLF();
     return 0;
 }

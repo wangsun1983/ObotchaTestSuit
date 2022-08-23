@@ -15,6 +15,7 @@ extern void equaltest();
 extern void testHash();
 extern void updatetest();
 extern void TestParseException();
+extern void testUint8WithCRLF();
 
 int main() {
     basetest();
@@ -23,5 +24,6 @@ int main() {
     testHash();
     updatetest();
     TestParseException();
+    testUint8WithCRLF();
     return 0;
 }

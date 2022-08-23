@@ -6,6 +6,7 @@
 #include "FileNotFoundException.hpp"
 #include "System.hpp"
 #include "MappedFile.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -19,11 +20,25 @@ void testMapWrite() {
       File f = createFile("./tmp/write_test.txt");
       f->createNewFile();
       
-      MappedFile file = createMappedFileBuilder("./tmp/write_test.txt")->setSize(256)->create();
-      ByteArray data = file->getData();
-      char v[128] = "hello world,this is a write test";
-      data->fillFrom((byte *)&v[0],0,128);
+      MappedFile file = createMappedFile("./tmp/write_test.txt",256);
+      auto stream = file->getOutputStream();
+      stream->open();
+      const char *v = "hello world,this is a mapped file test";
+      ByteArray data = createByteArray((const byte *)v,strlen(v));
+      stream->write(data);
+      stream->flush();
+
+      MappedFile file2 = createMappedFile("./tmp/write_test.txt",256);
+      auto stream2 = file->getInputStream();
+      ByteArray data2 = createByteArray(256);
+      stream2->read(data2);
+      
+      if(!data2->toString()->equals(data->toString())) {
+        TEST_FAIL("TestMappedFile write case1,data2 is %s,data is %s \n",data2->toString()->toChars(),data->toString()->toChars());
+      }
 
       break;
     }
+
+    TEST_OK("TestMappedFile write case100");
 }

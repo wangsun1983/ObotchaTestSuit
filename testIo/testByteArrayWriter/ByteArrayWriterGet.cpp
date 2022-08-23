@@ -17,8 +17,8 @@ void testByteArrayWriterGet() {
     while(1) {
       ByteArray array = createByteArray(8);
       ByteArrayWriter writer = createByteArrayWriter(array);
-      writer->writeShort(1);
-      writer->writeShort(2);
+      writer->write<short int>(1);
+      writer->write<short int>(2);
 
       auto arr1 = writer->getByteArray();
       if(arr1->size() != 4) {

@@ -18,7 +18,7 @@ public:
 void testAutoCreator() {
   ClassData d = AutoCreate<ClassData>();
   d->i = 100;
-  if(data->i != 100) {
+  if(d->i != 100) {
     TEST_FAIL("testAutoCreator case1");
   }
   TEST_OK("testAutoCreator case1");

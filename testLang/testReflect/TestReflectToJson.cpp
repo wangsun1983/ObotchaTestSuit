@@ -92,7 +92,7 @@ void testReflectToJson() {
     }
 
     if(result->member1->byteData != data->member1->byteData) {
-      TEST_FAIL("testReflectToJson test3");
+      TEST_FAIL("testReflectToJson test3,data1 is %d,data2 is %d",result->member1->byteData,data->member1->byteData);
     }
 
     if(result->member1->byteData != data->member1->byteData) {

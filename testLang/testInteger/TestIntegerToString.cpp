@@ -120,7 +120,7 @@ void testtostring() {
        Integer t3 = createInteger(t2);
 
        if(t1 != t3) {
-         TEST_FAIL("Integer toInt test2");
+         TEST_FAIL("Integer toInt test2,t1 is %d,t3 is %d",t1->toValue(),t3->toValue());
          break;
        }
      }

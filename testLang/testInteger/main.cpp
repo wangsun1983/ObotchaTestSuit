@@ -15,6 +15,7 @@ extern void basetest();
 extern void equaltest();
 extern void testIntegerParse();
 extern void testIntegerParseWrong();
+extern void testIntegerWithCRLF();
 
 int main() {
     basetest();
@@ -22,5 +23,6 @@ int main() {
     testtostring();
     testIntegerParse();
     testIntegerParseWrong();
+    testIntegerWithCRLF();
     return 0;
 }

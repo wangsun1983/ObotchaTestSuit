@@ -43,10 +43,10 @@ function test() {
   for ((i=1; i<=2; i++))
   do
     {
-        python server.py
+        ./mytest
     } &
     sleep 1
-    ./mytest
+    python client.py
     wait
     sleep 3
   done
