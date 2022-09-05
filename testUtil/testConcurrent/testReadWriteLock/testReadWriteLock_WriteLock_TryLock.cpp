@@ -18,7 +18,7 @@ void testWriteLock_TryLock() {
   while(1) {
     ReadWriteLock rwLock = createReadWriteLock();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger();
+    AtomicInteger value = createAtomicInteger(0);
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getWriteLock()->tryLock();
       if(ret != -EBUSY) {
@@ -27,10 +27,10 @@ void testWriteLock_TryLock() {
       value->incrementAndGet();
     });
     t->start();
-    usleep(1000);
+    usleep(1000*10);
 
     if(value->get() != 1) {
-      TEST_FAIL("[TestReadLock WriteLock TryLock case2]");
+      TEST_FAIL("[TestReadLock WriteLock TryLock case2],value is %d",value->get());
     }
     break;
   }
@@ -38,7 +38,7 @@ void testWriteLock_TryLock() {
   while(1) {
     ReadWriteLock rwLock = createReadWriteLock();
     rwLock->getReadLock()->lock();
-    AtomicInteger value = createAtomicInteger();
+    AtomicInteger value = createAtomicInteger(0);
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getWriteLock()->tryLock();
       if(ret != -EBUSY) {

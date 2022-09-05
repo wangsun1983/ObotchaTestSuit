@@ -15,10 +15,17 @@ extern void testConcurrentQueue_TakeLast();
 extern void testConcurrentQueue_Clear();
 extern void testConcurrentQueue_MultiThread_Case1();
 extern void testConcurrentQueue_MultiThread_Case2();
+extern void testConcurrentQueue_Foreach();
+extern void testConcurrentQueue_SyncAction();
 
 using namespace obotcha;
 
 int main() {
+  
+  testConcurrentQueue_SyncAction();
+
+  testConcurrentQueue_Foreach();
+
   testConcurrentQueue_Size();
   testConcurrentQueue_Add();
   testConcurrentQueue_Get();
@@ -29,7 +36,9 @@ int main() {
   testConcurrentQueue_TakeFirst();
   testConcurrentQueue_TakeLast();
   testConcurrentQueue_Clear();
+ 
   testConcurrentQueue_MultiThread_Case1();
   testConcurrentQueue_MultiThread_Case2();
+
   return 0;
 }

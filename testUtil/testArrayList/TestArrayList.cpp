@@ -29,8 +29,10 @@ extern void testArrayListForEach();
 extern void testArrayList_RemoveAt();
 extern void testArrayList_Iterator_Insert();
 extern void testArrayList_Contains();
+extern void testArrayList_removeList();
 
 int main() {
+  testArrayList_removeList();
   testArrayList_Contains();
   testArrayList_Integer();
   testArrayList_MyData();

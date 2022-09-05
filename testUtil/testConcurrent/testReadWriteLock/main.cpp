@@ -17,8 +17,14 @@ extern void testWriteLock_Lock();
 extern void testReadWriteLock_Lock();
 extern void testReadLock_TryLock();
 extern void testWriteLock_TryLock();
+extern void testReadWriteLock_Acquire();
+extern void testReadLock_LoopLock();
 
 int main() {
+  testReadLock_LoopLock();
+  
+  testReadWriteLock_Acquire();
+  
   testReadLock_Lock();
   testWriteLock_Lock();
   testReadWriteLock_Lock();
