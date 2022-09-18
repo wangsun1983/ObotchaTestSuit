@@ -16,16 +16,16 @@ func doClientTest() {
   count := 1024
   port := testnet.GetEnvPort()
   for;count > 0; {
-    fmt.Println("trace1");
+    //fmt.Println("trace1");
     conn, err := net.Dial("tcp", ":" + strconv.Itoa(port))
     if err != nil {
         log.Fatal(err)
     }
-    fmt.Println("trace2");
-    defer conn.Close()
+    //fmt.Println("trace2");
     conn.Write([]byte("hello world"))
-    fmt.Println("trace3");
+    //fmt.Println("trace3");
     count = count - 1
+    conn.Close()
   }
   wg.Done()
 }

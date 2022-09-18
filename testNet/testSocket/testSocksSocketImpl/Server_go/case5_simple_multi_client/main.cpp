@@ -38,7 +38,7 @@ int main() {
   InetAddress addr = createInet4Address(port);
   ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor(16);
+  SocketMonitor monitor = createSocketMonitor(4);
   MyListener l = createMyListener();
   monitor->bind(sock,l);
 

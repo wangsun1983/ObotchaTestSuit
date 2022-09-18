@@ -42,8 +42,9 @@ int main() {
   MyListener l = createMyListener();
   monitor->bind(sock,l);
 
-  Thread t = createThread([] {
-    while(1) {
+  bool isStop = false;
+  Thread t = createThread([&isStop] {
+    while(!isStop) {
       usleep(1000*1000);
       printf("count is %d \n",latch->getCount());
     }
@@ -51,6 +52,9 @@ int main() {
   t->start();
 
   latch->await();
+  isStop = true;
+  t->join();
+
   monitor->close();
 
   port++;
