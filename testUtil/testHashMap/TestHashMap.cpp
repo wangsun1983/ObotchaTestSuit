@@ -27,8 +27,10 @@ extern void testHashMapStringString();
 extern void testHashMapFloatFloat();
 extern void testHashMapHashKey();
 extern void testHashMapHashcode();
+extern void testHashMapRemove();
 
 int main() {
+    testHashMapRemove();
     testHashMapHashcode();
     testHashMapString();
     testHashMapInteger();

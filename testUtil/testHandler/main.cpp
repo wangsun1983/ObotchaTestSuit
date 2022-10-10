@@ -14,8 +14,12 @@ extern void testHandlerSize();
 extern void testHandlerMultiSend();
 extern void testHandlerRemove();
 extern void testHandlerLambda();
+extern void testHandlerRemoveRunnable();
+extern void testHandlerSendAtFront();
+extern void testHandlerSendDelayed();
 
 int main() {
+/*
   testHandlerLambda();
   testHandlerRemove();
   testHandlerMultiSend();
@@ -23,5 +27,9 @@ int main() {
   testHandler();
   testSendMessageDelayed();
   testHasMessage();
+  testHandlerRemoveRunnable();
+  testHandlerSendAtFront();
+*/
+  testHandlerSendDelayed();
   return 0;
 }

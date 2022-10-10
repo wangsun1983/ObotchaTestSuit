@@ -1,0 +1,16 @@
+hobbies:
+  basketball: like
+  sleep: like
+  football: unlike
+job: engineer
+name: wang
+skills:
+  dotnet: just so so
+  ruby: good
+  python: very good
+employed: true
+tall: false
+foods:
+  - apple
+  - pear
+  - bread

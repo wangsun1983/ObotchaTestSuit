@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OuterData>
+	<data2>
+		<stringData>hello world</stringData>
+	</data2>
+	<data1>
+		<intData>1000</intData>
+	</data1>
+</OuterData>
+

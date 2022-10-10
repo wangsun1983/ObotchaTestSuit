@@ -30,8 +30,11 @@ extern void testArrayList_RemoveAt();
 extern void testArrayList_Iterator_Insert();
 extern void testArrayList_Contains();
 extern void testArrayList_removeList();
+extern void testArrayList_Set();
 
 int main() {
+   
+  testArrayList_Set();
   testArrayList_removeList();
   testArrayList_Contains();
   testArrayList_Integer();

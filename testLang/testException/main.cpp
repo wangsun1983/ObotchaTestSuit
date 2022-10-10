@@ -21,7 +21,7 @@ void doException() {
                                     createString(1),
                                     "index is ",
                                     createString(1));
-    Trigger(MyException,"ByteArray[] fail");
+    Trigger(MyException,"ByteArray[] fail,id is %d",123);
 }
 
 
@@ -38,6 +38,6 @@ int main() {
         TEST_FAIL("---[Exception test1]");
     }
 
-    TEST_OK("---[Exception test1]");
+    TEST_OK("[Exception test1]");
     return 1;
 }

@@ -15,6 +15,7 @@ extern void testInnerClass();
 extern void testByteArray();
 extern void testOrpcSimpleNullCase();
 extern void testSimpleMsg();
+extern void testOrpcDifferentClass();
 
 int main() {
   testSimpleMsg();

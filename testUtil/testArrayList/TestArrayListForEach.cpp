@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "TestLog.hpp"
+#include "ForEveryOne.hpp"
 
 using namespace obotcha;
 
@@ -18,14 +19,21 @@ void testArrayListForEach() {
     list->add(createString(3));
 
     int index = 1;
-    list->foreach([&index](String value) {
+    //list->foreach([&index](String value) {
+    //  if(value->toBasicInt() != index) {
+    //    TEST_FAIL("[ArrayList Foreach test1]");
+    //    return Global::Break;
+    //  }
+    //  index++;
+    //  return Global::Continue;
+    //});
+    ForEveryOne(value,list) {
       if(value->toBasicInt() != index) {
         TEST_FAIL("[ArrayList Foreach test1]");
-        return Global::Break;
+        break;
       }
       index++;
-      return Global::Continue;
-    });
+    }
     break;
   }
 
@@ -35,13 +43,19 @@ void testArrayListForEach() {
     list->add(createString(2));
     list->add(createString(3));
     int index = 1;
-    list->foreach([&index](String value) {
+    //list->foreach([&index](String value) {
+    //  if(index == 2) {
+    //    return Global::Break;
+    //  }
+    //  index++;
+    //  return Global::Continue;
+    //});
+    ForEveryOne(value,list) {
       if(index == 2) {
-        return Global::Break;
+        break;
       }
       index++;
-      return Global::Continue;
-    });
+    }
 
     if(index != 2) {
       TEST_FAIL("[ArrayList Foreach test2]");

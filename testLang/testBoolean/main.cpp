@@ -14,6 +14,7 @@ extern void testequals();
 extern void testLogic();
 extern void testUpdate();
 extern void testparse();
+extern void testBooleanParse();
 
 int main() {
     basetest();
@@ -21,5 +22,6 @@ int main() {
     testLogic();
     testUpdate();
     testparse();
+    testBooleanParse();
     return 0;
 }

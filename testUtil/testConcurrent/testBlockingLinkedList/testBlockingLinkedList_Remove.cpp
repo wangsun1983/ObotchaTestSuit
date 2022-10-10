@@ -17,10 +17,10 @@ void testBlockingLinkedListRemove() {
         list->put(createString("a"));
         list->put(createString("b"));
         list->put(createString("c"));
-
         list->remove(createString("b"));
+
         if(list->size() != 2) {
-          TEST_FAIL("BlockingLinkedList remove test1");
+          TEST_FAIL("BlockingLinkedList remove test1,size is %d",list->size());
           break;
         }
 

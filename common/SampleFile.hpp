@@ -12,7 +12,8 @@ void createSampleFile(File file,long size) {
     if(file->exists()) {
         return;
     }
-
+    file->createNewFile();
+    
     FileOutputStream stream = createFileOutputStream(file);
     stream->open();
     while(size > 0) {

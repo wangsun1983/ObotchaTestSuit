@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TestLog.hpp"
+#include "ForEveryOne.hpp"
 
 using namespace obotcha;
 
@@ -20,10 +21,13 @@ void testBlockingLinkedListForeach() {
         list->putFirst(4);
         list->putFirst(5);
         int sum = 0;
-        list->foreach([&sum](int v) {
-            sum += v;
-            return Global::Continue;
-        });
+        ForEveryOne(v,list) {
+          sum += v;
+        }
+        //list->foreach([&sum](int v) {
+        //    sum += v;
+        //    return Global::Continue;
+        //});
 
         if(sum != 15) {
           TEST_FAIL("BlockingLinkedList<int> Foreach test1");

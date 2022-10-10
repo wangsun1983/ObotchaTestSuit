@@ -1,0 +1,12 @@
+{
+	"boolObjData" : true,
+	"byteObjData" : 23,
+	"doubleObjData" : 103.2,
+	"floatObjData" : 102.1,
+	"intObjData" : 100,
+	"longObjData" : 101,
+	"uint16ObjData" : 103,
+	"uint32ObjData" : 104,
+	"uint64ObjData" : 105,
+	"uint8ObjData" : 102
+}

@@ -6,6 +6,7 @@
 #include "Integer.hpp"
 #include "String.hpp"
 #include "TestLog.hpp"
+#include "ForEveryOne.hpp"
 
 using namespace obotcha;
 
@@ -29,8 +30,17 @@ void testHashMapLambda() {
   map->put(2,t2);
   map->put(3,t3);
 
-  map->foreach([](int key,Lambda1 value) {
-    TEST_FAIL("key is %d,value is %d ",key,value->i);
-    return 1;
-  });
+  //map->foreach([](int key,Lambda1 value) {
+  //  TEST_FAIL("key is %d,value is %d ",key,value->i);
+  //  return 1;
+  //});
+  ForEveryOne(pair,map) {
+    auto value = map->get(pair->getKey());
+    if(value->i != pair->getValue()->i) {
+      TEST_FAIL("testHashMapLambda,value is %d,pair value is %d",value->i,pair->getValue()->i);
+    }
+  }
+
+  TEST_OK("testHashMapLambda case100");
+
 }

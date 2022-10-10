@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NumberXmlReflectData>
+	<uint32Data>6</uint32Data>
+	<uint16Data>5</uint16Data>
+	<uint8Data>4</uint8Data>
+	<boolData>False</boolData>
+	<byteData>1</byteData>
+	<uint64Data>7</uint64Data>
+	<intData>1</intData>
+	<doubleData>1.1</doubleData>
+	<floatData>2.200000047683716</floatData>
+	<stringData>abc</stringData>
+	<longData>3</longData>
+</NumberXmlReflectData>
+

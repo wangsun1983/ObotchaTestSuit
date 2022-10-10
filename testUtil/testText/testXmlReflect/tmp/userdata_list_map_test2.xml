@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MapListUserData>
+	<maps>
+		<c>
+			<data2>6</data2>
+			<data1>5</data1>
+		</c>
+		<a>
+			<data2>2</data2>
+			<data1>1</data1>
+		</a>
+		<b>
+			<data2>4</data2>
+			<data1>3</data1>
+		</b>
+	</maps>
+	<lists>
+		<MapListTestData>
+			<data2>2</data2>
+			<data1>1</data1>
+		</MapListTestData>
+		<MapListTestData>
+			<data2>4</data2>
+			<data1>3</data1>
+		</MapListTestData>
+		<MapListTestData>
+			<data2>6</data2>
+			<data1>5</data1>
+		</MapListTestData>
+	</lists>
+</MapListUserData>
+
