@@ -1,7 +1,4 @@
-outlib = ../../out/lib
-outtmp = ../../out/tmp
-
-gcc = g++
+gcc = clang++
 
 cflags = -fpic \
 		-lrt \
@@ -23,19 +20,29 @@ cflags = -fpic \
 		-I ../../../external/crc32/include \
 		-I ../../../external/openssl/include \
 		-I ../../../external/libco \
+		-I ../../../external/uuid/include \
+		-I ../../../external/glog/include \
+		-I ../../common \
 		-g \
 		-std=c++14 \
+		-fsanitize=address \
+		-fno-omit-frame-pointer
 
 external = -lpthread \
 				-ldl \
 				../../../out/lib/libobotcha.so \
 
+sharelib = -Wl,-rpath=../../../out/lib/ \
+           -L ../../../out/lib/ \
+           -lcrypto \
+           -L ../../../out/lib/ \
+           -lssl \
 
 files =
 link =
-libname	= testServerSocket
+libname	= testUUID
 
 everything : $(libname)
 
 $(libname): $(link)
-	g++ *.cpp $(cflags) -o mytest $(external)
+	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)
