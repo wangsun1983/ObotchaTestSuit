@@ -19,7 +19,7 @@ void testPoolReferenceCount() {
     while(1) {
         ThreadPoolExecutor pool = nullptr;
         {
-            pool = createExecutorBuilder()->setThreadNum(4)->newThreadPool();
+            pool = createExecutorBuilder()->setDefaultThreadNum(4)->newThreadPool();
             pool->submit([]() {
               try {
                 st(Thread)::sleep(10);
@@ -39,7 +39,7 @@ void testPoolReferenceCount() {
             });
         }
 
-        if(pool->getStrongCount() != 9) {
+        if(pool->getStrongCount() != 13) {
           TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case1]",pool->getStrongCount());
           //break;
         }

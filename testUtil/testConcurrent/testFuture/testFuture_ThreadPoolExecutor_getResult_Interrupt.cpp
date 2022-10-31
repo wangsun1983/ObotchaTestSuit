@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
 
@@ -28,12 +28,12 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
   TimeWatcher watcher = createTimeWatcher();
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
     Future f1 = pool->submit([]{
       usleep(100*1000);
-      st(TaskResult)::set(100);
+      st(ExecutorResult)::set(100);
     });
 
     usleep(10*1000);
@@ -58,14 +58,14 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([] {
       usleep(100*1000);
     });
 
     Future f1 = pool->submit([]{
-      st(TaskResult)::set(createInterruptTestData(123));
+      st(ExecutorResult)::set(createInterruptTestData(123));
     });
 
     Thread t = createThread([&pool]{
@@ -105,14 +105,14 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([] {
       usleep(100*1000);
     });
 
     Future f1 = pool->submit([]{
-      st(TaskResult)::set(123);
+      st(ExecutorResult)::set(123);
     });
 
     Thread t = createThread([&pool]{

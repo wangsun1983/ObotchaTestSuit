@@ -23,7 +23,7 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     pool->schedule(100,[]{
@@ -42,7 +42,7 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     pool->schedule(0,[]{
@@ -61,7 +61,7 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     pool->schedule(0,[]{
@@ -80,7 +80,7 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     pool->schedule(0,[]{
@@ -98,7 +98,7 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     pool->schedule(0,[]{

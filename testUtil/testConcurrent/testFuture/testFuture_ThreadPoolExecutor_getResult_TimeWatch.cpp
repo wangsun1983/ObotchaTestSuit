@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
 
@@ -17,14 +17,14 @@ using namespace obotcha;
 
 void testThreadPoolExecutor_GetResult_TimeWatch() {
   auto pool = createExecutorBuilder()
-              ->setThreadNum(1)
+              ->setDefaultThreadNum(1)
               ->newThreadPool();
 
   TimeWatcher watcher = createTimeWatcher();
   while(1) {
       Future f1 = pool->submit([]{
           usleep(200*1000);
-          st(TaskResult)::set(111);
+          st(ExecutorResult)::set(111);
       });
       watcher->start();
       int ret = f1->getResult<int>();
@@ -85,7 +85,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
   while(1) {
       Future f1 = pool->submit([]{
           usleep(200*1000);
-          st(TaskResult)::set(123);
+          st(ExecutorResult)::set(123);
       });
       watcher->start();
       bool isException = false;

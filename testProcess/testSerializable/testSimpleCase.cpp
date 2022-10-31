@@ -7,52 +7,46 @@
 #include "Serializable.hpp"
 #include "Reflect.hpp"
 #include "TestLog.hpp"
+#include "ByteArrayWriter.hpp"
+#include "Uint32.hpp"
 
 using namespace obotcha;
 
-DECLARE_CLASS(MyTestMember) IMPLEMENTS(Serializable) {
+DECLARE_CLASS(MqMessage) IMPLEMENTS(Serializable) {
 public:
-    String m1;
-    int m2;
-    
-    bool equals(MyTestMember s) {
-      return m2 == s->m2 && m1->equals(s->m1);
-    }
+    ByteArray data;
+    String channel;
+    String token;
+    uint32_t flags;
+    int retryTimes;
 
-    DECLARE_REFLECT_FIELD(MyTestMember,m1,m2);
-};
+    ByteArray generatePacket() {
+      ByteArray serializeData = serialize();
+      ByteArray finalData = createByteArray(serializeData->size() + sizeof(uint32_t));
+      ByteArrayWriter writer = createByteArrayWriter(finalData);
+      writer->write<uint32_t>(serializeData->size());
+      writer->write(serializeData);
 
-DECLARE_CLASS(MyTestData) IMPLEMENTS(Serializable) {
-public:
-    String t1;
-    int t2;
-    Integer t3;
-
-    MyTestMember member1;
-
-    bool equals(MyTestData s) {
-      return t1->equals(s->t1) && t2 == s->t2 && t3->toValue() == s->t3->toValue();
-    }
-
-    DECLARE_REFLECT_FIELD(MyTestData,t1,t2,t3,member1);
-};
-
-void testOrpcSimpleCase() {
-  MyTestData data1 = createMyTestData();
-  data1->member1 = createMyTestMember();
-  data1->member1->m1 = createString("hello,this is m1");
-  data1->member1->m2 = 1000;
-
-  data1->t1 = createString("hello");
-  data1->t2 = 88;
-  data1->t3 = createInteger(2211);
-  ByteArray d1 = data1->serialize();
-
-  MyTestData data2 = DeSerialize<MyTestData>(d1);
-  if(!data2->equals(data1)) {
-    TEST_FAIL("testSerializable testSimpleCase case1");
+      return finalData;
   }
 
-  TEST_OK("testSerializable testSimpleCase case100");
+  static MqMessage generateMessage(ByteArray data) {
+      ByteArray msgData = createByteArray(data->toValue() + sizeof(uint32_t),data->size() - sizeof(uint32_t),true);
+      MqMessage msg = createMqMessage();
+      msg->deserialize(msgData);
+      //msg->mPacketData = data;
+      return msg;
+  }
+
+public:
+    DECLARE_REFLECT_FIELD(MqMessage,channel,data,token,flags,retryTimes);
+};
+
+
+void testSimpleCase() {
+    MqMessage mq = createMqMessage();
+    mq->channel = createString("info11");
+    auto data = mq->generatePacket();
+    data->dump("aaa");
   
 }

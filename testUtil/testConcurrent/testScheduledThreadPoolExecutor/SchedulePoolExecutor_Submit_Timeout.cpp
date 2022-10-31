@@ -22,9 +22,9 @@ void testSubmitTimeout() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
-              ->setQueueTimeout(50)
+              ->setMaxSubmitTaskWaitTime(50)
               ->newScheduledThreadPool();
     auto f1 = pool->schedule(200,[]{
 
@@ -38,7 +38,7 @@ void testSubmitTimeout() {
     long result = watch->stop();
 
     if(result < 0 || result > 55) {
-      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTimeout case1]");
+      TEST_FAIL("[ScheduledThreadPoolExecutor SubmitTimeout case1],result is %d",result);
       break;
     }
     pool->shutdown();
@@ -46,11 +46,12 @@ void testSubmitTimeout() {
     break;
   }
 
+
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(2)
+              ->setMaxPendingTaskNum(2)
               ->setMaxThreadNum(3)
-              ->setQueueTimeout(50)
+              ->setMaxNoWorkingTime(50)
               ->newScheduledThreadPool();
 
     auto f1 = pool->schedule(200,[]{

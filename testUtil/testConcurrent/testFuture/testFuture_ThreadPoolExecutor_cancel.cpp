@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
@@ -18,18 +18,18 @@ void testThreadPoolExecutor_Cancel() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       Future f2 = pool->submit([](){
-        st(TaskResult)::set(100);
+        st(ExecutorResult)::set(100);
       });
 
       usleep(100*1000);
@@ -59,13 +59,13 @@ void testThreadPoolExecutor_Cancel() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
     int value = 123;
     Future f1 = pool->submit([&value](){
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(100*1000);
     f1->cancel();
@@ -86,7 +86,7 @@ void testThreadPoolExecutor_Cancel() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([]{
       usleep(100*1000);
@@ -106,7 +106,7 @@ void testThreadPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() != st(Future)::Cancel) {
+      if(f->getStatus() != st(ExecutorTask)::Cancel) {
         TEST_FAIL("[Future ThreadPoolExecutor Cancel case6");
         break;
       }
@@ -117,7 +117,7 @@ void testThreadPoolExecutor_Cancel() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(12)
+                ->setDefaultThreadNum(12)
                 ->newThreadPool();
     pool->submit([]{
       usleep(100*1000);
@@ -149,7 +149,7 @@ void testThreadPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() == st(Future)::Cancel) {
+      if(f->getStatus() == st(ExecutorTask)::Cancel) {
         count++;
       }
       iterator->next();

@@ -19,9 +19,9 @@ void testThreadLambdaExecuteTimeout() {
   TimeWatcher watcher = createTimeWatcher();
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(1)
-                ->setQueueTimeout(100)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(1)
+                ->setMaxSubmitTaskWaitTime(100)
                 ->newThreadPool();
 
     pool->submit([]{
@@ -48,9 +48,9 @@ void testThreadLambdaExecuteTimeout() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(1)
-                ->setQueueTimeout(100)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(1)
+                ->setMaxSubmitTaskWaitTime(100)
                 ->newThreadPool();
     watcher->start();
     pool->submit([]{
@@ -68,9 +68,9 @@ void testThreadLambdaExecuteTimeout() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(1)
-                ->setQueueTimeout(300)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(1)
+                ->setMaxSubmitTaskWaitTime(300)
                 ->newThreadPool();
     watcher->start();
     pool->submit([]{

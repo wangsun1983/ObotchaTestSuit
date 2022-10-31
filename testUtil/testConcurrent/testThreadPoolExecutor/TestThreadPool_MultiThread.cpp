@@ -23,8 +23,8 @@ void testThreadPool_MultiThread() {
     CountDownLatch latch = createCountDownLatch(32*1024*3);
 
     auto pool = createExecutorBuilder()
-                ->setThreadNum(32)
-                ->setQueueSize(64)
+                ->setDefaultThreadNum(32)
+                ->setMaxPendingTaskNum(64)
                 ->newThreadPool();
 
     Mutex mutex1 = createMutex();

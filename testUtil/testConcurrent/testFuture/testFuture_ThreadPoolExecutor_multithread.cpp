@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 
@@ -18,14 +18,14 @@ using namespace obotcha;
 void testThreadPoolExecutor_Multithread() {
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setThreadNum(32)
+              ->setDefaultThreadNum(32)
               ->newThreadPool();
 
     CountDownLatch latch = createCountDownLatch(32*1024);
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
       Future t = pool->submit([&latch,i]{
-        st(TaskResult)::set(i);
+        st(ExecutorResult)::set(i);
         latch->countDown();
       });
       lists->add(t);

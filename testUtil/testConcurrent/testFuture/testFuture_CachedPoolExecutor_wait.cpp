@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
@@ -23,13 +23,13 @@ void testCachedPoolExecutor_Wait() {
   while(1) {
       auto pool = createExecutorBuilder()
                 ->setMaxThreadNum(1)
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       watcher->start();
@@ -48,13 +48,13 @@ void testCachedPoolExecutor_Wait() {
   while(1) {
     auto pool = createExecutorBuilder()
                 ->setMaxThreadNum(1)
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       watcher->start();
@@ -76,13 +76,13 @@ void testCachedPoolExecutor_Wait() {
   while(1) {
     auto pool = createExecutorBuilder()
                 ->setMaxThreadNum(1)
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
     int value = 100;
     Future f1 = pool->submit([&value](){
       usleep(200*1000);
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(100);
     f1->cancel();
@@ -101,7 +101,7 @@ void testCachedPoolExecutor_Wait() {
   while(1) {
     auto pool = createExecutorBuilder()
                 ->setMaxThreadNum(3)
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
     CountDownLatch latch = createCountDownLatch(3);
     pool->submit([]{
@@ -161,7 +161,7 @@ void testCachedPoolExecutor_Wait() {
   while(1) {
     auto pool = createExecutorBuilder()
                 ->setMaxThreadNum(1)
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
     pool->submit([]{
       usleep(100*1000);

@@ -46,15 +46,15 @@ public:
 void releaseTest() {
     while(1) {
         {
-            ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(50)->setThreadNum(8)->newThreadPool();//st(Executors)::newFixedThreadPool(50,8);
+            ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(50)->setDefaultThreadNum(8)->newThreadPool();//st(Executors)::newFixedThreadPool(50,8);
             for(int i = 0;i<50;i++) {
                 pool->submit(createReleaseunTest1());
             }
 
             pool->shutdown();
             sleep(10);
-            if(pool->getThreadsNum() != 8) {
-                TEST_FAIL("[TestThreadPoolExecutor Test {release()},thread num is %d case2]",pool->getThreadsNum());
+            if(pool->getExecutingThreadNum() != 8) {
+                TEST_FAIL("[TestThreadPoolExecutor Test {release()},thread num is %d case2]",pool->getExecutingThreadNum());
                 break;
             }
 

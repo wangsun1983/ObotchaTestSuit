@@ -10,7 +10,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
@@ -27,7 +27,7 @@ public:
       while(isStop == 1) {
         usleep(1000 * 200);
       }
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     }
 
     bool onInterrupt() { 
@@ -43,7 +43,7 @@ DECLARE_CLASS(NoStopTask) IMPLEMENTS(Runnable) {
 public:
     void run() {
       usleep(1000 * 200);
-      st(TaskResult)::set(111);
+      st(ExecutorResult)::set(111);
     }
 
     bool onInterrupt() { 
@@ -58,7 +58,7 @@ void testThreadPoolExecutor_CancelRunningTask() {
 
   while(1) {
       auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
       
       auto f = pool->submit(createRunningTask());
@@ -88,7 +88,7 @@ void testThreadPoolExecutor_CancelRunningTask() {
 
   while(1) {
       auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
       
       auto f = pool->submit(createNoStopTask());

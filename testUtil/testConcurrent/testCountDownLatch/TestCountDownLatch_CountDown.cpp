@@ -20,7 +20,7 @@ void testCountDownLatch_CountDown() {
       });
       t->start();
       watcher->start();
-      latch->await();
+      int ret = latch->await();
       long result = watcher->stop();
       if(result < 100 || result > 105) {
         TEST_FAIL("[TestCountDownLatch CountDown case1]");

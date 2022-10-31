@@ -58,7 +58,7 @@ void normalTest() {
 
     while(1) {
         {
-			ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(1)->setThreadNum(1)->newThreadPool();//st(Executors)::newFixedThreadPool(1,1);
+			ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();//st(Executors)::newFixedThreadPool(1,1);
 			pool->shutdown();
 		}
 
@@ -70,7 +70,7 @@ void normalTest() {
 
     //_ThreadPoolExecutor();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(1)->setThreadNum(1)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
         pool->shutdown();
         TEST_OK("[TestThreadPoolExecutor Test {constructor2()} case1] ");
         break;
@@ -79,7 +79,7 @@ void normalTest() {
 
     //void shutdown();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(100)->setThreadNum(100)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
         pool->submit(createMyRunTest1());
         pool->shutdown();
         sleep(5);
@@ -106,7 +106,7 @@ void normalTest() {
 
     //int awaitTermination(long timeout);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(1)->setThreadNum(1)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
         int result = pool->awaitTermination(1000);
         if(result != -1) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case1]");
@@ -145,7 +145,7 @@ void normalTest() {
 
     //int awaitTermination(long timeout = 0);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(100)->setThreadNum(100)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
         //int result = pool->awaitTermination(0);
         //if(result != -InvalidStatus) {
         //    TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case5]");
@@ -178,7 +178,7 @@ void normalTest() {
 
     //int awaitTermination(long timeout = max);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(100)->setThreadNum(100)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
         pool->submit(createMyRunTest1());
         pool->shutdown();
 
@@ -195,21 +195,21 @@ void normalTest() {
     }
 
 
-    //int getThreadsNum();
+    //int getExecutingThreadNum();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(100)->setThreadNum(100)->newThreadPool();
-        if(pool->getThreadsNum() != 100) {
-            TEST_FAIL("[TestThreadPoolExecutor Test {getThreadsNum()} case1]");
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        if(pool->getExecutingThreadNum() != 100) {
+            TEST_FAIL("[TestThreadPoolExecutor Test {getExecutingThreadNum()} case1]");
             break;
         }
         pool->shutdown();
-        TEST_OK("[TestThreadPoolExecutor Test {getThreadsNum()} case2]");
+        TEST_OK("[TestThreadPoolExecutor Test {getExecutingThreadNum()} case2]");
         break;
     }
 
     //submit(Runnable task);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setQueueSize(1)->setThreadNum(1)->newThreadPool();
+        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
         Future task = pool->submit(createMyRunTest1());
         if(task == nullptr) {
             TEST_FAIL("[TestThreadPoolExecutor Test {submit()} case1]");

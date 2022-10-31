@@ -9,25 +9,25 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testScheduledPoolExecutor_Cancel() {
   auto pool = createExecutorBuilder()
-            ->setQueueSize(32)
+            ->setMaxPendingTaskNum(32)
             ->newScheduledThreadPool();
 
   while(1) {
       int value = 100;
       Future f1 = pool->schedule(200,[&value](){
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       Future f2 = pool->schedule(0,[](){
-        st(TaskResult)::set(100);
+        st(ExecutorResult)::set(100);
       });
 
       usleep(100*1000);
@@ -54,7 +54,7 @@ void testScheduledPoolExecutor_Cancel() {
     Future f1 = pool->schedule(0,[&value](){
       usleep(200*100);
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(10*1000);
     f1->cancel();

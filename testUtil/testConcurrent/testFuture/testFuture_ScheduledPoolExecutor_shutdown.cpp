@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 #include "TimeWatcher.hpp"
@@ -20,7 +20,7 @@ DECLARE_CLASS(FutureScheduledPoolCancelTask) IMPLEMENTS(Runnable){
 public:
   void run() {
     usleep(1000*100);
-    st(TaskResult)::set(100);
+    st(ExecutorResult)::set(100);
   }
 
   bool onInterrupt() {
@@ -32,7 +32,7 @@ DECLARE_CLASS(FutureScheduledNoCancelTask) IMPLEMENTS(Runnable){
 public:
   void run() {
     usleep(1000*100);
-    st(TaskResult)::set(888);
+    st(ExecutorResult)::set(888);
   }
 
   bool onInterrupt() {

@@ -9,21 +9,21 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testThreadPoolExecutor_GetResult_Error() {
   auto pool = createExecutorBuilder()
-              ->setThreadNum(1)
+              ->setDefaultThreadNum(1)
               ->newThreadPool();
   while(1) {
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       bool isException = false;
@@ -45,7 +45,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(createInteger(100));
+        st(ExecutorResult)::set(createInteger(100));
       });
 
       int result = f1->getResult<int>();

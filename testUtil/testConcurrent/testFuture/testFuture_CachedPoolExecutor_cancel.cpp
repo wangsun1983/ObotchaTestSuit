@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
@@ -17,18 +17,18 @@ using namespace obotcha;
 void testCachedPoolExecutor_Cancel() {
   auto pool = createExecutorBuilder()
               ->setMaxThreadNum(1)
-              ->setThreadNum(1)
+              ->setDefaultThreadNum(1)
               ->newCachedThreadPool();
   while(1) {
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       Future f2 = pool->submit([](){
-        st(TaskResult)::set(100);
+        st(ExecutorResult)::set(100);
       });
 
       usleep(100*1000);
@@ -58,7 +58,7 @@ void testCachedPoolExecutor_Cancel() {
     int value = 123;
     Future f1 = pool->submit([&value](){
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(100*1000);
     f1->cancel();

@@ -22,7 +22,7 @@ void testSubmitWait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     auto f1 = pool->schedule(100,[]{
@@ -47,7 +47,7 @@ void testSubmitWait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(2)
+              ->setMaxPendingTaskNum(2)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     auto f1 = pool->schedule(200,[]{

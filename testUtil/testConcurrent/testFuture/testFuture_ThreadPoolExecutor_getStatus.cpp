@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
@@ -17,7 +17,7 @@ using namespace obotcha;
 void testThreadPoolExecutor_getStatus() {
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
     Future f1 = pool->submit([]{
       usleep(100*1000);
@@ -29,13 +29,13 @@ void testThreadPoolExecutor_getStatus() {
     usleep(10*1000);
 
     pool->shutdown();
-    if(f2->getStatus() != st(Future)::Cancel) {
+    if(f2->getStatus() != st(ExecutorTask)::Cancel) {
       TEST_FAIL("[Future ThreadPoolExecutor getStatus case1");
       break;
     }
 
     pool->awaitTermination();
-    if(f1->getStatus() != st(Future)::Complete) {
+    if(f1->getStatus() != st(ExecutorTask)::Complete) {
       TEST_FAIL("[Future ThreadPoolExecutor getStatus case2");
       break;
     }
@@ -45,7 +45,7 @@ void testThreadPoolExecutor_getStatus() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
     Future f1 = pool->submit([]{
       usleep(100*1000);
@@ -55,8 +55,8 @@ void testThreadPoolExecutor_getStatus() {
       usleep(100*1000);
     });
 
-    if(f2->getStatus() != st(Future)::Waiting) {
-      TEST_FAIL("[Future ThreadPoolExecutor getStatus case3");
+    if(f2->getStatus() != st(ExecutorTask)::Pending) {
+      TEST_FAIL("[Future ThreadPoolExecutor getStatus case3,status is %d",f2->getStatus());
       break;
     }
     pool->shutdown();

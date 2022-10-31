@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 
@@ -20,13 +20,13 @@ void testScheduledPoolExecutor_Multithread() {
     auto pool = createExecutorBuilder()
               ->newScheduledThreadPool();
 
-    CountDownLatch latch = createCountDownLatch(32*1024);
+    CountDownLatch latch = createCountDownLatch(1);
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
       //TEST_FAIL("trace2 \n");
       Future t = pool->schedule(10,[&latch,i]{
         //TEST_FAIL("thread_start \n");
-        st(TaskResult)::set(i);
+        st(ExecutorResult)::set(i);
         latch->countDown();
       });
       lists->add(t);

@@ -7,15 +7,18 @@
 #include "Condition.hpp"
 #include "AutoLock.hpp"
 #include "Integer.hpp"
-
 using namespace obotcha;
 
 extern void testConditionWait();
 extern void testConditionNotify();
 extern void testConditionNotifyAll();
 extern void testConditionDoubleLock();
+extern void testConditionWaitLambda();
+extern void testConditionWaitWithoutLock();
 
 int main() {
+  testConditionWaitWithoutLock();
+  testConditionWaitLambda();
   testConditionDoubleLock();
   testConditionWait();
   testConditionNotify();

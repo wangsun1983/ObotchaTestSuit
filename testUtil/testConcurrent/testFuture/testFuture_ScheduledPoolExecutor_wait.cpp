@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
@@ -21,12 +21,12 @@ void testScheduledPoolExecutor_Wait() {
 
   while(1) {
       auto pool = createExecutorBuilder()
-                ->setQueueSize(1)
+                ->setMaxPendingTaskNum(1)
                 ->newScheduledThreadPool();
       int value = 100;
       Future f1 = pool->schedule(200,[&value](){
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
       watcher->start();
       f1->wait();
@@ -42,13 +42,13 @@ void testScheduledPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->newScheduledThreadPool();
 
       int value = 100;
       Future f1 = pool->schedule(200,[&value](){
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       watcher->start();
@@ -71,14 +71,14 @@ void testScheduledPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->newScheduledThreadPool();
 
     int value = 100;
     Future f1 = pool->schedule(200,[&value](){
       usleep(200*1000);
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(100);
     f1->cancel();
@@ -96,7 +96,7 @@ void testScheduledPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(32)
+              ->setMaxPendingTaskNum(32)
               ->newScheduledThreadPool();
 
     CountDownLatch latch = createCountDownLatch(3);
@@ -157,7 +157,7 @@ void testScheduledPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(32)
+              ->setMaxPendingTaskNum(32)
               ->newScheduledThreadPool();
     pool->schedule(100,[]{
       //TODO

@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "TimeWatcher.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
@@ -23,13 +23,13 @@ void testThreadPoolExecutor_Wait() {
 
   while(1) {
       auto pool = createExecutorBuilder()
-                ->setThreadNum(1)
+                ->setDefaultThreadNum(1)
                 ->newThreadPool();
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       watcher->start();
@@ -46,13 +46,13 @@ void testThreadPoolExecutor_Wait() {
 
   while(1) {
       auto pool = createExecutorBuilder()
-              ->setThreadNum(1)
+              ->setDefaultThreadNum(1)
               ->newThreadPool();
       int value = 100;
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(TaskResult)::set(333);
+        st(ExecutorResult)::set(333);
       });
 
       watcher->start();
@@ -73,12 +73,12 @@ void testThreadPoolExecutor_Wait() {
 
 
   while(1) {
-    auto pool = createExecutorBuilder()->setThreadNum(1)->newThreadPool();
+    auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newThreadPool();
     int value = 100;
     Future f1 = pool->submit([&value](){
       usleep(200*1000);
       value = 222;
-      st(TaskResult)::set(333);
+      st(ExecutorResult)::set(333);
     });
     usleep(100);
     f1->cancel();
@@ -96,7 +96,7 @@ void testThreadPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-                ->setThreadNum(3)
+                ->setDefaultThreadNum(3)
                 ->newThreadPool();
     CountDownLatch latch = createCountDownLatch(3);
     pool->submit([]{
@@ -154,7 +154,7 @@ void testThreadPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()->setThreadNum(1)->newThreadPool();
+    auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newThreadPool();
     pool->submit([]{
       usleep(100*1000);
     });

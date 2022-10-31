@@ -17,8 +17,8 @@ using namespace obotcha;
 
 void testThreadPoolSubmit_Wait() {
   auto pool = createExecutorBuilder()
-              ->setThreadNum(1)
-              ->setQueueSize(1)
+              ->setDefaultThreadNum(1)
+              ->setMaxPendingTaskNum(1)
               ->newThreadPool();
   TimeWatcher watcher = createTimeWatcher();
 
@@ -63,8 +63,8 @@ void testThreadPoolSubmit_Wait() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-                ->setThreadNum(2)
-                ->setQueueSize(1)
+                ->setDefaultThreadNum(2)
+                ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
 
     Future f1 = pool2->submit([]{
@@ -92,8 +92,8 @@ void testThreadPoolSubmit_Wait() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-                ->setThreadNum(2)
-                ->setQueueSize(1)
+                ->setDefaultThreadNum(2)
+                ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
 
     Future f1 = pool2->submit([]{
@@ -125,8 +125,8 @@ void testThreadPoolSubmit_Wait() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(1)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
     Future f1 = pool2->submit([]{
       usleep(200*1000);
@@ -149,8 +149,8 @@ void testThreadPoolSubmit_Wait() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(1)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
     Future f1 = pool2->submit([]{
       usleep(200*1000);
@@ -172,8 +172,8 @@ void testThreadPoolSubmit_Wait() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-                ->setThreadNum(1)
-                ->setQueueSize(2)
+                ->setDefaultThreadNum(1)
+                ->setMaxPendingTaskNum(2)
                 ->newThreadPool();
     Future f1 = pool2->submit([]{
       usleep(200*1000);

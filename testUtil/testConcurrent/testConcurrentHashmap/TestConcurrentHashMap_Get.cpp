@@ -13,9 +13,15 @@ void testConcurrentHashMap_Get() {
       ConcurrentHashMap<String,String> map = createConcurrentHashMap<String,String>();
       map->put(createString("abc"),createString("abc"));
       Thread t1 = createThread([&map]{
+          for(int i = 0;i < 1024*16;i++) {
+                map->put(createString(i),createString(i));
+          }
       });
 
       Thread t2 = createThread([&map]{
+          for(int i = 1024*16;i < 1024*32;i++) {
+                map->put(createString(i),createString(i));
+          }
       });
 
       t1->start();

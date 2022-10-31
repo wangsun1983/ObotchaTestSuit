@@ -9,7 +9,7 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Math.hpp"
-#include "TaskResult.hpp"
+#include "ExecutorResult.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 
@@ -25,7 +25,7 @@ void testCachedPoolExecutor_Multithread() {
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i<32*1024;i++) {
       Future t = pool->submit([&latch,i]{
-        st(TaskResult)::set(i);
+        st(ExecutorResult)::set(i);
         latch->countDown();
       });
       lists->add(t);

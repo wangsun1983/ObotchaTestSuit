@@ -32,7 +32,7 @@ public:
 
 void testThreadPoolLoopShutdown() {
     //test1
-    ThreadPoolExecutor executor = createThreadPoolExecutor(8*1024,4);
+    ThreadPoolExecutor executor = createThreadPoolExecutor(8*1024,4,0);
     for(int i = 0;i<8*1024;i++){
       executor->submit(createMyLoopShutdownRunnable1());
     }
@@ -47,7 +47,7 @@ void testThreadPoolLoopShutdown() {
 
     //test2
     interruptCount = createAtomicInteger(0);
-    ThreadPoolExecutor executor2 = createThreadPoolExecutor(8*1024,4);
+    ThreadPoolExecutor executor2 = createThreadPoolExecutor(8*1024,4,0);
     ArrayList<Future> list = createArrayList<Future>();
     for(int i = 0;i<1024*8;i++){
       Future v = executor2->submit(createMyLoopShutdownRunnable1());

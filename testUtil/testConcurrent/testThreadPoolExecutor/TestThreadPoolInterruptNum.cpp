@@ -31,7 +31,7 @@ public:
 void testThreadPoolInterruptNum() {
 
     while(1) {
-        ThreadPoolExecutor pool= createExecutorBuilder()->setThreadNum(4)->newThreadPool();
+        ThreadPoolExecutor pool= createExecutorBuilder()->setDefaultThreadNum(4)->newThreadPool();
         for(int i = 0;i<32*1024;i++) {
           pool->submit(createThreadPoolCancelTask());
         }

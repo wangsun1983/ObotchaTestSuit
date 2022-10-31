@@ -26,7 +26,7 @@ void testSubmitTask() {
     Condition condition = createCondition();
 
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     auto f1 = pool->schedule(100,[&taskMutex,&condition]{
@@ -51,7 +51,7 @@ void testSubmitTask() {
   while(1) {
     CountDownLatch latch = createCountDownLatch(32);
     auto pool = createExecutorBuilder()
-              ->setQueueSize(64)
+              ->setMaxPendingTaskNum(64)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
     for(int i = 0;i<32;i++) {
@@ -75,7 +75,7 @@ void testSubmitTask() {
   while(1) {
     CountDownLatch latch = createCountDownLatch(256);
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1024)
+              ->setMaxPendingTaskNum(1024)
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
     for(int i = 0;i<256;i++) {
@@ -99,7 +99,7 @@ void testSubmitTask() {
   while(1) {
     CountDownLatch latch = createCountDownLatch(32);
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1024)
+              ->setMaxPendingTaskNum(1024)
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
     for(int i = 0;i<31;i++) {

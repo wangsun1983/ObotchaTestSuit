@@ -17,8 +17,10 @@ extern int testMutexInOneThread();
 extern void testMutex_Lock();
 extern void testMutex_TryLock();
 extern void testMutex_UnLock();
+extern int testMutex_isOwner();
 
 int main() {
+    testMutex_isOwner();
     testMutexInOneThread();
     testMutexNormal();
     testMutex_Lock();

@@ -10,7 +10,7 @@
 
 using namespace obotcha;
 
-DECLARE_CLASS(MqMessage) IMPLEMENTS(Serializable){
+DECLARE_CLASS(TestMqMessage) IMPLEMENTS(Serializable){
 public:
     enum MessageType {
         ShakeHand = 0,
@@ -19,8 +19,8 @@ public:
         Publish,
         PublishStick,
     };
-    _MqMessage() {}
-    _MqMessage(int type,String channel,ByteArray data) {
+    _TestMqMessage() {}
+    _TestMqMessage(int type,String channel,ByteArray data) {
       this->type = type;
       this->channel = channel;
       this->data = data;
@@ -35,19 +35,19 @@ public:
     ByteArray data;
     String channel;
 
-    bool equals(MqMessage s) {
+    bool equals(TestMqMessage s) {
         return type == s->type && channel->equals(s->channel) && data->equals(s->data);
     }
 
-    DECLARE_REFLECT_FIELD(MqMessage,type,channel,data);
+    DECLARE_REFLECT_FIELD(TestMqMessage,type,channel,data);
 };
 
 void testSimpleMsg() {
     String v = createString("11");
-    MqMessage msg = createMqMessage(1,"abc",v->toByteArray());
+    TestMqMessage msg = createTestMqMessage(1,"abc",v->toByteArray());
     ByteArray data = Serialize(msg);
     
-    MqMessage msg2 = DeSerialize<MqMessage>(data);
+    TestMqMessage msg2 = DeSerialize<TestMqMessage>(data);
 
     if(msg2->type != msg->type) {
         TEST_FAIL("Serializable testSimpleMsg case1");

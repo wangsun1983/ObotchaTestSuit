@@ -16,13 +16,16 @@ extern void testByteArray();
 extern void testOrpcSimpleNullCase();
 extern void testSimpleMsg();
 extern void testOrpcDifferentClass();
+extern void testSimpleCase();
 
 int main() {
+    /*
   testSimpleMsg();
   testOrpcSimpleNullCase();
   testOrpcSimpleCase();
   testOrpcArrayList();
   testOrpcHashMap();
   testInnerClass();
-  testByteArray();
+  testByteArray();*/
+    testSimpleCase();
 }

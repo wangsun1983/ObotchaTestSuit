@@ -104,7 +104,7 @@ void testThreadShutdown() {
     }
 
     while(1) {
-        ThreadPoolExecutor pool = createThreadPoolExecutor(128,1);
+        ThreadPoolExecutor pool = createThreadPoolExecutor(128,1,0);
         MyShutdownRunTest2 run = createMyShutdownRunTest2();
         pool->submit(run);
         pool->submit(run);

@@ -48,7 +48,7 @@ public:
 
 void testThreadPoolLoopSubmit() {
     //test1
-    ThreadPoolExecutor executor = createThreadPoolExecutor(4,4);
+    ThreadPoolExecutor executor = createThreadPoolExecutor(4,4,0);
     for(int i = 0;i<1024*8;i++){
       executor->submit(createMyLoopSubmitRunnable1());
     }
@@ -58,7 +58,7 @@ void testThreadPoolLoopSubmit() {
     }
     executor->shutdown();
     //test2
-    ThreadPoolExecutor executor2 = createThreadPoolExecutor(4,4);
+    ThreadPoolExecutor executor2 = createThreadPoolExecutor(4,4,0);
     for(int i = 0;i<1024*8;i++){
       executor2->submit(createMyLoopSubmitRunnable2());
     }
@@ -68,7 +68,7 @@ void testThreadPoolLoopSubmit() {
     }
     executor2->shutdown();
     //test3
-    ThreadPoolExecutor executor3 = createThreadPoolExecutor(1,1);
+    ThreadPoolExecutor executor3 = createThreadPoolExecutor(1,1,0);
     executor3->submit(createMyLoopSubmitRunnable3());
     executor3->submit(createMyLoopSubmitRunnable3());
     long c = st(System)::currentTimeMillis();

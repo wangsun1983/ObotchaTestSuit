@@ -14,6 +14,7 @@
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
 #include "Error.hpp"
+#include "AtomicInteger.hpp"
 
 using namespace obotcha;
 
