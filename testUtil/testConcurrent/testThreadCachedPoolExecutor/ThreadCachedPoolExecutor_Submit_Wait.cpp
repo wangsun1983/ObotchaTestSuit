@@ -18,9 +18,9 @@ using namespace obotcha;
 
 void CachedPoolSubmit_Wait() {
   auto pool = createExecutorBuilder()
-            ->setQueueSize(1)
+            ->setMaxPendingTaskNum(1)
             ->setMaxThreadNum(1)
-            ->setCacheTimeout(200)
+            ->setMaxNoWorkingTime(200)
             ->newCachedThreadPool();
   TimeWatcher watch = createTimeWatcher();
 
@@ -42,7 +42,7 @@ void CachedPoolSubmit_Wait() {
     }
 
     usleep(250*1000);
-    if(pool->getThreadsNum() != 0) {
+    if(pool->getExecutingThreadNum() != 0) {
       TEST_FAIL("[TestCachedPoolExecutor SubmitWait test2]");
       break;
     }
@@ -76,7 +76,7 @@ void CachedPoolSubmit_Wait() {
     }
 
     usleep(250*1000);
-    if(pool->getThreadsNum() != 0) {
+    if(pool->getExecutingThreadNum() != 0) {
       TEST_FAIL("[TestCachedPoolExecutor SubmitWait test5]");
       break;
     }

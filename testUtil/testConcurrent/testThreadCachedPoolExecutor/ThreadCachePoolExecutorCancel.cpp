@@ -42,10 +42,10 @@ int cancelTest() {
         //TEST_FAIL("start test ");
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
         ThreadCachedPoolExecutor pool = createExecutorBuilder()
-                                        ->setQueueSize(1024*32)
+                                        ->setMaxPendingTaskNum(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setCacheTimeout(1000)
+                                        ->setMaxNoWorkingTime(1000)
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();
@@ -80,10 +80,10 @@ int cancelTest() {
         cancelNum = 0;
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
         ThreadCachedPoolExecutor pool = createExecutorBuilder()
-                                        ->setQueueSize(1024*32)
+                                        ->setMaxPendingTaskNum(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setCacheTimeout(1000)
+                                        ->setMaxNoWorkingTime(1000)
                                         ->newCachedThreadPool();
 
         ArrayList<Future> cancellists = createArrayList<Future>();

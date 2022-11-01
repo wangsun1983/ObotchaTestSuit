@@ -37,10 +37,12 @@ extern void testThreadPriority();
 extern void testThreadInterruptCase();
 extern void testThreadLoopStart();
 extern void testThreadInterruptSleep();
+extern void testThreadStatus();
 
 int main() {
     //testThreadInterruptCase();
-
+    
+    testThreadStatus();
     testThreadInterruptSleep();
     testThreadStart();
     testThreadJoin();
@@ -52,12 +54,12 @@ int main() {
     testThreadLoopJoin();
     testThreadLambda();
     testThreadjoinCase2();
+    
     testThreadSleep();
     testThreadQuickJoin();
     testThreadSleepRelease();
     testThreadPriority();
     testThreadLoopStart();
-
     sleep(10);
     return 0;
 }

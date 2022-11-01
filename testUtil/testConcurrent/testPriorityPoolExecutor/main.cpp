@@ -21,10 +21,13 @@ extern void testShutdownCount();
 
 int main() {
 
+    #if 0
     testSubmitWait();
     testSubmitPriority();
     testSubmitMultiThread();
     testAwaitTermination();
+    #endif
+    
     testShutdownCount();
 
     return 1;

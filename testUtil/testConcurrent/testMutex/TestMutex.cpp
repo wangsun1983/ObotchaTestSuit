@@ -117,7 +117,7 @@ int testMutexNormal() {
     //Mutex(String)
     while(1) {
         Mutex mutex = createMutex("test");
-        if(!mutex->toString()->equals("test")) {
+        if(!mutex->getName()->equals("test")) {
             TEST_FAIL("[TestMutex Test {construct(String)} case1]");
             break;
         }

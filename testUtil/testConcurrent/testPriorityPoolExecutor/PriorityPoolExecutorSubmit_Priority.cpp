@@ -19,8 +19,8 @@ void testSubmitPriority() {
   TimeWatcher watch = createTimeWatcher();
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(32)
-              ->setThreadNum(1)
+              ->setMaxPendingTaskNum(32)
+              ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     pool->preempt(st(Executor)::Medium,[]{
@@ -64,8 +64,8 @@ void testSubmitPriority() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(32)
-              ->setThreadNum(1)
+              ->setMaxPendingTaskNum(32)
+              ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     pool->preempt(st(Executor)::Medium,[]{

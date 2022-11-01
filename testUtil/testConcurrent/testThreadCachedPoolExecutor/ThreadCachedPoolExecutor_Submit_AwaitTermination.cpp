@@ -21,9 +21,9 @@ void CachedPoolSubmit_AwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
+              ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
-              ->setCacheTimeout(200)
+              ->setMaxNoWorkingTime(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{

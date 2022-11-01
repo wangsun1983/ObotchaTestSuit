@@ -34,7 +34,7 @@ void testShutdownCount() {
   TimeWatcher watch = createTimeWatcher();
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setThreadNum(1)
+              ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     for(int i = 0;i<32*1024;i++) {

@@ -11,7 +11,6 @@
 #include "TestLog.hpp"
 #include "AtomicInteger.hpp"
 
-
 using namespace obotcha;
 
 void testConditionNotify() {

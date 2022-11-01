@@ -23,7 +23,7 @@ public:
   void run() {
       try {
         st(Thread)::sleep(100000000);
-      } catch(InterruptedException e){}
+      } catch(...){}
       count++;
   }
 
@@ -36,6 +36,7 @@ void testThreadSleep() {
     for(int i = 0;i < 1024*32;i++) {
       Thread t = createThread(createSleepRun1());
       t->start();
+      usleep(100);
       t->interrupt();
       t->join();
     }

@@ -21,8 +21,8 @@ void testSubmitMultiThread() {
     CountDownLatch latch = createCountDownLatch(32*1024*3);
 
     auto pool = createExecutorBuilder()
-              ->setQueueSize(32)
-              ->setThreadNum(4)
+              ->setMaxPendingTaskNum(32)
+              ->setDefaultThreadNum(4)
               ->newPriorityThreadPool();
     Mutex mutex1 = createMutex();
     int count1 = 0;

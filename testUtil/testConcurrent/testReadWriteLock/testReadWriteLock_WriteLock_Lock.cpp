@@ -15,14 +15,11 @@ using namespace obotcha;
 void testWriteLock_Lock() {
   TimeWatcher watcher = createTimeWatcher();
   while(1) {
-    printf("trace1 \n");
     ReadWriteLock rwLock = createReadWriteLock();
     rwLock->getWriteLock()->lock();
     AtomicInteger value = createAtomicInteger(0);
     Thread t = createThread([&value,&rwLock] {
-      printf("trace1_1 \n");
         rwLock->getWriteLock()->lock();
-      printf("trace1 \n");  
         usleep(100*1000);
         value->incrementAndGet();
         rwLock->getWriteLock()->unlock();

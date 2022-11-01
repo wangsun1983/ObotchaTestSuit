@@ -21,10 +21,10 @@ void CachedPoolSubmit_Timeout() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
-              ->setQueueTimeout(100)
+              ->setMaxPendingTaskNum(1)
+              ->setMaxSubmitTaskWaitTime(100)
               ->setMaxThreadNum(1)
-              ->setCacheTimeout(200)
+              ->setMaxNoWorkingTime(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{
@@ -51,10 +51,10 @@ void CachedPoolSubmit_Timeout() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
-              ->setQueueTimeout(200)
+              ->setMaxPendingTaskNum(1)
+              ->setMaxSubmitTaskWaitTime(200)
               ->setMaxThreadNum(1)
-              ->setCacheTimeout(200)
+              ->setMaxNoWorkingTime(200)
               ->newCachedThreadPool();
 
     Future f1 = pool->submit([]{

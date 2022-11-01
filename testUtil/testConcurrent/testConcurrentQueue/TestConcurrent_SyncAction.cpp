@@ -6,6 +6,7 @@
 #include "Integer.hpp"
 #include "TestLog.hpp"
 #include "System.hpp"
+#include "ForEveryOne.hpp"
 
 using namespace obotcha;
 
@@ -94,70 +95,6 @@ void testConcurrentQueue_SyncAction() {
 
         t->join();
         t2->join();
-        break;
-    }
-
-    while(1) {
-        ConcurrentQueue<int> list = createConcurrentQueue<int>();
-        list->putFirst(1);
-        list->putFirst(2);
-        list->putFirst(3);
-        list->putFirst(4);
-        list->putFirst(5);
-
-        int sum = 0;
-        list->syncWriteAction([&list,&sum] {
-            list->foreach([&list,&sum](int v) {
-                int sum2 = 0;
-
-                list->foreach([&list,&sum2](int v2) {
-                    sum2 += v2;
-                    return Global::Continue;
-                },[&list]{
-                    list->clear();
-                });
-                if(sum2 != 15) {
-                    TEST_FAIL("ConcurrentQueue SyncAction test9");
-                }
-                sum += v;
-                return Global::Continue;
-            });
-        });
-        if(sum != 5) {
-            TEST_FAIL("ConcurrentQueue SyncAction test10,sum is %d",sum);
-        }
-        break;
-    }
-
-    while(1) {
-        ConcurrentQueue<int> list = createConcurrentQueue<int>();
-        list->putFirst(1);
-        list->putFirst(2);
-        list->putFirst(3);
-        list->putFirst(4);
-        list->putFirst(5);
-
-        int sum = 0;
-        list->syncReadAction([&list,&sum] {
-            list->foreach([&list,&sum](int v) {
-                int sum2 = 0;
-
-                list->foreach([&list,&sum2](int v2) {
-                    sum2 += v2;
-                    return Global::Continue;
-                },[&list]{
-                    list->clear();
-                });
-                if(sum2 != 15) {
-                    TEST_FAIL("ConcurrentQueue SyncAction test11");
-                }
-                sum += v;
-                return Global::Continue;
-            });
-        });
-        if(sum != 5) {
-            TEST_FAIL("ConcurrentQueue SyncAction test12,sum is %d",sum);
-        }
         break;
     }
 

@@ -19,8 +19,8 @@ void testAwaitTermination() {
   TimeWatcher watch = createTimeWatcher();
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
-              ->setThreadNum(1)
+              ->setMaxPendingTaskNum(1)
+              ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     pool->preempt(st(Executor)::Medium,[]{
@@ -45,8 +45,8 @@ void testAwaitTermination() {
 
   while(1) {
     auto pool = createExecutorBuilder()
-              ->setQueueSize(1)
-              ->setThreadNum(1)
+              ->setMaxPendingTaskNum(1)
+              ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     pool->preempt(st(Executor)::Medium,[]{

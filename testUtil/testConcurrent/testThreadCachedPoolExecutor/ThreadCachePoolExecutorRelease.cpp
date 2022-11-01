@@ -32,10 +32,10 @@ int releaseTest() {
     while(1) {
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(100,0,20,1000);
         ThreadCachedPoolExecutor pool = createExecutorBuilder()
-                                        ->setQueueSize(100)
+                                        ->setMaxPendingTaskNum(100)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
-                                        ->setCacheTimeout(1000)
+                                        ->setMaxNoWorkingTime(1000)
                                         ->newCachedThreadPool();
         for(int i = 0;i < 100;i++) {
             pool->submit(createReleaseTestRunnable());

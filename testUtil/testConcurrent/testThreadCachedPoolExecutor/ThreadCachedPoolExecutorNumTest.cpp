@@ -46,7 +46,7 @@ int numTest() {
     mutex = createMutex();
     ThreadCachedPoolExecutor pool = createExecutorBuilder()
                                     ->setMaxThreadNum(4)
-                                    ->setCacheTimeout(1000)
+                                    ->setMaxNoWorkingTime(1000)
                                     ->newCachedThreadPool();
     while(1) {
         //start test 1
@@ -58,7 +58,7 @@ int numTest() {
             usleep(1000);
         }
         sleep(1);
-        int maxThreadNum = pool->getThreadsNum();
+        int maxThreadNum = pool->getExecutingThreadNum();
         if(maxThreadNum != 4) {
             pool->shutdown();
             TEST_FAIL("[TestCachedPoolExecutor NumTest {case2,maxThreadNum is %d]",maxThreadNum);
@@ -74,7 +74,7 @@ int numTest() {
             pool->submit(run2);
         }
         sleep(16);
-        int threadsize = pool->getThreadsNum();
+        int threadsize = pool->getExecutingThreadNum();
         if(threadsize != 0) {
             TEST_FAIL("[TestCachedPoolExecutor NumTest {case3],thread size is  %d ",threadsize);
             break;

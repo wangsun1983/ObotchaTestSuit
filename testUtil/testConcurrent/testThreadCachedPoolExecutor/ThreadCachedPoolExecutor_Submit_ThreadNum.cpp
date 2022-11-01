@@ -18,9 +18,9 @@ using namespace obotcha;
 
 void CachedPoolSubmit_ThreadNum() {
   auto pool = createExecutorBuilder()
-            ->setQueueSize(1)
+            ->setMaxPendingTaskNum(1)
             ->setMaxThreadNum(3)
-            ->setCacheTimeout(200)
+            ->setMaxNoWorkingTime(200)
             ->newCachedThreadPool();
   TimeWatcher watch = createTimeWatcher();
 
@@ -30,8 +30,8 @@ void CachedPoolSubmit_ThreadNum() {
       usleep(100*1000);
     });
     usleep(1000);
-    if(pool->getThreadsNum() != 1 || pool->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test1] threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
+    if(pool->getExecutingThreadNum() != 1 || pool->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test1] threads is %d,tasks is %d ",pool->getExecutingThreadNum(),pool->getPendingTaskNum());
       break;
     }
 
@@ -39,7 +39,7 @@ void CachedPoolSubmit_ThreadNum() {
       usleep(100*1000);
     });
     usleep(1000);
-    if(pool->getThreadsNum() != 2 || pool->getTasksNum() != 0) {
+    if(pool->getExecutingThreadNum() != 2 || pool->getPendingTaskNum() != 0) {
       TEST_FAIL("[TestCachedPoolExecutor ThreadNum test2]");
       break;
     }
@@ -48,7 +48,7 @@ void CachedPoolSubmit_ThreadNum() {
       usleep(100*1000);
     });
     usleep(1000);
-    if(pool->getThreadsNum() != 3 || pool->getTasksNum() != 0) {
+    if(pool->getExecutingThreadNum() != 3 || pool->getPendingTaskNum() != 0) {
       TEST_FAIL("[TestCachedPoolExecutor ThreadNum test3]");
       break;
     }
@@ -56,14 +56,14 @@ void CachedPoolSubmit_ThreadNum() {
     Future f4 = pool->submit([]{
       usleep(100*1000);
     });
-    if(pool->getThreadsNum() != 3 || pool->getTasksNum() != 1) {
+    if(pool->getExecutingThreadNum() != 3 || pool->getPendingTaskNum() != 1) {
       TEST_FAIL("[TestCachedPoolExecutor ThreadNum test4]");
       break;
     }
 
     usleep(405*1000);
-    if(pool->getThreadsNum() != 0 || pool->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test5] threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
+    if(pool->getExecutingThreadNum() != 0 || pool->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test5] threads is %d,tasks is %d ",pool->getExecutingThreadNum(),pool->getPendingTaskNum());
       break;
     }
 
@@ -77,8 +77,8 @@ void CachedPoolSubmit_ThreadNum() {
       });
     }
     usleep(205*1000);
-    if(pool->getThreadsNum() != 0 || pool->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test6]threads is %d,tasks is %d ",pool->getThreadsNum(),pool->getTasksNum());
+    if(pool->getExecutingThreadNum() != 0 || pool->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test6]threads is %d,tasks is %d ",pool->getExecutingThreadNum(),pool->getPendingTaskNum());
       break;
     }
 
@@ -87,9 +87,9 @@ void CachedPoolSubmit_ThreadNum() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-              ->setQueueSize(12)
+              ->setMaxPendingTaskNum(12)
               ->setMaxThreadNum(12)
-              ->setCacheTimeout(100)
+              ->setMaxNoWorkingTime(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024;i++) {
       Future f1 = pool2->submit([]{
@@ -97,8 +97,8 @@ void CachedPoolSubmit_ThreadNum() {
       });
     }
     usleep(105*1000);
-    if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test7]threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
+    if(pool2->getExecutingThreadNum() != 0 || pool2->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test7]threads is %d,tasks is %d ",pool2->getExecutingThreadNum(),pool2->getPendingTaskNum());
       break;
     }
 
@@ -109,9 +109,9 @@ void CachedPoolSubmit_ThreadNum() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-              ->setQueueSize(32)
+              ->setMaxPendingTaskNum(32)
               ->setMaxThreadNum(12)
-              ->setCacheTimeout(100)
+              ->setMaxNoWorkingTime(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024;i++) {
       Future f1 = pool2->submit([]{
@@ -119,8 +119,8 @@ void CachedPoolSubmit_ThreadNum() {
       });
     }
     usleep(150*1000);
-    if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test8] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
+    if(pool2->getExecutingThreadNum() != 0 || pool2->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test8] threads is %d,tasks is %d ",pool2->getExecutingThreadNum(),pool2->getPendingTaskNum());
       break;
     }
 
@@ -132,9 +132,9 @@ void CachedPoolSubmit_ThreadNum() {
 
   while(1) {
     auto pool2 = createExecutorBuilder()
-              ->setQueueSize(1024*4)
+              ->setMaxPendingTaskNum(1024*4)
               ->setMaxThreadNum(12)
-              ->setCacheTimeout(100)
+              ->setMaxNoWorkingTime(100)
               ->newCachedThreadPool();
     for(int i = 0;i < 1024*4;i++) {
       Future f1 = pool2->submit([]{
@@ -142,14 +142,14 @@ void CachedPoolSubmit_ThreadNum() {
       });
     }
 
-    if(pool2->getThreadsNum() != 12) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test9] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
+    if(pool2->getExecutingThreadNum() != 12) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test9] threads is %d,tasks is %d ",pool2->getExecutingThreadNum(),pool2->getPendingTaskNum());
       break;
     }
 
     usleep(250*1000);
-    if(pool2->getThreadsNum() != 0 || pool2->getTasksNum() != 0) {
-      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test10] threads is %d,tasks is %d ",pool2->getThreadsNum(),pool2->getTasksNum());
+    if(pool2->getExecutingThreadNum() != 0 || pool2->getPendingTaskNum() != 0) {
+      TEST_FAIL("[TestCachedPoolExecutor ThreadNum test10] threads is %d,tasks is %d ",pool2->getExecutingThreadNum(),pool2->getPendingTaskNum());
       break;
     }
 
