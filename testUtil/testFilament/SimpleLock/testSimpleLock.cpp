@@ -7,6 +7,7 @@
 #include "TestLog.hpp"
 #include "Filament.hpp"
 #include "TimeWatcher.hpp"
+#include "FilaCondition.hpp"
 
 using namespace std;
 using namespace obotcha;

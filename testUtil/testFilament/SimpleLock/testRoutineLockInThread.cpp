@@ -30,6 +30,21 @@ void testRoutineLockInThread() {
     }
     threadlatch->countDown();
   });
+  
+  TimeWatcher mywatcher = createTimeWatcher();
+  mywatcher->start();
+  int isRun = 0;
+  croutine->execute([&mywatcher,&isRun]{
+    poll(NULL,0,200);
+    isRun = 1;
+    long rs = mywatcher->stop();
+    if(rs < 200 || rs > 205) {
+      TEST_FAIL("Filament Routine lock in thread case2,rs is %ld",rs);
+    } else {
+      TEST_OK("Filament Routine lock in thread case3");
+    }
+    threadlatch->countDown();
+  });
 
   Thread t = createThread([]{
     AutoLock l(threadMutex);
@@ -38,5 +53,9 @@ void testRoutineLockInThread() {
   t->start();
 
   threadlatch->await();
+  
+  if(isRun == 0) {
+    TEST_FAIL("Filament Routine lock in thread case4");
+  }
   TEST_OK("Filament Routine lock in thread case100");
 }
