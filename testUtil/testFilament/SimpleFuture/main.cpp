@@ -11,9 +11,13 @@
 using namespace std;
 using namespace obotcha;
 
-extern void testSimpleFuture();
+extern void testFutureGetInteger();
+extern void testFutureGetUint32();
+extern void testFutureGetString();
 
 int main() {
-  testSimpleFuture();
+  testFutureGetInteger();
+  testFutureGetUint32();
+  testFutureGetString();
   return 0;
 }

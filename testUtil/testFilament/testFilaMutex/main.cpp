@@ -15,7 +15,8 @@ extern void testFilaMutexIsOwner();
 extern void testFilaMutexLock();
 
 int main() {
-  //testFilaMutexIsOwner();
+  testFilaMutexIsOwner();
   testFilaMutexLock();
+
   return 0;
 }
