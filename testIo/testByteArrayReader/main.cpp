@@ -20,6 +20,6 @@ int main() {
     testReaderArray();
     testByteArrayLittleEndian();
     testByteArrayBigEndian();
-    testReadline();
-    //basetest();
+    //testReadline();
+    basetest();
 }

@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 void testReadline() {
-
+#if 0
     //prepare data
     File file = createFile("./tmp/base_data");
     file->removeAll();
@@ -52,4 +52,5 @@ void testReadline() {
     }
 
     TEST_OK("[TestByteArrayReader ReadLine case100]");
+#endif
 }
