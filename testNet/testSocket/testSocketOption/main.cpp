@@ -8,9 +8,9 @@
 
 using namespace obotcha;
 
-extern void testRead();
+extern void testSocketOptions();
 
 int main() {
-    testRead();
+    testSocketOptions();
     return 0;
 }

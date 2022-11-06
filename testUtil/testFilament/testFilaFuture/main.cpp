@@ -14,10 +14,14 @@ using namespace obotcha;
 extern void testFutureGetInteger();
 extern void testFutureGetUint32();
 extern void testFutureGetString();
+extern void testFutureGetValue();
+extern void testFutureWait();
 
 int main() {
   testFutureGetInteger();
   testFutureGetUint32();
   testFutureGetString();
+  testFutureGetValue();
+  testFutureWait();
   return 0;
 }

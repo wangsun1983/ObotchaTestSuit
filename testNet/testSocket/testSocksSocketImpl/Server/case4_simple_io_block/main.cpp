@@ -33,10 +33,10 @@ int main() {
       break;
     }
 
-    if(result < 100 || result > 105) {
-      TEST_FAIL("Test Tcp Server case4_block_io test1");
+    if(result < 95 || result > 105) {
+      TEST_FAIL("Test Tcp Server case4_block_io test1,result is %ld \n",result);
     }
-    stream->close();
+    //stream->close();
   }
 
   port++;

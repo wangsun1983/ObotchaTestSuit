@@ -4,10 +4,12 @@ import select
 import os
 import socket
 import time
+import socket
+import sys
 
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
-from NetProt import setEnvPort
+from NetPort import setEnvPort
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
 port = getEnvPort()

@@ -49,10 +49,11 @@ int main() {
     }
   });
   t->start();
-
   latch->await();
   monitor->close();
 
+  sock->close();
+  sleep(5);
   port++;
   setEnvPort(port);
   TEST_OK("Test Tcp Server case5_simple_multi_client test100");

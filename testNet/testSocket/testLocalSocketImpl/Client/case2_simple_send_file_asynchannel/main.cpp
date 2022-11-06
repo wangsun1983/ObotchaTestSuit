@@ -62,7 +62,7 @@ int main() {
     long index = 0;
     long filesize = file->length();
     while(1) {
-      long length = stream->readTo(fileBuff);
+      long length = stream->read(fileBuff);
       //printf("write data ,len is %ld \n",length);
       
       int ret = client->getOutputStream()->write(fileBuff);
