@@ -13,9 +13,7 @@
 
 using namespace obotcha;
 
-void baseTest() {
-    File f = createFile("./tmp/base_data");
-    f->createNewFile();
+void testIsClosed() {
     //isClosed
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);

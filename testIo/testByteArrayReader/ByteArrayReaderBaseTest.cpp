@@ -33,6 +33,10 @@ void basetest() {
     short v2 = reader->read<short int>();
     byte v3 = reader->read<byte>();
     int v4 = reader->read<int>();
+    printf("v1 is %lx ,it should be %lx\n",v1,283686952306183);
+    printf("v2 is %lx ,it should be %x\n",v2,2057);
+    printf("v3 is %lx ,it should be %x\n",v3,10);
+    printf("v4 is %lx ,it should be %x\n",v4,185339150);
     if(v1 != 283686952306183 || v2 != 2057 || v3 != 10 || v4 != 185339150) {
         TEST_FAIL("[TestByteArrayReader Test {read<long>/read<short int>/read<byte>/read<int>} case1]");
         break;

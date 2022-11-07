@@ -7,12 +7,19 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "ByteArrayReader.hpp"
+#include "File.hpp"
 
 using namespace obotcha;
 
-extern void baseTest();
+extern void testIsClosed();
+extern void testIsSocket();
+extern void testIsAsync();
 
 int main() {
-    baseTest();
+    File f = createFile("./tmp/base_data");
+    f->createNewFile();
+    
+    testIsClosed();
+    testIsSocket();
     return 0;
 }

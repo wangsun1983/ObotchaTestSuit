@@ -32,21 +32,21 @@ void testByteArrayLittleEndian() {
       v2 = array[2]|(array[3]<<8);
       int v2_chk = reader->read<short int>();
       if(v2 != v2_chk) {
-        TEST_FAIL("[TestByteArrayReader LittleEndia case2],v2 is %d,v2_chk is %d",v2,v2_chk);
+        TEST_FAIL("[TestByteArrayReader LittleEndia case2],v2 is %x,v2_chk is %x",v2,v2_chk);
       }
 
       short int v3 = 0;
       v3 = array[4]|(array[5]<<8);
       int v3_chk = reader->read<short int>();
       if(v3 != v3_chk) {
-        TEST_FAIL("[TestByteArrayReader LittleEndia case3],v3 is %d,v3_chk is %d",v3,v3_chk);
+        TEST_FAIL("[TestByteArrayReader LittleEndia case3],v3 is %x,v3_chk is %x",v3,v3_chk);
       }
 
       short int v4 = 0;
       v4 = array[6]|(array[7]<<8);
       int v4_chk = reader->read<short int>();
       if(v4 != v4_chk) {
-        TEST_FAIL("[TestByteArrayReader LittleEndia case4],v4 is %d,v4_chk is %d",v4,v4_chk);
+        TEST_FAIL("[TestByteArrayReader LittleEndia case4],v4 is %x,v4_chk is %x",v4,v4_chk);
       }
       break;
     }
