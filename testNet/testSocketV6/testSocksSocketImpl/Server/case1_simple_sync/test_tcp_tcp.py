@@ -1,10 +1,15 @@
 import socket
 import time
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
 
 #https://www.jb51.net/article/136920.htm
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
-s.connect(("::1",1222))
+port = getEnvPort()
+
+s.connect(("::1",port))
 print "123"
 s.send(str("hello server").encode("utf-8"))
 

@@ -4,12 +4,16 @@ import select
 import os
 import socket
 
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 host="127.0.0.1"
 
-port = 1233
+port = getEnvPort();
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-s.connect(("::1",1233))
+s.connect(("::1",port))
 
 buf=4096*32
 f = open("file",'wb')

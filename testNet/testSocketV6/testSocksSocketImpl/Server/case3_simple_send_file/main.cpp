@@ -8,6 +8,9 @@
 #include "System.hpp"
 #include "Md.hpp"
 
+#include "TestLog.hpp"
+#include "NetPort.hpp"
+
 using namespace obotcha;
 
 Mutex mMutex = createMutex();
@@ -62,7 +65,8 @@ int main() {
 
     stream->open();
 
-    InetAddress addr = createInet6Address(1233);
+    int port = getEnvPort();
+    InetAddress addr = createInet6Address(port);
 
     ServerSocket server = createSocketBuilder()->setAddress(addr)->newServerSocket();
     server->bind();
@@ -80,10 +84,12 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket Server case3_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-      return 0;
+      TEST_FAIL("TestDataGramSocket Server case3_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
     }
 
-    printf("---TestDataGramSocket Server case3_simple_send_file test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestDataGramSocket Server case3_simple_send_file test100");
     return 0;
 }

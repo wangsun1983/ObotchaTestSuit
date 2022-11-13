@@ -4,6 +4,9 @@ import threading
 import socket
 import time
 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 class SendThread(threading.Thread):
     def __init__(self,c,s):
         threading.Thread.__init__(self)
@@ -24,7 +27,7 @@ class SendThread(threading.Thread):
 
 
 host="127.0.0.1"
-port = 1233
+port = getEnvPort();
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 s.bind(("::1",port))

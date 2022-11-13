@@ -56,7 +56,8 @@ int main() {
 
     int ret = client->connect();
     String resp = createString("hello server");
-    client->getOutputStream()->write(resp->toByteArray());
+    ret = client->getOutputStream()->write(resp->toByteArray());
+    printf("ret is %d,port is %d \n",ret,port);
     
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(client,createMyListener());

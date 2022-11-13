@@ -7,6 +7,8 @@
 #include "FileInputStream.hpp"
 #include "System.hpp"
 #include "Md.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -27,6 +29,7 @@ public:
 int main() {
     //prepare file
     File file = createFile("data");
+    int port = getEnvPort();
 
     if(!file->exists()) {
       file->createNewFile();
@@ -42,7 +45,7 @@ int main() {
       }
     }
 
-    InetAddress addr = createInet6Address(1236);
+    InetAddress addr = createInet6Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
@@ -55,7 +58,7 @@ int main() {
     long index = 0;
     long filesize = file->length();
     while(1) {
-      long length = stream->readTo(fileBuff);
+      long length = stream->read(fileBuff);
       int ret = client->getOutputStream()->write(fileBuff);
       filesize -= length;
       if(filesize == 0) {
@@ -73,10 +76,11 @@ int main() {
     String v2 = md5->encrypt(createFile("file"));
 
     if(v1 != v2) {
-      printf("---TestDataGramSocket case2_simple_send_file test1 [FAILED]---,v1 is %s,v2 is %s \n",v1->toChars(),v2->toChars());
-      return 0;
+      TEST_FAIL("TestDataGramSocket case2_simple_send_file test1,v1 is %s,v2 is %s ",v1->toChars(),v2->toChars());
     }
 
-    printf("---TestDataGramSocket case2_simple_send_file test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+    TEST_OK("TestDataGramSocket case2_simple_send_file test100");
     return 0;
 }

@@ -3,7 +3,7 @@ import socket
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
 host = socket.gethostname()
-port = 1213
+port = getEnvPort()
 
 s.bind(("::1", port))
 

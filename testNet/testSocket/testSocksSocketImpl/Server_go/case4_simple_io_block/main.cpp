@@ -34,7 +34,7 @@ int main() {
     }
 
     if(result < 100 || result > 105) {
-      TEST_FAIL("Test Tcp Server case4_block_io test1");
+      TEST_FAIL("Test Tcp Server case4_block_io test1,result is %d",result);
     }
     stream->close();
   }

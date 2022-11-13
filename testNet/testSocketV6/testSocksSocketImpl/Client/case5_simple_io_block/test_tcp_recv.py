@@ -1,10 +1,14 @@
 import socket
 import time
+import sys
 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
 
+port = getEnvPort();
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-s.bind(("::1",1222))
+s.bind(("::1",port))
 
 s.listen(5)
 c,client = s.accept()

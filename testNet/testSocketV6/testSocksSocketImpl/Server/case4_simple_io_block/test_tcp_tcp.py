@@ -1,8 +1,13 @@
 import socket
 import time
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
+port = getEnvPort()
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-s.connect(("::1",1222))
+s.connect(("::1",port))
 count = 0
 
 while (count < 1024):

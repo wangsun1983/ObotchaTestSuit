@@ -3,6 +3,8 @@
 #include "SocketMonitor.hpp"
 #include "Handler.hpp"
 #include "Inet6Address.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -46,12 +48,11 @@ public:
 
 
 int main() {
-    InetAddress addr = createInet6Address(1213);
+    int port = getEnvPort();
+    InetAddress addr = createInet6Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
-    printf("connect trace1 \n");
     int ret = client->connect();
-    printf("connect result is %d \n",ret);
-
+    
     String resp = createString("hello server");
     client->getOutputStream()->write(resp->toByteArray());
 
@@ -62,11 +63,13 @@ int main() {
     
     int count = message->counts(createString("hello server"));
     if(message->counts(createString("hello server")) != 50) {
-      printf("---TestTcpClient case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+      TEST_FAIL("TestTcpClient case1_simple_sync test2 count is %d,message is %s",count,message->toChars());
     }
 
+    port++;
+    setEnvPort(port);
     client->close();
     monitor->close();
-    printf("---TestTcpClient case1_simple_sync test3 [OK]--- \n");
+    TEST_OK("TestTcpClient case1_simple_sync test3");
     return 0;
 }

@@ -7,7 +7,7 @@ import time
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
-s.bind(("::1", 1236))
+s.bind(("::1", getEnvPort()))
 
 print ("start")
 path = "file"

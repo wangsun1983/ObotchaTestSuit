@@ -44,7 +44,7 @@ int main() {
     long index = 0;
     long filesize = file->length();
     while(1) {
-      long length = stream->readTo(fileBuff);
+      long length = stream->read(fileBuff);
       int ret = client->getOutputStream()->write(fileBuff);
       filesize -= length;
       usleep(100*1000);

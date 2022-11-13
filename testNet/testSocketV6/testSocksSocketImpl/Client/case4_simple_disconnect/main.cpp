@@ -9,6 +9,8 @@
 #include "Md.hpp"
 #include "CountDownLatch.hpp"
 #include "Message.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -56,12 +58,14 @@ private:
 int main() {
     SocketMonitor monitor = createSocketMonitor();
     long sum = 0;
+    int port = getEnvPort();
+    printf("port is %d \n",port);
 
     for(int i = 0;i<32*1024;i++) {
-      InetAddress addr = createInet6Address(1234);
+      InetAddress addr = createInet6Address(port);
       Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
-        printf("---TestTcpSocket case4_simple_multi_test test1 [FAILED]--- ,i is %d\n",i);
+        TEST_FAIL("TestTcpSocket case4_simple_multi_test test1,i is %d",i);
         continue;
       }
 
@@ -74,9 +78,12 @@ int main() {
     }
 
     if(latch->getCount() != 0) {
-      printf("---TestTcpSocket case4_simple_multi_test test2 [FAILED]--- cout is %d\n",latch->getCount());
+      TEST_FAIL("TestTcpSocket case4_simple_multi_test test2 cout is %d",latch->getCount());
     }
 
-    printf("---TestTcpSocket case4_simple_multi_test test100 [OK]--- \n");
+    port++;
+    setEnvPort(port);
+
+    TEST_OK("TestTcpSocket case4_simple_multi_test test100");
     return 0;
 }

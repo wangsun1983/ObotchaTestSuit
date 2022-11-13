@@ -6,17 +6,22 @@ sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
-s.connect(("::1",getEnvPort()))
+#s.connect(("::1",getEnvPort()))
 
-s.send(str("hello server").encode("utf-8"))
+print("port is ",getEnvPort())
 
-sendData = s.recv(1024)
-#print("i recv data")
+addr = ("::1",getEnvPort())
+
+s.sendto(str("hello server").encode("utf-8"),addr)
+
+sendData,addr2 = s.recvfrom(1024)
+print("addr2 is ",addr2)
 
 count = 0
 
 while (count < 50):
-    s.send(sendData)
+    #s.send(sendData)
+    s.sendto(sendData,addr)
     time.sleep(0.01)
     count = count + 1
 

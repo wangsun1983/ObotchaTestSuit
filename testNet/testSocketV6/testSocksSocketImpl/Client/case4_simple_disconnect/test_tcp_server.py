@@ -4,6 +4,9 @@ import threading
 import socket
 import time
 
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 class ShutDownThread(threading.Thread):
     def __init__(self,c,s):
         threading.Thread.__init__(self)
@@ -15,7 +18,10 @@ class ShutDownThread(threading.Thread):
 
 
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-s.bind(("::1",1234))
+port = getEnvPort()
+print("port is ",port)
+
+s.bind(("::1",port))
 
 index = 0
 print("start test")

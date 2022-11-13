@@ -20,13 +20,8 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
-    //if(data != nullptr) {
-    //  printf("data is %s \n",data->toString()->toChars());
-    //}
-
     if(isFirst) {
       int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
-      //printf("len is %d \n",len);
       isFirst = false;
       mCond->notify();
       return;

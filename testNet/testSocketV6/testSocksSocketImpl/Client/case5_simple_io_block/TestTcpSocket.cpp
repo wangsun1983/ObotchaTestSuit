@@ -4,6 +4,8 @@
 #include "Handler.hpp"
 #include "Inet6Address.hpp"
 #include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +18,8 @@ Condition disconnectCond = createCondition();
 String message = createString("");
 
 int main() {
-    InetAddress addr = createInet6Address(1222);
+    int port = getEnvPort();
+    InetAddress addr = createInet6Address(port);
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
@@ -40,14 +43,16 @@ int main() {
 
       if(interval < 500 || interval > 505) {
         if(!isFirst) {
-          printf("---TestSocket IO Block test2 [FAILED]---,interval is %ld,len is %ld\n",interval,len);
+          TEST_FAIL("TestSocket IO Block test2,interval is %ld,len is %ld",interval,len);
         }
         isFirst = false;
       }
       count++;
     }
     client->close();
+    port++;
+    setEnvPort(port);
 
-    printf("---TestSocket IO Block test2 [OK]---\n");
+    TEST_OK("TestSocket IO Block test2");
     return 0;
 }
