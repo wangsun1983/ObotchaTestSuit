@@ -14,8 +14,7 @@ msg = "Hello, World"
 with open('./tmp/data', 'r') as fp:
     while True:
         data = fp.read(1024*4)
-        ws.send(data)
-        
+        ws.send(data,websocket.ABNF.OPCODE_BINARY)
         if not data:
             break;
 

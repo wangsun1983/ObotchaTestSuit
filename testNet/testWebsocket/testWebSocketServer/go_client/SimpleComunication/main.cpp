@@ -14,29 +14,20 @@
 #include "File.hpp"
 #include "FileOutputStream.hpp"
 #include "AtomicInteger.hpp"
-#include "CountDownLatch.hpp"
 #include "WebSocketServerBuilder.hpp"
-#include "Handler.hpp"
+#include "CountDownLatch.hpp"
 #include "Inet4Address.hpp"
+#include "AtomicInteger.hpp"
 
 #include "TestLog.hpp"
+#include "NetEvent.hpp"
 #include "NetPort.hpp"
 
 using namespace obotcha;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disconnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
-CountDownLatch latch = createCountDownLatch(1024*10);
-
-DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
-public:
-  void handleMessage(Message msg) {
-    printf("messageLatch is %d,connectCount is %d,disconnectCount is %d \n",latch->getCount(),connectCount->get(),disconnectCount->get());
-    this->sendEmptyMessageDelayed(0,10*1024);
-  }
-};
-
+CountDownLatch latch = createCountDownLatch(256);
+AtomicInteger connectNum = createAtomicInteger(0);
+CountDownLatch finishLatch = createCountDownLatch(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
@@ -45,21 +36,25 @@ public:
     }
 
     int onData(WebSocketFrame message,WebSocketLinker client) {
-        messageCount->incrementAndGet();
-
-        if(!message->getData()->toString()->equals("Hello, World")) {
-            printf("WebSocketServer MultiThread test2 [FAILED],message is %s \n",message->getData()->toString()->toChars());
+        if(message->getData()->toString()->equals("Finish")) {
+            finishLatch->countDown();
+            return 0;
         }
+        
+        if(!message->getData()->toString()->equals("Hello,Server")) {
+            TEST_FAIL("WebSocketServer Simple Count test10");
+        }
+                
+        client->sendTextMessage("Hello,Client");
         return 0;
     }
 
     int onConnect(WebSocketLinker client) {
-        connectCount->incrementAndGet();
+        connectNum->incrementAndGet();
         return 0;
     }
 
     int onDisconnect(WebSocketLinker client) {
-        disconnectCount->incrementAndGet();
         latch->countDown();
         return 0;
     }
@@ -78,26 +73,26 @@ public:
 int main() {
     MyWsListener l = createMyWsListener();
     int port = getEnvPort();
-
+    
     InetAddress address = createInet4Address(port);
     WebSocketServer server = createWebSocketServerBuilder()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
+                            ->addListener("mytest2",l)
                             ->build();
 
     server->start();
-    
-    MyHandler h = createMyHandler();
-    h->sendEmptyMessageDelayed(0,10*1024);
-
     latch->await();
-
-    if(connectCount->get() != 10*1024 || disconnectCount->get() != 10*1024 || messageCount->get() != 10*1024) {
-        TEST_FAIL("WebSocketServer MultiThread test1,connect is %d,disconnect is %d,message is %d",
-                connectCount->get(),
-                disconnectCount->get(),
-                messageCount->get());
+    
+    if(connectNum->get() != 256) {
+        TEST_FAIL("WebSocketServer Disconnect Test case1,count is %d",connectNum->get());
     }
+    
+    finishLatch->await();
+    TEST_OK("WebSocketServer Disconnect Test case100");
 
-    TEST_OK("WebSocketServer MultiThread test100");
+    port++;
+    setEnvPort(port);
+
+    server->close();
 }

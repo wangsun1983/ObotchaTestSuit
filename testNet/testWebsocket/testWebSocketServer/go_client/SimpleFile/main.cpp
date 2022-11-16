@@ -16,50 +16,41 @@
 #include "AtomicInteger.hpp"
 #include "CountDownLatch.hpp"
 #include "WebSocketServerBuilder.hpp"
-#include "Handler.hpp"
+#include "System.hpp"
+#include "Md.hpp"
 #include "Inet4Address.hpp"
 
 #include "TestLog.hpp"
+#include "NetEvent.hpp"
 #include "NetPort.hpp"
 
 using namespace obotcha;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disconnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
-CountDownLatch latch = createCountDownLatch(1024*10);
-
-DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
-public:
-  void handleMessage(Message msg) {
-    printf("messageLatch is %d,connectCount is %d,disconnectCount is %d \n",latch->getCount(),connectCount->get(),disconnectCount->get());
-    this->sendEmptyMessageDelayed(0,10*1024);
-  }
-};
-
+CountDownLatch latch = createCountDownLatch(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
-        
+        File f = createFile("./tmp/rcvfile");
+        if(f->exists()) {
+            f->removeAll();
+        }
+        f->createNewFile();
+
+        stream = createFileOutputStream(f);
+        stream->open();
     }
 
     int onData(WebSocketFrame message,WebSocketLinker client) {
-        messageCount->incrementAndGet();
-
-        if(!message->getData()->toString()->equals("Hello, World")) {
-            printf("WebSocketServer MultiThread test2 [FAILED],message is %s \n",message->getData()->toString()->toChars());
-        }
+        stream->write(message->getData());
         return 0;
     }
 
     int onConnect(WebSocketLinker client) {
-        connectCount->incrementAndGet();
         return 0;
     }
 
     int onDisconnect(WebSocketLinker client) {
-        disconnectCount->incrementAndGet();
         latch->countDown();
         return 0;
     }
@@ -70,15 +61,37 @@ public:
 
     int onPing(WebSocketLinker client) {
         return 0;
-    }   
+    }
+
+private:
+    FileOutputStream stream;
 };
 
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
-    int port = getEnvPort();
+    //crete file first
+    File file = createFile("./tmp/data");
+    long prepareFilesize = file->length();
 
+    if(!file->exists()) {
+        file->createNewFile();
+        for(int i = 0;i<1024;i++) {
+            FileOutputStream stream = createFileOutputStream(file);
+            stream->open(st(OutputStream)::Append);
+            String data = createString("");
+            for(int j = 0;j < 256;j++) {
+                data = data->append(createString(st(System)::currentTimeMillis()));
+            }
+            stream->write(data->toByteArray());
+            stream->close();
+        }
+    }
+
+
+    MyWsListener l = createMyWsListener();
+
+    int port = getEnvPort();
     InetAddress address = createInet4Address(port);
     WebSocketServer server = createWebSocketServerBuilder()
                             ->setInetAddr(address)
@@ -86,18 +99,20 @@ int main() {
                             ->build();
 
     server->start();
-    
-    MyHandler h = createMyHandler();
-    h->sendEmptyMessageDelayed(0,10*1024);
 
     latch->await();
 
-    if(connectCount->get() != 10*1024 || disconnectCount->get() != 10*1024 || messageCount->get() != 10*1024) {
-        TEST_FAIL("WebSocketServer MultiThread test1,connect is %d,disconnect is %d,message is %d",
-                connectCount->get(),
-                disconnectCount->get(),
-                messageCount->get());
+    //check md5
+    Md md5 = createMd();
+    String base = md5->encrypt(createFile("./tmp/data"));
+    String rcv = md5->encrypt(createFile("./tmp/rcvfile"));
+    if(!base->equals(rcv)) {
+        TEST_FAIL("WebSocketServer SimpleFile test1");
     }
 
-    TEST_OK("WebSocketServer MultiThread test100");
+    port++;
+    setEnvPort(port);
+    server->close();
+
+    TEST_OK("WebSocketServer SimpleFile test100");
 }

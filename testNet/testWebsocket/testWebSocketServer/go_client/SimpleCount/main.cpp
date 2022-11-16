@@ -17,6 +17,7 @@
 #include "CountDownLatch.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "Inet4Address.hpp"
+#include "Handler.hpp"
 
 #include "TestLog.hpp"
 #include "NetPort.hpp"

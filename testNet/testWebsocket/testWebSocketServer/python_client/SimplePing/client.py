@@ -1,7 +1,6 @@
 import websocket
 import threading
 
-
 import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
@@ -10,14 +9,14 @@ url = "ws://127.0.0.1:" + str(getEnvPort()) + "/mytest"
 ws = websocket.WebSocket()
 ws.connect(url)
 msg = "Hello, World"
+ws.send("hello")
+recvdata = ws.recv()
+print("recvdata1 is",recvdata)
 
-with open('./tmp/data', 'r') as fp:
-    while True:
-        data = fp.read(1024*4)
-        ws.send(data)
-        
-        if not data:
-            break;
+#for i in range(0,256):
+#    ws.send("hello",websocket.ABNF.OPCODE_PING)
+#    recvdata = ws.recv()
+#    print("recvdata is",recvdata)
 
 ws.close()
 
