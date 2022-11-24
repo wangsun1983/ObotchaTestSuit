@@ -16,7 +16,7 @@ import (
 //https://github.com/golang/text.git
 
 func main() {
-  url := "http://192.168.1.7:1268/aaa"
+  url := "http://192.168.1.3:1268/aaa"
   client(url)
 }
 

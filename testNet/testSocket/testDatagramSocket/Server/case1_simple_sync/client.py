@@ -6,9 +6,14 @@ sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
 
 s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+port = getEnvPort()
+print("port is ",port)
+
 s.connect(("127.0.0.1",getEnvPort()))
+print("connect")
 
 s.send(str("hello server").encode("utf-8"))
+print("connect send")
 
 sendData = s.recv(1024).decode()
 

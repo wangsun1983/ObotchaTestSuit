@@ -22,7 +22,6 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 
-
 using namespace obotcha;
 
 CountDownLatch latch = createCountDownLatch(1024*16);

@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <unistd.h>
+
+#include "Integer.hpp"
+#include "StrongPointer.hpp"
+#include "Long.hpp"
+#include "WebSocketServer.hpp"
+#include "WebSocketListener.hpp"
+#include "Mutex.hpp"
+#include "Condition.hpp"
+#include "AutoLock.hpp"
+#include "WebSocketProtocol.hpp"
+#include "WebSocketComposer.hpp"
+#include "File.hpp"
+#include "FileOutputStream.hpp"
+#include "AtomicInteger.hpp"
+#include "CountDownLatch.hpp"
+#include "WebSocketServerBuilder.hpp"
+#include "System.hpp"
+#include "Md.hpp"
+#include "Inet4Address.hpp"
+
+#include "TestLog.hpp"
+#include "NetEvent.hpp"
+#include "NetPort.hpp"
+
+using namespace obotcha;
+
+CountDownLatch latch = createCountDownLatch(1);
+
+DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
+public:
+    _MyWsListener() {
+        
+    }
+
+    int onData(WebSocketFrame message,WebSocketLinker client) {
+        client->sendPingMessage(createString("hello")->toByteArray());
+        return 0;
+    }
+
+    int onConnect(WebSocketLinker client) {
+        return 0;
+    }
+
+    int onDisconnect(WebSocketLinker client) {
+        return 0;
+    }
+
+    bool onPong(String msg,WebSocketLinker client) {
+        if(!msg->equals("hello")) {
+            TEST_FAIL("WebSocketServer SimplePing test1");
+        }
+        latch->countDown();
+        return true;
+    }
+
+    bool onPing(String msg,WebSocketLinker client) {
+        return false;
+    }
+
+private:
+    FileOutputStream stream;
+};
+
+int main() {
+    MyWsListener l = createMyWsListener();
+
+    int port = getEnvPort();
+    InetAddress address = createInet4Address(port);
+    WebSocketServer server = createWebSocketServerBuilder()
+                            ->setInetAddr(address)
+                            ->addListener("mytest",l)
+                            ->build();
+
+    server->start();
+
+    latch->await();
+    port++;
+    setEnvPort(port);
+    server->close();
+    TEST_OK("WebSocketServer SimplePing test100");
+}

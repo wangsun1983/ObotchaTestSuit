@@ -57,17 +57,13 @@ int testSimpleFrameParser() {
         TEST_FAIL("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
         return -1;
       }
-
-      
-
   }
-
 
   //case 2
   {
     uint8_t msg[] = { 0x01, 0x03, 0x48, 0x65, 0x6c, /* "Hel" */
                     0x80, 0x02, 0x6c, 0x6f }; /* "lo" */
-
+    printf("start test case 2 \n");
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
     ByteArray loadData = createByteArray((const byte *)msg,sizeof(msg)/sizeof(uint8_t));
     parser->pushParseData(loadData);
@@ -166,6 +162,7 @@ int testSimpleFrameParser() {
     }
   }
 
+
   //case4
   {
     uint8_t msg[] = { 0x81, 0x00 };
@@ -196,14 +193,13 @@ int testSimpleFrameParser() {
     ByteArray loadData = createByteArray((const byte *)msg,sizeof(msg)/sizeof(uint8_t));
 
     parser->pushParseData(loadData);
-    ArrayList<WebSocketFrame> msgDatas = parser->doParse();
-
-    if(msgDatas->size() != 0) {
-      TEST_FAIL("testSimpleFrameParser case5 trace1 frame size,current is %d",msgDatas->size());
-      return -1;
+    try {
+        ArrayList<WebSocketFrame> msgDatas = parser->doParse();
+        TEST_FAIL("testSimpleFrameParser case5 trace1 frame size,current is %d",msgDatas->size());
+    } catch(...) {
+    
     }
   }
-
 
   TEST_OK("testSimpleFrameParser case100");
   return 0;

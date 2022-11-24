@@ -2,7 +2,7 @@ package main
 
 import (
     //"fmt"
-    "../../../../../3rdparty/go/src/golang.org/x/net/websocket"
+    "golang.org/x/net/websocket"
     "../../../../../common"
     "log"
     //"fmt"
@@ -10,6 +10,7 @@ import (
 )
 
 //export GOPATH=/home/sunliwang/mysource/Obotcha/ObotchaTestSuite/common
+//export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go/src
 
 func main() {
     port := testnet.GetEnvPort()

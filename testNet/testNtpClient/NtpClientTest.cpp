@@ -8,6 +8,7 @@
 #include "Long.hpp"
 #include "NtpClient.hpp"
 #include "System.hpp"
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -16,8 +17,10 @@ int main() {
     NtpClient c = createNtpClient();
     c->bind("ntp.aliyun.com",123);
     long int t = c->get();
-    printf("t is %ld \n",t);
-    printf("current is %ld \n",st(System)::currentTimeMillis());
-    while(1){}
-
+    long interval = st(System)::currentTimeMillis() - t;
+    if(interval < 0 || interval > 100) {
+        TEST_FAIL("testNtpClient case1,interval is %ld",interval);
+    }
+    
+    TEST_OK("testNtpClient case100");
 }

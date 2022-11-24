@@ -6,6 +6,7 @@
 #include "HttpPacketParser.hpp"
 #include "HttpPacketParserImpl.hpp"
 #include "TestLog.hpp"
+#include "HttpMethod.hpp"
 
 using namespace obotcha;
 

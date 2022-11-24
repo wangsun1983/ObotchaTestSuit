@@ -24,7 +24,7 @@ public:
 
     int onData(WebSocketFrame data) {
         String message = data->getData()->toString();
-        if(!message->equals("i am server")) {
+        if(!message->equals("closed")) {
             TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
         }
 
@@ -42,9 +42,9 @@ public:
         return 0;
     }
 
-    int onPong(String) {
+    void onPong(String) {
         //printf("111111 onPong fd \n");
-        return 0;
+        //return 0;
     }
 
     int onPing(String) {
@@ -79,13 +79,12 @@ int main() {
     client->connect(url,l);
     File f = createFile("data");
     client->sendFile(f);
-
-    latch->await();
-
+    usleep(1000*200);
+    
     Md md5sum = createMd();
     String base = md5sum->encrypt(createFile("data"));
 
-    String newFile = md5sum->encrypt(createFile("./tmp/data"));
+    String newFile = md5sum->encrypt(createFile("./tmp/file"));
 
     if(!base->equals(newFile)) {
       TEST_FAIL("WebSocketClient SimpleConnect case100");

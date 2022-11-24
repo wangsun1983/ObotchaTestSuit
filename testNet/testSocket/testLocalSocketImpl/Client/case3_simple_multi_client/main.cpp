@@ -60,7 +60,7 @@ int main() {
 
     for(int i = 0;i<128;i++) {
       auto addr = createInetLocalAddress("case3_socket");
-      Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
+      Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
         TEST_FAIL("TestLocalSocket Client case3_simple_multi_test test1,i is %d",i);
         return -1;

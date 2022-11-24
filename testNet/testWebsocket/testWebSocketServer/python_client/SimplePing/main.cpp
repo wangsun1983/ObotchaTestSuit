@@ -47,16 +47,15 @@ public:
         return 0;
     }
 
-    bool onPong(String msg,WebSocketLinker client) {
+    void onPong(String msg,WebSocketLinker client) {
         if(!msg->equals("hello")) {
             TEST_FAIL("WebSocketServer SimplePing test1");
         }
         latch->countDown();
-        return true;
     }
 
-    bool onPing(String msg,WebSocketLinker client) {
-        return false;
+    int onPing(String msg,WebSocketLinker client) {
+        return AutoResponse;
     }
 
 private:

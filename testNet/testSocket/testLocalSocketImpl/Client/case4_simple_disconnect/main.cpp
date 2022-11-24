@@ -64,14 +64,15 @@ int main() {
     long sum = 0;
 
     for(int i = 0;i<32*1024;i++) {
-      InetAddress addr = createInetLocalAddress("case4_socket");
-      Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
-      if(client->connect() != 0) {
-        TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test1,i is %d",i);
-        continue;
-      }
+          InetAddress addr = createInetLocalAddress("case4_socket");
+          Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+          
+          if(client->connect() != 0) {
+            TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test1,i is %d,fd is %d",i,client->getFileDescriptor()->getFd());
+            continue;
+          }
 
-      monitor->bind(client,createMyListener(i));
+          monitor->bind(client,createMyListener(i));
     }
     
     {

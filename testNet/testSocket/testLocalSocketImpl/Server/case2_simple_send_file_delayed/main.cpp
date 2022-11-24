@@ -70,7 +70,10 @@ int main() {
     auto option = createSocketOption();
     option->setReUseAddr(true);
 
-    ServerSocket server = createSocketBuilder()->setOption(option)->setAddress(addr)->newServerLocalSocket();
+    ServerSocket server = createSocketBuilder()
+                        ->setOption(option)
+                        ->setAddress(addr)
+                        ->newServerSocket();
     server->bind();
 
     stream->open(st(OutputStream)::Append);

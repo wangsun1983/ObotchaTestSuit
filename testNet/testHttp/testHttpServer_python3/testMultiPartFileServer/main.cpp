@@ -19,6 +19,7 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "NetEvent.hpp"
+#include "ForEveryOne.hpp"
 
 using namespace obotcha;
 
@@ -54,15 +55,16 @@ public:
               //printf("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
-              if(multiPart != nullptr && multiPart->getContents() != nullptr) {
-                multiPart->getContents()->foreach([](Pair<String,String> pair){
-                  //printf("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
-                  return 1;
-                });
-              }
+//              if(multiPart != nullptr && multiPart->getContents() != nullptr) {
+//                multiPart->getContents()->foreach([](Pair<String,String> pair){
+//                  //printf("key is %s,value is %s \n",pair->getKey()->toChars(),pair->getValue()->toChars());
+//                  return 1;
+//                });
+//              }
 
               if(multiPart != nullptr && multiPart->getFiles() != nullptr) {
-                  multiPart->getFiles()->foreach([](HttpMultiPartFile file){
+                  auto files = multiPart->getFiles();
+                  ForEveryOne(file,files) {
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
@@ -71,8 +73,7 @@ public:
                     if(v1 != v2) {
                       TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
                     }
-                    return 1;
-                  });
+                  }
               }
 
               HttpResponse response = createHttpResponse();

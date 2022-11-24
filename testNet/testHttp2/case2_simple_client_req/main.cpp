@@ -17,6 +17,7 @@
 #include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
+#include "NetProtocol.hpp"
 
 using namespace obotcha;
 
@@ -61,9 +62,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 int main() {
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1372))
+                    ->setAddress(createInet4Address(1302))
                     ->setHttp2Listener(listener)
-                    ->setProtocol(st(HttpProtocol)::Http_H2C)
+                    ->setProtocol(st(NetProtocol)::Http_H2C)
                     ->buildHttp2Server();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();

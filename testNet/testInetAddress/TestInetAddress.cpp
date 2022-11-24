@@ -7,7 +7,7 @@
 
 using namespace obotcha;
 
-int main() {
+void test() {
     //InetAddress inet = createInetAddress();
 #if 0  
     ArrayList<InetHostAddress> list = st(InetAddress)::getHostAddress();
@@ -29,7 +29,7 @@ int main() {
       LOGD("mac interface is ",addr->interface);
       LOGD("mac is ",addr->mac);
     }
-#endif
+
     ArrayList<String> hosts = st(InetAddress)::getHostByName("www.blog.csdn.net");
     if(hosts == nullptr) {
       printf("analyse fail \n");
@@ -40,5 +40,5 @@ int main() {
       String addr = hosts->get(index);
       printf("addr is %s",addr->toChars());
     }
-
+#endif
 }

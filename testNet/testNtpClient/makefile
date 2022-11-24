@@ -13,6 +13,7 @@ cflags = -fpic \
 		-I ../../../io/include \
 		-I ../../../util/include/ \
 		-I ../../../net/include \
+		-I ../../../net/socket/include \
 		-I ../../../security/include \
 		-I ../../../process/include \
 		-I ../../../external/iniparser/include \
@@ -27,9 +28,14 @@ cflags = -fpic \
 		-I ../../../external/sqlite3/include \
 		-I ../../../external/http_parser/include \
 		-I ../../../external/glog/include \
+		-I ../../common \
 		-g \
 		-std=c++14 \
-
+		-g \
+		-std=c++14 \
+		-fsanitize=address \
+		-fno-omit-frame-pointer
+	
 external = -lpthread \
 				-ldl \
 				../../../out/lib/libobotcha.so \

@@ -21,11 +21,12 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
-    
+    printf("i received a message,event is %d \n",event);
     if(isFirst) {
       int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
       isFirst = false;
-      mCond->notify();
+      printf("len is %d \n",len);
+      //mCond->notify();
       return;
     }
 
@@ -36,12 +37,15 @@ public:
 
 int main() {
   int port = getEnvPort();
+  printf("port is %d \n",port);
   InetAddress addr = createInet4Address(port);
   Socket sock = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
   int result = sock->bind();
+  printf("result is %d \n",result);
   SocketMonitor monitor = createSocketMonitor();
   MyListener l = createMyListener();
   monitor->bind(sock,l);
+  printf("bind sock \n");
   AutoLock ll(mMutex);
   mCond->wait(mMutex);
 

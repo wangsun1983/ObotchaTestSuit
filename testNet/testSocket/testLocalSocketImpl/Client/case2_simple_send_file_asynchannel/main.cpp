@@ -48,7 +48,7 @@ int main() {
     }
 
     auto addr = createInetLocalAddress("case2_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
+    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     printf("connect result is %d \n",ret);

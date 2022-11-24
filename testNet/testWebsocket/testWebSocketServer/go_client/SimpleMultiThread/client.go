@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "../../../../../3rdparty/go/src/golang.org/x/net/websocket"
+    "golang.org/x/net/websocket"
     "../../../../../common"
     "log"
     "sync"

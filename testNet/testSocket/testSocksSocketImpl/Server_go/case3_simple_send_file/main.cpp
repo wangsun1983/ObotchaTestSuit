@@ -76,24 +76,21 @@ int main() {
 
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(server,createMyListener());
-
     AutoLock l(mMutex);
     mCond->wait(mMutex);
+        
     usleep(1000*1000);
     Md md5 = createMd();
     String v1 = md5->encrypt(createFile("data"));
     String v2 = md5->encrypt(createFile("file"));
-
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket Server case3_simple_send_file test1,v1 is %s,v2 is %s ",v1->toChars(),v2->toChars());
     }
 
     port++;
     setEnvPort(port);
-
     monitor->close();
     server->close();
-    
     TEST_OK("TestDataGramSocket Server case3_simple_send_file test100");
     return 0;
 }

@@ -11,9 +11,9 @@ fo = open("./tmp/file", "wb")
 
 class WSserver():
     async def handle(self,websocket,path):
-      recv_msg = await websocket.recv()
-      fo.write(recv_msg)
-      await websocket.send('i am server')
+      while True:
+          recv_msg = await websocket.recv()
+          fo.write(recv_msg)          
       self.port = self.port + 1
       setEnvPort(self.port)
       fo.close()

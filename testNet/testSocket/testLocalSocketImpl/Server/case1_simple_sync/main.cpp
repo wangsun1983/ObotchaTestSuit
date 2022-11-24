@@ -44,7 +44,7 @@ int main() {
   auto sock = createSocketBuilder()
               ->setAddress(addr)
               ->setOption(option)
-              ->newServerLocalSocket();
+              ->newServerSocket();
 
   int result = sock->bind();
   SocketMonitor monitor = createSocketMonitor();

@@ -51,9 +51,10 @@ public:
 int main() {
     //signal(SIGPIPE, SIG_IGN);
     InetAddress addr = createInetLocalAddress("case1_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newLocalSocket();
+    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
+    
     String resp = createString("hello server");
     client->getOutputStream()->write(resp->toByteArray());
     
