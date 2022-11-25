@@ -105,7 +105,7 @@ void testtostring() {
    while(1) {
      for(int i = 0;i < 100;i++) {
        Integer t1 = createInteger(i);
-       int t2 = st(Integer)::parseHexInt(createString(HexTable[i]))->toValue();
+       int t2 = st(Integer)::parseHexString(createString(HexTable[i]))->toValue();
        Integer t3 = createInteger(t2);
 
        if(t1 != t3) {
@@ -116,7 +116,7 @@ void testtostring() {
 
      for(int i = 0;i < 100;i++) {
        Integer t1 = createInteger(i);
-       int t2 = st(Integer)::parseOctInt(createString(OctTable[i]))->toValue();
+       int t2 = st(Integer)::parseOctString(createString(OctTable[i]))->toValue();
        Integer t3 = createInteger(t2);
 
        if(t1 != t3) {
@@ -128,8 +128,7 @@ void testtostring() {
      for(int i = 0;i < 100;i++) {
        Integer t1 = createInteger(i);
        String str = createString(BinaryTable[i]);
-       //TEST_FAIL("11111 str is %s \n",str->toChars());
-       int t2 = st(Integer)::parseBinaryInt(str)->toValue();
+       int t2 = st(Integer)::parseBinaryString(str)->toValue();
        Integer t3 = createInteger(t2);
         if(t1 != t3) {
          TEST_FAIL("Integer toInt test3");

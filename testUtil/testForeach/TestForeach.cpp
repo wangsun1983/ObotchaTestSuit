@@ -25,26 +25,53 @@ void testForeach() {
     list->add(createString("c"));
     list->add(createString("b"));
 
+    //ForEveryOne(s,list) {
+    //  printf("s is %s \n",s->toChars());
+    //}
+    int count = 0;
     ForEveryOne(s,list) {
-      printf("s is %s \n",s->toChars());
+        if(!s->equals(list->get(count))) {
+            TEST_FAIL("TestForEveryOne case1");
+        }
+        count++;
+    }
+    
+    if(count != list->size()) {
+        TEST_FAIL("TestForEveryOne case2");
     }
 
     HashMap<String,String> map = createHashMap<String,String>();
     map->put(createString("key1"),createString("val1"));
     map->put(createString("key2"),createString("val2"));
     map->put(createString("key3"),createString("val3"));
-
+    
+    count = 0;
     ForEveryOne(m,map) {
-      printf("key is %s,value is %s \n",m->getKey()->toChars(),m->getValue()->toChars());
+        String key = m->getKey();
+        if(!map->get(key)->equals(m->getValue())) {
+            TEST_FAIL("TestForEveryOne case3");
+        }
+        count++;
+    }
+    if(count != list->size()) {
+        TEST_FAIL("TestForEveryOne case4");
     }
 
     ConcurrentQueue<String> queue = createConcurrentQueue<String>();
     queue->add(createString("aa"));
     queue->add(createString("bb"));
     queue->add(createString("cc"));
-
+    
+    count = 0;
     ForEveryOne(ss,queue) {
-      printf("ss is %s \n",ss->toChars());
+        if(!ss->equals(queue->get(count))) {
+            TEST_FAIL("TestForEveryOne case5");
+        }
+        count++;
+    }
+    
+    if(count != queue->size()) {
+        TEST_FAIL("TestForEveryOne case6");
     }
 
     TEST_OK("[testForeach case100]");

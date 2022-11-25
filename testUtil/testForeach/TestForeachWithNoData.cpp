@@ -21,8 +21,13 @@ using namespace obotcha;
 void testForeachWithNoData() {
 
     ArrayList<String> list = createArrayList<String>();
+    int count = 0;
     ForEveryOne(s,list) {
-      printf("s is %s \n",s->toChars());
+      count++;
+    }
+    
+    if(count != 0) {
+        TEST_FAIL("[testForeachWithNoData case1]");
     }
 
     TEST_OK("[testForeachWithNoData case100]");

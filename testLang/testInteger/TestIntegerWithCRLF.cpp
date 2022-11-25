@@ -16,7 +16,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test1");
           break;
@@ -32,7 +32,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'\r','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test1");
           break;
@@ -48,7 +48,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {' ','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test2");
           break;
@@ -64,7 +64,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test4");
           break;
@@ -80,7 +80,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test3");
           break;
@@ -96,7 +96,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test5");
           break;
@@ -112,7 +112,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'8','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test7");
           break;
@@ -128,7 +128,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'8','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test9");
           break;
@@ -141,7 +141,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'\r','\n','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test1_1");
           break;
@@ -157,7 +157,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'\r','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test3_1");
           break;
@@ -173,7 +173,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'\n','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test5_1");
           break;
@@ -189,7 +189,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r','\n','\r','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test7_1");
           break;
@@ -205,7 +205,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\n','8','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test9_1");
           break;
@@ -218,7 +218,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {' ',' ','8',' ',' ',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test1_2");
           break;
@@ -234,7 +234,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {' ','8',' ',' ',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test3_2");
           break;
@@ -250,7 +250,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {' ','8',' ',' ',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test5_2");
           break;
@@ -266,7 +266,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ',' ',' ','8',' ',' ',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test7_2");
           break;
@@ -282,7 +282,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','8',' ',' ','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseDecInt(s);
+      Integer t = st(Integer)::parseDecString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test9_2");
           break;
@@ -294,7 +294,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test10");
           break;
@@ -310,7 +310,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test1");
           break;
@@ -326,7 +326,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'\r','\n','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test3");
           break;
@@ -342,7 +342,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {' ','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test5");
           break;
@@ -358,7 +358,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test12");
           break;
@@ -374,7 +374,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'8','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test14");
           break;
@@ -390,7 +390,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'8','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test16");
           break;
@@ -406,7 +406,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'8','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test18,t is %x",t->toValue());
           break;
@@ -418,7 +418,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'\r','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test10_1");
           break;
@@ -434,7 +434,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'\r','8','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test12_1");
           break;
@@ -450,7 +450,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[4] = {'\n','8','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test14_1");
           break;
@@ -466,7 +466,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[8] = {'\r','\n','8','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test16_1");
           break;
@@ -482,7 +482,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r','\n','8','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test18,t is %x",t->toValue());
           break;
@@ -495,7 +495,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[6] = {'0','x','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test19");
           break;
@@ -512,7 +512,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[6] = {'0','x','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test1");
           break;
@@ -528,7 +528,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r','\n','0','x','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test3");
           break;
@@ -544,7 +544,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','\n','0','x','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test5");
           break;
@@ -560,7 +560,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[6] = {'0','x','8','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test21");
           break;
@@ -576,7 +576,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[6] = {'0','x','8','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test23");
           break;
@@ -592,7 +592,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'0','x','8','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test25");
           break;
@@ -608,7 +608,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'0','x','8','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test27,t is %x",t->toValue());
           break;
@@ -620,7 +620,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','\r','0','x','8','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test27_2");
           break;
@@ -636,7 +636,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','\r','0','x','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test27_4");
           break;
@@ -652,7 +652,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\n',' ','0','x','8',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test27_6");
           break;
@@ -670,7 +670,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'1','0','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test28");
           break;
@@ -686,7 +686,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'1','0',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test28");
           break;
@@ -702,7 +702,7 @@ void testIntegerWithCRLF() {
     while(1) {
       char p[5] = {'\r','1','0',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF AHEAD test30");
           break;
@@ -718,7 +718,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'1','0','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test30");
           break;
@@ -734,7 +734,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[5] = {'1','0','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test32");
           break;
@@ -750,7 +750,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'1','0','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test34");
           break;
@@ -766,7 +766,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'1','0','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test36");
           break;
@@ -779,7 +779,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','\r','\n','1','0','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test28_1");
           break;
@@ -795,7 +795,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ','\n','1','0','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test30_1");
           break;
@@ -811,7 +811,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r','1','0','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test32_1");
           break;
@@ -827,7 +827,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {' ',' ','1','0','\n','\r','\n',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test34_1");
           break;
@@ -843,7 +843,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r',' ','1','0','\n','\r','9',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseOctInt(s);
+      Integer t = st(Integer)::parseOctString(s);
       if(t != nullptr) {
           TEST_FAIL("Integer Parse With CRLF test36_1");
           break;
@@ -855,7 +855,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'1','0','\n','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseHexInt(s);
+      Integer t = st(Integer)::parseHexString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test37");
           break;
@@ -872,7 +872,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'1','0','\n','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseBinaryInt(s);
+      Integer t = st(Integer)::parseBinaryString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test39");
           break;
@@ -889,7 +889,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'b','1','0','\n','\r',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseBinaryInt(s);
+      Integer t = st(Integer)::parseBinaryString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test40");
           break;
@@ -906,7 +906,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[7] = {'b','1','0',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseBinaryInt(s);
+      Integer t = st(Integer)::parseBinaryString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test42");
           break;
@@ -923,7 +923,7 @@ void testIntegerWithCRLF() {
   while(1) {
       char p[10] = {'\r','\n',' ','b','1','0',0};
       String s = createString((const char * )p);
-      Integer t = st(Integer)::parseBinaryInt(s);
+      Integer t = st(Integer)::parseBinaryString(s);
       if(t == nullptr) {
           TEST_FAIL("Integer Parse With CRLF test44");
           break;
