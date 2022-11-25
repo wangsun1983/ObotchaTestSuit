@@ -22,7 +22,7 @@ void testMappedFileInputStream() {
       ByteArray data = createByteArray(128);
       int len = stream->read(data);
       if(len != 32) {
-         TEST_FAIL("[MappedFileInputStream Test case1]");
+         TEST_FAIL("[MappedFileInputStream Test case1],len is %d",len);
          break;
       }
 

@@ -10,6 +10,7 @@
 #include "TestLog.hpp"
 #include "MappedFile.hpp"
 #include "MappedFileInputStream.hpp"
+#include "FileInputStream.hpp"
 
 using namespace obotcha;
 

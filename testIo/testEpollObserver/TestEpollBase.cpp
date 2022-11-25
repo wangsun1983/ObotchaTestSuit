@@ -51,7 +51,7 @@ public:
     }
 };
 
-DECLARE_CLASS(BaseTestListener1) EXTENDS(EPollFileObserverListener) {
+DECLARE_CLASS(BaseTestListener1) IMPLEMENTS(EPollFileObserverListener) {
 public:
     _BaseTestListener1(int fd,EPollFileObserver ob) {
         //printf("mSocket is %d \n",mSocket);

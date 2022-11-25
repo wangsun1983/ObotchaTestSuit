@@ -1,12 +1,14 @@
 import os
+import datetime
 from enum import Enum
+
 
 class TestType(Enum):
     TestNormal  = 1
     TestByGo   = 2
     TestByPython = 3 
-
-testPath = ["./testLang",
+#"./testLang",
+testPath = [
             "./testIo",
             "./testSecurity",
             "./testUtil",
@@ -52,7 +54,6 @@ def scanTest(path):
 
         if makeret.find("Error") > 0:
             buildfile += "FAIL.log"
-            executefile += "NotTest.log"
         else:
             buildfile += "Success.log"
 
@@ -63,7 +64,11 @@ def scanTest(path):
 
         #test
         if makeret.find("Error") < 0:
+            time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            print("[" + time + "]" + " Start " + path)
             executeret = os.popen("cd " + path + " && ./mytest").read()
+            print("[" + time + "]" + " Finish " + path)
+
             if executefile.find("[FAIL]") > 0:
                 executefile += "FAIL.log"
             else:
