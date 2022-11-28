@@ -66,7 +66,6 @@ void testByteArray() {
     MyTestArrayData d1 = createMyTestArrayData("aaa",data,12);
 
     ByteArray serializedData = d1->toByteArray();
-    printf("serialize size is %d \n",serializedData->size());
     MyTestArrayData rs = createMyTestArrayData();
     rs->deserialize(serializedData);
 

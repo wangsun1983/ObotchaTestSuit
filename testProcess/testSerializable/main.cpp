@@ -8,7 +8,7 @@
 
 using namespace obotcha;
 
-extern void testOrpcSimpleCase();
+//extern void testOrpcSimpleCase();
 extern void testOrpcArrayList();
 extern void testOrpcHashMap();
 extern void testInnerClass();
@@ -19,13 +19,12 @@ extern void testOrpcDifferentClass();
 extern void testSimpleCase();
 
 int main() {
-    /*
   testSimpleMsg();
   testOrpcSimpleNullCase();
-  testOrpcSimpleCase();
+  //testOrpcSimpleCase();
   testOrpcArrayList();
   testOrpcHashMap();
   testInnerClass();
-  testByteArray();*/
-    testSimpleCase();
+  testByteArray();
+  //testSimpleCase();
 }

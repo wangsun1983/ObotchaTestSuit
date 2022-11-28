@@ -45,7 +45,9 @@ func onTest(w http.ResponseWriter, r *http.Request) {
   }
 
   w.WriteHeader(http.StatusOK)
-  io.WriteString(w, "finish")
+  w.Write([]byte("finish"))
+  //io.WriteString(w, "finish")
+  log.Printf("trace2 \n")
   go close()
 	return
 }

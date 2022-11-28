@@ -79,6 +79,10 @@ public:
 
               HttpResponse response = createHttpResponse();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+              HttpEntity resp_entity = createHttpEntity();
+              resp_entity->setContent(createString("OK,HAHA")->toByteArray());
+              response->setEntity(resp_entity);
+
               int len = w->write(response);
               latch->countDown();
           }

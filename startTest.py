@@ -7,8 +7,8 @@ class TestType(Enum):
     TestNormal  = 1
     TestByGo   = 2
     TestByPython = 3 
-#"./testLang",
-testPath = [
+
+testPath = ["./testLang",
             "./testIo",
             "./testSecurity",
             "./testUtil",
@@ -21,6 +21,11 @@ testPath = [
 REPORT_DIR = './Report'
 BUILD_REPORT_DIR ='./Report/BuildReport'
 EXECUTE_REPORT_DIR ='./Report/ExecuteReport'
+
+def prepare(path):
+    print("prepare path is " + path)
+    os.popen("rm -rf " + path + "tmp")
+    os.popen("mkdir " + path + "tmp")
 
 #define defaultTest
 def scanTest(path):
@@ -66,6 +71,7 @@ def scanTest(path):
         if makeret.find("Error") < 0:
             time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + time + "]" + " Start " + path)
+            prepare(path)
             executeret = os.popen("cd " + path + " && ./mytest").read()
             print("[" + time + "]" + " Finish " + path)
 

@@ -20,7 +20,7 @@ public:
     void run() {
         try {
             st(Thread)::sleep();
-        } catch(InterruptedException &e) {}
+        } catch(...) {}
         count++;
     }
 };
