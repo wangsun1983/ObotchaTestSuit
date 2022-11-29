@@ -7,8 +7,6 @@
 #include "TestLog.hpp"
 #include "Inet4Address.hpp"
 #include "NetPort.hpp"
-#include "Socket.hpp"
-#include "SocketBuilder.hpp"
 #include "Mutex.hpp"
 #include "Condition.hpp"
 #include "Thread.hpp"

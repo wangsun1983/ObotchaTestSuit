@@ -7,6 +7,7 @@
 #include "TestLog.hpp"
 #include "Filament.hpp"
 #include "TimeWatcher.hpp"
+#include "Fila.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -17,11 +18,11 @@ void testOnComplete() {
     FilaRoutine croutine = createFilaRoutine();
     croutine->start();
     croutine->execute([]{
-      filaSleep(300);
+      st(Fila)::sleep(300);
     });
 
     croutine->execute([]{
-      filaSleep(200);
+      st(Fila)::sleep(200);
       sleepLatch->countDown();
     });
 

@@ -1,21 +1,27 @@
 import os
 import datetime
+import threading
+import time
 from enum import Enum
 
 
 class TestType(Enum):
-    TestNormal  = 1
-    TestByGo   = 2
-    TestByPython = 3 
+    TestNormal             = 1
+    TestRunGoClient        = 2
+    TestRunGoServer        = 3
+    TestRunPythonClient    = 4
+    TestRunPythonServer    = 5
 
-testPath = ["./testLang",
-            "./testIo",
-            "./testSecurity",
-            "./testUtil",
-            "./testUtil/testFilament",
-            "./testUtil/testText",
-            "./testUtil/testConcurrent",
-            "./testProcess",]
+#"./testLang",
+#            "./testIo",
+#            "./testSecurity",
+#            "./testUtil",
+#            "./testUtil/testFilament",
+#            "./testUtil/testText",
+#            "./testUtil/testConcurrent",
+#            "./testProcess"
+
+testPath = ["./testNet/testSocket/testSocksSocketImpl/Server"]
 
 #create report again
 REPORT_DIR = './Report'
@@ -27,26 +33,46 @@ def prepare(path):
     os.popen("rm -rf " + path + "tmp")
     os.popen("mkdir " + path + "tmp")
 
+execThreadLog = ""
+def execByThread(cmd,elog):
+    global execThreadLog
+    execThreadLog = os.popen(cmd).read()
+
 #define defaultTest
 def scanTest(path):
+    print("path is ",path)
+
     isMakefileExist = False
     #judge whether path is a folder
     if os.path.isfile(path) or not os.path.exists(path):
+        print("path trace is ",path)
         return
 
     testType = TestType.TestNormal
     for filename in os.listdir(path):
+        print("filename is ",filename)
         if filename == "makefile":
             isMakefileExist = True
-        if filename.find(".go") > 0:
-            testType = TestType.TestByGo
-        if filename.find(".python") > 0:
-            testType = TestType.TestByPython
+        if filename == "client.go":
+            testType = TestType.TestRunGoClient
+        if filename == "server.go":
+            testType = TestType.TestRunGoServer
+        if filename == "client.py":
+            testType = TestType.TestRunPythonClient
+        if filename == "server.py":
+            testType = TestType.TestRunPythonServer
+
+    print("path trace2 type is ",testType)
 
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
-        #debug
-        #makeret = os.popen("cd " + path + " && make").read()
+        if testType == TestType.TestRunGoServer :
+            gobuild = os.popen("cd " + path + " && go build server.go 2>&1").read()
+            makeret = makeret + "\r\n" + gobuild
+        if testType == TestType.TestRunGoClient :
+            gobuild = os.popen("cd " + path + " && go build client.go 2>&1").read()
+            makeret = makeret + "\r\n" + gobuild
+
         buildpath = path.split("/")
         buildfile = BUILD_REPORT_DIR + "/"
         executefile = EXECUTE_REPORT_DIR + "/"
@@ -69,11 +95,33 @@ def scanTest(path):
 
         #test
         if makeret.find("Error") < 0:
-            time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-            print("[" + time + "]" + " Start " + path)
+            printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            print("[" + printTime + "]" + " Start " + path)
             prepare(path)
-            executeret = os.popen("cd " + path + " && ./mytest").read()
-            print("[" + time + "]" + " Finish " + path)
+            #check whether it is a cs test
+            executeret = ""
+
+            if testType == TestType.TestNormal:
+                executeret = os.popen("cd " + path + " && ./mytest").read()
+            if testType == TestType.TestRunPythonClient:
+                print("start python client test")
+                cmd = "cd " + path + " && ./mytest"
+                t1 = threading.Thread(target= execByThread, args=(cmd,executeret), name='Thread-A')
+                t1.start()
+                time.sleep(1)
+
+                pythonCmd = "cd " + path + " && python3 client.py"
+                t2 = threading.Thread(target= execByThread, args=(pythonCmd,executeret), name='Thread-A')
+                t2.start()
+                t1.join();
+                t2.join();
+                global execThreadLog
+                executeret = execThreadLog
+                execThreadLog = ""
+
+            print(executeret)
+            printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            print("[" + printTime + "]" + " Finish " + path)
 
             if executefile.find("[FAIL]") > 0:
                 executefile += "FAIL.log"

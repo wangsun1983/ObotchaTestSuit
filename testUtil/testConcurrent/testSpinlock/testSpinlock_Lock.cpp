@@ -28,8 +28,8 @@ int testSpinlockLock() {
 		watcher->start();
 		l->lock();
 		long v = watcher->stop();
-		if(v < 100 || v > 105) {
-			TEST_FAIL("[TestSpinlock Lock case1]");
+		if(v < 95 || v > 105) {
+			TEST_FAIL("[TestSpinlock Lock case1],v is %d",v);
 			break;
 		}
 		l->unlock();

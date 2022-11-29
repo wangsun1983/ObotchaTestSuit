@@ -7,13 +7,12 @@
 #include "TestLog.hpp"
 #include "Inet4Address.hpp"
 #include "NetPort.hpp"
-#include "Socket.hpp"
-#include "SocketBuilder.hpp"
 #include "Mutex.hpp"
 #include "Condition.hpp"
 #include "Thread.hpp"
 #include "FilaCondition.hpp"
 #include "TimeWatcher.hpp"
+#include "Fila.hpp"
 
 using namespace std;
 using namespace obotcha;
@@ -40,7 +39,7 @@ int main(void) {
 
     croutine->execute([] {
         //AutoLock l(mu);
-        filaSleep(200);
+        st(Fila)::sleep(200);
         cond->notify();
         latch->countDown();
     });

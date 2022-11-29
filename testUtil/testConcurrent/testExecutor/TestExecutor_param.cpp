@@ -42,6 +42,10 @@ public:
     int getExecutingThreadNum() {
         return 0;
     }
+    
+    void onRemoveTask(sp<_ExecutorTask> task) {
+        //TODO
+    }
 };
 
 

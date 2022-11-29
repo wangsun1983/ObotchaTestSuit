@@ -141,4 +141,5 @@ int testPosixMq() {
     TEST_OK("[PosixMq Test {receiveTimeout()} case3]");
   }
 
+  return 0;
 }

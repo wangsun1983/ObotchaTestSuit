@@ -40,6 +40,10 @@ def scanTest(path):
             os.popen("cd " + path + " && rm mytest")
         if filename == "tmp":
             os.popen("cd " + path + " && rm -rf tmp")
+        if filename == "server":
+            os.popen("cd " + path + " && rm -rf server")
+        if filename == "client":
+            os.popen("cd " + path + " && rm -rf client")
 
 def main():
     #remove report
