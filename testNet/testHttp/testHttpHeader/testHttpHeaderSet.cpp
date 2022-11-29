@@ -300,7 +300,7 @@ void testHttpHeaderSet() {
     //Cache-Control: max-age=1000
     HttpHeaderCacheControl cachecontrol = header->getCacheControl();
     if(cachecontrol->maxAgeSeconds() != 1000) {
-      TEST_FAIL("[HttpHeader test Set case39]");
+      TEST_FAIL("[HttpHeader test Set case39],maxAgeSeconds is %d",cachecontrol->maxAgeSeconds());
       break;
     }
 

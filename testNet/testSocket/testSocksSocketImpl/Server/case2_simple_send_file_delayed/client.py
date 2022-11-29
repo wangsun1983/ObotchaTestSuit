@@ -17,17 +17,14 @@ s = socket.socket()
 s.connect(("127.0.0.1",port))
 
 buf=4096*32
-f = open("file",'wb')
+f = open("./tmp/data",'rb')
 
-print "cccc"
-with open('data', 'r') as fp:
-    while True:
-        #print "dddd"
-        data = fp.read(1024*4)
-        s.send(data)
-        time.sleep(0.1)
-        if not data:
-            break;
+while True:
+    data = f.read(1024*4)
+    s.sendall(data)
+    time.sleep(0.1)
+    if data==b"":
+        break;
 
 
 #print "Upload Donwloaded"

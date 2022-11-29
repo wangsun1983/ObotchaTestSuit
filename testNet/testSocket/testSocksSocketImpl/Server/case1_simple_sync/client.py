@@ -11,7 +11,7 @@ s.connect(("127.0.0.1",getEnvPort()))
 
 s.send(str("hello server").encode("utf-8"))
 
-sendData = s.recv(1024).decode()
+sendData = s.recv(1024)
 
 count = 0
 

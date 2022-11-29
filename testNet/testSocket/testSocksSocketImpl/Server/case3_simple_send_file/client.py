@@ -15,19 +15,17 @@ port = getEnvPort()
 s=socket.socket()
 s.connect(("127.0.0.1",port))
 
-buf=4096*32
-f = open("file",'wb')
+buf = 4096*32
+f = open("./tmp/data",'rb')
 
-print "cccc"
-with open('data', 'r') as fp:
-    while True:
-        data = fp.read(1024*4)
-        s.send(data)
-        
-        if not data:
-            break;
+while True:
+    data = f.read(1024*4)
+    s.sendall(data)
+    
+    if data==b"":
+        break;
 
-        data1 = s.recv(1024)
+    data1 = s.recv(1024)
 
 
 #print "Upload Donwloaded"
