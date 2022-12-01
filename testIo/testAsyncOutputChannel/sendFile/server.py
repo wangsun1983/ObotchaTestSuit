@@ -13,7 +13,7 @@ s.listen(5)
 print('Waiting for connection...')
 
 client,addr = s.accept()
-with open("./tmp/data.img","wb") as f:
+with open("./tmp/file","wb") as f:
  while True:
   print("start rcv data")
   data = client.recv(1024)

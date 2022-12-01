@@ -19,7 +19,9 @@ int main() {
   InetAddress addr = createInet4Address(port);
   ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
+  printf("i start waiting accept \n");
   auto client = sock->accept();
+  printf("i start read accept \n");
   TimeWatcher watch = createTimeWatcher();
 
   while(1) {
@@ -28,15 +30,13 @@ int main() {
     watch->start();
     int len = stream->read(data);
     long result = watch->stop();
-    //printf("result is %ld \n",result);
     if(len == 0) {
       break;
     }
 
-    if(result < 100 || result > 105) {
-      TEST_FAIL("Test Tcp Server case4_block_io test1,result is %d",result);
+    if(result < 95 || result > 105) {
+      TEST_FAIL("TestSocksSocketImpl case4_block_io test1,result is %d",result);
     }
-    stream->close();
   }
 
   port++;
@@ -45,6 +45,6 @@ int main() {
   client->close();
 
 
-  TEST_OK("Test Tcp Server case4_block_io test100");
+  TEST_OK("TestSocksSocketImpl case4_block_io test100");
 
 }

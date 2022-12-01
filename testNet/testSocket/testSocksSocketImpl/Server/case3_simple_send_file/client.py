@@ -16,7 +16,7 @@ s=socket.socket()
 s.connect(("127.0.0.1",port))
 
 buf = 4096*32
-f = open("./tmp/data",'rb')
+f = open("./tmp/testdata",'rb')
 
 while True:
     data = f.read(1024*4)

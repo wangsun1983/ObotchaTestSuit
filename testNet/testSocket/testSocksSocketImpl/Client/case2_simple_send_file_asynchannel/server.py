@@ -16,22 +16,21 @@ port = getEnvPort()
 
 s.bind(("127.0.0.1", port))
 
-print "start"
 path = "file"
 
-f = open("file",'wb')
+f = open("./tmp/file",'wb')
 s.listen(5)
 conn,address = s.accept()
-conn.settimeout(5)
+conn.settimeout(15)
 
 while True:
-    #print "trace1"
     data = conn.recv(1024)
+    print("receive data!!!")
     f.write(data)
     f.flush();
     time.sleep(0.01)
     if not data:
-        print "trace2"
+        print("receive no data!!!")
         break
 
 f.close()
@@ -40,5 +39,3 @@ conn.close()
 
 port = port + 1
 setEnvPort(port)
-
-print "File Donwloaded"

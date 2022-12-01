@@ -62,6 +62,8 @@ void testMultipartRequest() {
   if(!encrypt1->equals(encrypt2)) {
     TEST_FAIL("testHttpClient testMultipartRequest case2");
   }
-
+  
+  port++;
+  setEnvPort(port);
   TEST_OK("testHttpClient testMultipartRequest case100");
 }

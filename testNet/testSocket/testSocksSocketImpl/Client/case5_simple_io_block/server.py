@@ -20,8 +20,8 @@ count = 0
 
 while count < 1024:
     time.sleep(0.5)
-    print(receive_data.decode("utf-8"))
-    c.sendto(receive_data.decode("utf-8"),client)
+    print(receive_data)
+    c.sendto(receive_data,client)
     count = count + 1
 
 c.close()

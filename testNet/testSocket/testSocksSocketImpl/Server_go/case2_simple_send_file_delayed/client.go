@@ -18,7 +18,7 @@ func main() {
     conn,err := net.Dial("tcp",url)
     fmt.Println("connect err is",err)
 
-    f,_ := os.Open("./data")
+    f,_ := os.Open("./tmp/testdata")
     
     buf := make([]byte,1024)
     for {

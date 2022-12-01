@@ -23,7 +23,7 @@ while count < 32:
 
     multipart_encoder = MultipartEncoder(
         fields = {
-            'file': (os.path.basename("data"), open("./data", 'rb'), 'multipart/form-data'),
+            'file': (os.path.basename("data"), open("./tmp/testdata", 'rb'), 'multipart/form-data'),
             'save_name': 'data',
             'key1':'value1'
         },

@@ -45,7 +45,7 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("./tmp/data");
+    File file = createFile("./tmp/testdata");
     filesize = file->length();
 
     if(!file->exists()) {
@@ -83,7 +83,7 @@ int main() {
     mCond->wait(mMutex);
     usleep(1000*1000);
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
     String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {

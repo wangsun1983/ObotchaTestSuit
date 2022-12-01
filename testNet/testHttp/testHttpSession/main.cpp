@@ -14,7 +14,7 @@ extern void testHttpSession();
 extern void testHttpSessionExipre();
 
 int main() {
-    //testHttpSession();
+    testHttpSession();
     testHttpSessionExipre();
     return 0;
 }

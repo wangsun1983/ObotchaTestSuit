@@ -9,7 +9,7 @@
 #include "Md.hpp"
 #include "SampleFile.hpp"
 #include "NetEvent.hpp"
-#include "Random.hpp"
+#include "Md.hpp"
 
 using namespace obotcha;
 
@@ -18,75 +18,83 @@ CountDownLatch latch = createCountDownLatch(1);
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
     void onSocketMessage(int event,Socket,ByteArray) {
-      if(event == st(NetEvent)::Disconnect) {
-        latch->countDown();
-      }
+//      if(event == st(NetEvent)::Disconnect) {
+//        latch->countDown();
+//      }
     }
 };
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("./data"),1024*1024*16);
-    int count = 1024*32;
-    auto rand = createRandom();
+    createSampleFile(createFile("./tmp/testdata"),1024*1024*32);
+
+    int port = 2007;//getEnvPort();
+    Socket s = createSocketBuilder()
+                ->setAddress(createInet4Address(port))
+                ->newSocket();
+
+    s->connect();
+
     SocketMonitor monitor = createSocketMonitor();
+    monitor->bind(s,createMyListener());
 
-    AsyncOutputChannel c = createAsyncOutputChannel(nullptr,nullptr);
+    OutputStream stream = s->getOutputStream();
 
-    while(count > 0) {
-        int port = 2007;//getEnvPort();
-        for(int i = 0; i < 1024;i++) {
-            Socket s = createSocketBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->newSocket();
-            printf("start bind trace0\n");
-            s->connect();
-            printf("start bind trace1\n");
-            monitor->bind(s,createMyListener());
+    long index = 0;
 
-            //c->dump();
+    File file = createFile("./tmp/testdata");
 
-            printf("start bind trace2\n");
+    FileInputStream inputstream = createFileInputStream(file);
+    inputstream->open();
 
-            OutputStream stream = s->getOutputStream();
-
-            long index = 0;
-
-            File file = createFile("data");
-
-            FileInputStream inputstream = createFileInputStream(file);
-            try {
-                inputstream->open();
-            } catch(Exception e) {
-                printf("error!!!!!! \n");
-                sleep(1000000);
-            }
-
-            int count = rand->nextInt(1,1024);
-            //printf("count is %d \n",count);
-            for(int j = 0;j < count;j++) {
-                ByteArray data = createByteArray(1024*4);
-                int length = inputstream->read(data);
-                index += length;
-                //printf("leng is %d \n",length);
-                data->quickShrink(length);
-                stream->write(data);
-                data->quickRestore();
-                if(index >= file->length()) {
-                    break;
-                }  
-            }
-            
-            s->close();
-            inputstream->close();
-            c->dump();
-            monitor->dump();
-            //usleep(1000000*rand->nextInt(10,20));
+    while(1) {
+        ByteArray data = createByteArray(1024*4);
+        int length = inputstream->read(data);
+        index += length;
+        data->quickShrink(length);
+        stream->write(data);
+        data->quickRestore();
+        if(index >= file->length()) {
+            break;
         }
-        count--;
-
     }
+    
+    Thread t = createThread([&stream]{
+        int formsize = 0;
+        int sameCount = 5;
+        while(1) {
+            if(formsize == 0) {
+                stream->close();
+            }
+            File datafile = createFile("./tmp/testdata");
+            File rcvfile = createFile("./tmp/file");
+            
+            printf("datafile size is %ld,rcvfile size is %ld \n",
+                    datafile->length(),rcvfile->length());
+            
+            if(formsize != rcvfile->length()) {
+                formsize = rcvfile->length();
+            } else {
+                sameCount--;
+                if(sameCount == 0) {
+                    return;
+                }
+            }
+            sleep(1);
+        }
+        
+    });
 
-    printf("end \n");
-
+    t->start();
+    t->join();
+    
+    Md md5 = createMd();
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
+    
+    if(v1->equals(v2)) {
+        TEST_FAIL("testAsyncOutputChannel close case1")
+    }
+    
+    TEST_OK("testAsyncOutputChannel close case100");
 }

@@ -37,7 +37,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             //messageCount->incrementAndGet();
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-            File file = createFile("./data");
+            File file = createFile("./tmp/testdata");
             response->getEntity()->setChunk(file);
             w->write(response);
             latch->countDown();
@@ -54,7 +54,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
 };
 
 int main() {
-  File file = createFile("data");
+  File file = createFile("./tmp/testdata");
   long prepareFilesize = file->length();
   signal(SIGPIPE,SIG_IGN);
 
@@ -82,7 +82,7 @@ int main() {
   latch->await();
 
   Md md5 = createMd();
-  String base = md5->encrypt(createFile("data"));
+  String base = md5->encrypt(createFile("./tmp/testdata"));
 
   File tmpDir = createFile("tmp");
   ArrayList<File> files = tmpDir->listFiles();

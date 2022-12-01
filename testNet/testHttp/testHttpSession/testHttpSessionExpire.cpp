@@ -41,7 +41,7 @@ void testHttpSessionExipre() {
         
         sleep(100);
         v = ss->getAttribute<String>(createString("a"));
-        if(v == nullptr || !v->equals("value_a")) {
+        if(v != nullptr || createString("value_a")->equals(v)) {
             TEST_FAIL("[testHttpSessionExpire case4]");
         }
         break;

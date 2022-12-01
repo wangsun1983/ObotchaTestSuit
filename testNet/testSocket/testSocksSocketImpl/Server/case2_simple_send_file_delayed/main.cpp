@@ -43,9 +43,7 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("./tmp/data");
-    filesize = file->length();
-
+    File file = createFile("./tmp/testdata");
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
@@ -59,7 +57,8 @@ int main() {
         stream->close();
       }
     }
-
+    filesize = file->length();
+    
     File f = createFile("./tmp/file");
     f->removeAll();
 
@@ -80,7 +79,7 @@ int main() {
     mCond->wait(mMutex);
     usleep(1000*1000);
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
     String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {

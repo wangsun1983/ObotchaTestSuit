@@ -8,7 +8,6 @@ import os
 import sys
 sys.path.append(r'../../../../common')
 from NetPort import getEnvPort
-from NetPort import setEnvPort
 
 
 class DownloadThread(threading.Thread):

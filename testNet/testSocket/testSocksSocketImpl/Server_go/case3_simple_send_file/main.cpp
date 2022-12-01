@@ -17,7 +17,7 @@ using namespace obotcha;
 Mutex mMutex = createMutex();
 Condition mCond = createCondition();
 
-FileOutputStream stream = createFileOutputStream("file");
+FileOutputStream stream = createFileOutputStream("./tmp/file");
 long filesize = 0;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
@@ -25,7 +25,6 @@ public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
       case st(NetEvent)::Message:
-        //LOG_FAIL("i get a data,data size is %d \n",data->size());
         stream->write(data);
         filesize-= data->size();
         if(filesize == 0) {
@@ -44,9 +43,7 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("data");
-    filesize = file->length();
-
+    File file = createFile("./tmp/testdata");
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
@@ -60,37 +57,34 @@ int main() {
         stream->close();
       }
     }
-
-    File f = createFile("file");
-    f->removeAll();
-
+    filesize = file->length();
     stream->open();
-
+    
     int port = getEnvPort();
     InetAddress addr = createInet4Address(port);
-
+    printf("port is %d \n",port);
     ServerSocket server = createSocketBuilder()->setAddress(addr)->newServerSocket();
-    server->bind();
+    int ret = server->bind();
+    printf("bind ret is %d \n",ret);
 
     stream->open(st(OutputStream)::Append);
 
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(server,createMyListener());
+    
     AutoLock l(mMutex);
     mCond->wait(mMutex);
-        
-    usleep(1000*1000);
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("data"));
-    String v2 = md5->encrypt(createFile("file"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
     if(v1 != v2) {
-      TEST_FAIL("TestDataGramSocket Server case3_simple_send_file test1,v1 is %s,v2 is %s ",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestSocksSocketImpl case3_simple_send_file test1,v1 is %s,v2 is %s ",v1->toChars(),v2->toChars());
     }
 
     port++;
     setEnvPort(port);
     monitor->close();
     server->close();
-    TEST_OK("TestDataGramSocket Server case3_simple_send_file test100");
+    TEST_OK("TestSocksSocketImpl case3_simple_send_file test100");
     return 0;
 }

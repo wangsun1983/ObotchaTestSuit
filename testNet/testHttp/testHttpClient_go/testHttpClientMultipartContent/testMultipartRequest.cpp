@@ -38,11 +38,23 @@ void testMultipartContentRequest() {
 
   //check response
   ByteArray data = response->getEntity()->getContent();
-  if(!data->toString()->equals("tag1value1tag2value2tag3value3")) {
+  String value = createString("tag1value1tag2value2tag3value3");
+  String acceptValue = data->toString();
+  if(value->size() != acceptValue->size()) {
     printf("data is %s \n",data->toString()->toChars());
     TEST_FAIL("testHttpClient testMultipartContentRequest case1");
   }
-
+  
+  if(!acceptValue->contains("tag1") ||
+     !acceptValue->contains("tag2") ||
+     !acceptValue->contains("tag3") ||   
+     !acceptValue->contains("value1") ||   
+     !acceptValue->contains("value2") ||
+     !acceptValue->contains("value3")) {
+    TEST_FAIL("testHttpClient testMultipartContentRequest case2");     
+  }
   //check file
+  port++;
+  setEnvPort(port);
   TEST_OK("testHttpClient testMultipartContentRequest case100");
 }

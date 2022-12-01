@@ -19,9 +19,52 @@ class TestType(Enum):
 #            "./testUtil/testFilament",
 #            "./testUtil/testText",
 #            "./testUtil/testConcurrent",
-#            "./testProcess"
+#            "./testProcess",
+#            "./testNet/testHttp"
+#            "./testNet/testSocket/testSocksSocketImpl/Server",
+#            "./testNet/testSocket/testSocksSocketImpl/Client"
+#            "./testNet/testSocket/testSocksSocketImpl/Server_go"
 
-testPath = ["./testNet/testSocket/testSocksSocketImpl/Server"]
+testPath = [
+    #"./testIo",
+    #"./testIo/testAsyncOutputChannel",
+    #"./testLang",
+    #"./testNet",
+    #"./testNet/testHttp",
+    #"./testNet/testHttp/testHttpClient_go",
+    #"./testNet/testHttp/testHttpClient_python",
+    #"./testNet/testHttp/testHttpServer_go",
+    "./testNet/testHttp/testHttpServer_python3",
+    #do not test "./testNet/testHttp2",
+    "./testNet/testHttps",
+    "./testNet/testSocket/testDatagramSocket/Client",
+    "./testNet/testSocket/testDatagramSocket/Server",
+    "./testNet/testSocket/testLocalSocketImpl/Client",
+    "./testNet/testSocket/testLocalSocketImpl/Server",
+    "./testNet/testSocket/testSocketMonitor/",
+    "./testNet/testSocket/testSocksSocketImpl/Client",
+    "./testNet/testSocket/testSocksSocketImpl/Server",
+    "./testNet/testSocket/testSocksSocketImpl/Server_go",
+    "./testNet/testSocket/testSSLSocketImpl/Server",
+    "./testNet/testSocketV6/testDatagramSocket/Client",
+    "./testNet/testSocketV6/testDatagramSocket/Server",
+    "./testNet/testSocketV6/testSocksSocketImpl/Client",
+    "./testNet/testSocketV6/testSocksSocketImpl/Server",
+    "./testNet/testWebsocket/testWebSocketClient/python_server",
+    "./testNet/testWebsocket/testWebSocketParser",
+    "./testNet/testWebsocket/testWebSocketServer/go_client",
+    "./testNet/testWebsocket/testWebSocketServer/python_client",
+    "./testProcess",
+    "./testSecurity",
+    "./testUtil",
+    "./testUtil/testText",
+    "./testUtil/testFilament",
+    "./testUtil/testConcurrent",
+    #"./testSql",
+    #"./testSql/testMySqlClient",
+    #"./testSql/testRedisClient",
+    #"./testSql/testSqlite3Client",
+    ]
 
 #create report again
 REPORT_DIR = './Report'
@@ -31,12 +74,34 @@ EXECUTE_REPORT_DIR ='./Report/ExecuteReport'
 def prepare(path):
     print("prepare path is " + path)
     os.popen("rm -rf " + path + "tmp")
+    while os.path.exists(path + "tmp"):
+        time.sleep(0.1)
+        print("path " + path + "tmp already exist,wait....")
     os.popen("mkdir " + path + "tmp")
+    #remove mytest,client,server
+
+def waitTestData(path):
+    filesize = 0
+    print("waitTestData path is " + path)
+    if os.path.exists(path + "tmp/testdata"):
+        print("file exist!!!!")
+        while True:
+            print("wait createData " + path);
+            filesize = os.path.getsize(path + "tmp/testdata")
+            time.sleep(0.1)
+            if filesize == os.path.getsize(path + "tmp/testdata"):
+                return
 
 execThreadLog = ""
-def execByThread(cmd,elog):
+def execByThread(cmd,readlog):
+    print("execByThread cmd is ",cmd)
     global execThreadLog
-    execThreadLog = os.popen(cmd).read()
+    if readlog:
+        execThreadLog = os.popen(cmd).read()
+    else:
+        print("execByThread trace ",cmd)
+        ret = os.popen(cmd).read()
+        print("execByThread ret ",ret)
 
 #define defaultTest
 def scanTest(path):
@@ -47,6 +112,9 @@ def scanTest(path):
     if os.path.isfile(path) or not os.path.exists(path):
         print("path trace is ",path)
         return
+    
+    #if path.find("case3") < 0:
+    #    return
 
     testType = TestType.TestNormal
     for filename in os.listdir(path):
@@ -66,6 +134,7 @@ def scanTest(path):
 
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
+        go_build_success = True
         if testType == TestType.TestRunGoServer :
             gobuild = os.popen("cd " + path + " && go build server.go 2>&1").read()
             makeret = makeret + "\r\n" + gobuild
@@ -94,32 +163,74 @@ def scanTest(path):
         file.close()
 
         #test
+        global execThreadLog
+
         if makeret.find("Error") < 0:
             printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + printTime + "]" + " Start " + path)
             prepare(path)
             #check whether it is a cs test
-            executeret = ""
+            #executeret = ""
 
             if testType == TestType.TestNormal:
-                executeret = os.popen("cd " + path + " && ./mytest").read()
+                execThreadLog = os.popen("cd " + path + " && ./mytest").read()
             if testType == TestType.TestRunPythonClient:
                 print("start python client test")
                 cmd = "cd " + path + " && ./mytest"
-                t1 = threading.Thread(target= execByThread, args=(cmd,executeret), name='Thread-A')
+                t1 = threading.Thread(target= execByThread, args=(cmd,True), name='Thread-A')
                 t1.start()
-                time.sleep(1)
+                
+                #wait whether tmp file is ok
+                time.sleep(0.1)
+                waitTestData(path)
+                time.sleep(0.2)
 
                 pythonCmd = "cd " + path + " && python3 client.py"
-                t2 = threading.Thread(target= execByThread, args=(pythonCmd,executeret), name='Thread-A')
+                t2 = threading.Thread(target= execByThread, args=(pythonCmd,False), name='Thread-A')
                 t2.start()
                 t1.join();
                 t2.join();
-                global execThreadLog
-                executeret = execThreadLog
-                execThreadLog = ""
+            if testType == TestType.TestRunPythonServer:
+                pythonCmd = "cd " + path + " && python3 server.py"
+                t2 = threading.Thread(target= execByThread, args=(pythonCmd,False), name='Thread-A')
+                t2.start()
+                time.sleep(0.1)
 
-            print(executeret)
+                cmd = "cd " + path + " && ./mytest"
+                t1 = threading.Thread(target= execByThread, args=(cmd,True), name='Thread-A')
+                t1.start()
+                t1.join();
+                t2.join();
+            if testType == TestType.TestRunGoClient:
+                cmd = "cd " + path + " && ./mytest"
+                print("cmd is ",cmd)
+                t1 = threading.Thread(target= execByThread, args=(cmd,True), name='Thread-A')
+                t1.start()
+
+                time.sleep(0.1)
+                waitTestData(path)
+                time.sleep(0.2)
+                
+                print("start go cmd")
+                gocmd = "cd " + path + " && ./client"
+                t2 = threading.Thread(target= execByThread, args=(gocmd,False), name='Thread-A')
+                t2.start()
+                t1.join();
+                t2.join();
+            if testType == TestType.TestRunGoServer:
+                gocmd = "cd " + path + " && ./server"
+                t1 = threading.Thread(target= execByThread, args=(gocmd,False), name='Thread-A')
+                t1.start()
+                time.sleep(0.3)
+                cmd = "cd " + path + " && ./mytest"
+                t2 = threading.Thread(target= execByThread, args=(cmd,True), name='Thread-A')
+                t2.start()
+                t1.join();
+                t2.join();
+
+            #executeret = execThreadLog
+            #execThreadLog = ""
+            print(execThreadLog)
             printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + printTime + "]" + " Finish " + path)
 
@@ -129,8 +240,9 @@ def scanTest(path):
                 executefile += "Success.log"
             
             file = open(executefile,"w")
-            file.write(executeret)
+            file.write(execThreadLog)
             file.close()
+            execThreadLog = ""
         else:
             executefile = executefile + "Nottest.log"
             file = open(executefile,"w")

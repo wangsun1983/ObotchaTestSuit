@@ -9,6 +9,7 @@
 #include "Md.hpp"
 #include "SampleFile.hpp"
 #include "NetEvent.hpp"
+#include "Md.hpp"
 
 using namespace obotcha;
 
@@ -17,15 +18,15 @@ CountDownLatch latch = createCountDownLatch(1);
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
     void onSocketMessage(int event,Socket,ByteArray) {
-      if(event == st(NetEvent)::Disconnect) {
-        latch->countDown();
-      }
+//      if(event == st(NetEvent)::Disconnect) {
+//        latch->countDown();
+//      }
     }
 };
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("./temp/data"),1024*1024*16);
+    createSampleFile(createFile("./tmp/testdata"),1024*1024*1);
 
     int port = 2007;//getEnvPort();
     Socket s = createSocketBuilder()
@@ -41,7 +42,7 @@ int main() {
 
     long index = 0;
 
-    File file = createFile("./temp/data");
+    File file = createFile("./tmp/testdata");
 
     FileInputStream inputstream = createFileInputStream(file);
     inputstream->open();
@@ -57,8 +58,32 @@ int main() {
             break;
         }
     }
+    
+    Thread t = createThread([]{
+        while(1) {
+            sleep(5);
+            File datafile = createFile("./tmp/testdata");
+            File rcvfile = createFile("./tmp/file");
+            if(datafile->length() != rcvfile->length()) {
+                printf("datafile size is %ld,rcvfile size is %ld \n",
+                        datafile->length(),rcvfile->length());
+            } else {
+                return;
+            }
+        }
+        
+    });
 
-    printf("index is %ld \n",index);
-    latch->await();
-
+    t->start();
+    t->join();
+    
+    Md md5 = createMd();
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
+    
+    if(!v1->equals(v2)) {
+        TEST_FAIL("testAsyncOutputChannel case1");
+    }
+    
+    TEST_OK("testAsyncOutputChannel case1");
 }

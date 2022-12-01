@@ -37,27 +37,11 @@ const char *result =
       "hello,i am client,number: 15\n";
 
 void testHttpClientChunk() {
-  File file = createFile("data");
-
-  if(!file->exists()) {
-    file->createNewFile();
-      for(int i = 0;i<32;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
-      stream->open(st(OutputStream)::Append);
-      String data = createString(st(System)::currentTimeMillis());
-      for(int j = 0;j < 32;j++) {
-        data = data->append(createString(st(System)::currentTimeMillis()));
-      }
-      stream->write(data->toByteArray());
-      stream->close();
-    }
-  }
-
   int port = getEnvPort();
   printf("port is %d \n",port);
 
   String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  
+  printf("url is %s \n",url->toChars());
   HttpGet get = createHttpGet(url);
   HttpClient client = createHttpClient();
   HttpResponse response = client->execute(get);
@@ -78,6 +62,8 @@ void testHttpClientChunk() {
     printf("p is %x,result is %x,index is %d \n",p[0],result[0],index);
     TEST_FAIL("testHttpClient ChunkTransfer case1");
   }
+  port++;
+  setEnvPort(port);
 
   TEST_OK("testHttpClient ChunkTransfer case100");
 }

@@ -6,7 +6,8 @@ import time
 
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
-from NetProt import setEnvPort
+from NetPort import setEnvPort
+
 
 class ShutDownThread(threading.Thread):
     def __init__(self,c,s):
@@ -24,7 +25,7 @@ port = getEnvPort()
 s = socket.socket() 
 s.bind((host,port))
 index = 0
-print "start test"
+print ("start test")
 
 threads= []
 s.listen(256)
@@ -44,4 +45,4 @@ for t in threads:
 port = port + 1
 setEnvPort(port)
 
-print "finish!!!"
+print ("finish!!!")

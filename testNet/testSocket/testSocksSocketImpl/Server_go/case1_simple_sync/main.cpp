@@ -51,12 +51,12 @@ int main() {
   int count = message->counts(createString("hello client"));
     
   if(message->counts(createString("hello client")) != 50) {
-    TEST_FAIL("---TestDataGramSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
+    TEST_FAIL("TestSocksSocketImpl case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
   }
   monitor->close();
 
   port++;
   setEnvPort(port);
-  TEST_OK("---TestDataGramSocket Server case1_simple_sync test3");
+  TEST_OK("TestSocksSocketImpl case1_simple_sync test3");
 
 }

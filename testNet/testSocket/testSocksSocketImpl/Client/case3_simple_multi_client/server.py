@@ -6,7 +6,7 @@ import time
 
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
-from NetProt import setEnvPort
+from NetPort import setEnvPort
 
 class SendThread(threading.Thread):
     def __init__(self,c,s):
@@ -23,7 +23,7 @@ class SendThread(threading.Thread):
             if(count != 1):
                 data = self.mconn.recv(1024)
             count = count -1
-        print "send finished"
+        print("send finished")
         self.mconn.close()
 
 
@@ -33,7 +33,6 @@ port = getEnvPort()
 s = socket.socket() 
 s.bind((host,port))
 index = 0
-print "start test"
 
 threads= []
 s.listen(256)
@@ -53,4 +52,4 @@ for t in threads:
 port = port + 1
 setEnvPort(port)
 
-print "finish!!!"
+print("finish!!!")

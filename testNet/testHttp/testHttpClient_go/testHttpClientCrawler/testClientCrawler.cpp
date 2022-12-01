@@ -21,7 +21,7 @@ const char *testUrl[] = {
   "https://www.taobao.com/",
   "https://pages.tmall.com/",
   "https://cn.bing.com/dict/?mkt=zh-cn",
-  "https://tv.cctv.com/",
+  //"https://tv.cctv.com/",
   "http://www.people.com.cn/",
   "http://www.xinhuanet.com/",
   nullptr,
@@ -37,17 +37,17 @@ void testClientCrawler() {
 
     if(response->isChunked()) {
       HttpChunk chunk = response->getEntity()->getChunk();
-      if(chunk->getData() != nullptr) {
-        printf("entity1 is %s \n",chunk->getData()->toString()->toChars());
+      if(chunk->getData() == nullptr) {
+        TEST_FAIL("testHttpClientCrawler test Parse case1,url is %s",testUrl[i]);
       }
     } else {
       ByteArray data = response->getEntity()->getContent();
-      if(data != nullptr) {
-        printf("entity2 is %s \n",data->toString()->toChars());
+      if(data == nullptr) {
+        TEST_FAIL("testHttpClientCrawler test Parse case2,url is %s",testUrl[i]);
       }
     }
   }
 
-  TEST_OK("[testHttpClientCrawler test Parse case100]");
+  TEST_OK("testHttpClientCrawler test Parse case100");
 
 }
