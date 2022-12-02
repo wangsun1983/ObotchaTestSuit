@@ -29,6 +29,8 @@ CountDownLatch latch = createCountDownLatch(256);
 AtomicInteger connectNum = createAtomicInteger(0);
 CountDownLatch finishLatch = createCountDownLatch(1);
 
+AtomicInteger messageNum = createAtomicInteger(0);
+
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
@@ -42,7 +44,9 @@ public:
         }
         
         if(!message->getData()->toString()->equals("Hello,Server")) {
-            TEST_FAIL("WebSocketServer Simple Count test10");
+            TEST_FAIL("WebSocketServer SimpleComunication test10");
+        } else {
+            messageNum->incrementAndGet();
         }
                 
         client->sendTextMessage("Hello,Client");
@@ -85,11 +89,15 @@ int main() {
     latch->await();
     
     if(connectNum->get() != 256) {
-        TEST_FAIL("WebSocketServer Disconnect Test case1,count is %d",connectNum->get());
+        TEST_FAIL("WebSocketServer SimpleComunication case1,count is %d",connectNum->get());
+    }
+    
+    if(messageNum->get() != 256) {
+        TEST_FAIL("WebSocketServer SimpleComunication case2,count is %d",messageNum->get());
     }
     
     finishLatch->await();
-    TEST_OK("WebSocketServer Disconnect Test case100");
+    TEST_OK("WebSocketServer SimpleComunication case100");
 
     port++;
     setEnvPort(port);

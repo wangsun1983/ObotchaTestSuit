@@ -26,17 +26,17 @@ class TestType(Enum):
 #            "./testNet/testSocket/testSocksSocketImpl/Server_go"
 
 testPath = [
-    #"./testIo",
-    #"./testIo/testAsyncOutputChannel",
-    #"./testLang",
-    #"./testNet",
-    #"./testNet/testHttp",
-    #"./testNet/testHttp/testHttpClient_go",
-    #"./testNet/testHttp/testHttpClient_python",
-    #"./testNet/testHttp/testHttpServer_go",
+    "./testIo",
+    "./testIo/testAsyncOutputChannel",
+    "./testLang",
+    "./testNet",
+    "./testNet/testHttp",
+    "./testNet/testHttp/testHttpClient_go",
+    "./testNet/testHttp/testHttpClient_python",
+    "./testNet/testHttp/testHttpServer_go",
     "./testNet/testHttp/testHttpServer_python3",
+    "./testNet/testHttp/testHttpRequestParser",
     #do not test "./testNet/testHttp2",
-    "./testNet/testHttps",
     "./testNet/testSocket/testDatagramSocket/Client",
     "./testNet/testSocket/testDatagramSocket/Server",
     "./testNet/testSocket/testLocalSocketImpl/Client",
@@ -135,8 +135,11 @@ def scanTest(path):
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
         go_build_success = True
+        env_path =  os.path.abspath('.') + "/3rdpart/go"
         if testType == TestType.TestRunGoServer :
-            gobuild = os.popen("cd " + path + " && go build server.go 2>&1").read()
+            gobuild = os.popen("export GOPATH=" 
+                            + env_path + " && "
+                            + "cd " + path + " && go build server.go 2>&1").read()
             makeret = makeret + "\r\n" + gobuild
         if testType == TestType.TestRunGoClient :
             gobuild = os.popen("cd " + path + " && go build client.go 2>&1").read()
@@ -234,7 +237,7 @@ def scanTest(path):
             printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + printTime + "]" + " Finish " + path)
 
-            if executefile.find("[FAIL]") > 0:
+            if execThreadLog.find("[FAIL]") > 0:
                 executefile += "FAIL.log"
             else:
                 executefile += "Success.log"
@@ -255,7 +258,7 @@ def main():
     currentPath = os.path.abspath('.') + "/"
     os.makedirs(currentPath + BUILD_REPORT_DIR)
     os.makedirs(currentPath + EXECUTE_REPORT_DIR)
-
+    print("currentPath is ",currentPath)
     for path in testPath:
         for filename in os.listdir(path):
             testFolder = path + "/" + filename + "/";

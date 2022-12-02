@@ -59,15 +59,14 @@ public:
         return 0;
     }
 
-    bool onPong(String msg,WebSocketLinker client) {
+    void onPong(String msg,WebSocketLinker client) {
         //if(!msg->equals("hello")) {
         //    TEST_FAIL("WebSocketServer SimplePing test1");
         //}
         //latch->countDown();
-        return true;
     }
 
-    bool onPing(String msg,WebSocketLinker client) {
+    int onPing(String msg,WebSocketLinker client) {
         printf("i receive a message,it is %s \n",msg->toChars());
         if(!msg->equals("abc")) {
             TEST_FAIL("WebSocketServer SimplePingByClient test1");
@@ -76,7 +75,7 @@ public:
         Message myMessage = createMessage();
         myMessage->data = Cast<Object>(client);
         handler->sendMessage(myMessage);
-        return true;
+        return 1;
     }
 
 private:

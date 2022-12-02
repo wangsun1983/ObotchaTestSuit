@@ -12,6 +12,7 @@ import (
 )
 
 //export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go/
+//export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go
 
 func main() {
     port := testnet.GetEnvPort()

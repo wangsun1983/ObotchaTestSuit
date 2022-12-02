@@ -11,7 +11,7 @@ ws = websocket.WebSocket()
 ws.connect(url)
 msg = "Hello, World"
 
-with open('./tmp/data', 'r') as fp:
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
         ws.send(data)

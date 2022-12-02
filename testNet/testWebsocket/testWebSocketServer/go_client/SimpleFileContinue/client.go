@@ -6,15 +6,15 @@ import (
     "../../../../../common"
     "log"
     "strconv"
-    "io/ioutil"
+    "os"
+    "io"
+    //"io/ioutil"
 )
 
 //export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go/
 
 func main() {
     port := testnet.GetEnvPort()
-    //fmt.Println("port is ",port)
-
     origin := "http://localhost/"
     url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
     
@@ -23,9 +23,21 @@ func main() {
         log.Fatal(err)
     }
     
-	data, err := ioutil.ReadFile("./tmp/testdata")
-    ws.Write(data)
-
-    //read file
-
+	buf := make([]byte, 1024)
+    
+    f, _ := os.Open("./tmp/testdata")
+    
+    for {
+        // 将文件中读取的byte存储到buf中
+		n, err := f.Read(buf)
+		if err != nil && err != io.EOF {
+			log.Fatal(err)
+		}
+		if n == 0 {
+			break
+		}
+        ws.Write(buf[0:n])
+	}
+    
+    ws.Close()
 }

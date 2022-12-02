@@ -4,28 +4,24 @@ import (
     //"fmt"
     "golang.org/x/net/websocket"
     "../../../../../common"
-    "log"
     "strconv"
-    "io/ioutil"
+    "time"
 )
 
 //export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go/
+//export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go
 
 func main() {
     port := testnet.GetEnvPort()
-    //fmt.Println("port is ",port)
-
+    
     origin := "http://localhost/"
     url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
     
-    ws, err := websocket.Dial(url, "", origin)
-    if err != nil {
-        log.Fatal(err)
-    }
+    ws, _ := websocket.Dial(url, "", origin)
+    websocket.Message.Send(ws, []byte("Hello,Server"))
     
-	data, err := ioutil.ReadFile("./tmp/testdata")
-    ws.Write(data)
-
-    //read file
-
+    var message string
+    websocket.Message.Receive(ws, &message)
+   
+    time.Sleep(1*time.Second)
 }

@@ -31,7 +31,7 @@ CountDownLatch latch = createCountDownLatch(1);
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
-        File f = createFile("./tmp/rcvfile");
+        File f = createFile("./tmp/file");
         if(f->exists()) {
             f->removeAll();
         }
@@ -71,7 +71,7 @@ private:
 
 int main() {
     //crete file first
-    File file = createFile("./tmp/data");
+    File file = createFile("./tmp/testdata");
     long prepareFilesize = file->length();
 
     if(!file->exists()) {
@@ -104,8 +104,8 @@ int main() {
 
     //check md5
     Md md5 = createMd();
-    String base = md5->encrypt(createFile("./tmp/data"));
-    String rcv = md5->encrypt(createFile("./tmp/rcvfile"));
+    String base = md5->encrypt(createFile("./tmp/testdata"));
+    String rcv = md5->encrypt(createFile("./tmp/file"));
     if(!base->equals(rcv)) {
         TEST_FAIL("WebSocketServer SimpleFile test1");
     }

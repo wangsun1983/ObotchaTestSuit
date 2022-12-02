@@ -6,26 +6,26 @@ import (
     "../../../../../common"
     "log"
     "strconv"
-    "io/ioutil"
+    //"io"
+    //"bufio"
+    //"os"
 )
 
 //export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go/
+//export GOPATH=/home/test/wangsl/mysource/src/Obotcha/ObotchaTestSuite/3rdparty/go
 
 func main() {
     port := testnet.GetEnvPort()
-    //fmt.Println("port is ",port)
 
     origin := "http://localhost/"
     url := "ws://localhost:" + strconv.Itoa(port) + "/mytest"
     
-    ws, err := websocket.Dial(url, "", origin)
-    if err != nil {
-        log.Fatal(err)
+    for i:= 0;i<256;i++ {
+        ws, err := websocket.Dial(url, "", origin)
+        if err != nil {
+            log.Fatal(err)
+        }
+        websocket.Message.Send(ws, []byte("Hello, World"))
+        ws.Close()
     }
-    
-	data, err := ioutil.ReadFile("./tmp/testdata")
-    ws.Write(data)
-
-    //read file
-
 }

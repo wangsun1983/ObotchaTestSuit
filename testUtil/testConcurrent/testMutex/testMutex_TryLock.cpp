@@ -59,8 +59,8 @@ void testMutex_TryLock() {
       watch->start();
       t->lock();
       long v = watch->stop();
-      if(v < 100 || v > 105) {
-        TEST_FAIL("[TestMutex tryLock case3]");
+      if(v < 100 || v > 110) {
+        TEST_FAIL("[TestMutex tryLock case3],v is %ld",v);
         break;
       }
       break;

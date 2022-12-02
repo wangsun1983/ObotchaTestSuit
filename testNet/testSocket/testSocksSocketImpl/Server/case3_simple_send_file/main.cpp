@@ -61,10 +61,7 @@ int main() {
         stream->close();
       }
     }
-
-    File f = createFile("./tmp/file");
-    f->removeAll();
-
+    filesize = file->length();
     stream->open();
 
     int port = getEnvPort();
