@@ -33,7 +33,9 @@ threads= []
 s.listen(256)
 index = 0
 
-while index < 1024*32:    
+TEST_COUNT = 1024
+
+while index < TEST_COUNT:    
     #print "trace1"
     myconn,myaddr = s.accept()
     t = ShutDownThread(myconn,myaddr);
@@ -45,4 +47,4 @@ for t in threads:
     #print "start join"
     t.join()
 
-print "finish!!!"
+#print "finish!!!"

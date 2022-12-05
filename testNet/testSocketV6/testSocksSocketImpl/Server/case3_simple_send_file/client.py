@@ -15,11 +15,8 @@ port = getEnvPort();
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 s.connect(("::1",port))
 
-buf=4096*32
-f = open("file",'wb')
-
 print("cccc")
-with open('data', 'r') as fp:
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
         s.send(data)

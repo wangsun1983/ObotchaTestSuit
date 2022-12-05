@@ -39,7 +39,7 @@ s = socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
 s.bind(server_address)
 
 index = 0
-print "start test"
+#print "start test"
 
 threads= []
 s.listen(256)
@@ -56,4 +56,4 @@ for t in threads:
     #print "start join"
     t.join()
 
-print "finish!!!"
+#print "finish!!!"

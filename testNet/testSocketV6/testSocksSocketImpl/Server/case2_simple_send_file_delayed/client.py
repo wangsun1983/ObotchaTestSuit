@@ -17,13 +17,11 @@ s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 s.connect(("::1",port))
 
 buf=4096*32
-f = open("file",'wb')
 
-with open('data', 'r') as fp:
+with open('./tmp/testdata', 'r') as fp:
     while True:
-        print("aaaa")
         data = fp.read(1024*4)
-        s.send(data)
+        s.send(data.encode("utf-8"));
         time.sleep(0.1)
         if not data:
             break;

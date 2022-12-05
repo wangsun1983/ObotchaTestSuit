@@ -5,6 +5,10 @@ import os
 import socket
 import time
 
+import sys
+sys.path.append(r'../../../../../common')
+from NetPort import getEnvPort
+
 s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 
 s.bind(("::1", getEnvPort()))
@@ -12,7 +16,7 @@ s.bind(("::1", getEnvPort()))
 print ("start")
 path = "file"
 
-f = open("file",'wb')
+f = open("./tmp/file",'wb')
 s.listen(5)
 conn,address = s.accept()
 conn.settimeout(5)

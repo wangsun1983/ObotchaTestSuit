@@ -17,7 +17,7 @@ using namespace obotcha;
 Mutex mMutex = createMutex();
 Condition mCond = createCondition();
 
-FileOutputStream stream = createFileOutputStream("file");
+FileOutputStream stream = createFileOutputStream("./tmp/file");
 long filesize = 0;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
@@ -44,8 +44,8 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("data");
-    filesize = file->length();
+    File file = createFile("./tmp/testdata");
+    
 
     if(!file->exists()) {
       file->createNewFile();
@@ -60,9 +60,8 @@ int main() {
         stream->close();
       }
     }
+    filesize = file->length();
 
-    File f = createFile("file");
-    f->removeAll();
 
     stream->open();
     int port = getEnvPort();
@@ -80,8 +79,8 @@ int main() {
     mCond->wait(mMutex);
     usleep(1000*1000);
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("data"));
-    String v2 = md5->encrypt(createFile("file"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket Server case3_simple_send_file test1 ,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());

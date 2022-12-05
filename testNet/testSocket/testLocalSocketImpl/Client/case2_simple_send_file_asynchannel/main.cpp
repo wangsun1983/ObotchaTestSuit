@@ -31,7 +31,7 @@ public:
 int main() {
     //prepare file
     //signal(SIGPIPE, SIG_IGN);
-    File file = createFile("data");
+    File file = createFile("./tmp/testdata");
 
     if(!file->exists()) {
       file->createNewFile();
@@ -78,8 +78,8 @@ int main() {
     mCond->wait(mMutex);
 
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("data"));
-    String v2 = md5->encrypt(createFile("file"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestLocalSocket Client case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());

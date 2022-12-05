@@ -41,7 +41,7 @@ int main() {
         break;
       }
 
-      if(interval < 500 || interval > 505) {
+      if(interval < 100 || interval > 105) {
         if(!isFirst) {
           TEST_FAIL("TestSocket IO Block test2,interval is %ld,len is %ld",interval,len);
         }

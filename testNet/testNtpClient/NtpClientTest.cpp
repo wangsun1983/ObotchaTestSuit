@@ -18,7 +18,7 @@ int main() {
     c->bind("ntp.aliyun.com",123);
     long int t = c->get();
     long interval = st(System)::currentTimeMillis() - t;
-    if(interval < 0 || interval > 100) {
+    if(interval < -100 || interval > 100) {
         TEST_FAIL("testNtpClient case1,interval is %ld",interval);
     }
     

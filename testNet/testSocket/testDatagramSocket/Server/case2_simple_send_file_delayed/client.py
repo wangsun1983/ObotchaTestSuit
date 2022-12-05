@@ -1,8 +1,8 @@
-from socket import *
 import sys
 import select
 import os
 import time
+import socket
 
 import sys
 sys.path.append(r'../../../../../common')
@@ -12,19 +12,17 @@ host="127.0.0.1"
 
 port = getEnvPort()
 
-s = socket(AF_INET,SOCK_DGRAM)
-addr = (host,port)
+s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+s.connect(("127.0.0.1",getEnvPort()))
+print("port is ",port)
 
-buf=4096*32
-#f = open("data",'wb')
-
-with open('data', 'r') as fp:
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
-        s.sendto(data,addr)
+        s.send(data.encode("utf-8"))
         time.sleep(0.1)
         if not data:
             break;
 
 
-print "Upload Donwloaded"
+#print "Upload Donwloaded"

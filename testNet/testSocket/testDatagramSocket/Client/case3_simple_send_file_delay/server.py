@@ -16,9 +16,9 @@ s.bind((host,port))
 addr = (host,port)
 
 buf=4096
-print "start"
-f = open("file",'wb')
+#print "start"
 data,addr = s.recvfrom(buf)
+f = open("./tmp/file",'wb')
 
 try:
 
@@ -34,4 +34,4 @@ except timeout:
 port = port + 1
 setEnvPort(port)
 
-print "File Donwloaded"
+#print "File Donwloaded"

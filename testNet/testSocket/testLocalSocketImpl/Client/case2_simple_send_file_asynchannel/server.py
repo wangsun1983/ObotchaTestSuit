@@ -17,14 +17,14 @@ except OSError:
 sock = socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
 # Bind the socket to the port
 sock.bind(server_address)
-print "start"
+#print "start"
 path = "file"
 
-f = open("file",'wb')
+f = open("./tmp/file",'wb')
 sock.listen(5)
 conn,address = sock.accept()
 conn.settimeout(5)
-print "trace1"
+#print "trace1"
 while True:
     #print "trace1"
     data = conn.recv(1024)
@@ -32,11 +32,11 @@ while True:
     f.flush();
     time.sleep(0.01)
     if not data:
-        print "trace2"
+        #print "trace2"
         break
 
 f.close()
 s.close()
 conn.close()
 
-print "File Donwloaded"
+#print "File Donwloaded"

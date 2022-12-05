@@ -73,11 +73,11 @@ EXECUTE_REPORT_DIR ='./Report/ExecuteReport'
 
 def prepare(path):
     print("prepare path is " + path)
-    os.popen("rm -rf " + path + "tmp")
+    os.popen("rm -rf " + path + "tmp").read()
     while os.path.exists(path + "tmp"):
         time.sleep(0.1)
         print("path " + path + "tmp already exist,wait....")
-    os.popen("mkdir " + path + "tmp")
+    os.popen("mkdir " + path + "tmp").read()
     #remove mytest,client,server
 
 def waitTestData(path):

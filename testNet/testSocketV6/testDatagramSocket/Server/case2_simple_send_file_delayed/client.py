@@ -13,12 +13,11 @@ s = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
 addr = ("::1",getEnvPort())
 
 buf=4096*32
-f = open("file",'wb')
 
-with open('data', 'r') as fp:
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
-        s.sendto(data,addr)
+        s.sendto(data.encode("utf-8"),addr)
         time.sleep(0.1)
         if not data:
             break;

@@ -14,14 +14,11 @@ server_address = 'case3_socket'
 
 s.connect(server_address)
 
-buf=4096*32
-f = open("file",'wb')
-
-print "cccc"
-with open('data', 'r') as fp:
+#print "cccc"
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
-        s.send(data)
+        s.send(data.encode("utf-8"))
         
         if not data:
             break;
@@ -29,4 +26,4 @@ with open('data', 'r') as fp:
         data1 = s.recv(1024)
 
 
-print "Upload Donwloaded"
+#print "Upload Donwloaded"

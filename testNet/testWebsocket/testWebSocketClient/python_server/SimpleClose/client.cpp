@@ -38,9 +38,9 @@ public:
         return 0;
     }
 
-    int onPong(String) {
+    void onPong(String) {
         //printf("111111 onPong fd \n");
-        return 0;
+        //return 0;
     }
 
     int onPing(String) {

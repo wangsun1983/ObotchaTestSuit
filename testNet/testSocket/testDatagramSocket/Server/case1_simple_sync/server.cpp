@@ -26,7 +26,7 @@ public:
       int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
       isFirst = false;
       printf("len is %d \n",len);
-      //mCond->notify();
+      mCond->notify();
       return;
     }
 

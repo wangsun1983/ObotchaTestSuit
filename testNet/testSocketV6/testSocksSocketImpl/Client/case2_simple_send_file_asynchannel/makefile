@@ -9,6 +9,7 @@ cflags = -fpic \
 		-I ../../../../../../io/include \
 		-I ../../../../../../util/include/ \
 		-I ../../../../../../net/include \
+		-I ../../../../../../net/socket/include \
 		-I ../../../../../../security/include \
 		-I ../../../../../../process/include \
 		-I ../../../../../../external/iniparser/include \
@@ -25,7 +26,8 @@ cflags = -fpic \
 		-I ../../../../../common \
 		-g \
 		-std=c++14 \
-				-fsanitize=address\
+		-std=c++14 \
+		-fsanitize=address\
 		-fno-omit-frame-pointer
 
 external = -lpthread \

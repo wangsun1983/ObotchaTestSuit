@@ -1,10 +1,9 @@
-from socket import *
 import sys
 import select
 import os
 import time
+import socket
 
-import sys
 sys.path.append(r'../../../../../common')
 from NetPort import getEnvPort
 
@@ -12,21 +11,18 @@ host="127.0.0.1"
 
 port = getEnvPort()
 
-s = socket(AF_INET,SOCK_DGRAM)
-addr = (host,port)
+s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+s.connect(("127.0.0.1",getEnvPort()))
 
-buf=4096*32
-f = open("file",'wb')
-
-print "cccc"
-with open('data', 'r') as fp:
+#print "cccc"
+with open('./tmp/testdata', 'r') as fp:
     while True:
         data = fp.read(1024*4)
-        s.sendto(data,addr)
+        s.send(data.encode("utf-8"))
 
         if not data:
             break;
 
-        data1,addr2 = s.recvfrom(buf)
+        data1,addr2 = s.recvfrom(1024)
 
-print "Upload Donwloaded"
+#print "Upload Donwloaded"

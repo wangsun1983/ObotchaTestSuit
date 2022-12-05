@@ -16,7 +16,7 @@ using namespace obotcha;
 
 int main() {
     //prepare file
-    File file = createFile("data");
+    File file = createFile("./tmp/testdata");
 
     if(!file->exists()) {
       file->createNewFile();
@@ -44,7 +44,7 @@ int main() {
     long index = 0;
     long filesize = file->length();
     while(1) {
-      long length = stream->readTo(fileBuff);
+      long length = stream->read(fileBuff);
       int ret = client->getOutputStream()->write(fileBuff);
       filesize -= length;
       usleep(100*1000);
@@ -56,8 +56,8 @@ int main() {
 
     usleep(1000*1000);
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("data"));
-    String v2 = md5->encrypt(createFile("file"));
+    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket case2_simple_send_file_delayed test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());

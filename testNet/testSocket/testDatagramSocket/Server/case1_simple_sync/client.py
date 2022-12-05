@@ -20,7 +20,7 @@ sendData = s.recv(1024).decode()
 count = 0
 
 while (count < 50):
-    s.send(sendData)
+    s.send(sendData.encode("utf-8"))
     time.sleep(0.01)
     count = count + 1
 

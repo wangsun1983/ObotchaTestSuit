@@ -17,7 +17,7 @@ sock.bind(server_address)
  
 # Listen for incoming connections
 sock.listen(1)
-print("start listen!!!")
+#print("start listen!!!")
 
 
 # Wait for a connection
@@ -29,7 +29,7 @@ count = 0
 while (count < 50):
     #print("start get an acception!!!")
     #msg = "hello client"
-    connection.sendall(receive_data.decode("utf-8"))
+    connection.sendall(receive_data)
     count = count + 1
 
 connection.close()

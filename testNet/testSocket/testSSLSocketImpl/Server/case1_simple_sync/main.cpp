@@ -8,6 +8,7 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "NetEvent.hpp"
+#include "SocketOption.hpp"
 
 using namespace obotcha;
 
@@ -46,10 +47,13 @@ public:
 int main() {
   int port = getEnvPort();
   InetAddress addr = createInet4Address(port);
+  SocketOption option = createSocketOption();
+  option->setSSLCertificatePath(createString("server.crt"))
+        ->setSSLKeyPath("server.key");
+        
   ServerSocket sock = createSocketBuilder()
                         ->setAddress(addr)
-                        ->setSSLCretificatePath("server.crt")
-                        ->setSSLKeyPath("server.key")
+                        ->setOption(option)
                         ->newSSLServerSocket();
 
   int result = sock->bind();

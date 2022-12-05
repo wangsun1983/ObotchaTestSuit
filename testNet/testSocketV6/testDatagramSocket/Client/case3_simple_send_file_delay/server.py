@@ -17,7 +17,7 @@ addr = (host,port)
 
 buf=4096
 #print "start"
-f = open("file",'wb')
+f = open("./tmp/file",'wb')
 data,addr = s.recvfrom(buf)
 #print "start1"
 try:
@@ -25,6 +25,7 @@ try:
     while(data):
         #print "accept data"
         f.write(data)
+        f.flush()
         s.settimeout(1)
         data,addr = s.recvfrom(buf)
 
@@ -35,4 +36,4 @@ except timeout:
 port = port + 1
 setEnvPort(port)
 
-print "File Donwloaded"
+#print "File Donwloaded"

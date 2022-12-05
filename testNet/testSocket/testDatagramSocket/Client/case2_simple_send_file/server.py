@@ -17,14 +17,14 @@ s.bind((host,port))
 addr = (host,port)
 
 buf=4096*32
-print "start"
+#print "start"
 path = "file"
 
-f = open("file",'wb')
+
 data,addr = s.recvfrom(buf)
+f = open("./tmp/file",'wb')
 
 try:
-
     while(data):
         f.write(data)
         s.sendto(str("hello client").encode("utf-8"),addr)
@@ -40,4 +40,4 @@ except timeout:
 port = port + 1
 setEnvPort(port)
 
-print "File Donwloaded"
+#print "File Donwloaded"

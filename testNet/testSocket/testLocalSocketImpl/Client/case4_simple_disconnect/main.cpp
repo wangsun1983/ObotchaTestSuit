@@ -17,6 +17,8 @@
 #include <signal.h>
 using namespace obotcha;
 
+#define TEST_COUNT 1024
+
 Condition mwaitcond = createCondition();
 Mutex mMutex = createMutex();
 
@@ -27,7 +29,7 @@ public:
   }
 };
 
-CountDownLatch latch = createCountDownLatch(32*1024);
+CountDownLatch latch = createCountDownLatch(TEST_COUNT);
 MyHandler h = createMyHandler();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
@@ -63,7 +65,7 @@ int main() {
     SocketMonitor monitor = createSocketMonitor();
     long sum = 0;
 
-    for(int i = 0;i<32*1024;i++) {
+    for(int i = 0;i<TEST_COUNT;i++) {
           InetAddress addr = createInetLocalAddress("case4_socket");
           Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
           

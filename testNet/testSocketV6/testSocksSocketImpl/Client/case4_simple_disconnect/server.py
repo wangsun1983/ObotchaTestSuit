@@ -29,7 +29,7 @@ print("start test")
 threads= []
 s.listen(256)
 
-while index < 1024*32:    
+while index < 1024:    
     #print "trace1"
     myconn,myaddr = s.accept()
     t = ShutDownThread(myconn,myaddr);
