@@ -57,7 +57,9 @@ int main() {
     int port = getEnvPort();
     String url = createString("ws://127.0.0.1:")->append(createString(port));
     client->connect(url,l);
-
+    client->sendTextMessage(createString("hello"));
     latch->await();
-    TEST_OK("WebSocketClient SimpleConnect case100");
+    port++;
+    setEnvPort(port);
+    TEST_OK("WebSocketClient SimpleClose case100");
 }

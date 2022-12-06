@@ -19,6 +19,9 @@ void testRsa3Pcks1() {
   FileOutputStream stream = createFileOutputStream(data);
   String str = createString("abcdefghi");
   stream->open();
+  for(int i = 0;i < 1024;i++) {
+      str = str->append("abcdefgh");
+  }
   stream->write(str->toByteArray());
   stream->close();
 

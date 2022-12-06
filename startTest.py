@@ -135,14 +135,17 @@ def scanTest(path):
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
         go_build_success = True
-        env_path =  os.path.abspath('.') + "/3rdpart/go"
+        env_path =  os.path.abspath('.') + "/3rdparty/go"
         if testType == TestType.TestRunGoServer :
             gobuild = os.popen("export GOPATH=" 
                             + env_path + " && "
-                            + "cd " + path + " && go build server.go 2>&1").read()
+                            + "cd " + path + " && go build server.go ").read()
             makeret = makeret + "\r\n" + gobuild
         if testType == TestType.TestRunGoClient :
-            gobuild = os.popen("cd " + path + " && go build client.go 2>&1").read()
+            print("export is export GOPATH=",env_path)
+            gobuild = os.popen("export GOPATH=" 
+                            + env_path + " && "
+                            + "cd " + path + " && go build client.go ").read()
             makeret = makeret + "\r\n" + gobuild
 
         buildpath = path.split("/")
@@ -197,7 +200,7 @@ def scanTest(path):
                 pythonCmd = "cd " + path + " && python3 server.py"
                 t2 = threading.Thread(target= execByThread, args=(pythonCmd,False), name='Thread-A')
                 t2.start()
-                time.sleep(0.1)
+                time.sleep(0.2)
 
                 cmd = "cd " + path + " && ./mytest"
                 t1 = threading.Thread(target= execByThread, args=(cmd,True), name='Thread-A')

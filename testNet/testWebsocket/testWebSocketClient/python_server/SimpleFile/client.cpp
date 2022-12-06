@@ -56,7 +56,7 @@ public:
 
 
 int main() {
-    File file = createFile("data");
+    File file = createFile("./tmp/testdata");
 
     if(!file->exists()) {
       file->createNewFile();
@@ -77,17 +77,20 @@ int main() {
     int port = getEnvPort();
     String url = createString("ws://127.0.0.1:")->append(createString(port));
     client->connect(url,l);
-    File f = createFile("data");
+    File f = createFile("./tmp/testdata");
     client->sendFile(f);
     usleep(1000*200);
     
     Md md5sum = createMd();
-    String base = md5sum->encrypt(createFile("data"));
+    String base = md5sum->encrypt(createFile("./tmp/testdata"));
 
     String newFile = md5sum->encrypt(createFile("./tmp/file"));
 
     if(!base->equals(newFile)) {
       TEST_FAIL("WebSocketClient SimpleConnect case100");
     }
+    
+    port++;
+    setEnvPort(port);
     TEST_OK("WebSocketClient SimpleConnect case100");
 }

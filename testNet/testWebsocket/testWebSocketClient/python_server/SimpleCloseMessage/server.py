@@ -9,10 +9,14 @@ from NetPort import setEnvPort
 
 class WSserver():
     async def handle(self,websocket,path):
-      recv_msg = await websocket.recv()
-      if recv_msg == "hello server":
-        await websocket.send('i am server')
-      sys.exit(0)
+        while True:
+              try:
+                  recv_msg = await websocket.recv()
+                  print("i accept a message:",recv_msg)
+              except:
+                  sys.exit(0)
+            
+      
 
     def run(self):
       self.port = getEnvPort()

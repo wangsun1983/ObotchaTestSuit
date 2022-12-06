@@ -13,7 +13,8 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "CountDownLatch.hpp"
-
+#include "System.hpp"
+#include "Md.hpp"
 using namespace obotcha;
 
 CountDownLatch latch = createCountDownLatch(1);
@@ -23,11 +24,7 @@ public:
 
     int onData(WebSocketFrame data) {
         String message = data->getData()->toString();
-        if(!message->equals("i am server")) {
-            TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
-        }
-
-        latch->countDown();
+        printf("message is %s \n",message->toChars());
         return 0;
     }
 
@@ -37,7 +34,7 @@ public:
     }
 
     int onDisconnect() {
-        //printf("111111 on disconnect fd \n");
+        latch->countDown();
         return 0;
     }
 
@@ -60,9 +57,11 @@ int main() {
     int port = getEnvPort();
     String url = createString("ws://127.0.0.1:")->append(createString(port));
     client->connect(url,l);
-    client->sendTextMessage(createString("hello server"));
+    usleep(1000*200);
+    printf("start close \n");
+    client->close();
     latch->await();
     port++;
     setEnvPort(port);
-    TEST_OK("WebSocketClient SimpleConnect case100");
+    TEST_OK("WebSocketClient SimpleCloseMessage case100");
 }
