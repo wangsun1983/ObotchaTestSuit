@@ -6,7 +6,7 @@ from NetPort import getEnvPort
 from NetPort import setEnvPort
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-port = 2007 #getEnvPort()
+port = getEnvPort()
 server_address = ("127.0.0.1", port)
 s.bind(server_address)
 s.settimeout(10)

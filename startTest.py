@@ -51,7 +51,7 @@ testPath = [
     "./testNet/testSocketV6/testSocksSocketImpl/Client",
     "./testNet/testSocketV6/testSocksSocketImpl/Server",
     "./testNet/testWebsocket/testWebSocketClient/python_server",
-    "./testNet/testWebsocket/testWebSocketParser",
+    "./testNet/testWebsocket,
     "./testNet/testWebsocket/testWebSocketServer/go_client",
     "./testNet/testWebsocket/testWebSocketServer/python_client",
     "./testProcess",

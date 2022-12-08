@@ -33,7 +33,7 @@ int main() {
     }
     
     if(result < 90 || result > 105) {
-      TEST_FAIL("Test Tcp Server case4_block_io test1,result is %ld",result);
+      TEST_FAIL("TestSocketV6 SocksSocketImpl case4_block_io test1,result is %ld",result);
     }
   }
 
@@ -44,6 +44,6 @@ int main() {
   port++;
   setEnvPort(port);
 
-  TEST_OK("Test Tcp Server case4_block_io test100");
+  TEST_OK("TestSocketV6 SocksSocketImpl case4_block_io test100");
 
 }

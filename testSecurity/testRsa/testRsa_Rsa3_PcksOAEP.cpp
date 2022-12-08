@@ -20,7 +20,7 @@ void testRsa3Pcks1OEAP() {
   String str = createString("abcdefghi");
   stream->open();
   for(int i = 0;i < 1024;i++) {
-      str = str->append("abcdefgh");
+      str = str->append("abcdefgh \r\n");
   }
   stream->write(str->toByteArray());
   stream->close();

@@ -21,7 +21,7 @@ int main() {
       String r1 = base64->encode(abc);
       String r2 = base64->decode(r1);
       if(!r2->equals(abc)) {
-          TEST_FAIL("[ByteArray Test {decode(String)/encode(String)} case1]");
+          TEST_FAIL("[ByteArray Test {decode(String)/encode(String)} case1],r2 is %s",r2->toChars());
           break;
       }
 

@@ -81,12 +81,12 @@ int main() {
     String v2 = md5->encrypt(createFile("./tmp/file"));
 
     if(v1 != v2) {
-      TEST_FAIL("TestDataGramSocket Server case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
+      TEST_FAIL("TestSocketV6 SocksSocketImpl case2_simple_send_file test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
     }
 
     port++;
     setEnvPort(port);
 
-    TEST_OK("TestDataGramSocket Server case2_simple_send_file test100");
+    TEST_OK("TestSocketV6 SocksSocketImpl case2_simple_send_file test100");
     return 0;
 }

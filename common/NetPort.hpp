@@ -39,6 +39,7 @@ void setEnvPort(int p) {
     stream->write(createString(p)->toByteArray());
     stream->flush();
     stream->close();
+    
 }
 
 void resetEnvPort() {
