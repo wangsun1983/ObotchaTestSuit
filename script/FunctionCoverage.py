@@ -2,72 +2,74 @@ import os
 import fileinput
 
 includePath = [
-    "../util/concurrent/include/",
-    "../util/coroutine/include/",
-    "../util/text/include/",
-    "../sql/include/",
-    "../lang/include/",
-    "../io/include/",
-    "../util/include/",
-    "../net/include/",
-    "../net/http/include/",
-    "../net/socket/include/",
-    "../net/websocket/include/",
-    "../net/smtp/include/",
-    "../net/http/client/include/",
-    "../security/include/",
-    "../process/include/",
+    "../../util/concurrent/include/",
+    "../../util/coroutine/include/",
+    "../../util/text/include/",
+    "../../sql/include/",
+    "../../lang/include/",
+    "../../io/include/",
+    "../../util/include/",
+    "../../net/include/",
+    "../../net/http/include/",
+    "../../net/socket/include/",
+    "../../net/websocket/include/",
+    "../../net/smtp/include/",
+    "../../net/http/client/include/",
+    "../../security/include/",
+    "../../process/include/",
 ]
 
-testPath = [ "./testIo",
-    "./testIo/testAsyncOutputChannel",
-    "./testLang",
-    "./testNet",
-    "./testNet/testHttp",
-    "./testNet/testHttp/testHttpClient_go",
+testPath = [ "../testIo",
+    "../testIo/testAsyncOutputChannel",
+    "../testLang",
+    "../testNet",
+    "../testNet/testHttp",
+    "../testNet/testHttp/testHttpClient_go",
     #do not test"./testNet/testHttp/testHttpClient_python",
-    "./testNet/testHttp/testHttpServer_go",
-    "./testNet/testHttp/testHttpServer_python3",
-    "./testNet/testHttp/testHttpRequestParser",
+    "../testNet/testHttp/testHttpServer_go",
+    "../testNet/testHttp/testHttpServer_python3",
+    "../testNet/testHttp/testHttpRequestParser",
+    "../testNet/testHttp/testHttpResponseWriter",
     #do not test "./testNet/testHttp2",
-    "./testNet/testSocket/testDatagramSocket/Client",
-    "./testNet/testSocket/testDatagramSocket/Server",
-    "./testNet/testSocket/testLocalSocketImpl/Client",
-    "./testNet/testSocket/testLocalSocketImpl/Server",
-    "./testNet/testSocket/testSocketMonitor/",
-    "./testNet/testSocket/testSocksSocketImpl/Client",
-    "./testNet/testSocket/testSocksSocketImpl/Server",
-    "./testNet/testSocket/testSocksSocketImpl/Server_go",
-    "./testNet/testSocket/testSSLSocketImpl/Server",
-    "./testNet/testSocketV6/testDatagramSocket/Client",
-    "./testNet/testSocketV6/testDatagramSocket/Server",
-    "./testNet/testSocketV6/testSocksSocketImpl/Client",
-    "./testNet/testSocketV6/testSocksSocketImpl/Server",
-    "./testNet/testWebsocket/testWebSocketClient/python_server",
-    "./testNet/testWebsocket",
-    "./testNet/testWebsocket/testWebSocketServer/go_client",
-    "./testNet/testWebsocket/testWebSocketServer/python_client",
-    "./testProcess",
-    "./testSecurity",
-    "./testUtil",
-    "./testUtil/testText",
-    "./testUtil/testFilament",
-    "./testUtil/testConcurrent",
-    "./testSql",
-    "./testSql/testMySqlClient",
-    "./testSql/testRedisClient",
-    "./testSql/testSqlite3Client",]
+    "../testNet/testSocket/testDatagramSocket/Client",
+    "../testNet/testSocket/testDatagramSocket/Server",
+    "../testNet/testSocket/testLocalSocketImpl/Client",
+    "../testNet/testSocket/testLocalSocketImpl/Server",
+    "../testNet/testSocket/testSocketMonitor/",
+    "../testNet/testSocket/testSocksSocketImpl/Client",
+    "../testNet/testSocket/testSocksSocketImpl/Server",
+    "../testNet/testSocket/testSocksSocketImpl/Server_go",
+    "../testNet/testSocket/testSSLSocketImpl/Server",
+    "../testNet/testSocketV6/testDatagramSocket/Client",
+    "../testNet/testSocketV6/testDatagramSocket/Server",
+    "../testNet/testSocketV6/testSocksSocketImpl/Client",
+    "../testNet/testSocketV6/testSocksSocketImpl/Server",
+    "../testNet/testWebsocket/testWebSocketClient/python_server",
+    "../testNet/testWebsocket",
+    "../testNet/testWebsocket/testWebSocketServer/go_client",
+    "../testNet/testWebsocket/testWebSocketServer/python_client",
+    "../testProcess",
+    "../testSecurity",
+    "../testUtil",
+    "../testUtil/testText",
+    "../testUtil/testFilament",
+    "../testUtil/testConcurrent",
+    "../testSql",
+    "../testSql/testMySqlClient",
+    "../testSql/testRedisClient",
+    "../testSql/testSqlite3Client",
+    ]
 
 #create report again
-REPORT_DIR = './Report'
-COVERAGE_REPORT_DIR ='./Report/CoverageReport'
-COVERAGE_REPORT_FILE ='./Report/CoverageReport/report.txt'
+REPORT_DIR = '../Report'
+COVERAGE_REPORT_DIR ='../Report/CoverageReport'
+COVERAGE_REPORT_FILE ='../Report/CoverageReport/report.txt'
 
 functionMap = {'':0}
 buildFailedList = []
 
 def prepareReportFolder():
-    currentPath = os.path.abspath('.') + "/"
+    currentPath = os.path.abspath('.')
     if not os.path.exists(currentPath + REPORT_DIR):
         os.makedirs(currentPath + REPORT_DIR)
     
@@ -78,14 +80,15 @@ def prepareReportFolder():
 
 
 def dumpObotchaSo():
-    os.popen("objdump -t ../out/lib/libobotcha.so > ./Report/CoverageReport/obotchadump.txt").read()
+    os.popen("objdump -t ../../out/lib/libobotcha.so > ../Report/CoverageReport/obotchadump.txt").read()
 
 def analyseObjdump():
-    for line in fileinput.input("./Report/CoverageReport/obotchadump.txt"):
+    for line in fileinput.input("../Report/CoverageReport/obotchadump.txt"):
         if line.find("g ") > 0 and line.find("obotcha") >0 and line.find(".text") > 0:
             #print(line)
             index = line.rfind(" ")
             function = line[index+1:len(line) - 1]
+            #print("add function [",function,"]")
             functionMap[function] = 1
 
 privateFunc={"classname::function":1}
@@ -142,11 +145,12 @@ def scan(path):
             print("objdump cmd is ",cmd)
             objanalysis = os.popen("objdump -t " + path + "mytest").read()
             for line in objanalysis.splitlines():
-                if line.find("UND") > 0 and line.find("obotcha") >0:
+                if line.find("*UND*") > 0 and line.find("obotcha") >0:
                     index = line.rfind(" ")
-                    function = line[index+1:len(line) - 1]
-                    print("find function:",function)
-                    functionMap[function] = 1
+                    function = line[index+1:len(line)]
+                    if function in functionMap:
+                        #print("i find the function")
+                        functionMap[function] = 0
 
 def main():
     scanInclude();
@@ -171,8 +175,8 @@ def main():
             startIndex =filt.find("_")
             funcStr = filt[startIndex + 1:endIndex]
             if not funcStr in privateFunc.keys():
-                f.write(filt + '\r\n')
-                print(filt)
+                f.write(filt)
+                #print(filt)
 
 if __name__ == '__main__':
     main()
