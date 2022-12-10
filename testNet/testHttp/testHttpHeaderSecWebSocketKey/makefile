@@ -1,4 +1,4 @@
-gcc = g++
+gcc = clang++
 
 cflags = -fpic \
 		-lrt \
@@ -9,7 +9,9 @@ cflags = -fpic \
 		-I ../../../../io/include \
 		-I ../../../../util/include/ \
 		-I ../../../../net/include \
+		-I ../../../../net/websocket/include \
 		-I ../../../../net/socket/include \
+		-I ../../../../net/http/include \
 		-I ../../../../security/include \
 		-I ../../../../process/include \
 		-I ../../../../external/iniparser/include \
@@ -21,12 +23,10 @@ cflags = -fpic \
 		-I ../../../../external/crc32/include \
 		-I ../../../../external/openssl/include \
 		-I ../../../../external/libco \
-		-I ../../../../external/uuid/include \
-		-I ../../../../external/glog/include \
-		-I ../../../common \
+		-I ../../../common/ \
 		-g \
 		-std=c++14 \
-		-fsanitize=address\
+		-fsanitize=address \
 		-fno-omit-frame-pointer
 
 external = -lpthread \
@@ -41,9 +41,9 @@ sharelib = -Wl,-rpath=../../../../out/lib/ \
 
 files =
 link =
-libname	= testClient
+libname	= testHttpMime
 
 everything : $(libname)
 
 $(libname): $(link)
-	g++ *.cpp $(cflags) -o mytest $(external) $(sharelib)
+	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)

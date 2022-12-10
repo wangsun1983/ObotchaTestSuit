@@ -11,8 +11,11 @@ extern void testFileSetRwx();
 extern void testFileGetSuffix();
 extern void testFileGetNameWithNoSuffix();
 extern void testFileGetTime();
+extern void testFileRename();
 
 int main() {
+    testFileRename();
+   
     testFileGetTime();
     testFileGetNameWithNoSuffix();
     testFileGetName();

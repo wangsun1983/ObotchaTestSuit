@@ -7,56 +7,59 @@
 #include "HttpCookieParser.hpp"
 #include "TestLog.hpp"
 #include "Calendar.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
-void testCookieParse() {
+void testSetToHeader() {
   while(1) {
-    String cookie = "yummy_cookie=choco; tasty_cookie=strawberry;Secure; Domain=example.com;Path=/abc;HttpOnly;Expires=Wed, 21 Oct 2015 07:28:00 GMT;max-age=600";
-    ArrayList<HttpCookie> cookies = st(HttpCookieParser)::parse(cookie);
+    HttpHeader header = createHttpHeader();
+    header->set(createString("cookie"),
+                createString("yummy_cookie=choco; tasty_cookie=strawberry;Secure; Domain=example.com;Path=/abc;HttpOnly;Expires=Wed, 21 Oct 2015 07:28:00 GMT;max-age=600"));
+    ArrayList<HttpCookie> cookies = header->getCookies();
     if(cookies == nullptr || cookies->size() != 2) {
-      TEST_FAIL("[HttpCookie test Parse case1]");
+      TEST_FAIL("[HttpCookie test SetToHeader case1]");
       break;
     }
 
     auto cookie1 = cookies->get(0);
     if(!cookie1->getName()->equals("yummy_cookie") || !cookie1->getValue()->equals("choco")) {
-      TEST_FAIL("[HttpCookie test Parse case2]");
+      TEST_FAIL("[HttpCookie test SetToHeader case2]");
       break;
     }
 
     auto cookie2 = cookies->get(1);
     if(!cookie2->getName()->equals("tasty_cookie") || !cookie2->getValue()->equals("strawberry")) {
-      TEST_FAIL("[HttpCookie test Parse case3]");
+      TEST_FAIL("[HttpCookie test SetToHeader case3]");
       break;
     }
     
     if(!cookie1->getPropertySecure()) {
-      TEST_FAIL("[HttpCookie test Parse case4]");
+      TEST_FAIL("[HttpCookie test SetToHeader case4]");
       break;
     }
        
     if(cookie1->getPropertyPath() == nullptr 
         || !cookie1->getPropertyPath()->equals("/abc")) {
       printf("path is %s \n",cookie1->getPropertyPath()->toChars());
-      TEST_FAIL("[HttpCookie test Parse case5]");
+      TEST_FAIL("[HttpCookie test SetToHeader case5]");
       break;
     }
     
     if(cookie1->getPropertyDomain() == nullptr 
         || !cookie1->getPropertyDomain()->equals("example.com")) {
-      TEST_FAIL("[HttpCookie test Parse case6]");
+      TEST_FAIL("[HttpCookie test SetToHeader case6]");
       break;
     }
     
     if(cookie1->getPropertyDomain() == nullptr 
         || !cookie1->getPropertyDomain()->equals("example.com")) {
-      TEST_FAIL("[HttpCookie test Parse case6]");
+      TEST_FAIL("[HttpCookie test SetToHeader case6]");
       break;
     }
     
     if(cookie1->getPropertyMaxAge() != 600) {
-      TEST_FAIL("[HttpCookie test Parse case7]");
+      TEST_FAIL("[HttpCookie test SetToHeader case7]");
       break;
     }
     
@@ -67,7 +70,7 @@ void testCookieParse() {
        expire->toDateTime()->month() != st(Calendar)::October ||
        expire->toDateTime()->dayOfMonth() != 21 ||
        expire->toDateTime()->dayOfWeek() != st(Calendar)::Wednesday){
-      TEST_FAIL("[HttpCookie test Parse case8]");
+      TEST_FAIL("[HttpCookie test SetToHeader case8]");
       break;
     }
     
@@ -76,37 +79,37 @@ void testCookieParse() {
        expire->toDateTime()->minute() != 28 ||
        expire->toDateTime()->dayOfMonth() != 21 ||
        expire->toDateTime()->second() != 0){
-      TEST_FAIL("[HttpCookie test Parse case9]");
+      TEST_FAIL("[HttpCookie test SetToHeader case9]");
       break;
     }
     
     //cookie2
     if(!cookie2->getPropertySecure()) {
-      TEST_FAIL("[HttpCookie test Parse case10]");
+      TEST_FAIL("[HttpCookie test SetToHeader case10]");
       break;
     }
        
     if(cookie2->getPropertyPath() == nullptr 
         || !cookie2->getPropertyPath()->equals("/abc")) {
       printf("path is %s \n",cookie1->getPropertyPath()->toChars());
-      TEST_FAIL("[HttpCookie test Parse case11]");
+      TEST_FAIL("[HttpCookie test SetToHeader case11]");
       break;
     }
     
     if(cookie2->getPropertyDomain() == nullptr 
         || !cookie2->getPropertyDomain()->equals("example.com")) {
-      TEST_FAIL("[HttpCookie test Parse case12]");
+      TEST_FAIL("[HttpCookie test SetToHeader case12]");
       break;
     }
     
     if(cookie2->getPropertyDomain() == nullptr 
         || !cookie2->getPropertyDomain()->equals("example.com")) {
-      TEST_FAIL("[HttpCookie test Parse case13]");
+      TEST_FAIL("[HttpCookie test SetToHeader case13]");
       break;
     }
     
     if(cookie2->getPropertyMaxAge() != 600) {
-      TEST_FAIL("[HttpCookie test Parse case14]");
+      TEST_FAIL("[HttpCookie test SetToHeader case14]");
       break;
     }
     
@@ -117,7 +120,7 @@ void testCookieParse() {
        expire->toDateTime()->month() != st(Calendar)::October ||
        expire->toDateTime()->dayOfMonth() != 21 ||
        expire->toDateTime()->dayOfWeek() != st(Calendar)::Wednesday){
-      TEST_FAIL("[HttpCookie test Parse case15]");
+      TEST_FAIL("[HttpCookie test SetToHeader case15]");
       break;
     }
     
@@ -126,22 +129,13 @@ void testCookieParse() {
        expire->toDateTime()->minute() != 28 ||
        expire->toDateTime()->dayOfMonth() != 21 ||
        expire->toDateTime()->second() != 0){
-      TEST_FAIL("[HttpCookie test Parse case16]");
+      TEST_FAIL("[HttpCookie test SetToHeader case16]");
       break;
     }
     
     break;
   }
-  
-  while(1) {
-    String cookie = "yummy_cookie=choco; tasty_cookie=strawberry";
-    ArrayList<HttpCookie> cookies = st(HttpCookieParser)::parse(cookie);
-    if(cookies == nullptr || cookies->size() != 2) {
-      TEST_FAIL("[HttpCookie test Parse case17]");
-      break;
-    }
-    break;
-  }
-  TEST_OK("[HttpCookie test Parse case100]");
+
+  TEST_OK("[HttpCookie test SetToHeader case100]");
 
 }

@@ -9,7 +9,6 @@ cflags = -fpic \
 		-I ../../../../io/include \
 		-I ../../../../util/include/ \
 		-I ../../../../net/include \
-		-I ../../../../net/socket/include \
 		-I ../../../../security/include \
 		-I ../../../../process/include \
 		-I ../../../../external/iniparser/include \
@@ -26,7 +25,7 @@ cflags = -fpic \
 		-I ../../../common \
 		-g \
 		-std=c++14 \
-		-fsanitize=address\
+		-fsanitize=address \
 		-fno-omit-frame-pointer
 
 external = -lpthread \
@@ -41,9 +40,9 @@ sharelib = -Wl,-rpath=../../../../out/lib/ \
 
 files =
 link =
-libname	= testClient
+libname	= testAtomicLong
 
 everything : $(libname)
 
 $(libname): $(link)
-	g++ *.cpp $(cflags) -o mytest $(external) $(sharelib)
+	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)

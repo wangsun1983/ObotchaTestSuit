@@ -56,11 +56,11 @@ int main() {
   } else {
       PosixSem sem = createPosixSem("sem_test2",0);
       long current = st(System)::currentTimeMillis();
-      sem->wait();
+      sem->wait(500);
       long waittime = (st(System)::currentTimeMillis() - current);
 
       sem->clear();
-      if(waittime > 1005 || waittime <1000) {
+      if(waittime > 505 || waittime <495) {
           TEST_FAIL("[PosixSem Test {wait(long)} case1],waittime is %ld",waittime);
           return 1;
       }

@@ -11,8 +11,10 @@
 using namespace obotcha;
 
 extern void testCookieParse();
+extern void testSetToHeader();
 
 int main() {
     testCookieParse();
+    testSetToHeader();
     return 0;
 }

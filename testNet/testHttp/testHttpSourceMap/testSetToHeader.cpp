@@ -8,29 +8,24 @@
 #include "HttpHeaderSourceMap.hpp"
 #include "Math.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
-void testParse() {
+void testSetToHeader() {
   while(1) {
-    HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
+    HttpHeader header = createHttpHeader();
+    header->set(createString("SourceMap"),createString("/path/to/file.js.map"));
+    
+    HttpHeaderSourceMap timing = header->getSourceMap();
     timing->import("/path/to/file.js.map");
     if(!timing->get()->equals("/path/to/file.js.map")) {
-      TEST_FAIL("[HttpHeaderSourceMap test Parse case1]");
+      TEST_FAIL("[HttpHeaderSourceMap test SetToHeader case1]");
       break;
     }
     break;
   }
   
-  while(1) {
-    HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
-    timing->set("/path/to/file.js.map");
-    if(!timing->get()->equals("/path/to/file.js.map")) {
-      TEST_FAIL("[HttpHeaderSourceMap test Parse case2]");
-      break;
-    }
-    break;
-  }
 
   TEST_OK("[HttpHeaderSourceMap test Parse case100]");
 

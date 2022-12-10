@@ -50,6 +50,8 @@ extern int testCalendarDecreaseSecond_Interval();
 
 extern int convertDayOfWeekFromJava(int);
 
+extern void testCalendarIsLeapYear();
+
 void simpleTest() {
   Calendar c = createCalendar(9277732677921l);
   printf("day of week is %d \n",c->get(st(Calendar)::DayOfWeek));
@@ -212,6 +214,7 @@ int main() {
     testCalendarDecreaseHour_Interval();
     testCalendarDecreaseMinute_Interval();
     testCalendarDecreaseSecond_Interval();
+    testCalendarIsLeapYear();
 
     return 0;
 
