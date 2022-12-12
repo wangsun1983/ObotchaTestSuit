@@ -34,6 +34,8 @@ extern void TestCounts();
 extern void trimPerformance();
 extern void StringContentEqualsTest();
 extern void testStringFind();
+extern void TestStringHashcode();
+extern void TestStringStartsWithIgnoreCase();
 
 int main() {
   testStringFind();
@@ -77,6 +79,10 @@ int main() {
   TestStringEquals();
 
   TestCounts();
+  
+  TestStringHashcode();
+  
+  TestStringStartsWithIgnoreCase();
 
   return 0;
 }

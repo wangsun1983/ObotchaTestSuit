@@ -12,10 +12,12 @@ extern void testFileGetSuffix();
 extern void testFileGetNameWithNoSuffix();
 extern void testFileGetTime();
 extern void testFileRename();
+extern void testFileOpen();
+extern void testFileCreateDirs();
 
 int main() {
     testFileRename();
-   
+    testFileOpen();
     testFileGetTime();
     testFileGetNameWithNoSuffix();
     testFileGetName();
@@ -23,4 +25,5 @@ int main() {
     testFileGetAbsPath();
     testCanRwx();
     testFileSetRwx();
+    testFileCreateDirs();
 }

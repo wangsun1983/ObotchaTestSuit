@@ -15,13 +15,14 @@ extern void equaltest();
 extern void TestParseException();
 extern void testHash();
 extern void testUint64WithCRLF();
+extern void testHashCode();
 
 int main() {
+    testHashCode();
     basetest();
     equaltest();
     testtostring();
     TestParseException();
-    testHash();
     testUint64WithCRLF();
     return 0;
 }

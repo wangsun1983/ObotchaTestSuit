@@ -10,13 +10,11 @@
 
 using namespace obotcha;
 
-extern void testParse();
-extern void testToString();
-extern void testSetToHeader();
+extern void testGetMethodName();
+extern void testGetUrl();
 
 int main() {
-    testParse();
-    testToString();
-    testSetToHeader();
+    testGetMethodName();
+    testGetUrl();
     return 0;
 }

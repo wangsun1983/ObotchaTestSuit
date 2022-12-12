@@ -14,7 +14,7 @@ void testFileGetNameWithNoSuffix() {
     file = createFile("abc.cpp");
     String name = file->getNameWithNoSuffix();
     if(!name->equals("abc")) {
-       TEST_FAIL("[File Test {getNameWithNoSuffix()} case1]");
+       TEST_FAIL("[File Test {getNameWithNoSuffix()} case1,name is %s]",name->toChars());
     }
 
     //test2
