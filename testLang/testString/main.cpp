@@ -36,8 +36,11 @@ extern void StringContentEqualsTest();
 extern void testStringFind();
 extern void TestStringHashcode();
 extern void TestStringStartsWithIgnoreCase();
+extern void TestStringToUint();
 
 int main() {
+  TestStringToUint();
+
   testStringFind();
 
   StringContentEqualsTest();

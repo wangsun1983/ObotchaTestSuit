@@ -697,9 +697,9 @@ void basetest() {
 
   //Float toFloat();
   while(1) {
-    String abc = "1.2";
+    String abc = "1.234567";
     Float f = abc->toFloat();
-    if(f->toValue() != 1.2f) {
+    if(f->toValue() != 1.23457) {
        TEST_FAIL("BaseTest String toFloat test1");
        break;
     }
@@ -717,11 +717,11 @@ void basetest() {
 
   //    Double toDouble();
   while(1) {
-    String abc = "1.2";
+    String abc = "1.23689575";
     Double f = abc->toDouble();
     //std::out<<"double f is "<<f<<std::endl;
     //TEST_FAIL("BaseTest double f is %lf \n",f->toValue());
-    if(f->toValue() != 1.2) {
+    if(f->toValue() != 1.23689575) {
       //TODO
        TEST_FAIL("BaseTest String toDouble test1");
        break;

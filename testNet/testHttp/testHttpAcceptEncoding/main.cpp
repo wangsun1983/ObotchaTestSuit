@@ -12,9 +12,11 @@ using namespace obotcha;
 
 extern void testEncodingParse();
 extern void testEncodingToString();
+extern void testSetToHeader();
 
 int main() {
     testEncodingParse();
     testEncodingToString();
+    testSetToHeader();
     return 0;
 }
