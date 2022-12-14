@@ -15,6 +15,7 @@ extern void testLogic();
 extern void testUpdate();
 extern void testparse();
 extern void testBooleanParse();
+extern void testhashcode();
 
 int main() {
     basetest();
@@ -23,5 +24,6 @@ int main() {
     testUpdate();
     testparse();
     testBooleanParse();
+    testhashcode();
     return 0;
 }

@@ -106,4 +106,53 @@ void testappend() {
       TEST_OK("ByteArray testappend test 8");
       break;
     }
+    
+    //append(const sp<_ByteArray> &b, int len)
+    while(1) {
+        ByteArray data = createByteArray(16);
+        for(int i = 0;i < 16;i++) {
+            data[i] = i;
+        }
+        
+        ByteArray data2 = createByteArray(8);
+        for(int i = 16;i < 24;i++) {
+            data2[i-16] = i;
+        }
+        
+        data->append(data2,2);
+        if(data->size() != 18) {
+            TEST_FAIL("ByteArray testappend test 9");
+            break;
+        }
+        
+        for(int i = 0;i < 18;i++) {
+            if(data[i] != i) {
+                TEST_FAIL("ByteArray testappend test 10");
+                break;
+            }
+        }
+        
+        break;
+    }
+    
+    while(1) {
+        ByteArray data = createByteArray(16);
+        for(int i = 0;i < 16;i++) {
+            data[i] = i;
+        }
+        
+        ByteArray data2 = createByteArray(8);
+        for(int i = 16;i < 24;i++) {
+            data2[i-16] = i;
+        }
+        
+        try {
+            data->append(data2,32);
+            TEST_FAIL("ByteArray testappend test 11");
+        } catch(...) {}
+        
+        break;
+    }
+    
+    TEST_OK("ByteArray testappend test 100");
 }

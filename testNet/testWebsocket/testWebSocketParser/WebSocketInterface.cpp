@@ -13,20 +13,20 @@
 #include "WebSocketComposer.hpp"
 #include "File.hpp"
 #include "FileOutputStream.hpp"
+#include "WebSocketHybi13Parser.hpp"
+
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
-extern int testFrameParser();
-extern int testSimpleFrameParser();
-extern int testFrameParserException();
-extern int testWebFrameOneByteParser();
-extern int testWebSocketInterface();
+int testWebSocketInterface() {
+  
+  WebSocketParser parser = createWebSocketHybi13Parser();
+  if(parser->getVersion() != 13) {
+      TEST_FAIL("testWebSocketInterface case1");
+  }
+    
+  TEST_OK("testWebSocketInterface case100");
 
-int main() {
-    testSimpleFrameParser();
-	testFrameParser();
-    testFrameParserException();
-    testWebFrameOneByteParser();
-    testWebSocketInterface();
-    return 0;
+  return 0;
 }

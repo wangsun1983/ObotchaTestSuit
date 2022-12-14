@@ -15,27 +15,20 @@ void testToString() {
   while(1) {
     HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
     c->import("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
-
-    HttpHeaderClearSiteData c2 = createHttpHeaderClearSiteData(c->toString());
-
-    if(c->isCache() != c2->isCache()) {
-      TEST_FAIL("[HttpHeaderClearSiteData test toString case1]");
-      break;
+    if(!c->toString()->equals("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
+      TEST_FAIL("[HttpHeaderClearSiteData test toString case1],str is %s",c->toString()->toChars());
     }
+    break;
+  }
 
-    if(c->isCookies() != c2->isCookies()) {
-      TEST_FAIL("[HttpHeaderClearSiteData test toString case2]");
-      break;
-    }
-
-    if(c->isStorage() != c2->isStorage()) {
-      TEST_FAIL("[HttpHeaderClearSiteData test toString case3]");
-      break;
-    }
-
-    if(c->isExecutionContexts() != c2->isExecutionContexts()) {
-      TEST_FAIL("[HttpHeaderClearSiteData test toString case4]");
-      break;
+  while(1) {
+    HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
+    c->setCache(true);
+    c->setCookies(true);
+    c->setExecutionContexts(true);
+    c->setStorage(true);
+    if(!c->toString()->equals("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
+      TEST_FAIL("[HttpHeaderClearSiteData test toString case2],str is %s",c->toString()->toChars());
     }
     break;
   }

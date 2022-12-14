@@ -22,5 +22,13 @@ void testParse() {
     break;
   }
 
+  while(1) {
+    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade(" websocket ");
+    if(!upgrade->get()->equals("websocket")) {
+      TEST_FAIL("[HttpHeaderUpgrade test Parse case2]");
+    }
+    break;
+  }
+
   TEST_OK("[HttpHeaderUpgrade test Parse case100]");
 }

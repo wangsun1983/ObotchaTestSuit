@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 

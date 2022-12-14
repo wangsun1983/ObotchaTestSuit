@@ -17,7 +17,7 @@ void testPerformance() {
       }
     }
     auto v = t->stop();
-    //TEST_FAIL("string buff cost:%ld ms \n",v);
+    TEST_FAIL("string buff cost:%ld ms \n",v);
 
     t->start();
     for(int i = 0;i < 1024*1024;i++) {
@@ -30,7 +30,7 @@ void testPerformance() {
       }
     }
     auto v2 = t->stop();
-    //TEST_FAIL("string cost:%ld ms \n",v2);
+    TEST_FAIL("string cost:%ld ms \n",v2);
 
     TEST_OK("StringBuffer append test100");
 }

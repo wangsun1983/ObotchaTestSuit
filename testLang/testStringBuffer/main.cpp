@@ -13,11 +13,13 @@ extern void testAppend();
 extern void testPerformance();
 extern void testToString();
 extern void testSubString();
+extern void testReset();
 
 int main() {
     testAppend();
     testToString();
     testSubString();
+    testReset();
     //testPerformance();
     return 0;
 }

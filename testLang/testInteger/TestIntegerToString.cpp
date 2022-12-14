@@ -136,6 +136,14 @@ void testtostring() {
        }
      }
 
+     for(int i = 0;i < 1024*32;i++) {
+       Integer t1 = createInteger(i);
+       if(!t1->toString()->equals(createString(i))) {
+         TEST_FAIL("Integer toInt test4");
+         break;
+       }
+     }
+
      TEST_OK("Integer toInt test10");
      break;
    }

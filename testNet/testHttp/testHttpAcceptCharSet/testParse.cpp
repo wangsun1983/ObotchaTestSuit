@@ -29,6 +29,21 @@ void testCharSetParse() {
   }
 
   while(1) {
+    HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet(createString("iso-8859-1"));
+    ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
+    if(charsets->size() != 1) {
+      TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case1_1]");
+      break;
+    }
+
+    if(!charsets->get(0)->type->equals("iso-8859-1")) {
+        TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case2_1]");
+        break;
+    }
+    break;
+  }
+
+  while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->import("utf-8, iso-8859-1;q=0.5");
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();

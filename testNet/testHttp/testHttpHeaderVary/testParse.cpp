@@ -28,6 +28,22 @@ void testParse() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderVary match = createHttpHeaderVary(createString("no-referrer, User-Agent"));
+    ArrayList<String> list = match->get();
+    if(list->size() != 2) {
+      TEST_FAIL("[HttpHeaderVary test Parse case3]");
+      break;
+    }
+
+    if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("User-Agent")) {
+      TEST_FAIL("[HttpHeaderVary test Parse case4]");
+      break;
+    }
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderVary test Parse case100]");
 }
