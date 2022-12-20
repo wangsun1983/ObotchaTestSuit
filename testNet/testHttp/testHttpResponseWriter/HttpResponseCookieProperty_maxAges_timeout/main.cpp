@@ -6,7 +6,6 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "HttpServer.hpp"
-#include "HttpResponseWriter.hpp"
 #include "HttpCookie.hpp"
 #include "HttpResponse.hpp"
 #include "HttpStatus.hpp"
@@ -16,6 +15,8 @@
 #include "Handler.hpp"
 #include "Calendar.hpp"
 #include "TimeZone.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -25,14 +26,14 @@ int count = 0;
 long setExpires = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,sp<_HttpResponseWriter> w,HttpPacket msg){
+  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();
@@ -48,8 +49,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 printf("setExpires is %ld \n",setExpires);
 
                 //cookie1->setPropertyExpires(createHttpDate(c->getGmtDateTime()));
-                cookie1->setPropertyMaxAge(1);
-
+                cookie1->setPropertyMaxAge(0);
 
                 //HttpCookie cookie2 = createHttpCookie("test2_tag2","test2_value2");
                 response->getHeader()->addCookie(cookie1);
@@ -60,12 +60,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else if(count == 1) {
                 //TODO
                 HttpEntity entity = msg->getEntity();
-                auto lists = entity->getEncodedKeyValues();
-                if(lists != nullptr && lists->size() != 0) {
-                  printf("---TestHttpResponseWriter Cookie Property MaxAges expire test1 [FAILED]---\n");
+                auto content = entity->getContent();
+                if(content != nullptr) {
+                  TEST_FAIL("TestHttpResponseWriter Cookie Property maxAges timeout test1,content is %s",content->toString()->toChars());
                 }
-                
-
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
@@ -77,7 +75,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               
           }
           break;
@@ -96,5 +94,5 @@ int main() {
   server->close();
   sleep(1);
   
-  printf("---TestHttpResponseWriter Cookie Property MaxAges expire test100 [OK]---\n");
+  TEST_OK("TestHttpResponseWriter Cookie Property MaxAges expire test100");
 }

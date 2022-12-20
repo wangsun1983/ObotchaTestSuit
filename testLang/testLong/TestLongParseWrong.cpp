@@ -34,7 +34,7 @@ void testLongParseWrong() {
 
    v1 = st(Long)::parseBinaryLong("111d");
    if(v1 != nullptr) {
-    TEST_FAIL("Long testLongParseWrong test4");
+    TEST_FAIL("Long testLongParseWrong test4,v is %x",v1->toValue());
     break;
    }
 

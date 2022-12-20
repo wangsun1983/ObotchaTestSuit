@@ -6,6 +6,7 @@
 #include "Md.hpp"
 #include "TestLog.hpp"
 
+
 using namespace obotcha;
 
 void testFileInputStreamRead() {

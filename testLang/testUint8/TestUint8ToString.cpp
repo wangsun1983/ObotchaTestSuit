@@ -90,7 +90,7 @@ void testtostring() {
        String v1 = t1->toBinaryString();
        String v2 = createString(BinaryTable[i]);
        if(v1 != v2) {
-         TEST_FAIL("Uint8 toString test3");
+         TEST_FAIL("Uint8 toString test3,v1 is %s,v2 is %s,i is %d",v1->toChars(),v2->toChars(),i);
          break;
        }
      }

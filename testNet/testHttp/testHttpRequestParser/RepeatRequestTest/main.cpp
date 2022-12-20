@@ -1,6 +1,3 @@
-#include "HttpPacketParser.hpp"
-
-using namespace obotcha;
 
 extern void testRepeatRequest();
 

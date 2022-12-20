@@ -28,7 +28,7 @@ int main() {
     //create testFile;
     createSampleFile(createFile("./tmp/testdata"),1024*1024*32);
 
-    int port = 2007;//getEnvPort();
+    int port = getEnvPort();
     Socket s = createSocketBuilder()
                 ->setAddress(createInet4Address(port))
                 ->newSocket();
@@ -39,6 +39,7 @@ int main() {
     monitor->bind(s,createMyListener());
 
     OutputStream stream = s->getOutputStream();
+    stream->open();
 
     long index = 0;
 

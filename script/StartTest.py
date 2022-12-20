@@ -140,7 +140,8 @@ def scanTest(path):
         buildfile = BUILD_REPORT_DIR + "/"
         executefile = EXECUTE_REPORT_DIR + "/"
         for ll in buildpath:
-            if ll != "." and len(ll) > 0 :
+            print("build path ll is ",ll)
+            if ll != "." and ll != ".." and len(ll) > 0 :
                 buildfile += ll
                 buildfile += "_"
                 executefile += ll
@@ -151,6 +152,7 @@ def scanTest(path):
         else:
             buildfile += "Success.log"
 
+        print("build result is ",buildfile)
         #write BuildReport
         file = open(buildfile,"w")
         file.write(makeret)
@@ -247,8 +249,9 @@ def main():
     #remove report
     os.system("rm -rf " + REPORT_DIR)
     currentPath = os.path.abspath('.')
-    os.makedirs(currentPath + BUILD_REPORT_DIR)
-    os.makedirs(currentPath + EXECUTE_REPORT_DIR)
+    #print("mkdir is ",currentPath + '/' + BUILD_REPORT_DIR)
+    os.makedirs(currentPath + '/' + BUILD_REPORT_DIR)
+    os.makedirs(currentPath + '/' + EXECUTE_REPORT_DIR)
     print("currentPath is ",currentPath)
     for path in testPath:
         for filename in os.listdir(path):

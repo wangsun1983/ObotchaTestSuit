@@ -6,7 +6,6 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "HttpServer.hpp"
-#include "HttpResponseWriter.hpp"
 #include "HttpCookie.hpp"
 #include "HttpResponse.hpp"
 #include "HttpStatus.hpp"
@@ -16,6 +15,8 @@
 #include "Handler.hpp"
 #include "Calendar.hpp"
 #include "TimeZone.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -25,14 +26,14 @@ int count = 0;
 long setExpires = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,sp<_HttpResponseWriter> w,HttpPacket msg){
+  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();
@@ -59,37 +60,23 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else if(count == 1) {
                 //TODO
                 HttpEntity entity = msg->getEntity();
-                auto lists = entity->getEncodedKeyValues();
-                auto keyvalue1 = lists->get(0);
+                auto content = entity->getContent()->toString();
+                HttpUrlEncodedValue encodedValue = createHttpUrlEncodedValue(content);
+                auto map = encodedValue->getValues();
+
+                auto v1 = map->get(createString("test2_tag1"));
+                if(v1 == nullptr || !v1->equals("test2_value1")) {
+                     TEST_FAIL("TestHttpResponseWriter Response Cookie Property test1");
+                }
                 
-                //printf("key1 is %s,vaue1 is %s \n",keyvalue1->getKey()->toChars(),keyvalue1->getValue()->toChars());
-                if(!keyvalue1->getKey()->equals("test2_tag1")) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test1 [FAILED]---\n");
+                auto v2 = map->get(createString("path"));
+                if(v2 == nullptr || !v2->equals("path123")) {
+                     TEST_FAIL("TestHttpResponseWriter Response Cookie Property test2");
                 }
 
-                if(!keyvalue1->getValue()->equals("test2_value1")) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test2 [FAILED]---\n");
-                }
-
-                auto keyvalue2 = lists->get(1);
-
-                if(!keyvalue2->getKey()->equals("path")) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test3 [FAILED]---,keyvalue2 key is %s\n",keyvalue2->getKey()->toChars());
-                }
-
-                if(!keyvalue2->getValue()->equals("path123")) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test4 [FAILED]---,keyvalue2 value is %s \n",keyvalue2->getValue()->toChars());
-                }
-
-                auto keyvalue3 = lists->get(2);
-
-                if(!keyvalue3->getKey()->equals("expires")) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test5 [FAILED]---\n");
-                }
-
-                String expires = keyvalue3->getValue();
-                if(expires->toBasicLong() != setExpires) {
-                    printf("---TestHttpResponseWriter Cookie Property Expires test6 [FAILED]---,set is %ld,get is %ld\n",setExpires,expires->toBasicLong());
+                auto v3 = map->get(createString("expires"));
+                if(v3->toBasicLong() != setExpires) {
+                     TEST_FAIL("TestHttpResponseWriter Response Cookie Property test3");
                 }
 
                 HttpResponse response = createHttpResponse();
@@ -103,7 +90,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               
           }
           break;
@@ -112,15 +99,17 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1256))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
   latch->await();
   server->close();
   sleep(1);
-  
-  printf("---TestHttpResponseWriter Cookie Property Expires test100 [OK]---\n");
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttpResponseWriter Response Cookie Property test100");
 }

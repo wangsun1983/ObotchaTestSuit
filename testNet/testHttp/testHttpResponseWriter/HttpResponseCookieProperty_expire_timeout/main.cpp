@@ -6,7 +6,6 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "HttpServer.hpp"
-#include "HttpResponseWriter.hpp"
 #include "HttpCookie.hpp"
 #include "HttpResponse.hpp"
 #include "HttpStatus.hpp"
@@ -16,6 +15,8 @@
 #include "Handler.hpp"
 #include "Calendar.hpp"
 #include "TimeZone.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -25,14 +26,14 @@ int count = 0;
 long setExpires = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,sp<_HttpResponseWriter> w,HttpPacket msg){
+  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();
@@ -58,14 +59,29 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else if(count == 1) {
                 //TODO
                 HttpEntity entity = msg->getEntity();
-                auto lists = entity->getEncodedKeyValues();
-                if(lists != nullptr && lists->size() != 0) {
-                  printf("---TestHttpResponseWriter Cookie Property Expires timeout test2 [FAILED]---\n");
+                auto content = entity->getContent();
+                if(content != nullptr) {
+                  TEST_FAIL("TestHttpResponseWriter Cookie Property Expires timeout test1");
                 }
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
-                //count = 0;
+
+                /*
+                auto content = entity->getContent()->toString();
+                HttpUrlEncodedValue encodedValue = createHttpUrlEncodedValue(content);
+                auto map = encodedValue->getValues();
+
+                HttpEntity entity = msg->getEntity();
+                auto lists = entity->getEncodedKeyValues();
+                if(lists != nullptr && lists->size() != 0) {
+                  TEST_FAIL("TestHttpResponseWriter Cookie Property Expires timeout test2");
+                }
+                HttpResponse response = createHttpResponse();
+                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                w->write(response);
+                //count = 0;*/
+
                 latch->countDown();
                 count = 0;
               }
@@ -73,7 +89,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               
           }
           break;
@@ -92,5 +108,5 @@ int main() {
   server->close();
   sleep(1);
   
-  printf("---TestHttpResponseWriter Cookie Property Expires timeout test100 [OK]---\n");
+  TEST_OK("TestHttpResponseWriter Cookie Property Expires timeout test100");
 }

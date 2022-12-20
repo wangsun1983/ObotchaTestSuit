@@ -129,7 +129,7 @@ void testLongWithCRLF() {
       char p[5] = {'8','\n','\r','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseDecLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 89) {
           TEST_FAIL("Long Parse With CRLF test9");
           break;
       }
@@ -206,7 +206,7 @@ void testLongWithCRLF() {
       char p[10] = {'\n','8','\n','\r','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseDecLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 89) {
           TEST_FAIL("Long Parse With CRLF test9_1");
           break;
       }
@@ -283,7 +283,7 @@ void testLongWithCRLF() {
       char p[10] = {' ','8',' ',' ','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseDecLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 89) {
           TEST_FAIL("Long Parse With CRLF test9_2");
           break;
       }
@@ -407,7 +407,7 @@ void testLongWithCRLF() {
       char p[5] = {'8','\n','\r','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseHexLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 0x89) {
           TEST_FAIL("Long Parse With CRLF test18,t is %x",t->toValue());
           break;
       }
@@ -483,7 +483,7 @@ void testLongWithCRLF() {
       char p[10] = {'\r','\n','8','\n','\r','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseHexLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 0x89) {
           TEST_FAIL("Long Parse With CRLF test18,t is %x",t->toValue());
           break;
       }
@@ -609,7 +609,7 @@ void testLongWithCRLF() {
       char p[7] = {'0','x','8','\n','\r','9',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseHexLong(s);
-      if(t != nullptr) {
+      if(t == nullptr || t->toValue() != 0x89) {
           TEST_FAIL("Long Parse With CRLF test27,t is %x",t->toValue());
           break;
       }
@@ -887,7 +887,7 @@ void testLongWithCRLF() {
 
     //binary
   while(1) {
-      char p[7] = {'b','1','0','\n','\r',0};
+      char p[7] = {'0','b','1','0','\n','\r',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseBinaryLong(s);
       if(t == nullptr) {
@@ -904,7 +904,7 @@ void testLongWithCRLF() {
 
     //binary
   while(1) {
-      char p[7] = {'b','1','0',0};
+      char p[7] = {'0','b','1','0',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseBinaryLong(s);
       if(t == nullptr) {
@@ -921,7 +921,7 @@ void testLongWithCRLF() {
 
     //binary
   while(1) {
-      char p[10] = {'\r','\n',' ','b','1','0',0};
+      char p[10] = {'\r','\n',' ','0','b','1','0',0};
       String s = createString((const char * )p);
       Long t = st(Long)::parseBinaryLong(s);
       if(t == nullptr) {

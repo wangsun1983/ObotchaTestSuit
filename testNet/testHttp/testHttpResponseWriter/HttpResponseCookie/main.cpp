@@ -6,7 +6,6 @@
 #include "System.hpp"
 #include "ByteRingArray.hpp"
 #include "HttpServer.hpp"
-#include "HttpResponseWriter.hpp"
 #include "HttpCookie.hpp"
 #include "HttpResponse.hpp"
 #include "HttpStatus.hpp"
@@ -14,6 +13,8 @@
 #include "Inet4Address.hpp"
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 
 using namespace obotcha;
 
@@ -22,14 +23,14 @@ int count = 0;
 
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,sp<_HttpResponseWriter> w,HttpPacket msg){
+  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(NetEvent)::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(NetEvent)::Message: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();
@@ -43,27 +44,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else if(count == 1) {
                 //TODO
                 HttpEntity entity = msg->getEntity();
-                auto lists = entity->getEncodedKeyValues();
-                auto keyvalue1 = lists->get(0);
-                
-                //printf("key1 is %s,vaue1 is %s \n",keyvalue1->getKey()->toChars(),keyvalue1->getValue()->toChars());
-                if(!keyvalue1->getKey()->equals("test_tag1")) {
-                    printf("---TestHttpResponseWriter Request Encode test1 [FAILED]---\n");
+                auto content = entity->getContent()->toString();
+                HttpUrlEncodedValue encodedValue = createHttpUrlEncodedValue(content);
+                auto map = encodedValue->getValues();
+
+                auto v1 = map->get(createString("test_tag1"));
+                if(v1 == nullptr || !v1->equals("test_value1")) {
+                     TEST_FAIL("TestHttpResponseWriter Request Encode test1");
                 }
 
-                if(!keyvalue1->getValue()->equals("test_value1")) {
-                    printf("---TestHttpResponseWriter Request Encode test2 [FAILED]---\n");
+                auto v2 = map->get(createString("test_tag2"));
+                if(v2 == nullptr || !v2->equals("test_value2")) {
+                     TEST_FAIL("TestHttpResponseWriter Request Encode test2");
                 }
 
-                auto keyvalue2 = lists->get(1);
-                //printf("key2 is %s,vaue2 is %s \n",keyvalue2->getKey()->toChars(),keyvalue2->getValue()->toChars());
-                if(!keyvalue2->getKey()->equals("test_tag2")) {
-                    printf("---TestHttpResponseWriter Request Encode test3 [FAILED]---\n");
+                if(map->size() != 2) {
+                     TEST_FAIL("TestHttpResponseWriter Request Encode test3");
                 }
 
-                if(!keyvalue2->getValue()->equals("test_value2")) {
-                    printf("---TestHttpResponseWriter Request Encode test4 [FAILED]---\n");
-                }
 
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -75,7 +73,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(NetEvent)::Disconnect:{
               
           }
           break;
@@ -84,14 +82,19 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
+  int port = getEnvPort();
+  printf("port is %d \n",port);
   MyHttpListener listener = createMyHttpListener();
   HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1256))
+                    ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
   server->start();
   latch->await();
   server->close();
+
+  port++;
+  setEnvPort(port);
   
-  printf("---TestHttpResponseWriter cookie test100 [OK]---\n");
+  TEST_OK("TestHttpResponseWriter cookie test100");
 }

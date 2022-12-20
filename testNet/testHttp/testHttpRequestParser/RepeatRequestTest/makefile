@@ -9,6 +9,7 @@ cflags = -fpic \
 		-I ../../../../../io/include \
 		-I ../../../../../util/include/ \
 		-I ../../../../../net/include \
+		-I ../../../../../net/http/include \
 		-I ../../../../../net/socket/include \
 		-I ../../../../../security/include \
 		-I ../../../../../process/include \

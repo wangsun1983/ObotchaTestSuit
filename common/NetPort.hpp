@@ -9,7 +9,7 @@
 #include "FileOutputStream.hpp"
 #include "BufferedReader.hpp"
 
-#define DEFAULT_PORT 2001
+#define DEFAULT_PORT 4000
 #define DEFAULT_PATH "/tmp/obotcha_test_suit_port.txt"
 
 using namespace obotcha;
@@ -27,7 +27,7 @@ int getEnvPort() {
 }
 
 void setEnvPort(int p) {
-    if(p > 60000) {
+    if(p > 6000) {
         p = DEFAULT_PORT;
     }
     File file = createFile(DEFAULT_PATH);
