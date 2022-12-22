@@ -11,7 +11,7 @@ s.connect(server_address)
 
 s.send(str("hello server").encode("utf-8"))
 
-sendData = s.recv(1024).decode()
+sendData = s.recv(1024)
 count = 0
 
 while (count < 50):

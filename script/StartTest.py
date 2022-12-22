@@ -4,6 +4,8 @@ import threading
 import time
 from enum import Enum
 
+#prepare
+#pip3 install websocket-client
 
 class TestType(Enum):
     TestNormal             = 1
@@ -49,9 +51,9 @@ testPath = [
     "../testUtil/testFilament",
     "../testUtil/testConcurrent",
     "../testSql",
-    "../testSql/testMySqlClient",
-    "../testSql/testRedisClient",
-    "../testSql/testSqlite3Client"
+    #"../testSql/testMySqlClient",
+    #"../testSql/testRedisClient",
+    #"../testSql/testSqlite3Client"
     ]
 
 #create report again
@@ -123,7 +125,7 @@ def scanTest(path):
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
         go_build_success = True
-        env_path =  os.path.abspath('.') + "../3rdparty/go"
+        env_path =  os.path.abspath('.') + "/" + "../3rdparty/go"
         if testType == TestType.TestRunGoServer :
             gobuild = os.popen("export GOPATH=" 
                             + env_path + " && "

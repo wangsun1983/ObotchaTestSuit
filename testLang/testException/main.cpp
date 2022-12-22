@@ -4,6 +4,7 @@
 #include "Object.hpp"
 #include "Exception.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 

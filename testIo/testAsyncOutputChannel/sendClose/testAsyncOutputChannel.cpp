@@ -96,6 +96,7 @@ int main() {
     if(v1->equals(v2)) {
         TEST_FAIL("testAsyncOutputChannel close case1")
     }
-    
+    port++;
+    setEnvPort(port);
     TEST_OK("testAsyncOutputChannel close case100");
 }

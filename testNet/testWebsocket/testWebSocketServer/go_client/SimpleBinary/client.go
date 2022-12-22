@@ -29,7 +29,7 @@ func main() {
 	//data, err := ioutil.ReadFile("./tmp/data")
     //ws.Write(data)
     
-    fi, err := os.Open("./tmp/data")
+    fi, err := os.Open("./tmp/testdata")
     r := bufio.NewReader(fi)
     buf := make([]byte, 1024)
     for {

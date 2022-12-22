@@ -30,5 +30,5 @@ with open("./tmp/file","wb") as f:
 f.close()
 print("recv complete")
 
-port = port + 1
-setEnvPort(port)
+#port = port + 1
+#setEnvPort(port)

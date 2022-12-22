@@ -44,8 +44,7 @@ public:
 int main() {
     //prepare file
     File file = createFile("./tmp/testdata");
-    filesize = file->length();
-
+    
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
@@ -59,15 +58,16 @@ int main() {
         stream->close();
       }
     }
+    filesize = file->length();
 
     stream->open();
 
     int port = getEnvPort();
     InetAddress addr = createInet6Address(port);
-
+    printf("port is %d \n",port);
     ServerSocket server = createSocketBuilder()->setAddress(addr)->newServerSocket();
-    server->bind();
-
+    int ret = server->bind();
+    printf("bind ret is %d \n",ret);
     stream->open(st(OutputStream)::Append);
 
     SocketMonitor monitor = createSocketMonitor();
