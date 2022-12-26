@@ -32,6 +32,26 @@ void testParse() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderContentRange range = createHttpHeaderContentRange(createString("bytes 200-1000/67589"));
+    if(!range->getUnit()->equals("bytes")) {
+      TEST_FAIL("[HttpHeaderContentRange test Parse case5]");
+    }
+
+    if(range->getStart() != 200) {
+      TEST_FAIL("[HttpHeaderContentRange test Parse case6]");
+    }
+
+    if(range->getEnd() != 1000) {
+      TEST_FAIL("[HttpHeaderContentRange test Parse case7]");
+    }
+
+    if(range->getSize() != 67589) {
+      TEST_FAIL("[HttpHeaderContentRange test Parse case8]");
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderContentRange test Parse case100]");
 

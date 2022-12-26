@@ -38,6 +38,17 @@ void testParse() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderHost digest = createHttpHeaderHost();
+    digest->setHost(" developer.mozilla.org");
+    auto host = digest->getHost();
+    if(!host->equals("developer.mozilla.org")) {
+      TEST_FAIL("[HttpHeaderHost test Parse case4]");
+      break;
+    }
+    break;
+  }
 
 
   TEST_OK("[HttpHeaderHost test Parse case100]");
