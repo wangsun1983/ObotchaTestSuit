@@ -10,29 +10,26 @@
 #include "HttpHeaderAllow.hpp"
 #include "HttpHeaderContentEncoding.hpp"
 #include "TestLog.hpp"
-#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
-void testSetToHeader() {
+void testParse() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Encoding"),
-                createString("gzip, deflate"));
-    auto c = header->getContentEncoding();
+    HttpHeaderContentEncoding c = createHttpHeaderContentEncoding();
+    c->import("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->equals("gzip")) {
-      TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case1]");
+      TEST_FAIL("[HttpHeaderContentEncoding test Parse case1]");
       break;
     }
 
     if(!list->get(1)->equals("deflate")) {
-      TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case2]");
+      TEST_FAIL("[HttpHeaderContentEncoding test Parse case2]");
       break;
     }
     break;
   }
 
-  TEST_OK("[HttpHeaderContentEncoding test SetToHeader case100]");
+  TEST_OK("[HttpHeaderContentEncoding test Parse case100]");
 
 }

@@ -29,6 +29,6 @@ void testAuthorizationToString() {
     break;
   }
 
-  TEST_OK("[HttpHeaderAccept test toString case100]");
+  TEST_OK("[HttpHeaderAuthorization test toString case100]");
 
 }

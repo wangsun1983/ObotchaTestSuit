@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderProxyAuthenticate.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -33,6 +34,22 @@ void testProxyAuthenticateToString() {
 
     break;
   }
+  
+  while(1) {
+    HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
+    proxyAuth->import("Basic realm=\"Access to the internal site\"");
+    HttpHeader header = createHttpHeader();
+    header->setProxyAuthenticate(proxyAuth);
+    
+    auto proxy = header->getProxyAuthenticate();
+    if(!proxy->toString()->equals("Basic realm=\"Access to the internal site\"")) {
+        TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case3] auth is %s",proxyAuth->toString()->toChars());
+        break;
+    }
+    
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderProxyAuthenticate test toString case100]");
 

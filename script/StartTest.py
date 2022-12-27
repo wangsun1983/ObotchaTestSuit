@@ -27,6 +27,7 @@ testPath = [
     "../testNet/testHttp/testHttpRequestParser",
     "../testNet/testHttp/testHttpResponseWriter",
     #do not test "./testNet/testHttp2",
+    "../testNet/testSocket",
     "../testNet/testSocket/testDatagramSocket/Client",
     "../testNet/testSocket/testDatagramSocket/Server",
     "../testNet/testSocket/testLocalSocketImpl/Client",

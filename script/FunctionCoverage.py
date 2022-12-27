@@ -31,6 +31,7 @@ testPath = [ "../testIo",
     "../testNet/testHttp/testHttpRequestParser",
     "../testNet/testHttp/testHttpResponseWriter",
     #do not test "./testNet/testHttp2",
+    "../testNet/testSocket/",
     "../testNet/testSocket/testDatagramSocket/Client",
     "../testNet/testSocket/testDatagramSocket/Server",
     "../testNet/testSocket/testLocalSocketImpl/Client",
@@ -70,11 +71,11 @@ buildFailedList = []
 
 def prepareReportFolder():
     currentPath = os.path.abspath('.')
-    if not os.path.exists(currentPath + REPORT_DIR):
-        os.makedirs(currentPath + REPORT_DIR)
+    if not os.path.exists(currentPath + "/" + REPORT_DIR):
+        os.makedirs(currentPath + "/" + REPORT_DIR)
     
-    if not os.path.exists(currentPath + COVERAGE_REPORT_DIR):
-        os.makedirs(currentPath + COVERAGE_REPORT_DIR)
+    if not os.path.exists(currentPath + "/" + COVERAGE_REPORT_DIR):
+        os.makedirs(currentPath + "/" + COVERAGE_REPORT_DIR)
 
     os.popen("rm " + COVERAGE_REPORT_FILE).read()
 
@@ -153,8 +154,8 @@ def scan(path):
                         functionMap[function] = 0
 
 def main():
-    scanInclude();
     prepareReportFolder()
+    scanInclude();
     dumpObotchaSo()
     analyseObjdump()
     print("before scan size is " + str(len(functionMap)))

@@ -8,7 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "Math.hpp"
 #include "HttpHeaderAllow.hpp"
-#include "HttpHeaderContentEncoding.hpp"
+#include "HttpHeaderTransferEncoding.hpp"
 #include "TestLog.hpp"
 #include "HttpHeader.hpp"
 
@@ -17,22 +17,22 @@ using namespace obotcha;
 void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Encoding"),
+    header->set(createString("Transfer-Encoding"),
                 createString("gzip, deflate"));
-    auto c = header->getContentEncoding();
+    auto c = header->getTransferEncoding();
     auto list = c->get();
     if(!list->get(0)->equals("gzip")) {
-      TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case1]");
+      TEST_FAIL("[HttpHeaderTransferEncoding test SetToHeader case1]");
       break;
     }
 
     if(!list->get(1)->equals("deflate")) {
-      TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case2]");
+      TEST_FAIL("[HttpHeaderTransferEncoding test SetToHeader case2]");
       break;
     }
     break;
   }
 
-  TEST_OK("[HttpHeaderContentEncoding test SetToHeader case100]");
+  TEST_OK("[HttpHeaderTransferEncoding test SetToHeader case100]");
 
 }

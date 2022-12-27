@@ -37,6 +37,8 @@ extern void testStringFind();
 extern void TestStringHashcode();
 extern void TestStringStartsWithIgnoreCase();
 extern void TestStringToUint();
+extern void TestBinaryInt();
+extern void TestStringStartsWith();
 
 int main() {
   TestStringToUint();
@@ -86,6 +88,9 @@ int main() {
   TestStringHashcode();
   
   TestStringStartsWithIgnoreCase();
-
+  
+  TestBinaryInt();
+  
+  TestStringStartsWith();
   return 0;
 }

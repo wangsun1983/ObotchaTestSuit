@@ -16,15 +16,13 @@ extern int testDefaultPipe();
 extern int testDirectPipe();
 extern int testCloseOnExecPipe();
 extern int testNoBlockPipe();
+extern void testGetPipe();
 
 int main() {
-
-    printf("---[Pipe Test Start]--- \n");
-
     testDefaultPipe();
     testDirectPipe();
     testCloseOnExecPipe();
     testNoBlockPipe();
-
+    testGetPipe();
 
 }

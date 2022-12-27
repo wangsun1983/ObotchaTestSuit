@@ -8,6 +8,7 @@
 #include "HttpHeaderAccept.hpp"
 #include "HttpHeaderContentEncoding.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -22,6 +23,17 @@ void testToString() {
     break;
   }
 
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderContentEncoding c = createHttpHeaderContentEncoding();
+    c->import("gzip, deflate");
+    header->setContentEncoding(c);
+    if(!header->getContentEncoding()->toString()->equals("gzip, deflate")) {
+      TEST_FAIL("[HttpHeaderContentEncoding test toString case2]");
+      break;
+    }
+    break;
+  }
   TEST_OK("[HttpHeaderContentEncoding test toString case100]");
 
 }
