@@ -49,6 +49,6 @@ int main() {
     testThreadQuickShutDown();
 
     testPoolReferenceCount();
-    sleep(1);
+
     return 0;
 }

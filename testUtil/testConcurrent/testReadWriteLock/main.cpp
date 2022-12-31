@@ -19,12 +19,14 @@ extern void testReadLock_TryLock();
 extern void testWriteLock_TryLock();
 extern void testReadWriteLock_Acquire();
 extern void testReadLock_LoopLock();
+extern void testReadLock_LockTimeout();
+extern void testWriteLock_LockTimeout();
 
 int main() {
+  testReadLock_LockTimeout();
+  testWriteLock_LockTimeout();
   testReadLock_LoopLock();
-  
   testReadWriteLock_Acquire();
-  
   testReadLock_Lock();
   testWriteLock_Lock();
   testReadWriteLock_Lock();

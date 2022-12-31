@@ -49,7 +49,7 @@ void testPoolReferenceCount() {
           TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case3]",pool->getStrongCount());
           //break;
         }
-        pool->awaitTermination();
+
         TEST_OK("[ThreadPoolExecutor Test Reference case4]");
         break;
     }
@@ -74,8 +74,7 @@ void testPoolReferenceCount() {
           TEST_FAIL("[ThreadPoolExecutor Test Reference count is %d case6]",pool->getStrongCount());
           //break;
         }
-        pool->shutdown();
-        pool->awaitTermination();
+        
         break;
     }
     

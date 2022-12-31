@@ -332,6 +332,60 @@ void ignorecasetest() {
             TEST_FAIL("String endsWithIgnoreCase Special test10");
             break;
         }
+        
+        //case1
+        if(testString->endsWithIgnoreCase("AB")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_1");
+            break;
+        }
+
+        //case2
+        if(testString->endsWithIgnoreCase("ABCDEF")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_2");
+            break;
+        }
+
+        //case3
+        if(!testString->endsWithIgnoreCase("ABCDE")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_3");
+            break;
+        }
+
+         //case4
+        if(testString->endsWithIgnoreCase("ab")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_4");
+            break;
+        }
+
+        //case5
+        if(testString->endsWithIgnoreCase("abcdef")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_5");
+            break;
+        }
+
+        //case6
+        if(!testString->endsWithIgnoreCase("abcde")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_6");
+            break;
+        }
+
+        //case8
+        if(!testString->endsWithIgnoreCase("bcde")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_8");
+            break;
+        }
+
+        //case9
+        if(testString->endsWithIgnoreCase("a")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_9");
+            break;
+        }
+
+        //case10
+        if(!testString->endsWithIgnoreCase("e")) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_10");
+            break;
+        }
 
         TEST_OK("String endsWithIgnoreCase Special test11");
         break;
@@ -410,6 +464,64 @@ void ignorecasetest() {
         }
 
         TEST_OK("String lastIndexOfIgnoreCase Special test10");
+        break;
+
+    }
+    
+    while(1) {
+        String testString = createString("ABCDABE");
+
+        //case1
+        if(testString->lastIndexOfIgnoreCase("AB") != 4) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test11");
+            break;
+        }
+
+        //case2
+        if(testString->lastIndexOfIgnoreCase("ABCDEF") != -1) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test12");
+            break;
+        }
+
+
+        //case3
+        if(testString->lastIndexOfIgnoreCase("ABCD") != 0) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test13");
+            break;
+        }
+
+
+         //case4
+        if(testString->lastIndexOfIgnoreCase("ab") != 4) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test14");
+            break;
+        }
+
+        //case5
+        if(testString->lastIndexOfIgnoreCase("abcdef") != -1) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test15");
+            break;
+        }
+
+        //case6
+        if(testString->lastIndexOfIgnoreCase("abcdabe") != 0) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test16");
+            break;
+        }
+
+        //case8
+        if(testString->lastIndexOfIgnoreCase("dabe") != 3) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test18");
+            break;
+        }
+
+        //case9
+        if(testString->lastIndexOfIgnoreCase("a") != 4) {
+            TEST_FAIL("String lastIndexOfIgnoreCase Special test19");
+            break;
+        }
+
+        TEST_OK("String lastIndexOfIgnoreCase Special test20");
         break;
 
     }

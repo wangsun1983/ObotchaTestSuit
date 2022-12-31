@@ -12,8 +12,10 @@ using namespace obotcha;
 
 extern void testTransportSecurityParse();
 extern void testTransportSecurityToString();
+extern void testSetToHeader();
 
 int main() {
+    testSetToHeader();
     testTransportSecurityParse();
     testTransportSecurityToString();
     return 0;

@@ -10,13 +10,9 @@
 
 using namespace obotcha;
 
-extern void testProxyAUthorizationParse();
-extern void testProxyAUthorizationToString();
-extern void testSetToHeader();
+extern void testMethodName();
 
 int main() {
-    testSetToHeader();
-    testProxyAUthorizationParse();
-    testProxyAUthorizationToString();
+    testMethodName();
     return 0;
 }

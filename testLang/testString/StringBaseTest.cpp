@@ -225,14 +225,14 @@ void basetest() {
   //    _String(Double v);
   while(1) {
     Double v1 = createDouble(1.2);
-    String str1 = createString(v1);
+    String str1 = createString(v1,1);
     if(!str1->equals("1.2")) {
       TEST_FAIL("BaseTest String construct test27");
       break;
     }
 
     Double v2 = createDouble(1.3);
-    String str2 = createString(v2);
+    String str2 = createString(v2,1);
     if(!str2->equals("1.3")) {
       TEST_FAIL("BaseTest String construct test28");
       break;
@@ -901,8 +901,8 @@ void basetest() {
   //static String valueOf(Double v);
   while(1) {
     Double v1 = createDouble(100);
-    String a1 = createString(v1);
-    if(!a1->equals("100")) {
+    String a1 = createString(v1,1);
+    if(!a1->equals("100.0")) {
       //TODO
       TEST_FAIL("BaseTest String valueOf test7");
       break;
@@ -924,8 +924,8 @@ void basetest() {
   //static String valueOf(Float v);
   while(1) {
     Float v1 = createFloat(100);
-    String a1 = createString(v1);
-    if(!a1->equals("100")) {
+    String a1 = createString(v1,1);
+    if(!a1->equals("100.0")) {
       TEST_FAIL("BaseTest String valueOf test10");
       break;
     }

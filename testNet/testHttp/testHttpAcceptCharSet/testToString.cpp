@@ -23,8 +23,8 @@ void testCharSetToString() {
 
   while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
-    charset->import("utf-8, iso-8859-1;q=0.5");
-    if(!charset->toString()->equals("utf-8, iso-8859-1;q=0.5")) {
+    charset->import("utf-8, iso-8859-1");
+    if(!charset->toString()->equals("utf-8,iso-8859-1")) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test toString case2] [FAILED],str is %s",charset->toString()->toChars());
       break;
     }
@@ -34,7 +34,7 @@ void testCharSetToString() {
   while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->import("utf-8, iso-8859-1;q=0.5, *;q=0.1");
-    if(!charset->toString()->equals("utf-8, iso-8859-1;q=0.5, *;q=0.1")) {
+    if(!charset->toString()->equals("utf-8,iso-8859-1;q=0.5,*;q=0.1")) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test toString case3]");
       break;
     }

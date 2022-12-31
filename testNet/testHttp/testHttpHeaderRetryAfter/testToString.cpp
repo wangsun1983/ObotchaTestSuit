@@ -8,6 +8,7 @@
 #include "HttpHeaderRetryAfter.hpp"
 #include "Calendar.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -25,7 +26,20 @@ void testToString() {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     retryAfter->import(" 120 ");
     if(!retryAfter->toString()->equals("120")) {
-      TEST_FAIL("[HttpHeaderRetryAfter test toString case1]");
+      TEST_FAIL("[HttpHeaderRetryAfter test toString case2]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
+    retryAfter->import(" 120 ");
+    header->setRetryAfter(retryAfter);
+    
+    auto retry = header->getRetryAfter();
+    if(!retry->toString()->equals("120")) {
+      TEST_FAIL("[HttpHeaderRetryAfter test toString case3]");
     }
     break;
   }

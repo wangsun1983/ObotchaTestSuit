@@ -39,8 +39,11 @@ extern void TestStringStartsWithIgnoreCase();
 extern void TestStringToUint();
 extern void TestBinaryInt();
 extern void TestStringStartsWith();
+extern void TestStringFloatToString();
 
 int main() {
+  TestStringFloatToString();
+
   TestStringToUint();
 
   testStringFind();
@@ -92,5 +95,6 @@ int main() {
   TestBinaryInt();
   
   TestStringStartsWith();
+
   return 0;
 }

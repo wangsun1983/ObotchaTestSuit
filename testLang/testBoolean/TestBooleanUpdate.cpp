@@ -40,5 +40,34 @@ void testUpdate() {
         TEST_OK("Boolean update test5");
         break;
     }
+    
+    while(1) {
+        //case1
+        Boolean t0 = createBoolean(createBoolean(true));
+        t0->update(true);
+        if(!t0->toValue()) {
+            TEST_FAIL("Boolean update test6");
+        }
+
+        t0->update(createBoolean(false));
+        if(t0->toValue()) {
+            TEST_FAIL("Boolean update test7");
+        }
+
+        t0 = createBoolean(createBoolean(false));
+        t0->update(true);
+        if(!t0->toValue()) {
+            TEST_FAIL("Boolean update test8");
+        }
+
+        t0 = createBoolean(createBoolean(false));
+        t0->update(false);
+        if(t0->toValue()) {
+            TEST_FAIL("Boolean update test9");
+        }
+
+        TEST_OK("Boolean update test10");
+        break;
+    }
 
 }

@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderPragma.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -16,6 +17,19 @@ void testToString() {
     pragma->import(" no-cache ");
     if(!pragma->toString()->equals("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test toString case1]");
+      break;
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderPragma pragma = createHttpHeaderPragma();
+    pragma->import(" no-cache ");
+    HttpHeader header = createHttpHeader();
+    header->setPragma(pragma);
+    
+    if(!header->getPragma()->toString()->equals("no-cache")){
+      TEST_FAIL("[HttpHeaderPragma test toString case2]");
       break;
     }
     break;

@@ -22,7 +22,7 @@ void testToString() {
     }
     break;
   }
-
+  
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
@@ -34,6 +34,18 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
+    c->add(createString("gzip"));
+    c->add(createString("deflate"));
+    if(!c->toString()->equals("gzip, deflate")) {
+      TEST_FAIL("[HttpHeaderTransferEncoding test toString case3]");
+      break;
+    }
+    break;
+  }
+  
   TEST_OK("[HttpHeaderTransferEncoding test toString case100]");
 
 }

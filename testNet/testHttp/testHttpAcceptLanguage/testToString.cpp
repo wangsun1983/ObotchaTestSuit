@@ -20,6 +20,29 @@ void testLanguageToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderAcceptLanguage encoding1 = createHttpHeaderAcceptLanguage();
+    encoding1->add(createString("fr-CH"),0.9);
+    encoding1->add(createString("fr"),0.8);
+    
+    if(!encoding1->toString()->equals("fr-CH;q=0.9,fr;q=0.8")) {
+      TEST_FAIL("[HttpHeaderAcceptLanguage test toString case2],str is %s",encoding1->toString()->toChars());
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderAcceptLanguage encoding1 = createHttpHeaderAcceptLanguage();
+    encoding1->add(createString("fr-CH"),1.0);
+    encoding1->add(createString("fr"),1.0);
+    
+    if(!encoding1->toString()->equals("fr-CH,fr")) {
+      TEST_FAIL("[HttpHeaderAcceptLanguage test toString case3],str is [%s]",encoding1->toString()->toChars());
+    }
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderAcceptLanguage test toString case100]");
 
