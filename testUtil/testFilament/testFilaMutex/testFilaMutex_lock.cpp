@@ -171,6 +171,43 @@ void testFilaMutexLock() {
         usleep(1000*2000);
         break;
     }
+    
+    
+    while(1) {
+        FilaRoutine croutine = createFilaRoutine();
+        croutine->start();
+        FilaMutex mutex = createFilaMutex();
+        
+        croutine->execute([&mutex] {
+            mutex->lock();
+            st(Fila)::sleep(1000);
+            mutex->unlock();
+        });
+        usleep(1000*100);
+        
+        bool isExecute = false;
+        croutine->execute([&isExecute,&mutex] {
+            TimeWatcher t = createTimeWatcher();
+            t->start();
+            AutoLock l(mutex);
+            auto interval = t->stop();
+            if(interval > 905 || interval < 895) {
+                TEST_FAIL("FilaMutex test Lock case8,interval is %d",interval);
+            }
+            
+            isExecute = true;
+        });
+        
+        usleep(1000*2000);
+        croutine->stop();
+        croutine->join();
+        usleep(1000*2000);
+        
+        if(!isExecute) {
+            TEST_FAIL("FilaMutex test Lock case8_1");
+        }
+        break;
+    }
 
     TEST_OK("FilaMutex test Lock case100");
 }

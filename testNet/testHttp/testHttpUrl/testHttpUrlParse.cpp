@@ -319,6 +319,33 @@ void testHttpUrlParse() {
     }
     break;
   }
+  
+  while(1) {
+    String request =  "su:abc@localhost:1234/test.cgi?a=1&b=2&c=3&d=4";
+    auto url = createHttpUrl(request);
+    auto query = url->getQuery();
+    auto map = query->getValues();
+    if(map->size() != 4) {
+        TEST_FAIL("[HttpUrlParse test Parse case56]");
+    }
+    
+    if(!map->get(createString("a"))->equals(createString("1"))) {
+        TEST_FAIL("[HttpUrlParse test Parse case56]");
+    }
+    
+    if(!map->get(createString("b"))->equals(createString("2"))) {
+        TEST_FAIL("[HttpUrlParse test Parse case57]");
+    }
+    
+    if(!map->get(createString("c"))->equals(createString("3"))) {
+        TEST_FAIL("[HttpUrlParse test Parse case58]");
+    }
+    
+    if(!map->get(createString("d"))->equals(createString("4"))) {
+        TEST_FAIL("[HttpUrlParse test Parse case59]");
+    }
+    break;
+  }
 
   TEST_OK("[HttpUrlParse test Parse case100]");
 

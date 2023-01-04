@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderVia.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -16,6 +17,15 @@ void testToString() {
   if(!match->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
     TEST_FAIL("[HttpHeaderVia test toString case1],toString is %s",match->toString()->toChars());
   }
+  
+  HttpHeader header = createHttpHeader();
+  header->setVia(match);
+  
+  auto m = header->getVia();
+  if(!m->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
+    TEST_FAIL("[HttpHeaderVia test toString case2],toString is %s",m->toString()->toChars());
+  }
+  
 
   TEST_OK("[HttpHeaderVia test toString case100]");
 }

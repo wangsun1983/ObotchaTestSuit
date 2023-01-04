@@ -22,6 +22,36 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
+    policy->setAsUnSafeNone();
+    
+    if(!policy->toString()->equals("unsafe-none")) {
+      TEST_FAIL("[CrossOriginOpenerPolicy test toString case2]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
+    policy->setAsSameOrigin();
+    
+    if(!policy->toString()->equals("same-origin")) {
+      TEST_FAIL("[CrossOriginOpenerPolicy test toString case3]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
+    policy->setAsSameOriginAllowPopups();
+    
+    if(!policy->toString()->equals("same-origin-allow-popups")) {
+      TEST_FAIL("[CrossOriginOpenerPolicy test toString case4]");
+    }
+    break;
+  }
 
   TEST_OK("[CrossOriginOpenerPolicy test toString case100]");
 }

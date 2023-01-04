@@ -22,6 +22,26 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    policy->setAsUnSafeNone();
+    
+    if(!policy->toString()->equals("unsafe-none")) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test toString case2]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    policy->setAsRequireCorp();
+    
+    if(!policy->toString()->equals("require-corp")) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test toString case3]");
+    }
+    break;
+  }
 
   TEST_OK("[CrossOriginEmbedderPolicy test toString case100]");
 }

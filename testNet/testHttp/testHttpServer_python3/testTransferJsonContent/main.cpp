@@ -17,26 +17,30 @@
 #include "Enviroment.hpp"
 #include "HttpMethod.hpp"
 #include "NetEvent.hpp"
-
+#include "JsonValue.hpp"
 #include "TestLog.hpp"
 #include "NetPort.hpp"
+#include "Reflect.hpp"
+#include "JsonReader.hpp"
 
 using namespace obotcha;
 
 bool testResult = false;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disConnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
+CountDownLatch latch = createCountDownLatch(2);
 
-CountDownLatch connectlatch = createCountDownLatch(1);
-CountDownLatch disconnetlatch = createCountDownLatch(1);
+DECLARE_CLASS(MyData) {
+public:
+    int value1;
+    String value2;
+    DECLARE_REFLECT_FIELD(MyData,value1,value2);
+};
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
   void handleMessage(Message msg) {
-    printf("connect is %d,disconnect is %d \n",connectlatch->getCount(),disconnetlatch->getCount());
-    this->sendEmptyMessageDelayed(0,10*1024);
+      printf("countdownlatch is %d \n",latch->getCount());
+      this->sendEmptyMessageDelayed(0,10*1024);
   }
 };
 
@@ -44,7 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
           case st(NetEvent)::Connect: {
-              connectlatch->countDown();
+              //connectlatch->countDown();
           }
           break;
 
@@ -52,23 +56,38 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               if(msg->getHeader()->getMethod() == st(HttpMethod)::Get) {
                 HttpResponse response = createHttpResponse();
                 HttpEntity entity = createHttpEntity();
-                entity->setContent(createString("this is server")->toByteArray());
+                MyData data = createMyData();
+                data->value1 = 100;
+                data->value2 = createString("this is server");
+                JsonValue value = createJsonValue();
+                value->importFrom(data);
+                
+                entity->setContent(value->toString()->toByteArray());
                 response->setEntity(entity);
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
+                latch->countDown();
               } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Post) {
                 String str = msg->getEntity()->getContent()->toString();
-                if(!str->equals("i am client")) {
-                  TEST_FAIL("TestHttpServer SimpleClientConnect test1");
-                } else {
-                  testResult = true;
+                //JsonValue value = createJsonValue();
+                JsonReader reader = createJsonReader(str);
+                auto value = reader->get();
+                MyData data = createMyData();
+                value->reflectTo(data);
+                if(data->value1 != 100) {
+                    TEST_FAIL("TestHttpServer SimpleClientConnect test1");
                 }
+                
+                if(!data->value2->equals("this is server")) {
+                    TEST_FAIL("TestHttpServer SimpleClientConnect test2");
+                }
+                latch->countDown();
+                testResult = true;
               }
           }
           break;
 
           case st(NetEvent)::Disconnect:{
-              disconnetlatch->countDown();
           }
           break;
       }
@@ -86,8 +105,7 @@ int main() {
   server->start();
   MyHandler h = createMyHandler();
   h->sendEmptyMessageDelayed(0,10*1024);
-  connectlatch->await();
-  disconnetlatch->await();
+  latch->await();
   server->close();
   
   if(testResult) {

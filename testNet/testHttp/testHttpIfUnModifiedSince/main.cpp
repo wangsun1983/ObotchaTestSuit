@@ -12,8 +12,10 @@ using namespace obotcha;
 
 extern void testPatchParse();
 extern void testPatchToString();
+extern void testSetToHeader();
 
 int main() {
+    testSetToHeader();
     testPatchParse();
     testPatchToString();
     return 0;

@@ -9,7 +9,7 @@
 #include "Math.hpp"
 #include "Calendar.hpp"
 #include "TestLog.hpp"
-#include "HttpHeaderCrossOriginOpenerPolicy.hpp"
+#include "HttpHeaderCrossOriginResourcePolicy.hpp"
 #include "HttpHeader.hpp"
 
 using namespace obotcha;
@@ -17,13 +17,14 @@ using namespace obotcha;
 void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
-    header->set(createString("Cross-Origin-Opener-Policy"),createString("unsafe-none"));
-    auto policy = header->getCrossOriginOpenerPolicy();
-    if(!policy->isUnSafeNone()) {
-      TEST_FAIL("[CrossOriginOpenerPolicy test setToHeader case1]");
+    header->set(createString("Cross-Origin-Resource-Policy"),
+                createString("same-site"));
+    auto policy = header->getCrossOriginResourcePolicy();
+    if(!policy->isSameSite()) {
+      TEST_FAIL("[CrossOriginResourcePolicy test setToHeader case1]");
     }
     break;
   }
 
-  TEST_OK("[CrossOriginOpenerPolicy test setToHeader case1]");
+  TEST_OK("[CrossOriginResourcePolicy test setToHeader case100]");
 }

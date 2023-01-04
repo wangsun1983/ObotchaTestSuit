@@ -19,7 +19,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Cross-Origin-Embedder-Policy"),createString("unsafe-none"));
     auto policy = header->getCrossOriginEmbedderPolicy();
-    if(!policy->get()->equals("unsafe-none")) {
+    if(!policy->isUnSafeNone()) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test setToHeader case1]");
     }
     break;

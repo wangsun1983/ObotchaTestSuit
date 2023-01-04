@@ -20,9 +20,7 @@ r1 = client.getresponse()
 responseBody = r1.read().decode("utf-8");
 print("responseBody is ",responseBody)
 
-if responseBody == "this is server":
-    bodydata = 'i am client'
-    client.request(method="POST",url="/index",body=bodydata);
+client.request(method="POST",url="/index",body=responseBody);
 #r1.close()
 client.close();
 

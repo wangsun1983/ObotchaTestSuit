@@ -17,16 +17,25 @@ void testParse() {
   while(1) {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
     policy->import("unsafe-none");
-    if(!policy->get()->equals("unsafe-none")) {
-      TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case1]，policy is %s",policy->get()->toChars());
+    if(!policy->isUnSafeNone()) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case1]");
     }
     break;
   }
   
   while(1) {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy(createString("unsafe-none"));
-    if(!policy->get()->equals("unsafe-none")) {
-      TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case2]，policy is %s",policy->get()->toChars());
+    if(!policy->isUnSafeNone()) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case2]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    policy->import("require-corp");
+    if(!policy->isRequireCorp()) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case3]");
     }
     break;
   }
