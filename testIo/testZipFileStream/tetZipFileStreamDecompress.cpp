@@ -43,6 +43,7 @@ void testZipDecompress() {
       TEST_FAIL("[LibraryFile Decompress Test case3]");
       break;
     }
+    stream->close();
     break;
   }
 
@@ -72,6 +73,7 @@ void testZipDecompress() {
       TEST_FAIL("[LibraryFile Decompress Test case6]");
       break;
     }
+    stream->close();
     break;
   }
 
@@ -93,6 +95,7 @@ void testZipDecompress() {
       TEST_FAIL("[LibraryFile Decompress Test case8]");
       break;
     }
+    stream->close();
     break;
   }
 

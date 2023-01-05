@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptPatch.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -35,6 +36,19 @@ void testPatchToString() {
     encoding1->import("application/merge-patch+json");
     if(!encoding1->toString()->equals("application/merge-patch+json")) {
       TEST_FAIL("[HttpHeaderAcceptPatch test Parse case3]");
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    encoding1->import("application/merge-patch+json");
+    HttpHeader header = createHttpHeader();
+    header->setAcceptPatch(encoding1);
+    
+    auto encoding2 = header->getAcceptPatch();
+    if(!encoding2->toString()->equals("application/merge-patch+json")) {
+      TEST_FAIL("[HttpHeaderAcceptPatch test Parse case4]");
     }
     break;
   }

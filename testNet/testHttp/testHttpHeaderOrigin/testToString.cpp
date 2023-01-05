@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderOrigin.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -28,6 +29,20 @@ void testToString() {
     match->import("https://developer.mozilla.org:1234");
     if(!match->toString()->equals("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderOrigin test toString case2]");
+      break;
+    }
+
+    break;
+  }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderOrigin match = createHttpHeaderOrigin();
+    match->import("https://developer.mozilla.org:1234");
+    header->setOrigin(match);
+    auto match2 = header->getOrigin();
+    if(!match2->toString()->equals("https://developer.mozilla.org:1234")){
+      TEST_FAIL("[HttpHeaderOrigin test toString case3]");
       break;
     }
 

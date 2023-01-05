@@ -19,6 +19,15 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderServer match = createHttpHeaderServer();
+    match->set("Apache/2.4.1 (Unix)");
+    if(!match->toString()->equals("Apache/2.4.1 (Unix)")) {
+        TEST_FAIL("[HttpHeaderServer test toString case2]");
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderServer test toString case100]");
 }
