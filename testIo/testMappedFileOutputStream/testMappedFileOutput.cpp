@@ -34,6 +34,24 @@ void testMappedFileOutputStream() {
       }
       break;
   }
+  
+  while(1) {
+      MappedFile file = createMappedFile("./tmp/base_data2",128);
+      OutputStream stream = file->getOutputStream();
+      
+      stream->write('c');
+      stream->flush();
+
+      FileInputStream fstream = createFileInputStream("./tmp/base_data2");
+      fstream->open();
+      ByteArray dd = createByteArray(256);
+      fstream->read(dd);
+
+      if(!dd->toString()->equals("c")) {
+        TEST_FAIL("MappedFileOutputStream Test case2");
+      }
+      break;
+  }
 
   TEST_OK("[MappedFileOutputStream Test case100]");
 }

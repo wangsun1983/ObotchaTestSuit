@@ -29,6 +29,42 @@ void testSetToHeader() {
   while(1) {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
+    header->set(createString("sec-websocket-key1"),createString(" abc"));
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey1();
+    if(!key->get()->equals("abc")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case2]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
+    header->set(createString("sec-websocket-key2"),createString(" abc3"));
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey2();
+    if(!key->get()->equals("abc3")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case3]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
+    header->set(createString("sec-websocket-key3"),createString(" abc4"));
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey3();
+    if(!key->get()->equals("abc4")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case4]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     upgrade->import(" websocket ");
     header->setWebSocketKey(upgrade);
@@ -36,7 +72,52 @@ void testSetToHeader() {
     //upgrade->import(" websocket ");
     auto key = header->getWebSocketKey();
     if(!key->get()->equals("websocket")) {
-      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case2]");
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case5]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
+    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    upgrade->import(" websocket ");
+    header->setWebSocketKey1(upgrade);
+    
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey1();
+    if(!key->get()->equals("websocket")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case6]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
+    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    upgrade->import(" websocket ");
+    header->setWebSocketKey2(upgrade);
+    
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey2();
+    if(!key->get()->equals("websocket")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case7]");
+    }
+    break;
+  }
+  
+  while(1) {
+    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeader header = createHttpHeader();
+    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    upgrade->import(" websocket ");
+    header->setWebSocketKey3(upgrade);
+    
+    //upgrade->import(" websocket ");
+    auto key = header->getWebSocketKey3();
+    if(!key->get()->equals("websocket")) {
+      TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case8]");
     }
     break;
   }

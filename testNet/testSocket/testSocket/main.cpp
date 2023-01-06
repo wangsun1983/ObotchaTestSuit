@@ -9,8 +9,10 @@
 using namespace obotcha;
 
 extern void testSocketGetProtocol();
+extern void testSocketIsAsync();
 
 int main() {
+    testSocketIsAsync();
     testSocketGetProtocol();
     return 0;
 }

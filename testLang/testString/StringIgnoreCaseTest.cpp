@@ -258,6 +258,19 @@ void ignorecasetest() {
 
     //endsWithIgnoreCase
     while(1) {
+        String testString = createString("ABCDE");
+        if(!testString->endsWithIgnoreCase("DEa123",2)) {
+            TEST_FAIL("String endsWithIgnoreCase Special test0");
+        }
+        
+        if(testString->endsWithIgnoreCase("DEa123",3)) {
+            TEST_FAIL("String endsWithIgnoreCase Special test1");
+        }
+        
+        break;
+    }
+    
+    while(1) {
 
         String testString = createString("ABCDE");
 

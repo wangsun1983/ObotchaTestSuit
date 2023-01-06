@@ -89,6 +89,21 @@ void TestStringIndexOf() {
         }
         break;
     }
+    
+    while(1) {
+        String str = createString("abCDe fg");
+        if(str->indexOfIgnoreCase("cde") != 2) {
+            TEST_FAIL("String indexOf test13");
+            break;
+        }
+        
+        if(str->indexOfIgnoreCase("fcde") != -1) {
+            TEST_FAIL("String indexOf test13");
+            break;
+        }
+        break;
+    }
+
 
     TEST_OK("String indexOf test100");
 }

@@ -21,6 +21,7 @@ extern void testReadWriteLock_Acquire();
 extern void testReadLock_LoopLock();
 extern void testReadLock_LockTimeout();
 extern void testWriteLock_LockTimeout();
+extern void testReadWriteLock_GetName();
 
 int main() {
   testReadLock_LockTimeout();
@@ -32,5 +33,6 @@ int main() {
   testReadWriteLock_Lock();
   testReadLock_TryLock();
   testWriteLock_TryLock();
+  testReadWriteLock_GetName();
   return 1;
 }
