@@ -13,10 +13,13 @@ using namespace obotcha;
 extern void testHttpHeaderToString();
 extern void testHttpHeaderSet();
 extern void testHttpHeaderParse();
+extern void testResponseReason();
 
 int main() {
     testHttpHeaderSet();
     testHttpHeaderToString();
+    testResponseReason();
+    
     //testHttpHeaderParse(); TODO
     return 0;
 }

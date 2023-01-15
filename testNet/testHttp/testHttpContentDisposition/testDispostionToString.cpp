@@ -40,6 +40,17 @@ void testDispositionToString() {
     }
     break;
   }
+  
+  while(1) {
+      HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
+      disposition->setType(st(HttpHeaderContentDisposition)::FormData);
+      disposition->setFileName(createString("filename.jpg"));
+      disposition->setName(createString("fieldName"));
+      if(!disposition->toString()->equals("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
+        TEST_FAIL("[HttpHeaderContentDisposition test toString case4] [FAILED] disposition is %s ",disposition->toString()->toChars());
+      }
+      break;
+  }
   TEST_OK("[HttpHeaderContentDisposition test toString case100]");
 
 }

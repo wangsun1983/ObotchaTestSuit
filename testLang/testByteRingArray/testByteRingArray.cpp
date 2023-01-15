@@ -40,7 +40,7 @@ void testPush_byte() {
     return;
   }
 
-  if(array->getAvailDataSize() != 5) {
+  if(array->getStoredDataSize() != 5) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(byte val)} case2]");
     return;
   }
@@ -62,7 +62,7 @@ void testPush_bytearray() {
     return;
   }
 
-  if(ringarray->getAvailDataSize() != 1) {
+  if(ringarray->getStoredDataSize() != 1) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case1]");
     return;
   }
@@ -80,7 +80,7 @@ void testPush_bytearray() {
     return;
   }
 
-  if(ringarray->getAvailDataSize() != 2) {
+  if(ringarray->getStoredDataSize() != 2) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case3]");
     return;
   }
@@ -101,7 +101,7 @@ void testPush_bytearray() {
     return;
   }
 
-  if(ringarray->getAvailDataSize() != 3) {
+  if(ringarray->getStoredDataSize() != 3) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case5]");
     return;
   }
@@ -123,7 +123,7 @@ void testPush_bytearray() {
     return;
   }
 
-  if(ringarray->getAvailDataSize() != 4) {
+  if(ringarray->getStoredDataSize() != 4) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case7]");
     return;
   }
@@ -147,7 +147,7 @@ void testPush_bytearray() {
     return;
   }
 
-  if(ringarray->getAvailDataSize() != 5) {
+  if(ringarray->getStoredDataSize() != 5) {
     TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case9]");
     return;
   }
@@ -492,7 +492,7 @@ void test_pop_size() {
   ringarray->push(16);
   ringarray->push(17);
   ringarray->push(18);
-  if(ringarray->getAvailDataSize() != 4) {
+  if(ringarray->getStoredDataSize() != 4) {
     TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case4]");
     return;
   }

@@ -12,9 +12,11 @@ using namespace obotcha;
 
 extern void testHttpSession();
 extern void testHttpSessionExipre();
+extern void testHttpSessionGetSet();
 
 int main() {
     testHttpSession();
     testHttpSessionExipre();
+    testHttpSessionGetSet();
     return 0;
 }

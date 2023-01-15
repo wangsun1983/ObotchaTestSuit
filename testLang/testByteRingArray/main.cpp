@@ -16,8 +16,10 @@ extern void testStartIndex();
 extern void testPopAll();
 extern void testPopTo();
 extern void testByteRingArrayPopWithParam();
+extern void testByteArrayCapacity();
 
 int main() {
+  testByteArrayCapacity();
   testStartIndex();
   normal_test();
   push_test();

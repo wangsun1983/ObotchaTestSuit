@@ -83,6 +83,15 @@ void testHttpUrlToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
+    url->setFragment("aaaac");
+    if(!url->toString()->equals("https://ssaabb:123#aaaac")) {
+        TEST_FAIL("HttpUrl toString case10,url is %s",url->toString()->toChars());
+    }
+    break;
+  }
 
   TEST_OK("[HttpUrlParse test toString case100]");
 

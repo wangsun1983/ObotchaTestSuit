@@ -40,8 +40,15 @@ extern void TestStringToUint();
 extern void TestBinaryInt();
 extern void TestStringStartsWith();
 extern void TestStringFloatToString();
+extern void TestStringStaticIgnoreCase();
+extern void TestStringRegionMatches();
+extern void TestStringregionMatchesIgnoreCase();
 
 int main() {
+  TestStringregionMatchesIgnoreCase();
+  
+  TestStringRegionMatches();
+  
   TestStringFloatToString();
 
   TestStringToUint();
@@ -95,6 +102,6 @@ int main() {
   TestBinaryInt();
   
   TestStringStartsWith();
-
+  TestStringStaticIgnoreCase();
   return 0;
 }

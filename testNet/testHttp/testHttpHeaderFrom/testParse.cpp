@@ -19,6 +19,11 @@ void testParse() {
       TEST_FAIL("[HttpHeaderFrom test Parse case1]");
       break;
     }
+    
+    if(!digest->get()->equals("developer.mozilla.org")) {
+      TEST_FAIL("[HttpHeaderFrom test Parse case1_1]");
+      break;
+    }
     break;
   }
 

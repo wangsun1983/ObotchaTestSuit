@@ -32,6 +32,17 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    ranges->set("bytes");
+
+    if(!ranges->toString()->equals("bytes")) {
+        TEST_FAIL("[HttpHeaderAcceptRanges test toString case3]");
+        break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderAccept test toString case100]");
 

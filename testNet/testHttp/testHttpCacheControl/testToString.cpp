@@ -134,6 +134,55 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderCacheControl c = createHttpHeaderCacheControl();
+    c->setNoTransform(true);
+    c->setOnlyIfCached(true);
+    c->setMustRevalidate(true);
+    c->setPublic();
+    c->setNoCache(true);
+    c->setNoStore(true);
+    
+    HttpHeaderCacheControl c2 
+        = createHttpHeaderCacheControl(createString("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate"));
+    
+    if(c->noCache() != c2->noCache()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case20]");
+      break;
+    }
+
+    if(c->noStore() != c2->noStore()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case21]");
+      break;
+    }
+
+    if(c->isPrivate() != c2->isPrivate()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case22]");
+      break;
+    }
+
+    if(c->isPublic() != c2->isPublic()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case23]");
+      break;
+    }
+
+    if(c->mustRevalidate() != c2->mustRevalidate()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case24]");
+      break;
+    }
+
+    if(c->onlyIfCached() != c2->onlyIfCached()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case25]");
+      break;
+    }
+
+    if(c->noTransform() != c2->noTransform()) {
+      TEST_FAIL("[HttpHeaderCacheControl test toString case26]");
+      break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderCacheControl test toString case100]");
 

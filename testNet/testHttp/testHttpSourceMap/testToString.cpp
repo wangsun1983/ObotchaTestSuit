@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderSourceMap.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -16,6 +17,19 @@ void testToString() {
     timing->import("/path/to/file.js.map");
     if(!timing->toString()->equals("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test toString case1]");
+      break;
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
+    timing->import("/path/to/file.js.map");
+    HttpHeader header = createHttpHeader();
+    header->setSourceMap(timing);
+    auto timing2 = header->getSourceMap();
+    if(!timing2->toString()->equals("/path/to/file.js.map")) {
+      TEST_FAIL("[HttpHeaderSourceMap test toString case2]");
       break;
     }
     break;

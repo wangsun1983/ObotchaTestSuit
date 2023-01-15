@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <unistd.h>
+
+#include "Thread.hpp"
+#include "Runnable.hpp"
+#include "Mutex.hpp"
+#include "Condition.hpp"
+#include "AutoLock.hpp"
+#include "Integer.hpp"
+#include "TimeWatcher.hpp"
+#include "TestLog.hpp"
+#include "Error.hpp"
+
+using namespace obotcha;
+
+void testConditionWaitAutoLock() {
+    TimeWatcher watch = createTimeWatcher();
+    while(1) {
+      Mutex mMutex = createMutex();
+      Condition c = createCondition();
+      long result = 0;
+      Thread t = createThread([&mMutex,&c,&result,&watch]{
+        watch->start();
+        AutoLock l(mMutex);
+        int ret = c->wait(l,100);
+        result = watch->stop();
+      });
+      t->start();
+
+      usleep(1000*200);
+      if(result < 100 || result > 105) {
+        TEST_FAIL("Condition Wait AutoLock Case1 test1");
+        break;
+      }
+
+      TEST_OK("Condition Wait AutoLock Case1 test2");
+      break;
+    }
+
+    while(1) {
+      Mutex mMutex = createMutex();
+      Condition c = createCondition();
+      AutoLock l(mMutex);
+      watch->start();
+      int ret = c->wait(l,300);
+      if(ret != -ETIMEDOUT) {
+        TEST_FAIL("Condition Wait AutoLock Case1 test3,ret is %d",ret);
+        break;
+      }
+      long interval = watch->stop();
+      if(interval > 305 || interval < 300) {
+        TEST_FAIL("Condition Wait AutoLock Case1 test4");
+        break;
+      }
+      TEST_OK("Condition Wait AutoLock Case1 test5");
+      break;
+    }
+
+    while(1) {
+      Mutex mMutex = createMutex();
+      Condition c = createCondition();
+      long result = 0;
+      Thread t = createThread([&c]{
+        usleep(100*1000);
+        c->notify();
+      });
+      t->start();
+
+      AutoLock l(mMutex);
+      watch->start();
+      c->wait(l);
+      result = watch->stop();
+      if(result < 100 || result > 105) {
+        TEST_FAIL("Condition Wait AutoLock Case1 test6");
+        break;
+      }
+
+      TEST_OK("Condition Wait AutoLock Case1 test7");
+      break;
+    }
+}

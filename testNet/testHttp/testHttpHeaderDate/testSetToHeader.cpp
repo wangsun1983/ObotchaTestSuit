@@ -10,6 +10,7 @@
 #include "Calendar.hpp"
 #include "TestLog.hpp"
 #include "HttpHeader.hpp"
+#include "HttpDate.hpp"
 
 using namespace obotcha;
 
@@ -53,6 +54,47 @@ void testSetToHeader() {
 
     break;
   }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderDate date_1 = createHttpHeaderDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
+    header->setDate(date_1);
+    
+    auto headerDate = header->getDate();
+    auto date = headerDate->get()->toDateTime();
+    if(date->year() != 2015) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case7]");
+      break;
+    }
+
+    if(date->month() != st(Calendar)::October) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case8]");
+      break;
+    }
+
+    if(date->dayOfWeek() != st(Calendar)::Wednesday) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case9]");
+      break;
+    }
+
+    if(date->hour() != 7) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case10]");
+      break;
+    }
+
+    if(date->minute() != 28) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case11]");
+      break;
+    }
+
+    if(date->second() != 0) {
+      TEST_FAIL("[HttpHeaderDate test SetToHeader case12]");
+      break;
+    }
+
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderDate test SetToHeader case100]");
 

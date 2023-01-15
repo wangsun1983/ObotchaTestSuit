@@ -340,9 +340,15 @@ void testHttpHeaderSet() {
       TEST_FAIL("[HttpHeader test Set case45]");
       break;
     }
+    
+    if(header->getProtocol() != st(NetProtocol)::Http) {
+      TEST_FAIL("[HttpHeader test Set case46]");
+      break;
+    }
+    
     break;
   }
-
+ 
   TEST_OK("[HttpHeader test Set case100]");
 
 }

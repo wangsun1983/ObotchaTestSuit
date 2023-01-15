@@ -10,6 +10,7 @@ using namespace obotcha;
 
 extern void testZipDecompress();
 extern void testZipCompress();
+extern void testZipFileStreamRead();
 
 int main() {
   //prepare test data
@@ -40,4 +41,5 @@ int main() {
 
   testZipDecompress();
   testZipCompress();
+  testZipFileStreamRead();
 }

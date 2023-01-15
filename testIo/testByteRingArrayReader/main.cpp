@@ -15,8 +15,10 @@ extern void testReadableLength();
 extern void testMove();
 extern void testReadLittleEndian();
 extern void testReadBigEndian();
+extern void testIsDrained();
 
 int main() {
+  testIsDrained();
   testReadLittleEndian();
   testReadBigEndian();
   //test_readnext();

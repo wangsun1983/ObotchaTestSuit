@@ -32,6 +32,6 @@ void testToString() {
     break;
   }
 
-  TEST_OK("[HttpHeaderAccessControlAllowCredentials test Parse case100]");
+  TEST_OK("[HttpHeaderAccessControlAllowCredentials test toString case100]");
 
 }

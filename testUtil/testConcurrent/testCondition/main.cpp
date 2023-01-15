@@ -14,11 +14,13 @@ extern void testConditionWait();
 extern void testConditionNotify();
 extern void testConditionNotifyAll();
 extern void testConditionDoubleLock();
+extern void testConditionWaitAutoLock();
 
 int main() {
   testConditionDoubleLock();
   testConditionWait();
   testConditionNotify();
   testConditionNotifyAll();
+  testConditionWaitAutoLock();
   return 0;
 }

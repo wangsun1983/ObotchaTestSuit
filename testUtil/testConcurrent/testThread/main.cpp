@@ -38,6 +38,7 @@ extern void testThreadInterruptCase();
 extern void testThreadLoopStart();
 extern void testThreadInterruptSleep();
 extern void testThreadStatus();
+extern void testThreadCurrent();
 
 int main() {
     //testThreadInterruptCase();
@@ -60,6 +61,7 @@ int main() {
     testThreadSleepRelease();
     testThreadPriority();
     testThreadLoopStart();
+    testThreadCurrent();
     sleep(10);
     return 0;
 }
