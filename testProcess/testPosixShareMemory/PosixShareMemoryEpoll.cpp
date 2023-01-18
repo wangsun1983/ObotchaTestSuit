@@ -5,14 +5,14 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "StrongPointer.hpp"
-#include "PosixShareMemory.hpp"
+#include "ShareMemory.hpp"
 #include "EPollFileObserver.hpp"
 
 using namespace obotcha;
 
 //do not support ????
-void testPosixShareMemoryEpoll() {
-  PosixShareMemory memory = createPosixShareMemory("shareMemoryabc1122",32,st(PosixShareMemory)::WriteRead);
+void testShareMemoryEpoll() {
+  ShareMemory memory = createShareMemory("shareMemoryabc1122",32,st(ShareMemory)::WriteRead);
   EPollFileObserver mPoll = createEPollFileObserver();
   printf("channel is %d \n",memory->getChannel());
   mPoll->addObserver(

@@ -32,6 +32,18 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
+    c->add(createString("X-PINGOTHER"));
+    c->add(createString("Content-Type"));
+    if(!c->toString()->equals("X-PINGOTHER, Content-Type")) {
+      TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case4]");
+      break;
+    }
+
+    break;
+  }
 
   TEST_OK("[HttpHeaderAccessControlRequestHeaders test toString case100]");
 

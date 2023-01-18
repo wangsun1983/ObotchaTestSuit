@@ -6,7 +6,7 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "StrongPointer.hpp"
-#include "PosixSem.hpp"
+#include "ProcessSem.hpp"
 #include "System.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
@@ -16,23 +16,23 @@ using namespace obotcha;
 int main() {
  
   {
-    PosixSem sem = createPosixSem("sem_test1",0);
+    ProcessSem sem = createProcessSem("sem_test1",0);
     sem->clear();
 
-    PosixSem sem2 = createPosixSem("sem_test2",0);
+    ProcessSem sem2 = createProcessSem("sem_test2",0);
     sem2->clear();
 
-    PosixSem sem3 = createPosixSem("sem_test3",100);
+    ProcessSem sem3 = createProcessSem("sem_test3",100);
     sem3->clear();
   }
   //wait()
   int pid = fork();
   if(pid == 0) {
-      PosixSem sem = createPosixSem("sem_test1",0);
+      ProcessSem sem = createProcessSem("sem_test1",0);
       int ret = sem->wait();
       exit(0);
   } else {
-      PosixSem sem = createPosixSem("sem_test1",0);
+      ProcessSem sem = createProcessSem("sem_test1",0);
       sleep(1);
       sem->post();
       TimeWatcher t = createTimeWatcher();
@@ -40,43 +40,43 @@ int main() {
       wait(nullptr);//wait for child process
       long v = t->stop();
       if(v > 100) {
-        TEST_FAIL("[PosixSem Test {wait()} case1] v is %ld",v);
+        TEST_FAIL("[ProcessSem Test {wait()} case1] v is %ld",v);
       }
       sem->clear();
-      TEST_OK("[PosixSem Test {wait()} case2]");
+      TEST_OK("[ProcessSem Test {wait()} case2]");
   }
 
   //wait(long)
   pid = fork();
   if(pid == 0) {
-      PosixSem sem = createPosixSem("sem_test2",0);
+      ProcessSem sem = createProcessSem("sem_test2",0);
       sleep(1);
       int ret = sem->post();
       exit(0);
   } else {
-      PosixSem sem = createPosixSem("sem_test2",0);
+      ProcessSem sem = createProcessSem("sem_test2",0);
       long current = st(System)::currentTimeMillis();
       sem->wait(500);
       long waittime = (st(System)::currentTimeMillis() - current);
 
       sem->clear();
       if(waittime > 505 || waittime <495) {
-          TEST_FAIL("[PosixSem Test {wait(long)} case1],waittime is %ld",waittime);
+          TEST_FAIL("[ProcessSem Test {wait(long)} case1],waittime is %ld",waittime);
           return 1;
       }
 
-      TEST_OK("[PosixSem Test {wait(long)} case2]");
+      TEST_OK("[ProcessSem Test {wait(long)} case2]");
   }
 
 
   //int getValue();
   {
-      auto sem3 = createPosixSem("sem_test3",0);
+      auto sem3 = createProcessSem("sem_test3",0);
       sem3->post();
       if(sem3->getValue() != 1) {
-        TEST_FAIL("[PosixSem Test {getValue()} case1]");
+        TEST_FAIL("[ProcessSem Test {getValue()} case1]");
       }
-      TEST_OK("[PosixSem Test {getValue()} case2]");
+      TEST_OK("[ProcessSem Test {getValue()} case2]");
   }
 
 }

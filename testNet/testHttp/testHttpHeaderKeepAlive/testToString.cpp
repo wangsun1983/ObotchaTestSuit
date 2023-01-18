@@ -50,6 +50,23 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    keepAlive->setTimeout(5);
+    keepAlive->setMax(1000);
+    if(!keepAlive->toString()->equals("timeout=5, max=1000")) {
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case5]");
+      break;
+    }
+    
+    if(keepAlive->getTimeout() != 5 || keepAlive->getMax() != 1000) {
+      TEST_FAIL("[HttpHeaderKeepAlive test toString case6]");
+      break;
+    }
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderKeepAlive test toString case100]");
 }

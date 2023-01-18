@@ -8,7 +8,7 @@
 #include "Long.hpp"
 #include "Log.hpp"
 #include "Pipe.hpp"
-#include "PosixMq.hpp"
+#include "ProcessMq.hpp"
 #include "System.hpp"
 #include "Thread.hpp"
 #include "TestLog.hpp"
@@ -16,32 +16,32 @@
 
 using namespace obotcha;
 
-CountDownLatch posixMqLatch = createCountDownLatch(1);
+CountDownLatch ProcessMqLatch = createCountDownLatch(1);
 
-DECLARE_CLASS(PosixTestListener) IMPLEMENTS(PosixMqListener){
+DECLARE_CLASS(PosixTestListener) IMPLEMENTS(ProcessMqListener){
 public:
   void onData(ByteArray data) {
       if(!data->toString()->equals("hello world")) {
-        TEST_FAIL("testAsyncPosixMq case1");
+        TEST_FAIL("testAsyncProcessMq case1");
       }
 
-      posixMqLatch->countDown();
+      ProcessMqLatch->countDown();
   }
 };
 
-void testAsyncPosixMq() {
+void testAsyncProcessMq() {
     int pid = fork();
     if(pid == 0) {
       sleep(1);
-      PosixMq sendMq = createPosixMq("asynctest2",st(PosixMq)::Send);
+      ProcessMq sendMq = createProcessMq("asynctest2",st(ProcessMq)::Send);
       String s = createString("hello world");
       sendMq->send(s->toByteArray());
       exit(0);
     } else {
-      PosixMq readMq1 = createPosixMq("asynctest2",createPosixTestListener());
-      posixMqLatch->await();
+      ProcessMq readMq1 = createProcessMq("asynctest2",createPosixTestListener());
+      ProcessMqLatch->await();
       readMq1->clear();
     }
 
-    TEST_OK("[PosixMq Test AsyncPosixMq case100]");
+    TEST_OK("[ProcessMq Test AsyncProcessMq case100]");
 }

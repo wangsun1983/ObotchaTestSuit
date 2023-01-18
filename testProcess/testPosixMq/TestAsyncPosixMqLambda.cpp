@@ -8,7 +8,7 @@
 #include "Long.hpp"
 #include "Log.hpp"
 #include "Pipe.hpp"
-#include "PosixMq.hpp"
+#include "ProcessMq.hpp"
 #include "System.hpp"
 #include "Thread.hpp"
 #include "TestLog.hpp"
@@ -18,19 +18,19 @@ using namespace obotcha;
 
 CountDownLatch lambdaLatch = createCountDownLatch(1);
 
-void testAsyncPosixMqLambda() {
+void testAsyncProcessMqLambda() {
     
     int pid = fork();
     if(pid == 0) {
-      PosixMq sendMq = createPosixMq("lambdactest2",st(PosixMq)::Send);
+      ProcessMq sendMq = createProcessMq("lambdactest2",st(ProcessMq)::Send);
       sleep(1);
       String s = createString("hello world");
       sendMq->send(s->toByteArray());
       exit(0);
     } else {
-      PosixMq readMq1 = createPosixMq("lambdactest2",[](ByteArray data){
+      ProcessMq readMq1 = createProcessMq("lambdactest2",[](ByteArray data){
         if(!data->toString()->equals("hello world")) {
-          TEST_FAIL("AsyncPosixMqLambda case1");
+          TEST_FAIL("AsyncProcessMqLambda case1");
         }
         lambdaLatch->countDown();
       });
@@ -40,5 +40,5 @@ void testAsyncPosixMqLambda() {
 
     
 
-    TEST_OK("[PosixMq Test AsyncPosixMqLambda case100]");
+    TEST_OK("[ProcessMq Test AsyncProcessMqLambda case100]");
 }

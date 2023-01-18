@@ -10,9 +10,13 @@ using namespace obotcha;
 extern void testToString();
 extern void testHashCode();
 extern void testSockAddress();
+extern void testGetFamily();
+
+
 int main() {
     testToString();
     testHashCode();
     testSockAddress();
+    testGetFamily();
     return 0;
 }

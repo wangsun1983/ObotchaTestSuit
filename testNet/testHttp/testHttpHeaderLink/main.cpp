@@ -8,8 +8,10 @@ using namespace obotcha;
 
 extern void testLinkParse();
 extern void testLinkToString();
+extern void testSetToHeader();
 
 int main() {
+    testSetToHeader();
     testLinkParse();
     testLinkToString();
     return 0;

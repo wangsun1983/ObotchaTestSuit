@@ -8,23 +8,23 @@
 #include "Long.hpp"
 #include "Log.hpp"
 #include "Pipe.hpp"
-#include "PosixMq.hpp"
+#include "ProcessMq.hpp"
 #include "System.hpp"
 
 using namespace obotcha;
 
-extern int testPosixMq();
-extern void testPosixMqMultiClient();
-extern void testAsyncPosixMq();
-extern void testAsyncPosixMqLambda();
+extern int testProcessMq();
+extern void testProcessMqMultiClient();
+extern void testAsyncProcessMq();
+extern void testAsyncProcessMqLambda();
 
 int main() {
-  testAsyncPosixMqLambda();
+  testAsyncProcessMqLambda();
 
-  testAsyncPosixMq();
+  testAsyncProcessMq();
 
-  testPosixMqMultiClient();
+  testProcessMqMultiClient();
 
-  testPosixMq();
+  testProcessMq();
   return 0;
 }

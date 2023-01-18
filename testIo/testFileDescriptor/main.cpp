@@ -14,12 +14,14 @@ using namespace obotcha;
 extern void testIsClosed();
 extern void testIsSocket();
 extern void testIsAsync();
-
+extern void testSetGetOption();
 int main() {
     File f = createFile("./tmp/base_data");
     f->createNewFile();
     
     testIsClosed();
     testIsSocket();
+    testSetGetOption();
+    testIsAsync();
     return 0;
 }

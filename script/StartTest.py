@@ -17,6 +17,7 @@ class TestType(Enum):
 testPath = [
     "../testIo",
     "../testIo/testAsyncOutputChannel",
+    "../testIo/testAsyncOutputChannelPool",
     "../testLang",
     "../testNet",
     "../testNet/testHttp",
@@ -28,6 +29,7 @@ testPath = [
     "../testNet/testHttp/testHttpResponseWriter",
     #do not test "./testNet/testHttp2",
     "../testNet/testSocket",
+    "../testNet/testSocket/testSocketMonitor",
     "../testNet/testSocket/testDatagramSocket/Client",
     "../testNet/testSocket/testDatagramSocket/Server",
     "../testNet/testSocket/testLocalSocketImpl/Client",

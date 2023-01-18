@@ -18,7 +18,7 @@ using namespace obotcha;
 void testProcessCondition() {
   int pid = fork();
   if(pid == 0) {
-    ProcessCondition cond = createProcessCondition("abc_cond1");
+    ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
     sleep(3);
     cond->notifyAll();
     exit(0);
@@ -26,8 +26,8 @@ void testProcessCondition() {
     pid = fork();
 
     if(pid == 0) {
-      ProcessCondition cond = createProcessCondition("abc_cond1");
-      ProcessMutex mu = createProcessMutex("abc");
+      ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
+      ProcessMutex mu = createProcessMutex("./tmp/abc");
       printf("child start wait \n");
       TimeWatcher w = createTimeWatcher();
       w->start();
@@ -41,7 +41,7 @@ void testProcessCondition() {
       TEST_OK("testProcessCondition Child Process case1_1 ");
       exit(0);
     } else {
-      ProcessCondition cond = createProcessCondition("abc_cond1");
+      ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
       ProcessMutex mu = createProcessMutex("abc");
       printf("father start wait \n");
       TimeWatcher w = createTimeWatcher();

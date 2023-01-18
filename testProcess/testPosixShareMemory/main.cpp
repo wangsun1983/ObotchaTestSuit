@@ -5,15 +5,19 @@
 #include "Thread.hpp"
 #include "Object.hpp"
 #include "StrongPointer.hpp"
-#include "PosixShareMemory.hpp"
+#include "ShareMemory.hpp"
 
 using namespace obotcha;
 
-extern void testPosixShareMemory();
-extern void testPosixShareMemoryEpoll();
+extern void testShareMemory();
+extern void testShareMemoryEpoll();
+extern void testShareMemoryClose();
+extern void testShareMemoryClear();
 
 int main() {
-  //testPosixShareMemoryEpoll();
-  testPosixShareMemory();
+  //testShareMemoryEpoll();
+  testShareMemory();
+  testShareMemoryClose();
+  testShareMemoryClear();
   return 0;    
 }

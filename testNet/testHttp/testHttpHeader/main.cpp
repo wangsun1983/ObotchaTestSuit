@@ -14,8 +14,10 @@ extern void testHttpHeaderToString();
 extern void testHttpHeaderSet();
 extern void testHttpHeaderParse();
 extern void testResponseReason();
+extern void testHttpHeaderAppend();
 
 int main() {
+    testHttpHeaderAppend();
     testHttpHeaderSet();
     testHttpHeaderToString();
     testResponseReason();

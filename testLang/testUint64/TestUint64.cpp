@@ -114,4 +114,22 @@ void basetest() {
       TEST_OK("Uint64 MIN_VALUE/MAX_VALUE test3");
       break;
   }
+  
+  //update
+  while(1) {
+      Uint64 v1 = createUint64(12);
+      v1->update(20);
+      if(v1->toValue() != 20) {
+        TEST_FAIL("Uint64 update test3");
+      }
+      
+      Uint64 v2 = createUint64(52);
+      v1->update(v2);
+      if(v1->toValue() != 52) {
+        TEST_FAIL("Uint64 update test4");
+      }
+      
+      TEST_OK("Uint64 Update test3");
+      break;
+  }
 }

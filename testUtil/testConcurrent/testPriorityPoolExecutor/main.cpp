@@ -18,16 +18,15 @@ extern void testSubmitPriority();
 extern void testSubmitMultiThread();
 extern void testAwaitTermination();
 extern void testShutdownCount();
+extern void testPendingTask();
 
 int main() {
-
-    #if 0
+    testPendingTask();
+    testPendingTask();
     testSubmitWait();
     testSubmitPriority();
     testSubmitMultiThread();
     testAwaitTermination();
-    #endif
-    
     testShutdownCount();
 
     return 1;

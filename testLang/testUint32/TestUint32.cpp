@@ -115,4 +115,22 @@ void basetest() {
       TEST_OK("Uint32 MIN_VALUE/MAX_VALUE test3");
       break;
   }
+  
+  //update
+  while(1) {
+      Uint32 v1 = createUint32(12);
+      v1->update(20);
+      if(v1->toValue() != 20) {
+        TEST_FAIL("Uint32 update test3");
+      }
+      
+      Uint32 v2 = createUint32(52);
+      v1->update(v2);
+      if(v1->toValue() != 52) {
+        TEST_FAIL("Uint32 update test4");
+      }
+      
+      TEST_OK("Uint32 Update test3");
+      break;
+  }
 }

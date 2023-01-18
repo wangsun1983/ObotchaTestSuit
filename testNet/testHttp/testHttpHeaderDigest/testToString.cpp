@@ -29,6 +29,17 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderDigest digest = createHttpHeaderDigest();
+    digest->add("sha-256","X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
+    digest->add("unixsum","30637");
+    if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
+      TEST_FAIL("[testHttpHeaderDigest test toString case3]");
+    }
+    break;
+  }
+
 
   TEST_OK("[testHttpHeaderDigest test toString case100]");
 }

@@ -16,8 +16,10 @@ extern void testFutureGetUint32();
 extern void testFutureGetString();
 extern void testFutureGetValue();
 extern void testFutureWait();
+extern void testFutureWake();
 
 int main() {
+  testFutureWake();
   testFutureGetInteger();
   testFutureGetUint32();
   testFutureGetString();

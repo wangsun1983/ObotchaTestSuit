@@ -10,13 +10,9 @@
 
 using namespace obotcha;
 
-extern void testParse();
-extern void testToString();
-extern void testSetToHeader();
+extern void testGetSetFunction();
 
 int main() {
-    testParse();
-    testToString();
-    testSetToHeader();
+    testGetSetFunction();
     return 0;
 }

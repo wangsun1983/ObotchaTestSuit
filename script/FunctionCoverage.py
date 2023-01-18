@@ -21,6 +21,7 @@ includePath = [
 
 testPath = [ "../testIo",
     "../testIo/testAsyncOutputChannel",
+    "../testIo/testAsyncOutputChannelPool",
     "../testLang",
     "../testNet",
     "../testNet/testHttp",
@@ -32,6 +33,7 @@ testPath = [ "../testIo",
     "../testNet/testHttp/testHttpResponseWriter",
     #do not test "./testNet/testHttp2",
     "../testNet/testSocket/",
+    "../testNet/testSocket/testSocketMonitor",
     "../testNet/testSocket/testDatagramSocket/Client",
     "../testNet/testSocket/testDatagramSocket/Server",
     "../testNet/testSocket/testLocalSocketImpl/Client",
@@ -65,6 +67,7 @@ testPath = [ "../testIo",
 REPORT_DIR = '../Report'
 COVERAGE_REPORT_DIR ='../Report/CoverageReport'
 COVERAGE_REPORT_FILE ='../Report/CoverageReport/report.txt'
+COVERAGE_BUILD_FAILED_FILE ='../Report/CoverageReport/build.txt'
 
 functionMap = {'':0}
 buildFailedList = []
@@ -78,6 +81,7 @@ def prepareReportFolder():
         os.makedirs(currentPath + "/" + COVERAGE_REPORT_DIR)
 
     os.popen("rm " + COVERAGE_REPORT_FILE).read()
+    os.popen("rm " + COVERAGE_BUILD_FAILED_FILE).read()
 
 
 def dumpObotchaSo():
@@ -178,6 +182,12 @@ def main():
             if not funcStr in privateFunc.keys():
                 f.write(filt)
                 #print(filt)
+
+    #
+    build_file = open(COVERAGE_BUILD_FAILED_FILE, "a")
+    for path in buildFailedList:
+        print("build failed: "+path)
+        build_file.write(path + "\r\n");
 
 if __name__ == '__main__':
     main()

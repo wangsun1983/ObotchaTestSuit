@@ -48,12 +48,15 @@ public:
 int main() {
   int port = getEnvPort();
   InetAddress addr = createInet4Address(port);
+  auto option = createSocketOption();
+  option->setSSLCertificatePath("server.crt")
+        ->setSSLKeyPath("server.key");
+                        
   ServerSocket sock = createSocketBuilder()
                         ->setAddress(addr)
-                        ->setSSLCretificatePath("server.crt")
-                        ->setSSLKeyPath("server.key")
+                        ->setOption(option)
                         ->newSSLServerSocket();
-
+                        
   int result = sock->bind();
   SocketMonitor monitor = createSocketMonitor();
   MyListener l = createMyListener();
