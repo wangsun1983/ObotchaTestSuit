@@ -20,7 +20,7 @@ public:
     int id;
     String name;
     int age;
-    DECLARE_REFLECT_FIELD(Company,name,age)
+    DECLARE_REFLECT_FIELD(Company,id,name,age)
 };
 
 int main() {
@@ -35,28 +35,43 @@ int main() {
 
     File f = createFile("./tmp/testdata");
     if(!f->exists()) {
-        TEST_FAIL("Sqlite3 testCreateDB case1");
+        TEST_FAIL("Sqlite3 testUpdateDb case1");
     }
 
     //test create table
     c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
-    c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
+    //c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
+    Company com = createCompany();
+    com->id = 1;
+    com->age = 12;
+    com->name = createString("Wang");
+    SqlContentValues values = createSqlContentValues();
+    values->put(com);
+    c->insert(createString("Company"),values);
+    //TODO
+    SqlContentValues updateValue = createSqlContentValues();
+    updateValue->put("age",100);
+    updateValue->putString("name","sun");
+    
+    SqlQuery condition = createSqlQuery("id = _$1");
+    condition->bindParam(1);
+    c->update(createString("Company"),updateValue,condition);
+    
     ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
-
+    
     if(list == nullptr || list->size() == 0) {
-        TEST_FAIL("Sqlite3 testCreateDB case1");
+        TEST_FAIL("Sqlite3 testUpdateDb case1");
     }
 
-
     Company comp = list->get(0);
-    if(!comp->name->equals("Wang") || comp->age != 12) {
+    if(!comp->name->equals("sun") || comp->age != 100) {
         printf("comp name is %s \n",comp->name->toChars());
-        TEST_FAIL("Sqlite3 testCreateDB case2");
+        TEST_FAIL("Sqlite3 testUpdateDb case2");
     }
 
     int count = c->count(createSqlQuery("select count(*) from Company"));
     if(count != 1) {
-        TEST_FAIL("Sqlite3 testCreateDB case3");
+        TEST_FAIL("Sqlite3 testUpdateDb case3");
     }
 
     SqlRecords records = c->query(createSqlQuery("select * from Company"));
@@ -64,8 +79,8 @@ int main() {
     int index = 0;
     while(iterator->hasValue()) {
         List<String> data = iterator->getRowData();
-        if(!data[0]->equals("1") || !data[1]->equals("Wang") || !data[2]->equals("12")) {
-            TEST_FAIL("Sqlite3 testCreateDB case4,data[0] is %s,data[1] is %s,data[2] is %s",
+        if(!data[0]->equals("1") || !data[1]->equals("sun") || !data[2]->equals("100")) {
+            TEST_FAIL("Sqlite3 testUpdateDb case4,data[0] is %s,data[1] is %s,data[2] is %s",
                 data[0]->toChars(),data[1]->toChars(),data[2]->toChars());
         }
         index++;
@@ -73,9 +88,9 @@ int main() {
     }
 
     if(index != 1) {
-        TEST_FAIL("Sqlite3 testCreateDB case5");
+        TEST_FAIL("Sqlite3 testUpdateDb case5");
     }
 
     c->close();
-    TEST_OK("Sqlite3 testCreateDB case100");
+    TEST_OK("Sqlite3 testUpdateDb case100");
 }

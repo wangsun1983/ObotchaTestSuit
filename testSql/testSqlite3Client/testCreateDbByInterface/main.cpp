@@ -12,6 +12,7 @@
 #include "Sqlite3ConnectParam.hpp"
 #include "TestLog.hpp"
 #include "File.hpp"
+#include "SqlTableEntryValues.hpp"
 
 using namespace obotcha;
 
@@ -20,7 +21,7 @@ public:
     int id;
     String name;
     int age;
-    DECLARE_REFLECT_FIELD(Company,name,age)
+    DECLARE_REFLECT_FIELD(Company,id,name,age)
 };
 
 int main() {
@@ -39,7 +40,13 @@ int main() {
     }
 
     //test create table
-    c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
+    //c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
+    SqlTableEntryValues entries = createSqlTableEntryValues();
+    entries->addEntry(createString("id"),createString("INT"),0,createString("PRIMARY KEY"));
+    entries->addEntry(createString("name"),createString("TEXT"));
+    entries->addEntry(createString("age"),createString("INT"));\
+    c->create(createString("Company"),entries);
+    
     c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
     ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
 
