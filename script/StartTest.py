@@ -54,6 +54,7 @@ testPath = [
     "../testUtil/testFilament",
     "../testUtil/testConcurrent",
     "../testSql",
+    "../testSql/testSqlite3Client",
     #"../testSql/testMySqlClient",
     #"../testSql/testRedisClient",
     #"../testSql/testSqlite3Client"

@@ -13,10 +13,12 @@ using namespace obotcha;
 extern void testHttpUrlParse();
 extern void testHttpUrlWithoutPath();
 extern void testHttpUrlToString();
+extern void testHttpUrlSet();
 
 int main() {
     testHttpUrlParse();
     testHttpUrlToString();
     testHttpUrlWithoutPath();
+    testHttpUrlSet();
     return 0;
 }

@@ -15,7 +15,7 @@ void testToString() {
   HttpHeaderExpectCT expect = createHttpHeaderExpectCT();
   expect->import("max-age=86400; enforce; report-uri=\"https://foo.example/report\"");
   if(!expect->toString()->equals("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {
-    TEST_FAIL("[HttpHeaderExpectCT test toString case1]");
+    TEST_FAIL("[HttpHeaderExpectCT test toString case1],str is %s",expect->toString()->toChars());
   }
   
   HttpHeader header = createHttpHeader();

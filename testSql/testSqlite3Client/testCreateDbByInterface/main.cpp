@@ -44,7 +44,7 @@ int main() {
     SqlTableEntryValues entries = createSqlTableEntryValues();
     entries->addEntry(createString("id"),createString("INT"),0,createString("PRIMARY KEY"));
     entries->addEntry(createString("name"),createString("TEXT"));
-    entries->addEntry(createString("age"),createString("INT"));\
+    entries->addEntry(createString("age"),createString("INT"));
     c->create(createString("Company"),entries);
     
     c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");

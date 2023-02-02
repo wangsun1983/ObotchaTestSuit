@@ -43,8 +43,14 @@ extern void TestStringFloatToString();
 extern void TestStringStaticIgnoreCase();
 extern void TestStringRegionMatches();
 extern void TestStringregionMatchesIgnoreCase();
+extern void TestHexInt();
+extern void TestOctInt();
 
 int main() {
+  TestOctInt();
+  
+  TestHexInt();
+  
   TestStringregionMatchesIgnoreCase();
   
   TestStringRegionMatches();
