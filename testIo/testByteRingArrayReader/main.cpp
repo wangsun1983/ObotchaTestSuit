@@ -16,6 +16,7 @@ extern void testMove();
 extern void testReadLittleEndian();
 extern void testReadBigEndian();
 //extern void testIsDrained();
+extern void testNoDataRead();
 
 int main() {
   //testIsDrained();
@@ -27,4 +28,6 @@ int main() {
   testReadableLength();
   test_pop();
   testMove();
+  testNoDataRead();
+  return 0;
 }

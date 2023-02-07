@@ -22,10 +22,8 @@ import (
 func main() {
   port := testnet.GetEnvPort()
   fmt.Println("port is ",port)
-  url := "http://127.0.0.1:" + strconv.Itoa(8080) + "/aaa"
-  for i:= 0; i < 1;i++ {
-    client(url)
-  }
+  url := "http://127.0.0.1:" + strconv.Itoa(port) + "/aaa"  
+  client(url)
 }
 
 func client(url string) {
@@ -50,6 +48,7 @@ func client(url string) {
   }
   defer resp.Body.Close()
   fmt.Println("status code is ",resp.StatusCode)
+  fmt.Println("header is ",resp.Header)
   
   if resp.StatusCode != http.StatusOK {
       fmt.Println("resp StatusCode:", resp.StatusCode)

@@ -15,8 +15,10 @@ extern void testHttpHeaderSet();
 extern void testHttpHeaderParse();
 extern void testResponseReason();
 extern void testHttpHeaderAppend();
+extern void testHttpHeaderSelfDefine();
 
 int main() {
+    testHttpHeaderSelfDefine();
     testHttpHeaderAppend();
     testHttpHeaderSet();
     testHttpHeaderToString();
