@@ -9,7 +9,7 @@ import (
   "net/http"
   "golang.org/x/net/http2"
   "../../../../common"
-  //"strings"
+  "strings"
   "strconv"
   "time"
 )
@@ -22,8 +22,8 @@ import (
 func main() {
   port := testnet.GetEnvPort()
   fmt.Println("port is ",port)
-  url := "http://127.0.0.1:" + strconv.Itoa(8080) + "/aaa"
-  for i:= 0; i < 1;i++ {
+  url := "http://127.0.0.1:" + strconv.Itoa(port) + "/aaa"
+  for i:= 0; i < 128;i++ {
     client(url)
   }
 }
@@ -42,8 +42,8 @@ func client(url string) {
 
   httpClient := http.Client{Transport: tr}
   fmt.Println("start")
-  //resp, err := httpClient.Post(url,"text/plain", strings.NewReader("hello this is client"))
-  resp, err := httpClient.Get(url)
+  resp, err := httpClient.Post(url,"text/plain", strings.NewReader("hello this is client"))
+  //resp, err := httpClient.Get(url)
   //fmt.Println("start2")
   if err != nil {
       log.Fatal(err)

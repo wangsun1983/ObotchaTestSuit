@@ -17,6 +17,8 @@
 #include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
+#include "TestLog.hpp"
+#include "NetPort.hpp"
 #include "NetProtocol.hpp"
 
 using namespace obotcha;
@@ -43,12 +45,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(NetEvent)::Message: {
-              printf("write response connect!!! \n");
-              ByteArray data = createString("hello,this is server!!!")->toByteArray();
-              HttpHeader h = createHttpHeader();
-              h->set("a","valuea");
-              Http2Packet packet = createHttp2Packet(h,data);
-              w->write(packet);
+                if(!msg->getData()->toString()->equals("hello this is client")) {
+                    TEST_FAIL("TestHttp2Server SimpleGetHeader test1");
+                }
+                
+                auto header = msg->getHeader();
+                auto v1 = header->get("Mytest1");
+                auto v2 = header->get("Mytest2");
+                
+                if(!v1->equals("MyValue1")|| !v2->equals("MyValue2")) {
+                    TEST_FAIL("TestHttp2Server SimpleGetHeader test2");
+                }
+                
+                HttpResponse response = createHttpResponse();
+                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                w->write(response);
+                usleep(1000*10);
+                connectlatch->countDown();
           }
           break;
 
@@ -56,22 +70,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
       }
+      
   }
 };
 
 int main() {
+  int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1302))
+                    ->setAddress(createInet4Address(port))
                     ->setHttp2Listener(listener)
-                    ->setProtocol(st(NetProtocol)::Http_H2C)
                     ->buildHttp2Server();
-  //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
   connectlatch->await();
   server->close();
-
-  printf("---TestHttpServer SimpleClientContent test100 [OK]---\n");
+  usleep(1000*100);
+  port++;
+  setEnvPort(port);
+  TEST_OK("TestHttp2Server SimpleGetHeader test100");
 
   return 0;
 }

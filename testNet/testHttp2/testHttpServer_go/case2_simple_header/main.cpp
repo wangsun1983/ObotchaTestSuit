@@ -32,7 +32,7 @@ using namespace obotcha;
     -H "apns-topic: com.app.identifier" --http2 \
     https://api.development.push.apple.com/3/device/DEVICE_ID
 
-CountDownLatch connectlatch = createCountDownLatch(128);
+CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
@@ -48,16 +48,22 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
                 if(step == 0) {
                     HttpResponse response = createHttpResponse();
                     auto hh = response->getHeader();
-                    printf("hh addr is %lx \n",hh.get_pointer());
-                    //response->getHeader()->set(createString("mytest1"),createString("myvalue1"));
-                    //response->getHeader()->set(createString("mytest2"),createString("myvalue2"));
+                    response->getHeader()->set(createString("mytest1"),createString("myvalue1"));
+                    response->getHeader()->set(createString("mytest2"),createString("myvalue2"));
                     response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                     response->getEntity()->setContent(createString("hello this is server")->toByteArray());
                     w->write(response);
+                    step++;
                 } else {
                     usleep(1000*10);
                     String value = msg->getData()->toString();
+                    if(!value->equals("mytest1=[myvalue1],mytest2=[myvalue2]")) {
+                        TEST_FAIL("TestHttp2Server SimpleHeader test1");
+                    }
                     printf("value is %s \n",value->toChars());
+                    HttpResponse response = createHttpResponse();
+                    w->write(response);
+                    connectlatch->countDown();
                 }
                 
           }
@@ -84,7 +90,7 @@ int main() {
   usleep(1000*100);
   port++;
   setEnvPort(port);
-  TEST_OK("TestHttp2Server SimpleConnect test100");
+  TEST_OK("TestHttp2Server SimpleHeader test100");
 
   return 0;
 }

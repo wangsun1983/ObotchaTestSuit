@@ -32,8 +32,11 @@ using namespace obotcha;
     -H "apns-topic: com.app.identifier" --http2 \
     https://api.development.push.apple.com/3/device/DEVICE_ID
 
-CountDownLatch connectlatch = createCountDownLatch(128);
+CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
+long size = 0;
+
+ByteArray acceptData = nullptr;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -45,15 +48,19 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(NetEvent)::Message: {
-                if(!msg->getData()->toString()->equals("hello this is client")) {
-                    TEST_FAIL("TestHttp2Server SimpleConnect test1");
+                if(acceptData == nullptr) {
+                    acceptData = msg->getData();
+                } else {
+                    acceptData->append(msg->getData());
                 }
-                HttpResponse response = createHttpResponse();
-                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
-                w->write(response);
-                usleep(1000*10);
-                connectlatch->countDown();
+                
+                if(acceptData->size() >= 1024*1024*2) {
+                    HttpResponse response = createHttpResponse();
+                    response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                    response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                    w->write(response);
+                    connectlatch->countDown();
+                }
           }
           break;
 
@@ -76,9 +83,20 @@ int main() {
   connectlatch->await();
   server->close();
   usleep(1000*100);
+  
+  if(acceptData->size() != 1024*1024*2) {
+      TEST_FAIL("TestHttp2Server Simple Large data test1");
+  }
+  
+  for(int i = 0;i < 1024*1024*2;i++) {
+        if(acceptData[i] != i%32) {
+            TEST_FAIL("TestHttp2Server Simple Large data test2, index is %d,value is %d,expected is %d",
+                    i,acceptData[i],i%32);
+        }
+  }
   port++;
   setEnvPort(port);
-  TEST_OK("TestHttp2Server SimpleConnect test100");
+  TEST_OK("TestHttp2Server Simple Large data test100");
 
   return 0;
 }
