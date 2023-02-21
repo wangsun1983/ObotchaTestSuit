@@ -5,16 +5,18 @@
 //#include "ArrayList.hpp"
 #include "HashMap.hpp"
 #include "ConfReader.hpp"
+#include "ConfValue.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testConfIterator() {
-    ConfReader reader = createConfReader("simple.conf");
+    ConfReader reader = createConfReader(createFile("simple.conf"));
     //ConfIterator(String);
+    auto value = reader->get();
     while(1) {
-      ConfIterator iterator = reader->getIterator();
+      ConfIterator iterator = value->getIterator();
       HashMap<String,String> mHashMap = createHashMap<String,String>();
       while(iterator->hasValue()) {
           mHashMap->put(iterator->getTag(),iterator->getValue());

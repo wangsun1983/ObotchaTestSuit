@@ -35,25 +35,22 @@ using namespace obotcha;
 CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 
+ByteArray sendData = createByteArray(1024*1024*2);
+
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
     
       switch(event) {
           case st(NetEvent)::Connect: {
-              
           }
           break;
 
           case st(NetEvent)::Message: {
-//                if(!msg->getData()->toString()->equals("hello this is client")) {
-//                    TEST_FAIL("TestHttp2Server SimpleConnect test1");
-//                }
-                printf("write response \n");
+                printf("write responce from server11111 \n");
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 response->getEntity()->setContent(createString("hello this is server")->toByteArray());
                 w->write(response);
-                usleep(1000*10);
                 connectlatch->countDown();
           }
           break;

@@ -331,6 +331,12 @@ void ignorecasetest() {
             TEST_FAIL("String endsWithIgnoreCase Special test8");
             break;
         }
+        
+        std::string testString8_ = "bcde";
+        if(!testString->endsWithIgnoreCase(testString8_)) {
+            TEST_FAIL("String endsWithIgnoreCase Special test8_1");
+            break;
+        }
 
         //case9
         String testString9 = createString("a");
@@ -338,11 +344,23 @@ void ignorecasetest() {
             TEST_FAIL("String endsWithIgnoreCase Special test9");
             break;
         }
+        
+        std::string testString9_ = "a";
+        if(testString->endsWithIgnoreCase(testString9_)) {
+            TEST_FAIL("String endsWithIgnoreCase Special test9_1");
+            break;
+        }
 
         //case10
         String testString10 = createString("e");
         if(!testString->endsWithIgnoreCase(testString10)) {
             TEST_FAIL("String endsWithIgnoreCase Special test10");
+            break;
+        }
+        
+        std::string testString10_ = "e";
+        if(!testString->endsWithIgnoreCase(testString10_)) {
+            TEST_FAIL("String endsWithIgnoreCase Special test10_1");
             break;
         }
         

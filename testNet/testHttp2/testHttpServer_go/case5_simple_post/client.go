@@ -9,7 +9,7 @@ import (
   "net/http"
   "golang.org/x/net/http2"
   "../../../../common"
-  //"strings"
+  "strings"
   "strconv"
   "time"
 )
@@ -42,8 +42,8 @@ func client(url string) {
 
   httpClient := http.Client{Transport: tr}
   fmt.Println("start")
-  //resp, err := httpClient.Post(url,"text/plain", strings.NewReader("hello this is client"))
-  resp, err := httpClient.Get(url)
+  resp, err := httpClient.Post(url,"text/plain", strings.NewReader("hello this is client"))
+  //resp, err := httpClient.Get(url)
   //fmt.Println("start2")
   if err != nil {
       log.Fatal(err)
@@ -60,8 +60,8 @@ func client(url string) {
   if err != nil {
       log.Fatal(err)
   }
-
-  fmt.Println("resp.Body:\n", string(body))
+  fmt.Println("body size is ",len(body));
+  //fmt.Println("resp.Body:\n", string(body))
   
   time.Sleep(time.Duration(1)*time.Second)
 }

@@ -9,8 +9,12 @@
 
 using namespace obotcha;
 
-int basetest() {
-    ConfReader reader = createConfReader(createFile("simple.conf"));
+int testReadContent() {
+    ConfReader reader = createConfReader(createString("Desktop-Picture = /usr/images/earth.jpg \r\n \
+                                            Position = Centered \r\n \
+                                            \"Background Color\" = Black \r\n \
+                                            NULL=  \r\n \
+                                            "));
     auto value = reader->get();
     //getConf(String);
     while(1) {

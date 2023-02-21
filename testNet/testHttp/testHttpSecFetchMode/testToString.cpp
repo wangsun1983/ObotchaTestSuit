@@ -30,6 +30,16 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
+    save->set("navigate");
+    if(!save->toString()->equals("navigate")) {
+      TEST_FAIL("[HttpHeaderSecFetchMode test toString case3]");
+      break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderSecFetchMode test toString case100]");
 

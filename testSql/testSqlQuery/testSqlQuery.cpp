@@ -48,5 +48,10 @@ void testSimpleSql() {
         TEST_FAIL("testSqlQuery case2");
     }
     
+    auto templateStr = query->getTemplate();
+    if(!templateStr->equals("param is \"_$1\",param2 is _$2")) {
+        TEST_FAIL("testSqlQuery case3");
+    }
+    
     TEST_OK("testSqlQuery case100");
 }

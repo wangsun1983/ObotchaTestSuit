@@ -24,7 +24,7 @@ var content = "hh"
 func main() {
   port := testnet.GetEnvPort()
   fmt.Println("port is ",port)
-  url := "http://127.0.0.1:" + strconv.Itoa(port) + "/aaa"  
+  url := "http://127.0.0.1:" + strconv.Itoa(8080) + "/aaa"  
   client(url)
   clientpost(url)
 }

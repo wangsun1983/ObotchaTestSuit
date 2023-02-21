@@ -9,13 +9,13 @@
 using namespace obotcha;
 
 //extern int testcreate();
-extern int basetest();
-extern void testConfIterator();
-extern int testReadContent();
+extern int testConfValueSet();
+extern int testImport();
+extern int testReflectTo();
 
 int main() {
-    //testcreate();
-    //basetest();
-    //testConfIterator();
-    testReadContent();
+    testConfValueSet();
+    testImport();
+    testReflectTo();
+    return 0;
 }

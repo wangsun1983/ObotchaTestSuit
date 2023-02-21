@@ -16,8 +16,10 @@ extern void testHash();
 extern void updatetest();
 extern void TestParseException();
 extern void testUint8WithCRLF();
+extern void testParse();
 
 int main() {
+    testParse();
     basetest();
     equaltest();
     testtostring();

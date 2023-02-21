@@ -34,6 +34,9 @@ using namespace obotcha;
 
 CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
+long size = 0;
+
+ByteArray sendData = createByteArray(1024*64);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -45,16 +48,11 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(NetEvent)::Message: {
-//                if(!msg->getData()->toString()->equals("hello this is client")) {
-//                    TEST_FAIL("TestHttp2Server SimpleConnect test1");
-//                }
-                printf("write response \n");
-                HttpResponse response = createHttpResponse();
-                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
-                w->write(response);
-                usleep(1000*10);
-                connectlatch->countDown();
+            HttpResponse response = createHttpResponse();
+            response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+            response->getEntity()->setContent(sendData);
+            w->write(response);
+            connectlatch->countDown();
           }
           break;
 
@@ -67,6 +65,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 };
 
 int main() {
+  for(long i = 0; i < 1024*64;i++) {
+      sendData[i] = i % 32;
+  }
+  
   int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
@@ -75,11 +77,11 @@ int main() {
                     ->buildHttp2Server();
   server->start();
   connectlatch->await();
+  usleep(1000*1000*20);
   server->close();
-  usleep(1000*100);
   port++;
   setEnvPort(port);
-  TEST_OK("TestHttp2Server SimpleConnect test100");
+  TEST_OK("TestHttp2Server Simple Large data test100");
 
   return 0;
 }
