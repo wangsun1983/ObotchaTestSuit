@@ -51,6 +51,7 @@ extern int testCalendarDecreaseSecond_Interval();
 extern int convertDayOfWeekFromJava(int);
 
 extern void testCalendarIsLeapYear();
+extern void testCalendarGetDays();
 
 void simpleTest() {
   Calendar c = createCalendar(9277732677921l);
@@ -215,6 +216,8 @@ int main() {
     testCalendarDecreaseMinute_Interval();
     testCalendarDecreaseSecond_Interval();
     testCalendarIsLeapYear();
+
+    testCalendarGetDays();
 
     return 0;
 

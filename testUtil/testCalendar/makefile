@@ -19,6 +19,7 @@ cflags = -fpic \
 		-I ../../../external/yaml/include \
 		-I ../../../external/crc32/include \
 		-I ../../../external/openssl/include \
+		-I ../../../external/glog/include \
 		-I ../../../external/libco \
 		-I ../../common \
 		-g \
