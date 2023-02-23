@@ -14,8 +14,10 @@ extern void testHttpUrlParse();
 extern void testHttpUrlWithoutPath();
 extern void testHttpUrlToString();
 extern void testHttpUrlSet();
+extern void testHttpUrlInetAddress();
 
 int main() {
+    testHttpUrlInetAddress();
     testHttpUrlParse();
     testHttpUrlToString();
     testHttpUrlWithoutPath();

@@ -86,6 +86,34 @@ void testSetToHeader() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderForwarded forward = createHttpHeaderForwarded();
+    forward->import("for=192.0.2.60; proto=http; by=203.0.113.43");
+    header->setForwarded(forward);
+    auto encoding1 = header->getForwarded();
+    if(encoding1->forIdentities->size() != 1) {
+      TEST_FAIL("[HttpHeaderForwarded test setToHeader case9]");
+      break;
+    }
+
+    if(!encoding1->forIdentities->get(0)->equals("192.0.2.60")) {
+      TEST_FAIL("[HttpHeaderForwarded test setToHeader case10]");
+      break;
+    }
+
+    if(!encoding1->proto->equals("http")) {
+      TEST_FAIL("[HttpHeaderForwarded test setToHeader case11]");
+      break;
+    }
+
+    if(!encoding1->byIdentity->equals("203.0.113.43")) {
+      TEST_FAIL("[HttpHeaderForwarded test setToHeader case12]");
+      break;
+    }
+    break;
+  }
 
 
   TEST_OK("[HttpHeaderForwarded test setToHeader case100]");

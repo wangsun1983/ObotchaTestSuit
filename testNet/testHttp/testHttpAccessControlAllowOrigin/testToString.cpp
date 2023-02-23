@@ -31,6 +31,16 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
+    c->set("*");
+    if(!c->toString()->equals("*")) {
+      TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case3]");
+      break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderAccessControlAllowOrigin test toString case100]");
 

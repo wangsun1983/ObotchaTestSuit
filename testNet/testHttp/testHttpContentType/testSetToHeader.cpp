@@ -68,6 +68,38 @@ void testSetToHeader() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    header->set(createString("Content-Type"),
+                createString("text/html; charset = utf-8 "));
+                
+    auto contentType1 = header->getContentType();
+    header->setContentType(contentType1);
+    
+    contentType1 = header->getContentType();
+    if(!contentType1->getType()->equals("text/html")) {
+      TEST_FAIL("[HttpHeaderContentType test SetToHeader case9],type is %s",contentType1->getType()->toChars());
+      return;
+    }
+
+    if(!contentType1->getCharSet()->equals("utf-8")) {
+      TEST_FAIL("[HttpHeaderContentType test SetToHeader case10],value is %s",contentType1->getCharSet()->toChars());
+    }
+    
+    header->set(createString("Content-Type"),
+                createString("multipart/form-data; boundary = something"));
+    auto contentType2 = header->getContentType();
+    if(!contentType2->getType()->equals("multipart/form-data")) {
+      TEST_FAIL("[HttpHeaderContentType test SetToHeader case11],type is %s",contentType2->getType()->toChars());
+      return;
+    }
+
+    if(!contentType2->getBoundary()->equals("something")) {
+      TEST_FAIL("[HttpHeaderContentType test SetToHeader case12],value is %s",contentType1->getBoundary()->toChars());
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderContentType test SetToHeader case100]");
 

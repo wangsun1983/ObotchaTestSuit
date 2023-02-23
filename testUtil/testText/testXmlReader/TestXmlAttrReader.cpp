@@ -59,6 +59,7 @@ const char *testdata[46][3] = {
   {"Walbeck" ,"6376896.0" ,"302.7800001817"},
 };
 
+char *testname[3] = {"Name","SemiMajorAxis","Flattening"};
 
 void simpleattrtest() {
     XmlReader reader = createXmlReader(createFile("test.xml"));
@@ -78,17 +79,25 @@ void simpleattrtest() {
     XmlValueIterator iterator = root->getValueIterator();
     int nodecount = 0;
     int attrcount = 0;
+    int namecount = 0;
 
     while(iterator->hasValue()) {
         XmlValue node = iterator->getValue();
         XmlAttrIterator attriterator = node->getAttrIterator();
         attrcount = 0;
+        namecount = 0;
         while(attriterator->hasValue()) {
+            //printf("attriterator value is %s \n",attriterator->getValue()->toChars());
             if(!attriterator->getValue()->equals(testdata[nodecount][attrcount])) {
+               TEST_FAIL("[XmlReader Test parse()} case1]");
+            }
+            
+            if(!attriterator->getName()->equals(testname[namecount])) {
                TEST_FAIL("[XmlReader Test parse()} case1]");
             }
             attriterator->next();
             attrcount++;
+            namecount++;
         }
 
         iterator->next();

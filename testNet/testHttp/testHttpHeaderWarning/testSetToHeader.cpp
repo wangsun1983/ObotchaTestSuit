@@ -67,6 +67,36 @@ void testSetToHeader() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    HttpHeaderWarning warning_base = createHttpHeaderWarning();
+    warning_base->import("110 anderson/1.3.37 \"Response is stale\"");
+    header->setWarning(warning_base);
+    
+    auto warning = header->getWarning();
+    
+    if(warning->getCode() != 110) {
+      TEST_FAIL("[HttpHeaderWarning test setToHeader case9]");
+      break;
+    }
+
+    if(!warning->getAgent()->equals("anderson/1.3.37")) {
+      TEST_FAIL("[HttpHeaderWarning test setToHeader case10]");
+      break;
+    }
+
+    if(!warning->getText()->equals("Response is stale")) {
+      TEST_FAIL("[HttpHeaderWarning test setToHeader case11]");
+      break;
+    }
+
+    if(warning->getDateTime() != nullptr) {
+      TEST_FAIL("[HttpHeaderWarning test setToHeader case12]");
+      break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderWarning test setToHeader case100]");
 }

@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderXFrameOptions.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -36,6 +37,21 @@ void testXFrameOptionsToString() {
     options->import("allow-from https://example.com/");
     if(!options->toString()->equals("allow-from https://example.com/")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case3]");
+      break;
+    }
+
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    options->import("allow-from https://example.com/");
+    HttpHeader header = createHttpHeader();
+    header->setXFrameOptions(options);
+    
+    options = header->getXFrameOptions();
+    if(!options->toString()->equals("allow-from https://example.com/")) {
+      TEST_FAIL("[HttpHeaderXFrameOptions test toString case4]");
       break;
     }
 

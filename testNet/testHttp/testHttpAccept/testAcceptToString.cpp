@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAccept.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -37,6 +38,20 @@ void testEncodingToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderAccept accept = createHttpHeaderAccept();
+    HttpHeader header = createHttpHeader();
+    accept->import("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    header->setAccept(accept);
+    
+    auto encoding1 = header->getAccept();
+    if(!encoding1->toString()->equals("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")) {
+      TEST_FAIL("[HttpHeaderAccept test toString case4]encoding is %s",encoding1->toString()->toChars());
+    }
+    break;
+  }
+
 
   TEST_OK("[HttpHeaderAccept test toString case100]");
 

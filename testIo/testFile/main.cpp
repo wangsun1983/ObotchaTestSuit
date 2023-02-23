@@ -15,6 +15,7 @@ extern void testFileRename();
 extern void testFileOpen();
 extern void testFileCreateDirs();
 extern void testFileIsDirectory();
+extern void testFileExists();
 
 int main() {
     testFileRename();
@@ -28,4 +29,5 @@ int main() {
     testFileSetRwx();
     testFileCreateDirs();
     testFileIsDirectory();
+    testFileExists();
 }

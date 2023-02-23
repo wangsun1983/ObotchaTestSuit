@@ -25,5 +25,18 @@ void testSetToHeader() {
     break;
   }
 
-  TEST_OK("[CrossOriginEmbedderPolicy test setToHeader case1]");
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    header->set(createString("Cross-Origin-Embedder-Policy"),createString("unsafe-none"));
+    auto policy = header->getCrossOriginEmbedderPolicy();    
+    header->setCrossOriginEmbedderPolicy(policy);
+    
+    auto policy2 = header->getCrossOriginEmbedderPolicy();
+    if(!policy2->isUnSafeNone()) {
+      TEST_FAIL("[CrossOriginEmbedderPolicy test setToHeader case2]");
+    }
+    break;
+  }
+
+  TEST_OK("[CrossOriginEmbedderPolicy test setToHeader case100]");
 }

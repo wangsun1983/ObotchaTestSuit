@@ -16,14 +16,19 @@ extern void testHttpHeaderParse();
 extern void testResponseReason();
 extern void testHttpHeaderAppend();
 extern void testHttpHeaderSelfDefine();
+extern void testHttpHeaderSize();
+extern void testHttpHeaderFindId();
+extern void testHttpHeaderFindName();
 
 int main() {
+    testHttpHeaderSize();
     testHttpHeaderSelfDefine();
     testHttpHeaderAppend();
     testHttpHeaderSet();
     testHttpHeaderToString();
     testResponseReason();
-    
+    testHttpHeaderFindId();
+    testHttpHeaderFindName();
     //testHttpHeaderParse(); TODO
     return 0;
 }

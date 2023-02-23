@@ -19,6 +19,15 @@ void testConnectionToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderConnection connection = createHttpHeaderConnection();
+    connection->set(" keep-alive");
+    if(!connection->toString()->equals("keep-alive")) {
+      TEST_FAIL("[HttpHeaderConnection test toString case2]");
+    }
+    break;
+  }
 
   TEST_OK("[HttpForwarded test toString case100]");
 

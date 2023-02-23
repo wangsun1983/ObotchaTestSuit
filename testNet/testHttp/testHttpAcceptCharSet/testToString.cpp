@@ -7,6 +7,7 @@
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptCharSet.hpp"
 #include "TestLog.hpp"
+#include "HttpHeader.hpp"
 
 using namespace obotcha;
 
@@ -36,6 +37,20 @@ void testCharSetToString() {
     charset->import("utf-8, iso-8859-1;q=0.5, *;q=0.1");
     if(!charset->toString()->equals("utf-8,iso-8859-1;q=0.5,*;q=0.1")) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test toString case3]");
+      break;
+    }
+    break;
+  }
+  
+  while(1) {
+    HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
+    charset->import("utf-8, iso-8859-1;q=0.5, *;q=0.1");
+    HttpHeader header = createHttpHeader();
+    header->setAcceptCharSet(charset);
+    auto charset2 = header->getAcceptCharSet();
+    
+    if(!charset2->toString()->equals("utf-8,iso-8859-1;q=0.5,*;q=0.1")) {
+      TEST_FAIL("[HttpHeaderAcceptCharSet test toString case4]");
       break;
     }
     break;

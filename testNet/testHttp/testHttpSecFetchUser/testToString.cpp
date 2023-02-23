@@ -30,6 +30,16 @@ void testToString() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    save->set("nested-navigate");
+    if(!save->toString()->equals("nested-navigate")) {
+      TEST_FAIL("[HttpHeaderSecFetchUser test toString case3]");
+      break;
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderSecFetchUser test toString case100]");
 

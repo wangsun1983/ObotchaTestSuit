@@ -69,5 +69,25 @@ void splittest() {
         TEST_OK("String split Special test8");
         break;
     }
+    
+    //split(char const*, int)
+    while(1) {
+        const char * str = "a1d1c1d";
+        String ss = createString(str);
+        auto list = ss->split("123",1);
+        if(list->size() != 4) {
+            TEST_FAIL("String split Special test9");
+        }
+        
+        if(!list->get(0)->equals("a") ||
+           !list->get(1)->equals("d") ||
+           !list->get(2)->equals("c") ||
+           !list->get(3)->equals("d")) {
+            TEST_FAIL("String split Special test10");
+        }
+        break;
+    }
+            
+    TEST_OK("String split Special test100");
 
 }

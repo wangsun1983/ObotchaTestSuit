@@ -23,6 +23,17 @@ void testSetToHeader() {
     }
     break;
   }
+  
+  while(1) {
+    HttpHeader header = createHttpHeader();
+    auto contentLength = createHttpHeaderContentLength();
+    contentLength->set(123);
+    header->setContentLength(contentLength);
+    if(header->getContentLength()->get() != 123) {
+      TEST_FAIL("[testSetToHeader test Parse case2]");
+    }
+    break;
+  }
 
   TEST_OK("[testSetToHeader test Parse case100]");
 }
