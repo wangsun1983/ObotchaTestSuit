@@ -21,63 +21,63 @@ void testByteRingArrayPopWithParam() {
     array->push(4);
     array->push(5);
 
-    //------------
+    //
     ByteRingArray arr1 = createByteRingArray(array);
     arr1->setEndIndex(0);
     arr1->setSize(5);
 
     ByteArray result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case1]");
+      TEST_FAIL("[ByteRingArray Test pop with param case1]");
       break;
     }
 
     if(result[0] != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case2]");
+      TEST_FAIL("[ByteRingArray Test pop with param case2]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case3]");
+      TEST_FAIL("[ByteRingArray Test pop with param case3]");
       break;
     }
 
     if(result[0] != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case4]");
+      TEST_FAIL("[ByteRingArray Test pop with param case4]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case5]");
+      TEST_FAIL("[ByteRingArray Test pop with param case5]");
       break;
     }
 
     if(result[0] != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case6]");
+      TEST_FAIL("[ByteRingArray Test pop with param case6]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case7]");
+      TEST_FAIL("[ByteRingArray Test pop with param case7]");
       break;
     }
 
     if(result[0] != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case8]");
+      TEST_FAIL("[ByteRingArray Test pop with param case8]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case9]");
+      TEST_FAIL("[ByteRingArray Test pop with param case9]");
       break;
     }
 
     if(result[0] != 5) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case10]");
+      TEST_FAIL("[ByteRingArray Test pop with param case10]");
       break;
     }
 
@@ -89,127 +89,127 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case11]");
+      TEST_FAIL("[ByteRingArray Test pop with param case11]");
       break;
     }
 
-    //------------
+    //
     arr1 = createByteRingArray(array);
     arr1->setEndIndex(4);
     arr1->setSize(5);
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case12]");
+      TEST_FAIL("[ByteRingArray Test pop with param case12]");
       break;
     }
 
     if(result[0] != 5) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case13]");
+      TEST_FAIL("[ByteRingArray Test pop with param case13]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case14]");
+      TEST_FAIL("[ByteRingArray Test pop with param case14]");
       break;
     }
 
     if(result[0] != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case15]");
+      TEST_FAIL("[ByteRingArray Test pop with param case15]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case16]");
+      TEST_FAIL("[ByteRingArray Test pop with param case16]");
       break;
     }
 
     if(result[0] != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case17]");
+      TEST_FAIL("[ByteRingArray Test pop with param case17]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case18]");
+      TEST_FAIL("[ByteRingArray Test pop with param case18]");
       break;
     }
 
     if(result[0] != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case19]");
+      TEST_FAIL("[ByteRingArray Test pop with param case19]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case20]");
+      TEST_FAIL("[ByteRingArray Test pop with param case20]");
       break;
     }
 
     if(result[0] != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case21]");
+      TEST_FAIL("[ByteRingArray Test pop with param case21]");
       break;
     }
 
-    //------------
+    //
     arr1 = createByteRingArray(array);
     arr1->setEndIndex(3);
     arr1->setSize(5);
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case22]");
+      TEST_FAIL("[ByteRingArray Test pop with param case22]");
       break;
     }
 
     if(result[0] != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case23]");
+      TEST_FAIL("[ByteRingArray Test pop with param case23]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case24]");
+      TEST_FAIL("[ByteRingArray Test pop with param case24]");
       break;
     }
 
     if(result[0] != 5) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case25]");
+      TEST_FAIL("[ByteRingArray Test pop with param case25]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case26]");
+      TEST_FAIL("[ByteRingArray Test pop with param case26]");
       break;
     }
 
     if(result[0] != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case27]");
+      TEST_FAIL("[ByteRingArray Test pop with param case27]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case28]");
+      TEST_FAIL("[ByteRingArray Test pop with param case28]");
       break;
     }
 
     if(result[0] != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case29]");
+      TEST_FAIL("[ByteRingArray Test pop with param case29]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case30]");
+      TEST_FAIL("[ByteRingArray Test pop with param case30]");
       break;
     }
 
     if(result[0] != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case31]");
+      TEST_FAIL("[ByteRingArray Test pop with param case31]");
       break;
     }
 
@@ -221,67 +221,67 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case32]");
+      TEST_FAIL("[ByteRingArray Test pop with param case32]");
       break;
     }
 
-    //------------
+    //
     arr1 = createByteRingArray(array);
     arr1->setEndIndex(2);
     arr1->setSize(5);
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case42]");
+      TEST_FAIL("[ByteRingArray Test pop with param case42]");
       break;
     }
 
     if(result[0] != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case43]");
+      TEST_FAIL("[ByteRingArray Test pop with param case43]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case44]");
+      TEST_FAIL("[ByteRingArray Test pop with param case44]");
       break;
     }
 
     if(result[0] != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case45]");
+      TEST_FAIL("[ByteRingArray Test pop with param case45]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case46]");
+      TEST_FAIL("[ByteRingArray Test pop with param case46]");
       break;
     }
 
     if(result[0] != 5) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case47]");
+      TEST_FAIL("[ByteRingArray Test pop with param case47]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case48]");
+      TEST_FAIL("[ByteRingArray Test pop with param case48]");
       break;
     }
 
     if(result[0] != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case49]");
+      TEST_FAIL("[ByteRingArray Test pop with param case49]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case50]");
+      TEST_FAIL("[ByteRingArray Test pop with param case50]");
       break;
     }
 
     if(result[0] != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case51]");
+      TEST_FAIL("[ByteRingArray Test pop with param case51]");
       break;
     }
 
@@ -293,67 +293,67 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case52]");
+      TEST_FAIL("[ByteRingArray Test pop with param case52]");
       break;
     }
 
-    //------------
+    //
     arr1 = createByteRingArray(array);
     arr1->setEndIndex(1);
     arr1->setSize(5);
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case42]");
+      TEST_FAIL("[ByteRingArray Test pop with param case42]");
       break;
     }
 
     if(result[0] != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case43]");
+      TEST_FAIL("[ByteRingArray Test pop with param case43]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case44]");
+      TEST_FAIL("[ByteRingArray Test pop with param case44]");
       break;
     }
 
     if(result[0] != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case45]");
+      TEST_FAIL("[ByteRingArray Test pop with param case45]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case46]");
+      TEST_FAIL("[ByteRingArray Test pop with param case46]");
       break;
     }
 
     if(result[0] != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case47]");
+      TEST_FAIL("[ByteRingArray Test pop with param case47]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case48]");
+      TEST_FAIL("[ByteRingArray Test pop with param case48]");
       break;
     }
 
     if(result[0] != 5) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case49]");
+      TEST_FAIL("[ByteRingArray Test pop with param case49]");
       break;
     }
 
     result = arr1->pop(1);
     if(result->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case50]");
+      TEST_FAIL("[ByteRingArray Test pop with param case50]");
       break;
     }
 
     if(result[0] != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case51]");
+      TEST_FAIL("[ByteRingArray Test pop with param case51]");
       break;
     }
 
@@ -365,11 +365,11 @@ void testByteRingArrayPopWithParam() {
     }
 
     if(!isException) {
-      TEST_FAIL("---[ByteRingArray Test pop with param case52]");
+      TEST_FAIL("[ByteRingArray Test pop with param case52]");
       break;
     }
 
-    TEST_OK("---[ByteRingArray Test pop with param case100]");
+    TEST_OK("[ByteRingArray Test pop with param case100]");
     break;
   }
   return;

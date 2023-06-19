@@ -10,24 +10,24 @@
 using namespace obotcha;
 
 void testByteArrayCapacity() {
-    
+
     ByteRingArray array = createByteRingArray(16);
     if(array->getCapacity() != 16) {
-        TEST_FAIL("---[ByteRingArray Test Capacity case1]");
+        TEST_FAIL("[ByteRingArray Test Capacity case1]");
     }
     
     array->push(1);
     if(array->getCapacity() != 16) {
-        TEST_FAIL("---[ByteRingArray Test Capacity case2]");
+        TEST_FAIL("[ByteRingArray Test Capacity case2]");
     }
-    
+
     array->push(1);
     array->push(1);
     array->push(1);
     array->popAll();
     if(array->getCapacity() != 16) {
-        TEST_FAIL("---[ByteRingArray Test Capacity case3]");
+        TEST_FAIL("[ByteRingArray Test Capacity case3]");
     }
-    
-    TEST_OK("---[ByteRingArray Test Capacity case100]");
+
+    TEST_OK("[ByteRingArray Test Capacity case100]");
 }

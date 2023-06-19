@@ -20,7 +20,6 @@ extern void testReflectArrayListToXml();
 extern void testReflectHashMapXml2();
 
 int main() {
-
   testReflectFieldRead();
   testReflectFieldWrite();
   testReflectComplexFieldRead();

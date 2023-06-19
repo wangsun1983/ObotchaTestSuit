@@ -48,7 +48,7 @@ int main() {
         t2->join();
         latch->await();
         
-        if(!pool->isChannelsEmpty()) {
+        if(!pool->isEmpty()) {
             TEST_FAIL("testAsyncOutputChannel testRemove case1");
         }
         break;

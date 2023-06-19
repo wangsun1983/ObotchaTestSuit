@@ -22,13 +22,14 @@ void testAsyncProcessMqLambda() {
     
     int pid = fork();
     if(pid == 0) {
-      ProcessMq sendMq = createProcessMq("lambdactest2",st(ProcessMq)::Send);
       sleep(1);
+      ProcessMq sendMq = createProcessMq("lambd_test1",st(ProcessMq)::Send);
+      sleep(2);
       String s = createString("hello world");
-      sendMq->send(s->toByteArray());
+      int ret = sendMq->send(s->toByteArray());
       exit(0);
     } else {
-      ProcessMq readMq1 = createProcessMq("lambdactest2",[](ByteArray data){
+      ProcessMq readMq1 = createProcessMq("lambd_test1",[](ByteArray data){
         if(!data->toString()->equals("hello world")) {
           TEST_FAIL("AsyncProcessMqLambda case1");
         }
@@ -37,8 +38,6 @@ void testAsyncProcessMqLambda() {
       lambdaLatch->await();
       readMq1->clear();
     }
-
-    
 
     TEST_OK("[ProcessMq Test AsyncProcessMqLambda case100]");
 }

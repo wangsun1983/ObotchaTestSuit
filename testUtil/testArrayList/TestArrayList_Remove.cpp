@@ -15,6 +15,16 @@ DECLARE_CLASS(RemoveTestData) {
 public:
   int data1;
   int data2;
+
+  _RemoveTestData(int d1,int d2) {
+    data1 = d1;
+    data2 = d2;
+  }
+
+  _RemoveTestData() {
+    data1 = 0;
+    data2 = 0;
+  }
 };
 
 void testArrayList_Remove() {
@@ -69,6 +79,19 @@ void testArrayList_Remove() {
     if(index != 0) {
       TEST_FAIL("[ArrayList remvoe test5]");
       break;
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<RemoveTestData> list = createArrayList<RemoveTestData>();
+    auto t1 = createRemoveTestData(1,1);
+    if(list->remove(t1) != -1) {
+      TEST_FAIL("[ArrayList remvoe test6]");
+    }
+
+    if(list->remove(nullptr) != -1) {
+      TEST_FAIL("[ArrayList remvoe test7]");
     }
     break;
   }

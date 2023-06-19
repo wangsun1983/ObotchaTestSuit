@@ -47,5 +47,60 @@ void testArrayList_RemoveAt() {
     break;
   }
 
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->add(createString("a"));
+    list->add(createString("b"));
+    bool isException = false;
+    try {
+      list->removeAt(100);
+    } catch(...) {
+      isException = true;
+    }
+
+    if(!isException) {
+      TEST_FAIL("[ArrayList removeAt test4]");
+      break;
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->add(createString("a"));
+    list->add(createString("b"));
+    bool isException = false;
+    try {
+      list->removeAt(-1);
+    } catch(...) {
+      isException = true;
+    }
+
+    if(!isException) {
+      TEST_FAIL("[ArrayList removeAt test5]");
+      break;
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->add(createString("a"));
+    list->add(createString("b"));
+    list->clear();
+    bool isException = false;
+    try {
+      list->removeAt(0);
+    } catch(...) {
+      isException = true;
+    }
+
+    if(!isException) {
+      TEST_FAIL("[ArrayList removeAt test6]");
+      break;
+    }
+    break;
+  }
+
   TEST_OK("[ArrayList removeAt test100]");
 }

@@ -40,19 +40,19 @@ void push_test() {
   ByteArray b1 = array->pop(2);
   if(b1->at(0) != 5 ||
      b1->at(1) != 6) {
-    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case1]");
+    TEST_FAIL("[ByteRingArray Test push_test {push_test} case1]");
     return;
   }
 
-  if(array->getStartIndex() != 0 
+  if(array->getStartIndex() != 0
     ||array->getEndIndex() != 2) {
-    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case2]");
+    TEST_FAIL("[ByteRingArray Test push_test {push_test} case2]");
     return;
   }
 
   int v2 = array->pop();
   if(v2 != 7) {
-    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case3]");
+    TEST_FAIL("[ByteRingArray Test push_test {push_test} case3]");
     return;
   }
 
@@ -70,10 +70,10 @@ void push_test() {
      array->at(3) != 19 ||
      array->at(4) != 19 ||
      array->at(5) != 19 ) {
-    TEST_FAIL("---[ByteRingArray Test push_test {push_test} case4]");
+    TEST_FAIL("[ByteRingArray Test push_test {push_test} case4]");
     return;
   }
 
 
-  TEST_OK("---[ByteRingArray Test push_test {push_test} case10]");
+  TEST_OK("[ByteRingArray Test push_test {push_test} case10]");
 }

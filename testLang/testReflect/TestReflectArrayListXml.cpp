@@ -64,7 +64,7 @@ void testReflectArrayListToXml() {
     writer->write("output_xml_2.xml");
 
 
-    XmlDocument doc1 = createXmlDocument("output_xml_2.xml");
+    XmlDocument doc1 = createXmlDocument(createFile("output_xml_2.xml"));
     XmlReflectList data3 = createXmlReflectList();
     doc1->reflectTo(data3);
 

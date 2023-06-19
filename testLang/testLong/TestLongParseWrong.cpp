@@ -14,25 +14,25 @@ using namespace obotcha;
 
 void testLongParseWrong() {
   while(1) {
-   Long v1 = st(Long)::parseDecLong("xd");
+   Long v1 = st(Long)::ParseDecLong("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Long testLongParseWrong test1,v is %ld",v1->toValue());
     break;
    }
 
-   v1 = st(Long)::parseHexLong("xd");
+   v1 = st(Long)::ParseHexLong("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Long testLongParseWrong test2");
     break;
    }
 
-   v1 = st(Long)::parseOctLong("xd");
+   v1 = st(Long)::ParseOctLong("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Long testLongParseWrong test3");
     break;
    }
 
-   v1 = st(Long)::parseBinaryLong("111d");
+   v1 = st(Long)::ParseBinaryLong("111d");
    if(v1 != nullptr) {
     TEST_FAIL("Long testLongParseWrong test4,v is %x",v1->toValue());
     break;

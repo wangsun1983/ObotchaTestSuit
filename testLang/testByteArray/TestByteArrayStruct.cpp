@@ -49,7 +49,7 @@ void testByteArrayStruct() {
   }
 
   while(1) {
-    ByteArray array = st(ByteArray)::alloc<MyData>();
+    ByteArray array = st(ByteArray)::Alloc<MyData>();
     MyData *p = array->get<MyData>();
     p->data1 = 1;
     p->data2 = 2;

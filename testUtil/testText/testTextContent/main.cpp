@@ -11,9 +11,11 @@ using namespace obotcha;
 
 extern void testToString();
 extern void testToJson();
+extern void testToXml();
 
 int main() {
     testToString();
     testToJson();
+    testToXml();
     return 0;
 }

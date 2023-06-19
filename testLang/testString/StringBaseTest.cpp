@@ -397,7 +397,7 @@ void basetest() {
     ArrayList<String> list2 = abc2->split("||");
 
     if(list2 != nullptr && list2->size() != 0) {
-      TEST_FAIL("BaseTest String split test3");
+      TEST_FAIL("BaseTest String split test3,list2->size() is %d",list2->size());
       break;
     }
 

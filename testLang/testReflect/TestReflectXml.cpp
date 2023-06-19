@@ -49,7 +49,7 @@ void testReflectToXml() {
     XmlWriter writer = createXmlWriter(doc);
     writer->write("output_xml_1.xml");
 
-    XmlDocument doc1 = createXmlDocument("output_xml_1.xml");
+    XmlDocument doc1 = createXmlDocument(createFile("output_xml_1.xml"));
     XmlReflectData data3 = createXmlReflectData();
     doc1->reflectTo(data3);
 

@@ -58,6 +58,14 @@ void testLanguageToString() {
     break;
   }
 
+  while(1) {
+    HttpHeaderAcceptLanguage encoding1 = createHttpHeaderAcceptLanguage();
+    encoding1->import("en-us,en;q=0.5");
+    if(!encoding1->toString()->equals("en-us,en;q=0.5")) {
+      TEST_FAIL("[HttpHeaderAcceptLanguage test toString case5],str is %s",encoding1->toString()->toChars());
+    }
+    break;
+  }
 
   TEST_OK("[HttpHeaderAcceptLanguage test toString case100]");
 

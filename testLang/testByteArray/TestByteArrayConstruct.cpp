@@ -181,7 +181,7 @@ void testConstruct() {
 
       ByteArray data1 = createByteArray(data,10,2);
       if(data1->size() != 2) {
-        TEST_FAIL("ByteArray test Construct test 15");
+        TEST_FAIL("ByteArray test Construct test 15,size is %d",data1->size());
         break;
       }
 

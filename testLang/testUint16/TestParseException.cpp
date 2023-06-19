@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 void TestParseException() {
-  Uint16 data = st(Uint16)::parseDecString("0x12");
+  Uint16 data = st(Uint16)::ParseDecString("0x12");
   if(data != nullptr) {
     TEST_FAIL("Uint16 Parse Exception test1");
   }

@@ -20,7 +20,7 @@ int getEnvPort() {
     if(file->exists()) {
         BufferedReader r = createBufferedReader(file);
         String value = r->readLine();
-        return value->toBasicInt();
+        return (value != nullptr)?value->toBasicInt():DEFAULT_PORT;
     }
 
     return DEFAULT_PORT;

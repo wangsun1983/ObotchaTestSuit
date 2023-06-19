@@ -78,5 +78,44 @@ void testArrayList_InsertFirst() {
     break;
   }
 
+  while(1) {
+    ArrayList<String> list1 = createArrayList<String>();
+
+    ArrayList<String>list2 = createArrayList<String>();
+    list2->add(createString("a"));
+    list2->add(createString("b"));
+    list2->add(createString("c"));
+
+    list1->insertFirst(list2);
+    if(list1->size() != 3) {
+      TEST_FAIL("[ArrayList insertFirst test4]");
+    }
+
+    if(!list1->get(0)->equals("a") || !list1->get(1)->equals("b")
+      ||!list1->get(2)->equals("c")) {
+        TEST_FAIL("[ArrayList insertFirst test5]");
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<String> list1 = createArrayList<String>(1);
+    ArrayList<String>list2 = createArrayList<String>();
+    list2->add(createString("a"));
+    list2->add(createString("b"));
+    list2->add(createString("c"));
+
+    list1->insertFirst(list2);
+    if(list1->size() != 3) {
+      TEST_FAIL("[ArrayList insertFirst test6]");
+    }
+
+    if(!list1->get(0)->equals("a") || !list1->get(1)->equals("b")
+      ||!list1->get(2)->equals("c")) {
+        TEST_FAIL("[ArrayList insertFirst test7]");
+    }
+    break;
+  }
+
   TEST_OK("[ArrayList insertFirst test100]");
 }

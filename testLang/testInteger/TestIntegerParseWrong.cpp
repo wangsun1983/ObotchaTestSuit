@@ -14,25 +14,25 @@ using namespace obotcha;
 
 void testIntegerParseWrong() {
   while(1) {
-   Integer v1 = st(Integer)::parseDecString("xd");
+   Integer v1 = st(Integer)::ParseDecString("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Integer testIntegerParseWrong test1");
     break;
    }
 
-   v1 = st(Integer)::parseHexString("xd");
+   v1 = st(Integer)::ParseHexString("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Integer testIntegerParseWrong test2");
     break;
    }
 
-   v1 = st(Integer)::parseOctString("xd");
+   v1 = st(Integer)::ParseOctString("xd");
    if(v1 != nullptr) {
     TEST_FAIL("Integer testIntegerParseWrong test3");
     break;
    }
 
-   v1 = st(Integer)::parseBinaryString("111d");
+   v1 = st(Integer)::ParseBinaryString("111d");
    if(v1 != nullptr) {
     TEST_FAIL("Integer testIntegerParseWrong test4");
     break;

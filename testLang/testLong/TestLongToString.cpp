@@ -103,7 +103,7 @@ void testtostring() {
    while(1) {
      for(int i = 0;i < 100;i++) {
        Long t1 = createLong(i);
-       Long t2 = st(Long)::parseHexLong(createString(HexTable[i]));
+       Long t2 = st(Long)::ParseHexLong(createString(HexTable[i]));
        Long t3 = createLong(t2);
        if(t1 != t3) {
          TEST_FAIL("Long toInt test1");
@@ -113,7 +113,7 @@ void testtostring() {
 
      for(int i = 0;i < 100;i++) {
        Long t1 = createLong(i);
-       Long t2 = st(Long)::parseOctLong(createString(OctTable[i]));
+       Long t2 = st(Long)::ParseOctLong(createString(OctTable[i]));
        Long t3 = createLong(t2);
 
        if(t1 != t3) {
@@ -126,7 +126,7 @@ void testtostring() {
        Long t1 = createLong(i);
        String str = createString(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
-       Long t2 = st(Long)::parseBinaryLong(str);
+       Long t2 = st(Long)::ParseBinaryLong(str);
        Long t3 = createLong(t2);
         if(t1 != t3) {
          TEST_FAIL("Long toInt test3");

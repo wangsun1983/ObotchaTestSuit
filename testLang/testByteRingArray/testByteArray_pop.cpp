@@ -25,11 +25,11 @@ void testByteRingArrayPop() {
     if(array->pop() != 1 || array->pop() != 2
       ||array->pop() != 3 || array->pop() != 4
       ||array->pop() != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test1} case1]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test1} case1]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test1} case2]");
+    TEST_OK("[ByteRingArray Test pop {push_test1} case2]");
     break;
   }
 
@@ -45,11 +45,11 @@ void testByteRingArrayPop() {
 
     ByteArray arr = array->popAll();
     if(arr->at(0) != 1 ||arr->at(1) != 2||arr->at(2) != 3||arr->at(3) != 4||arr->at(4) != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test2} case1]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test2} case1]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test2} case2]");
+    TEST_OK("[ByteRingArray Test pop {push_test2} case2]");
     break;
   }
 
@@ -67,16 +67,16 @@ void testByteRingArrayPop() {
 
     ByteArray arr = array->popAll();
     if(arr->size() != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test3} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test3} case1]");
       return;
     }
 
     if(arr->at(0) != 2 ||arr->at(1) != 3||arr->at(2) != 4||arr->at(3) != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test3} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test3} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test3} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test3} case3]");
     break;
   }
 
@@ -95,16 +95,16 @@ void testByteRingArrayPop() {
 
     ByteArray arr = array->popAll();
     if(arr->size() != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test4} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test4} case1]");
       return;
     }
 
     if(arr->at(0) != 3 ||arr->at(1) != 4||arr->at(2) != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test4} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test4} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test4} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test4} case3]");
     break;
   }
 
@@ -124,16 +124,16 @@ void testByteRingArrayPop() {
 
     ByteArray arr = array->popAll();
     if(arr->size() != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test5} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test5} case1]");
       return;
     }
 
     if(arr->at(0) != 4) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test5} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test5} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test5} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test5} case3]");
     break;
   }
 
@@ -153,16 +153,16 @@ void testByteRingArrayPop() {
     array->pop();
     ByteArray arr = array->popAll();
     if(arr->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test6} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test6} case1]");
       return;
     }
 
     if(arr->at(0) != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test6} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test6} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test6} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test6} case3]");
     break;
   }
 
@@ -181,16 +181,16 @@ void testByteRingArrayPop() {
 
     ByteArray arr = array->popAll();
     if(arr->size() != 1) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test7} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test7} case1]");
       return;
     }
 
     if(arr->at(0) != 5) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test7} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test7} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test7} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test7} case3]");
     break;
   }
 
@@ -208,16 +208,16 @@ void testByteRingArrayPop() {
     array->setEndIndex(1);
     ByteArray arr = array->popAll();
     if(arr->size() != 2) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test8} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test8} case1]");
       return;
     }
 
     if(arr->at(0) != 5 || arr->at(1) != 1) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test8} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test8} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test8} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test8} case3]");
     break;
   }
 
@@ -235,16 +235,16 @@ void testByteRingArrayPop() {
     array->setEndIndex(2);
     ByteArray arr = array->popAll();
     if(arr->size() != 3) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test9} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test9} case1]");
       return;
     }
 
     if(arr->at(0) != 5 || arr->at(1) != 1 || arr->at(2)!= 2) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test9} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test9} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test9} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test9} case3]");
     break;
   }
 
@@ -262,16 +262,16 @@ void testByteRingArrayPop() {
     array->setEndIndex(3);
     ByteArray arr = array->popAll();
     if(arr->size() != 4) {
-      TEST_FAIL("---[ByteRingArray Test pop {push_test10} case1]");
+      TEST_FAIL("[ByteRingArray Test pop {push_test10} case1]");
       return;
     }
 
     if(arr->at(0) != 5 || arr->at(1) != 1 || arr->at(2)!= 2 || arr->at(3) != 3) {
-        TEST_FAIL("---[ByteRingArray Test pop {push_test10} case2]");
+        TEST_FAIL("[ByteRingArray Test pop {push_test10} case2]");
         return;
     }
 
-    TEST_OK("---[ByteRingArray Test pop {push_test10} case3]");
+    TEST_OK("[ByteRingArray Test pop {push_test10} case3]");
     break;
   }
   return;

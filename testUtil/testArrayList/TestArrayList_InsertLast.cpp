@@ -79,5 +79,23 @@ void testArrayList_InsertLast() {
     break;
   }
 
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+
+    list->insertLast(createString("c"));
+    list->insertLast(createString("d"));
+
+    if(list->size() != 2) {
+      TEST_FAIL("[ArrayList InsertLast test4]");
+      break;
+    }
+
+    if(!list->get(0)->equals("c") ||!list->get(1)->equals("d")) {
+        TEST_FAIL("[ArrayList InsertLast test5]");
+        break;
+    }
+    break;
+  }
+
   TEST_OK("[ArrayList InsertLast test100]");
 }

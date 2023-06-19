@@ -19,7 +19,7 @@ void parseWrongTest() {
       String s = createString("xx.123");
       Float f = s->toFloat();
       if(f != nullptr) {
-        TEST_FAIL("Parse wrong float string case1");
+        TEST_FAIL("Parse wrong float string case1,s is %lf",f->toValue());
       }
 
       s = createString("1.2.123");
@@ -34,7 +34,7 @@ void parseWrongTest() {
         TEST_FAIL("Parse wrong float string case3,s is %lf",f->toValue());
       }
 
-      if(!st(Float)::isEqual(f->toValue(),0.123)) {
+      if(!st(Float)::IsEqual(f->toValue(),0.123)) {
         TEST_FAIL("Parse wrong float string case4");
       }
       break;

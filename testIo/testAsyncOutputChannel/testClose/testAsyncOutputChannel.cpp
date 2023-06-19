@@ -27,7 +27,7 @@ void testAsyncOutputChannel() {
         list->add(c);
     }
     
-    if(pool->isChannelsEmpty()) {
+    if(pool->isEmpty()) {
         TEST_FAIL("testAsyncOutputChannel close channel case1");
     }
     
@@ -37,7 +37,7 @@ void testAsyncOutputChannel() {
     }
     
     usleep(1000*100);
-    if(!pool->isChannelsEmpty()) {
+    if(!pool->isEmpty()) {
         TEST_FAIL("testAsyncOutputChannel close channel case2");
     }
     

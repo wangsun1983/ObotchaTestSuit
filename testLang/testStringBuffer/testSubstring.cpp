@@ -10,7 +10,7 @@ void testSubString() {
       buffer->append("abc","abc2","abc3");
       buffer->subString(0,4)->append("123");
       if(!buffer->toString()->equals("abca123")) {
-        TEST_FAIL("StringBuffer subString test1");
+        TEST_FAIL("StringBuffer subString test1,buffer is %s",buffer->toString()->toChars());
       }
       break;
     }
@@ -20,7 +20,7 @@ void testSubString() {
       buffer->append("abc","abc2","abc3");
       buffer->subString(1,4)->append("123");
       if(!buffer->toString()->equals("bcab123")) {
-        TEST_FAIL("StringBuffer subString test2");
+        TEST_FAIL("StringBuffer subString test2,buffer is %s",buffer->toString()->toChars());
       }
       break;
     }
@@ -59,6 +59,26 @@ void testSubString() {
 
       if(!isExcept) {
         TEST_FAIL("StringBuffer subString test5");
+      }
+      break;
+    }
+    
+    while(1) {
+      StringBuffer buffer = createStringBuffer(5);
+      buffer->append("abcde");
+      
+      if(!buffer->toString()->equals("abcde")) {
+          TEST_FAIL("StringBuffer subString test6");
+      }
+      
+      buffer->subString(1,3);
+      if(!buffer->toString()->equals("bcd")) {
+          TEST_FAIL("StringBuffer subString test7");
+      }
+      
+      buffer->subString(1,1);
+      if(!buffer->toString()->equals("c")) {
+          TEST_FAIL("StringBuffer subString test8");
       }
       break;
     }

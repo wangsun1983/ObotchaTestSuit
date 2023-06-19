@@ -172,5 +172,57 @@ void testArrayList_Insert() {
     break;
   }
 
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->add(createString("a"));
+    list->insert(0,createString("b"));
+    list->insert(1,createString("c"));
+
+    if(!list->get(0)->equals("b")) {
+      TEST_FAIL("[ArrayList Insert test12]");
+    }
+
+    if(!list->get(1)->equals("c")) {
+      TEST_FAIL("[ArrayList Insert test13]");
+    }
+
+    if(!list->get(2)->equals("a")) {
+      TEST_FAIL("[ArrayList Insert test14]");
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->insert(0,createString("a"));
+    if(list->size() != 1) {
+      TEST_FAIL("[ArrayList Insert test15]");
+    }
+
+    auto v1 = list->get(0);
+    if(!v1->equals("a")) {
+      TEST_FAIL("[ArrayList Insert test16]");
+    }
+    break;
+  }
+
+  while(1) {
+    ArrayList<String> list = createArrayList<String>();
+    list->add(createString("a"));
+    list->add(createString("b"));
+    list->insert(2,createString("c"));
+    if(list->size() != 3) {
+      TEST_FAIL("[ArrayList Insert test17]");
+    }
+
+    if(!list->get(0)->equals("a") ||!list->get(1)->equals("b")
+      ||!list->get(2)->equals("c")) {
+        TEST_FAIL("[ArrayList Insert test17]");
+    }
+    
+    break;
+  }
+
+
   TEST_OK("[ArrayList Insert test100]");
 }

@@ -31,9 +31,16 @@ extern void testArrayList_Iterator_Insert();
 extern void testArrayList_Contains();
 extern void testArrayList_removeList();
 extern void testArrayList_Set();
+extern void testArrayList_Get();
+extern void testArrayList_InsertList();
+extern void testArrayList_Size();
+extern void testArrayList_Capacity();
 
 int main() {
-   
+  testArrayList_Capacity();
+  testArrayList_Size();
+  testArrayList_InsertList();
+  testArrayList_Get();
   testArrayList_Set();
   testArrayList_removeList();
   testArrayList_Contains();
@@ -57,4 +64,5 @@ int main() {
   testArrayListForEach();
   testArrayList_RemoveAt();
   testArrayList_Iterator_Insert();
+  return 0;
 }

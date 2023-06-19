@@ -22,9 +22,9 @@ void testEncodingToString() {
 
   while(1) {
     HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
-    encoding1->import("deflate,gzip;q=1.0,*;q=0.5");
+    encoding1->import("deflate,gzip;q=0.2,*;q=0.5");
     //q default value is 1,no need
-    if(!encoding1->toString()->equals("deflate,gzip;q=1.0,*;q=0.5")) {
+    if(!encoding1->toString()->equals("deflate,gzip;q=0.2,*;q=0.5")) {
       TEST_FAIL("[HttpHeaderAcceptEncoding test toString case2] [FAILED] encoding is %s",encoding1->toString()->toChars());
     }
     break;

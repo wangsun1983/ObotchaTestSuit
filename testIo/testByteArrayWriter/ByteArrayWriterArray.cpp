@@ -26,7 +26,7 @@ void testByteArrayWriterArray() {
 
       for(int i = 0;i<8;i++) {
         if(array[i] != i + 1) {
-          TEST_FAIL("[TestByteArrayWriter Write Array case1]");
+          TEST_FAIL("[TestByteArrayWriter Write Array case1],array[%d] is %d,real is %d",i,array[i],(i+1));
         }
       }
 

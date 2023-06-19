@@ -15,18 +15,18 @@ using namespace obotcha;
 void testBooleanParse() {
 
     String s1 = createString("true");
-    if(!st(Boolean)::parse(s1)->toValue()) {
+    if(!st(Boolean)::Parse(s1)->toValue()) {
       TEST_FAIL("testBooleanParse case1");
     }
 
     String s2 = createString("false");
-    if(st(Boolean)::parse(s2)->toValue()) {
+    if(st(Boolean)::Parse(s2)->toValue()) {
       TEST_FAIL("testBooleanParse case2");
     }
 
     String s3;
     try {
-      auto v = st(Boolean)::parse(s3);
+      auto v = st(Boolean)::Parse(s3);
       TEST_FAIL("testBooleanParse case3");
     }catch(...) {
 

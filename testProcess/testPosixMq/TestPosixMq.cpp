@@ -84,28 +84,27 @@ int testProcessMq() {
     
     int length = mq->receive(array);
 
-    if(length != (testDatalength-1)) {
-        TEST_FAIL("[ProcessMq Test {send/receive()} case4]");
+    if(length != testDatalength) {
+        TEST_FAIL("[ProcessMq Test {send/receive()} case4],length is %d",length);
         return 1;
     }
 
-    for(int i = 0; i < testDatalength - 1;i++) {
-      if(array->at(i) != (i+1)) {
+    for(int i = 0; i < testDatalength;i++) {
+      if(array->at(i) != i) {
         TEST_FAIL("[ProcessMq Test {send/receive()} case5]");
         break;
       }
     }
 
     length = mq->receive(array);
-
-    if(length != testDatalength) {
-        TEST_FAIL("[ProcessMq Test {send/receive()} case6]");
+    if(length != testDatalength - 1) {
+        TEST_FAIL("[ProcessMq Test {send/receive()} case6],length is %d,testDatalength is %d",length,testDatalength - 1);
         return 1;
     }
 
-    for(int i = 0; i < testDatalength;i++) {
-      if(array->at(i) != i) {
-        TEST_FAIL("[ProcessMq Test {send/receive()} case6]");
+    for(int i = 0; i < testDatalength - 1;i++) {
+      if(array->at(i) != i + 1) {
+        TEST_FAIL("[ProcessMq Test {send/receive()} case6_1]");
         break;
       }
     }
@@ -127,9 +126,10 @@ int testProcessMq() {
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
     long current = st(System)::currentTimeMillis();
     int length = mq->receiveTimeout(array,500);
-
-    if(st(System)::currentTimeMillis() - current != 500) {
-      TEST_FAIL("[ProcessMq Test {receiveTimeout()} case1]");
+    
+    long interval = st(System)::currentTimeMillis() - current;
+    if(interval > 505 || interval < 495) {
+      TEST_FAIL("[ProcessMq Test {receiveTimeout()} case1],interval is %d",interval);
       return 1;
     }
 

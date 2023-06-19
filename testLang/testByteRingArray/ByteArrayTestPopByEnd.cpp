@@ -32,60 +32,60 @@ void testPopTo() {
         //
         ByteArray result = arr1->popTo(0);
         if(result->size() != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case1]");
+            TEST_FAIL("[ByteRingArray Test popTo case1]");
             break;
         }
 
         if(result[0] != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case2]");
+            TEST_FAIL("[ByteRingArray Test popTo case2]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(1);
         if(result->size() != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case3]");
+            TEST_FAIL("[ByteRingArray Test popTo case3]");
             break;
         }
 
         if(result[0] != 1 || result[1] != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case4]");
+            TEST_FAIL("[ByteRingArray Test popTo case4]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(2);
         if(result->size() != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case5]");
+            TEST_FAIL("[ByteRingArray Test popTo case5]");
             break;
         }
 
         if(result[0] != 1 || result[1] != 2 || result[2] != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case6]");
+            TEST_FAIL("[ByteRingArray Test popTo case6]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(3);
         if(result->size() != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case7]");
+            TEST_FAIL("[ByteRingArray Test popTo case7]");
             break;
         }
 
         if(result[0] != 1 || result[1] != 2 || result[2] != 3 || result[3] != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case8]");
+            TEST_FAIL("[ByteRingArray Test popTo case8]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(4);
         if(result->size() != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case9]");
+            TEST_FAIL("[ByteRingArray Test popTo case9]");
             break;
         }
 
         if(result[0] != 1 || result[1] != 2 || result[2] != 3 || result[3] != 4 || result[4] != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case10]");
+            TEST_FAIL("[ByteRingArray Test popTo case10]");
             break;
         }
 
@@ -96,60 +96,60 @@ void testPopTo() {
 
         result = arr1->popTo(1);
         if(result->size() != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case11]");
+            TEST_FAIL("[ByteRingArray Test popTo case11]");
             break;
         }
 
         if(result[0] != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case12]");
+            TEST_FAIL("[ByteRingArray Test popTo case12]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(2);
         if(result->size() != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case13]");
+            TEST_FAIL("[ByteRingArray Test popTo case13]");
             break;
         }
 
         if(result[0] != 2 || result[1] != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case14]");
+            TEST_FAIL("[ByteRingArray Test popTo case14]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(3);
         if(result->size() != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case15]");
+            TEST_FAIL("[ByteRingArray Test popTo case15]");
             break;
         }
 
         if(result[0] != 2 || result[1] != 3 || result[2] != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case16]");
+            TEST_FAIL("[ByteRingArray Test popTo case16]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(4);
         if(result->size() != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case17]");
+            TEST_FAIL("[ByteRingArray Test popTo case17]");
             break;
         }
 
         if(result[0] != 2 || result[1] != 3 || result[2] != 4 || result[3] != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case18]");
+            TEST_FAIL("[ByteRingArray Test popTo case18]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(0);
         if(result->size() != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case19]");
+            TEST_FAIL("[ByteRingArray Test popTo case19]");
             break;
         }
 
         if(result[0] != 2 || result[1] != 3 || result[2] != 4 || result[3] != 5 || result[4] != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case20]");
+            TEST_FAIL("[ByteRingArray Test popTo case20]");
             break;
         }
 
@@ -160,60 +160,60 @@ void testPopTo() {
 
         result = arr1->popTo(2);
         if(result->size() != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case21]");
+            TEST_FAIL("[ByteRingArray Test popTo case21]");
             break;
         }
 
         if(result[0] != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case22]");
+            TEST_FAIL("[ByteRingArray Test popTo case22]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(3);
         if(result->size() != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case23]");
+            TEST_FAIL("[ByteRingArray Test popTo case23]");
             break;
         }
 
         if(result[0] != 3 || result[1] != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case24]");
+            TEST_FAIL("[ByteRingArray Test popTo case24]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(4);
         if(result->size() != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case25]");
+            TEST_FAIL("[ByteRingArray Test popTo case25]");
             break;
         }
 
         if(result[0] != 3 || result[1] != 4 || result[2] != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case26]");
+            TEST_FAIL("[ByteRingArray Test popTo case26]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(0);
         if(result->size() != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case27]");
+            TEST_FAIL("[ByteRingArray Test popTo case27]");
             break;
         }
 
         if(result[0] != 3 || result[1] != 4 || result[2] != 5 || result[3] != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case28]");
+            TEST_FAIL("[ByteRingArray Test popTo case28]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(1);
         if(result->size() != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case29]");
+            TEST_FAIL("[ByteRingArray Test popTo case29]");
             break;
         }
 
         if(result[0] != 3 || result[1] != 4 || result[2] != 5 || result[3] != 1 || result[4] != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case30]");
+            TEST_FAIL("[ByteRingArray Test popTo case30]");
             break;
         }
 
@@ -224,60 +224,60 @@ void testPopTo() {
 
         result = arr1->popTo(3);
         if(result->size() != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case31]");
+            TEST_FAIL("[ByteRingArray Test popTo case31]");
             break;
         }
 
         if(result[0] != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case32]");
+            TEST_FAIL("[ByteRingArray Test popTo case32]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(4);
         if(result->size() != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case33]");
+            TEST_FAIL("[ByteRingArray Test popTo case33]");
             break;
         }
 
         if(result[0] != 4 || result[1] != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case34]");
+            TEST_FAIL("[ByteRingArray Test popTo case34]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(0);
         if(result->size() != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case35]");
+            TEST_FAIL("[ByteRingArray Test popTo case35]");
             break;
         }
 
         if(result[0] != 4 || result[1] != 5 || result[2] != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case36]");
+            TEST_FAIL("[ByteRingArray Test popTo case36]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(1);
         if(result->size() != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case37]");
+            TEST_FAIL("[ByteRingArray Test popTo case37]");
             break;
         }
 
         if(result[0] != 4 || result[1] != 5 || result[2] != 1 || result[3] != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case38]");
+            TEST_FAIL("[ByteRingArray Test popTo case38]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(2);
         if(result->size() != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case39]");
+            TEST_FAIL("[ByteRingArray Test popTo case39]");
             break;
         }
 
         if(result[0] != 4 || result[1] != 5 || result[2] != 1 || result[3] != 2 || result[4] != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case40]");
+            TEST_FAIL("[ByteRingArray Test popTo case40]");
             break;
         }
 
@@ -288,65 +288,65 @@ void testPopTo() {
 
         result = arr1->popTo(4);
         if(result->size() != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case51]");
+            TEST_FAIL("[ByteRingArray Test popTo case51]");
             break;
         }
 
         if(result[0] != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case52]");
+            TEST_FAIL("[ByteRingArray Test popTo case52]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(0);
         if(result->size() != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case53]");
+            TEST_FAIL("[ByteRingArray Test popTo case53]");
             break;
         }
 
         if(result[0] != 5 || result[1] != 1) {
-            TEST_FAIL("---[ByteRingArray Test popTo case54]");
+            TEST_FAIL("[ByteRingArray Test popTo case54]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(1);
         if(result->size() != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case55]");
+            TEST_FAIL("[ByteRingArray Test popTo case55]");
             break;
         }
 
         if(result[0] != 5 || result[1] != 1 || result[2] != 2) {
-            TEST_FAIL("---[ByteRingArray Test popTo case56]");
+            TEST_FAIL("[ByteRingArray Test popTo case56]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(2);
         if(result->size() != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case57]");
+            TEST_FAIL("[ByteRingArray Test popTo case57]");
             break;
         }
 
         if(result[0] != 5 || result[1] != 1 || result[2] != 2 || result[3] != 3) {
-            TEST_FAIL("---[ByteRingArray Test popTo case58]");
+            TEST_FAIL("[ByteRingArray Test popTo case58]");
             break;
         }
 
         arr1 = createByteRingArray(data1);
         result = arr1->popTo(3);
         if(result->size() != 5) {
-            TEST_FAIL("---[ByteRingArray Test popTo case59]");
+            TEST_FAIL("[ByteRingArray Test popTo case59]");
             break;
         }
 
         if(result[0] != 5 || result[1] != 1 || result[2] != 2 || result[3] != 3 || result[4] != 4) {
-            TEST_FAIL("---[ByteRingArray Test popTo case60]");
+            TEST_FAIL("[ByteRingArray Test popTo case60]");
             break;
         }
 
 
-        TEST_OK("---[ByteRingArray Test popTo case100]");
+        TEST_OK("[ByteRingArray Test popTo case100]");
         break;
     }
     return;

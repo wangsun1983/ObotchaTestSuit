@@ -103,7 +103,7 @@ void testtostring() {
    while(1) {
      for(int i = 0;i < 100;i++) {
        Uint16 t1 = createUint16(i);
-       Uint16 t2 = st(Uint16)::parseHexString(createString(HexTable[i]));
+       Uint16 t2 = st(Uint16)::ParseHexString(createString(HexTable[i]));
        Uint16 t3 = createUint16(t2);
        if(t1 != t3) {
          TEST_FAIL("Uint16 toInt test1");
@@ -113,7 +113,7 @@ void testtostring() {
 
      for(int i = 0;i < 100;i++) {
        Uint16 t1 = createUint16(i);
-       Uint16 t2 = st(Uint16)::parseOctString(createString(OctTable[i]));
+       Uint16 t2 = st(Uint16)::ParseOctString(createString(OctTable[i]));
        Uint16 t3 = createUint16(t2);
 
        if(t1 != t3) {
@@ -126,7 +126,7 @@ void testtostring() {
        Uint16 t1 = createUint16(i);
        String str = createString(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
-       Uint16 t2 = st(Uint16)::parseBinaryString(str);
+       Uint16 t2 = st(Uint16)::ParseBinaryString(str);
        Uint16 t3 = createUint16(t2);
         if(t1 != t3) {
          TEST_FAIL("Uint16 toInt test3");

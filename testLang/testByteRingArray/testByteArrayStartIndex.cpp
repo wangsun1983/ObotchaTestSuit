@@ -17,31 +17,31 @@ void testStartIndex() {
     ByteRingArray array = createByteRingArray(5);
     array->push(1);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case1]");
+      TEST_FAIL("[ByteRingArray Test Start Index case1]");
       return;
     }
 
     array->push(2);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case2]");
+      TEST_FAIL("[ByteRingArray Test Start Index case2]");
       return;
     }
 
     array->push(3);
      if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case3]");
+      TEST_FAIL("[ByteRingArray Test Start Index case3]");
       return;
     }
 
     array->push(4);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case4]");
+      TEST_FAIL("[ByteRingArray Test Start Index case4]");
       return;
     }
 
     array->push(5);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case5]");
+      TEST_FAIL("[ByteRingArray Test Start Index case5]");
       return;
     }
 
@@ -49,35 +49,35 @@ void testStartIndex() {
     array->setNextIndex(0);
     array->setSize(1);
     if(array->getStartIndex() != 4) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case6]");
+      TEST_FAIL("[ByteRingArray Test Start Index case6]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(2);
     if(array->getStartIndex() != 3) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case7]");
+      TEST_FAIL("[ByteRingArray Test Start Index case7]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(3);
     if(array->getStartIndex() != 2) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case8]");
+      TEST_FAIL("[ByteRingArray Test Start Index case8]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(4);
     if(array->getStartIndex() != 1) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case9]");
+      TEST_FAIL("[ByteRingArray Test Start Index case9]");
       return;
     }
 
     array->setNextIndex(0);
     array->setSize(5);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case10]");
+      TEST_FAIL("[ByteRingArray Test Start Index case10]");
       return;
     }
 
@@ -85,35 +85,35 @@ void testStartIndex() {
     array->setNextIndex(1);
     array->setSize(1);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case11]");
+      TEST_FAIL("[ByteRingArray Test Start Index case11]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(2);
     if(array->getStartIndex() != 4) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case12]");
+      TEST_FAIL("[ByteRingArray Test Start Index case12]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(3);
     if(array->getStartIndex() != 3) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case13]");
+      TEST_FAIL("[ByteRingArray Test Start Index case13]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(4);
     if(array->getStartIndex() != 2) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case14]");
+      TEST_FAIL("[ByteRingArray Test Start Index case14]");
       return;
     }
 
     array->setNextIndex(1);
     array->setSize(5);
     if(array->getStartIndex() != 1) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case15]");
+      TEST_FAIL("[ByteRingArray Test Start Index case15]");
       return;
     }
 
@@ -121,35 +121,35 @@ void testStartIndex() {
     array->setNextIndex(2);
     array->setSize(1);
     if(array->getStartIndex() != 1) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case16]");
+      TEST_FAIL("[ByteRingArray Test Start Index case16]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(2);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case17]");
+      TEST_FAIL("[ByteRingArray Test Start Index case17]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(3);
     if(array->getStartIndex() != 4) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case18]");
+      TEST_FAIL("[ByteRingArray Test Start Index case18]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(4);
     if(array->getStartIndex() != 3) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case19]");
+      TEST_FAIL("[ByteRingArray Test Start Index case19]");
       return;
     }
 
     array->setNextIndex(2);
     array->setSize(5);
     if(array->getStartIndex() != 2) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case20]");
+      TEST_FAIL("[ByteRingArray Test Start Index case20]");
       return;
     }
 
@@ -157,35 +157,35 @@ void testStartIndex() {
     array->setNextIndex(3);
     array->setSize(1);
     if(array->getStartIndex() != 2) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case21]");
+      TEST_FAIL("[ByteRingArray Test Start Index case21]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(2);
     if(array->getStartIndex() != 1) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case22]");
+      TEST_FAIL("[ByteRingArray Test Start Index case22]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(3);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case23]");
+      TEST_FAIL("[ByteRingArray Test Start Index case23]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(4);
     if(array->getStartIndex() != 4) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case24]");
+      TEST_FAIL("[ByteRingArray Test Start Index case24]");
       return;
     }
 
     array->setNextIndex(3);
     array->setSize(5);
     if(array->getStartIndex() != 3) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case25]");
+      TEST_FAIL("[ByteRingArray Test Start Index case25]");
       return;
     }
 
@@ -193,35 +193,35 @@ void testStartIndex() {
     array->setNextIndex(4);
     array->setSize(1);
     if(array->getStartIndex() != 3) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case26]");
+      TEST_FAIL("[ByteRingArray Test Start Index case26]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(2);
     if(array->getStartIndex() != 2) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case27]");
+      TEST_FAIL("[ByteRingArray Test Start Index case27]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(3);
     if(array->getStartIndex() != 1) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case28]");
+      TEST_FAIL("[ByteRingArray Test Start Index case28]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(4);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case29]");
+      TEST_FAIL("[ByteRingArray Test Start Index case29]");
       return;
     }
 
     array->setNextIndex(4);
     array->setSize(5);
     if(array->getStartIndex() != 4) {
-      TEST_FAIL("---[ByteRingArray Test Start Index case30]");
+      TEST_FAIL("[ByteRingArray Test Start Index case30]");
       return;
     }
 

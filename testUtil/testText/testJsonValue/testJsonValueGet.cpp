@@ -103,7 +103,7 @@ void testJsonValueGet() {
     auto str1 = stringList->getStringAt(1);
     auto str2 = stringList->getStringAt(2);
     if(!str0->equals("link1") ||!str1->equals("link2") ||!str2->equals("link3")) {
-        TEST_FAIL("JsonValue testJsonValueGet case13");
+        TEST_FAIL("JsonValue testJsonValueGet case13,str0 is %s,str1 is %s,str2 is %s",str0->toChars(),str1->toChars(),str2->toChars());
     }
     
     //intLinks

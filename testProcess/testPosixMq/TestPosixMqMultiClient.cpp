@@ -43,7 +43,7 @@ void testProcessMqMultiClient() {
     sleep(1);
     String sendData = createString("hello");
     sendMq->send(sendData->toByteArray());
-
+    
     sendData = createString("world");
     sendMq->send(sendData->toByteArray());
     

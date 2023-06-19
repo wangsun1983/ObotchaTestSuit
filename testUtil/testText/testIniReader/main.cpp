@@ -11,8 +11,10 @@ using namespace obotcha;
 
 extern void testIniReader();
 extern void testIniValue();
+extern void testIniReaderLoadContent();
 
 int main() {
+    testIniReaderLoadContent();    
     testIniReader();
     testIniValue();
     return 0;

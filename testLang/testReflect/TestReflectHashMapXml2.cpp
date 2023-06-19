@@ -63,7 +63,7 @@ void testReflectHashMapXml2() {
     XmlWriter writer = createXmlWriter(doc);
     writer->write("output_xml_5.xml");
 
-    XmlDocument doc1 = createXmlDocument("output_xml_5.xml");
+    XmlDocument doc1 = createXmlDocument(createFile("output_xml_5.xml"));
     XmlReflectData2 data3 = createXmlReflectData2();
     doc1->reflectTo(data3);
     if(data3->map == nullptr || data3->map->size() != 2) {

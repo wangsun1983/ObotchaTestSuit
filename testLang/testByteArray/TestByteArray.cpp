@@ -24,8 +24,18 @@ extern void testByteArrayStruct();
 extern void testByteArrayStringConvert();
 extern void testPriority();
 extern void testByteArrayEquals();
+extern void testByteArrayCombine();
+extern void testByteArrayToValue();
+extern void testByteArrayClone();
+extern void testByteArrayQuickRestore();
+extern void testByteArrayFillFrom();
 
 int main() {
+  testByteArrayFillFrom();
+  testByteArrayQuickRestore();
+  testByteArrayClone();
+  testByteArrayToValue();
+  testByteArrayCombine();
   testByteArrayEquals();
   testByteArrayStringConvert();
   testByteArrayStruct();

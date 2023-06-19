@@ -36,16 +36,16 @@ void testPush_byte() {
   }
 
   if(!isException) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(byte val)} case1]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(byte val)} case1]");
     return;
   }
 
   if(array->getStoredDataSize() != 5) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(byte val)} case2]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(byte val)} case2]");
     return;
   }
 
-  TEST_OK("---[ByteRingArray Test {pushByte(byte val)} case3]");
+  TEST_OK("[ByteRingArray Test {pushByte(byte val)} case3]");
 }
 
 //test push(ByteArray)
@@ -58,12 +58,12 @@ void testPush_bytearray() {
   ringarray->push(array1);
 
   if(ringarray->at(0) != 1) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case0]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case0]");
     return;
   }
 
   if(ringarray->getStoredDataSize() != 1) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case1]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case1]");
     return;
   }
 
@@ -76,12 +76,12 @@ void testPush_bytearray() {
 
   if(ringarray->at(0) != 1 ||
      ringarray->at(1) != 2) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case2]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case2]");
     return;
   }
 
   if(ringarray->getStoredDataSize() != 2) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case3]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case3]");
     return;
   }
 
@@ -97,12 +97,12 @@ void testPush_bytearray() {
      ringarray->at(1) != 2 ||
      ringarray->at(2) != 3) {
 
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case4]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case4]");
     return;
   }
 
   if(ringarray->getStoredDataSize() != 3) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case5]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case5]");
     return;
   }
 
@@ -119,12 +119,12 @@ void testPush_bytearray() {
      ringarray->at(1) != 2 ||
      ringarray->at(2) != 3 ||
      ringarray->at(3) != 4) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case6]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case6]");
     return;
   }
 
   if(ringarray->getStoredDataSize() != 4) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case7]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case7]");
     return;
   }
 
@@ -143,12 +143,12 @@ void testPush_bytearray() {
      ringarray->at(2) != 3 ||
      ringarray->at(3) != 4 ||
      ringarray->at(4) != 5) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case8]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case8]");
     return;
   }
 
   if(ringarray->getStoredDataSize() != 5) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case9]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case9]");
     return;
   }
 
@@ -170,11 +170,11 @@ void testPush_bytearray() {
   }
 
   if(!isException) {
-    TEST_FAIL("---[ByteRingArray Test {pushByte(ByteArray val)} case10]");
+    TEST_FAIL("[ByteRingArray Test {pushByte(ByteArray val)} case10]");
     return;
   }
 
-  TEST_OK("---[ByteRingArray Test {pushByte(ByteArray val)} case11]");
+  TEST_OK("[ByteRingArray Test {pushByte(ByteArray val)} case11]");
 }
 
 
@@ -200,7 +200,7 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 3 ||
      ringarray->at(4) != 9) {
-    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case0]");
+    TEST_FAIL("[ByteRingArray Test loop {pushByte(ByteArray val)} case0]");
     return;
   }
 
@@ -223,7 +223,7 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 9 ||
      ringarray->at(4) != 10) {
-    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case1]");
+    TEST_FAIL("[ByteRingArray Test loop {pushByte(ByteArray val)} case1]");
     return;
   }
 
@@ -247,11 +247,11 @@ void testPush_bytearray_loop_1() {
      ringarray->at(2) != 9 ||
      ringarray->at(3) != 10 ||
      ringarray->at(4) != 11) {
-    TEST_FAIL("---[ByteRingArray Test loop {pushByte(ByteArray val)} case2]");
+    TEST_FAIL("[ByteRingArray Test loop {pushByte(ByteArray val)} case2]");
     return;
   }
 
-  TEST_OK("---[ByteRingArray Test loop {pushByte(ByteArray val)} case10]");
+  TEST_OK("[ByteRingArray Test loop {pushByte(ByteArray val)} case10]");
   return;
 }
 
@@ -278,7 +278,7 @@ void testPush_bytearray_loop_2() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 3 ||
      ringarray->at(4) != 10) {
-    TEST_FAIL("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case0]");
+    TEST_FAIL("[ByteRingArray Test loop2 {pushByte(ByteArray val)} case0]");
     return;
   }
 
@@ -303,12 +303,12 @@ void testPush_bytearray_loop_2() {
      ringarray->at(2) != 2 ||
      ringarray->at(3) != 10 ||
      ringarray->at(4) != 11) {
-    TEST_FAIL("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case1]");
+    TEST_FAIL("[ByteRingArray Test loop2 {pushByte(ByteArray val)} case1]");
     return;
   }
 
 
-  TEST_OK("---[ByteRingArray Test loop2 {pushByte(ByteArray val)} case10]");
+  TEST_OK("[ByteRingArray Test loop2 {pushByte(ByteArray val)} case10]");
   return;
 }
 
@@ -338,7 +338,7 @@ void testPush_bytearray_continue() {
      ringarray->at(4) != 1 ||
      ringarray->at(5) != 2 ) {
 
-    TEST_FAIL("---[ByteRingArray Test continue {push(ByteArray val)} case1]");
+    TEST_FAIL("[ByteRingArray Test continue {push(ByteArray val)} case1]");
     return;
   }
 
@@ -367,11 +367,11 @@ void testPush_bytearray_continue() {
      ringarray->at(4) != 10 ||
      ringarray->at(5) != 11 ) {
 
-    TEST_FAIL("---[ByteRingArray Test continue {push(ByteArray val)} case2]");
+    TEST_FAIL("[ByteRingArray Test continue {push(ByteArray val)} case2]");
     return;
   }
 
-  TEST_OK("---[ByteRingArray Test continue {push(ByteArray val)} case10]");
+  TEST_OK("[ByteRingArray Test continue {push(ByteArray val)} case10]");
   return;
 }
 
@@ -399,11 +399,11 @@ void test_pop() {
      v4 != 4 ||
      v5 != 5 ||
      v6 != 6) {
-    TEST_FAIL("---[ByteRingArray Test pop {pop()} case2]");
+    TEST_FAIL("[ByteRingArray Test pop {pop()} case2]");
     return;
   }
 
-  TEST_OK("---[ByteRingArray Test pop {pop()} cas10]");
+  TEST_OK("[ByteRingArray Test pop {pop()} cas10]");
   return;
 
 }
@@ -429,7 +429,7 @@ void test_pop_size() {
      b2->at(1) != 4 ||
      b3->at(0) != 5 ||
      b3->at(1) != 6 ) {
-    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case1]");
+    TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case1]");
     return;
   }
 
@@ -457,7 +457,7 @@ void test_pop_size() {
     TEST_FAIL("b1[0] is %d,b1[1] is %d \n",b1[0],b1[1]);
     TEST_FAIL("b2[0] is %d,b2[1] is %d \n",b2[0],b2[1]);
     TEST_FAIL("b3[0] is %d,b3[1] is %d \n",b3[0],b3[1]);
-    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case2]");
+    TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case2]");
     return;
   }
 
@@ -484,7 +484,7 @@ void test_pop_size() {
      b1->at(3) != 7 ||
      b1->at(4) != 8 ||
      b1->at(5) != 9 ) {
-    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case3]");
+    TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case3]");
     return;
   }
 
@@ -493,7 +493,7 @@ void test_pop_size() {
   ringarray->push(17);
   ringarray->push(18);
   if(ringarray->getStoredDataSize() != 4) {
-    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case4]");
+    TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case4]");
     return;
   }
 
@@ -503,11 +503,11 @@ void test_pop_size() {
      b2->at(1) != 16 ||
      b2->at(2) != 17 ||
      b2->at(3) != 18 ) {
-    TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case5]");
+    TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case5]");
     return;
   }
 
-  TEST_FAIL("---[ByteRingArray Test pop_size {pop(int)} case10] [OK]--- \n");
+  TEST_FAIL("[ByteRingArray Test pop_size {pop(int)} case10] [OK] \n");
   return;
 }
 */

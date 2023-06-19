@@ -4,6 +4,10 @@ def getEnvPort():
         list1 = f.readlines()
         if f:
             f.close()
+        
+        if len(list1) <= 0:
+            return 4000
+
         return int(list1[0])
     except IOError:
         return 4000 
