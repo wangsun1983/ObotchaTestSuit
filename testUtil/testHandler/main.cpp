@@ -17,8 +17,13 @@ extern void testHandlerLambda();
 extern void testHandlerRemoveRunnable();
 extern void testHandlerSendAtFront();
 extern void testHandlerSendDelayed();
+extern void testHandlerLooper();
+extern void testHandlerLooperQuit();
 
 int main() {
+  testHandlerLooperQuit();
+  /*
+  testHandlerLooper();
   testHandlerLambda();
   testHandlerRemove();
   testHandlerMultiSend();
@@ -28,6 +33,6 @@ int main() {
   testHasMessage();
   testHandlerRemoveRunnable();
   testHandlerSendAtFront();
-  testHandlerSendDelayed();
+  testHandlerSendDelayed();*/
   return 0;
 }

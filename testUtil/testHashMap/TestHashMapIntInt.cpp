@@ -3,60 +3,60 @@
 
 #include "Thread.hpp"
 #include "HashMap.hpp"
-#include "Boolean.hpp"
-#include "Boolean.hpp"
+#include "Float.hpp"
+#include "Float.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
 void testHashMapIntInt() {
+
+    //void put(T t,U u)/get(T t)
     while(1) {
       HashMap<int,int> map = createHashMap<int,int>();
-      map->put(1,100);
-      int v = map->get(1);
-      if(v != 100) {
-        TEST_FAIL("[HashMap<int,int>} test1]");
-        break;
+      for(int i = 0;i < 1024;i++) {
+        map->put(i,i * 100);
       }
+
+      if(map->size() != 1024) {
+        TEST_FAIL("[HashMap <int,int> Test  case1]");
+      }
+
+      for(int i = 0;i < 1024;i++) {
+        if(map->get(i) != i * 100) {
+          TEST_FAIL("[HashMap <int,int> Test  case2]");
+        }
+      }
+
       break;
     }
 
     while(1) {
       HashMap<int,int> map = createHashMap<int,int>();
-      map->put(1,100);
-      bool isExcpetion = false;
+      map->put(100,222);
+      if(map->get(100) != 222) {
+        TEST_FAIL("[HashMap <int,int> Test  case3]");
+      }
+
+      map->put(100,333);
+      if(map->get(100) != 333) {
+        TEST_FAIL("[HashMap <int,int> Test  case4]");
+      }
+
+      auto v = map->remove(100);
+      if(v != 333) {
+        TEST_FAIL("[HashMap <int,int> Test  case5]");
+      }
+
       try {
-        map->get(2);
+        auto v2 = map->get(100);
+        TEST_FAIL("[HashMap <int,int> Test  case6]");
       } catch(...) {
-        isExcpetion = true;
+
       }
 
-      if(!isExcpetion) {
-        TEST_FAIL("[HashMap<int,int>} test2]");
-        break;
-      }
       break;
     }
 
-    while(1) {
-      HashMap<int,int> map = createHashMap<int,int>();
-      map->put(1,100);
-      map->put(1,200);
-      map->put(2,100);
-      if(map->size() != 2) {
-        TEST_FAIL("[HashMap<int,int>} test3]");
-        break;
-      }
-
-      int v1 = map->get(1);
-      int v2 = map->get(2);
-
-      if(v1 != 200 || v2 != 100) {
-        TEST_FAIL("[HashMap<int,int>} test4]");
-        break;
-      }
-      break;
-    }
-
-    TEST_OK("[HashMap<int,int>} test100]");
+    TEST_OK("[HashMap <int,int> Test  case100]");
 }

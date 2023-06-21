@@ -8,7 +8,6 @@
 
 using namespace obotcha;
 
-
 void testHandlerLambda() {
   Handler h = createHandler();
   while(1) {
@@ -37,7 +36,7 @@ void testHandlerLambda() {
       next = st(System)::currentTimeMillis();
     });
     sleep(4);
-    
+
     if(next - current > 3005 || current - next > 3005) {
       TEST_FAIL("[HandlerLambda Test case3]");
       break;
