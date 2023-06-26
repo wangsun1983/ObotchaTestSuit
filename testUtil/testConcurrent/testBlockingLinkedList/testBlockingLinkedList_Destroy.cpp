@@ -11,7 +11,7 @@
 using namespace obotcha;
 
 void testBlockingLinkedListDestroy() {
-
+    printf("trace1 \n");
     while(1) {
         BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
         list->put(createString("a"));
@@ -33,7 +33,7 @@ void testBlockingLinkedListDestroy() {
 
         break;
     }
-
+    printf("trace2 \n");
     while(1) {
         BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
         Thread t = createThread([&list]{
@@ -55,7 +55,7 @@ void testBlockingLinkedListDestroy() {
         }
         break;
     }
-
+    printf("trace3 \n");
 
     TEST_OK("BlockingLinkedList destroy test100");
 }

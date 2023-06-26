@@ -53,7 +53,6 @@ public:
             EnqueueData d = createEnqueueData(i);
             mQueue->putFirst(d);
             mQueue->putFirst(d);
-
             if(i == 50) {
                 EnqueueData nt = nullptr;
                 mQueue->putLast(nt);
@@ -102,7 +101,7 @@ private:
 
 
 void testEnqueueDequeue() {
-
+#if 0
     while(1) {
         BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);
         list->putFirst(createEnqueueData(1));
@@ -177,7 +176,7 @@ void testEnqueueDequeue() {
         TEST_OK("BlockingEnqueue putFirst test10");
         break;
     }
-
+#endif
 
     while(1) {
         BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);

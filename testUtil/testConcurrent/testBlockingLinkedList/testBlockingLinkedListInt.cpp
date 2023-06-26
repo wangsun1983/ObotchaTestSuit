@@ -26,7 +26,6 @@ private:
 };
 
 void testBlockingLinkedListInt() {
-
     while(1) {
         BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
         list->putFirst(1);

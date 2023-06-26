@@ -31,8 +31,10 @@ extern void testHashMapRemove();
 extern void testHashMapIntInt();
 extern void testHashMapAppend();
 extern void testHashMapGetPrimitive();
+extern void testHashMapRemovePrimitive();
 
 int main() {
+  testHashMapRemovePrimitive();
   testHashMapGetPrimitive();
   testHashMapAppend();
   testHashMapIntInt();
