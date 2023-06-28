@@ -9,11 +9,11 @@
 
 using namespace obotcha;
 
-void testConcurrentHashMap_Get() {
+void testConcurrentHashMap_SyncRead() {
     while(1) {
       ConcurrentHashMap<String,String> map = createConcurrentHashMap<String,String>();
       Thread t1 = createThread([&]{
-        map->syncWriteAction([]{
+        map->syncReadAction([]{
             usleep(200*1000);
         });
       });
@@ -22,10 +22,10 @@ void testConcurrentHashMap_Get() {
         usleep(100*1000);
         TimeWatcher watch = createTimeWatcher();
         watch->start();
-        map->get(createString("a"));
+        map->put(createString("a"),createString("b"));
         auto ret = watch->stop();
         if(ret < 95 || ret > 105) {
-            TEST_FAIL("ConcurrentHashMap Get case1");
+            TEST_FAIL("ConcurrentHashMap SyncRead case1");
         }
       });
 
@@ -36,6 +36,7 @@ void testConcurrentHashMap_Get() {
       t2->join();
       break;
     }
-
-    TEST_OK("ConcurrentHashMap Get test100");
+    
+    
+    TEST_OK("ConcurrentHashMap SyncRead test100");
 }

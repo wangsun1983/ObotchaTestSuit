@@ -29,8 +29,12 @@ extern void testBlockingLinkedListRemove();
 extern void testBlockingLinkedListRemoveAt();
 extern void testBlockingLinkedListInt();
 extern void testBlockingLinkedListForeach();
+extern void testBlockingLinkedListRemoveAtOne();
+extern void testBlockingLinkedListRemoveOne();
 
 int main() {
+    testBlockingLinkedListRemoveOne();
+    testBlockingLinkedListRemoveAtOne();
     testBlockingLinkedListForeach();
     testBlockingLinkedListInt();
     testEnqueueDequeue();

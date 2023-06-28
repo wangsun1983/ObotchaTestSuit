@@ -38,6 +38,30 @@ void testBlockingLinkedListClear() {
 
         break;
     }
+    
+    while(1) {
+        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
 
-    TEST_OK("BlockingLinkedList destroy test100");
+        Thread t = createThread([&list]{
+          usleep(100*1000);
+          list->clear();
+        });
+        t->start();
+        long time1 = st(System)::currentTimeMillis();
+        list->take();
+        long time2 = st(System)::currentTimeMillis();
+        if((time2 - time1) < 100 || (time2 - time1) > 105) {
+          TEST_FAIL("BlockingLinkedList clear test3");
+          break;
+        }
+
+        if(list->size() != 1) {
+          TEST_FAIL("BlockingLinkedList clear test4");
+          break;
+        }
+
+        break;
+    }
+
+    TEST_OK("BlockingLinkedList clear test100");
 }

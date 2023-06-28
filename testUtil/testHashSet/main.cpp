@@ -11,8 +11,10 @@ extern void testHashIteratorRemove();
 extern void testHashContains();
 extern void testHashSetForeach();
 extern void testHashSetGet();
+extern void testHashRemove();
 
 int main() {
+    testHashRemove();
     testHashSetGet();
     testHashSetForeach();
     testHashAdd();

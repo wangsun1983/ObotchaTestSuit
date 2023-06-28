@@ -92,6 +92,5 @@ void testHashIteratorRemove() {
 
         break;
     }
-
     TEST_OK("HashSet iterator remove test100");
 }

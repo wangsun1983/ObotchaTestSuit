@@ -15,8 +15,10 @@ extern void testConditionNotify();
 extern void testConditionNotifyAll();
 extern void testConditionDoubleLock();
 extern void testConditionWaitAutoLock();
+extern void testConditionGetCount();
 
 int main() {
+  testConditionGetCount();
   testConditionDoubleLock();
   testConditionWait();
   testConditionNotify();

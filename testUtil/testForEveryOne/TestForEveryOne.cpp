@@ -26,8 +26,10 @@ extern void testConcurrentLinkedList();
 extern void testConcurrentStack();
 extern void testBlockingQueue();
 extern void testHashSet();
+extern void testConcurrentHashSet();
 
 int main() {
+    testConcurrentHashSet();
     testHashSet();
     testBlockingQueue();
     testConcurrentStack();

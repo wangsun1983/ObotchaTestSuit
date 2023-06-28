@@ -57,6 +57,33 @@ void testBlockingQueueRemove() {
 
         break;
     }
+    
+    while(1) {
+        BlockingQueue<String> list = createBlockingQueue<String>(1);
+        list->putFirst(createString("a"));
+        Thread t1 = createThread([&]{
+            usleep(100*1000);
+            TimeWatcher watcher = createTimeWatcher();
+            watcher->start();
+            list->putFirst(createString("b"));
+            auto ret = watcher->stop();
+            if(ret < 95 || ret > 105) {
+                TEST_FAIL("BlockingQueue remove test5,ret is %d",ret);
+            }
+        });
+        
+        Thread t2 = createThread([&]{
+            usleep(200*1000);
+            list->destroy();
+        });
+        
+        t1->start();
+        t2->start();
+        
+        t1->join();
+        t2->join();
+        break;
+    }
 
 
     TEST_OK("BlockingQueue remove test100");
