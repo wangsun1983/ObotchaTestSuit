@@ -131,9 +131,9 @@ void testThreadJoin() {
         break;
     }
 
-    long t1 = st(System)::currentTimeMillis();
+    long t1 = st(System)::CurrentTimeMillis();
     t4->join();
-    if((st(System)::currentTimeMillis() - t1)>2) {
+    if((st(System)::CurrentTimeMillis() - t1)>2) {
         TEST_FAIL("[Thread Test {ThreadJoin()} special case4]");
         break;
     }
@@ -151,9 +151,9 @@ void testThreadJoin() {
         break;
     }
 
-    long t1 = st(System)::currentTimeMillis();
+    long t1 = st(System)::CurrentTimeMillis();
     t4->join();
-    if((st(System)::currentTimeMillis() - t1)>2) {
+    if((st(System)::CurrentTimeMillis() - t1)>2) {
         TEST_FAIL("[Thread Test {ThreadJoin()} special case8]");
         break;
     }
@@ -167,9 +167,9 @@ void testThreadJoin() {
     t5->start();
     sleep(1);
 
-    long t1 = st(System)::currentTimeMillis();
+    long t1 = st(System)::CurrentTimeMillis();
     t5->join(2000);
-    long v = st(System)::currentTimeMillis() - t1;
+    long v = st(System)::CurrentTimeMillis() - t1;
     if(v < 2000 || v > 2010) {
         TEST_FAIL("[Thread Test {ThreadJoin()} special case10]");
         break;

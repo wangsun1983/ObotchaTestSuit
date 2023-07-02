@@ -7,10 +7,12 @@
 extern void testStackSize();
 extern void testStackPush();
 extern void testTop();
+extern void testStackPop();
 
 using namespace obotcha;
 
 int main() {
+    testStackPop();
     testTop();
     testStackPush();
     testStackSize();

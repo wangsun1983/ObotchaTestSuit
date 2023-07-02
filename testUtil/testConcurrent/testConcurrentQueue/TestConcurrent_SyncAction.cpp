@@ -29,14 +29,14 @@ void testConcurrentQueue_SyncAction() {
         });
 
         Thread t2 = createThread([&list]{
-            long start = st(System)::currentTimeMillis();
+            long start = st(System)::CurrentTimeMillis();
 
             list->syncWriteAction([&list,&start] {
                 if(list->size() != 5) {
                     TEST_FAIL("ConcurrentQueue SyncAction case2");
                 }
 
-                long interval = st(System)::currentTimeMillis() - start;
+                long interval = st(System)::CurrentTimeMillis() - start;
                 //printf("interval is %ld \n",interval);
                 if(interval >2000 || interval < 1900) {
                     TEST_FAIL("ConcurrentQueue SyncAction case3");
@@ -74,13 +74,13 @@ void testConcurrentQueue_SyncAction() {
         });
 
         Thread t2 = createThread([&list]{
-            long start = st(System)::currentTimeMillis();
+            long start = st(System)::CurrentTimeMillis();
             list->syncReadAction([&list,&start] {
                 if(list->size() != 5) {
                     TEST_FAIL("ConcurrentQueue SyncAction case6");
                 }
 
-                long interval = st(System)::currentTimeMillis() - start;
+                long interval = st(System)::CurrentTimeMillis() - start;
                 if(interval >2000 || interval < 1900) {
                     TEST_FAIL("ConcurrentQueue SyncAction case7");
                 }

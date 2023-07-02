@@ -24,7 +24,7 @@ cflags = -fpic \
 		-I ../../../../external/glog/include \
 		-I ../../../common \
 		-g \
-		-std=c++17 \
+		-std=c++14 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
 
@@ -40,7 +40,7 @@ sharelib = -Wl,-rpath=../../../../out/lib/ \
 
 files =
 link =
-libname	= testThread
+libname	= testConcurrentQueue
 
 everything : $(libname)
 

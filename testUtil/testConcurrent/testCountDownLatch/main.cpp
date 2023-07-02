@@ -14,8 +14,10 @@ extern void testCountDownLatch_CountDown();
 extern void testCountDownLatch_Construct();
 extern void testCountDownLatch_Await();
 extern void testCountDownLatch_MultiThread();
+extern void testCountDownLatch_Release();
 
 int main() {
+    testCountDownLatch_Release();
     testCountDownLatch_CountDown();
     testCountDownLatch_Construct();
     testCountDownLatch_Await();

@@ -10,10 +10,11 @@
 using namespace obotcha;
 
 int basetest() {
-    ConfReader reader = createConfReader(createFile("simple.conf"));
-    auto value = reader->get();
-    //getConf(String);
     while(1) {
+      ConfReader reader = createConfReader(createFile("simple.conf"));
+      auto value = reader->get();
+        //getConf(String);
+
       String v1 = value->get(createString("Desktop-Picture"));
       if(!v1->equals("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case2] ");
@@ -37,10 +38,8 @@ int basetest() {
         TEST_FAIL("[ConfReader Test {getConf(String)} case5] v4 is [%s]",v4->toChars());
         break;
       }
-
-      TEST_OK("[ConfReader Test {getConf(String)} case6]");
       break;
     }
-
+    TEST_OK("[ConfReader Test {getConf(String)} case6]");
     return 0;
 }

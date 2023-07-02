@@ -8,14 +8,12 @@
 
 using namespace obotcha;
 
-//extern int testcreate();
 extern int basetest();
 extern void testConfIterator();
 extern int testReadContent();
 
 int main() {
-    //testcreate();
-    //basetest();
-    //testConfIterator();
+    basetest();
+    testConfIterator();
     testReadContent();
 }

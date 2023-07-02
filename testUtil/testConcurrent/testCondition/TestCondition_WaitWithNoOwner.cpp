@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-void testConditionWait() {
+void testConditionWaitWithOwner() {
     TimeWatcher watch = createTimeWatcher();
     while(1) {
       Mutex mMutex = createMutex();

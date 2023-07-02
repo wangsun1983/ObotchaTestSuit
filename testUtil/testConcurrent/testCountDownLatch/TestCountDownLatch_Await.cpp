@@ -41,5 +41,5 @@ void testCountDownLatch_Await() {
 
 
 
-    TEST_OK("[TestCountDownLatch CountDown case100]");
+    TEST_OK("[TestCountDownLatch await case100]");
 }

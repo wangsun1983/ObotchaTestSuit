@@ -14,6 +14,7 @@ extern int testImport();
 extern int testReflectTo();
 
 int main() {
+    ConfValue v = createConfValue();
     testConfValueSet();
     testImport();
     testReflectTo();

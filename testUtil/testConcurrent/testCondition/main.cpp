@@ -16,6 +16,7 @@ extern void testConditionNotifyAll();
 extern void testConditionDoubleLock();
 extern void testConditionWaitAutoLock();
 extern void testConditionGetCount();
+extern void testConditionWaitWithOwner();
 
 int main() {
   testConditionGetCount();
@@ -24,5 +25,6 @@ int main() {
   testConditionNotify();
   testConditionNotifyAll();
   testConditionWaitAutoLock();
+  testConditionWaitWithOwner();
   return 0;
 }

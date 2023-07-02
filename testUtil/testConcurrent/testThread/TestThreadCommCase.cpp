@@ -207,9 +207,9 @@ void testThreadCommonCase() {
     Thread2 t2 = createThread2();
     t2->setName("testjoinThread");
     t2->start();
-    long int start = st(System)::currentTimeMillis();
+    long int start = st(System)::CurrentTimeMillis();
     t2->join(5000);
-    long int end = st(System)::currentTimeMillis();
+    long int end = st(System)::CurrentTimeMillis();
     int v = (end - start);
     if((end - start - 5000) > 10) {
       TEST_FAIL("[Thread Test {join(long)} case1]");
@@ -342,11 +342,11 @@ void testThreadCommonCase() {
 
   //void interruptableSleep(unsigned long);
   while(1) {
-      long current = st(System)::currentTimeMillis();
+      long current = st(System)::CurrentTimeMillis();
 
       st(Thread)::sleep(1000);
 
-      long current2 = st(System)::currentTimeMillis();
+      long current2 = st(System)::CurrentTimeMillis();
       if((current2 - current) > 1005) {
           TEST_FAIL("[Thread Test {interruptableSleep()} case1]");
           break;
