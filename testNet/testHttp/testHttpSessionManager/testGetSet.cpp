@@ -51,7 +51,7 @@ void testGetSet() {
   
   while(1) {
     //auto session = st(HttpSessionManager)::getInstance()->createSession(2);
-    auto session = createHttpSession(st(HttpSession)::InfiniteDuration);
+    auto session = createHttpSession(st(HttpSession)::kInfiniteDuration);
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000 * 200);
     auto session2 = st(HttpSessionManager)::getInstance()->get(session->getId());
@@ -72,7 +72,7 @@ void testGetSet() {
     auto session = createHttpSession();
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000*100);
-    session->setMaxInactiveInterval(st(HttpSession)::InfiniteDuration);
+    session->setMaxInactiveInterval(st(HttpSession)::kInfiniteDuration);
     
     usleep(1000 * 200);
     auto session2 = st(HttpSessionManager)::getInstance()->get(session->getId());

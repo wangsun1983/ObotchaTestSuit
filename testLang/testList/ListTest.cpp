@@ -17,8 +17,10 @@ extern void basetest();
 extern void testConstruct();
 extern void testExceptoin();
 extern void testListValueUpdate();
+extern void testIterator();
 
 int main() {
+  testIterator();
   listobjecttest();
   basetest();
   testConstruct();

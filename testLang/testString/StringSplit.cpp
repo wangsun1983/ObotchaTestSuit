@@ -29,7 +29,7 @@ void splittest() {
         //case 1
         String str1 = createString(" a b c d ");
         ArrayList<String> str1list = str1->split(createString(" "));
-        ListIterator<String> iterator = str1list->getIterator();
+        ArrayListIterator<String> iterator = str1list->getIterator();
 
         if(str1list->size() != 4) {
             TEST_FAIL("String split Special test1");

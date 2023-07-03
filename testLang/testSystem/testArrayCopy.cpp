@@ -25,7 +25,7 @@ void testArrayCopy() {
     dest[33] = 67;
     dest[34] = 68;
 
-    st(System)::arrayCopy(dest,0,src,0,32);
+    st(System)::ArrayCopy(dest,0,src,0,32);
 
     for(int i = 0; i < 32;i++) {
       if(dest[i] != i) {
@@ -51,7 +51,7 @@ void testArrayCopy() {
     dest[33] = 67;
     dest[34] = 68;
 
-    st(System)::arrayCopy(dest,1,src,0,32);
+    st(System)::ArrayCopy(dest,1,src,0,32);
 
     for(int i = 1; i < 32;i++) {
       if(dest[i] != i-1) {
@@ -76,7 +76,7 @@ void testArrayCopy() {
       dest[i] = 22;
     }
 
-    st(System)::arrayCopy(dest,1,src,2,16);
+    st(System)::ArrayCopy(dest,1,src,2,16);
 
     for(int i = 1; i < 17;i++) {
       if(dest[i] != src[i + 1]) {

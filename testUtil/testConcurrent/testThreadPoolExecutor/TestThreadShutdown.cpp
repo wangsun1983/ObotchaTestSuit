@@ -64,9 +64,9 @@ public:
     }
 
     void run() {
-        long start = st(System)::currentTimeMillis();
+        long start = st(System)::CurrentTimeMillis();
         mPool->awaitTermination(10000);
-        long end = st(System)::currentTimeMillis();
+        long end = st(System)::CurrentTimeMillis();
         interval = end - start;
     }
 
@@ -124,9 +124,9 @@ void testThreadShutdown() {
 
     while(1) {
         ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
-        long t = st(System)::currentTimeMillis();
+        long t = st(System)::CurrentTimeMillis();
         pool->awaitTermination(1000);
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         if((current - t) > 1) {
             TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case6, interval is %ld] ",current - t);
             break;
@@ -141,9 +141,9 @@ void testThreadShutdown() {
         ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
         pool->submit(createMyShutdownRunTest3());
         pool->shutdown();
-        long t = st(System)::currentTimeMillis();
+        long t = st(System)::CurrentTimeMillis();
         int result = pool->awaitTermination(1000);
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         if((current - t) > 10 || result < 0) {
             TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case8],interval is %ld,result is %d ",current - t,result);
             break;

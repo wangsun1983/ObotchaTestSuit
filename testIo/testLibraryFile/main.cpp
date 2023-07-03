@@ -17,7 +17,7 @@ using myfunc = int (*)(int , int );
 int main() {
     //first build test Library
     String cmd = createString("cd ./library && make");
-    st(System)::executeForResult(cmd);
+    st(System)::ExecuteForResult(cmd);
 
     LibraryFile file = createLibraryFile(createString("./library/libtest.so"));
     myfunc t = (myfunc)file->getMethod(createString("start"));

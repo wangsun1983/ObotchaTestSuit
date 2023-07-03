@@ -20,8 +20,6 @@ DefRet(String,Integer) getValue() {
 }
 
 void testReturnValue() {
-  String v1;
-  Integer v2;
   FetchRet(v1,v2) = getValue();
   if(v1 == nullptr || !v1->equals("hello1")) {
     TEST_FAIL("testReturnValue case1");

@@ -21,8 +21,6 @@ void testSockAddress() {
       TEST_FAIL("InetAddress sockAddress case2,sockAddr->family() is %d",sockAddr->family());
     }
 
-    int size;
-    struct sockaddr *addr;
     FetchRet(size,addr) = sockAddr->get();
 
     String ip = createString(inet_ntoa(((sockaddr_in *)addr)->sin_addr));

@@ -14,22 +14,22 @@ using namespace obotcha;
 #define CPU_NUMS 12
 
 int normalTest() {
-  //static long int currentTimeMillis();
+  //static long int CurrentTimeMillis();
   while(1) {
-    long int times = st(System)::currentTimeMillis();
+    long int times = st(System)::CurrentTimeMillis();
     if(times <= 0) {
-      TEST_FAIL("System currentTimeMillis test1");
+      TEST_FAIL("System CurrentTimeMillis test1");
       break;
     }
 
-    TEST_OK("System currentTimeMillis test1");
+    TEST_OK("System CurrentTimeMillis test1");
       break;
     break;
   }
 
   //static int availableProcessors();
   while(1) {
-    int num = st(System)::availableProcessors();
+    int num = st(System)::AvailableProcessors();
     if(num != CPU_NUMS) {
         TEST_FAIL("System availableProcessors test1");
         break;
@@ -41,7 +41,7 @@ int normalTest() {
 
   //static int onlineProcessors();
   while(1) {
-    int num = st(System)::onlineProcessors();
+    int num = st(System)::OnlineProcessors();
     if(num != CPU_NUMS) {
         TEST_FAIL("System Test test1");
         break;
@@ -54,7 +54,7 @@ int normalTest() {
   //String executeForResult(String cmd);
   while(1) {
     String cmd = "ls -la";
-    String result = st(System)::executeForResult(cmd);
+    String result = st(System)::ExecuteForResult(cmd);
     if(result->size() < 10) {
       TEST_FAIL("System executeForResult test1");
       break;
@@ -77,7 +77,7 @@ int normalTest() {
       }
 
       String cmd = "mkdir abc";
-      st(System)::execute(cmd);
+      st(System)::Execute(cmd);
       if(!file->exists()) {
         TEST_FAIL("System execute test2");
         break;

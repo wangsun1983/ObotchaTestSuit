@@ -19,7 +19,7 @@ long RunTestTime2 = 1;
 DECLARE_CLASS(ScheduleRunTest1) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        RunTestTime1 = st(System)::currentTimeMillis();
+        RunTestTime1 = st(System)::CurrentTimeMillis();
         sleep(5);
     }
 
@@ -31,7 +31,7 @@ public:
 DECLARE_CLASS(ScheduleRunTest2) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        RunTestTime2 = st(System)::currentTimeMillis();
+        RunTestTime2 = st(System)::CurrentTimeMillis();
         sleep(5);
     }
 };
@@ -50,7 +50,7 @@ int scheduleTest() {
     //schedule test
     while(1) {
         ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         pool->schedule(5000,createScheduleRunTest1());
         pool->schedule(5000,createScheduleRunTest2());
         sleep(15);

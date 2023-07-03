@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 void testExecute() {
-    String str = st(System)::executeForResult("cd ./bin && ./test");
+    String str = st(System)::ExecuteForResult("cd ./bin && ./test");
     if(str->size() != 1024*48) {
         TEST_FAIL("Test System executeForResult case1");
     }

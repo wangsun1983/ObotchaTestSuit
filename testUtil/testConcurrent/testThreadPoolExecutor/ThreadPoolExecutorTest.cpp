@@ -117,12 +117,12 @@ void normalTest() {
         runTest2Mutex->lock();
 
         pool->submit(createRunTest2());
-		//TEST_FAIL("start at % ld ",st(System)::currentTimeMillis());
+		//TEST_FAIL("start at % ld ",st(System)::CurrentTimeMillis());
         sleep(1);
-		//TEST_FAIL("start end % ld ",st(System)::currentTimeMillis());
+		//TEST_FAIL("start end % ld ",st(System)::CurrentTimeMillis());
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         result = pool->awaitTermination(5000);
         //TEST_FAIL("awaitTermination result is %d ",result);
         if(result != -ETIMEDOUT) {
@@ -130,7 +130,7 @@ void normalTest() {
             break;
         }
 
-        long current2 = st(System)::currentTimeMillis();
+        long current2 = st(System)::CurrentTimeMillis();
         //TEST_FAIL("current2 - current1 is %d ",(current2 - current));
         if(current2 - current > 5015) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case3]");
@@ -155,7 +155,7 @@ void normalTest() {
         pool->submit(createMyRunTest1());
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         //TEST_FAIL("awaitTermination start test ");
         int result = pool->awaitTermination(0);
         //TEST_FAIL("awaitTermination result is %d ",result);
@@ -164,7 +164,7 @@ void normalTest() {
             break;
         }
 
-        long current2 = st(System)::currentTimeMillis();
+        long current2 = st(System)::CurrentTimeMillis();
         //TEST_FAIL("current2 - current1 is %d ",(current2 - current));
         if(current2 - current > 10005) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case7]");
@@ -182,9 +182,9 @@ void normalTest() {
         pool->submit(createMyRunTest1());
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         pool->awaitTermination(100000);
-        long v = st(System)::currentTimeMillis() - current;
+        long v = st(System)::CurrentTimeMillis() - current;
         if(v > 10005) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()},v is %ld case9]",v);
             break;
@@ -216,9 +216,9 @@ void normalTest() {
             break;
         }
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         Future task2 = pool->submit(createMyRunTest1());
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v >10005) {
             TEST_FAIL("[TestThreadPoolExecutor Test {submit()} case2]");
             break;

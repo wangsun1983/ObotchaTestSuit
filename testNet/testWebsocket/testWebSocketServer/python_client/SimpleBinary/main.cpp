@@ -92,6 +92,7 @@ int main() {
     MyWsListener l = createMyWsListener();
 
     int port = getEnvPort();
+    printf("port is %d \n",port);
     InetAddress address = createInet4Address(port);
     WebSocketServer server = createWebSocketServerBuilder()
                             ->setInetAddr(address)

@@ -11,21 +11,15 @@
 
 using namespace obotcha;
 
-void testGetFamily() {
+void testSetPort() {
     InetAddress addr1 = createInet4Address("192.168.1.1",12);
-    if(addr1->getFamily() != st(InetAddress)::IPV4) {
-        TEST_FAIL("InetAddress GetFamily case1");
+    if(addr1->getPort() != 12) {
+        TEST_FAIL("InetAddress SetPort case1");
     }
-    
-    InetAddress addr2 = createInet6Address(12);
-    if(addr2->getFamily() != st(InetAddress)::IPV6) {
-        TEST_FAIL("InetAddress GetFamily case2");
+    addr1->setPort(22);
+    if(addr1->getPort() != 22) {
+        TEST_FAIL("InetAddress SetPort case2");
     }
-    
-    InetAddress addr3 = createInetLocalAddress("aabbcc");
-    if(addr3->getFamily() != st(InetAddress)::LOCAL) {
-        TEST_FAIL("InetAddress GetFamily case3");
-    }
-    
+
     TEST_OK("InetAddress GetFamily case100");
 }

@@ -95,13 +95,13 @@ int baseTest() {
         sleep(1);
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         result = pool->awaitTermination(5000);
         if(result != 0) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case2]");
             break;
         }
-        long current2 = st(System)::currentTimeMillis();
+        long current2 = st(System)::CurrentTimeMillis();
         if(current2 - current > 15) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case3]");
             break;
@@ -124,14 +124,14 @@ int baseTest() {
         pool->schedule(0,createBaseRunTest1());
         int v = pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         result = pool->awaitTermination(0);
         if(result != 0) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case6]");
             break;
         }
 
-        long current2 = st(System)::currentTimeMillis();
+        long current2 = st(System)::CurrentTimeMillis();
         //TEST_FAIL("current2 - current1 is %d \n",(current2 - current));
         if(current2 - current > 10005) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case7]");
@@ -150,9 +150,9 @@ int baseTest() {
         pool->schedule(0,createBaseRunTest1());
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         pool->awaitTermination(100000);
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v > 10005) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case9]");
             break;
@@ -173,9 +173,9 @@ int baseTest() {
             break;
         }
 
-        //long current = st(System)::currentTimeMillis();
+        //long current = st(System)::CurrentTimeMillis();
         //Future task2 = pool->submit(createRunTest1());
-        //int v = st(System)::currentTimeMillis() - current;
+        //int v = st(System)::CurrentTimeMillis() - current;
         //if(v >10005) {
         //    TEST_FAIL("[ScheduledThreadPoolExecutor Test {submit()} case2] [FAIL] \n");
         //    break;

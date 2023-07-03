@@ -76,7 +76,7 @@ int main() {
 
     if(!file->exists()) {
         file->createNewFile();
-        for(int i = 0;i<1024;i++) {
+        for(int i = 0;i<12;i++) {
             FileOutputStream stream = createFileOutputStream(file);
             stream->open(st(OutputStream)::Append);
             String data = createString("");

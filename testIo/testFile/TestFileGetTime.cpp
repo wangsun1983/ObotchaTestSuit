@@ -14,7 +14,7 @@ void testFileGetTime() {
         f->removeAll();
     }
     f->createNewFile();
-    long time = st(System)::currentTimeMillis();
+    long time = st(System)::CurrentTimeMillis();
 
     if((time - f->lastModified()) > 10) {
         TEST_FAIL("[File Test {getTime()} case1]");

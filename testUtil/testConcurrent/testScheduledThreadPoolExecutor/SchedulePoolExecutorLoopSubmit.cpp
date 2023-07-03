@@ -39,7 +39,7 @@ public:
 
     void run() {
         AutoLock l(myloopsubmitMutex);
-        currentTimeList->add(st(System)::currentTimeMillis());
+        currentTimeList->add(st(System)::CurrentTimeMillis());
     }
 
     bool onInterrupt() {
@@ -51,7 +51,7 @@ public:
 int scheduleloopsubmit() {
     //test1
     ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-    long time = st(System)::currentTimeMillis();
+    long time = st(System)::CurrentTimeMillis();
     for(int i = 0; i < 32*1024;i++) {
         pool->schedule(0,createMyLoopSubmit());
     }
@@ -79,7 +79,7 @@ int scheduleloopsubmit() {
 #if 0 //need test
     //test3
     pool = createExecutorBuilder()->newScheduledThreadPool();
-    time = st(System)::currentTimeMillis();
+    time = st(System)::CurrentTimeMillis();
 
     for(int i = 0; i < 32*1024;i++) {
         pool->submit(createMyLoopTimeSubmit(),1);

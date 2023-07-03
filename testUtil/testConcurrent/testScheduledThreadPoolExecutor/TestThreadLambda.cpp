@@ -18,10 +18,10 @@ int testThreadLambda() {
     ThreadScheduledPoolExecutor t = createExecutorBuilder()->newScheduledThreadPool();
     while(1) {
         long time1 = 0;
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
 
         t->schedule(5000,[&time1]() {
-            time1 = st(System)::currentTimeMillis();
+            time1 = st(System)::CurrentTimeMillis();
         });
 
         sleep(6);

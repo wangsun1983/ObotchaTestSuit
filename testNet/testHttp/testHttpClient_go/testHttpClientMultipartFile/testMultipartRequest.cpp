@@ -25,9 +25,9 @@ void testMultipartRequest() {
       for(int i = 0;i<32;i++) {
       FileOutputStream stream = createFileOutputStream(file);
       stream->open(st(OutputStream)::Append);
-      String data = createString(st(System)::currentTimeMillis());
+      String data = createString(st(System)::CurrentTimeMillis());
       for(int j = 0;j < 32;j++) {
-        data = data->append(createString(st(System)::currentTimeMillis()));
+        data = data->append(createString(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();

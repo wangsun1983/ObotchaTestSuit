@@ -71,9 +71,9 @@ void testThreadPoolLoopSubmit() {
     ThreadPoolExecutor executor3 = createThreadPoolExecutor(1,1,0);
     executor3->submit(createMyLoopSubmitRunnable3());
     executor3->submit(createMyLoopSubmitRunnable3());
-    long c = st(System)::currentTimeMillis();
+    long c = st(System)::CurrentTimeMillis();
     executor3->submit(createMyLoopSubmitRunnable3());
-    long interval = st(System)::currentTimeMillis() - c;
+    long interval = st(System)::CurrentTimeMillis() - c;
     if(interval < 5000 || interval > 5005) {
       TEST_FAIL("[ThreadPoolExecutor Loop Submit} special case3],interval is %ld ",interval);
     }

@@ -12,24 +12,21 @@
 
 using namespace obotcha;
 
-
 extern int baseTest();
 extern int scheduleTest();
 extern int ReleaseTest();
-//extern int fixRateTest();
-//extern int fixDelayTest();
 extern int scheduleloopsubmit();
 extern int testThreadLambda();
-
 extern void testSubmitWait();
 extern void testSubmitTask();
 extern void testSubmitTimeout();
 extern void testAwaitTermination();
 extern void testShutdownCount();
+extern void testTimeCheck();
 
 int main() {
-
- 
+    testTimeCheck();
+    
     testSubmitWait();
     testSubmitTask();
     testSubmitTimeout();
@@ -43,5 +40,5 @@ int main() {
     testShutdownCount();
 
     sleep(10);
-
+    return 0;
 }

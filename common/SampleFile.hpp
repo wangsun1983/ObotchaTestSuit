@@ -17,7 +17,7 @@ void createSampleFile(File file,long size) {
     FileOutputStream stream = createFileOutputStream(file);
     stream->open();
     while(size > 0) {
-        String f = createString(st(System)::currentTimeMillis());
+        String f = createString(st(System)::CurrentTimeMillis());
         if(f->size() > size) {
             f = f->subString(0,size);
         }

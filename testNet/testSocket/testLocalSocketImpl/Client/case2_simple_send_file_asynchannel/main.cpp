@@ -55,16 +55,15 @@ int main() {
 
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(client,createMyListener());
-    
-    ByteArray fileBuff = createByteArray(1024*4);
     FileInputStream stream = createFileInputStream(file);
+    FileOutputStream out = createFileOutputStream("./tmp/out.txt");
+    out->open();
     stream->open();
     long index = 0;
-    long filesize = file->length();
+    long filesize = file->length();    
+    ByteArray fileBuff = createByteArray(1024*4);
     while(1) {
       long length = stream->read(fileBuff);
-      //printf("write data ,len is %ld \n",length);
-      
       int ret = client->getOutputStream()->write(fileBuff);
       filesize -= length;
       if(filesize == 0) {

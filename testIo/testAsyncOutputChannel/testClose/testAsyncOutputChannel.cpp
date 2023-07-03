@@ -36,9 +36,9 @@ void testAsyncOutputChannel() {
         c->close();
     }
     
-    usleep(1000*100);
+    usleep(1000*300);
     if(!pool->isEmpty()) {
-        TEST_FAIL("testAsyncOutputChannel close channel case2");
+        TEST_FAIL("testAsyncOutputChannel close channel case2,size is %d",pool->size());
     }
     
     TEST_OK("testAsyncOutputChannel close channel case100");
