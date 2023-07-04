@@ -16,6 +16,7 @@ int main() {
     InetAddress addr = createInetLocalAddress("case6_socket");
     SocketOption option = createSocketOption();
     option->setConnectTimeout(1000);
+    option->setSndTimeout(1000);
     
     //connect 1:
     ConcurrentQueue<Socket> clients = createConcurrentQueue<Socket>();
@@ -43,10 +44,10 @@ int main() {
     int ret = client->connect();
     auto cost = watcher->stop();
     if(ret != -1) {
-        TEST_FAIL("TestLocalSocket Client case7_connect_timeout case1,ret is %d",ret);
+        TEST_FAIL("TestLocalSocket Client case11_connect_send_timeout case1,ret is %d",ret);
     }
     if(cost<995 || cost > 1030) {
-        TEST_FAIL("TestLocalSocket Client case7_connect_timeout case2,cost is %d",cost);
+        TEST_FAIL("TestLocalSocket Client case11_connect_send_timeout case2,cost is %d",cost);
     }
     
     ForEveryOne(c,clients) {
@@ -57,6 +58,6 @@ int main() {
         t->join();
     }
     
-    TEST_OK("TestLocalSocket Client case7_connect_timeout case100");
+    TEST_OK("TestLocalSocket Client case11_connect_send_timeout case100");
     return 0;
 }

@@ -1,9 +1,8 @@
 import socket
 import sys
 import os
-import time
 
-server_address = 'case6_socket'
+server_address = 'case1_socket'
  
 # Make sure the socket does not already exist
 try:
@@ -14,18 +13,19 @@ except OSError:
 # Create a UDS socket
 sock = socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
 # Bind the socket to the port
-
 sock.bind(server_address)
-
+ 
 # Listen for incoming connections
 sock.listen(1)
 #print("start listen!!!")
-time.sleep(10)
 
 
 # Wait for a connection
+count = 0;
 
-#connection, client_address = sock.accept()
+while count != 2:
+    connection, client_address = sock.accept()
+    receive_data = connection.recv(1024)
+    count = count + 1
 
-#receive_data = connection.recv(1024)
-
+connection.close()
