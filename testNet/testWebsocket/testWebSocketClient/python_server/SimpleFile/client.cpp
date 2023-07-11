@@ -63,9 +63,9 @@ int main() {
         for(int i = 0;i<1024;i++) {
         FileOutputStream stream = createFileOutputStream(file);
         stream->open(st(OutputStream)::Append);
-        String data = createString(st(System)::currentTimeMillis());
+        String data = createString(st(System)::CurrentTimeMillis());
         for(int j = 0;j < 32;j++) {
-          data = data->append(createString(st(System)::currentTimeMillis()));
+          data = data->append(createString(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();

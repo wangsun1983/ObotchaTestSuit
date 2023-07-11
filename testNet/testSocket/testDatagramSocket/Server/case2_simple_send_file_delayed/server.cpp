@@ -53,7 +53,7 @@ int main() {
         stream1->open(st(OutputStream)::Append);
         String data = createString("");
         for(int i = 0;i < 1024;i++) {
-          data = data->append(createString(st(System)::currentTimeMillis()));
+          data = data->append(createString(st(System)::CurrentTimeMillis()));
         }
         stream1->write(data->toByteArray());
         stream1->close();

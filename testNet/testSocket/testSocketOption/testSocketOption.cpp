@@ -204,9 +204,9 @@ void testSocketOptions() {
     }
 
     //_SocketOption* setConnectionNum(int);
-    option->setConnectionNum(25);
-    if(option->getConnectionNum() != 25) {
-        TEST_FAIL("[SocketOption ConnectionNum test case1]");
+    option->setWaitAcceptQueueSize(25);
+    if(option->getWaitAcceptQueueSize() != 25) {
+        TEST_FAIL("[SocketOption getWaitAcceptQueueSize test case1]");
     }
 
     //_SocketOption* setBuffSize(int)

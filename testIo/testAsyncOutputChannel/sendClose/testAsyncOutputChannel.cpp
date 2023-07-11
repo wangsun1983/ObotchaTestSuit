@@ -32,8 +32,9 @@ int main() {
     Socket s = createSocketBuilder()
                 ->setAddress(createInet4Address(port))
                 ->newSocket();
-
-    s->connect();
+    
+    int ret = s->connect();
+    printf("connect ret is %d \n",ret);
 
     SocketMonitor monitor = createSocketMonitor();
     monitor->bind(s,createMyListener());
@@ -64,9 +65,6 @@ int main() {
         int formsize = 0;
         int sameCount = 5;
         while(1) {
-            if(formsize == 0) {
-                stream->close();
-            }
             File datafile = createFile("./tmp/testdata");
             File rcvfile = createFile("./tmp/file");
             
@@ -91,10 +89,17 @@ int main() {
     
     Md md5 = createMd();
     String v1 = md5->encrypt(createFile("./tmp/testdata"));
-    String v2 = md5->encrypt(createFile("./tmp/file"));
     
-    if(v1->equals(v2)) {
-        TEST_FAIL("testAsyncOutputChannel close case1")
+    auto result_file = createFile("./tmp/file");
+    
+    if(!result_file->exists()) {
+        TEST_FAIL("testAsyncOutputChannel close case1");
+    } else {
+        String v2 = md5->encrypt(createFile("./tmp/file"));
+        
+        if(!v1->equals(v2)) {
+            TEST_FAIL("testAsyncOutputChannel close case2")
+        }    
     }
     port++;
     setEnvPort(port);

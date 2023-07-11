@@ -59,4 +59,6 @@ thread10.join()
 thread11.join()
 thread12.join()
 
+time.sleep(5)
+
 print("test finished")

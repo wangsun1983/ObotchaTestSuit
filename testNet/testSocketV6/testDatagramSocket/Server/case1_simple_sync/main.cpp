@@ -20,14 +20,19 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
-    if(isFirst) {
-      int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
-      isFirst = false;
-      mCond->notify();
-      return;
-    }
+    switch(event) {
+        case st(NetEvent)::Message: {
+            if(isFirst) {
+              int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+              isFirst = false;
+              mCond->notify();
+              return;
+            }
 
-    message = message->append(data->toString());
+            message = message->append(data->toString());
+        }
+    }
+    
   }
 
 };

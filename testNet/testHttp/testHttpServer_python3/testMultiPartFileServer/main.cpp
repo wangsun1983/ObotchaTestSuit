@@ -106,7 +106,7 @@ int main() {
       stream->open(st(OutputStream)::Append);
       String data = createString("");
       for(int j = 0;j < 1024;j++) {
-        data = data->append(createString(st(System)::currentTimeMillis()));
+        data = data->append(createString(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();

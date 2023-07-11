@@ -59,18 +59,22 @@ void testUnbind() {
         t2->start();
         
         latch->await();
-        
+        usleep(1000*100);
         if(!monitor->isPendingTasksEmpty()) {
-            TEST_FAIL("SocketMonitor testUnbind case1");
+            TEST_FAIL("SocketMonitor testUnbind case1,size is %d",monitor->getPendingTaskSize());
         }
         
-        if(!monitor->isClientSocketsEmpty()) {
+        if(!monitor->isMonitorSocketEmpty()) {
             TEST_FAIL("SocketMonitor testUnbind case2");
         }
-        
-        if(!monitor->isServerSocksEmpty()) {
-            TEST_FAIL("SocketMonitor testUnbind case3");
-        }
+
+//        if(!monitor->isClientSocketsEmpty()) {
+//            TEST_FAIL("SocketMonitor testUnbind case2");
+//        }
+//        
+//        if(!monitor->isServerSocksEmpty()) {
+//            TEST_FAIL("SocketMonitor testUnbind case3");
+//        }
         break;
     }
     

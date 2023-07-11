@@ -102,6 +102,7 @@ def scanTest(path):
     print("path is ",path)
 
     isMakefileExist = False
+    isPrepareFileExist = False
     #judge whether path is a folder
     if os.path.isfile(path) or not os.path.exists(path):
         print("path trace is ",path)
@@ -113,6 +114,8 @@ def scanTest(path):
     testType = TestType.TestNormal
     for filename in os.listdir(path):
         print("filename is ",filename)
+        if filename == "prepare.sh":
+            isPrepareFileExist = True
         if filename == "makefile":
             isMakefileExist = True
         if filename == "client.go":
@@ -125,7 +128,8 @@ def scanTest(path):
             testType = TestType.TestRunPythonServer
 
     print("path trace2 type is ",testType)
-
+    if isPrepareFileExist:
+        os.popen("sh prepare.sh").read()
     if isMakefileExist:
         makeret = os.popen("cd " + path + " && make 2>&1").read()
         go_build_success = True

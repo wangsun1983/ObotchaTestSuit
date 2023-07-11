@@ -4,8 +4,8 @@ import (
     "fmt"
     "io/ioutil"
     "strconv"
-    "os"
-    "log"
+//    "os"
+//    "log"
 )
 
 func GetEnvPort() int{
@@ -18,16 +18,16 @@ func GetEnvPort() int{
     return int5
 }
 
-func SetEnvPort(port int) {
-    if port > 6000 {
-        port = 4000
-    }
-    if err := ioutil.WriteFile("/tmp/obotcha_test_suit_port.txt", []byte(strconv.Itoa(port)), 0666); err != nil{
-        os.Exit(111)
-        log.Println(err.Error())
-    }
-}
+//func SetEnvPort(port int) {
+//    if port > 6000 {
+//        port = 4000
+//    }
+//    if err := ioutil.WriteFile("/tmp/obotcha_test_suit_port.txt", []byte(strconv.Itoa(port)), 0666); err != nil{
+//        os.Exit(111)
+//        log.Println(err.Error())
+//    }
+//}
 
-func ResetEnvPort() {
-    SetEnvPort(4000);
-}
+//func ResetEnvPort() {
+//    SetEnvPort(4000);
+//}

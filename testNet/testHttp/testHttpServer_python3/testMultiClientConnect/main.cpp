@@ -32,8 +32,9 @@ CountDownLatch disconnetlatch = createCountDownLatch(1024*32);
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
   void handleMessage(Message msg) {
-    printf("connect is %d,disconnect is %d \n",connectlatch->getCount(),disconnetlatch->getCount());
-    this->sendEmptyMessageDelayed(0,10*1000);
+    printf("connect is %d,disconnect is %d,message is %d \n",
+            connectlatch->getCount(),disconnetlatch->getCount(),messageCount->get());
+    this->sendEmptyMessageDelayed(0,1*1000);
   }
 };
 
@@ -48,7 +49,11 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           case st(NetEvent)::Message: {
               HttpResponse response = createHttpResponse();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-              w->write(response);
+              response->getEntity()->setContent(createString(messageCount->getAndIncrement())->toByteArray());
+              if(w->write(response) < 0) {
+                  printf("failed to write,err is %s \n",strerror(errno));
+              }
+              //messageCount->incrementAndGet();
           }
           break;
 
@@ -70,12 +75,16 @@ int main() {
                     ->build();
   server->start();
   MyHandler h = createMyHandler();
-  h->sendEmptyMessageDelayed(0,10*1000);
+  h->sendEmptyMessageDelayed(0,1*1000);
   connectlatch->await();
   disconnetlatch->await();
   server->close();
   
+  usleep(1000*100);
+  if(messageCount->get() != 1024*32) {
+    TEST_FAIL("TestHttpServer MultiClientConnect case1,count is %d",messageCount->get());
+  }
   port++;
   setEnvPort(port);
-  TEST_OK("TestHttpServer MultiClientConnect test100");
+  TEST_OK("TestHttpServer MultiClientConnect case2");
 }
