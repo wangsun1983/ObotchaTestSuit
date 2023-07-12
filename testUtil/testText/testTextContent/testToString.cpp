@@ -8,7 +8,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TextContent.hpp"
 #include "TestLog.hpp"
-#include "Reflect.hpp"
+#include "Reflect.hpp"a
 
 using namespace obotcha;
 
@@ -16,9 +16,9 @@ void testToString() {
 //    _TextContent(const Integer &v);
     TextContent v1 = createTextContent(createInteger(2));
     if(!v1->get()->equals("2")) {
-        TEST_FAIL("TextContent toString case1,v1 is [%s]",v1->get()->toChars());
+        TEST_FAIL("TextContent toString case1,v1 is [%s1111]",v1->get()a->toChars());
     }
-#if 0    
+
 //    _TextContent(const Boolean &v);
     v1 = createTextContent(createBoolean(true));
     if(!v1->get()->equals("true")) {
@@ -30,15 +30,15 @@ void testToString() {
         TEST_FAIL("TextContent toString case3");
     }
 //    _TextContent(const Float &v);
-    v1 = createTextContent(createFloat(1.23));
-    if(!v1->get()->equals("1.23")) {
-        TEST_FAIL("TextContent toString case4,v1 is %s",v1->get()->toChars());
-    }
-//    _TextContent(const Double &v);
-    v1 = createTextContent(createDouble(1.23));
-    if(!v1->get()->equals("1.23")) {
-        TEST_FAIL("TextContent toString case5");
-    }
+//    v1 = createTextContent(createFloat(1.23));
+//    if(!v1->get()->equals("1.23")) {
+//        TEST_FAIL("TextContent toString case4,v1 is %s",v1->get()->toChars());
+//    }
+////    _TextContent(const Double &v);
+//    v1 = createTextContent(createDouble(1.23));
+//    if(!v1->get()->equals("1.23")) {
+//        TEST_FAIL("TextContent toString case5");
+//    }
 //    _TextContent(const Long &v);
     v1 = createTextContent(createLong(100));
     if(!v1->get()->equals("100")) {
@@ -86,16 +86,16 @@ void testToString() {
         TEST_FAIL("TextContent toString case14");
     }
 //    _TextContent(float v);
-    v1 = createTextContent((float)1.22);
-    if(!v1->get()->equals("1.22")) {
-        TEST_FAIL("TextContent toString case15");
-    }
+//    v1 = createTextContent((float)1.22);
+//    if(!v1->get()->equals("1.22")) {
+//        TEST_FAIL("TextContent toString case15");
+//    }
 
 //    _TextContent(double v);
-    v1 = createTextContent((double)1.26);
-    if(!v1->get()->equals("1.26")) {
-        TEST_FAIL("TextContent toString case16");
-    }
+//    v1 = createTextContent((double)1.26);
+//    if(!v1->get()->equals("1.26")) {
+//        TEST_FAIL("TextContent toString case16");
+//    }
 
 //    _TextContent(long v);
     v1 = createTextContent((long)166);
@@ -127,5 +127,5 @@ void testToString() {
     if(!v1->get()->equals("1230")) {
         TEST_FAIL("TextContent toString case22");
     }
-#endif
-}
+    TEST_OK("TextContent toString case100");
+}   

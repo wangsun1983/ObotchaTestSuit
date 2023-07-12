@@ -29,7 +29,7 @@ void testToXml() {
     data->name = createString("wangsl");
     
     TextContent c = createTextContent(data,st(TextContent)::Xml);
-    printf("c is %s \n",c->get()->toChars());
+    //printf("c is %s \n",c->get()->toChars());
     
     XmlReader reader = createXmlReader(c->get());
     XmlValue value = reader->get()->getRootNode();

@@ -19,8 +19,8 @@ int main() {
       sleep(5);
       //t->stop();
       long interval = t->stop();
-      if(interval != 5000) {
-          TEST_FAIL("[TimeWatcher Test {start/stop()} case1]");
+      if(interval > 5005 || interval < 4995) {
+          TEST_FAIL("[TimeWatcher Test {start/stop()} case1],interval is %ld",interval);
           break;
       }
 

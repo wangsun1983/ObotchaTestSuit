@@ -66,9 +66,11 @@ int testDefaultPipe() {
       pp2->closeWriteChannel();
       ByteArray array = createByteArray(testDatalength);
       int length = pp2->read(array);
-
       if(length < testDatalength) {
-          TEST_FAIL("[Pipe Test {default closePipe()} case1]");
+          TEST_FAIL("[Pipe Test {default closePipe()} case1],length is %d,testDatalength is %d,error is %s",
+                    length,
+                    testDatalength,
+                    strerror(errno));
           return 1;
       }
 

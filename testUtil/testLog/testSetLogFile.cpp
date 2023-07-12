@@ -16,28 +16,32 @@ using namespace obotcha;
 
 void testSetLogFile() {
     while(1) {
-        
-        st(Log)::getInstance()->setInfoLogPath("./tmp","info_log_")
+        st(Log)::getInstance()->startSetting()
+                              ->setInfoLogPath("./tmp","info_log_")
                               ->setWarningLogPath("./tmp","warning_log_")
                               ->setErrorLogPath("./tmp","error_log_")
-                              ->setFatalLogPath("./tmp","fatal_log_");
-        
+                              ->setFatalLogPath("./tmp","fatal_log_")
+                              ->completeSetting();
         LOG(ERROR)<<"error log";
         LOG(WARNING)<<"warning log";
         //LOG(FATAL)<<"error log";
         LOG(INFO)<<"info log";
         
         usleep(1000*1000);
-        st(Log)::getInstance()->setInfoLogPath("./tmp","info2_log_")
+        sync();
+        st(Log)::getInstance()->startSetting()
+                              ->setInfoLogPath("./tmp","info2_log_")
                               ->setWarningLogPath("./tmp","warning2_log_")
                               ->setErrorLogPath("./tmp","error2_log_")
-                              ->setFatalLogPath("./tmp","fatal2_log_");
-        
+                              ->setFatalLogPath("./tmp","fatal2_log_")
+                              ->completeSetting();
         LOG(ERROR)<<"error2 log";
         LOG(WARNING)<<"warning2 log";
         //LOG(FATAL)<<"error log";
         LOG(INFO)<<"info2 log";
         usleep(1000*1000);
+        sync();
+        st(Log)::getInstance()->close();
         //check whether there contains info log
         {
             bool found = false;
@@ -112,7 +116,11 @@ void testSetLogFile() {
                 if(file->getName()->contains("info2")) {
                     auto stream = createFileInputStream(file);
                     stream->open();
+                    printf("start read \n");
                     auto content = stream->readAll()->toString();
+                    printf("file name is %s \n",file->getName()->toChars());
+                    printf("content is %s \n",content->toChars());
+                    
                     if(content->contains("info2 log")) {
                         found = true;
                     }
