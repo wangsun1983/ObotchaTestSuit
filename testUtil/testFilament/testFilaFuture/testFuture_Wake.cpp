@@ -24,11 +24,11 @@ void testFutureWake() {
         croutine->start();
         croutine->submit([future,&finish]{
             future->wait();
-            finish = st(System)::currentTimeMillis();
+            finish = st(System)::CurrentTimeMillis();
         });
         
         usleep(1000*100);
-        start = st(System)::currentTimeMillis();
+        start = st(System)::CurrentTimeMillis();
         future->wake();
         usleep(1000*100);
         if(finish < start) {
@@ -47,16 +47,16 @@ void testFutureWake() {
         croutine->start();
         croutine->submit([future,&finish1]{
             future->wait();
-            finish1 = st(System)::currentTimeMillis();
+            finish1 = st(System)::CurrentTimeMillis();
         });
         
         croutine->submit([future,&finish2]{
             future->wait();
-            finish2 = st(System)::currentTimeMillis();
+            finish2 = st(System)::CurrentTimeMillis();
         });
         
         usleep(1000*100);
-        start = st(System)::currentTimeMillis();
+        start = st(System)::CurrentTimeMillis();
         future->wakeAll();
         usleep(1000*100);
         if(finish1 < start || finish2 < start) {
@@ -75,16 +75,16 @@ void testFutureWake() {
         croutine->start();
         croutine->submit([future,&finish1]{
             future->wait();
-            finish1 = st(System)::currentTimeMillis();
+            finish1 = st(System)::CurrentTimeMillis();
         });
         
         croutine->submit([future,&finish2]{
             future->wait();
-            finish2 = st(System)::currentTimeMillis();
+            finish2 = st(System)::CurrentTimeMillis();
         });
         
         usleep(1000*100);
-        start = st(System)::currentTimeMillis();
+        start = st(System)::CurrentTimeMillis();
         future->wake();
         usleep(1000*100);
         if(finish1 > start && finish2 > start) {

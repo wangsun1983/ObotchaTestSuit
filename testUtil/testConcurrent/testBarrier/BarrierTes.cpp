@@ -107,10 +107,10 @@ int normaltest() {
 
       Thread t2 = createThread(createRun1(b));
       t2->start();
-      long current = st(System)::currentTimeMillis();
+      long current = st(System)::CurrentTimeMillis();
       b->await();
 
-      int v = st(System)::currentTimeMillis() - current;
+      int v = st(System)::CurrentTimeMillis() - current;
       if(v > 3005) {
         TEST_FAIL("[Barrier Test {await()} case1]");
         break;
@@ -126,9 +126,9 @@ int normaltest() {
       Thread t1 = createThread(createRun1(b));
       t1->start();
 
-      long current = st(System)::currentTimeMillis();
+      long current = st(System)::CurrentTimeMillis();
       b->await(1000);
-      int v = st(System)::currentTimeMillis() - current;
+      int v = st(System)::CurrentTimeMillis() - current;
       if(v > 1005) {
         TEST_FAIL("[Barrier Test {await(long)} case1]");
         break;

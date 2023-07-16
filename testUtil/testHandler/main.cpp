@@ -22,7 +22,6 @@ extern void testHandlerLooperQuit();
 
 int main() {
   testHandlerLooperQuit();
-  /*
   testHandlerLooper();
   testHandlerLambda();
   testHandlerRemove();
@@ -33,6 +32,6 @@ int main() {
   testHasMessage();
   testHandlerRemoveRunnable();
   testHandlerSendAtFront();
-  testHandlerSendDelayed();*/
+  testHandlerSendDelayed();
   return 0;
 }

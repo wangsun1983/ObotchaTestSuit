@@ -131,13 +131,13 @@ int testMutexNormal() {
         Mutex mutex = createMutex("test");
         Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         sleep(1);
 
         Thread mThread2 = createThread(createMyRun2(mutex));
         mThread2->start();
         mThread2->join();
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v >5005) {
             TEST_FAIL("[TestMutex Test {lock()} case1]");
             break;
@@ -154,10 +154,10 @@ int testMutexNormal() {
         Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
         sleep(1);
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         Thread mThread2 = createThread(createMyRun3(mutex));
         mThread2->start();
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v > 2005) {
             TEST_FAIL("[TestMutex Test {lock(long)} case1]");
             break;
@@ -187,12 +187,12 @@ int testMutexNormal() {
         Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
         sleep(1);
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         Thread mThread2 = createThread(createMyRun4(mutex));
         mThread2->start();
         mThread2->join();
 
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         //TEST_FAIL("v is %d \n",v);
         if(v > 5) {
             TEST_FAIL("[TestMutex Test {tryLock()} case1]");

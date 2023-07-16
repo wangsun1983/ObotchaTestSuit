@@ -39,7 +39,7 @@ public:
       TEST_FAIL("  [SubImportData] subData2 is %ld ",subData2);
       TEST_FAIL("  [SubImportData] subData3 is %s ",subData3->toChars());
       TEST_FAIL("  [SubImportData] start dump subData4 ");
-      ListIterator<BaseImportData> iterator = subData4->getIterator();
+      ArrayListIterator<BaseImportData> iterator = subData4->getIterator();
       while(iterator->hasValue()) {
         BaseImportData vv = iterator->getValue();
         vv->dump();
@@ -67,7 +67,7 @@ public:
     TEST_FAIL("[ImportData] finish dump data3 ");
 
     TEST_FAIL("[ImportData] start dump data4 ");
-    ListIterator<SubImportData> iterator = data4->getIterator();
+    ArrayListIterator<SubImportData> iterator = data4->getIterator();
     while(iterator->hasValue()) {
         SubImportData vv = iterator->getValue();
         vv->dump();

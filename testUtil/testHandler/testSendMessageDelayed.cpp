@@ -27,7 +27,7 @@ public:
   void handleMessage(Message msg) {
     AutoLock l(delayDataMutex);
     DelayTestData *data = datas[msg->what];
-    data->finished = st(System)::currentTimeMillis();
+    data->finished = st(System)::CurrentTimeMillis();
   }
 };
 
@@ -41,7 +41,7 @@ void testSendMessageDelayed() {
     {
       AutoLock l(delayDataMutex);
       DelayTestData *data = new DelayTestData();
-      data->start = st(System)::currentTimeMillis();
+      data->start = st(System)::CurrentTimeMillis();
       data->interval = interval;
       datas.push_back(data);
     }

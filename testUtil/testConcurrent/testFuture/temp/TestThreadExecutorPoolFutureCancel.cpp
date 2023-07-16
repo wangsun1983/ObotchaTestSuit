@@ -39,9 +39,9 @@ int testThreadExecutorPoolFutureCancel() {
         break;
       }
 
-      long trace1 = st(System)::currentTimeMillis();
+      long trace1 = st(System)::CurrentTimeMillis();
       f2->wait(1000);
-      long interval = st(System)::currentTimeMillis() - trace1;
+      long interval = st(System)::CurrentTimeMillis() - trace1;
       if(interval > 5) {
         printf("testThreadExecutorPoolFutureCancel case2 -------[FAIL] \n");
         pool->shutdown();
@@ -62,9 +62,9 @@ int testThreadExecutorPoolFutureCancel() {
       f1->cancel();
       f2->cancel();
 
-      long trace1 = st(System)::currentTimeMillis();
+      long trace1 = st(System)::CurrentTimeMillis();
       f2->wait(1000);
-      long interval = st(System)::currentTimeMillis() - trace1;
+      long interval = st(System)::CurrentTimeMillis() - trace1;
       if(interval > 5) {
         printf("testThreadExecutorPoolFutureCancel case4 -------[FAIL] \n");
         break;

@@ -36,9 +36,9 @@ void testBlockingQueueInt() {
         list->putFirst(5);
         EnqueueIntThread1 t1 = createEnqueueIntThread1(list);
         t1->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->putFirst(6);
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) > 5005 ||(time2 - time1) < 5000 ) {
             TEST_FAIL("BlockingQueue<int> putFirst test1");
             break;
@@ -69,13 +69,13 @@ void testBlockingQueueInt() {
     while(1) {
         BlockingQueue<int> list = createBlockingQueue<int>(5);
         bool isException = false;
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         try {
             list->takeFirst(100);
         } catch(...) {
             isException = true;
         }
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if(!isException) {
             TEST_FAIL("BlockingQueue<int> takeFirst test3");
             break;

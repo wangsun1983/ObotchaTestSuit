@@ -9,7 +9,6 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Error.hpp"
-#include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TestLog.hpp"
 
@@ -57,7 +56,7 @@ int normalTest() {
         pool->submit(createRunTest1());
         pool->shutdown();
 
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         int result = pool->awaitTermination(0);
         if(result != 0) {
             TEST_FAIL("[TestCachedPoolExecutor Test {awaitTermination()} case6]");
@@ -65,7 +64,7 @@ int normalTest() {
             break;
         }
 
-        long current2 = st(System)::currentTimeMillis();
+        long current2 = st(System)::CurrentTimeMillis();
         //TEST_FAIL("current2 - current1 is %d ",(current2 - current));
         if(current2 - current > 10005) {
             TEST_FAIL("[TestCachedPoolExecutor Test {awaitTermination()} case7,interval is %ld]",current2 - current);

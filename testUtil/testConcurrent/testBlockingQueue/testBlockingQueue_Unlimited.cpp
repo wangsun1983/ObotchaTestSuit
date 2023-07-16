@@ -37,9 +37,9 @@ void testBlockingQueueUnlimited() {
           list->put(createString("a"));
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         String str = list->take();
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingQueue unlimited capacity");
           break;

@@ -45,7 +45,8 @@ void testHandlerLooperQuit() {
   while(1) {
     HandlerThread t = createHandlerThread();
     t->start();
-
+    
+    usleep(100*1000);
     Handler t1 = createHandler(t->getLooper());
     auto loop = t1->getLooper();
     loop->quit();
@@ -54,7 +55,7 @@ void testHandlerLooperQuit() {
     watch->start();
     t->join(100);
     auto l = watch->stop();
-    if(l > 105 || l < 95) {
+    if(l > 5) {
       TEST_FAIL("[Handler Test Looper Quit case2],l is %d",l);
     }
     break;

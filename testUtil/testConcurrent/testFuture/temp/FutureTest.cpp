@@ -53,9 +53,9 @@ int testFutureNormal() {
     while(1) {
         ExecutorService pool = st(Executors)::newFixedThreadPool(5,5);
         Future f = pool->submit(createRunTest1());
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         f->wait(2000);
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v >= 2005) {
             printf("---[TestFuture Test {wait(long t)} case1] [FAIL]--- \n");
             break;
@@ -69,9 +69,9 @@ int testFutureNormal() {
     while(1) {
         ExecutorService pool = st(Executors)::newFixedThreadPool(5,5);
         Future f = pool->submit(createRunTest1());
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         f->wait(12000);
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v >= 5005) {
             printf("---[TerunTest2VstFuture Test {wait(long t)} case3] [FAIL]--- \n");
             break;
@@ -85,9 +85,9 @@ int testFutureNormal() {
     while(1) {
         ExecutorService pool = st(Executors)::newFixedThreadPool(5,5);
         Future f = pool->submit(createRunTest1());
-        long current = st(System)::currentTimeMillis();
+        long current = st(System)::CurrentTimeMillis();
         f->wait();
-        int v = st(System)::currentTimeMillis() - current;
+        int v = st(System)::CurrentTimeMillis() - current;
         if(v >= 5005) {
             printf("---[TestFuture Test {wait()} case1] [FAIL]--- \n");
             break;

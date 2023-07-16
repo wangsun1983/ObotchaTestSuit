@@ -55,9 +55,9 @@ int main() {
       exit(0);
   } else {
       ProcessSem sem = createProcessSem("sem_test2",0);
-      long current = st(System)::currentTimeMillis();
+      long current = st(System)::CurrentTimeMillis();
       sem->wait(500);
-      long waittime = (st(System)::currentTimeMillis() - current);
+      long waittime = (st(System)::CurrentTimeMillis() - current);
 
       sem->clear();
       if(waittime > 505 || waittime <495) {

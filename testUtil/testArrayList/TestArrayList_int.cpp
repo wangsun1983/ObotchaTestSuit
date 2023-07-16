@@ -965,7 +965,7 @@ void testArrayList_dataType_int() {
     list->add(4);
     list->add(5);
 
-    ListIterator<int>iterator = list->getIterator();
+    auto iterator = list->getIterator();
     int index = 1;
     while(iterator->hasValue() && index != list->size()) {
       int v = iterator->getValue();
@@ -979,7 +979,7 @@ void testArrayList_dataType_int() {
     }
 
     ArrayList<int> list1 = createArrayList<int>();
-    ListIterator<int>iterator1 = list1->getIterator();
+    auto iterator1 = list1->getIterator();
     bool isException = false;
     try {
         int v = iterator1->getValue();
@@ -1002,7 +1002,7 @@ void testArrayList_dataType_int() {
     list->add(1);
     list->add(2);
     list->add(3);
-    ListIterator<int> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ListIterator<int> Test {hasValue()} case1]");
       break;
@@ -1018,7 +1018,7 @@ void testArrayList_dataType_int() {
     }
 
     ArrayList<int> list2 = createArrayList<int>();
-    ListIterator<int> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
       TEST_FAIL("[ListIterator<int> Test {hasValue()} case3]");
       break;
@@ -1034,7 +1034,7 @@ void testArrayList_dataType_int() {
     list->add(1);
     list->add(2);
     list->add(3);
-    ListIterator<int> iterator = list->getIterator();
+    auto iterator = list->getIterator();
 
     iterator->next();
     iterator->next();
@@ -1044,7 +1044,7 @@ void testArrayList_dataType_int() {
     }
 
     ArrayList<int> list2 = createArrayList<int>();
-    ListIterator<int> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
 
     if(iterator2->next()) {
       TEST_FAIL("[ListIterator<int> Test {next()} case2]");
@@ -1063,7 +1063,7 @@ void testArrayList_dataType_int() {
     list->add(3);
     list->add(4);
     list->add(5);
-    ListIterator<int> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue() == 3) {
         iterator->remove();

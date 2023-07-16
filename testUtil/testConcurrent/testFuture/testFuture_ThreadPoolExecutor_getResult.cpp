@@ -327,9 +327,9 @@ void testThreadPoolExecutor_GetResult() {
     auto pool = createExecutorBuilder()->newThreadPool();
     RunTestObjectDelayed objRun = createRunTestObjectDelayed();
     Future f1 = pool->submit(objRun);
-    long int start = st(System)::currentTimeMillis();
+    long int start = st(System)::CurrentTimeMillis();
     MyResult r1 = f1->getResult<MyResult>();
-    long int internal = st(System)::currentTimeMillis() - start;
+    long int internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case13");
       break;
@@ -344,9 +344,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestIntDelayed intRun = createRunTestIntDelayed();
     Future f2 = pool->submit(intRun);
     //int r2 = f2->getResult<int>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     int r2 = f2->getResult<int>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case15");
       break;
@@ -361,9 +361,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestByteDelayed byteRun = createRunTestByteDelayed();
     Future f3 = pool->submit(byteRun);
     //byte r3 = f3->getResult<byte>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     byte r3 = f3->getResult<byte>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case17");
       break;
@@ -378,9 +378,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestDoubleDelayed doubleRun = createRunTestDoubleDelayed();
     Future f4 = pool->submit(doubleRun);
     //double r4 = f4->getResult<double>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     double r4 = f4->getResult<double>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case19");
       break;
@@ -395,9 +395,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestBoolFalseDelayed falseRun = createRunTestBoolFalseDelayed();
     Future f5 = pool->submit(falseRun);
     //bool r5 = f5->getResult<bool>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     bool r5 = f5->getResult<bool>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case21");
       break;
@@ -412,9 +412,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestBoolTrueDelayed trueRun = createRunTestBoolTrueDelayed();
     Future f6 = pool->submit(trueRun);
     //bool r6 = f6->getResult<bool>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     bool r6 = f6->getResult<bool>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case23");
       break;
@@ -429,9 +429,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestLongDelayed longRun = createRunTestLongDelayed();
     Future f7 = pool->submit(longRun);
     //long r7 = f7->getResult<long>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     long r7 = f7->getResult<long>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case25");
       break;
@@ -446,9 +446,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestUint16Delayed uint16Run = createRunTestUint16Delayed();
     Future f8 = pool->submit(uint16Run);
     //uint16_t r8 = f8->getResult<uint16_t>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     uint16_t r8 = f8->getResult<uint16_t>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case27");
       break;
@@ -463,9 +463,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestUint32Delayed uint32Run = createRunTestUint32Delayed();
     Future f9 = pool->submit(uint32Run);
     //uint32_t r9 = f9->getResult<uint32_t>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     uint32_t r9 = f9->getResult<uint32_t>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case29");
       break;
@@ -480,9 +480,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestUint64Delayed uint64Run = createRunTestUint64Delayed();
     Future f10 = pool->submit(uint64Run);
     //uint32_t r10 = f10->getResult<uint64_t>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     uint64_t r10 = f10->getResult<uint64_t>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case31");
       break;
@@ -497,9 +497,9 @@ void testThreadPoolExecutor_GetResult() {
     RunTestStringDelayed stringRun = createRunTestStringDelayed();
     Future f11 = pool->submit(stringRun);
     //String r11 = f11->getResult<String>();
-    start = st(System)::currentTimeMillis();
+    start = st(System)::CurrentTimeMillis();
     String r11 = f11->getResult<String>();
-    internal = st(System)::currentTimeMillis() - start;
+    internal = st(System)::CurrentTimeMillis() - start;
     if(internal > 1005 || internal < 905) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case33");
       break;

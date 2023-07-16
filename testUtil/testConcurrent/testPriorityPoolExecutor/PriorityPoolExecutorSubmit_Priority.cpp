@@ -32,17 +32,17 @@ void testSubmitPriority() {
     long task2time;
     long task3time;
     pool->preempt(st(Executor)::Medium,[&task1time]{
-      task1time = st(System)::currentTimeMillis();
+      task1time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 
     pool->preempt(st(Executor)::High,[&task2time]{
-      task2time = st(System)::currentTimeMillis();
+      task2time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 
     pool->preempt(st(Executor)::High,[&task3time]{
-      task3time = st(System)::currentTimeMillis();
+      task3time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 
@@ -78,17 +78,17 @@ void testSubmitPriority() {
     long task3time;
 
     pool->preempt(st(Executor)::Low,[&task1time]{
-      task1time = st(System)::currentTimeMillis();
+      task1time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 
     pool->preempt(st(Executor)::Medium,[&task2time]{
-      task2time = st(System)::currentTimeMillis();
+      task2time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 
     pool->preempt(st(Executor)::High,[&task3time]{
-      task3time = st(System)::currentTimeMillis();
+      task3time = st(System)::CurrentTimeMillis();
       usleep(10*1000);
     });
 

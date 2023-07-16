@@ -81,7 +81,7 @@ int main() {
       AutoLock l(mMutex);
       mwaitcond->wait(mMutex);
     }
-
+    usleep(1000*100);
     if(latch->getCount() != 0) {
       TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test2 cout is %d",latch->getCount());
     }

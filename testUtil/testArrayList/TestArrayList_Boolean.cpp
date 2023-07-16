@@ -990,7 +990,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(true));
     list->add(createBoolean(true));
 
-    ListIterator<Boolean>iterator = list->getIterator();
+    auto iterator = list->getIterator();
     int index = 1;
     while(iterator->hasValue() && index != list->size()) {
       Boolean v = iterator->getValue();
@@ -1004,7 +1004,7 @@ void testArrayList_Boolean() {
     }
 
     ArrayList<Boolean> list1 = createArrayList<Boolean>();
-    ListIterator<Boolean>iterator1 = list1->getIterator();
+    auto iterator1 = list1->getIterator();
     bool isException = false;
     try {
       Boolean v = iterator1->getValue();
@@ -1029,7 +1029,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(false));
     list->add(createBoolean(false));
     list->add(createBoolean(false));
-    ListIterator<Boolean> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ListIterator<Boolean> Test {hasValue()} case1]");
       break;
@@ -1045,7 +1045,7 @@ void testArrayList_Boolean() {
     }
 
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
-    ListIterator<Boolean> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
       TEST_FAIL("[ListIterator<Boolean> Test {hasValue()} case3]");
       break;
@@ -1061,7 +1061,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(false));
     list->add(createBoolean(false));
     list->add(createBoolean(false));
-    ListIterator<Boolean> iterator = list->getIterator();
+    auto iterator = list->getIterator();
 
     iterator->next();
     iterator->next();
@@ -1072,7 +1072,7 @@ void testArrayList_Boolean() {
 
 /*
     ArrayList<Boolean> list2 = createArrayList<Boolean>();
-    ListIterator<Boolean> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
     if(iterator2->next()) {
       TEST_FAIL("[ListIterator<Boolean> Test {next()} case2]");
       break;
@@ -1091,7 +1091,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(false));
     list->add(createBoolean(true));
 
-    ListIterator<Boolean> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->toValue()) {
         iterator->remove();

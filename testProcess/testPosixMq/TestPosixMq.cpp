@@ -124,10 +124,10 @@ int testProcessMq() {
     //sleep(1);
     //TEST_FAIL("father start read \n");
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
-    long current = st(System)::currentTimeMillis();
+    long current = st(System)::CurrentTimeMillis();
     int length = mq->receiveTimeout(array,500);
     
-    long interval = st(System)::currentTimeMillis() - current;
+    long interval = st(System)::CurrentTimeMillis() - current;
     if(interval > 505 || interval < 495) {
       TEST_FAIL("[ProcessMq Test {receiveTimeout()} case1],interval is %d",interval);
       return 1;

@@ -727,7 +727,7 @@ void testArrayList_MyData() {
       //[ArrayList<T> Test {getIterator()} Start]
       while(1) {
         ArrayList<TestData1> clist = createArrayList<TestData1>();
-        ListIterator<TestData1> iterate = clist->getIterator();
+        auto iterate = clist->getIterator();
         if(iterate == nullptr) {
           TEST_FAIL("[ArrayList<T> Test {getIterator()}]");
           break;
@@ -755,7 +755,7 @@ void testArrayList_MyData() {
       clist->add(t1);
       clist->add(t2);
       clist->add(t3);
-      ListIterator<TestData1> iterator = createListIterator<TestData1>(clist);
+      auto iterator = createArrayListIterator<TestData1>(clist);
 
       int index = 1;
       bool isOk = true;
@@ -793,7 +793,7 @@ void testArrayList_MyData() {
       clist->add(t2);
       clist->add(t3);
 
-      ListIterator<TestData1> iterator = clist->getIterator();
+      auto iterator = clist->getIterator();
       int index = 1;
       bool isOk = true;
       while(iterator->hasValue()) {
@@ -811,7 +811,7 @@ void testArrayList_MyData() {
       }
 
       ArrayList<TestData1> clist2 = createArrayList<TestData1>();
-      ListIterator<TestData1> iterator2 = clist2->getIterator();
+      auto iterator2 = clist2->getIterator();
       bool isException = false;
       try {
         iterator2->getValue();
@@ -852,7 +852,7 @@ void testArrayList_MyData() {
     list->add(t4);
     list->add(t5);
 
-    ListIterator<TestData1> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->i == 3) {
         iterator->remove();

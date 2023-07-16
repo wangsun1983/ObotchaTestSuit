@@ -798,7 +798,7 @@ void testArrayList_String() {
     list->add(createString("c"));
     list->add(createString("d"));
 
-    ListIterator<String> iterator = createListIterator<String>(list);
+    auto iterator = createArrayListIterator<String>(list);
     int index = 0;
     bool isOk = true;
     while(iterator->hasValue()) {
@@ -827,7 +827,7 @@ void testArrayList_String() {
     list->add(createString("c"));
     list->add(createString("d"));
 
-    ListIterator<String> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     int index = 0;
     bool isOk = true;
     while(iterator->hasValue()) {
@@ -856,7 +856,7 @@ void testArrayList_String() {
     list->add(createString("c"));
     list->add(createString("d"));
     list->add(createString("e"));
-    ListIterator<String> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->equals("c")) {
         iterator->remove();

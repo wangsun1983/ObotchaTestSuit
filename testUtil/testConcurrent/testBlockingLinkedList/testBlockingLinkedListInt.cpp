@@ -35,9 +35,9 @@ void testBlockingLinkedListInt() {
         list->putFirst(5);
         EnqueueIntThread1 t1 = createEnqueueIntThread1(list);
         t1->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->putFirst(6);
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) > 5005 ||(time2 - time1) < 5000 ) {
             TEST_FAIL("BlockingLinkedList<int> putFirst test1,value is %ld ",time2 - time1);
             break;
@@ -68,13 +68,13 @@ void testBlockingLinkedListInt() {
     while(1) {
         BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
         bool isException = false;
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         try {
             list->takeFirst(100);
         } catch(...) {
             isException = true;
         }
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if(!isException) {
             TEST_FAIL("BlockingLinkedList<int> takeFirst test3 ");
             break;

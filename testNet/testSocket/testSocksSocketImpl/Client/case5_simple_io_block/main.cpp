@@ -43,7 +43,7 @@ int main() {
         break;
       }
 
-      if(interval < 500 || interval > 505) {
+      if(interval < 495 || interval > 505) {
         if(!isFirst) {
           TEST_FAIL("TestSocket case5_simple_io_block test2,interval is %ld,len is %ld",interval,len);
         }

@@ -23,9 +23,9 @@ void testBlockingQueueClear() {
           list->clear();
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->put(createString("d"));
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingQueue clear test1");
           break;

@@ -111,9 +111,9 @@ void testEnqueueDequeue() {
         list->putFirst(createEnqueueData(5));
         EnqueueThread1 t1 = createEnqueueThread1(list);
         t1->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->putFirst(createEnqueueData(5));
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 5000 || (time2 - time1) > 5005) {
             TEST_FAIL("BlockingQueue putFirst test1,time is %d",time2 - time1);
             break;

@@ -115,9 +115,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
         ExecutorService pool = st(Executors)::newFixedThreadPool(1);
         ThreadPoolResultRunInt3 intRun = createThreadPoolResultRunInt3();
         Future f = pool->submit(intRun);
-        long trace1 = st(System)::currentTimeMillis();
+        long trace1 = st(System)::CurrentTimeMillis();
         int ret1 = f->getResult(-1,500);
-        long interval = st(System)::currentTimeMillis() - trace1;
+        long interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret1 != -1) {
           printf("testThreadExecutorPoolFutureResultTimeout case1 -------[FAIL],ret1 is %d \n",ret1);
           break;
@@ -131,9 +131,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunByte3 byteRun = createThreadPoolResultRunByte3();
         f = pool->submit(byteRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         byte ret2 = f->getResult(99,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret2 != 99) {
           printf("testThreadExecutorPoolFutureResultTimeout case3 -------[FAIL] \n");
           break;
@@ -147,9 +147,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunDouble3 doubleRun = createThreadPoolResultRunDouble3();
         f = pool->submit(doubleRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         double ret3 = f->getResult(-1.1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret3 != -1.1) {
           printf("testThreadExecutorPoolFutureResultTimeout case5 -------[FAIL] \n");
           break;
@@ -163,9 +163,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunBool3 boolRun = createThreadPoolResultRunBool3();
         f = pool->submit(boolRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         bool ret3_1 = f->getResult(true,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret3_1 != true) {
           printf("testThreadExecutorPoolFutureResultTimeout case7 -------[FAIL] \n");
           break;
@@ -179,9 +179,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunFloat3 floatRun = createThreadPoolResultRunFloat3();
         f = pool->submit(floatRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         float ret4 = f->getResult(-1.1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(st(Math)::compareFloat(ret4,-1.1) != st(Math)::CompareParamEqual) {
           printf("testThreadExecutorPoolFutureResultTimeout case9 -------[FAIL] \n");
           break;
@@ -194,9 +194,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunLong3 longRun = createThreadPoolResultRunLong3();
         f = pool->submit(longRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         long ret5 = f->getResult(-1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret5 != -1) {
           printf("testThreadExecutorPoolFutureResultTimeout case11 -------[FAIL] \n");
           break;
@@ -210,9 +210,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunUint16_3 uint16Run = createThreadPoolResultRunUint16_3();
         f = pool->submit(uint16Run);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         uint16_t ret6 = f->getResult(1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret6 != 1) {
           printf("testThreadExecutorPoolFutureResultTimeout case13 -------[FAIL] \n");
           break;
@@ -225,9 +225,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunUint32_3 uint32Run = createThreadPoolResultRunUint32_3();
         f = pool->submit(uint32Run);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         uint32_t ret7 = f->getResult(1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret7 != 1) {
           printf("testThreadExecutorPoolFutureResultTimeout case15 -------[FAIL] \n");
           break;
@@ -240,9 +240,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunUint64_3 uint64Run = createThreadPoolResultRunUint64_3();
         f = pool->submit(uint64Run);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         uint64_t ret8 = f->getResult(1,500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret8 != 1) {
           printf("testThreadExecutorPoolFutureResultTimeout case17 -------[FAIL] \n");
           break;
@@ -255,9 +255,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunString3 stringRun = createThreadPoolResultRunString3();
         f = pool->submit(stringRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         String ret9 = f->getResult(NullData<String>(),500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret9 != nullptr) {
           printf("testThreadExecutorPoolFutureResultTimeout case19 -------[FAIL] \n");
           break;
@@ -270,9 +270,9 @@ int testThreadExecutorPoolFutureResultTimeout() {
 
         ThreadPoolResultRunObject3 objRun = createThreadPoolResultRunObject3();
         f = pool->submit(objRun);
-        trace1 = st(System)::currentTimeMillis();
+        trace1 = st(System)::CurrentTimeMillis();
         ResultData3 ret10 = f->getResult(NullData<ResultData3>(),500);
-        interval = st(System)::currentTimeMillis() - trace1;
+        interval = st(System)::CurrentTimeMillis() - trace1;
         if(ret10 != nullptr) {
           printf("testThreadExecutorPoolFutureResultTimeout case21 -------[FAIL] \n");
           break;

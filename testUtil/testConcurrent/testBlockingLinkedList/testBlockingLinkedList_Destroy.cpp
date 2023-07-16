@@ -22,9 +22,9 @@ void testBlockingLinkedListDestroy() {
           list->destroy();
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->put(createString("d"));
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingLinkedList destroy test1,value is %ld \n",time2 - time1);
           break;
@@ -40,9 +40,9 @@ void testBlockingLinkedListDestroy() {
           list->destroy();
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         String str = list->take();
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingLinkedList destroy test2,value is %ld \n",time2 - time1);
           break;

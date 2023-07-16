@@ -8,7 +8,7 @@
 #include "IllegalArgumentException.hpp"
 #include "TextContent.hpp"
 #include "TestLog.hpp"
-#include "Reflect.hpp"a
+#include "Reflect.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +16,7 @@ void testToString() {
 //    _TextContent(const Integer &v);
     TextContent v1 = createTextContent(createInteger(2));
     if(!v1->get()->equals("2")) {
-        TEST_FAIL("TextContent toString case1,v1 is [%s1111]",v1->get()a->toChars());
+        TEST_FAIL("TextContent toString case1,v1 is [%s1111]",v1->get()->toChars());
     }
 
 //    _TextContent(const Boolean &v);

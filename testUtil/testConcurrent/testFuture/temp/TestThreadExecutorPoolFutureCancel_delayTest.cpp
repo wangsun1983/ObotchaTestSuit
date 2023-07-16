@@ -173,12 +173,12 @@ int testThreadExecutorPoolFutureDelayCancel() {
             }
         }
 
-        long start = st(System)::currentTimeMillis();
+        long start = st(System)::CurrentTimeMillis();
         //for(int i = 0;i<50;i++) {
         printf("submit testcancel run1 \n");
         Future f1 = pool->schedule(createTestScheduleCancelDelayRun1(),100);
         Future f2 = pool->schedule(createTestScheduleCancelDelayRun1(),100);
-        long end = st(System)::currentTimeMillis();
+        long end = st(System)::CurrentTimeMillis();
         if((end - start) > 10) {
             printf("---[TestFuture ScheduledThreadPool Delay Test {cancel()} case5] [Fail],%d --- \n",end-start);
             break;

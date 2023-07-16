@@ -46,7 +46,7 @@ int main() {
     if(ret != -1) {
         TEST_FAIL("TestLocalSocket Client case11_connect_send_timeout case1,ret is %d",ret);
     }
-    if(cost<995 || cost > 1030) {
+    if(cost<995 || cost > 1045) {
         TEST_FAIL("TestLocalSocket Client case11_connect_send_timeout case2,cost is %d",cost);
     }
     

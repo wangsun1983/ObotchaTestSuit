@@ -65,7 +65,7 @@ void testReflect() {
 
     if(info->links != nullptr) {
         TEST_FAIL("size is %d ",info->links->size());
-        ListIterator<Link> iterator = info->links->getIterator();
+        ArrayListIterator<Link> iterator = info->links->getIterator();
         while(iterator->hasValue()) {
             Link ll = iterator->getValue();
             TEST_FAIL("Link name is %s,url is %s ",ll->name->toChars(),ll->url->toChars());

@@ -7,6 +7,7 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TestLog.hpp"
+#include "TimeWatcher.hpp"
 
 using namespace obotcha;
 

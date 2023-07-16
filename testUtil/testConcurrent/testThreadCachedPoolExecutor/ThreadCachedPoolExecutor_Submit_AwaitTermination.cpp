@@ -9,7 +9,6 @@
 #include "Future.hpp"
 #include "System.hpp"
 #include "Error.hpp"
-#include "AutoClose.hpp"
 #include "ExecutorBuilder.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"

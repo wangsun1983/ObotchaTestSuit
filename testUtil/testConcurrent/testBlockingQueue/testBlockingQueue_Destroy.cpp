@@ -23,9 +23,9 @@ void testBlockingQueueDestroy() {
           list->destroy();
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         list->put(createString("d"));
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingQueue destroy test1");
           break;
@@ -41,9 +41,9 @@ void testBlockingQueueDestroy() {
           list->destroy();
         });
         t->start();
-        long time1 = st(System)::currentTimeMillis();
+        long time1 = st(System)::CurrentTimeMillis();
         String str = list->take();
-        long time2 = st(System)::currentTimeMillis();
+        long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingQueue destroy test2");
           break;

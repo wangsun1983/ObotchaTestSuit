@@ -976,7 +976,7 @@ void testArrayList_Integer() {
     list->add(createInteger(4));
     list->add(createInteger(5));
 
-    ListIterator<Integer>iterator = list->getIterator();
+    auto iterator = list->getIterator();
     int index = 1;
     while(iterator->hasValue() && index != list->size()) {
       Integer v = iterator->getValue();
@@ -990,7 +990,7 @@ void testArrayList_Integer() {
     }
 
     ArrayList<Integer> list1 = createArrayList<Integer>();
-    ListIterator<Integer>iterator1 = list1->getIterator();
+    auto iterator1 = list1->getIterator();
     bool isException = false;
     try {
         Integer v = iterator1->getValue();
@@ -1013,7 +1013,7 @@ void testArrayList_Integer() {
     list->add(createInteger(1));
     list->add(createInteger(2));
     list->add(createInteger(3));
-    ListIterator<Integer> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case1]");
       break;
@@ -1029,7 +1029,7 @@ void testArrayList_Integer() {
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
-    ListIterator<Integer> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
       TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case3]");
       break;
@@ -1045,7 +1045,7 @@ void testArrayList_Integer() {
     list->add(createInteger(1));
     list->add(createInteger(2));
     list->add(createInteger(3));
-    ListIterator<Integer> iterator = list->getIterator();
+    auto iterator = list->getIterator();
 
     iterator->next();
     Integer v1 = iterator->getValue();
@@ -1059,7 +1059,7 @@ void testArrayList_Integer() {
     }
 
     ArrayList<Integer> list2 = createArrayList<Integer>();
-    ListIterator<Integer> iterator2 = list2->getIterator();
+    auto iterator2 = list2->getIterator();
     if(iterator2->next()) {
       TEST_FAIL("[ListIterator<Integer> Test {next()} case2]");
     }
@@ -1076,7 +1076,7 @@ void testArrayList_Integer() {
     list->add(createInteger(3));
     list->add(createInteger(4));
     list->add(createInteger(5));
-    ListIterator<Integer> iterator = list->getIterator();
+    auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->toValue() == 3) {
         iterator->remove();

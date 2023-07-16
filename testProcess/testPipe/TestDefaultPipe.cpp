@@ -53,8 +53,6 @@ int testDefaultPipe() {
 
    //int closePipe(PipeType type);
    Pipe pp2 = createPipe();
-   
-
    pid = fork();
    if(pid == 0) {
       //child process

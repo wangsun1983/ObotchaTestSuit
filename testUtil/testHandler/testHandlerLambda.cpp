@@ -30,10 +30,10 @@ void testHandlerLambda() {
 
   while(1) {
     int value = 100;
-    long current = st(System)::currentTimeMillis();
+    long current = st(System)::CurrentTimeMillis();
     long next = 0;
     h->postDelayed(3000,[&next]() {
-      next = st(System)::currentTimeMillis();
+      next = st(System)::CurrentTimeMillis();
     });
     sleep(4);
 
