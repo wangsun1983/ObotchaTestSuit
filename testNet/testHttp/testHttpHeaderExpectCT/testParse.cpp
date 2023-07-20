@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderExpectCT expect = createHttpHeaderExpectCT();
-    expect->import("max-age=86400; enforce; report-uri=\"https://foo.example/report\"");
+    expect->load("max-age=86400; enforce; report-uri=\"https://foo.example/report\"");
     if(expect->getMaxAge() != 86400) {
       TEST_FAIL("[HttpHeaderExpectCT test Parse case1]");
       break;

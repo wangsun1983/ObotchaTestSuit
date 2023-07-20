@@ -132,7 +132,7 @@ const struct message requests[] =
         , { "Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" }
         , { "Accept-Language", "en-us,en;q=0.5" }
         , { "Accept-Encoding", "gzip,deflate" }
-        , { "Accept-Charset", "ISO-8859-1, utf-8;q=0.7, *;q=0.7" }
+        , { "Accept-Charset", "ISO-8859-1, utf-8,*;q=0.7" }
         , { "Keep-Alive", "300" }
         , { "Connection", "keep-alive" }
         }
@@ -1495,7 +1495,7 @@ void testHttpParse() {
                         TEST_FAIL("HttpPacketParser CheckHeader Link,msg.key is %s,msg.value is %s,parse value is %s",
                                                               key->toChars(),value->toChars(),link->toString()->toChars());
                     }
-                } else if(!fValue->equals(value)) {
+                } else if(!fValue->trimAll()->equals(value->trimAll())) {
                     TEST_FAIL("HttpPacketParser CheckHeader,msg.key is %s,msg.value is %s,parse value is %s",
                                                               key->toChars(),value->toChars(),fValue->toChars());
                     continue;

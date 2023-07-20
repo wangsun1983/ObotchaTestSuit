@@ -15,7 +15,7 @@ using namespace obotcha;
 void testEncodingParse() {
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
-    encoding1->import("text/html");
+    encoding1->load("text/html");
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       TEST_FAIL("[HttpHeaderAccept test Parse case1]");
@@ -31,7 +31,7 @@ void testEncodingParse() {
 
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
-    encoding1->import("image/*");
+    encoding1->load("image/*");
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
       TEST_FAIL("[HttpHeaderAccept test Parse case3]");
@@ -48,7 +48,7 @@ void testEncodingParse() {
 
   while(1) {
     HttpHeaderAccept encoding1 = createHttpHeaderAccept();
-    encoding1->import("text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8");
+    encoding1->load("text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8");
     auto encodings = encoding1->get();
     if(encodings->size() != 4) {
       TEST_FAIL("[HttpHeaderAccept test Parse case5]");

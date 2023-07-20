@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
-    c->import("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
+    c->load("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
     if(!c->toString()->equals("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
       TEST_FAIL("[HttpHeaderClearSiteData test toString case1],str is %s",c->toString()->toChars());
     }

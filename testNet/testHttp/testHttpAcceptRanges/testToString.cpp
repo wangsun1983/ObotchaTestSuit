@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
-    ranges->import("none");
+    ranges->load("none");
 
     if(!ranges->toString()->equals("none")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
-    ranges->import("bytes");
+    ranges->load("bytes");
 
     if(!ranges->toString()->equals("bytes")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");

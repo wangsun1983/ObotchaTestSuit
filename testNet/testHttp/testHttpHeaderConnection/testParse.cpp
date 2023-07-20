@@ -14,7 +14,7 @@ using namespace obotcha;
 void testConnectionParse() {
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
-    connection->import(" keep-alive");
+    connection->load(" keep-alive");
     if(!connection->get()->equals("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case1]");
     }
@@ -23,7 +23,7 @@ void testConnectionParse() {
 
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
-    connection->import("close");
+    connection->load("close");
     if(!connection->get()->equals("close")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case2]");
     }

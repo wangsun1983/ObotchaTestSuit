@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
-    timing->import("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
+    timing->load("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     if(!timing->toString()->equals("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
       TEST_FAIL("[HttpHeaderServerTiming test toString case1],str is %s \n",timing->toString()->toChars());
       break;

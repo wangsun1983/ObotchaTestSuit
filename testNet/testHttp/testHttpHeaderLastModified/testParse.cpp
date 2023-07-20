@@ -15,7 +15,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderLastModified headerDate = createHttpHeaderLastModified();
-    headerDate->import(" Wed, 21 Oct 2015 07:28:00 GMT");
+    headerDate->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     auto date = headerDate->get()->toDateTime();
     if(date->year() != 2015) {
       TEST_FAIL("[HttpHeaderLastModified test Parse case1]");

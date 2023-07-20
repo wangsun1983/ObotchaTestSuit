@@ -15,7 +15,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSecWebSocketAccept upgrade = createHttpHeaderSecWebSocketAccept();
-    upgrade->import("  s3pPLMBiTxaQ9kYGzzhZRbK+xOo= ");
+    upgrade->load("  s3pPLMBiTxaQ9kYGzzhZRbK+xOo= ");
     if(!upgrade->get()->equals("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {
       TEST_FAIL("[HttpHeaderSecWebSocketAccept test Parse case1]");
     }

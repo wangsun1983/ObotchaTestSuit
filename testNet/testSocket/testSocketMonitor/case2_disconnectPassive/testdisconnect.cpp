@@ -41,7 +41,7 @@ void testDisconnect() {
     if(latch->getCount() != 0) {
         TEST_FAIL("Test SocketMonitor Disconnect passive case1,latch is %d",latch->getCount());
     }
-    
+    setEnvPort(++port);
     monitor->close();
     TEST_OK("Test SocketMonitor Disconnect passive case100");
 }

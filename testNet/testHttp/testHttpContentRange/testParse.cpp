@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderContentRange range = createHttpHeaderContentRange();
-    range->import("bytes 200-1000/67589");
+    range->load("bytes 200-1000/67589");
     if(!range->getUnit()->equals("bytes")) {
       TEST_FAIL("[HttpHeaderContentRange test Parse case1]");
     }

@@ -28,7 +28,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Access-Control-Allow-Headers"),createString("X-Custom-Header, Upgrade-Insecure-Requests"));
     HttpHeaderAccessControlAllowHeaders c = header->getAllowHeaders();
-    c->import("*");
+    c->load("*");
     if(!c->toString()->equals("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test setToHeader case1_1] [FAILED] ,str is %s",c->toString()->toChars());
       break;

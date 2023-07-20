@@ -13,7 +13,7 @@ using namespace obotcha;
 void testDispositionToString() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("attachment");
+    disposition->load("attachment");
     if(!disposition->toString()->equals("attachment")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case1] [FAILED],disposition is %s ",disposition->toString()->toChars());
         break;
@@ -23,7 +23,7 @@ void testDispositionToString() {
 
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("attachment; filename=\"filename.jpg\"");
+    disposition->load("attachment; filename=\"filename.jpg\"");
     if(!disposition->toString()->equals("attachment; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case2] [FAILED],disposition is %s ",disposition->toString()->toChars());
         break;
@@ -33,7 +33,7 @@ void testDispositionToString() {
 
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
+    disposition->load("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
     if(!disposition->toString()->equals("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case3] [FAILED] disposition is %s ",disposition->toString()->toChars());
         break;

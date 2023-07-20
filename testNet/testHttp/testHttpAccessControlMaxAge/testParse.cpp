@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderAccessControlMaxAge c = createHttpHeaderAccessControlMaxAge();
-    c->import("600");
+    c->load("600");
     if(c->get() != 600) {
       TEST_FAIL("[HttpHeaderAccessControlMaxAge test Parse case1]");
       break;

@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
-    save->import("track");
+    save->load("track");
     if(!save->toString()->equals("track")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case1]");
       break;
@@ -23,7 +23,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
-    save->import("audio");
+    save->load("audio");
     if(!save->toString()->equals("audio")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case2]");
       break;

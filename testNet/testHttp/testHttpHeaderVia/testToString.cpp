@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
       HttpHeaderVia match = createHttpHeaderVia();
-      match->import("1.1 GWA, 1.0 fred, 1.1 p.example.net");
+      match->load("1.1 GWA, 1.0 fred, 1.1 p.example.net");
       if(!match->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test toString case1],toString is %s",match->toString()->toChars());
       }

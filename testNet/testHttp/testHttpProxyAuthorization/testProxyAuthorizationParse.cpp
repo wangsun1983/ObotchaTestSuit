@@ -14,7 +14,7 @@ using namespace obotcha;
 void testProxyAUthorizationParse() {
   while(1) {
     HttpHeaderProxyAuthorization proxy = createHttpHeaderProxyAuthorization();
-    proxy->import("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
+    proxy->load("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
     if(!proxy->type->equals("Basic")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test Parse case10]");
     }

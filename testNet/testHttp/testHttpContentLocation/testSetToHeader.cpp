@@ -14,7 +14,7 @@ using namespace obotcha;
 void testSetToHeader() {
   while(1) {
     HttpHeaderContentLocation location = createHttpHeaderContentLocation();
-    location->import("/index.html");
+    location->load("/index.html");
     HttpHeader header = createHttpHeader();
     header->setContentLocation(location);
     

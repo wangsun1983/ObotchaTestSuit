@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderFrom digest = createHttpHeaderFrom();
-    digest->import(" developer.mozilla.org");
+    digest->load(" developer.mozilla.org");
     if(!digest->toString()->equals("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderFrom test Parse case1]");
       break;

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
-    pragma->import(" no-cache ");
+    pragma->load(" no-cache ");
     if(!pragma->get()->equals("no-cache")){
       TEST_OK("[HttpHeaderPragma test parse case1]");
       break;

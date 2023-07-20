@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
-    policy->import("same-origin ");
+    policy->load("same-origin ");
     
     if(!policy->toString()->equals("same-origin")) {
       TEST_FAIL("[CrossOriginResourcePolicy test toString case1]");

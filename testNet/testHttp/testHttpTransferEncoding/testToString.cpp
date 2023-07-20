@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
-    c->import("gzip, deflate");
+    c->load("gzip, deflate");
     if(!c->toString()->equals("gzip, deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test toString case1]");
       break;
@@ -26,7 +26,7 @@ void testToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
-    c->import("gzip, deflate");
+    c->load("gzip, deflate");
     header->setTransferEncoding(c);
     if(!header->getTransferEncoding()->toString()->equals("gzip, deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test toString case2,v is %s]",header->getContentEncoding()->toString()->toChars());

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testXFrameOptionsParse() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
-    options->import("deny");
+    options->load("deny");
     if(!options->option->equals("deny")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case1] ,option is %s ",options->option->toChars());
       break;
@@ -24,7 +24,7 @@ void testXFrameOptionsParse() {
 
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
-    options->import("sameorigin");
+    options->load("sameorigin");
     if(!options->option->equals("sameorigin")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case2]");
       break;
@@ -34,7 +34,7 @@ void testXFrameOptionsParse() {
 
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
-    options->import("allow-from https://example.com/");
+    options->load("allow-from https://example.com/");
     if(!options->option->equals("allow-from")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case3]");
       break;

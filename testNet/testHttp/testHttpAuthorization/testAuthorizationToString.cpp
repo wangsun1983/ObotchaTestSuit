@@ -14,14 +14,14 @@ using namespace obotcha;
 void testAuthorizationToString() {
   while(1) {
     HttpHeaderAuthorization auth = createHttpHeaderAuthorization();
-    auth->import("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
+    auth->load("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
     if(!auth->toString()->equals("Basic YWxhZGRpbjpvcGVuc2VzYW1l")) {
       TEST_FAIL("[HttpHeaderAuthorization test toString case1]");
       break;
     }
 
     auth = createHttpHeaderAuthorization();
-    auth->import("Digest username=\"Mufasa\",realm=\"testrealm@host.com\",nonce=\"dcd98b7102dd2f0e8b11d0f600bfb0c093\",uri=\"/dir/index.html\",qop=auth,nc=00000001,cnonce=\"0a4f113b\",response=\"6629fae49393a05397450978507c4ef1\",opaque=\"5ccc069c403ebaf9f0171e9517f40e41\"");
+    auth->load("Digest username=\"Mufasa\",realm=\"testrealm@host.com\",nonce=\"dcd98b7102dd2f0e8b11d0f600bfb0c093\",uri=\"/dir/index.html\",qop=auth,nc=00000001,cnonce=\"0a4f113b\",response=\"6629fae49393a05397450978507c4ef1\",opaque=\"5ccc069c403ebaf9f0171e9517f40e41\"");
     if(!auth->toString()->equals("Digest username=\"Mufasa\",realm=\"testrealm@host.com\",nonce=\"dcd98b7102dd2f0e8b11d0f600bfb0c093\",uri=\"/dir/index.html\",qop=auth,nc=00000001,cnonce=\"0a4f113b\",response=\"6629fae49393a05397450978507c4ef1\",opaque=\"5ccc069c403ebaf9f0171e9517f40e41\"")) {
       TEST_FAIL("[HttpHeaderAuthorization test toString case2] [FAILED],auth is %s \n",auth->toString()->toChars());
       break;

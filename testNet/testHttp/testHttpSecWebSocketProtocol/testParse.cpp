@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSecWebSocketProtocol c = createHttpHeaderSecWebSocketProtocol();
-    c->import(" chat, superchat");
+    c->load(" chat, superchat");
     auto list = c->get();
     if(!list->get(0)->equals("chat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test Parse case1]");

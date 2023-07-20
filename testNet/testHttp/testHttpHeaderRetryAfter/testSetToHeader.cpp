@@ -49,7 +49,7 @@ void testSetToHeader() {
 
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    retryAfter->import(" 120 ");
+    retryAfter->load(" 120 ");
     if(retryAfter->getDelayInterval() != 120) {
       TEST_FAIL("[HttpHeaderRetryAfter test SetToHeader case7]");
     }

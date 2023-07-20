@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    retryAfter->import(" Wed, 21 Oct 2015 07:28:00 GMT ");
+    retryAfter->load(" Wed, 21 Oct 2015 07:28:00 GMT ");
     if(!retryAfter->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderRetryAfter test toString case1]");
     }
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    retryAfter->import(" 120 ");
+    retryAfter->load(" 120 ");
     if(!retryAfter->toString()->equals("120")) {
       TEST_FAIL("[HttpHeaderRetryAfter test toString case2]");
     }
@@ -34,7 +34,7 @@ void testToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    retryAfter->import(" 120 ");
+    retryAfter->load(" 120 ");
     header->setRetryAfter(retryAfter);
     
     auto retry = header->getRetryAfter();

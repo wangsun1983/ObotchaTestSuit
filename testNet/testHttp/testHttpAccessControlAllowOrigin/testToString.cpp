@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
-    c->import("https://developer.mozilla.org");
+    c->load("https://developer.mozilla.org");
     if(!c->toString()->equals("https://developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]");
       break;
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
-    c->import("*");
+    c->load("*");
     if(!c->toString()->equals("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case2]");
       break;

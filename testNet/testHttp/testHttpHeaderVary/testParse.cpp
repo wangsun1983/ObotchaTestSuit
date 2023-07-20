@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderVary match = createHttpHeaderVary();
-    match->import("no-referrer, User-Agent");
+    match->load("no-referrer, User-Agent");
 
     ArrayList<String> list = match->get();
     if(list->size() != 2) {

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderReferrerPolicy match = createHttpHeaderReferrerPolicy();
-    match->import("no-referrer, strict-origin-when-cross-origin");
+    match->load("no-referrer, strict-origin-when-cross-origin");
 
     ArrayList<String> list = match->get();
     if(list->size() != 2) {

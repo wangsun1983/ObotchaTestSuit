@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderReferrerPolicy match = createHttpHeaderReferrerPolicy();
-    match->import("no-referrer, strict-origin-when-cross-origin");
+    match->load("no-referrer, strict-origin-when-cross-origin");
     if(!match->toString()->equals("no-referrer, strict-origin-when-cross-origin")) {
       TEST_FAIL("[HttpHeaderReferrerPolicy test toString case1] ");
     }

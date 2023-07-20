@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     if(!upgrade->toString()->equals("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test toString case1]");
     }
@@ -24,7 +24,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     
     HttpHeader header = createHttpHeader();
     header->setUpgrade(upgrade);

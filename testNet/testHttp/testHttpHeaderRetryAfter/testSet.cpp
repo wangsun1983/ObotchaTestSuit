@@ -25,7 +25,7 @@ void testSet() {
 
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    //retryAfter->import(" 120 ");
+    //retryAfter->load(" 120 ");
     retryAfter->setDelayInterval(120);
     if(!retryAfter->toString()->equals("120")) {
       TEST_FAIL("[HttpHeaderRetryAfter test set case2]");

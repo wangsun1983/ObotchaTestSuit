@@ -29,7 +29,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderAccessControlRequestMethod meth = createHttpHeaderAccessControlRequestMethod();
-    meth->import("POST");
+    meth->load("POST");
     header->setAccessControlRequestMethod(meth);
     auto c = header->getAccessControlRequestMethod();
     if(c->get() != st(HttpMethod)::Post){

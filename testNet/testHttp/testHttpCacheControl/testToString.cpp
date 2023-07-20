@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
-    c->import("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate");
+    c->load("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate");
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Request));
 
     if(c->noCache() != c2->noCache()) {
@@ -57,7 +57,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
-    c->import("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate");
+    c->load("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate");
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->noCache() != c2->noCache()) {
@@ -99,7 +99,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
-    c->import("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90");
+    c->load("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90");
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
 
     if(c->maxAgeSeconds() != c2->maxAgeSeconds()) {
@@ -126,7 +126,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
-    c->import("public");
+    c->load("public");
     HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
     if(c->isPublic() != c2->isPublic()) {
       TEST_FAIL("[HttpHeaderCacheControl test toString case19]");

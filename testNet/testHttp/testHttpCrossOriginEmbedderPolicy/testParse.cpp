@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
-    policy->import("unsafe-none");
+    policy->load("unsafe-none");
     if(!policy->isUnSafeNone()) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case1]");
     }
@@ -33,7 +33,7 @@ void testParse() {
   
   while(1) {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
-    policy->import("require-corp");
+    policy->load("require-corp");
     if(!policy->isRequireCorp()) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test Parse case3]");
     }

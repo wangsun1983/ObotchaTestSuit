@@ -45,7 +45,7 @@ void testSetToHeader() {
                 createString("timeout=5"));
     
     auto keepAlive = header->getKeepAlive();
-    keepAlive->import("timeout=5");
+    keepAlive->load("timeout=5");
     if(keepAlive->getTimeout() != 5) {
       TEST_FAIL("[HttpHeaderKeepAlive test SetToHeader case3]");
       break;

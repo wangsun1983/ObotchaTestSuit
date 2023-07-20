@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
-    dnt->import("1");
+    dnt->load("1");
     if(!dnt->toString()->equals("1")) {
       TEST_FAIL("[HttpHeaderDnt test toString case1]");
       break;
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
-    dnt->import("0");
+    dnt->load("0");
     if(!dnt->toString()->equals("0")) {
       TEST_FAIL("[HttpHeaderDnt test toString case2]");
       break;
@@ -34,7 +34,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
-    dnt->import("0");
+    dnt->load("0");
     HttpHeader header = createHttpHeader();
     header->setDnt(dnt);
     

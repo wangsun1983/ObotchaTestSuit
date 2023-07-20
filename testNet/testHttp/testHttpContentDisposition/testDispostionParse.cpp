@@ -14,7 +14,7 @@ using namespace obotcha;
 void testDispositionParse() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("attachment");
+    disposition->load("attachment");
     if(disposition->getType() != st(HttpHeaderContentDisposition)::Attachment) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case1],type is %d",disposition->getType());
         break;
@@ -24,7 +24,7 @@ void testDispositionParse() {
 
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("attachment; filename=\"filename.jpg\"");
+    disposition->load("attachment; filename=\"filename.jpg\"");
     if(disposition->getType() != st(HttpHeaderContentDisposition)::Attachment) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case2]");
         break;
@@ -39,7 +39,7 @@ void testDispositionParse() {
 
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
-    disposition->import("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
+    disposition->load("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
     if(disposition->getType() != st(HttpHeaderContentDisposition)::FormData) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case4]");
         break;

@@ -64,7 +64,7 @@ void testDisconnect() {
       list->add(sock);
     }
     
-    setEnvPort(port);
+    setEnvPort(++port);
 
     usleep(1000*100);
     ForEveryOne(soc,list) {

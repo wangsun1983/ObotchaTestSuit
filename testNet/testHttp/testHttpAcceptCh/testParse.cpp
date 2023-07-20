@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderAcceptCh acceptCh = createHttpHeaderAcceptCh();
-    acceptCh->import("DPR, Viewport-Width, Width");
+    acceptCh->load("DPR, Viewport-Width, Width");
     auto list = acceptCh->get();
     if(list->size() != 3) {
       TEST_FAIL("[HttpHeaderAcceptCh test Parse case1]");

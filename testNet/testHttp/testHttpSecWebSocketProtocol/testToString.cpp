@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderSecWebSocketProtocol c = createHttpHeaderSecWebSocketProtocol();
-    c->import("  chat, superchat");
+    c->load("  chat, superchat");
     if(!c->toString()->equals("chat, superchat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test toString case1],str is %s",c->toString()->toChars());
       break;
@@ -26,7 +26,7 @@ void testToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketProtocol c = createHttpHeaderSecWebSocketProtocol();
-    c->import("  chat, superchat");
+    c->load("  chat, superchat");
     
     header->setWebSocketProtocol(c);
     auto c2 = header->getWebSocketProtocol();

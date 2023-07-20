@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderContentLocation location = createHttpHeaderContentLocation();
-    location->import("/index.html");
+    location->load("/index.html");
     if(location->get() == nullptr || !location->get()->equals("/index.html")) {
       TEST_FAIL("[HttpHeaderContentLocation test Parse case1]");
       break;

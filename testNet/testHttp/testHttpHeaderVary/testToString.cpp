@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderVary match = createHttpHeaderVary();
-    match->import("no-referrer, User-Agent");
+    match->load("no-referrer, User-Agent");
     if(!match->toString()->equals("no-referrer, User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test toString case1]");
     }

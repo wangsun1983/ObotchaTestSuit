@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderHost digest = createHttpHeaderHost();
-    digest->import(" developer.mozilla.org:1234");
+    digest->load(" developer.mozilla.org:1234");
     auto host = digest->getHost();
     if(!host->equals("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test Parse case1] host is%s\n",host->toChars());
@@ -30,7 +30,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderHost digest = createHttpHeaderHost();
-    digest->import(" developer.mozilla.org");
+    digest->load(" developer.mozilla.org");
     auto host = digest->getHost();
     if(!host->equals("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test Parse case3]");

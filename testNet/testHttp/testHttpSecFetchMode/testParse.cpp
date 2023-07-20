@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
-    save->import("navigate");
+    save->load("navigate");
     if(!save->get()->equals("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case1]");
       break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
-    save->import("nested-navigate");
+    save->load("nested-navigate");
     if(!save->get()->equals("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case2]");
       break;

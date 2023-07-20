@@ -14,7 +14,7 @@ using namespace obotcha;
 void testProxyAUthorizationToString() {
   while(1) {
     HttpHeaderProxyAuthorization proxy = createHttpHeaderProxyAuthorization();
-    proxy->import("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
+    proxy->load("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
     if(!proxy->toString()->equals("Basic YWxhZGRpbjpvcGVuc2VzYW1l")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test toString case1]");
     }
@@ -24,7 +24,7 @@ void testProxyAUthorizationToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderProxyAuthorization proxy = createHttpHeaderProxyAuthorization();
-    proxy->import("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
+    proxy->load("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
     header->setProxyAuthorization(proxy);
     
     auto proxy2 = header->getProxyAuthorization();

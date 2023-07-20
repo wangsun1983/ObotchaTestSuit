@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderWarning warning = createHttpHeaderWarning();
-    warning->import("112 - \"cache down\" \"Wed, 21 Oct 2015 07:28:00 GMT\"");
+    warning->load("112 - \"cache down\" \"Wed, 21 Oct 2015 07:28:00 GMT\"");
     if(warning->getCode() != 112) {
       TEST_FAIL("[HttpHeaderWarning test Parse case1]");
       break;
@@ -39,7 +39,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderWarning warning = createHttpHeaderWarning();
-    warning->import("110 anderson/1.3.37 \"Response is stale\"");
+    warning->load("110 anderson/1.3.37 \"Response is stale\"");
     if(warning->getCode() != 110) {
       TEST_FAIL("[HttpHeaderWarning test Parse case5]");
       break;

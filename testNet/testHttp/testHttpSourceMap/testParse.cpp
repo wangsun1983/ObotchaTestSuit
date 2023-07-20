@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
-    timing->import("/path/to/file.js.map");
+    timing->load("/path/to/file.js.map");
     if(!timing->get()->equals("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test Parse case1]");
       break;

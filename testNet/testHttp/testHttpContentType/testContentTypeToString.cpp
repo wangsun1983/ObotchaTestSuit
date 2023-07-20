@@ -13,14 +13,14 @@ using namespace obotcha;
 void testContentTypeToString() {
   while(1) {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
-    contentType1->import("text/html;charset=utf-8");
+    contentType1->load("text/html;charset=utf-8");
     if(!contentType1->toString()->equals("text/html;charset=utf-8")) {
       TEST_FAIL("[HttpHeaderContentType test toString case1],type is %s",contentType1->toString()->toChars());
       return;
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
-    contentType2->import("multipart/form-data;boundary=something");
+    contentType2->load("multipart/form-data;boundary=something");
     if(!contentType2->toString()->equals("multipart/form-data;boundary=something")) {
       TEST_FAIL("[HttpHeaderContentType test toString case3],type is %s",contentType1->toString()->toChars());
       return;

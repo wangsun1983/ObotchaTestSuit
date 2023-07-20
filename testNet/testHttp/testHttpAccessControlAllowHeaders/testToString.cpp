@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
-    c->import("X-Custom-Header, Upgrade-Insecure-Requests");
+    c->load("X-Custom-Header, Upgrade-Insecure-Requests");
     if(!c->toString()->equals("X-Custom-Header, Upgrade-Insecure-Requests")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case1] [FAILED] ,str is %s",c->toString()->toChars());
       break;
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
-    c->import("*");
+    c->load("*");
     if(!c->toString()->equals("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case2]");
       break;

@@ -17,7 +17,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("If-Range"),createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
     auto range = header->getIfRange();
-    range->import(" Wed, 21 Oct 2015 07:28:00 GMT");
+    range->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(range->getDate() == nullptr) {
       TEST_FAIL("[HttpHeaderIfRange test setToHeader case1]");
       break;
@@ -59,7 +59,7 @@ void testSetToHeader() {
 
   while(1) {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
-    range->import("\"abcds\"");
+    range->load("\"abcds\"");
     HttpHeader header = createHttpHeader();
     header->setIfRange(range);
     auto rr = header->getIfRange();

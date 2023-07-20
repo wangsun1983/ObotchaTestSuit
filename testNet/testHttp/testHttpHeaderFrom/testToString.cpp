@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderFrom digest = createHttpHeaderFrom();
-    digest->import(" webmaster@example.org");
+    digest->load(" webmaster@example.org");
     if(!digest->toString()->equals("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test toString case1]");
       break;

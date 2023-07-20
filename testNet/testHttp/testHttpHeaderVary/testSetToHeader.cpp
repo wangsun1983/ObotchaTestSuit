@@ -34,7 +34,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderVary vary = createHttpHeaderVary();
-    vary->import("no-referrer, User-Agent ");
+    vary->load("no-referrer, User-Agent ");
     header->setVary(vary);
     auto match = header->getVary();
     ArrayList<String> list = match->get();

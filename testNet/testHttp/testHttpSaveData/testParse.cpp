@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
-    save->import("ON");
+    save->load("ON");
     if(!save->get()->equals("on")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case1]");
       break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
-    save->import("OFF");
+    save->load("OFF");
     if(!save->get()->equals("off")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case2]");
       break;

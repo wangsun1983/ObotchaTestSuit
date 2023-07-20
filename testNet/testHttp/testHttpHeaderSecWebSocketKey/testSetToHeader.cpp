@@ -18,7 +18,7 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     header->set(createString("sec-websocket-key"),createString(" abc"));
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey();
     if(!key->get()->equals("abc")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case1]");
@@ -30,7 +30,7 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     header->set(createString("sec-websocket-key1"),createString(" abc"));
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey1();
     if(!key->get()->equals("abc")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case2]");
@@ -42,7 +42,7 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     header->set(createString("sec-websocket-key2"),createString(" abc3"));
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey2();
     if(!key->get()->equals("abc3")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case3]");
@@ -54,7 +54,7 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     header->set(createString("sec-websocket-key3"),createString(" abc4"));
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey3();
     if(!key->get()->equals("abc4")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case4]");
@@ -66,10 +66,10 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     header->setWebSocketKey(upgrade);
     
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey();
     if(!key->get()->equals("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case5]");
@@ -81,10 +81,10 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     header->setWebSocketKey1(upgrade);
     
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey1();
     if(!key->get()->equals("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case6]");
@@ -96,10 +96,10 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     header->setWebSocketKey2(upgrade);
     
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey2();
     if(!key->get()->equals("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case7]");
@@ -111,10 +111,10 @@ void testSetToHeader() {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     HttpHeader header = createHttpHeader();
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    upgrade->import(" websocket ");
+    upgrade->load(" websocket ");
     header->setWebSocketKey3(upgrade);
     
-    //upgrade->import(" websocket ");
+    //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey3();
     if(!key->get()->equals("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test setToHeader case8]");

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testCharSetParse() {
   while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
-    charset->import("iso-8859-1");
+    charset->load("iso-8859-1");
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 1) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case1]");
@@ -45,7 +45,7 @@ void testCharSetParse() {
 
   while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
-    charset->import("utf-8, iso-8859-1;q=0.5");
+    charset->load("utf-8, iso-8859-1;q=0.5");
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 2) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case3]");
@@ -71,7 +71,7 @@ void testCharSetParse() {
 
   while(1) {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
-    charset->import("utf-8, iso-8859-1;q=0.5, *;q=0.1");
+    charset->load("utf-8, iso-8859-1;q=0.5, *;q=0.1");
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 3) {
       TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case7]");

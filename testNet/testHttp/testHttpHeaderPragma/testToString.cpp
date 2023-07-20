@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
-    pragma->import(" no-cache ");
+    pragma->load(" no-cache ");
     if(!pragma->toString()->equals("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test toString case1]");
       break;
@@ -24,7 +24,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
-    pragma->import(" no-cache ");
+    pragma->load(" no-cache ");
     HttpHeader header = createHttpHeader();
     header->setPragma(pragma);
     

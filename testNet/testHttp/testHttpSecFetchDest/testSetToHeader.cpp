@@ -17,7 +17,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Sec-Fetch-Dest"),createString("audio"));
     auto save = header->getSecFetchDest();
-    save->import("audio");
+    save->load("audio");
     if(!save->get()->equals("audio")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test Parse case1]");
       break;

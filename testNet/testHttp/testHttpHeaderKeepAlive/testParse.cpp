@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("timeout=5, max=1000");
+    keepAlive->load("timeout=5, max=1000");
     if(keepAlive->getTimeout() != 5 || keepAlive->getMax() != 1000) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case1]");
       break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("1000");
+    keepAlive->load("1000");
     if(keepAlive->getTimeout() != 1000) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case2]");
       break;
@@ -34,7 +34,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("timeout=5");
+    keepAlive->load("timeout=5");
     if(keepAlive->getTimeout() != 5) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case3]");
       break;
@@ -44,7 +44,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("Max=5");
+    keepAlive->load("Max=5");
     if(keepAlive->getMax() != 5) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case4]");
       break;

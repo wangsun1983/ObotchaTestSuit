@@ -14,7 +14,7 @@ using namespace obotcha;
 void testProxyAuthenticateToString() {
   while(1) {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
-    proxyAuth->import("Basic");
+    proxyAuth->load("Basic");
 
     if(!proxyAuth->toString()->equals("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case1]");
@@ -25,7 +25,7 @@ void testProxyAuthenticateToString() {
 
   while(1) {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
-    proxyAuth->import("Basic realm=\"Access to the internal site\"");
+    proxyAuth->load("Basic realm=\"Access to the internal site\"");
 
     if(!proxyAuth->toString()->equals("Basic realm=\"Access to the internal site\"")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case2] auth is %s",proxyAuth->toString()->toChars());
@@ -37,7 +37,7 @@ void testProxyAuthenticateToString() {
   
   while(1) {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
-    proxyAuth->import("Basic realm=\"Access to the internal site\"");
+    proxyAuth->load("Basic realm=\"Access to the internal site\"");
     HttpHeader header = createHttpHeader();
     header->setProxyAuthenticate(proxyAuth);
     

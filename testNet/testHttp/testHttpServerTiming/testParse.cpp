@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
-    timing->import("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
+    timing->load("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     auto lists = timing->get();
     if(lists->size() != 3) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case1],size is %d",lists->size());

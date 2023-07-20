@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
-    c->import("POST, GET, OPTIONS");
+    c->load("POST, GET, OPTIONS");
     if(!c->toString()->equals("POST, GET, OPTIONS")) {
       TEST_FAIL("---[HttpHeaderAccessControlAllowMethods test toString case1] ,str is %s",c->toString()->toChars());
       break;

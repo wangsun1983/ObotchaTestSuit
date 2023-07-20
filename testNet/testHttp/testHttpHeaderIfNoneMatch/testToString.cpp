@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
-    match->import("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
+    match->load("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
     if(!match->toString()->equals("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case1],s is %s",match->toString()->toChars());
     }
@@ -22,7 +22,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
-    match->import("W/\"67ab43\", \"54ed21\", \"7892dd\"");
+    match->load("W/\"67ab43\", \"54ed21\", \"7892dd\"");
     if(!match->toString()->equals("W/\"67ab43\", \"54ed21\", \"7892dd\"")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case2]");
     }
@@ -31,7 +31,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
-    match->import("*");
+    match->load("*");
     if(!match->toString()->equals("*")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case3],match is %s",match->toString()->toChars());
     }

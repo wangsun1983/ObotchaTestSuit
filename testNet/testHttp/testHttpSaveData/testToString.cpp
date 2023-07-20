@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
-    save->import("ON");
+    save->load("ON");
     if(!save->toString()->equals("on")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case1]");
       break;
@@ -24,7 +24,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
-    save->import("OFF");
+    save->load("OFF");
     if(!save->toString()->equals("off")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case2]");
       break;
@@ -34,7 +34,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
-    save->import("OFF");
+    save->load("OFF");
     HttpHeader header = createHttpHeader();
     header->setSaveData(save);
     

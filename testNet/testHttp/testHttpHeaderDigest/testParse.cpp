@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderDigest digest = createHttpHeaderDigest();
-    digest->import(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
+    digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();
     if(list->size() != 1) {
       TEST_FAIL("[HttpHeaderDigest test Parse case1]");
@@ -32,7 +32,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderDigest digest = createHttpHeaderDigest();
-    digest->import(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637 ");
+    digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637 ");
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();
     if(list->size() != 2) {
       TEST_FAIL("[HttpHeaderDigest test Parse case1]");

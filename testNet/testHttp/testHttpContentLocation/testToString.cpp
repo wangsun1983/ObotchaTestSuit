@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderContentLocation location = createHttpHeaderContentLocation();
-    location->import("/index.html");
+    location->load("/index.html");
     if(!location->toString()->equals("/index.html")) {
       TEST_FAIL("[HttpHeaderContentLocation test toString case1],str is %s",location->toString()->toChars());
       break;

@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
-    c->import("gzip, deflate");
+    c->load("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->equals("gzip")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case1]");

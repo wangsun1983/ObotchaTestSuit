@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderVersion version = createHttpHeaderVersion();
-    version->import("HTTP/1.2");
+    version->load("HTTP/1.2");
     if(version->getMajorVer() != 1) {
       TEST_FAIL("[HttpHeaderVersion test Parse case1]");
       break;

@@ -15,7 +15,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderReferer match = createHttpHeaderReferer();
-    match->import("");
+    match->load("");
     HttpUrl url = match->get();
     if(url == nullptr){
       TEST_FAIL("[HttpHeaderReferer test parse case1]");
@@ -27,7 +27,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderReferer match = createHttpHeaderReferer();
-    match->import("https://developer.mozilla.org:1234");
+    match->load("https://developer.mozilla.org:1234");
     HttpUrl url = match->get();
     if(url == nullptr){
       TEST_FAIL("[HttpHeaderReferer test parse case2]");

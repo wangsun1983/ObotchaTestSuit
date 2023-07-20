@@ -20,7 +20,7 @@ void testSetToHeader() {
     header->set(createString("Access-Control-Max-Age"),
                 createString("600"));
     auto c = header->getMaxAge();
-    c->import("600");
+    c->load("600");
     if(c->get() != 600) {
       TEST_FAIL("[HttpHeaderAccessControlMaxAge test SetToHeader case1]");
       break;

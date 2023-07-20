@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
-    save->import("audio");
+    save->load("audio");
     if(!save->get()->equals("audio")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test Parse case1]");
       break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
-    save->import("track");
+    save->load("track");
     if(!save->get()->equals("track")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test Parse case2]");
       break;

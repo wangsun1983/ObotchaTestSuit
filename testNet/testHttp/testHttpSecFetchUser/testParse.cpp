@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
-    save->import("?1");
+    save->load("?1");
     if(!save->get()->equals("?1")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case1]");
       break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
-    save->import("?0");
+    save->load("?0");
     if(!save->get()->equals("?0")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case2]");
       break;

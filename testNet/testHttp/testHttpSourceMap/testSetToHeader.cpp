@@ -18,7 +18,7 @@ void testSetToHeader() {
     header->set(createString("SourceMap"),createString("/path/to/file.js.map"));
     
     HttpHeaderSourceMap timing = header->getSourceMap();
-    timing->import("/path/to/file.js.map");
+    timing->load("/path/to/file.js.map");
     if(!timing->get()->equals("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test SetToHeader case1]");
       break;

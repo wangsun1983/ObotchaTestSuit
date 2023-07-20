@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderServer match = createHttpHeaderServer();
-    match->import("Apache/2.4.1 (Unix)");
+    match->load("Apache/2.4.1 (Unix)");
     if(!match->toString()->equals("Apache/2.4.1 (Unix)")) {
         TEST_FAIL("[HttpHeaderServer test toString case1]");
     }
@@ -32,7 +32,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderServer match = createHttpHeaderServer();
-    match->import("Apache/2.4.1 (Unix)");
+    match->load("Apache/2.4.1 (Unix)");
     HttpHeader header = createHttpHeader();
     header->setServer(match);
     

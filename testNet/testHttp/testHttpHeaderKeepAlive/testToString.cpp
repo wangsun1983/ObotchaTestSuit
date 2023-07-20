@@ -13,7 +13,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("timeout=5, max=1000");
+    keepAlive->load("timeout=5, max=1000");
     if(!keepAlive->toString()->equals("timeout=5, max=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case1]");
       break;
@@ -23,7 +23,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("1000");
+    keepAlive->load("1000");
     if(!keepAlive->toString()->equals("timeout=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case2]");
       break;
@@ -33,7 +33,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("timeout=5");
+    keepAlive->load("timeout=5");
     if(!keepAlive->toString()->equals("timeout=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case3]");
       break;
@@ -43,7 +43,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
-    keepAlive->import("Max=5");
+    keepAlive->load("Max=5");
     if(!keepAlive->toString()->equals("max=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case4]");
       break;

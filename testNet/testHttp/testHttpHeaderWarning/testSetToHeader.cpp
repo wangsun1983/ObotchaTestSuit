@@ -42,7 +42,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     //HttpHeaderWarning warning = createHttpHeaderWarning();
-    //warning->import("110 anderson/1.3.37 \"Response is stale\"");
+    //warning->load("110 anderson/1.3.37 \"Response is stale\"");
     header->set(createString("warning"),createString("110 anderson/1.3.37 \"Response is stale\""));
     auto warning = header->getWarning();
     
@@ -71,7 +71,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderWarning warning_base = createHttpHeaderWarning();
-    warning_base->import("110 anderson/1.3.37 \"Response is stale\"");
+    warning_base->load("110 anderson/1.3.37 \"Response is stale\"");
     header->setWarning(warning_base);
     
     auto warning = header->getWarning();

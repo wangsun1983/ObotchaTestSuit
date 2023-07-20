@@ -13,7 +13,7 @@ using namespace obotcha;
 void testContentTypeParse() {
   while(1) {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
-    contentType1->import("text/html; charset=utf-8");
+    contentType1->load("text/html; charset=utf-8");
     if(!contentType1->getType()->equals("text/html")) {
       TEST_FAIL("[HttpHeaderContentType test Parse case1],type is %s",contentType1->getType()->toChars());
       return;
@@ -24,7 +24,7 @@ void testContentTypeParse() {
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
-    contentType2->import("multipart/form-data; boundary=something");
+    contentType2->load("multipart/form-data; boundary=something");
     if(!contentType2->getType()->equals("multipart/form-data")) {
       TEST_FAIL("[HttpHeaderContentType test Parse case3],type is %s",contentType2->getType()->toChars());
       return;
@@ -38,7 +38,7 @@ void testContentTypeParse() {
 
   while(1) {
     HttpHeaderContentType contentType1 = createHttpHeaderContentType();
-    contentType1->import("text/html; charset = utf-8 ");
+    contentType1->load("text/html; charset = utf-8 ");
     if(!contentType1->getType()->equals("text/html")) {
       TEST_FAIL("[HttpHeaderContentType test Parse case5],type is %s",contentType1->getType()->toChars());
       return;
@@ -49,7 +49,7 @@ void testContentTypeParse() {
     }
 
     HttpHeaderContentType contentType2 = createHttpHeaderContentType();
-    contentType2->import("multipart/form-data; boundary = something");
+    contentType2->load("multipart/form-data; boundary = something");
     if(!contentType2->getType()->equals("multipart/form-data")) {
       TEST_FAIL("[HttpHeaderContentType test Parse case7],type is %s",contentType2->getType()->toChars());
       return;

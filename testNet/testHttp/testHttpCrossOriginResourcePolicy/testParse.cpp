@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
-    policy->import("same-site");
+    policy->load("same-site");
     if(!policy->isSameSite()) {
       TEST_FAIL("[CrossOriginOpenerPolicy test Parse case1]");
     }
@@ -25,7 +25,7 @@ void testParse() {
   
   while(1) {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
-    policy->import("same-origin");
+    policy->load("same-origin");
     if(!policy->isSameOrigin()) {
       TEST_FAIL("[CrossOriginOpenerPolicy test Parse case2]");
     }
@@ -35,7 +35,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
-    policy->import("cross-origin");
+    policy->load("cross-origin");
     if(!policy->isCrossOrigin()) {
       TEST_FAIL("[CrossOriginOpenerPolicy test Parse case3]");
     }

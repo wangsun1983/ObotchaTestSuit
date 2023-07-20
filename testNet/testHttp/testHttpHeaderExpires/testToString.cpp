@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderExpires headerDate = createHttpHeaderExpires();
-    headerDate->import(" Wed, 21 Oct 2015 07:28:00 GMT");
+    headerDate->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(!headerDate->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderExpires test toString case1]");
     }

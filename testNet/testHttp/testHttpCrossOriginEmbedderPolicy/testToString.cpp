@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
-    policy->import("unsafe-none");
+    policy->load("unsafe-none");
     
     if(!policy->toString()->equals("unsafe-none")) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test toString case1]");

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderVia match = createHttpHeaderVia();
-    match->import("1.1 GWA,1.0 fred, 1.1 p.example.net");
+    match->load("1.1 GWA,1.0 fred, 1.1 p.example.net");
     ArrayList<HttpHeaderViaItem> list = match->get();
     if(list->size() != 3) {
       TEST_FAIL("[HttpHeaderVia test Parse case1]");
@@ -52,7 +52,7 @@ void testParse() {
   
   while(1) {
     HttpHeaderVia match = createHttpHeaderVia();
-    match->import("Http/1.1 GWA,1.0 fred, 1.1 p.example.net");
+    match->load("Http/1.1 GWA,1.0 fred, 1.1 p.example.net");
     ArrayList<HttpHeaderViaItem> list = match->get();
     if(list->size() != 3) {
       TEST_FAIL("[HttpHeaderVia test Parse case3]");

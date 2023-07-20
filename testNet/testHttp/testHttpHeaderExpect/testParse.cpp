@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderExpect expect = createHttpHeaderExpect();
-    expect->import("100-continue");
+    expect->load("100-continue");
     auto str = expect->get();
     if(!str->equals("100-continue")) {
       TEST_FAIL("[HttpHeaderExpect test Parse case1]");
@@ -27,7 +27,7 @@ void testParse() {
     HttpHeaderExpect expect = createHttpHeaderExpect();
     bool isException = false;
     try {
-      expect->import("123-continue");
+      expect->load("123-continue");
     } catch(...) {
       isException = true;
     }

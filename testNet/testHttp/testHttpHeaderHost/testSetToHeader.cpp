@@ -32,7 +32,7 @@ void testSetToHeader() {
 
   while(1) {
     HttpHeaderHost headhost = createHttpHeaderHost();
-    headhost->import(" developer.mozilla.org");
+    headhost->load(" developer.mozilla.org");
     HttpHeader header = createHttpHeader();
     header->setHost(headhost);
     

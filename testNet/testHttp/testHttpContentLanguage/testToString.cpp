@@ -15,7 +15,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderContentLanguage c = createHttpHeaderContentLanguage();
-    c->import("de-DE, en-CA");
+    c->load("de-DE, en-CA");
     if(c->toString()->equals("de-DE, en-CA ")) {
       TEST_FAIL("[HttpHeaderContentLanguage test toString case1]");
     }

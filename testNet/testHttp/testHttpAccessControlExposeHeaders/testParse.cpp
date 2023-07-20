@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
-    c->import("Content-Length, X-Kuma-Revision");
+    c->load("Content-Length, X-Kuma-Revision");
     auto list = c->get();
     String v0 = list->get(0);
     if(!v0->equals("Content-Length")) {

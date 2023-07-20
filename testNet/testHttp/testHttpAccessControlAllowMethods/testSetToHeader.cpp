@@ -20,7 +20,7 @@ void testSetToHeader() {
     header->set(createString("Access-Control-Allow-Methods"),createString("POST, GET, OPTIONS"));
     
     auto c = header->getAllowMethods();
-    c->import("POST, GET, OPTIONS");
+    c->load("POST, GET, OPTIONS");
     auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
       TEST_FAIL("[HttpHeaderAccessControlAllowMethods test setToHeader case1]");

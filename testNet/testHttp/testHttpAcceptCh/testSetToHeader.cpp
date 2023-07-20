@@ -26,7 +26,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     auto acceptCh = createHttpHeaderAcceptCh();
-    acceptCh->import("DPR, Viewport-Width, Width");
+    acceptCh->load("DPR, Viewport-Width, Width");
     header->setAcceptCh(acceptCh);
     
     auto acceptCh2 = header->getAcceptCh();

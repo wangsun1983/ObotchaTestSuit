@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderReferer match = createHttpHeaderReferer();
-    match->import("");
+    match->load("");
 
     if(!match->toString()->equals("")){
       TEST_FAIL("[HttpHeaderReferer test toString case1]");
@@ -26,7 +26,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderReferer match = createHttpHeaderReferer();
-    match->import("https://developer.mozilla.org:1234");
+    match->load("https://developer.mozilla.org:1234");
     if(!match->toString()->equals("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderReferer test toString case2]");
       break;
@@ -38,7 +38,7 @@ void testToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderReferer match_0 = createHttpHeaderReferer();
-    match_0->import("https://developer.mozilla.org:1234");
+    match_0->load("https://developer.mozilla.org:1234");
     header->setReferer(match_0);
     
     auto match = header->getReferer();

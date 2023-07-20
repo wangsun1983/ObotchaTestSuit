@@ -14,7 +14,7 @@ using namespace obotcha;
 void testPatchParse() {
   while(1) {
     HttpHeaderIfUnmodifiedSince modifiedSince = createHttpHeaderIfUnmodifiedSince();
-    modifiedSince->import(" Wed, 21 Oct 2015 07:28:00 GMT");
+    modifiedSince->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     auto date = modifiedSince->get()->toDateTime();
     if(date->year() != 2015) {
       TEST_FAIL("[HttpHeaderIfUnmodifiedSince test Parse case1]");

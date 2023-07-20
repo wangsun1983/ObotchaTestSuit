@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
-    timing->import("/path/to/file.js.map");
+    timing->load("/path/to/file.js.map");
     if(!timing->toString()->equals("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test toString case1]");
       break;
@@ -24,7 +24,7 @@ void testToString() {
   
   while(1) {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
-    timing->import("/path/to/file.js.map");
+    timing->load("/path/to/file.js.map");
     HttpHeader header = createHttpHeader();
     header->setSourceMap(timing);
     auto timing2 = header->getSourceMap();

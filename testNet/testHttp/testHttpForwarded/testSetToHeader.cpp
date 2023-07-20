@@ -90,7 +90,7 @@ void testSetToHeader() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderForwarded forward = createHttpHeaderForwarded();
-    forward->import("for=192.0.2.60; proto=http; by=203.0.113.43");
+    forward->load("for=192.0.2.60; proto=http; by=203.0.113.43");
     header->setForwarded(forward);
     auto encoding1 = header->getForwarded();
     if(encoding1->forIdentities->size() != 1) {

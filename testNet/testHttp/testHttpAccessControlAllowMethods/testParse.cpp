@@ -16,7 +16,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
-    c->import("POST, GET, OPTIONS");
+    c->load("POST, GET, OPTIONS");
     auto list = c->get();
     if(list->get(0)->toValue() != st(HttpMethod)::Post) {
       TEST_FAIL("[HttpHeaderAccessControlAllowMethods test Parse case1]");

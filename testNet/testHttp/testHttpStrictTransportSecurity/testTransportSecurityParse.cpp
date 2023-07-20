@@ -14,7 +14,7 @@ using namespace obotcha;
 void testTransportSecurityParse() {
   while(1) {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
-    security->import("max-age=31536000; includeSubDomains;preload");
+    security->load("max-age=31536000; includeSubDomains;preload");
     if(security->maxAge != 31536000) {
       TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case1]");
       break;
@@ -34,7 +34,7 @@ void testTransportSecurityParse() {
 
   while(1) {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
-    security->import("max-age=31536000");
+    security->load("max-age=31536000");
     if(security->maxAge != 31536000) {
       TEST_FAIL("[HttpHeaderStrictTransportSecurity test Parse case1]");
       break;

@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderOrigin match = createHttpHeaderOrigin();
-    match->import("");
+    match->load("");
     
     if(!match->toString()->equals("")){
       TEST_FAIL("[HttpHeaderOrigin test toString case1]");
@@ -26,7 +26,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderOrigin match = createHttpHeaderOrigin();
-    match->import("https://developer.mozilla.org:1234");
+    match->load("https://developer.mozilla.org:1234");
     if(!match->toString()->equals("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderOrigin test toString case2]");
       break;
@@ -38,7 +38,7 @@ void testToString() {
   while(1) {
     HttpHeader header = createHttpHeader();
     HttpHeaderOrigin match = createHttpHeaderOrigin();
-    match->import("https://developer.mozilla.org:1234");
+    match->load("https://developer.mozilla.org:1234");
     header->setOrigin(match);
     auto match2 = header->getOrigin();
     if(!match2->toString()->equals("https://developer.mozilla.org:1234")){

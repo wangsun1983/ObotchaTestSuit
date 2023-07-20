@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAge c = createHttpHeaderAge();
-    c->import("600");
+    c->load("600");
     if(!c->toString()->equals("600")) {
       TEST_FAIL("[HttpHeaderAge test toString case1]");
       break;

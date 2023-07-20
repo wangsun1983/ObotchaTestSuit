@@ -14,7 +14,7 @@ using namespace obotcha;
 void testToString() {
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
-    c->import("X-PINGOTHER, Content-Type");
+    c->load("X-PINGOTHER, Content-Type");
     if(!c->toString()->equals("X-PINGOTHER, Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case1]");
       break;
@@ -25,7 +25,7 @@ void testToString() {
 
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
-    c->import("X-PINGOTHER");
+    c->load("X-PINGOTHER");
     if(!c->toString()->equals("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case3]");
       break;

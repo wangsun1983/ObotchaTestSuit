@@ -15,7 +15,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
-    c->import("true");
+    c->load("true");
     if(!c->get()) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test Parse case1]");
       break;
@@ -25,7 +25,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
-    c->import("false");
+    c->load("false");
     if(c->get()) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test Parse case2]");
       break;

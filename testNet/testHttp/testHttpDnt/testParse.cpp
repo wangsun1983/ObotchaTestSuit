@@ -14,7 +14,7 @@ using namespace obotcha;
 void testParse() {
   while(1) {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
-    dnt->import("1");
+    dnt->load("1");
     int val = dnt->get();
     if(val != 1) {
       TEST_FAIL("[HttpHeaderDnt test Parse case1]");
@@ -25,7 +25,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderDnt dnt = createHttpHeaderDnt();
-    dnt->import("0");
+    dnt->load("0");
     int val = dnt->get();
     if(val != 0) {
       TEST_FAIL("[HttpHeaderDnt test Parse case2]");
