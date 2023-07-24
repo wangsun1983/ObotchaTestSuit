@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderReferrerPolicy match = createHttpHeaderReferrerPolicy();
     match->load("no-referrer, strict-origin-when-cross-origin");
-    if(!match->toString()->equals("no-referrer, strict-origin-when-cross-origin")) {
+    if(!match->toString()->sameAs("no-referrer, strict-origin-when-cross-origin")) {
       TEST_FAIL("[HttpHeaderReferrerPolicy test toString case1] ");
     }
     break;

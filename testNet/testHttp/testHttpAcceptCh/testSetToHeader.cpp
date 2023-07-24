@@ -16,7 +16,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Accept-CH"),createString("DPR, Viewport-Width, Width"));
     auto acceptCh = header->getAcceptCh();
-    if(!acceptCh->toString()->equals("DPR, Viewport-Width, Width")) {
+    if(!acceptCh->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test toString case1]");
       break;
     }
@@ -30,7 +30,7 @@ void testSetToHeader() {
     header->setAcceptCh(acceptCh);
     
     auto acceptCh2 = header->getAcceptCh();
-    if(!acceptCh2->toString()->equals("DPR, Viewport-Width, Width")) {
+    if(!acceptCh2->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test toString case2]");
       break;
     }

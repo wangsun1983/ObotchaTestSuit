@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->load("X-PINGOTHER, Content-Type");
-    if(!c->toString()->equals("X-PINGOTHER, Content-Type")) {
+    if(!c->toString()->sameAs("X-PINGOTHER, Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case1]");
       break;
     }
@@ -26,7 +26,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->load("X-PINGOTHER");
-    if(!c->toString()->equals("X-PINGOTHER")) {
+    if(!c->toString()->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case3]");
       break;
     }
@@ -37,7 +37,7 @@ void testToString() {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->add(createString("X-PINGOTHER"));
     c->add(createString("Content-Type"));
-    if(!c->toString()->equals("X-PINGOTHER, Content-Type")) {
+    if(!c->toString()->sameAs("X-PINGOTHER, Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case4]");
       break;
     }

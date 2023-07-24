@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderContentRange range = createHttpHeaderContentRange();
     range->load("bytes 200-1000/67589");
-    if(!range->getUnit()->equals("bytes")) {
+    if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderContentRange test Parse case1]");
     }
 
@@ -35,7 +35,7 @@ void testParse() {
   
   while(1) {
     HttpHeaderContentRange range = createHttpHeaderContentRange(createString("bytes 200-1000/67589"));
-    if(!range->getUnit()->equals("bytes")) {
+    if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderContentRange test Parse case5]");
     }
 

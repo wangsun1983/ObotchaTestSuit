@@ -20,7 +20,7 @@ void testSetToHeader() {
     header->set(createString("Access-Control-Allow-Origin"),
                 createString("https://developer.mozilla.org"));
     auto c = header->getAllowOrigin();
-    if(!c->get()->equals("https://developer.mozilla.org")) {
+    if(!c->get()->sameAs("https://developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test setToHeader case1]");
       break;
     }
@@ -32,7 +32,7 @@ void testSetToHeader() {
     header->set(createString("Access-Control-Allow-Origin"),
                 createString("*"));
     auto c = header->getAllowOrigin();
-    if(!c->get()->equals("*")) {
+    if(!c->get()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test setToHeader case2]");
       break;
     }

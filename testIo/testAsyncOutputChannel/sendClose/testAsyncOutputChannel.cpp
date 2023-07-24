@@ -88,14 +88,14 @@ int main() {
     t->join();
     
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/testdata"));
+    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
     
     auto result_file = createFile("./tmp/file");
     
     if(!result_file->exists()) {
         TEST_FAIL("testAsyncOutputChannel close case1");
     } else {
-        String v2 = md5->encrypt(createFile("./tmp/file"));
+        String v2 = md5->encodeFile(createFile("./tmp/file"));
         
         if(!v1->equals(v2)) {
             TEST_FAIL("testAsyncOutputChannel close case2")

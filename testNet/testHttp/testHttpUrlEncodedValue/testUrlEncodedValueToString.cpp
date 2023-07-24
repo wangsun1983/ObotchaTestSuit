@@ -18,8 +18,8 @@ void testUrlEncodedValueToString() {
     v->set("abc","1");
     v->set("bbb","qq");
     v->set("ccc","ffds");
-    if(!v->toString()->equals("ccc=ffds&abc=1&bbb=qq") &&
-       !v->toString()->equals("ccc=ffds&bbb=qq&abc=1")) {
+    if(!v->toString()->sameAs("ccc=ffds&abc=1&bbb=qq") &&
+       !v->toString()->sameAs("ccc=ffds&bbb=qq&abc=1")) {
       TEST_FAIL("[HttpUrlEncodedValue test toString case1] v is [%s]",v->toString()->toChars());
     }
     break;

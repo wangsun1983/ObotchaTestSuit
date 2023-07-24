@@ -17,12 +17,12 @@ void testParse() {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->load("X-PINGOTHER, Content-Type");
     auto list = c->get();
-    if(!list->get(0)->equals("X-PINGOTHER")) {
+    if(!list->get(0)->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case1]");
       break;
     }
 
-    if(!list->get(1)->equals("Content-Type")) {
+    if(!list->get(1)->sameAs("Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case2]");
       break;
     }
@@ -33,7 +33,7 @@ void testParse() {
     HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
     c->load("X-PINGOTHER");
     auto list = c->get();
-    if(!list->get(0)->equals("X-PINGOTHER")) {
+    if(!list->get(0)->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test Parse case3]");
       break;
     }

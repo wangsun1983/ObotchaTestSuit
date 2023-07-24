@@ -30,7 +30,7 @@ void testDispositionParse() {
         break;
     }
 
-    if(!disposition->getFileName()->equals("filename.jpg")) {
+    if(!disposition->getFileName()->sameAs("filename.jpg")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case3]");
         break;
     }
@@ -45,12 +45,12 @@ void testDispositionParse() {
         break;
     }
 
-    if(!disposition->getFileName()->equals("filename.jpg")) {
+    if(!disposition->getFileName()->sameAs("filename.jpg")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case5]");
         break;
     }
 
-    if(!disposition->getName()->equals("fieldName")) {
+    if(!disposition->getName()->sameAs("fieldName")) {
         TEST_FAIL("[HttpHeaderContentDisposition test Parse case6]");
         break;
     }

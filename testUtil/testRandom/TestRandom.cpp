@@ -142,24 +142,25 @@ int main() {
     //static void nextBytes(ByteArray);
     while(1) {
         Random rand = createRandom();
-        ByteArray data = createByteArray(32);
-        rand->nextBytes(data);
-        int maxHit = 3;
-        
-        for(int i = 0; i < data->size();i++) {
-            auto vv = data->at(i);
-            int hit_num = 0;
-            for(int j = i;j < data->size();j++) {
-                if(vv == data->at(j)) {
-                    hit_num++;
-                }
-            }
-            
-            if(hit_num >= maxHit) {
-                data->dump("error data:");
-                TEST_FAIL("[TestRandom Test {nextDouble(double)} case3,v is %x]",vv);
-            }
-        }
+		for(int i = 0;i < 16;i++) {
+			ByteArray data = createByteArray(32);
+			rand->nextBytes(data);
+			int maxHit = 4;
+			
+			for(int i = 0; i < data->size();i++) {
+				auto vv = data->at(i);
+				int hit_num = 0;
+				for(int j = i;j < data->size();j++) {
+					if(vv == data->at(j)) {
+						hit_num++;
+					}
+				}
+				//data->dump("data:");
+				if(hit_num >= maxHit) {
+					TEST_FAIL("[TestRandom Test {nextBytes(double)} case3,hit_num is %x]",hit_num);
+				}
+			}
+		}
 
         TEST_OK("[TestRandom Test {nextDouble(double)} case2]");
         break;

@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->load("X-Custom-Header, Upgrade-Insecure-Requests");
-    if(!c->toString()->equals("X-Custom-Header, Upgrade-Insecure-Requests")) {
+    if(!c->toString()->sameAs("X-Custom-Header, Upgrade-Insecure-Requests")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case1] [FAILED] ,str is %s",c->toString()->toChars());
       break;
     }
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
     c->load("*");
-    if(!c->toString()->equals("*")) {
+    if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case2]");
       break;
     }

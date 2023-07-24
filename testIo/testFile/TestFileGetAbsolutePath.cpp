@@ -31,7 +31,7 @@ void testFileGetAbsPath() {
 
     char buff1[512];
     snprintf(buff1,512,"%s/%s",buff,"makefile");
-    if(!name->equals(buff1)) {
+    if(!name->sameAs(buff1)) {
         TEST_FAIL("[File Test {getAbsolutePath()} case3]");
     }
 

@@ -20,31 +20,31 @@ void StringConstructTest() {
     while(1) {
         std::string str = "abc";
         String str1 = createString(&str);
-        if(!str1->equals("abc")) {
+        if(!str1->sameAs("abc")) {
             TEST_FAIL("String construct test1");
             break;
         }
 
         String str2 = createString(str);
-        if(!str2->equals("abc")) {
+        if(!str2->sameAs("abc")) {
             TEST_FAIL("String construct test2");
             break;
         }
 
         String str3 = createString(str2);
-        if(!str3->equals("abc")) {
+        if(!str3->sameAs("abc")) {
             TEST_FAIL("String construct test3");
             break;
         }
 
         String str4 = createString("abc");
-        if(!str4->equals("abc")) {
+        if(!str4->sameAs("abc")) {
             TEST_FAIL("String construct test4");
             break;
         }
 
         String str5 = createString("abcd",1,3);
-        if(!str5->equals("bcd")) {
+        if(!str5->sameAs("bcd")) {
             TEST_FAIL("String construct test5");
             break;
         }
@@ -76,7 +76,7 @@ void StringConstructTest() {
         //
         Integer v1 = createInteger(1200);
         String str6 = createString(v1);
-        if(!str6->equals("1200")) {
+        if(!str6->sameAs("1200")) {
             TEST_FAIL("String construct test7");
             break;
         }
@@ -84,14 +84,14 @@ void StringConstructTest() {
         //
         Boolean v2 = createBoolean(false);
         String str7 = createString(v2);
-        if(!str7->equals("false")) {
+        if(!str7->sameAs("false")) {
             TEST_FAIL("String construct test8");
             break;
         }
 
         Boolean v3 = createBoolean(true);
         String str8 = createString(v3);
-        if(!str8->equals("true")) {
+        if(!str8->sameAs("true")) {
             TEST_FAIL("String construct test9");
             break;
         }
@@ -99,7 +99,7 @@ void StringConstructTest() {
 /*
         Float v4 = createFloat(100.0001);
         String str9 = createString(v4);
-        if(!str9->equals("100.0001")) {
+        if(!str9->sameAs("100.0001")) {
             TEST_FAIL("String construct test10-------[FAIL] str9 is %s\n",str9->toChars());
             break;
         }
@@ -107,7 +107,7 @@ void StringConstructTest() {
         //
         Double v5 = createDouble(200.3322);
         String str10 = createString(v5);
-        if(!str10->equals("200.0002")) {
+        if(!str10->sameAs("200.0002")) {
             TEST_FAIL("String construct test11-------[FAIL],str10 is %s \n",str10->toChars());
             break;
         }
@@ -115,7 +115,7 @@ void StringConstructTest() {
         //
         Long v6 = createLong(200);
         String str11 = createString(v6);
-        if(!str11->equals("200")) {
+        if(!str11->sameAs("200")) {
             TEST_FAIL("String construct test12");
             break;
         }
@@ -123,7 +123,7 @@ void StringConstructTest() {
         //
         Uint8 v7 = createUint8(200);
         String str12 = createString(v7);
-        if(!str12->equals("200")) {
+        if(!str12->sameAs("200")) {
             TEST_FAIL("String construct test13");
             break;
         }
@@ -131,7 +131,7 @@ void StringConstructTest() {
         //
         Uint16 v8 = createUint16(12200);
         String str13 = createString(v8);
-        if(!str13->equals("12200")) {
+        if(!str13->sameAs("12200")) {
             TEST_FAIL("String construct test14");
             break;
         }
@@ -139,7 +139,7 @@ void StringConstructTest() {
         //
         Uint32 v9 = createUint32(12200);
         String str14 = createString(v9);
-        if(!str14->equals("12200")) {
+        if(!str14->sameAs("12200")) {
             TEST_FAIL("String construct test15");
             break;
         }
@@ -147,7 +147,7 @@ void StringConstructTest() {
         //
         Uint64 v10 = createUint64(12200);
         String str15 = createString(v10);
-        if(!str15->equals("12200")) {
+        if(!str15->sameAs("12200")) {
             TEST_FAIL("String construct test16");
             break;
         }
@@ -155,7 +155,7 @@ void StringConstructTest() {
         //
         Byte v11 = createByte(22);
         String str16 = createString(v11);
-        if(!str16->equals("22")) {
+        if(!str16->sameAs("22")) {
             TEST_FAIL("String construct test17");
             break;
         }
@@ -163,7 +163,7 @@ void StringConstructTest() {
         //_String(int v);
         int v12 = 100;
         String str17 = createString(v12);
-        if(!str17->equals("100")) {
+        if(!str17->sameAs("100")) {
             TEST_FAIL("String construct test18");
             break;
         }
@@ -172,14 +172,14 @@ void StringConstructTest() {
         //_String(bool v);
         bool v13 = false;
         String str18 = createString(v13);
-        if(!str18->equals("false")) {
+        if(!str18->sameAs("false")) {
             TEST_FAIL("String construct test19");
             break;
         }
 
         bool v14 = true;
         String str19 = createString(v14);
-        if(!str19->equals("true")) {
+        if(!str19->sameAs("true")) {
             TEST_FAIL("String construct test20");
             break;
         }
@@ -188,7 +188,7 @@ void StringConstructTest() {
         //_String(float v);
         float v15 = 11.112;
         String str20 = createString(v15);
-        if(!str20->equals("11.112")) {
+        if(!str20->sameAs("11.112")) {
             TEST_FAIL("String construct test21");
             break;
         }
@@ -196,7 +196,7 @@ void StringConstructTest() {
         //_String(double v);
         double v16 = 11.112;
         String str21 = createString(v16);
-        if(!str21->equals("11.112")) {
+        if(!str21->sameAs("11.112")) {
             TEST_FAIL("String construct test22");
             break;
         }
@@ -204,7 +204,7 @@ void StringConstructTest() {
         //_String(long v);
         long v17 = 1200;
         String str22 = createString(v17);
-        if(!str22->equals("1200")) {
+        if(!str22->sameAs("1200")) {
             TEST_FAIL("String construct test23");
             break;
         }
@@ -212,7 +212,7 @@ void StringConstructTest() {
         //_String(char v);
         char v18 = 112;
         String str23 = createString(v18);
-        if(!str23->equals("112")) {
+        if(!str23->sameAs("112")) {
             TEST_FAIL("String construct test24");
             break;
         }
@@ -220,7 +220,7 @@ void StringConstructTest() {
         //_String(uint8_t);
         uint8_t v19 = 112;
         String str24 = createString(v19);
-        if(!str24->equals("112")) {
+        if(!str24->sameAs("112")) {
             TEST_FAIL("String construct test25");
             break;
         }
@@ -228,7 +228,7 @@ void StringConstructTest() {
         //_String(uint16_t);
         uint16_t v20 = 1112;
         String str25 = createString(v20);
-        if(!str25->equals("1112")) {
+        if(!str25->sameAs("1112")) {
             TEST_FAIL("String construct test26");
             break;
         }
@@ -236,7 +236,7 @@ void StringConstructTest() {
         //_String(uint32_t);
         uint32_t v21 = 1113332;
         String str26 = createString(v21);
-        if(!str26->equals("1113332")) {
+        if(!str26->sameAs("1113332")) {
             TEST_FAIL("String construct test27");
             break;
         }
@@ -244,7 +244,7 @@ void StringConstructTest() {
         //_String(uint64_t);
         uint32_t v22 = 111334432;
         String str27 = createString(v22);
-        if(!str27->equals("111334432")) {
+        if(!str27->sameAs("111334432")) {
             TEST_FAIL("String construct test28");
             break;
         }

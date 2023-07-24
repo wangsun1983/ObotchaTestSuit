@@ -16,7 +16,7 @@ void testProxyAuthenticateParse() {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
     proxyAuth->load("Basic");
 
-    if(!proxyAuth->type->equals("Basic")) {
+    if(!proxyAuth->type->sameAs("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test Parse case1]");
         break;
     }
@@ -27,12 +27,12 @@ void testProxyAuthenticateParse() {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
     proxyAuth->load("Basic realm=\"Access to the internal site\"");
 
-    if(!proxyAuth->type->equals("Basic")) {
+    if(!proxyAuth->type->sameAs("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test Parse case2]");
         break;
     }
 
-    if(!proxyAuth->realm->equals("Access to the internal site")) {
+    if(!proxyAuth->realm->sameAs("Access to the internal site")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test Parse case3]");
         break;
     }

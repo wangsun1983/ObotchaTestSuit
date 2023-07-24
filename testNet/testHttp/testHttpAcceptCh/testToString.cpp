@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderAcceptCh acceptCh = createHttpHeaderAcceptCh();
     acceptCh->load("DPR, Viewport-Width, Width");
-    if(!acceptCh->toString()->equals("DPR, Viewport-Width, Width")) {
+    if(!acceptCh->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test toString case1]");
       break;
     }

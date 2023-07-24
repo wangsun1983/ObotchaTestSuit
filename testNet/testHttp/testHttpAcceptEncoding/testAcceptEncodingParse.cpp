@@ -20,9 +20,9 @@ void testEncodingParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("gzip")
-      || !encodings->get(1)->type->equals("compress")
-      || !encodings->get(2)->type->equals("br")) {
+    if(!encodings->get(0)->type->sameAs("gzip")
+      || !encodings->get(1)->type->sameAs("compress")
+      || !encodings->get(2)->type->sameAs("br")) {
         TEST_FAIL("[HttpHeaderAcceptEncoding test Parse case2]");
         break;
     }
@@ -38,9 +38,9 @@ void testEncodingParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("deflate")
-      || !encodings->get(1)->type->equals("gzip")
-      || !encodings->get(2)->type->equals("*")) {
+    if(!encodings->get(0)->type->sameAs("deflate")
+      || !encodings->get(1)->type->sameAs("gzip")
+      || !encodings->get(2)->type->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptEncoding test Parse case4]");
         break;
     }

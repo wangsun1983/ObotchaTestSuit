@@ -112,7 +112,7 @@ void testReflectFieldWrite() {
         break;
       }
 
-      if(!data1->stringData->equals("a")) {
+      if(!data1->stringData->sameAs("a")) {
         TEST_FAIL("Reflect Reflect Field Write test6");
         break;
       }
@@ -219,7 +219,7 @@ void testReflectFieldWrite() {
         break;
       }
 
-      if(data1->stringData == nullptr ||!data1->stringData->equals("a")) {
+      if(data1->stringData == nullptr ||!data1->stringData->sameAs("a")) {
         TEST_FAIL("Reflect Reflect Field Write test18");
         break;
       }

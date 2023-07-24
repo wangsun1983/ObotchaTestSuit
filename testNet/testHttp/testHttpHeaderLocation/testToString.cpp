@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderLocation location = createHttpHeaderLocation();
     location->load("/index.html");
-    if(!location->toString()->equals("/index.html")) {
+    if(!location->toString()->sameAs("/index.html")) {
       TEST_FAIL("[HttpHeaderLocation test toString case1],str is %s",location->toString()->toChars());
       break;
     }

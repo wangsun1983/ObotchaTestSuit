@@ -12,7 +12,7 @@ void testPerformance() {
       buffer->append("abc");
       buffer->append("abc2");
       buffer->append("abc3");
-      if(!buffer->toString()->equals("abcabc2abc3")) {
+      if(!buffer->toString()->sameAs("abcabc2abc3")) {
         TEST_FAIL("StringBuffer append test1");
       }
     }
@@ -25,7 +25,7 @@ void testPerformance() {
       buffer = buffer->append("abc");
       buffer = buffer->append("abc2");
       buffer = buffer->append("abc3");
-      if(!buffer->equals("abcabc2abc3")) {
+      if(!buffer->sameAs("abcabc2abc3")) {
         TEST_FAIL("StringBuffer append test2");
       }
     }

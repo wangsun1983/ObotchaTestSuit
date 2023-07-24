@@ -58,17 +58,38 @@ void testequals() {
         }
 
         t0 = createBoolean(true);
-        if(!t0->equals(true)) {
+        if(!t0->equals(createBoolean(true))) {
             TEST_FAIL("Boolean equal test3");
         }
 
         t0 = createBoolean(false);
-        if(!t0->equals(false)) {
+        if(!t0->equals(createBoolean(false))) {
             TEST_FAIL("Boolean equal test4");
         }
 
         TEST_OK("Boolean equal test5");
         break;
     }
-
+	
+	while(1) {
+		auto v1 = createBoolean(false);
+		auto v2 = createBoolean(false);
+		if(v1 != v2) {
+			TEST_FAIL("Boolean equal test6");
+		}
+		
+		v1 = createBoolean(true);
+		v2 = createBoolean(true);
+		if(v1 != v2) {
+			TEST_FAIL("Boolean equal test7");
+		}
+		
+		v1 = createBoolean(true);
+		v2 = createBoolean(false);
+		if(v1 == v2) {
+			TEST_FAIL("Boolean equal test8");
+		}
+		break;
+	}
+	TEST_OK("Boolean equal test100");
 }

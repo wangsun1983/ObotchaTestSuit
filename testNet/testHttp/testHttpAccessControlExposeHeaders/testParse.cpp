@@ -19,13 +19,13 @@ void testParse() {
     c->load("Content-Length, X-Kuma-Revision");
     auto list = c->get();
     String v0 = list->get(0);
-    if(!v0->equals("Content-Length")) {
+    if(!v0->sameAs("Content-Length")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case1]");
       break;
     }
 
     String v1 = list->get(1);
-    if(!v1->equals("X-Kuma-Revision")) {
+    if(!v1->sameAs("X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case2]");
       break;
     }
@@ -36,13 +36,13 @@ void testParse() {
     HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders("Content-Length, X-Kuma-Revision");
     auto list = c->get();
     String v0 = list->get(0);
-    if(!v0->equals("Content-Length")) {
+    if(!v0->sameAs("Content-Length")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case3]");
       break;
     }
 
     String v1 = list->get(1);
-    if(!v1->equals("X-Kuma-Revision")) {
+    if(!v1->sameAs("X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test Parse case4]");
       break;
     }

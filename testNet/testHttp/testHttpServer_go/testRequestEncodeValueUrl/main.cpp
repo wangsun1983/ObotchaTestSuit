@@ -34,22 +34,25 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
 
         case st(NetEvent)::Message: {
             //messageCount->incrementAndGet();
+			printf("server accept message trace1 \n");
             HttpHeader header = msg->getHeader();
             HttpUrl url = header->getUrl();
             auto queryParams = url->getQuery();
             auto v1 = queryParams->get("tag1");
-            if(!v1->equals("value1")) {
+			printf("server accept message trace2 \n");
+            if(!v1->sameAs("value1")) {
                 TEST_FAIL("TestHttpServer Request Url Encode test1");
             }
-
+			printf("server accept message trace3 \n");
             auto v2 = queryParams->get("tag2");
-            if(!v2->equals("value2")) {
+            if(!v2->sameAs("value2")) {
                 TEST_FAIL("TestHttpServer Request Url Encode test2");
             }
-
+			printf("server accept message trace4 \n");
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             w->write(response);
+			printf("server accept message trace5 \n");
             latch->countDown();
         }
         break;
@@ -71,9 +74,11 @@ int main() {
                     ->setAddress(createInet4Address(port))
                     ->setListener(listener)
                     ->build();
+  printf("mytest trace1 \n");
   server->start();
+  printf("mytest trace2 \n");
   latch->await();
-
+  printf("mytest trace3 \n");
   port++;
   setEnvPort(port);
   TEST_OK("TestHttpServer Request Encode test100");

@@ -23,7 +23,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("strict-origin-when-cross-origin")) {
+    if(!list->get(0)->sameAs("no-referrer") || !list->get(1)->sameAs("strict-origin-when-cross-origin")) {
       TEST_FAIL("[HttpHeaderReferrerPolicy setToHeader case2] ");
       break;
     }

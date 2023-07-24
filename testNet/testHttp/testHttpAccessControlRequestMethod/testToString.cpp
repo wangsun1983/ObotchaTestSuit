@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
     c->load("POST");
-    if(!c->toString()->equals("POST")) {
+    if(!c->toString()->sameAs("POST")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test toString case1]");
       break;
     }

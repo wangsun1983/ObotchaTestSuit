@@ -48,7 +48,7 @@ void testHttpClientChunk() {
 
   //check response 
   ByteArray data = response->getEntity()->getChunk()->getInputStream()->readAll();
-  if(!data->toString()->equals(result)) {
+  if(!data->toString()->sameAs(result)) {
     //printf("i aacept data is \n%s||||\nexptect:\n%s|||\n",data->toString()->toChars(),result);
     //printf("data size is %d,result size is %d \n",data->toString()->size(),strlen(result));
     char *p = (char *)data->toValue();

@@ -16,12 +16,12 @@ void testGetSet() {
   expect->setMaxAge(86400);
   expect->setEnforce(true);
   expect->setReportUri(createString("https://foo.example/report"));
-  if(!expect->toString()->equals("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {
+  if(!expect->toString()->sameAs("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {
     TEST_FAIL("[HttpHeaderExpectCT test testGetSet case1],str is %s",expect->toString()->toChars());
   }
   
   expect->setEnforce(false);
-  if(!expect->toString()->equals("max-age=86400; report-uri=\"https://foo.example/report\"")) {
+  if(!expect->toString()->sameAs("max-age=86400; report-uri=\"https://foo.example/report\"")) {
     TEST_FAIL("[HttpHeaderExpectCT test testGetSet case2],str is %s",expect->toString()->toChars());
   }
 

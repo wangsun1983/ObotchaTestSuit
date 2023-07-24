@@ -16,7 +16,7 @@ void testParse() {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->load(" developer.mozilla.org:1234");
     auto host = digest->getHost();
-    if(!host->equals("developer.mozilla.org")) {
+    if(!host->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test Parse case1] host is%s\n",host->toChars());
       break;
     }
@@ -32,7 +32,7 @@ void testParse() {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->load(" developer.mozilla.org");
     auto host = digest->getHost();
-    if(!host->equals("developer.mozilla.org")) {
+    if(!host->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test Parse case3]");
       break;
     }
@@ -43,7 +43,7 @@ void testParse() {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->setHost(" developer.mozilla.org");
     auto host = digest->getHost();
-    if(!host->equals("developer.mozilla.org")) {
+    if(!host->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test Parse case4]");
       break;
     }

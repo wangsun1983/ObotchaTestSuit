@@ -20,7 +20,7 @@ void testForwardedParse() {
       break;
     }
 
-    if(!encoding1->forIdentities->get(0)->equals("[2001:db8:cafe::17]:4711")) {
+    if(!encoding1->forIdentities->get(0)->sameAs("[2001:db8:cafe::17]:4711")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case2]");
       break;
     }
@@ -35,7 +35,7 @@ void testForwardedParse() {
       break;
     }
 
-    if(!encoding1->forIdentities->get(0)->equals("[2001:db8:cafe::17]:4711")) {
+    if(!encoding1->forIdentities->get(0)->sameAs("[2001:db8:cafe::17]:4711")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case4]");
       break;
     }
@@ -50,7 +50,7 @@ void testForwardedParse() {
       break;
     }
 
-    if(!encoding1->forIdentities->get(0)->equals("_mdn")) {
+    if(!encoding1->forIdentities->get(0)->sameAs("_mdn")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case6]");
       break;
     }
@@ -65,17 +65,17 @@ void testForwardedParse() {
       break;
     }
 
-    if(!encoding1->forIdentities->get(0)->equals("192.0.2.60")) {
+    if(!encoding1->forIdentities->get(0)->sameAs("192.0.2.60")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case6]");
       break;
     }
 
-    if(!encoding1->proto->equals("http")) {
+    if(!encoding1->proto->sameAs("http")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case7]");
       break;
     }
 
-    if(!encoding1->byIdentity->equals("203.0.113.43")) {
+    if(!encoding1->byIdentity->sameAs("203.0.113.43")) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case8]");
       break;
     }

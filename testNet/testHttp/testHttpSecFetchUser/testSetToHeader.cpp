@@ -19,7 +19,7 @@ void testSetToHeader() {
     header->set(createString("Sec-Fetch-User"),createString("?1"));
     //save->load("?1");
     auto save = header->getSecFetchUser();
-    if(!save->get()->equals("?1")) {
+    if(!save->get()->sameAs("?1")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test SetToHeader case1]");
       break;
     }
@@ -31,7 +31,7 @@ void testSetToHeader() {
     //HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     header->set(createString("Sec-Fetch-User"),createString("?0"));
     auto save = header->getSecFetchUser();
-    if(!save->get()->equals("?0")) {
+    if(!save->get()->sameAs("?0")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test SetToHeader case2]");
       break;
     }

@@ -22,7 +22,7 @@ void testParse() {
       break;
     }
 
-    if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("User-Agent")) {
+    if(!list->get(0)->sameAs("no-referrer") || !list->get(1)->sameAs("User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test Parse case2]");
       break;
     }
@@ -37,7 +37,7 @@ void testParse() {
       break;
     }
 
-    if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("User-Agent")) {
+    if(!list->get(0)->sameAs("no-referrer") || !list->get(1)->sameAs("User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test Parse case4]");
       break;
     }

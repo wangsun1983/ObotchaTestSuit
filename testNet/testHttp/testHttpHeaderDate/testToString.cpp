@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderDate headerDate = createHttpHeaderDate();
     headerDate->load(" Wed, 21 Oct 2015 07:28:00 GMT");
-    if(!headerDate->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!headerDate->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderDate test toString case1]");
     }
     break;

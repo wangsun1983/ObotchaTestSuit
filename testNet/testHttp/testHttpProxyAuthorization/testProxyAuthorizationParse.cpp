@@ -15,11 +15,11 @@ void testProxyAUthorizationParse() {
   while(1) {
     HttpHeaderProxyAuthorization proxy = createHttpHeaderProxyAuthorization();
     proxy->load("Basic YWxhZGRpbjpvcGVuc2VzYW1l");
-    if(!proxy->type->equals("Basic")) {
+    if(!proxy->type->sameAs("Basic")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test Parse case10]");
     }
 
-    if(!proxy->credentials->equals("YWxhZGRpbjpvcGVuc2VzYW1l")) {
+    if(!proxy->credentials->sameAs("YWxhZGRpbjpvcGVuc2VzYW1l")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test Parse case10]");
     }
 

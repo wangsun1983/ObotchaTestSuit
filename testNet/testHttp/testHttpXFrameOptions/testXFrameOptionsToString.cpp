@@ -15,7 +15,7 @@ void testXFrameOptionsToString() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("deny");
-    if(!options->toString()->equals("deny")) {
+    if(!options->toString()->sameAs("deny")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testXFrameOptionsToString() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("sameorigin");
-    if(!options->toString()->equals("sameorigin")) {
+    if(!options->toString()->sameAs("sameorigin")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case2]");
       break;
     }
@@ -35,7 +35,7 @@ void testXFrameOptionsToString() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("allow-from https://example.com/");
-    if(!options->toString()->equals("allow-from https://example.com/")) {
+    if(!options->toString()->sameAs("allow-from https://example.com/")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case3]");
       break;
     }
@@ -50,7 +50,7 @@ void testXFrameOptionsToString() {
     header->setXFrameOptions(options);
     
     options = header->getXFrameOptions();
-    if(!options->toString()->equals("allow-from https://example.com/")) {
+    if(!options->toString()->sameAs("allow-from https://example.com/")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case4]");
       break;
     }

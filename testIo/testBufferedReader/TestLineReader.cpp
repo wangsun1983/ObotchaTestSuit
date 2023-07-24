@@ -178,7 +178,7 @@ void testBufferedReader() {
       int index = 0;
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(!v->equals(vv[index])) {
+        if(!v->equals(createString(vv[index]))) {
           TEST_FAIL("[BufferedReader Test {reset()} case25],v is %s,vv is %s",v->toChars(),vv[index].c_str());
         }
         index++;

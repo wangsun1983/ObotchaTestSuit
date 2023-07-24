@@ -38,7 +38,7 @@ void basetest() {
 
   //Test bool equals(int p);
   Double t3 = createDouble(1.1);
-  if(t3->equals(1.1)) {
+  if(t3->sameAs(1.1)) {
     TEST_OK("Double equal test2");
   } else {
     TEST_FAIL("Double equal test2");

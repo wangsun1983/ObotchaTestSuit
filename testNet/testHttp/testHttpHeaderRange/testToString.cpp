@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderRange range = createHttpHeaderRange();
     range->load("bytes=200-1000, 2000-6576, 19000-");
-    if(!range->toString()->equals("bytes=200-1000, 2000-6576, 19000-")) {
+    if(!range->toString()->sameAs("bytes=200-1000, 2000-6576, 19000-")) {
       TEST_FAIL("[HttpHeaderRange test toString case1],range is %s",range->toString()->toChars());
     }
     break;

@@ -70,8 +70,8 @@ public:
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
-                    String v1 = md5->encrypt(createFile("data"));
-                    String v2 = md5->encrypt(createFile(f->getAbsolutePath()->toChars()));
+                    String v1 = md5->encodeFile(createFile("data"));
+                    String v2 = md5->encodeFile(createFile(f->getAbsolutePath()->toChars()));
                     if(v1 != v2) {
                       TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
                     }
@@ -135,13 +135,13 @@ int main() {
   File f = createFile("tmp");
   Md md5sum = createMd();
 
-  String base = md5sum->encrypt(createFile("data"));
+  String base = md5sum->encodeFile(createFile("data"));
 
   auto files = f->listFiles();
   auto iterator = files->getIterator();
   while(iterator->hasValue()) {
     File f1 = iterator->getValue();
-    if(!md5sum->encrypt(f1)->equals(base)) {
+    if(!md5sum->encodeFile(f1)->equals(base)) {
       TEST_FAIL("TestHttpServer MultiPartFileServer test1,file is %s \n",f1->getAbsolutePath()->toChars());
     }
     iterator->next();

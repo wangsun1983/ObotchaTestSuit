@@ -16,7 +16,7 @@ void testProxyAuthenticateToString() {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
     proxyAuth->load("Basic");
 
-    if(!proxyAuth->toString()->equals("Basic")) {
+    if(!proxyAuth->toString()->sameAs("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case1]");
         break;
     }
@@ -27,7 +27,7 @@ void testProxyAuthenticateToString() {
     HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
     proxyAuth->load("Basic realm=\"Access to the internal site\"");
 
-    if(!proxyAuth->toString()->equals("Basic realm=\"Access to the internal site\"")) {
+    if(!proxyAuth->toString()->sameAs("Basic realm=\"Access to the internal site\"")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case2] auth is %s",proxyAuth->toString()->toChars());
         break;
     }
@@ -42,7 +42,7 @@ void testProxyAuthenticateToString() {
     header->setProxyAuthenticate(proxyAuth);
     
     auto proxy = header->getProxyAuthenticate();
-    if(!proxy->toString()->equals("Basic realm=\"Access to the internal site\"")) {
+    if(!proxy->toString()->sameAs("Basic realm=\"Access to the internal site\"")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test toString case3] auth is %s",proxyAuth->toString()->toChars());
         break;
     }

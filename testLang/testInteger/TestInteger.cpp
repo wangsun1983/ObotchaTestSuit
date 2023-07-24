@@ -72,7 +72,7 @@ void basetest() {
   //bool equals(int p);
   while(1) {
     Integer v1 = createInteger(11);
-    if(!v1->equals(11)) {
+    if(!v1->sameAs(11)) {
       TEST_FAIL("Integer equals test4");
       break;
     }

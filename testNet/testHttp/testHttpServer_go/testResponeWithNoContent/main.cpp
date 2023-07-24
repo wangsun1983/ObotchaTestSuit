@@ -45,7 +45,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
               step++;
             } else {
               String entity = msg->getEntity()->getContent()->toString();
-              if(!entity->equals("hello this is client")) {
+              if(!entity->sameAs("hello this is client")) {
                 TEST_FAIL("TestHttpServer_Go SimpleClientContent test1,entity is %s",entity->toChars());
               }
               latch->countDown();

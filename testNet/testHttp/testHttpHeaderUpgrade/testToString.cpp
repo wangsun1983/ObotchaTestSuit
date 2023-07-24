@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
     upgrade->load(" websocket ");
-    if(!upgrade->toString()->equals("websocket")) {
+    if(!upgrade->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test toString case1]");
     }
     break;
@@ -29,7 +29,7 @@ void testToString() {
     HttpHeader header = createHttpHeader();
     header->setUpgrade(upgrade);
     auto upgrade2 = header->getUpgrade();
-    if(!upgrade2->toString()->equals("websocket")) {
+    if(!upgrade2->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test toString case2]");
     }
     break;
@@ -42,7 +42,7 @@ void testToString() {
     HttpHeader header = createHttpHeader();
     header->setUpgrade(upgrade);
     auto upgrade2 = header->getUpgrade();
-    if(!upgrade2->toString()->equals("websocket")) {
+    if(!upgrade2->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test toString case3]");
     }
     break;

@@ -15,7 +15,7 @@ using namespace obotcha;
 void testGetUrl() {
   while(1) {
     HttpPost post = createHttpPost("https://abc.com");
-    if(!post->getUrl()->toString()->equals("https://abc.com")) {
+    if(!post->getUrl()->toString()->sameAs("https://abc.com")) {
         TEST_FAIL("[HttpPost test testGetUrl case1],url is %s",post->getUrl()->toString()->toChars());
     }
     break;

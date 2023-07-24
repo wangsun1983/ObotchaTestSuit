@@ -21,8 +21,8 @@ void testFileInputStreamReadAll() {
     close(fd);
 
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data.txt"));
-    String v2 = md5->encrypt(createFile("./tmp/read_all_case1.txt"));
+    String v1 = md5->encodeFile(createFile("./tmp/data.txt"));
+    String v2 = md5->encodeFile(createFile("./tmp/read_all_case1.txt"));
     if(v1 != v2) {
       TEST_FAIL("testFileInputStreamReadAll test1 ");
       break;

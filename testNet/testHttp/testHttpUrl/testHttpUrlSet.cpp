@@ -24,7 +24,7 @@ void testHttpUrlSet() {
     url->setPath("test.cgi");
     url->setFragment("fffsss");
     
-    if(url->toString()->equals("http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss")) {
+    if(url->toString()->sameAs("http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss")) {
         TEST_FAIL("[HttpUrlParse test Set case1],url is %s",url->toString()->toChars());
     }
     break;

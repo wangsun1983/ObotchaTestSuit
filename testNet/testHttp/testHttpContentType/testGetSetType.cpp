@@ -18,9 +18,9 @@ void testGetSetType() {
   type->setCharSet(createString("b"));
   type->setBoundary(createString("c"));
   
-  if(!type->getType()->equals("a")
-    ||!type->getCharSet()->equals("b")
-    ||!type->getBoundary()->equals("c")) {
+  if(!type->getType()->sameAs("a")
+    ||!type->getCharSet()->sameAs("b")
+    ||!type->getBoundary()->sameAs("c")) {
     TEST_FAIL("[HttpHeaderContentType test GetSetType case1]");
   }
   

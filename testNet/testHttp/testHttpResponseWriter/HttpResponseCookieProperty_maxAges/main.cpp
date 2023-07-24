@@ -64,12 +64,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 auto map = encodedValue->getValues();
 
                 auto v1 = map->get(createString("test2_tag1"));
-                if(v1 == nullptr || !v1->equals("test2_value1")) {
+                if(v1 == nullptr || !v1->sameAs("test2_value1")) {
                      TEST_FAIL("TestHttpResponseWriter Cookie Property MaxAges test1");
                 }
                 
                 auto v2 = map->get(createString("path"));
-                if(v2 == nullptr || !v2->equals("path123")) {
+                if(v2 == nullptr || !v2->sameAs("path123")) {
                      TEST_FAIL("TestHttpResponseWriter Cookie Property MaxAges test2");
                 }
 

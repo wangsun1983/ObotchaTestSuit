@@ -14,7 +14,7 @@ void testDispositionToString() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->load("attachment");
-    if(!disposition->toString()->equals("attachment")) {
+    if(!disposition->toString()->sameAs("attachment")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case1] [FAILED],disposition is %s ",disposition->toString()->toChars());
         break;
     }
@@ -24,7 +24,7 @@ void testDispositionToString() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->load("attachment; filename=\"filename.jpg\"");
-    if(!disposition->toString()->equals("attachment; filename=\"filename.jpg\"")) {
+    if(!disposition->toString()->sameAs("attachment; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case2] [FAILED],disposition is %s ",disposition->toString()->toChars());
         break;
     }
@@ -34,7 +34,7 @@ void testDispositionToString() {
   while(1) {
     HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
     disposition->load("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
-    if(!disposition->toString()->equals("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
+    if(!disposition->toString()->sameAs("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case3] [FAILED] disposition is %s ",disposition->toString()->toChars());
         break;
     }
@@ -46,7 +46,7 @@ void testDispositionToString() {
       disposition->setType(st(HttpHeaderContentDisposition)::FormData);
       disposition->setFileName(createString("filename.jpg"));
       disposition->setName(createString("fieldName"));
-      if(!disposition->toString()->equals("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
+      if(!disposition->toString()->sameAs("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case4] [FAILED] disposition is %s ",disposition->toString()->toChars());
       }
       break;

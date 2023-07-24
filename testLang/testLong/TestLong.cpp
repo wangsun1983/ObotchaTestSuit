@@ -75,7 +75,7 @@ void basetest() {
   //bool equals(int p);
   while(1) {
     Long v1 = createLong(11);
-    if(!v1->equals(11)) {
+    if(!v1->sameAs(11)) {
       TEST_FAIL("Long equals test4");
       break;
     }

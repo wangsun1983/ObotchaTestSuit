@@ -24,11 +24,11 @@ void testSetToHeader() {
       break;
     }
 
-    if(!languages->get(0)->lang->equals("fr-CH")
-      || !languages->get(1)->lang->equals("fr")
-      || !languages->get(2)->lang->equals("en")
-      || !languages->get(3)->lang->equals("de")
-      || !languages->get(4)->lang->equals("*")) {
+    if(!languages->get(0)->lang->sameAs("fr-CH")
+      || !languages->get(1)->lang->sameAs("fr")
+      || !languages->get(2)->lang->sameAs("en")
+      || !languages->get(3)->lang->sameAs("de")
+      || !languages->get(4)->lang->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptLanguage test SetToHeader case2]");
         break;
     }

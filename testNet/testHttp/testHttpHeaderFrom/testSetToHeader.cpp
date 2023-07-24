@@ -17,7 +17,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("From"),createString(" webmaster@example.org"));
     auto digest = header->getFrom();
-    if(!digest->toString()->equals("webmaster@example.org")) {
+    if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test setToHeader case1]");
       break;
     }

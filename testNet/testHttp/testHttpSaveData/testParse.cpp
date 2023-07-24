@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->load("ON");
-    if(!save->get()->equals("on")) {
+    if(!save->get()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testParse() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->load("OFF");
-    if(!save->get()->equals("off")) {
+    if(!save->get()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case2]");
       break;
     }

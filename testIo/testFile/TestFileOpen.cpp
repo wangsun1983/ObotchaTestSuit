@@ -31,7 +31,7 @@ void testFileOpen() {
     FileInputStream s = createFileInputStream(f);
     s->open();
     auto content = s->readAll();
-    if(!content->toString()->equals("abcd")) {
+    if(!content->toString()->sameAs("abcd")) {
         TEST_FAIL("[File Test {open()} case4]");
     }
     

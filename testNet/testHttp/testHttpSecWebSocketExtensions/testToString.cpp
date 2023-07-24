@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecWebSocketExtensions c = createHttpHeaderSecWebSocketExtensions();
     c->load(" permessage-deflate, client_max_window_bits");
-    if(!c->toString()->equals("permessage-deflate, client_max_window_bits")) {
+    if(!c->toString()->sameAs("permessage-deflate, client_max_window_bits")) {
       TEST_FAIL("[HttpHeaderSecWebSocketExtensions test toString case1],str is %s",c->toString()->toChars());
       break;
     }

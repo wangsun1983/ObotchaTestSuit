@@ -21,12 +21,12 @@ void testSetToHeader() {
                 createString("gzip, deflate"));
     auto c = header->getContentEncoding();
     auto list = c->get();
-    if(!list->get(0)->equals("gzip")) {
+    if(!list->get(0)->sameAs("gzip")) {
       TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case1]");
       break;
     }
 
-    if(!list->get(1)->equals("deflate")) {
+    if(!list->get(1)->sameAs("deflate")) {
       TEST_FAIL("[HttpHeaderContentEncoding test SetToHeader case2]");
       break;
     }

@@ -13,11 +13,11 @@ using namespace obotcha;
 void testLinkParse() {
   while(1) {
     HttpHeaderLink link1 = createHttpHeaderLink("<https://example.com>; rel=\"preload\"");
-    if(link1->url == nullptr || !link1->url->equals("https://example.com")) {
+    if(link1->url == nullptr || !link1->url->sameAs("https://example.com")) {
       TEST_FAIL("[HttpHeaderLink test Parse case1] link is %s",link1->url->toChars());
     }
 
-    if(!link1->rel->equals("preload")) {
+    if(!link1->rel->sameAs("preload")) {
       TEST_FAIL("[HttpHeaderLink test Parse case2] rel is %s",link1->rel->toChars());
     }
     break;

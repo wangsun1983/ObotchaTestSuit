@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
     timing->load("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
-    if(!timing->toString()->equals("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
+    if(!timing->toString()->sameAs("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
       TEST_FAIL("[HttpHeaderServerTiming test toString case1],str is %s \n",timing->toString()->toChars());
       break;
     }
@@ -35,7 +35,7 @@ void testToString() {
                 createString("47.2"),
                 nullptr);
                 
-    if(!timing->toString()->equals("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
+    if(!timing->toString()->sameAs("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
         TEST_FAIL("[HttpHeaderServerTiming test toString case2],str is %s \n",timing->toString()->toChars());
       break;
     }

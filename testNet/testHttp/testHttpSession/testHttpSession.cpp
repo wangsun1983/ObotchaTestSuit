@@ -33,7 +33,7 @@ void testHttpSession() {
     }
 
     String value1 = ss->getAttribute<String>("a");
-    if(value1 == nullptr || !value1->equals("value_a")) {
+    if(value1 == nullptr || !value1->sameAs("value_a")) {
       TEST_FAIL("[testHttpSession test Parse case2]");
       break;
     }

@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecWebSocketAccept upgrade = createHttpHeaderSecWebSocketAccept();
     upgrade->load("  s3pPLMBiTxaQ9kYGzzhZRbK+xOo= ");
-    if(!upgrade->get()->equals("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {
+    if(!upgrade->get()->sameAs("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {
       TEST_FAIL("[HttpHeaderSecWebSocketAccept test Parse case1]");
     }
     break;

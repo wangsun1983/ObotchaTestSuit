@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderContentRange range = createHttpHeaderContentRange();
     range->load("bytes 200-1000/67589");
-    if(!range->toString()->equals("bytes 200-1000/67589")) {
+    if(!range->toString()->sameAs("bytes 200-1000/67589")) {
       TEST_FAIL("[HttpHeaderContentRange test toSring case1] range is %s",range->toString()->toChars());
       break;
     }
@@ -29,7 +29,7 @@ void testToString() {
     
     header->setContentRange(range_0);
     auto range = header->getContentRange();
-    if(!range->toString()->equals("bytes 200-1000/67589")) {
+    if(!range->toString()->sameAs("bytes 200-1000/67589")) {
       TEST_FAIL("[HttpHeaderContentRange test toSring case2] range is %s",range->toString()->toChars());
       break;
     }

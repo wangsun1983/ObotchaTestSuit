@@ -19,7 +19,7 @@ void testSetToHeader() {
                 createString(" keep-alive"));
       
     auto connection = header->getConnection();
-    if(!connection->get()->equals("keep-alive")) {
+    if(!connection->get()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test SetToHeader case1]");
     }
     break;
@@ -31,7 +31,7 @@ void testSetToHeader() {
                 createString(" close"));
       
     auto connection = header->getConnection();
-    if(!connection->get()->equals("close")) {
+    if(!connection->get()->sameAs("close")) {
       TEST_FAIL("[HttpHeaderConnection test SetToHeader case2]");
     }
     break;

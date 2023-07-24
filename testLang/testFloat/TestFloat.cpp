@@ -66,7 +66,7 @@ void basetest() {
   //bool equals(float p);
   while(1) {
     Float v1 = createFloat(11.22);
-    if(!v1->equals(11.22)) {
+    if(!v1->sameAs(11.22)) {
       TEST_FAIL("Float equals test4");
       break;
     }

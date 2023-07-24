@@ -19,7 +19,7 @@ void testSetToHeader() {
                 createString("Apache/2.4.1 (Unix)"));
                 
     auto match = header->getServer();
-    if(!match->get()->equals("Apache/2.4.1 (Unix)")) {
+    if(!match->get()->sameAs("Apache/2.4.1 (Unix)")) {
         TEST_FAIL("[HttpHeaderServer test SetToHeader case2]");
     }
     break;

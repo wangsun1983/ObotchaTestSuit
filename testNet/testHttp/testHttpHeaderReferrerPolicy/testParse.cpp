@@ -22,7 +22,7 @@ void testParse() {
       break;
     }
 
-    if(!list->get(0)->equals("no-referrer") || !list->get(1)->equals("strict-origin-when-cross-origin")) {
+    if(!list->get(0)->sameAs("no-referrer") || !list->get(1)->sameAs("strict-origin-when-cross-origin")) {
       TEST_FAIL("[HttpHeaderReferrerPolicy test Parse case2] ");
       break;
     }

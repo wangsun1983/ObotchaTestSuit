@@ -144,7 +144,7 @@ void testReflectArrayListFieldWrite() {
         break;
       }
 
-      if(!d1->stringData->equals("a")) {
+      if(!d1->stringData->sameAs("a")) {
         TEST_FAIL("Reflect ArrayList Field Write test6-------[FAIL] \n");
         break;
       }
@@ -200,7 +200,7 @@ void testReflectArrayListFieldWrite() {
         break;
       }
 
-      if(!d2->stringData->equals("b")) {
+      if(!d2->stringData->sameAs("b")) {
         TEST_FAIL("Reflect ArrayList Field Write test17-------[FAIL] \n");
         break;
       }

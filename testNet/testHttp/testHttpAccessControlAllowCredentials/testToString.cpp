@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->load("true");
-    if(!c->toString()->equals("true")) {
+    if(!c->toString()->sameAs("true")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
     c->load("false");
-    if(!c->toString()->equals("false")) {
+    if(!c->toString()->sameAs("false")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case2]");
       break;
     }

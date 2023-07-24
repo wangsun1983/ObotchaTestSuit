@@ -20,7 +20,7 @@ void testAcceptAdd() {
     accept->add("application/xml",0.9);
     accept->add("*/*",0.8);
     
-    if(!accept->toString()->equals("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")) {
+    if(!accept->toString()->sameAs("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")) {
       TEST_FAIL("[HttpHeaderAccept test add case3]accept is %s",accept->toString()->toChars());
     }
     break;

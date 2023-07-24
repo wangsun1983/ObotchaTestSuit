@@ -24,9 +24,9 @@ void testSetToHeader() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("gzip")
-      || !encodings->get(1)->type->equals("compress")
-      || !encodings->get(2)->type->equals("br")) {
+    if(!encodings->get(0)->type->sameAs("gzip")
+      || !encodings->get(1)->type->sameAs("compress")
+      || !encodings->get(2)->type->sameAs("br")) {
         TEST_FAIL("[HttpHeaderAcceptEncoding test setToHeader case2]");
         break;
     }
@@ -45,9 +45,9 @@ void testSetToHeader() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("deflate")
-      || !encodings->get(1)->type->equals("gzip")
-      || !encodings->get(2)->type->equals("*")) {
+    if(!encodings->get(0)->type->sameAs("deflate")
+      || !encodings->get(1)->type->sameAs("gzip")
+      || !encodings->get(2)->type->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptEncoding test setToHeader case4]");
         break;
     }
@@ -79,9 +79,9 @@ void testSetToHeader() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("deflate")
-      || !encodings->get(1)->type->equals("gzip")
-      || !encodings->get(2)->type->equals("*")) {
+    if(!encodings->get(0)->type->sameAs("deflate")
+      || !encodings->get(1)->type->sameAs("gzip")
+      || !encodings->get(2)->type->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptEncoding test setToHeader case8]");
         break;
     }

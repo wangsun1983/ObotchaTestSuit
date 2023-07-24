@@ -32,8 +32,8 @@ void testFileInputStreamRead() {
     close(fd);
 
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data.txt"));
-    String v2 = md5->encrypt(createFile("./tmp/test_read.txt"));
+    String v1 = md5->encodeFile(createFile("./tmp/data.txt"));
+    String v2 = md5->encodeFile(createFile("./tmp/test_read.txt"));
     if(v1 != v2) {
       TEST_FAIL("testFileInputStreamRead test1 ");
       break;
@@ -64,8 +64,8 @@ void testFileInputStreamRead() {
     close(fd);
 
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data.txt"));
-    String v2 = md5->encrypt(createFile("./tmp/test_read_by_bytearray.txt"));
+    String v1 = md5->encodeFile(createFile("./tmp/data.txt"));
+    String v2 = md5->encodeFile(createFile("./tmp/test_read_by_bytearray.txt"));
     if(v1 != v2) {
       TEST_FAIL("testFileInputStreamRead test2 ");
       break;
@@ -96,8 +96,8 @@ void testFileInputStreamRead() {
     close(fd);
 
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/data.txt"));
-    String v2 = md5->encrypt(createFile("./tmp/test_read_by_bytearray2.txt"));
+    String v1 = md5->encodeFile(createFile("./tmp/data.txt"));
+    String v2 = md5->encodeFile(createFile("./tmp/test_read_by_bytearray2.txt"));
     if(v1 != v2) {
       TEST_FAIL("testFileInputStreamRead test3 ");
       break;

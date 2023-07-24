@@ -20,7 +20,7 @@ void testByteArrayWriterString() {
       char array[] = {'h','e','l','l','o','\0'};
       writer->write((const char *)array);
 
-      if(!d1->toString()->equals("hello")) {
+      if(!d1->toString()->sameAs("hello")) {
         TEST_FAIL("[TestByteArrayWriter Write String case1]");
       }
       break;
@@ -32,7 +32,7 @@ void testByteArrayWriterString() {
       String array = createString("hello");
       writer->write(array);
 
-      if(!d1->toString()->equals("hello")) {
+      if(!d1->toString()->sameAs("hello")) {
         TEST_FAIL("[TestByteArrayWriter Write String case2]");
       }
       break;

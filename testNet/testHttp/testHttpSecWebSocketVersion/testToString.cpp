@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecWebSocketVersion c = createHttpHeaderSecWebSocketVersion();
     c->load(" 13");
-    if(!c->toString()->equals("13")) {
+    if(!c->toString()->sameAs("13")) {
       TEST_FAIL("[HttpHeaderSecWebSocketVersion test toString case1],str is %s",c->toString()->toChars());
       break;
     }

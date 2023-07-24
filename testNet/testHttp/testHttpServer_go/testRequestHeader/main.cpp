@@ -37,12 +37,12 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             HttpHeader header = msg->getHeader();
             
             auto v1 = header->get("tag1");
-            if(!v1->equals("value1")) {
+            if(!v1->sameAs("value1")) {
                 TEST_FAIL("TestHttpServer Request Header test1");
             }
 
             auto v2 = header->get("tag2");
-            if(!v2->equals("value2")) {
+            if(!v2->sameAs("value2")) {
                 TEST_FAIL("TestHttpServer Request Header test2");
             }
 

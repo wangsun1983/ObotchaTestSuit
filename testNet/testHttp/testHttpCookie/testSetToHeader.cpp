@@ -23,13 +23,13 @@ void testSetToHeader() {
     }
 
     auto cookie1 = cookies->get(0);
-    if(!cookie1->getName()->equals("yummy_cookie") || !cookie1->getValue()->equals("choco")) {
+    if(!cookie1->getName()->sameAs("yummy_cookie") || !cookie1->getValue()->sameAs("choco")) {
       TEST_FAIL("[HttpCookie test SetToHeader case2]");
       break;
     }
 
     auto cookie2 = cookies->get(1);
-    if(!cookie2->getName()->equals("tasty_cookie") || !cookie2->getValue()->equals("strawberry")) {
+    if(!cookie2->getName()->sameAs("tasty_cookie") || !cookie2->getValue()->sameAs("strawberry")) {
       TEST_FAIL("[HttpCookie test SetToHeader case3]");
       break;
     }
@@ -40,20 +40,20 @@ void testSetToHeader() {
     }
        
     if(cookie1->getPropertyPath() == nullptr 
-        || !cookie1->getPropertyPath()->equals("/abc")) {
+        || !cookie1->getPropertyPath()->sameAs("/abc")) {
       printf("path is %s \n",cookie1->getPropertyPath()->toChars());
       TEST_FAIL("[HttpCookie test SetToHeader case5]");
       break;
     }
     
     if(cookie1->getPropertyDomain() == nullptr 
-        || !cookie1->getPropertyDomain()->equals("example.com")) {
+        || !cookie1->getPropertyDomain()->sameAs("example.com")) {
       TEST_FAIL("[HttpCookie test SetToHeader case6]");
       break;
     }
     
     if(cookie1->getPropertyDomain() == nullptr 
-        || !cookie1->getPropertyDomain()->equals("example.com")) {
+        || !cookie1->getPropertyDomain()->sameAs("example.com")) {
       TEST_FAIL("[HttpCookie test SetToHeader case6]");
       break;
     }
@@ -90,20 +90,20 @@ void testSetToHeader() {
     }
        
     if(cookie2->getPropertyPath() == nullptr 
-        || !cookie2->getPropertyPath()->equals("/abc")) {
+        || !cookie2->getPropertyPath()->sameAs("/abc")) {
       printf("path is %s \n",cookie1->getPropertyPath()->toChars());
       TEST_FAIL("[HttpCookie test SetToHeader case11]");
       break;
     }
     
     if(cookie2->getPropertyDomain() == nullptr 
-        || !cookie2->getPropertyDomain()->equals("example.com")) {
+        || !cookie2->getPropertyDomain()->sameAs("example.com")) {
       TEST_FAIL("[HttpCookie test SetToHeader case12]");
       break;
     }
     
     if(cookie2->getPropertyDomain() == nullptr 
-        || !cookie2->getPropertyDomain()->equals("example.com")) {
+        || !cookie2->getPropertyDomain()->sameAs("example.com")) {
       TEST_FAIL("[HttpCookie test SetToHeader case13]");
       break;
     }

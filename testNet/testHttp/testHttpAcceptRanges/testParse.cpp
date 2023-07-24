@@ -16,7 +16,7 @@ void testParse() {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     ranges->load("bytes");
 
-    if(!ranges->get()->equals("bytes")) {
+    if(!ranges->get()->sameAs("bytes")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test Parse case1]");
         break;
     }
@@ -27,7 +27,7 @@ void testParse() {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     ranges->load("none");
 
-    if(!ranges->get()->equals("none")) {
+    if(!ranges->get()->sameAs("none")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test Parse case2]");
         break;
     }

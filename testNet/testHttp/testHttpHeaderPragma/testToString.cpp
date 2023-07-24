@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
     pragma->load(" no-cache ");
-    if(!pragma->toString()->equals("no-cache")){
+    if(!pragma->toString()->sameAs("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test toString case1]");
       break;
     }
@@ -28,7 +28,7 @@ void testToString() {
     HttpHeader header = createHttpHeader();
     header->setPragma(pragma);
     
-    if(!header->getPragma()->toString()->equals("no-cache")){
+    if(!header->getPragma()->toString()->sameAs("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test toString case2]");
       break;
     }

@@ -111,7 +111,7 @@ void testNameIdConvert() {
       mime->setId(i);
       //mime->setTypeId(i);
       String f1 = mime->getType();
-      if(!f1->equals(names[i].name)) {
+      if(!f1->sameAs(names[i].name)) {
         TEST_FAIL("[TestHttpMime name to id case1]");
       }
 
@@ -128,7 +128,7 @@ void testNameIdConvert() {
           TEST_FAIL("[TestHttpMime name to id case3] ,i is %d,id is %d",i,mime->getId());
       }
       
-      if(!mime->getType()->equals(names[i].name)) {
+      if(!mime->getType()->sameAs(names[i].name)) {
           TEST_FAIL("[TestHttpMime name to id case4] ,i is %d,id is %d",i,mime->getId());
       }
   }

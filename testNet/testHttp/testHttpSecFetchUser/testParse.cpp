@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->load("?1");
-    if(!save->get()->equals("?1")) {
+    if(!save->get()->sameAs("?1")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->load("?0");
-    if(!save->get()->equals("?0")) {
+    if(!save->get()->sameAs("?0")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case2]");
       break;
     }

@@ -38,20 +38,20 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             auto cookies = header->getCookies();
             
             auto v1 = cookies->get(0);
-            if(!v1->getName()->equals("tag1")) {
+            if(!v1->getName()->sameAs("tag1")) {
                 TEST_FAIL("TestHttpServer Request Cookie test1");
             }
 
-            if(!v1->getValue()->equals("value1")) {
+            if(!v1->getValue()->sameAs("value1")) {
                 TEST_FAIL("TestHttpServer Request Cookie test2");
             }
 
             auto v2 = cookies->get(1);
-            if(!v2->getName()->equals("tag2")) {
+            if(!v2->getName()->sameAs("tag2")) {
                 TEST_FAIL("TestHttpServer Request Cookie test3");
             }
 
-            if(!v2->getValue()->equals("value2")) {
+            if(!v2->getValue()->sameAs("value2")) {
                 TEST_FAIL("TestHttpServer Request Cookie test4");
             }
 

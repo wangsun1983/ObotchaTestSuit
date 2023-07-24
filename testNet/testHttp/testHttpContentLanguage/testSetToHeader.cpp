@@ -21,12 +21,12 @@ void testSetToHeader() {
                 createString("de-DE, en-CA"));
     auto c = header->getContentLanguage();
     auto list = c->get();
-    if(!list->get(0)->equals("de-DE")) {
+    if(!list->get(0)->sameAs("de-DE")) {
       TEST_FAIL("[HttpHeaderContentLanguage test SetToHeader case1]");
       break;
     }
 
-    if(!list->get(1)->equals("en-CA")) {
+    if(!list->get(1)->sameAs("en-CA")) {
       TEST_FAIL("[HttpHeaderContentLanguage test SetToHeader case2]");
       break;
     }

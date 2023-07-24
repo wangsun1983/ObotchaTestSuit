@@ -14,7 +14,7 @@ void testConnectionToString() {
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
     connection->load(" keep-alive");
-    if(!connection->toString()->equals("keep-alive")) {
+    if(!connection->toString()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test toString case1]");
     }
     break;
@@ -23,7 +23,7 @@ void testConnectionToString() {
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
     connection->set(" keep-alive");
-    if(!connection->toString()->equals("keep-alive")) {
+    if(!connection->toString()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test toString case2]");
     }
     break;

@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderContentLanguage c = createHttpHeaderContentLanguage();
     c->load("de-DE, en-CA");
-    if(c->toString()->equals("de-DE, en-CA ")) {
+    if(c->toString()->sameAs("de-DE, en-CA ")) {
       TEST_FAIL("[HttpHeaderContentLanguage test toString case1]");
     }
     break;

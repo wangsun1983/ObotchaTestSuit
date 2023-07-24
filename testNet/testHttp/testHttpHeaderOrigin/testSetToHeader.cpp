@@ -42,7 +42,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!url->getHost()->equals("developer.mozilla.org")) {
+    if(!url->getHost()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderOrigin test setToHeader case4]");
       break;
     }

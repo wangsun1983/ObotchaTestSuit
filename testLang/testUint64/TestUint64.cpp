@@ -77,7 +77,7 @@ void basetest() {
   //bool equals(int p);
   while(1) {
     Uint64 v1 = createUint64(11);
-    if(!v1->equals(11)) {
+    if(!v1->sameAs(11)) {
       TEST_FAIL("Uint64 equals test4");
       break;
     }

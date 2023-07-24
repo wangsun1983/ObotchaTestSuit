@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
     upgrade->load(" websocket ");
-    if(!upgrade->get()->equals("websocket")) {
+    if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test Parse case1]");
     }
     break;
@@ -24,7 +24,7 @@ void testParse() {
 
   while(1) {
     HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade(" websocket ");
-    if(!upgrade->get()->equals("websocket")) {
+    if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test Parse case2]");
     }
     break;

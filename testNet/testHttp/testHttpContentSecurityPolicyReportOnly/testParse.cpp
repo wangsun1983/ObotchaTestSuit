@@ -61,7 +61,7 @@ void testParse() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("*")) {
+    if(!item->sources->get(0)->sameAs("*")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicyReportOnly test Parse case9]");
       break;
     }
@@ -84,13 +84,13 @@ void testParse() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("media1.com")) {
+    if(!item->sources->get(0)->sameAs("media1.com")) {
       String str = item->sources->get(0);
       TEST_FAIL("[HttpHeaderContentSecurityPolicyReportOnly test Parse case13],str is [%s]",str->toChars());
       break;
     }
 
-    if(!item->sources->get(1)->equals("media2.com")) {
+    if(!item->sources->get(1)->sameAs("media2.com")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicyReportOnly test Parse case14]");
       break;
     }
@@ -113,7 +113,7 @@ void testParse() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("userscripts.example.com")) {
+    if(!item->sources->get(0)->sameAs("userscripts.example.com")) {
       String str = item->sources->get(0);
 
       TEST_FAIL("[HttpHeaderContentSecurityPolicyReportOnly test Parse case18]str is [%s]",str->toChars());

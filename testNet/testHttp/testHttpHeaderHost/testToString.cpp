@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->load(" developer.mozilla.org:1234");
-    if(!digest->toString()->equals("developer.mozilla.org:1234")) {
+    if(!digest->toString()->sameAs("developer.mozilla.org:1234")) {
       TEST_FAIL("[HttpHeaderHost test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderHost digest = createHttpHeaderHost();
     digest->load(" developer.mozilla.org");
-    if(!digest->toString()->equals("developer.mozilla.org")) {
+    if(!digest->toString()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test toString case2]");
       break;
     }

@@ -100,7 +100,7 @@ void testReflectFieldRead() {
 
       f = data1->getField("stringData");
       String v = f->getStringValue();
-      if(v == nullptr || !v->equals("a")|| f->getType() != st(Field)::FieldTypeString) {
+      if(v == nullptr || !v->sameAs("a")|| f->getType() != st(Field)::FieldTypeString) {
         TEST_FAIL("Reflect Reflect Field Read test6");
         break;
       }

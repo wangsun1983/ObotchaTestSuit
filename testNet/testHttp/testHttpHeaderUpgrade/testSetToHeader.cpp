@@ -19,7 +19,7 @@ void testSetToHeader() {
     header->set(createString("Upgrade"),
                 createString(" websocket "));
     auto upgrade = header->getUpgrade();
-    if(!upgrade->get()->equals("websocket")) {
+    if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test setToHeader case1]");
     }
     break;

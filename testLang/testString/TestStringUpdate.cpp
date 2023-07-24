@@ -28,7 +28,7 @@ void TestStringUpdate() {
         const char *q = "hello";
         str->update(q);
 
-        if(!str->equals("hello")) {
+        if(!str->sameAs("hello")) {
             TEST_FAIL("String update test1");
             break;
         }
@@ -42,7 +42,7 @@ void TestStringUpdate() {
         q2[3] = '4';
         q2[4] = '5';
         str2->update(q2);
-        if(!str2->equals("12345")) {
+        if(!str2->sameAs("12345")) {
             TEST_FAIL("String update test2");
             break;
         }
@@ -52,14 +52,14 @@ void TestStringUpdate() {
         q2[2] = '9';
         q2[3] = '9';
         q2[4] = '9';
-        if(!str2->equals("12345")) {
+        if(!str2->sameAs("12345")) {
             TEST_FAIL("String update test3");
             break;
         }
 
         String str3 = createString("abc");
         str3->update("hhhh");
-        if(!str3->equals("hhhh")) {
+        if(!str3->sameAs("hhhh")) {
             TEST_FAIL("String update test4");
             break;
         }
@@ -71,13 +71,13 @@ void TestStringUpdate() {
         String str = createString("abc");
         String str2 = createString("ffff");
         str2->update(str);
-        if(!str2->equals("abc")) {
+        if(!str2->sameAs("abc")) {
             TEST_FAIL("String update test4");
             break;
         }
 
         str->update("ttt");
-        if(!str2->equals("abc")) {
+        if(!str2->sameAs("abc")) {
             TEST_FAIL("String update test5");
             break;
         }
@@ -89,7 +89,7 @@ void TestStringUpdate() {
         std::string str2 = "ffff";
         str->update(str2);
 
-        if(!str->equals("ffff")) {
+        if(!str->sameAs("ffff")) {
             TEST_FAIL("String update test6");
             break;
         }

@@ -14,7 +14,7 @@ void testSetGet() {
   while(1) {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
     range->set(createHttpDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT")));
-    if(!range->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!range->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderIfRange test SetGet case1] str is %s",range->toString()->toChars());
       break;
     }
@@ -24,7 +24,7 @@ void testSetGet() {
   while(1) {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
     range->set(createString("abcds"));
-    if(!range->toString()->equals("\"abcds\"")) {
+    if(!range->toString()->sameAs("\"abcds\"")) {
       TEST_FAIL("[HttpHeaderIfRange test SetGet case8] str is %s",range->toString()->toChars());
       break;
     }

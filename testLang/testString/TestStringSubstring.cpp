@@ -19,32 +19,32 @@ void TestStringSubString() {
     while(1) {
         String str = createString("abcef");
         String str2 = str->subString(0,2);
-        if(!str2->equals("ab") || !str->equals("abcef")) {
+        if(!str2->sameAs("ab") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test1");
             break;
         }
 
         str2 = str->subString(0,1);
-        if(!str2->equals("a") || !str->equals("abcef")) {
+        if(!str2->sameAs("a") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test2");
             break;
         }
 
         str2 = str->subString(0,3);
-        if(!str2->equals("abc") || !str->equals("abcef")) {
+        if(!str2->sameAs("abc") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test3");
             break;
         }
 
         str2 = str->subString(0,4);
-        if(!str2->equals("abce") || !str->equals("abcef")) {
+        if(!str2->sameAs("abce") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test4");
             break;
         }
 
         str2 = str->subString(0,5);
-        //if(!str2->equals("abcef") || !str->equals("abcef")) {
-        if(!str2->equals("abcef") || !str->equals("abcef")) {
+        //if(!str2->sameAs("abcef") || !str->sameAs("abcef")) {
+        if(!str2->sameAs("abcef") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test5");
             break;
         }

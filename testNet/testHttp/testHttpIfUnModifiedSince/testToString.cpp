@@ -14,7 +14,7 @@ void testPatchToString() {
   while(1) {
     HttpHeaderIfUnmodifiedSince modifiedSince = createHttpHeaderIfUnmodifiedSince();
     modifiedSince->load(" Wed, 21 Oct 2015 07:28:00 GMT");
-    if(!modifiedSince->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!modifiedSince->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderIfUnmodifiedSince test toString case1] date is %s",modifiedSince->toString()->toChars());
     }
     break;

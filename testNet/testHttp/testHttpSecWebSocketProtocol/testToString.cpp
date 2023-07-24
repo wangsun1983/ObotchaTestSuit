@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecWebSocketProtocol c = createHttpHeaderSecWebSocketProtocol();
     c->load("  chat, superchat");
-    if(!c->toString()->equals("chat, superchat")) {
+    if(!c->toString()->sameAs("chat, superchat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test toString case1],str is %s",c->toString()->toChars());
       break;
     }
@@ -30,7 +30,7 @@ void testToString() {
     
     header->setWebSocketProtocol(c);
     auto c2 = header->getWebSocketProtocol();
-    if(!c2->toString()->equals("chat, superchat")) {
+    if(!c2->toString()->sameAs("chat, superchat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test toString case2],str is %s",c->toString()->toChars());
       break;
     }

@@ -62,12 +62,12 @@ void testHttpHeaderSet() {
       break;
     }
 
-    if(!header->getUrl()->toString()->equals("/demo")) {
+    if(!header->getUrl()->toString()->sameAs("/demo")) {
       TEST_FAIL("[HttpHeader test Set case2]  url is %s",header->getUrl()->toString()->toChars());
       break;
     }
 
-    if(!header->getVersion()->toString()->equals("HTTP/1.1")) {
+    if(!header->getVersion()->toString()->sameAs("HTTP/1.1")) {
       TEST_FAIL("[HttpHeader test Set case3]  ver is %s",header->getVersion()->toString()->toChars());
       break;
     }
@@ -112,13 +112,13 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptEncodingItem encodingItem0 = encodings->get(0);
-    if(!encodingItem0->type->equals("deflate")) {
+    if(!encodingItem0->type->sameAs("deflate")) {
       TEST_FAIL("[HttpHeader test Set case9]");
       break;
     }
 
     HttpHeaderAcceptEncodingItem encodingItem1 = encodings->get(1);
-    if(!encodingItem1->type->equals("gzip")) {
+    if(!encodingItem1->type->sameAs("gzip")) {
       TEST_FAIL("[HttpHeader test Set case10]");
       break;
     }
@@ -129,7 +129,7 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptEncodingItem encodingItem2 = encodings->get(2);
-    if(!encodingItem2->type->equals("*")) {
+    if(!encodingItem2->type->sameAs("*")) {
       TEST_FAIL("[HttpHeader test Set case12]");
       break;
     }
@@ -148,13 +148,13 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptLanguageItem langItem1 = langs->get(0);
-    if(!langItem1->lang->equals("fr-CH")) {
+    if(!langItem1->lang->sameAs("fr-CH")) {
       TEST_FAIL("[HttpHeader test Set case15]");
       break;
     }
 
     HttpHeaderAcceptLanguageItem langItem2 = langs->get(1);
-    if(!langItem2->lang->equals("fr")) {
+    if(!langItem2->lang->sameAs("fr")) {
       TEST_FAIL("[HttpHeader test Set case16]");
       break;
     }
@@ -165,7 +165,7 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptLanguageItem langItem3 = langs->get(2);
-    if(!langItem3->lang->equals("en")) {
+    if(!langItem3->lang->sameAs("en")) {
       TEST_FAIL("[HttpHeader test Set case18]");
       break;
     }
@@ -176,7 +176,7 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptLanguageItem langItem4 = langs->get(3);
-    if(!langItem4->lang->equals("de")) {
+    if(!langItem4->lang->sameAs("de")) {
       TEST_FAIL("[HttpHeader test Set case20]");
       break;
     }
@@ -187,7 +187,7 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptLanguageItem langItem5 = langs->get(4);
-    if(!langItem5->lang->equals("*")) {
+    if(!langItem5->lang->sameAs("*")) {
       TEST_FAIL("[HttpHeader test Set case22]");
       break;
     }
@@ -201,13 +201,13 @@ void testHttpHeaderSet() {
     HttpHeaderAcceptPatch patch = header->getAcceptPatch();
     ArrayList<HttpHeaderAcceptPatchItem> patches = patch->get();
     HttpHeaderAcceptPatchItem patchItem1 = patches->get(0);
-    if(!patchItem1->type->equals("application/example")) {
+    if(!patchItem1->type->sameAs("application/example")) {
       TEST_FAIL("[HttpHeader test Set case24]");
       break;
     }
 
     HttpHeaderAcceptPatchItem patchItem2 = patches->get(1);
-    if(!patchItem2->type->equals("text/example")) {
+    if(!patchItem2->type->sameAs("text/example")) {
       TEST_FAIL("[HttpHeader test Set case25]");
       break;
     }
@@ -221,19 +221,19 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptItem acceptItem1 = accepts->get(0);
-    if(!acceptItem1->type->equals("text/html")) {
+    if(!acceptItem1->type->sameAs("text/html")) {
       TEST_FAIL("[HttpHeader test Set case26]  ,type is %s",acceptItem1->type->toChars());
       break;
     }
 
     HttpHeaderAcceptItem acceptItem2 = accepts->get(1);
-    if(!acceptItem2->type->equals("application/xhtml+xml")) {
+    if(!acceptItem2->type->sameAs("application/xhtml+xml")) {
       TEST_FAIL("[HttpHeader test Set case27]");
       break;
     }
 
     HttpHeaderAcceptItem acceptItem3 = accepts->get(2);
-    if(!acceptItem3->type->equals("application/xml")) {
+    if(!acceptItem3->type->sameAs("application/xml")) {
       TEST_FAIL("[HttpHeader test Set case28]");
       break;
     }
@@ -244,7 +244,7 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderAcceptItem acceptItem4 = accepts->get(3);
-    if(!acceptItem4->type->equals("*/*")) {
+    if(!acceptItem4->type->sameAs("*/*")) {
       TEST_FAIL("[HttpHeader test Set case30]");
       break;
     }
@@ -256,19 +256,19 @@ void testHttpHeaderSet() {
 
     //"Allow: GET, POST, HEAD\r"
     String allow = header->get("Allow");
-    if(!allow->equals("GET, POST, HEAD")) {
+    if(!allow->sameAs("GET, POST, HEAD")) {
       TEST_FAIL("[HttpHeader test Set case32]  ,allow is %s",allow->toChars());
       break;
     }
 
     //Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
     HttpHeaderAuthorization authorization = header->getAuthorization();
-    if(!authorization->type->equals("Basic")) {
+    if(!authorization->type->sameAs("Basic")) {
       TEST_FAIL("[HttpHeader test Set case33]  ,allow is %s",allow->toChars());
       break;
     }
 
-    if(!authorization->credentials->equals("YWxhZGRpbjpvcGVuc2VzYW1l")) {
+    if(!authorization->credentials->sameAs("YWxhZGRpbjpvcGVuc2VzYW1l")) {
       TEST_FAIL("[HttpHeader test Set case34]");
       break;
     }
@@ -280,19 +280,19 @@ void testHttpHeaderSet() {
       break;
     }
 
-    if(!contentDisp->getName()->equals("fieldName")) {
+    if(!contentDisp->getName()->sameAs("fieldName")) {
       TEST_FAIL("[HttpHeader test Set case36]");
       break;
     }
 
-    if(!contentDisp->getFileName()->equals("filename.jpg")) {
+    if(!contentDisp->getFileName()->sameAs("filename.jpg")) {
       TEST_FAIL("[HttpHeader test Set case37]");
       break;
     }
 
     //Content-Encoding: identity
     String contentEncoding = header->get("Content-Encoding");
-    if(!contentEncoding->equals("identity")) {
+    if(!contentEncoding->sameAs("identity")) {
       TEST_FAIL("[HttpHeader test Set case38]");
       break;
     }
@@ -319,24 +319,24 @@ void testHttpHeaderSet() {
     }
 
     HttpHeaderLink link = links->get(0);
-    if(!link->url->equals("https://example.com")) {
+    if(!link->url->sameAs("https://example.com")) {
       TEST_FAIL("[HttpHeader test Set case42]");
       break;
     }
 
-    if(!link->rel->equals("preload")) {
+    if(!link->rel->sameAs("preload")) {
       TEST_FAIL("[HttpHeader test Set case43]");
       break;
     }
 
     //X-Frame-Options: allow-from https://example.com/
     HttpHeaderXFrameOptions xframeoption = header->getXFrameOptions();
-    if(!xframeoption->option->equals("allow-from")) {
+    if(!xframeoption->option->sameAs("allow-from")) {
       TEST_FAIL("[HttpHeader test Set case44]");
       break;
     }
 
-    if(!xframeoption->uri->equals("https://example.com/")) {
+    if(!xframeoption->uri->sameAs("https://example.com/")) {
       TEST_FAIL("[HttpHeader test Set case45]");
       break;
     }

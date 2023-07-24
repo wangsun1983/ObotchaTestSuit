@@ -22,7 +22,7 @@ void testEncodingParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("text/html")) {
+    if(!encodings->get(0)->type->sameAs("text/html")) {
         TEST_FAIL("[HttpHeaderAccept test Parse case2]");
         break;
     }
@@ -38,7 +38,7 @@ void testEncodingParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("image/*")) {
+    if(!encodings->get(0)->type->sameAs("image/*")) {
         TEST_FAIL("[HttpHeaderAccept test Parse case4]");
         break;
     }
@@ -55,10 +55,10 @@ void testEncodingParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("text/html")
-      ||!encodings->get(1)->type->equals("application/xhtml+xml")
-      ||!encodings->get(2)->type->equals("application/xml")
-      ||!encodings->get(3)->type->equals("*/*")) {
+    if(!encodings->get(0)->type->sameAs("text/html")
+      ||!encodings->get(1)->type->sameAs("application/xhtml+xml")
+      ||!encodings->get(2)->type->sameAs("application/xml")
+      ||!encodings->get(3)->type->sameAs("*/*")) {
         TEST_FAIL("[HttpHeaderAccept test Parse case6]");
         break;
     }

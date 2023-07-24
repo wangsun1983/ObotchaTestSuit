@@ -69,8 +69,8 @@ void testFileInputStreamSeekTo() {
     }
 
     Md md5 = createMd();
-    String v3 = md5->encrypt(createFile("./tmp/data.txt"));
-    String v4 = md5->encrypt(createFile("./tmp/read_to_case2.txt"));
+    String v3 = md5->encodeFile(createFile("./tmp/data.txt"));
+    String v4 = md5->encodeFile(createFile("./tmp/read_to_case2.txt"));
     if(v3 != v4) {
       TEST_FAIL("testFileInputStreamRead test4 ");
       break;

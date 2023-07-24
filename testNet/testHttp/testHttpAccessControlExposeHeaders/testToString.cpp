@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
     c->load("Content-Length, X-Kuma-Revision");
-    if(c->toString()->equals("Content-Length, X-Kuma-Revision")) {
+    if(c->toString()->sameAs("Content-Length, X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]");
       break;
     }
@@ -30,7 +30,7 @@ void testToString() {
     header->setExposeHeaders(c);
     
     auto c2 = header->getExposeHeaders();
-    if(c2->toString()->equals("Content-Length, X-Kuma-Revision")) {
+    if(c2->toString()->sameAs("Content-Length, X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case2]");
       break;
     }

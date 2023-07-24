@@ -21,17 +21,17 @@ void testParse() {
       break;
     }
 
-    if(!list->get(0)->equals("DPR")) {
+    if(!list->get(0)->sameAs("DPR")) {
       TEST_FAIL("[HttpHeaderAcceptCh test Parse case2]");
       break;
     }
 
-    if(!list->get(1)->equals("Viewport-Width")) {
+    if(!list->get(1)->sameAs("Viewport-Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test Parse case3]");
       break;
     }
 
-    if(!list->get(2)->equals("Width")) {
+    if(!list->get(2)->sameAs("Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test Parse case4]");
       break;
     }

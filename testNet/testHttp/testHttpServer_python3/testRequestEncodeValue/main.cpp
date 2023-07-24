@@ -39,11 +39,11 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             HttpUrlEncodedValue v = createHttpUrlEncodedValue(entity->getContent()->toString());
             
             //printf("key1 is %s,vaue1 is %s \n",keyvalue1->getKey()->toChars(),keyvalue1->getValue()->toChars());
-            if(!v->get("tag1")->equals("value1")) {
+            if(!v->get("tag1")->sameAs("value1")) {
                 TEST_FAIL("TestHttpServer Request Encode test1");
             }
 
-            if(!v->get("tag2")->equals("value2")) {
+            if(!v->get("tag2")->sameAs("value2")) {
                 TEST_FAIL("TestHttpServer Request Encode test2");
             }
             

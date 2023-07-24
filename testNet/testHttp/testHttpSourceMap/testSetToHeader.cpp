@@ -19,7 +19,7 @@ void testSetToHeader() {
     
     HttpHeaderSourceMap timing = header->getSourceMap();
     timing->load("/path/to/file.js.map");
-    if(!timing->get()->equals("/path/to/file.js.map")) {
+    if(!timing->get()->sameAs("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test SetToHeader case1]");
       break;
     }

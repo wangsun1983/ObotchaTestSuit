@@ -11,13 +11,13 @@ void formattest() {
 
     while(1) {
     String str = st(String)::Format("i say %s","hello");
-    if(!str->equals("i say hello")){
+    if(!str->sameAs("i say hello")){
       TEST_FAIL("[String Format Test {format()} case1]");
       break;
     }
 
     str = st(String)::Format("%d,%s",1,"a");
-    if(!str->equals("1,a")) {
+    if(!str->sameAs("1,a")) {
       TEST_FAIL("[String Format Test {format()} case2]");
       break;
     }

@@ -16,7 +16,7 @@ void testToString() {
     HttpHeaderOrigin match = createHttpHeaderOrigin();
     match->load("");
     
-    if(!match->toString()->equals("")){
+    if(!match->toString()->sameAs("")){
       TEST_FAIL("[HttpHeaderOrigin test toString case1]");
       break;
     }
@@ -27,7 +27,7 @@ void testToString() {
   while(1) {
     HttpHeaderOrigin match = createHttpHeaderOrigin();
     match->load("https://developer.mozilla.org:1234");
-    if(!match->toString()->equals("https://developer.mozilla.org:1234")){
+    if(!match->toString()->sameAs("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderOrigin test toString case2]");
       break;
     }
@@ -41,7 +41,7 @@ void testToString() {
     match->load("https://developer.mozilla.org:1234");
     header->setOrigin(match);
     auto match2 = header->getOrigin();
-    if(!match2->toString()->equals("https://developer.mozilla.org:1234")){
+    if(!match2->toString()->sameAs("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderOrigin test toString case3]");
       break;
     }

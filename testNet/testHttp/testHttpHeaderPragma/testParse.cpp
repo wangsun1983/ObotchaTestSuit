@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
     pragma->load(" no-cache ");
-    if(!pragma->get()->equals("no-cache")){
+    if(!pragma->get()->sameAs("no-cache")){
       TEST_OK("[HttpHeaderPragma test parse case1]");
       break;
     }

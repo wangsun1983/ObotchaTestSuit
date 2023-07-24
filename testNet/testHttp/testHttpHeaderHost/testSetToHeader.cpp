@@ -18,7 +18,7 @@ void testSetToHeader() {
     header->set(createString("host"),createString(" developer.mozilla.org:1234"));
     auto digest = header->getHost();
     auto host = digest->getHost();
-    if(!host->equals("developer.mozilla.org")) {
+    if(!host->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test setToHeader case1] host is%s\n",host->toChars());
       break;
     }
@@ -38,7 +38,7 @@ void testSetToHeader() {
     
     auto digest = header->getHost();
     auto host = digest->getHost();
-    if(!host->equals("developer.mozilla.org")) {
+    if(!host->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderHost test setToHeader case3]");
       break;
     }

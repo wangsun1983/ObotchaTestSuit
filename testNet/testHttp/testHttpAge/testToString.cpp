@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAge c = createHttpHeaderAge();
     c->load("600");
-    if(!c->toString()->equals("600")) {
+    if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAge test toString case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderAge c = createHttpHeaderAge();
     c->set(600);
-    if(!c->toString()->equals("600")) {
+    if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAge test toString case2]");
       break;
     }

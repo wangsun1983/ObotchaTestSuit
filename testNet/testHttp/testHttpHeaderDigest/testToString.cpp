@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderDigest digest = createHttpHeaderDigest();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
-    if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
+    if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
       TEST_FAIL("[testHttpHeaderDigest test toString case1]");
     }
 
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderDigest digest = createHttpHeaderDigest();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637");
-    if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
+    if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
       TEST_FAIL("[testHttpHeaderDigest test toString case2]");
     }
     break;
@@ -34,7 +34,7 @@ void testToString() {
     HttpHeaderDigest digest = createHttpHeaderDigest();
     digest->add("sha-256","X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     digest->add("unixsum","30637");
-    if(!digest->toString()->equals("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
+    if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
       TEST_FAIL("[testHttpHeaderDigest test toString case3]");
     }
     break;

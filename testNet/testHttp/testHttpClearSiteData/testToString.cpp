@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
     c->load("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
-    if(!c->toString()->equals("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
+    if(!c->toString()->sameAs("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
       TEST_FAIL("[HttpHeaderClearSiteData test toString case1],str is %s",c->toString()->toChars());
     }
     break;
@@ -27,7 +27,7 @@ void testToString() {
     c->setCookies(true);
     c->setExecutionContexts(true);
     c->setStorage(true);
-    if(!c->toString()->equals("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
+    if(!c->toString()->sameAs("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
       TEST_FAIL("[HttpHeaderClearSiteData test toString case2],str is %s",c->toString()->toChars());
     }
     break;

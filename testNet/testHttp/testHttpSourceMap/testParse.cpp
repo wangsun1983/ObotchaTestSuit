@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
     timing->load("/path/to/file.js.map");
-    if(!timing->get()->equals("/path/to/file.js.map")) {
+    if(!timing->get()->sameAs("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test Parse case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testParse() {
   while(1) {
     HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
     timing->set("/path/to/file.js.map");
-    if(!timing->get()->equals("/path/to/file.js.map")) {
+    if(!timing->get()->sameAs("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test Parse case2]");
       break;
     }

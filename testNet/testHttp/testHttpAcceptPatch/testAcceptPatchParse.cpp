@@ -20,8 +20,8 @@ void testPatchParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("application/example")
-      || !encodings->get(1)->type->equals("text/example")) {
+    if(!encodings->get(0)->type->sameAs("application/example")
+      || !encodings->get(1)->type->sameAs("text/example")) {
         TEST_FAIL("[HttpHeaderAcceptPatch test Parse case2]");
         break;
     }
@@ -37,12 +37,12 @@ void testPatchParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("text/example")) {
+    if(!encodings->get(0)->type->sameAs("text/example")) {
         TEST_FAIL("[HttpHeaderAcceptPatch test Parse case4]");
         break;
     }
 
-    if(!encodings->get(0)->charset->equals("utf-8")) {
+    if(!encodings->get(0)->charset->sameAs("utf-8")) {
         TEST_FAIL("[HttpHeaderAcceptPatch test Parse case4]");
         break;
     }
@@ -59,7 +59,7 @@ void testPatchParse() {
       break;
     }
 
-    if(!encodings->get(0)->type->equals("application/merge-patch+json")) {
+    if(!encodings->get(0)->type->sameAs("application/merge-patch+json")) {
         TEST_FAIL("[HttpHeaderAcceptPatch test Parse case6]");
         break;
     }

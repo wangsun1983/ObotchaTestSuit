@@ -15,7 +15,7 @@ void testGetSet() {
   while(1) {
     HttpHeaderPragma pragma = createHttpHeaderPragma();
     pragma->set(" no-cache ");
-    if(!pragma->toString()->equals("no-cache")){
+    if(!pragma->toString()->sameAs("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test set case1]");
       break;
     }
@@ -28,7 +28,7 @@ void testGetSet() {
     HttpHeader header = createHttpHeader();
     header->setPragma(pragma);
     
-    if(!header->getPragma()->toString()->equals("no-cache")){
+    if(!header->getPragma()->toString()->sameAs("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test set case2]");
       break;
     }

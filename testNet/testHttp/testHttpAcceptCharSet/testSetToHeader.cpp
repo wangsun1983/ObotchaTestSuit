@@ -24,7 +24,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("iso-8859-1")) {
+    if(!charsets->get(0)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case2]");
         break;
     }
@@ -42,12 +42,12 @@ void testSetToHeader() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("utf-8")) {
+    if(!charsets->get(0)->type->sameAs("utf-8")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case4]");
         break;
     }
 
-    if(!charsets->get(1)->type->equals("iso-8859-1")) {
+    if(!charsets->get(1)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case5]");
         break;
     }
@@ -70,12 +70,12 @@ void testSetToHeader() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("utf-8")) {
+    if(!charsets->get(0)->type->sameAs("utf-8")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case8]");
         break;
     }
 
-    if(!charsets->get(1)->type->equals("iso-8859-1")) {
+    if(!charsets->get(1)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case9]");
         break;
     }
@@ -85,7 +85,7 @@ void testSetToHeader() {
         break;
     }
 
-    if(!charsets->get(2)->type->equals("*")) {
+    if(!charsets->get(2)->type->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case11]");
         break;
     }

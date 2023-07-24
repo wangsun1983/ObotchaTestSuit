@@ -17,7 +17,7 @@ void testSet() {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     HttpDate date = createHttpDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT "));
     retryAfter->setDate(date);
-    if(!retryAfter->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!retryAfter->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderRetryAfter test set case1]");
     }
     break;
@@ -27,7 +27,7 @@ void testSet() {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     //retryAfter->load(" 120 ");
     retryAfter->setDelayInterval(120);
-    if(!retryAfter->toString()->equals("120")) {
+    if(!retryAfter->toString()->sameAs("120")) {
       TEST_FAIL("[HttpHeaderRetryAfter test set case2]");
     }
     break;

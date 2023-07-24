@@ -15,7 +15,7 @@ using namespace obotcha;
 void testGetMethodName() {
   while(1) {
     HttpPost post = createHttpPost("https://abc.com");
-    if(!post->getMethodName()->equals("POST")) {
+    if(!post->getMethodName()->sameAs("POST")) {
         TEST_FAIL("[HttpPost test GetMethodName case1]");
     }
     break;

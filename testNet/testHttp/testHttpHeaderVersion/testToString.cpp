@@ -17,7 +17,7 @@ void testToString() {
     HttpHeaderVersion version = createHttpHeaderVersion();
     version->setMajorVer(3);
     version->setMinorVer(2);
-    if(!version->toString()->equals("HTTP/3.2")) {
+    if(!version->toString()->sameAs("HTTP/3.2")) {
         TEST_FAIL("[HttpHeaderVersion test toString case1]");
     }
     break;

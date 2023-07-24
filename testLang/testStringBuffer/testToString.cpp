@@ -7,7 +7,7 @@ void testToString() {
     while(1) {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append("abc","abc2","abc3");
-      if(!buffer->toString(0,4)->equals("abca")) {
+      if(!buffer->toString(0,4)->sameAs("abca")) {
         TEST_FAIL("StringBuffer toString test1");
       }
       break;
@@ -16,7 +16,7 @@ void testToString() {
     while(1) {
       StringBuffer buffer = createStringBuffer(1);
       buffer->append('a','b','c');
-      if(!buffer->toString(0,2)->equals("ab")) {
+      if(!buffer->toString(0,2)->sameAs("ab")) {
         TEST_FAIL("StringBuffer toString test2");
       }
       break;

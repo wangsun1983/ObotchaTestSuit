@@ -211,7 +211,7 @@ void basetest() {
       MyData t;
       t.i = 100;
       t.j = 120;
-      ByteArray arr = createByteArray((const byte *) &t,sizeof(struct MyData));
+      ByteArray arr = createByteArray((byte *)&t,sizeof(struct MyData));
       struct MyData * t1 = (struct MyData *)arr->toValue();
       if(t1->i != t.i
         ||t1->j != t.j) {

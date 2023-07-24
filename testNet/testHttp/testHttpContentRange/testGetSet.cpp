@@ -19,7 +19,7 @@ void testGetSet() {
     range->setStart(200);
     range->setEnd(1000);
     range->setSize(67589);
-    if(!range->toString()->equals("bytes 200-1000/67589")) {
+    if(!range->toString()->sameAs("bytes 200-1000/67589")) {
       TEST_FAIL("[HttpHeaderContentRange testGetSet case1] range is %s",range->toString()->toChars());
       break;
     }

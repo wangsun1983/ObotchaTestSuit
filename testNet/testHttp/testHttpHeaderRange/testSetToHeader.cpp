@@ -17,7 +17,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Range"),createString("bytes=200-1000, 2000-6576, 19000-"));
     auto range = header->getRange();
-    if(!range->getUnit()->equals("bytes")) {
+    if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case1]");
       break;
     }

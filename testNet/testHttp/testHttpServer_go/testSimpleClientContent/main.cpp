@@ -51,7 +51,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 step = 1;
               } else {
                 String entity = msg->getEntity()->getContent()->toString();
-                if(!entity->equals("hello this is client")) {
+                if(!entity->sameAs("hello this is client")) {
                   TEST_FAIL("TestHttpServer_Go SimpleClientContent test1,entity is %s",entity->toChars());
                 }
                 connectlatch->countDown();

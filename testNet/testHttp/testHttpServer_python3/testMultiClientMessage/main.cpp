@@ -48,7 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           case st(NetEvent)::Message: {
               auto data = msg->getEntity()->getContent()->toString();
               //printf("get data is %s \n",data->toChars());
-              if(data->equals("hello world")) {
+              if(data->sameAs("hello world")) {
                 messageLatch->countDown();
               }
               

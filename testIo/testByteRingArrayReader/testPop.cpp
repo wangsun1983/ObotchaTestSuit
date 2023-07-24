@@ -103,13 +103,13 @@ void test_pop() {
     array2[0] = 6;
     array2[1] = 7;
     ringarray->push(array2);
-    int status = st(ByteRingArrayReader)::Continue;
+    int status = ContinueRead;
     reader = createByteRingArrayReader(ringarray);
     byte ind = 2;
     while(1) {
         byte value = 0;
         status = reader->readNext(value);
-        if(status == st(ByteRingArrayReader)::NoContent) {
+        if(status == NoContentRead) {
           break;
         }
 
@@ -135,9 +135,9 @@ void test_pop() {
     //         |end    |start
     ringarray = createStartBiggerThanEnd();
     reader = createByteRingArrayReader(ringarray);
-    status = st(ByteRingArrayReader)::Continue;
+    status = ContinueRead;
 
-    while(status != st(ByteRingArrayReader)::NoContent) {
+    while(status != NoContentRead) {
         byte value = 0;
         status = reader->readNext(value);
         ind++;

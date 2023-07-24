@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderContentSecurityPolicy policy = createHttpHeaderContentSecurityPolicy();
     policy->load("default-src   'self'; img-src *;  media-src media1.com   media2.com; script-src   userscripts.example.com");
-    if(!policy->toString()->equals("default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com")) {
+    if(!policy->toString()->sameAs("default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicyReportOnly test toString case1],str is %s",policy->toString()->toChars());
     }
     break;

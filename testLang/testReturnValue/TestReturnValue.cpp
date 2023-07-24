@@ -21,7 +21,7 @@ DefRet(String,Integer) getValue() {
 
 void testReturnValue() {
   FetchRet(v1,v2) = getValue();
-  if(v1 == nullptr || !v1->equals("hello1")) {
+  if(v1 == nullptr || !v1->sameAs("hello1")) {
     TEST_FAIL("testReturnValue case1");
   }
 

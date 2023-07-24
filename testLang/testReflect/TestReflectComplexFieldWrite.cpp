@@ -109,7 +109,7 @@ void testReflectComplexFieldWrite() {
         break;
       }
 
-      if(!data->data1->complexMember1->stringData->equals("a")) {
+      if(!data->data1->complexMember1->stringData->sameAs("a")) {
         TEST_FAIL("Reflect Reflect Complex Write test6");
         break;
       }

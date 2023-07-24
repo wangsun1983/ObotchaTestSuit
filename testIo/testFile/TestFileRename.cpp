@@ -22,7 +22,7 @@ void testFileRename() {
     stream->writeString("aaaabbbccc");
     stream->flush();
     stream->close();
-    auto md1 = md->encrypt(file);
+    auto md1 = md->encodeFile(file);
     
     file->rename("tt.cpp");
     
@@ -30,7 +30,7 @@ void testFileRename() {
         TEST_FAIL("[File Test {rename()} case1]");
     }
     
-    if(!file->getName()->equals("tt.cpp")) {
+    if(!file->getName()->sameAs("tt.cpp")) {
         TEST_FAIL("[File Test {rename()} case2]");
     }
     
@@ -38,7 +38,7 @@ void testFileRename() {
         TEST_FAIL("[File Test {rename()} case3]");
     }
     
-    auto md2 = md->encrypt(file);
+    auto md2 = md->encodeFile(file);
     if(!md1->equals(md2)) {
         TEST_FAIL("[File Test {rename()} case4]");
     }

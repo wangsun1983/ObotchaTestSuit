@@ -29,7 +29,7 @@ void testMappedFileOutputStream() {
       ByteArray dd = createByteArray(256);
       fstream->read(dd);
 
-      if(!dd->toString()->equals("abcdefworld,this is a test data.")) {
+      if(!dd->toString()->sameAs("abcdefworld,this is a test data.")) {
         TEST_FAIL("MappedFileOutputStream Test case1");
       }
       break;
@@ -47,7 +47,7 @@ void testMappedFileOutputStream() {
       ByteArray dd = createByteArray(256);
       fstream->read(dd);
 
-      if(!dd->toString()->equals("c")) {
+      if(!dd->toString()->sameAs("c")) {
         TEST_FAIL("MappedFileOutputStream Test case2");
       }
       break;

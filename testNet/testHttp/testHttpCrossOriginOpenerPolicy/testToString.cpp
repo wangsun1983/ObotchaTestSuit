@@ -17,7 +17,7 @@ void testToString() {
     HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
     policy->load("unsafe-none");
     
-    if(!policy->toString()->equals("unsafe-none")) {
+    if(!policy->toString()->sameAs("unsafe-none")) {
       TEST_FAIL("[CrossOriginOpenerPolicy test toString case1]");
     }
     break;
@@ -27,7 +27,7 @@ void testToString() {
     HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
     policy->setAsUnSafeNone();
     
-    if(!policy->toString()->equals("unsafe-none")) {
+    if(!policy->toString()->sameAs("unsafe-none")) {
       TEST_FAIL("[CrossOriginOpenerPolicy test toString case2]");
     }
     break;
@@ -37,7 +37,7 @@ void testToString() {
     HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
     policy->setAsSameOrigin();
     
-    if(!policy->toString()->equals("same-origin")) {
+    if(!policy->toString()->sameAs("same-origin")) {
       TEST_FAIL("[CrossOriginOpenerPolicy test toString case3]");
     }
     break;
@@ -47,7 +47,7 @@ void testToString() {
     HttpHeaderCrossOriginOpenerPolicy policy = createHttpHeaderCrossOriginOpenerPolicy();
     policy->setAsSameOriginAllowPopups();
     
-    if(!policy->toString()->equals("same-origin-allow-popups")) {
+    if(!policy->toString()->sameAs("same-origin-allow-popups")) {
       TEST_FAIL("[CrossOriginOpenerPolicy test toString case4]");
     }
     break;

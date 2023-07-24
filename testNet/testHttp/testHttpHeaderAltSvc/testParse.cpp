@@ -22,12 +22,12 @@ void testParse() {
     }
 
     auto item1 = svcList->get(0);
-    if(!item1->serviceName->equals("h2")) {
+    if(!item1->serviceName->sameAs("h2")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case2]");
       break;
     }
 
-    if(!item1->url->getHost()->equals("alt.example.com")) {
+    if(!item1->url->getHost()->sameAs("alt.example.com")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case3]");
       break;
     }
@@ -38,7 +38,7 @@ void testParse() {
     }
 
     auto item2 = svcList->get(1);
-    if(!item2->serviceName->equals("h2")) {
+    if(!item2->serviceName->sameAs("h2")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case5]");
       break;
     }
@@ -75,12 +75,12 @@ void testParse() {
     }
 
     auto item1 = svcList->get(0);
-    if(!item1->serviceName->equals("h2")) {
+    if(!item1->serviceName->sameAs("h2")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case11]");
       break;
     }
 
-    if(!item1->url->getHost()->equals("alt.example.com")) {
+    if(!item1->url->getHost()->sameAs("alt.example.com")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case12]");
       break;
     }
@@ -91,7 +91,7 @@ void testParse() {
     }
 
     auto item2 = svcList->get(1);
-    if(!item2->serviceName->equals("h2")) {
+    if(!item2->serviceName->sameAs("h2")) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case14]");
       break;
     }

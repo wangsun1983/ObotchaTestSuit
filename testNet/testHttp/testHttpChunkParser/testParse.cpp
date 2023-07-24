@@ -29,13 +29,13 @@ void testParse() {
       "This is the data in the first chunk\r\nand this is the second one\r\nconsequence";
 
   ByteRingArray array = createByteRingArray(1024);
-  ByteArray data = createByteArray((const byte *)content,strlen(content));
+  ByteArray data = createByteArray((byte *)content,strlen(content));
   array->push(data);
 
   ByteRingArrayReader reader = createByteRingArray(array);
   HttpChunkParser parser = createHttpChunkParser(reader);
   HttpChunk rs = parser->doParse();
-  if(!rs->getData()->toString()->equals(result)) {
+  if(!rs->getData()->toString()->sameAs(result)) {
     TEST_FAIL("HttpHeaderSecFetchMode test Parse case1,rs is %s \n",rs->getData()->toString()->toChars());
   }
 

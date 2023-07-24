@@ -63,7 +63,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->setIfRange(range);
     auto rr = header->getIfRange();
-    if(rr->getTag()== nullptr || !rr->getTag()->equals("abcds")) {
+    if(rr->getTag()== nullptr || !rr->getTag()->sameAs("abcds")) {
       TEST_FAIL("[HttpHeaderIfRange test setToHeader case8]");
     }
     break;

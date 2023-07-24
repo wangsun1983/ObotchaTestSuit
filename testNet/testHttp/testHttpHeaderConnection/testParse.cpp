@@ -15,7 +15,7 @@ void testConnectionParse() {
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
     connection->load(" keep-alive");
-    if(!connection->get()->equals("keep-alive")) {
+    if(!connection->get()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case1]");
     }
     break;
@@ -24,7 +24,7 @@ void testConnectionParse() {
   while(1) {
     HttpHeaderConnection connection = createHttpHeaderConnection();
     connection->load("close");
-    if(!connection->get()->equals("close")) {
+    if(!connection->get()->sameAs("close")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case2]");
     }
     break;

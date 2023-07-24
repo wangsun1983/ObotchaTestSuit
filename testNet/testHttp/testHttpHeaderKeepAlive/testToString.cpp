@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->load("timeout=5, max=1000");
-    if(!keepAlive->toString()->equals("timeout=5, max=1000")) {
+    if(!keepAlive->toString()->sameAs("timeout=5, max=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->load("1000");
-    if(!keepAlive->toString()->equals("timeout=1000")) {
+    if(!keepAlive->toString()->sameAs("timeout=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case2]");
       break;
     }
@@ -34,7 +34,7 @@ void testToString() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->load("timeout=5");
-    if(!keepAlive->toString()->equals("timeout=5")) {
+    if(!keepAlive->toString()->sameAs("timeout=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case3]");
       break;
     }
@@ -44,7 +44,7 @@ void testToString() {
   while(1) {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->load("Max=5");
-    if(!keepAlive->toString()->equals("max=5")) {
+    if(!keepAlive->toString()->sameAs("max=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case4]");
       break;
     }
@@ -55,7 +55,7 @@ void testToString() {
     HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
     keepAlive->setTimeout(5);
     keepAlive->setMax(1000);
-    if(!keepAlive->toString()->equals("timeout=5, max=1000")) {
+    if(!keepAlive->toString()->sameAs("timeout=5, max=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case5]");
       break;
     }

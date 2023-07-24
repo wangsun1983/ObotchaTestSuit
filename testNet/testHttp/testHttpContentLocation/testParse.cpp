@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderContentLocation location = createHttpHeaderContentLocation();
     location->load("/index.html");
-    if(location->get() == nullptr || !location->get()->equals("/index.html")) {
+    if(location->get() == nullptr || !location->get()->sameAs("/index.html")) {
       TEST_FAIL("[HttpHeaderContentLocation test Parse case1]");
       break;
     }

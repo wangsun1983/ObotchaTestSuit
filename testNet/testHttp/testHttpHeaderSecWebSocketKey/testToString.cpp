@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     upgrade->load(" websocket ");
-    if(!upgrade->toString()->equals("websocket")) {
+    if(!upgrade->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test toString case1]");
     }
     break;

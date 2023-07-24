@@ -168,9 +168,17 @@ void basetest() {
             TEST_FAIL("Boolean equal test5");
         }
 
-        if(!t1->equals(false) || !t2->equals(false) || !t3->equals(true)) {
+        if(!t1->equals(createBoolean(false)) 
+			|| !t2->equals(createBoolean(false)) 
+			|| !t3->equals(createBoolean(true))) {
             TEST_FAIL("Boolean equal test6");
         }
+		
+		if(!t1->sameAs(false)
+			|| !t2->sameAs(false) 
+			|| !t3->sameAs(true)) {
+		    TEST_FAIL("Boolean equal test7");
+		}
 
         TEST_OK("Boolean equal test");
         break;

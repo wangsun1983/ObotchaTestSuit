@@ -19,7 +19,7 @@ void setToHeader() {
     header->set(createString("Expect"),createString("100-continue"));
     auto expect = header->getExpect();
     auto str = expect->get();
-    if(!str->equals("100-continue")) {
+    if(!str->sameAs("100-continue")) {
       TEST_FAIL("[HttpHeaderExpect test setToHeader case1]");
       break;
     }

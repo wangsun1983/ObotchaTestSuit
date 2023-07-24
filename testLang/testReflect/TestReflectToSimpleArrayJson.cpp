@@ -210,13 +210,13 @@ void testReflectToSimpleArrayJson() {
 
     //ArrayList<String> stringlists;
     String v8 = rdata3->stringlists->get(0);
-    if(v8 == nullptr || !v8->equals("a")) {
+    if(v8 == nullptr || !v8->sameAs("a")) {
       TEST_FAIL("Reflect ArrayList To File test16");
       break;
     }
 
     String v9 = rdata3->stringlists->get(1);
-    if(v9 == nullptr || !v9->equals("b")) {
+    if(v9 == nullptr || !v9->sameAs("b")) {
       TEST_FAIL("Reflect ArrayList To File test17");
       break;
     }

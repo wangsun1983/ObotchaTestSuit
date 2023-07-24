@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->load("ON");
-    if(!save->toString()->equals("on")) {
+    if(!save->toString()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderSaveData save = createHttpHeaderSaveData();
     save->load("OFF");
-    if(!save->toString()->equals("off")) {
+    if(!save->toString()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case2]");
       break;
     }
@@ -39,7 +39,7 @@ void testToString() {
     header->setSaveData(save);
     
     auto save2 = header->getSaveData();
-    if(!save2->toString()->equals("off")) {
+    if(!save2->toString()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case3]");
       break;
     }

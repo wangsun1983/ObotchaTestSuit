@@ -28,7 +28,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!expect->getReportUri()->toString()->equals("https://foo.example/report")) {
+    if(!expect->getReportUri()->toString()->sameAs("https://foo.example/report")) {
       TEST_FAIL("[HttpHeaderExpectCT test setToHeader case3],url is [%s]",expect->getReportUri()->toString()->toChars());
       break;
     }

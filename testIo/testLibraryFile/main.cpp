@@ -20,7 +20,7 @@ int main() {
     st(System)::ExecuteForResult(cmd);
 
     LibraryFile file = createLibraryFile(createString("./library/libtest.so"));
-    myfunc t = (myfunc)file->getMethod(createString("start"));
+    myfunc t = file->getMethod<int(*)(int,int)>(createString("start"));
 
     int v1 = 100;
     int v2 = 101;

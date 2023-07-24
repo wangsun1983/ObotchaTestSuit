@@ -64,7 +64,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("*")) {
+    if(!item->sources->get(0)->sameAs("*")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicy test SetToHeader case9]");
       break;
     }
@@ -87,13 +87,13 @@ void testSetToHeader() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("media1.com")) {
+    if(!item->sources->get(0)->sameAs("media1.com")) {
       String str = item->sources->get(0);
       TEST_FAIL("[HttpHeaderContentSecurityPolicy test SetToHeader case13],str is [%s]",str->toChars());
       break;
     }
 
-    if(!item->sources->get(1)->equals("media2.com")) {
+    if(!item->sources->get(1)->sameAs("media2.com")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicy test SetToHeader case14]");
       break;
     }
@@ -116,7 +116,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(!item->sources->get(0)->equals("userscripts.example.com")) {
+    if(!item->sources->get(0)->sameAs("userscripts.example.com")) {
       String str = item->sources->get(0);
 
       TEST_FAIL("[HttpHeaderContentSecurityPolicy test SetToHeader case18]str is [%s]",str->toChars());

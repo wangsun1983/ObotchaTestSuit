@@ -8,7 +8,7 @@ void testReset() {
     buff->append("hello ")
         ->append("world");
 
-    if(!buff->toString()->equals("hello world")) {
+    if(!buff->toString()->sameAs("hello world")) {
       TEST_FAIL("StringBuffer testReset test1");
     }
 

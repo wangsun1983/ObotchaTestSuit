@@ -21,12 +21,12 @@ void testSetToHeader() {
                 createString(" permessage-deflate, client_max_window_bits"));
     auto c = header->getWebSocketExtensions();
     auto list = c->get();
-    if(!list->get(0)->equals("permessage-deflate")) {
+    if(!list->get(0)->sameAs("permessage-deflate")) {
       TEST_FAIL("[HttpHeaderSecWebSocketExtensions test setToHeader case1]");
       break;
     }
 
-    if(!list->get(1)->equals("client_max_window_bits")) {
+    if(!list->get(1)->sameAs("client_max_window_bits")) {
       TEST_FAIL("[HttpHeaderSecWebSocketExtensions test setToHeader case2]");
       break;
     }

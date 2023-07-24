@@ -20,12 +20,12 @@ void testSetToHeader() {
                 createString("X-PINGOTHER, Content-Type"));
     auto c = header->getAccessControlRequestHeaders();
     auto list = c->get();
-    if(!list->get(0)->equals("X-PINGOTHER")) {
+    if(!list->get(0)->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test SetToHeader case1]");
       break;
     }
 
-    if(!list->get(1)->equals("Content-Type")) {
+    if(!list->get(1)->sameAs("Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test SetToHeader case2]");
       break;
     }
@@ -38,7 +38,7 @@ void testSetToHeader() {
                 createString("X-PINGOTHER"));
     auto c = header->getAccessControlRequestHeaders();
     auto list = c->get();
-    if(!list->get(0)->equals("X-PINGOTHER")) {
+    if(!list->get(0)->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test SetToHeader case3]");
       break;
     }

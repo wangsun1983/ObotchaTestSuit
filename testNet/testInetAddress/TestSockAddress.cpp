@@ -24,7 +24,7 @@ void testSockAddress() {
     FetchRet(size,addr) = sockAddr->get();
 
     String ip = createString(inet_ntoa(((sockaddr_in *)addr)->sin_addr));
-    if(!ip->equals("127.1.2.1")) {
+    if(!ip->sameAs("127.1.2.1")) {
       TEST_FAIL("InetAddress sockAddress case4");
     }
 

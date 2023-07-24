@@ -18,7 +18,7 @@ void testSetToHeader() {
     header->set(createString("Pragma"),
                 createString(" no-cache "));
     auto pragma = header->getPragma();
-    if(!pragma->get()->equals("no-cache")){
+    if(!pragma->get()->sameAs("no-cache")){
       TEST_OK("[HttpHeaderPragma test setToHeader case1]");
       break;
     }

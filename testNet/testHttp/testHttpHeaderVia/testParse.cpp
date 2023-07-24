@@ -22,29 +22,29 @@ void testParse() {
     }
     
     auto v0 = list->get(0);
-    if(!v0->version->equals("1.1")) {
+    if(!v0->version->sameAs("1.1")) {
         TEST_FAIL("[HttpHeaderVia test Parse case1]");
     }
     
-    if(!v0->pseudonym->equals("GWA")) {
+    if(!v0->pseudonym->sameAs("GWA")) {
         TEST_FAIL("[HttpHeaderVia test Parse case2]");
     }
     
     auto v1 = list->get(1);
-    if(!v1->version->equals("1.0")) {
+    if(!v1->version->sameAs("1.0")) {
         TEST_FAIL("[HttpHeaderVia test Parse case1]");
     }
     
-    if(!v1->pseudonym->equals("fred")) {
+    if(!v1->pseudonym->sameAs("fred")) {
         TEST_FAIL("[HttpHeaderVia test Parse case2]");
     }
     
     auto v2 = list->get(2);
-    if(!v2->version->equals("1.1")) {
+    if(!v2->version->sameAs("1.1")) {
         TEST_FAIL("[HttpHeaderVia test Parse case1]");
     }
     
-    if(!v2->url->toString()->equals("p.example.net")) {
+    if(!v2->url->toString()->sameAs("p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test Parse case2]");
     }
     break;
@@ -60,33 +60,33 @@ void testParse() {
     }
     
     auto v0 = list->get(0);
-    if(!v0->protocol->equals("Http")) {
+    if(!v0->protocol->sameAs("Http")) {
         TEST_FAIL("[HttpHeaderVia test Parse case4]");
     }
     
-    if(!v0->version->equals("1.1")) {
+    if(!v0->version->sameAs("1.1")) {
         TEST_FAIL("[HttpHeaderVia test Parse case5]");
     }
     
-    if(!v0->pseudonym->equals("GWA")) {
+    if(!v0->pseudonym->sameAs("GWA")) {
         TEST_FAIL("[HttpHeaderVia test Parse case6]");
     }
     
     auto v1 = list->get(1);
-    if(!v1->version->equals("1.0")) {
+    if(!v1->version->sameAs("1.0")) {
         TEST_FAIL("[HttpHeaderVia test Parse case7]");
     }
     
-    if(!v1->pseudonym->equals("fred")) {
+    if(!v1->pseudonym->sameAs("fred")) {
         TEST_FAIL("[HttpHeaderVia test Parse case8]");
     }
     
     auto v2 = list->get(2);
-    if(!v2->version->equals("1.1")) {
+    if(!v2->version->sameAs("1.1")) {
         TEST_FAIL("[HttpHeaderVia test Parse case9]");
     }
     
-    if(!v2->url->toString()->equals("p.example.net")) {
+    if(!v2->url->toString()->sameAs("p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test Parse case10]");
     }
     break;

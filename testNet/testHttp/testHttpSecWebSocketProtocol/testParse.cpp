@@ -18,12 +18,12 @@ void testParse() {
     HttpHeaderSecWebSocketProtocol c = createHttpHeaderSecWebSocketProtocol();
     c->load(" chat, superchat");
     auto list = c->get();
-    if(!list->get(0)->equals("chat")) {
+    if(!list->get(0)->sameAs("chat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test Parse case1]");
       break;
     }
 
-    if(!list->get(1)->equals("superchat")) {
+    if(!list->get(1)->sameAs("superchat")) {
       TEST_FAIL("[HttpHeaderSecWebSocketProtocol test Parse case2]");
       break;
     }

@@ -21,13 +21,13 @@ void testHttpClientConnKey() {
   maps->put(key1,createString("key1"));
 
   String s1 = maps->get(createHttpClientConnKey(1,createString("1"),createString("1"),8888));
-  if(s1 == nullptr || !s1->equals("key1")) {
+  if(s1 == nullptr || !s1->sameAs("key1")) {
     TEST_FAIL("[testHttpClientConnKey test Parse case1]");
   }
 
   maps->put(createHttpClientConnKey(1,createString("1"),createString("1"),8888),createString("key2"));
   s1 = maps->get(createHttpClientConnKey(1,createString("1"),createString("1"),8888));
-  if(s1 == nullptr || !s1->equals("key2")) {
+  if(s1 == nullptr || !s1->sameAs("key2")) {
     TEST_FAIL("[testHttpClientConnKey test Parse case2]");
   }
 

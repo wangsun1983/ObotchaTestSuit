@@ -36,8 +36,8 @@ void testZipDecompress() {
     }
 
     Md md = createMd(st(Md)::Md5);
-    String base1 = md->encrypt(createFile("./tmp/base_data"));
-    String decompress1 = md->encrypt(createFile("./tmp/decompress_data/tmp/base_data"));
+    String base1 = md->encodeFile(createFile("./tmp/base_data"));
+    String decompress1 = md->encodeFile(createFile("./tmp/decompress_data/tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Decompress Test case3]");
@@ -66,8 +66,8 @@ void testZipDecompress() {
     }
 
     Md md = createMd(st(Md)::Md5);
-    String base1 = md->encrypt(createFile("./tmp/base_data"));
-    String decompress1 = md->encrypt(createFile("./tmp/decompress_password_data/tmp/base_data"));
+    String base1 = md->encodeFile(createFile("./tmp/base_data"));
+    String decompress1 = md->encodeFile(createFile("./tmp/decompress_password_data/tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Decompress Test case6]");
@@ -79,7 +79,7 @@ void testZipDecompress() {
 
   while(1) {
     Md md = createMd(st(Md)::Md5);
-    String base1 = md->encrypt(createFile("./tmp/base_data"));
+    String base1 = md->encodeFile(createFile("./tmp/base_data"));
 
     ZipFileStream stream = createZipFileStream();
     File baseZipFile = createFile("./tmp/base_zip.zip");
@@ -89,7 +89,7 @@ void testZipDecompress() {
     }
 
     stream->deCompress("./tmp/base_zip.zip");
-    String decompress1 = md->encrypt(createFile("./tmp/base_data"));
+    String decompress1 = md->encodeFile(createFile("./tmp/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Decompress Test case8]");

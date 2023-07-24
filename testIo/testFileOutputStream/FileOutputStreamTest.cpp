@@ -64,7 +64,7 @@ void fileoutput_base_test() {
         }
 
         String cc = content->toString();
-        if(!cc->equals("hello")) {
+        if(!cc->sameAs("hello")) {
             TEST_FAIL("[TestFileOutputStream Test {write(ByteArray)} case3]");
             break;
         }
@@ -101,7 +101,7 @@ void fileoutput_base_test() {
         }
 
         String cc = content->toString();
-        if(!cc->equals("world")) {
+        if(!cc->sameAs("world")) {
             TEST_FAIL("[TestFileOutputStream Test {write(ByteArray,long)} case3]");
             break;
         }
@@ -136,7 +136,7 @@ void fileoutput_base_test() {
         }
 
         String cc = content->toString();
-        if(!cc->equals("nihao,abc")) {
+        if(!cc->sameAs("nihao,abc")) {
             TEST_FAIL("[TestFileOutputStream Test {write(String)} case3]");
             break;
         }

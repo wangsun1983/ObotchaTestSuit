@@ -21,11 +21,11 @@ void testLanguageParse() {
       break;
     }
 
-    if(!languages->get(0)->lang->equals("fr-CH")
-      || !languages->get(1)->lang->equals("fr")
-      || !languages->get(2)->lang->equals("en")
-      || !languages->get(3)->lang->equals("de")
-      || !languages->get(4)->lang->equals("*")) {
+    if(!languages->get(0)->lang->sameAs("fr-CH")
+      || !languages->get(1)->lang->sameAs("fr")
+      || !languages->get(2)->lang->sameAs("en")
+      || !languages->get(3)->lang->sameAs("de")
+      || !languages->get(4)->lang->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case2]");
         break;
     }
@@ -62,37 +62,37 @@ void testLanguageParse() {
     encoding1->load("fr;q=0.9,en,en_a,en_b;q=0.8,de;q=0.7,*;q=0.5");
     auto languages = encoding1->get();
     auto l = languages->get(0);
-    if(!l->lang->equals("fr") || st(Math)::compareFloat(l->weight,0.9) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("fr") || st(Math)::compareFloat(l->weight,0.9) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case7],lan is %s,weight is %f",l->lang->toChars(),l->weight);
       break;
     }
     
     l = languages->get(1);
-    if(!l->lang->equals("en") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("en") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case8]");
       break;
     }
     
     l = languages->get(2);
-    if(!l->lang->equals("en_a") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("en_a") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case9]");
       break;
     }
     
     l = languages->get(3);
-    if(!l->lang->equals("en_b") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("en_b") || st(Math)::compareFloat(l->weight,0.8) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case10]");
       break;
     }
 
     l = languages->get(4);
-    if(!l->lang->equals("de") || st(Math)::compareFloat(l->weight,0.7) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("de") || st(Math)::compareFloat(l->weight,0.7) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case11]");
       break;
     }
   
     l = languages->get(5);
-    if(!l->lang->equals("*") || st(Math)::compareFloat(l->weight,0.5) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("*") || st(Math)::compareFloat(l->weight,0.5) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case12]");
       break;
     }
@@ -105,19 +105,19 @@ void testLanguageParse() {
     encoding1->load("fr-CH,fr,en");
     auto languages = encoding1->get();
     auto l = languages->get(0);
-    if(!l->lang->equals("fr-CH") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("fr-CH") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case13],lan is %s,weight is %f",l->lang->toChars(),l->weight);
       break;
     }
     
     l = languages->get(1);
-    if(!l->lang->equals("fr") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("fr") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case14],lan is %s,weight is %f",l->lang->toChars(),l->weight);
       break;
     }
     
     l = languages->get(2);
-    if(!l->lang->equals("en") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
+    if(!l->lang->sameAs("en") || st(Math)::compareFloat(l->weight,1.0) != st(Math)::AlmostEqual) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test Parse case15],lan is %s,weight is %f",l->lang->toChars(),l->weight);
       break;
     }

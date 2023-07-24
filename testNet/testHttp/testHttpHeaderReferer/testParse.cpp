@@ -39,7 +39,7 @@ void testParse() {
       break;
     }
 
-    if(!url->getHost()->equals("developer.mozilla.org")) {
+    if(!url->getHost()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderReferer test parse case4]");
       break;
     }

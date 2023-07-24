@@ -20,7 +20,7 @@ void testSetToHeader() {
     header->set(createString("Sec-WebSocket-Accept"),createString(" s3pPLMBiTxaQ9kYGzzhZRbK+xOo="));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketAccept();
-    if(!key->get()->equals("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {
+    if(!key->get()->sameAs("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {
       TEST_FAIL("[HttpHeaderSecWebSocketAccept test setToHeader case1]");
     }
     break;

@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->load("navigate");
-    if(!save->toString()->equals("navigate")) {
+    if(!save->toString()->sameAs("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->load("nested-navigate");
-    if(!save->toString()->equals("nested-navigate")) {
+    if(!save->toString()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case2]");
       break;
     }
@@ -34,7 +34,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
     save->set("nested-navigate");
-    if(!save->toString()->equals("nested-navigate")) {
+    if(!save->toString()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case3]");
       break;
     }

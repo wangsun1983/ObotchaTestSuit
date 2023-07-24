@@ -19,11 +19,11 @@ void testSetToHeader() {
                 
     auto links = header->getLinks();
     auto link1 = links->get(0);
-    if(link1->url == nullptr || !link1->url->equals("https://example.com")) {
+    if(link1->url == nullptr || !link1->url->sameAs("https://example.com")) {
       TEST_FAIL("[HttpHeaderLink test Parse case1] link is %s",link1->url->toChars());
     }
 
-    if(!link1->rel->equals("preload")) {
+    if(!link1->rel->sameAs("preload")) {
       TEST_FAIL("[HttpHeaderLink test Parse case2] rel is %s",link1->rel->toChars());
     }
     break;

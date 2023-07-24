@@ -24,7 +24,7 @@ void testMapWrite() {
       auto stream = file->getOutputStream();
       stream->open();
       const char *v = "hello world,this is a mapped file test";
-      ByteArray data = createByteArray((const byte *)v,strlen(v));
+      ByteArray data = createByteArray((byte *)v,strlen(v));
       stream->write(data);
       stream->flush();
 

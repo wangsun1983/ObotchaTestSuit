@@ -70,7 +70,7 @@ void basetest() {
   //bool equals(int p);
   while(1) {
     Byte v1 = createByte(11);
-    if(!v1->equals(11)) {
+    if(!v1->sameAs(11)) {
       TEST_FAIL("Byte equals test4");
       break;
     }

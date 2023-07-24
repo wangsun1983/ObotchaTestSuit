@@ -18,7 +18,7 @@ void testSetToHeader() {
     header->set(createString("Save-Data"),
                 createString("ON"));
     auto save = header->getSaveData();
-    if(!save->get()->equals("on")) {
+    if(!save->get()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test SetToHeader case1]");
       break;
     }
@@ -30,7 +30,7 @@ void testSetToHeader() {
     header->set(createString("Save-Data"),
                 createString("OFF"));
     auto save = header->getSaveData();
-    if(!save->get()->equals("off")) {
+    if(!save->get()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test SetToHeader case2]");
       break;
     }

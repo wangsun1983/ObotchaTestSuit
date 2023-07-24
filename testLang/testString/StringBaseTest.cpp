@@ -36,7 +36,7 @@ void basetest() {
         break;
     }
 
-    if(!str->equals("abc")) {
+    if(!str->sameAs("abc")) {
         TEST_FAIL("BaseTest String construct test4");
         break;
     }
@@ -55,7 +55,7 @@ void basetest() {
         break;
     }
 
-    if(!str2->equals("abc")) {
+    if(!str2->sameAs("abc")) {
         TEST_FAIL("BaseTest String construct test7");
         break;
     }
@@ -80,7 +80,7 @@ void basetest() {
         break;
     }
 
-    if(!str->equals("abc")) {
+    if(!str->sameAs("abc")) {
         TEST_FAIL("BaseTest String construct test10");
         break;
     }
@@ -104,13 +104,13 @@ void basetest() {
   //_String::_String(char *v,int start,int length)
   while(1) {
     String str = createString("abc",1,2);
-    if(!str->equals("bc")) {
+    if(!str->sameAs("bc")) {
         TEST_FAIL("BaseTest String construct test13");
         break;
     }
 
     String str2 = createString("abc",2,1);
-    if(!str2->equals("c")) {
+    if(!str2->sameAs("c")) {
         TEST_FAIL("BaseTest String construct test14");
         break;
     }
@@ -135,7 +135,7 @@ void basetest() {
   while(1) {
     Integer v1 = createInteger(123);
     String str1 = createString(v1);
-    if(!str1->equals("123")) {
+    if(!str1->sameAs("123")) {
       TEST_FAIL("BaseTest String construct test17");
       break;
     }
@@ -160,14 +160,14 @@ void basetest() {
   while(1) {
     Boolean v1 = createBoolean(true);
     String str1 = createString(v1);
-    if(!str1->equals("true")) {
+    if(!str1->sameAs("true")) {
       TEST_FAIL("BaseTest String construct test19");
       break;
     }
 
     Boolean v2 = createBoolean(false);
     String str2 = createString(v2);
-    if(!str2->equals("false")) {
+    if(!str2->sameAs("false")) {
       TEST_FAIL("BaseTest String construct test20");
       break;
     }
@@ -226,14 +226,14 @@ void basetest() {
   while(1) {
     Double v1 = createDouble(1.2);
     String str1 = createString(v1,1);
-    if(!str1->equals("1.2")) {
+    if(!str1->sameAs("1.2")) {
       TEST_FAIL("BaseTest String construct test27");
       break;
     }
 
     Double v2 = createDouble(1.3);
     String str2 = createString(v2,1);
-    if(!str2->equals("1.3")) {
+    if(!str2->sameAs("1.3")) {
       TEST_FAIL("BaseTest String construct test28");
       break;
     }
@@ -260,14 +260,14 @@ void basetest() {
   while(1) {
     Long v1 = createLong(1234567);
     String str1 = createString(v1);
-    if(!str1->equals("1234567")) {
+    if(!str1->sameAs("1234567")) {
       TEST_FAIL("BaseTest String construct test31");
       break;
     }
 
     Long v2 = createLong(345678);
     String str2 = createString(v2);
-    if(!str2->equals("345678")) {
+    if(!str2->sameAs("345678")) {
       TEST_FAIL("BaseTest String construct test32");
       break;
     }
@@ -293,7 +293,7 @@ void basetest() {
   while(1) {
     int v = 100;
     String s = createString(v);
-    if(!s->equals("100")) {
+    if(!s->sameAs("100")) {
       TEST_FAIL("BaseTest String construct test35");
       break;
     }
@@ -306,14 +306,14 @@ void basetest() {
   while(1) {
     bool v = false;
     String s = createString(v);
-    if(!s->equals("false")) {
+    if(!s->sameAs("false")) {
       TEST_FAIL("BaseTest String construct test37");
       break;
     }
 
     bool v2 = true;
     String s2 = createString(v2);
-    if(!s2->equals("true")) {
+    if(!s2->sameAs("true")) {
       TEST_FAIL("BaseTest String construct test38");
       break;
     }
@@ -339,7 +339,7 @@ void basetest() {
   while(1) {
     double v = 100.01;
     String s = createString(v);
-    if(!s->equals("100.01")) {
+    if(!s->sameAs("100.01")) {
       TEST_FAIL("BaseTest String construct test42");
       break;
     }
@@ -352,7 +352,7 @@ void basetest() {
   while(1) {
     long v = 100011;
     String s = createString(v);
-    if(!s->equals("100011")) {
+    if(!s->sameAs("100011")) {
       TEST_FAIL("BaseTest String construct test44");
       break;
     }
@@ -366,7 +366,7 @@ void basetest() {
       String str = createString("AaAbAc");
       String str2 = str->replaceAll("A","t");
       //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
-      if(!str2->equals("tatbtc")) {
+      if(!str2->sameAs("tatbtc")) {
         TEST_FAIL("BaseTest String replaceAll test1");
         break;
       }
@@ -384,11 +384,11 @@ void basetest() {
       break;
     }
 
-    if(!list->get(0)->equals("1")
-      ||!list->get(1)->equals("2")
-      ||!list->get(2)->equals("3")
-      ||!list->get(3)->equals("4")
-      ||!list->get(4)->equals("5")) {
+    if(!list->get(0)->sameAs("1")
+      ||!list->get(1)->sameAs("2")
+      ||!list->get(2)->sameAs("3")
+      ||!list->get(3)->sameAs("4")
+      ||!list->get(4)->sameAs("5")) {
       TEST_FAIL("BaseTest String split test2");
       break;
     }
@@ -434,7 +434,7 @@ void basetest() {
   while(1) {
     String abc = "helloworld";
     String str = abc->subString(1,3);
-    if(!str->equals("ell")) {
+    if(!str->sameAs("ell")) {
       TEST_FAIL("BaseTest String subString test1");
       break;
     }
@@ -460,7 +460,7 @@ void basetest() {
     }
 
     String str4 = abc->subString(5,2);
-    if(!str4->equals("wo")) {
+    if(!str4->sameAs("wo")) {
       TEST_FAIL("BaseTest String subString test4");
       break;
     }
@@ -529,7 +529,7 @@ void basetest() {
       break;
     }
 
-    if(!abc2->equals("a b c")) {
+    if(!abc2->sameAs("a b c")) {
       TEST_FAIL("BaseTest String trim test2");
       break;
     }
@@ -542,7 +542,7 @@ void basetest() {
   while(1) {
     String abc = " a b c d ";
     String abc2 = abc->trimAll();
-    if(!abc2->equals("abcd")) {
+    if(!abc2->sameAs("abcd")) {
       TEST_FAIL("BaseTest String trimAll test1");
       break;
     }
@@ -609,7 +609,7 @@ void basetest() {
     String abc2 = "efg";
     String abc3 = abc->append(abc2);
 
-    if(!abc3->equals("abcdefg")) {
+    if(!abc3->sameAs("abcdefg")) {
       TEST_FAIL("BaseTest String append test1");
       break;
     }
@@ -617,7 +617,7 @@ void basetest() {
 
     String abc6 = "a";
     String abc7 = abc6->append(nullptr);
-    if(!abc7->equals("a")) {
+    if(!abc7->sameAs("a")) {
       TEST_FAIL("BaseTest String append test3");
       break;
     }
@@ -633,11 +633,11 @@ void basetest() {
       String abc = "aaa";
       const char* t1 = "b";
       String r1 = abc->append(t1);
-      if(!r1->equals("aaab")) {
+      if(!r1->sameAs("aaab")) {
         TEST_FAIL("BaseTest String append test4");
         break;
       }
-      if(!abc->equals("aaa")) {
+      if(!abc->sameAs("aaa")) {
         TEST_FAIL("BaseTest String append test5");
         break;
       }
@@ -652,7 +652,7 @@ void basetest() {
     String abc ="123";
     Integer t1 = abc->toInteger();
 
-    if(!t1->equals(123)) {
+    if(!t1->sameAs(123)) {
       TEST_FAIL("BaseTest String toInteger test1");
       break;
     }
@@ -855,7 +855,7 @@ void basetest() {
   while(1) {
     Integer v1 = createInteger(100);
     String a1 = createString(v1);
-    if(!a1->equals("100")) {
+    if(!a1->sameAs("100")) {
       TEST_FAIL("BaseTest String valueOf test1");
       break;
     }
@@ -875,14 +875,14 @@ void basetest() {
   while(1) {
     Boolean v1 = createBoolean(true);
     String a1 = createString(v1);
-    if(!a1->equals("true")) {
+    if(!a1->sameAs("true")) {
       TEST_FAIL("BaseTest String valueOf test3");
       break;
     }
 
     Boolean v2 = createBoolean(false);
     String a2 = createString(v2);
-    if(!a2->equals("false")) {
+    if(!a2->sameAs("false")) {
       TEST_FAIL("BaseTest String valueOf test4");
       break;
     }
@@ -902,7 +902,7 @@ void basetest() {
   while(1) {
     Double v1 = createDouble(100);
     String a1 = createString(v1,1);
-    if(!a1->equals("100.0")) {
+    if(!a1->sameAs("100.0")) {
       //TODO
       TEST_FAIL("BaseTest String valueOf test7");
       break;
@@ -925,7 +925,7 @@ void basetest() {
   while(1) {
     Float v1 = createFloat(100);
     String a1 = createString(v1,1);
-    if(!a1->equals("100.0")) {
+    if(!a1->sameAs("100.0")) {
       TEST_FAIL("BaseTest String valueOf test10");
       break;
     }
@@ -945,14 +945,14 @@ void basetest() {
   while(1) {
     int i = -1;
     String v1 = createString(i);
-    if(!v1->equals("-1")) {
+    if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test13");
       break;
     }
 
     int i2 = 10;
     String v2 = createString(i2);
-    if(!v2->equals("10")) {
+    if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test14");
       break;
     }
@@ -965,14 +965,14 @@ void basetest() {
   while(1) {
     bool i = false;
     String v1 = createString(i);
-    if(!v1->equals("false")) {
+    if(!v1->sameAs("false")) {
       TEST_FAIL("BaseTest String valueOf test16");
       break;
     }
 
     bool i2 = true;
     String v2 = createString(i2);
-    if(!v2->equals("true")) {
+    if(!v2->sameAs("true")) {
       TEST_FAIL("BaseTest String valueOf test17");
       break;
     }
@@ -985,7 +985,7 @@ void basetest() {
   while(1) {
     double i = -1.0;
     String v1 = createString(i);
-    if(!v1->equals("-1")) {
+    if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test19");
       break;
     }
@@ -993,7 +993,7 @@ void basetest() {
     double i2 = 10;
     String v2 = createString(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
-    if(!v2->equals("10")) {
+    if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test20");
       break;
     }
@@ -1006,7 +1006,7 @@ void basetest() {
   while(1) {
     float i = -1.0f;
     String v1 = createString(i);
-    if(!v1->equals("-1")) {
+    if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test22");
       break;
     }
@@ -1014,7 +1014,7 @@ void basetest() {
     float i2 = 10;
     String v2 = createString(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
-    if(!v2->equals("10")) {
+    if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test23");
       break;
     }
@@ -1027,7 +1027,7 @@ void basetest() {
   while(1) {
     const char *p1 = "abc";
     String s1 = createString(p1);
-    if(!s1->equals("abc")) {
+    if(!s1->sameAs("abc")) {
       TEST_FAIL("BaseTest String valueOf test25");
       break;
     }
@@ -1077,19 +1077,19 @@ void basetest() {
   while(1) {
     String s1 = "abc";
     std::string s2 = "abc";
-    if(!s1->equals(s2)) {
+    if(!s1->sameAs(s2)) {
       TEST_FAIL("BaseTest String equals test5 ");
       break;
     }
 
     std::string s3 = "dd";
-    if(s1->equals(s3)) {
+    if(s1->sameAs(s3)) {
       TEST_FAIL("BaseTest String equals test6 ");
       break;
     }
 
     std::string s4;
-    if(s1->equals(s4)) {
+    if(s1->sameAs(s4)) {
       TEST_FAIL("BaseTest String equals test7 ");
       break;
     }
@@ -1102,19 +1102,19 @@ void basetest() {
   while(1) {
     String s1 = "abc";
     const char * s2 = "abc";
-    if(!s1->equals(s2)) {
+    if(!s1->sameAs(s2)) {
       TEST_FAIL("BaseTest String equals test9 ");
       break;
     }
 
     const char *s3 = "dd";
-    if(s1->equals(s3)) {
+    if(s1->sameAs(s3)) {
       TEST_FAIL("BaseTest String equals test10 ");
       break;
     }
 /*
     const char *s4 = nullptr;
-    if(s1->equals(s4)) {
+    if(s1->sameAs(s4)) {
       TEST_FAIL("BaseTest String equals test11 ");
       break;
     }
@@ -1132,21 +1132,21 @@ void basetest() {
   while(1) {
     String abc = "123AbC";
     String t1 = abc->toLowerCase();
-    if(!t1->equals("123abc")) {
+    if(!t1->sameAs("123abc")) {
       TEST_FAIL("BaseTest String toLowerCase test1 ");
       break;
     }
 
     String abc2 = "123";
     String t2 = abc2->toLowerCase();
-    if(!t2->equals("123")) {
+    if(!t2->sameAs("123")) {
       TEST_FAIL("BaseTest String toLowerCase test2 ");
       break;
     }
 
     String abc3 = "123 ABD";
     String t3 = abc3->toLowerCase();
-    if(!t3->equals("123 abd")) {
+    if(!t3->sameAs("123 abd")) {
       TEST_FAIL("BaseTest String toLowerCase test3 ");
       break;
     }
@@ -1160,21 +1160,21 @@ void basetest() {
     String abc = "abc";
     String t1 = abc->toUpperCase();
     //TEST_FAIL("BaseTest t1 is %s \n",t1->toChars());
-    if(!t1->equals("ABC")) {
+    if(!t1->sameAs("ABC")) {
       TEST_FAIL("BaseTest String toUpperCase test1 ");
       break;
     }
 
     String abc2 = "123";
     String t2 = abc2->toUpperCase();
-    if(!t2->equals("123")) {
+    if(!t2->sameAs("123")) {
       TEST_FAIL("BaseTest String toUpperCase test2 ");
       break;
     }
 
     String abc3 = "123 abc";
     String t3 = abc3->toUpperCase();
-    if(!t3->equals("123 ABC")) {
+    if(!t3->sameAs("123 ABC")) {
       TEST_FAIL("BaseTest String toUpperCase test3 ");
       break;
     }
@@ -1188,7 +1188,7 @@ void basetest() {
       String str = createString("AaAbAc");
       String str2 = str->replaceFirst("A","t");
       //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
-      if(!str2->equals("taAbAc")) {
+      if(!str2->sameAs("taAbAc")) {
         TEST_FAIL("BaseTest String replaceFirst test1");
         break;
       }

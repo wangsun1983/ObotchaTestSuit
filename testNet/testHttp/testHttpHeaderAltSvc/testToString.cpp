@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderAltSvc svc = createHttpHeaderAltSvc();
     svc->load(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1");
-    if(!svc->toString()->equals("h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1")) {
+    if(!svc->toString()->sameAs("h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1")) {
       TEST_FAIL("[HttpHeaderAltSvc test toSring case1] svc is %s",svc->toString()->toChars());
       break;
     }
@@ -29,7 +29,7 @@ void testToString() {
                     createString(":443"));
     svc->setMaxAge(2592000);
     svc->setPersist(1);
-    if(!svc->toString()->equals("h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1")) {
+    if(!svc->toString()->sameAs("h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1")) {
       TEST_FAIL("[HttpHeaderAltSvc test toSring case2] svc is [%s]",svc->toString()->toChars());
       break;
     }

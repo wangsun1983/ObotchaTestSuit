@@ -78,8 +78,8 @@ int main() {
     t->join();
     
     Md md5 = createMd();
-    String v1 = md5->encrypt(createFile("./tmp/testdata"));
-    String v2 = md5->encrypt(createFile("./tmp/file"));
+    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
+    String v2 = md5->encodeFile(createFile("./tmp/file"));
     
     if(!v1->equals(v2)) {
         TEST_FAIL("testAsyncOutputChannel case1");

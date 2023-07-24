@@ -18,11 +18,11 @@ void testSetToHeader() {
     header->set(createString("Proxy-Authorization"),
                 createString("Basic YWxhZGRpbjpvcGVuc2VzYW1l"));
     auto proxy = header->getProxyAuthorization();
-    if(!proxy->type->equals("Basic")) {
+    if(!proxy->type->sameAs("Basic")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test setToHeader case10]");
     }
 
-    if(!proxy->credentials->equals("YWxhZGRpbjpvcGVuc2VzYW1l")) {
+    if(!proxy->credentials->sameAs("YWxhZGRpbjpvcGVuc2VzYW1l")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test setToHeader case10]");
     }
 

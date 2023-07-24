@@ -26,7 +26,7 @@ void testMappedFileInputStream() {
          break;
       }
 
-      if(!data->toString()->equals("hello world,this is a test data.")) {
+      if(!data->toString()->sameAs("hello world,this is a test data.")) {
         TEST_FAIL("[MappedFileInputStream Test case2]");
         break;
       }

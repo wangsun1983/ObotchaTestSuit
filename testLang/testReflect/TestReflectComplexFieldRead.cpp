@@ -111,7 +111,7 @@ void testReflectComplexFieldRead() {
 
       f = data1->getField("stringData");
       String v = f->getStringValue();
-      if(v == nullptr || !v->equals("a")|| f->getType() != st(Field)::FieldTypeString) {
+      if(v == nullptr || !v->sameAs("a")|| f->getType() != st(Field)::FieldTypeString) {
         TEST_FAIL("Reflect Complex Field Read test6");
         break;
       }
@@ -181,7 +181,7 @@ void testReflectComplexFieldRead() {
 
       f = data2->getField("stringData");
       v = f->getStringValue();
-      if(v == nullptr || !v->equals("b")|| f->getType() != st(Field)::FieldTypeString) {
+      if(v == nullptr || !v->sameAs("b")|| f->getType() != st(Field)::FieldTypeString) {
         TEST_FAIL("Reflect Complex Field Read test16");
         break;
       }

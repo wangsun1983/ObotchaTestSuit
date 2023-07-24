@@ -66,9 +66,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 isFirst = false;
               } else {
                 ByteArray arr = msg->getEntity()->getContent();
-                if(arr->toString()->equals("failed")) {
+                if(arr->toString()->sameAs("failed")) {
                   TEST_FAIL("TestHttpServer_Go SimpleChunkContent test1")
-                } else if(arr->toString()->equals("ok")) {
+                } else if(arr->toString()->sameAs("ok")) {
                   TEST_OK("TestHttpServer_Go SimpleChunkContent test2")
                   connectlatch->countDown();
                 }

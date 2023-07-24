@@ -26,13 +26,13 @@ void testRepeatRequest() {
       }
 
       auto pac0 = packets->get(0);
-      if(!pac0->getEntity()->getContent()->toString()->equals("HELLO")) {
+      if(!pac0->getEntity()->getContent()->toString()->sameAs("HELLO")) {
         TEST_FAIL("HttpPacketParser repeat message parse case3");
         break;
       }
 
       auto pac1 = packets->get(1);
-      if(!pac1->getEntity()->getContent()->toString()->equals("WORLD")) {
+      if(!pac1->getEntity()->getContent()->toString()->sameAs("WORLD")) {
         TEST_FAIL("HttpPacketParser repeat message parse case4");
         break;
       }

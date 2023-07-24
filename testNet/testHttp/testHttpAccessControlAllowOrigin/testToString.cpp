@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->load("https://developer.mozilla.org");
-    if(!c->toString()->equals("https://developer.mozilla.org")) {
+    if(!c->toString()->sameAs("https://developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->load("*");
-    if(!c->toString()->equals("*")) {
+    if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case2]");
       break;
     }
@@ -35,7 +35,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
     c->set("*");
-    if(!c->toString()->equals("*")) {
+    if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case3]");
       break;
     }

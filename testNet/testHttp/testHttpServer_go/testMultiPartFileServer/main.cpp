@@ -69,8 +69,8 @@ public:
                     File f = file->getFile();
                     //start md5 check
                     Md md5 = createMd();
-                    String v1 = md5->encrypt(createFile("./tmp/testdata"));
-                    String v2 = md5->encrypt(createFile(f->getAbsolutePath()->toChars()));
+                    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
+                    String v2 = md5->encodeFile(createFile(f->getAbsolutePath()->toChars()));
                     if(v1 != v2) {
                       TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
                     } 

@@ -15,7 +15,7 @@ void testToString() {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     ranges->load("none");
 
-    if(!ranges->toString()->equals("none")) {
+    if(!ranges->toString()->sameAs("none")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");
         break;
     }
@@ -26,7 +26,7 @@ void testToString() {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     ranges->load("bytes");
 
-    if(!ranges->toString()->equals("bytes")) {
+    if(!ranges->toString()->sameAs("bytes")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test toString case2]");
         break;
     }
@@ -37,7 +37,7 @@ void testToString() {
     HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     ranges->set("bytes");
 
-    if(!ranges->toString()->equals("bytes")) {
+    if(!ranges->toString()->sameAs("bytes")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test toString case3]");
         break;
     }

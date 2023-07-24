@@ -49,12 +49,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 auto map = encodedValue->getValues();
 
                 auto v1 = map->get(createString("test_tag1"));
-                if(v1 == nullptr || !v1->equals("test_value1")) {
+                if(v1 == nullptr || !v1->sameAs("test_value1")) {
                      TEST_FAIL("TestHttpResponseWriter Request Encode test1");
                 }
 
                 auto v2 = map->get(createString("test_tag2"));
-                if(v2 == nullptr || !v2->equals("test_value2")) {
+                if(v2 == nullptr || !v2->sameAs("test_value2")) {
                      TEST_FAIL("TestHttpResponseWriter Request Encode test2");
                 }
 

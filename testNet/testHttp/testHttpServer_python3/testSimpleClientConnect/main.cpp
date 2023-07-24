@@ -58,7 +58,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 w->write(response);
               } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Post) {
                 String str = msg->getEntity()->getContent()->toString();
-                if(!str->equals("i am client")) {
+                if(!str->sameAs("i am client")) {
                   TEST_FAIL("TestHttpServer SimpleClientConnect test1");
                 } else {
                   testResult = true;

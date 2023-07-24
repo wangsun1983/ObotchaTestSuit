@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->load("navigate");
-    if(!save->toString()->equals("navigate")) {
+    if(!save->toString()->sameAs("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->load("nested-navigate");
-    if(!save->toString()->equals("nested-navigate")) {
+    if(!save->toString()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test toString case2]");
       break;
     }

@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlMaxAge c = createHttpHeaderAccessControlMaxAge();
     c->load("600");
-    if(!c->toString()->equals("600")) {
+    if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAccessControlMaxAge test toString case1]");
       break;
     }

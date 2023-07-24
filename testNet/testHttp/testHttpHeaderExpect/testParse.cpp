@@ -16,7 +16,7 @@ void testParse() {
     HttpHeaderExpect expect = createHttpHeaderExpect();
     expect->load("100-continue");
     auto str = expect->get();
-    if(!str->equals("100-continue")) {
+    if(!str->sameAs("100-continue")) {
       TEST_FAIL("[HttpHeaderExpect test Parse case1]");
       break;
     }

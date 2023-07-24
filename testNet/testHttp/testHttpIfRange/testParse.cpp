@@ -57,7 +57,7 @@ void testParse() {
   while(1) {
     HttpHeaderIfRange range = createHttpHeaderIfRange();
     range->load("\"abcds\"");
-    if(range->getTag()== nullptr || !range->getTag()->equals("abcds")) {
+    if(range->getTag()== nullptr || !range->getTag()->sameAs("abcds")) {
       TEST_FAIL("[HttpHeaderIfRange test Parse case8]");
       break;
     }

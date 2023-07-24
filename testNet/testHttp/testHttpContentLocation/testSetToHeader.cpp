@@ -19,7 +19,7 @@ void testSetToHeader() {
     header->setContentLocation(location);
     
     auto location1 = header->getContentLocation();
-    if(!location1->toString()->equals("/index.html")) {
+    if(!location1->toString()->sameAs("/index.html")) {
       TEST_FAIL("[HttpHeaderContentLocation test setToHeader case1],str is %s",location->toString()->toChars());
       break;
     }

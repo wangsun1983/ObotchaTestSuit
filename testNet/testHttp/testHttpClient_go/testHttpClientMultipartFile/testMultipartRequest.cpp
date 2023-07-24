@@ -51,14 +51,14 @@ void testMultipartRequest() {
 
   //check response 
   ByteArray data = response->getEntity()->getContent();
-  if(!data->toString()->equals("finish")) {
+  if(!data->toString()->sameAs("finish")) {
     TEST_FAIL("testHttpClient testMultipartRequest case1");
   }
 
   //check file
   Md md = createMd();
-  String encrypt1 = md->encrypt(createFile("data"));
-  String encrypt2 = md->encrypt(createFile("./tmp/file1.text"));
+  String encrypt1 = md->encodeFile(createFile("data"));
+  String encrypt2 = md->encodeFile(createFile("./tmp/file1.text"));
   if(!encrypt1->equals(encrypt2)) {
     TEST_FAIL("testHttpClient testMultipartRequest case2");
   }

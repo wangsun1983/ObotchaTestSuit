@@ -22,17 +22,17 @@ void testSetToHeader() {
       break;
     }
 
-    if(!warning->getAgent()->equals("-")) {
+    if(!warning->getAgent()->sameAs("-")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case2]");
       break;
     }
 
-    if(!warning->getText()->equals("cache down")) {
+    if(!warning->getText()->sameAs("cache down")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case3]");
       break;
     }
 
-    if(!warning->getDateTime()->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!warning->getDateTime()->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case4]");
       break;
     }
@@ -51,12 +51,12 @@ void testSetToHeader() {
       break;
     }
 
-    if(!warning->getAgent()->equals("anderson/1.3.37")) {
+    if(!warning->getAgent()->sameAs("anderson/1.3.37")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case6]");
       break;
     }
 
-    if(!warning->getText()->equals("Response is stale")) {
+    if(!warning->getText()->sameAs("Response is stale")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case7]");
       break;
     }
@@ -81,12 +81,12 @@ void testSetToHeader() {
       break;
     }
 
-    if(!warning->getAgent()->equals("anderson/1.3.37")) {
+    if(!warning->getAgent()->sameAs("anderson/1.3.37")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case10]");
       break;
     }
 
-    if(!warning->getText()->equals("Response is stale")) {
+    if(!warning->getText()->sameAs("Response is stale")) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case11]");
       break;
     }

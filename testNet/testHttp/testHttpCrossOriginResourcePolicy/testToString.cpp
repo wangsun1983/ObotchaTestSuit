@@ -17,7 +17,7 @@ void testToString() {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
     policy->load("same-origin ");
     
-    if(!policy->toString()->equals("same-origin")) {
+    if(!policy->toString()->sameAs("same-origin")) {
       TEST_FAIL("[CrossOriginResourcePolicy test toString case1]");
     }
     break;
@@ -27,7 +27,7 @@ void testToString() {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
     policy->setAsSameOrigin();
     
-    if(!policy->toString()->equals("same-origin")) {
+    if(!policy->toString()->sameAs("same-origin")) {
       TEST_FAIL("[CrossOriginResourcePolicy test toString case2]");
     }
     break;
@@ -37,7 +37,7 @@ void testToString() {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
     policy->setAsCrossOrigin();
     
-    if(!policy->toString()->equals("cross-origin")) {
+    if(!policy->toString()->sameAs("cross-origin")) {
       TEST_FAIL("[CrossOriginResourcePolicy test toString case2]");
     }
     break;
@@ -47,7 +47,7 @@ void testToString() {
     HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
     policy->setAsSameSite();
     
-    if(!policy->toString()->equals("same-site")) {
+    if(!policy->toString()->sameAs("same-site")) {
       TEST_FAIL("[CrossOriginResourcePolicy test toString case3]");
     }
     break;

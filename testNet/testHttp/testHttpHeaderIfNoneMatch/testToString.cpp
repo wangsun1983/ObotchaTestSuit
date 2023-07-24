@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->load("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
-    if(!match->toString()->equals("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"")) {
+    if(!match->toString()->sameAs("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case1],s is %s",match->toString()->toChars());
     }
     break;
@@ -23,7 +23,7 @@ void testToString() {
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->load("W/\"67ab43\", \"54ed21\", \"7892dd\"");
-    if(!match->toString()->equals("W/\"67ab43\", \"54ed21\", \"7892dd\"")) {
+    if(!match->toString()->sameAs("W/\"67ab43\", \"54ed21\", \"7892dd\"")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case2]");
     }
     break;
@@ -32,7 +32,7 @@ void testToString() {
   while(1) {
     HttpHeaderMatch match = createHttpHeaderMatch();
     match->load("*");
-    if(!match->toString()->equals("*")) {
+    if(!match->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderIfNoneMatch test toString case3],match is %s",match->toString()->toChars());
     }
 

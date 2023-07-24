@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
     c->load("gzip, deflate");
-    if(!c->toString()->equals("gzip, deflate")) {
+    if(!c->toString()->sameAs("gzip, deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test toString case1]");
       break;
     }
@@ -28,7 +28,7 @@ void testToString() {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
     c->load("gzip, deflate");
     header->setTransferEncoding(c);
-    if(!header->getTransferEncoding()->toString()->equals("gzip, deflate")) {
+    if(!header->getTransferEncoding()->toString()->sameAs("gzip, deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test toString case2,v is %s]",header->getContentEncoding()->toString()->toChars());
       break;
     }
@@ -39,7 +39,7 @@ void testToString() {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
     c->add(createString("gzip"));
     c->add(createString("deflate"));
-    if(!c->toString()->equals("gzip, deflate")) {
+    if(!c->toString()->sameAs("gzip, deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test toString case3]");
       break;
     }

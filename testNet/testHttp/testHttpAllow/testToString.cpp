@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderAllow c = createHttpHeaderAllow();
     c->load("POST, GET, OPTIONS");
-    if(!c->toString()->equals("POST, GET, OPTIONS")) {
+    if(!c->toString()->sameAs("POST, GET, OPTIONS")) {
       TEST_FAIL("[HttpHeaderAllow test toString case1],str is %s\n",c->toString()->toChars());
       break;
     }
@@ -30,7 +30,7 @@ void testToString() {
     header->setAllow(c);
     
     auto c2 = header->getAllow();
-    if(!c2->toString()->equals("POST, GET, OPTIONS")) {
+    if(!c2->toString()->sameAs("POST, GET, OPTIONS")) {
       TEST_FAIL("[HttpHeaderAllow test toString case1],str is %s\n",c2->toString()->toChars());
       break;
     }

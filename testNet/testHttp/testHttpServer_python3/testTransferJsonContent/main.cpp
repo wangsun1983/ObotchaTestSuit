@@ -78,7 +78,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                     TEST_FAIL("TestHttpServer SimpleClientConnect test1");
                 }
                 
-                if(!data->value2->equals("this is server")) {
+                if(!data->value2->sameAs("this is server")) {
                     TEST_FAIL("TestHttpServer SimpleClientConnect test2");
                 }
                 latch->countDown();

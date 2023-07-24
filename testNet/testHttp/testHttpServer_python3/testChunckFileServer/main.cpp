@@ -82,7 +82,7 @@ int main() {
   latch->await();
 
   Md md5 = createMd();
-  String base = md5->encrypt(createFile("./tmp/testdata"));
+  String base = md5->encodeFile(createFile("./tmp/testdata"));
 
   File tmpDir = createFile("tmp");
   ArrayList<File> files = tmpDir->listFiles();
@@ -90,7 +90,7 @@ int main() {
   while(iter->hasValue()) {
     auto f = iter->getValue();
 
-    String v1 = md5->encrypt(f);
+    String v1 = md5->encodeFile(f);
     if(!base->equals(v1)) {
       TEST_FAIL("TestHttpServer testChunckFileServer test1 ,path is %s",f->getAbsolutePath()->toChars());
     }

@@ -78,7 +78,7 @@ void basetest() {
   //bool equals(int p);
   while(1) {
     Uint16 v1 = createUint16(11);
-    if(!v1->equals(11)) {
+    if(!v1->sameAs(11)) {
       TEST_FAIL("Uint16 equals test4");
       break;
     }

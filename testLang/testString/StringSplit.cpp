@@ -36,10 +36,10 @@ void splittest() {
             break;
         }
 
-        if(!str1list->get(0)->equals("a")
-            ||!str1list->get(1)->equals("b")
-            ||!str1list->get(2)->equals("c")
-            ||!str1list->get(3)->equals("d")) {
+        if(!str1list->get(0)->sameAs("a")
+            ||!str1list->get(1)->sameAs("b")
+            ||!str1list->get(2)->sameAs("c")
+            ||!str1list->get(3)->sameAs("d")) {
             TEST_FAIL("String split Special test2");
             break;
         }
@@ -60,8 +60,8 @@ void splittest() {
             break;
         }
 
-        if(!str3list->get(0)->equals("a")
-            ||!str3list->get(1)->equals("b")) {
+        if(!str3list->get(0)->sameAs("a")
+            ||!str3list->get(1)->sameAs("b")) {
             TEST_FAIL("String split Special test6");
             break;
         }
@@ -79,10 +79,10 @@ void splittest() {
             TEST_FAIL("String split Special test9");
         }
         
-        if(!list->get(0)->equals("a") ||
-           !list->get(1)->equals("d") ||
-           !list->get(2)->equals("c") ||
-           !list->get(3)->equals("d")) {
+        if(!list->get(0)->sameAs("a") ||
+           !list->get(1)->sameAs("d") ||
+           !list->get(2)->sameAs("c") ||
+           !list->get(3)->sameAs("d")) {
             TEST_FAIL("String split Special test10");
         }
         break;

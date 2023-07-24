@@ -15,12 +15,12 @@ void testParse() {
   while(1) {
     HttpHeaderFrom digest = createHttpHeaderFrom();
     digest->load(" developer.mozilla.org");
-    if(!digest->toString()->equals("developer.mozilla.org")) {
+    if(!digest->toString()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderFrom test Parse case1]");
       break;
     }
     
-    if(!digest->get()->equals("developer.mozilla.org")) {
+    if(!digest->get()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderFrom test Parse case1_1]");
       break;
     }

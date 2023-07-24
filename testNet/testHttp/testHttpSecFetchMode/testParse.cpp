@@ -15,7 +15,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->load("navigate");
-    if(!save->get()->equals("navigate")) {
+    if(!save->get()->sameAs("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case1]");
       break;
     }
@@ -25,7 +25,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
     save->load("nested-navigate");
-    if(!save->get()->equals("nested-navigate")) {
+    if(!save->get()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case2]");
       break;
     }

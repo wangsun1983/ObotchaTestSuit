@@ -17,7 +17,7 @@ void testToString() {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
     policy->load("unsafe-none");
     
-    if(!policy->toString()->equals("unsafe-none")) {
+    if(!policy->toString()->sameAs("unsafe-none")) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test toString case1]");
     }
     break;
@@ -27,7 +27,7 @@ void testToString() {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
     policy->setAsUnSafeNone();
     
-    if(!policy->toString()->equals("unsafe-none")) {
+    if(!policy->toString()->sameAs("unsafe-none")) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test toString case2]");
     }
     break;
@@ -37,7 +37,7 @@ void testToString() {
     HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
     policy->setAsRequireCorp();
     
-    if(!policy->toString()->equals("require-corp")) {
+    if(!policy->toString()->sameAs("require-corp")) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test toString case3]");
     }
     break;

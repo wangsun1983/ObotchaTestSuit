@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
       HttpHeaderVia match = createHttpHeaderVia();
       match->load("1.1 GWA, 1.0 fred, 1.1 p.example.net");
-      if(!match->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
+      if(!match->toString()->sameAs("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test toString case1],toString is %s",match->toString()->toChars());
       }
       
@@ -23,7 +23,7 @@ void testToString() {
       header->setVia(match);
       
       auto m = header->getVia();
-      if(!m->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
+      if(!m->toString()->sameAs("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test toString case2],toString is %s",m->toString()->toChars());
       }
       break;
@@ -34,7 +34,7 @@ void testToString() {
       via->add(nullptr,createString("1.1"),nullptr,createString("GWA"));
       via->add(nullptr,createString("1.0"),nullptr,createString("fred"));
       via->add(nullptr,createString("1.1"),createString("p.example.net"),nullptr);
-      if(!via->toString()->equals("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
+      if(!via->toString()->sameAs("1.1 GWA, 1.0 fred, 1.1 p.example.net")) {
         TEST_FAIL("[HttpHeaderVia test toString case3],toString is %s",via->toString()->toChars());
       }
       break;

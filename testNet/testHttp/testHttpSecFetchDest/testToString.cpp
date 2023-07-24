@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
     save->load("track");
-    if(!save->toString()->equals("track")) {
+    if(!save->toString()->sameAs("track")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
     save->load("audio");
-    if(!save->toString()->equals("audio")) {
+    if(!save->toString()->sameAs("audio")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case2]");
       break;
     }

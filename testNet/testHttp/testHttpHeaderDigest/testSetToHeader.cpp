@@ -26,7 +26,7 @@ void testSetToHeader() {
     }
 
     auto item = list->get(0);
-    if(!item->algorithm->equals("sha-256") || !item->value->equals("X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
+    if(!item->algorithm->sameAs("sha-256") || !item->value->sameAs("X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
       TEST_FAIL("[HttpHeaderDigest test SetToHeader case2]");
       break;
     }
@@ -47,13 +47,13 @@ void testSetToHeader() {
     }
 
     auto item = list->get(0);
-    if(!item->algorithm->equals("sha-256") || !item->value->equals("X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
+    if(!item->algorithm->sameAs("sha-256") || !item->value->sameAs("X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
       TEST_FAIL("[HttpHeaderDigest test SetToHeader case2]");
       break;
     }
 
     item = list->get(1);
-    if(!item->algorithm->equals("unixsum") || !item->value->equals("30637")) {
+    if(!item->algorithm->sameAs("unixsum") || !item->value->sameAs("30637")) {
       TEST_FAIL("[HttpHeaderDigest test SetToHeader case2]");
       break;
     }

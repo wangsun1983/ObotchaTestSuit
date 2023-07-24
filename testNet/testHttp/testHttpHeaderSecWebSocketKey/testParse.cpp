@@ -16,7 +16,7 @@ void testParse() {
   while(1) {
     HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
     upgrade->load(" websocket ");
-    if(!upgrade->get()->equals("websocket")) {
+    if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test Parse case1]");
     }
     break;

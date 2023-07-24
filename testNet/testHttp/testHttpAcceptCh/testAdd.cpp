@@ -16,7 +16,7 @@ void testAdd() {
     acceptCh->add("DPR");
     acceptCh->add("Viewport-Width");
     acceptCh->add("Width");
-    if(!acceptCh->toString()->equals("DPR, Viewport-Width, Width")) {
+    if(!acceptCh->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test add case1]");
       break;
     }

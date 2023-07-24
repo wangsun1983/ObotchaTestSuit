@@ -38,12 +38,12 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
             HttpUrl url = header->getUrl();
             auto queryParams = url->getQuery();
             auto v1 = queryParams->get("tag1");
-            if(!v1->equals("value1")) {
+            if(!v1->sameAs("value1")) {
                 TEST_FAIL("TestHttpServer Request Url Encode test1");
             }
 
             auto v2 = queryParams->get("tag2");
-            if(!v2->equals("value2")) {
+            if(!v2->sameAs("value2")) {
                 TEST_FAIL("TestHttpServer Request Url Encode test2");
             }
 

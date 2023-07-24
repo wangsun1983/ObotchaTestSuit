@@ -18,12 +18,12 @@ void testParse() {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
     c->load("gzip, deflate");
     auto list = c->get();
-    if(!list->get(0)->equals("gzip")) {
+    if(!list->get(0)->sameAs("gzip")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case1]");
       break;
     }
 
-    if(!list->get(1)->equals("deflate")) {
+    if(!list->get(1)->sameAs("deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case2]");
       break;
     }
@@ -33,12 +33,12 @@ void testParse() {
   while(1) {
     HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding("gzip, deflate");
     auto list = c->get();
-    if(!list->get(0)->equals("gzip")) {
+    if(!list->get(0)->sameAs("gzip")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case3]");
       break;
     }
 
-    if(!list->get(1)->equals("deflate")) {
+    if(!list->get(1)->sameAs("deflate")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case4]");
       break;
     }

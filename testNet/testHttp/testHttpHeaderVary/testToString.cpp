@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderVary match = createHttpHeaderVary();
     match->load("no-referrer, User-Agent");
-    if(!match->toString()->equals("no-referrer, User-Agent")) {
+    if(!match->toString()->sameAs("no-referrer, User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test toString case1]");
     }
     break;
@@ -26,7 +26,7 @@ void testToString() {
     list->add(createString("no-referrer"));
     list->add(createString("User-Agent"));
     match->set(list);
-    if(!match->toString()->equals("no-referrer, User-Agent")) {
+    if(!match->toString()->sameAs("no-referrer, User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test toString case2]");
     }
     break;

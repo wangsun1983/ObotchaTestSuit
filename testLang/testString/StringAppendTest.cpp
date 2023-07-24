@@ -133,7 +133,7 @@ void appendtest() {
         //case1
         String str1 = createString("a");
         String str2 = str1->append("b","c","d");
-        if(!str2->equals("abcd")) {
+        if(!str2->sameAs("abcd")) {
             TEST_FAIL("String append Special test11_1");
             break;
         }

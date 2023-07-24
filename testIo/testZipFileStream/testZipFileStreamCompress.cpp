@@ -35,8 +35,8 @@ void testZipCompress() {
     system("unzip ./tmp/base_data_genzip.zip -d ./tmp/deCompress_check1/");
 
     Md md = createMd(st(Md)::Md5);
-    String base1 = md->encrypt(createFile("./tmp/base_data"));
-    String decompress1 = md->encrypt(createFile("./tmp/deCompress_check1/base_data"));
+    String base1 = md->encodeFile(createFile("./tmp/base_data"));
+    String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check1/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Compress Test case2]");
@@ -62,8 +62,8 @@ void testZipCompress() {
     system("unzip -P 123456 ./tmp/base_data_pwd_genzip.zip -d ./tmp/deCompress_check2/");
 
     Md md = createMd(st(Md)::Md5);
-    String base1 = md->encrypt(createFile("./tmp/base_data"));
-    String decompress1 = md->encrypt(createFile("./tmp/deCompress_check2/base_data"));
+    String base1 = md->encodeFile(createFile("./tmp/base_data"));
+    String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check2/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Compress Test case4]");

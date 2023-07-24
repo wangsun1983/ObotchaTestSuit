@@ -14,7 +14,7 @@ void testTransportSecurityToString() {
   while(1) {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->load("max-age=31536000;preload,includeSubDomains");
-    if(!security->toString()->equals("max-age=31536000;preload;includeSubDomains")) {
+    if(!security->toString()->sameAs("max-age=31536000;preload;includeSubDomains")) {
       TEST_FAIL("[HttpHeaderStrictTransportSecurity test toString case1],security is %s",security->toString()->toChars());
       break;
     }
@@ -24,7 +24,7 @@ void testTransportSecurityToString() {
   while(1) {
     HttpHeaderStrictTransportSecurity security = createHttpHeaderStrictTransportSecurity();
     security->load("max-age=31536000");
-    if(!security->toString()->equals("max-age=31536000")) {
+    if(!security->toString()->sameAs("max-age=31536000")) {
       TEST_FAIL("[HttpHeaderStrictTransportSecurity test toString case2]");
       break;
     }

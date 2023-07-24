@@ -14,7 +14,7 @@ void testToString() {
   while(1) {
     HttpHeaderFrom digest = createHttpHeaderFrom();
     digest->load(" webmaster@example.org");
-    if(!digest->toString()->equals("webmaster@example.org")) {
+    if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test toString case1]");
       break;
     }
@@ -24,7 +24,7 @@ void testToString() {
   while(1) {
     HttpHeaderFrom digest = createHttpHeaderFrom();
     digest->set(" webmaster@example.org");
-    if(!digest->toString()->equals("webmaster@example.org")) {
+    if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test toString case2]");
       break;
     }

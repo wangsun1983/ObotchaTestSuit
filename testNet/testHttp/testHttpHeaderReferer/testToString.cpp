@@ -16,7 +16,7 @@ void testToString() {
     HttpHeaderReferer match = createHttpHeaderReferer();
     match->load("");
 
-    if(!match->toString()->equals("")){
+    if(!match->toString()->sameAs("")){
       TEST_FAIL("[HttpHeaderReferer test toString case1]");
       break;
     }
@@ -27,7 +27,7 @@ void testToString() {
   while(1) {
     HttpHeaderReferer match = createHttpHeaderReferer();
     match->load("https://developer.mozilla.org:1234");
-    if(!match->toString()->equals("https://developer.mozilla.org:1234")){
+    if(!match->toString()->sameAs("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderReferer test toString case2]");
       break;
     }
@@ -42,7 +42,7 @@ void testToString() {
     header->setReferer(match_0);
     
     auto match = header->getReferer();
-    if(!match->toString()->equals("https://developer.mozilla.org:1234")){
+    if(!match->toString()->sameAs("https://developer.mozilla.org:1234")){
       TEST_FAIL("[HttpHeaderReferer test toString case3]");
       break;
     }

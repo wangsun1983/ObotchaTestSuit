@@ -19,35 +19,35 @@ void TestStringTrimAll() {
     while(1) {
         String str = createString(" abc f ");
         String str1 = str->trimAll();
-        if(str1 == nullptr || !str1->equals("abcf")) {
+        if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trimAll test1");
             break;
         }
 
         str = createString("      abc f      ");
         str1 = str->trimAll();
-        if(str1 == nullptr || !str1->equals("abcf")) {
+        if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trimAll test2");
             break;
         }
 
         str = createString("      abc   f      ");
         str1 = str->trimAll();
-        if(str1 == nullptr || !str1->equals("abcf")) {
+        if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trimAll test3");
             break;
         }
 
         str = createString("abc   f      ");
         str1 = str->trimAll();
-        if(str1 == nullptr || !str1->equals("abcf")) {
+        if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trimAll test4");
             break;
         }
 
         str = createString("    abc   f");
         str1 = str->trimAll();
-        if(str1 == nullptr || !str1->equals("abcf")) {
+        if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trimAll test5");
             break;
         }

@@ -15,7 +15,7 @@ void testToString() {
   while(1) {
     HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
     c->load("POST, GET, OPTIONS");
-    if(!c->toString()->equals("POST, GET, OPTIONS")) {
+    if(!c->toString()->sameAs("POST, GET, OPTIONS")) {
       TEST_FAIL("---[HttpHeaderAccessControlAllowMethods test toString case1] ,str is %s",c->toString()->toChars());
       break;
     }

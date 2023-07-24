@@ -22,39 +22,39 @@ void testParse() {
     }
 
     HttpHeaderServerTimingItem item0 = lists->get(0);
-    if(!item0->name->equals("cache")) {
+    if(!item0->name->sameAs("cache")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case2]");
       break;
     }
 
-    if(!item0->desc->equals("Cache Read")) {
+    if(!item0->desc->sameAs("Cache Read")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case3]");
       break;
     }
 
-    if(!item0->dur->equals("23.3")) {
+    if(!item0->dur->sameAs("23.3")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case4]");
       break;
     }
 
     HttpHeaderServerTimingItem item1 = lists->get(1);
-    if(!item1->name->equals("db")) {
+    if(!item1->name->sameAs("db")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case5]");
       break;
     }
 
-    if(!item1->dur->equals("53")) {
+    if(!item1->dur->sameAs("53")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case6]");
       break;
     }
 
     HttpHeaderServerTimingItem item2 = lists->get(2);
-    if(!item2->name->equals("app")) {
+    if(!item2->name->sameAs("app")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case7]");
       break;
     }
 
-    if(!item2->dur->equals("47.2")) {
+    if(!item2->dur->sameAs("47.2")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case8]");
       break;
     }
@@ -71,39 +71,39 @@ void testParse() {
     }
 
     HttpHeaderServerTimingItem item0 = lists->get(0);
-    if(!item0->name->equals("cache")) {
+    if(!item0->name->sameAs("cache")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case10]");
       break;
     }
 
-    if(!item0->desc->equals("Cache Read")) {
+    if(!item0->desc->sameAs("Cache Read")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case11]");
       break;
     }
 
-    if(!item0->dur->equals("23.3")) {
+    if(!item0->dur->sameAs("23.3")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case12]");
       break;
     }
 
     HttpHeaderServerTimingItem item1 = lists->get(1);
-    if(!item1->name->equals("db")) {
+    if(!item1->name->sameAs("db")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case13]");
       break;
     }
 
-    if(!item1->dur->equals("53")) {
+    if(!item1->dur->sameAs("53")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case14]");
       break;
     }
 
     HttpHeaderServerTimingItem item2 = lists->get(2);
-    if(!item2->name->equals("app")) {
+    if(!item2->name->sameAs("app")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case15]");
       break;
     }
 
-    if(!item2->dur->equals("47.2")) {
+    if(!item2->dur->sameAs("47.2")) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case16]");
       break;
     }

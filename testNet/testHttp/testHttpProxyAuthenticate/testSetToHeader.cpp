@@ -20,7 +20,7 @@ void testSetToHeader() {
                 
     auto proxyAuth = header->getProxyAuthenticate();
 
-    if(!proxyAuth->type->equals("Basic")) {
+    if(!proxyAuth->type->sameAs("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test setToHeader case1]");
         break;
     }
@@ -32,12 +32,12 @@ void testSetToHeader() {
     header->set(createString("Proxy-Authenticate"),
                 createString("Basic realm=\"Access to the internal site\""));
     auto proxyAuth = header->getProxyAuthenticate();
-    if(!proxyAuth->type->equals("Basic")) {
+    if(!proxyAuth->type->sameAs("Basic")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test setToHeader case2]");
         break;
     }
 
-    if(!proxyAuth->realm->equals("Access to the internal site")) {
+    if(!proxyAuth->realm->sameAs("Access to the internal site")) {
         TEST_FAIL("[HttpHeaderProxyAuthenticate test setToHeader case3]");
         break;
     }

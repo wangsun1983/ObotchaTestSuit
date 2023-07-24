@@ -21,7 +21,7 @@ void testCharSetParse() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("iso-8859-1")) {
+    if(!charsets->get(0)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case2]");
         break;
     }
@@ -36,7 +36,7 @@ void testCharSetParse() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("iso-8859-1")) {
+    if(!charsets->get(0)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case2_1]");
         break;
     }
@@ -52,12 +52,12 @@ void testCharSetParse() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("utf-8")) {
+    if(!charsets->get(0)->type->sameAs("utf-8")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case4]");
         break;
     }
 
-    if(!charsets->get(1)->type->equals("iso-8859-1")) {
+    if(!charsets->get(1)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case5]");
         break;
     }
@@ -78,12 +78,12 @@ void testCharSetParse() {
       break;
     }
 
-    if(!charsets->get(0)->type->equals("utf-8")) {
+    if(!charsets->get(0)->type->sameAs("utf-8")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case8]");
         break;
     }
 
-    if(!charsets->get(1)->type->equals("iso-8859-1")) {
+    if(!charsets->get(1)->type->sameAs("iso-8859-1")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case9]");
         break;
     }
@@ -93,7 +93,7 @@ void testCharSetParse() {
         break;
     }
 
-    if(!charsets->get(2)->type->equals("*")) {
+    if(!charsets->get(2)->type->sameAs("*")) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test Parse case11]");
         break;
     }

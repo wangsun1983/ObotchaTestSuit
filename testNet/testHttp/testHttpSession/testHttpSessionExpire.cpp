@@ -18,7 +18,7 @@ void testHttpSessionExipre() {
         HttpSession ss = st(HttpSessionManager)::getInstance()->createSession(2);
         ss->setAttribute("a",createString("value_a"));
         String v = ss->getAttribute<String>(createString("a"));
-        if(v == nullptr || !v->equals("value_a")) {
+        if(v == nullptr || !v->sameAs("value_a")) {
             TEST_FAIL("[testHttpSessionExpire case1]");
         }
         
@@ -35,7 +35,7 @@ void testHttpSessionExipre() {
         ss->setAttribute("a",createString("value_a"));
         sleep(1);
         String v = ss->getAttribute<String>(createString("a"));
-        if(v == nullptr || !v->equals("value_a")) {
+        if(v == nullptr || !v->sameAs("value_a")) {
             TEST_FAIL("[testHttpSessionExpire case3]");
         }
         

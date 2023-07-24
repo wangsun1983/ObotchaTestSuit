@@ -16,11 +16,11 @@ void testHttpUrlParse() {
   while(1) {
     const char *raw= "/demo";
     HttpUrl url = createHttpUrl(raw);
-    if(!url->getPath()->equals("demo")) {
+    if(!url->getPath()->sameAs("demo")) {
       TEST_FAIL("[HttpUrlParse test Parse case1]");
     }
 
-    if(!url->toString()->equals("/demo")) {
+    if(!url->toString()->sameAs("/demo")) {
       TEST_FAIL("[HttpUrlParse test Parse case1_1]");
     }
     break;
@@ -36,12 +36,12 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getUser()->equals("su")) {
+    if(!url->getUser()->sameAs("su")) {
       TEST_FAIL("[HttpUrlParse test Parse case3]");
       break;
     }
 
-    if(!url->getHost()->equals("localhost")) {
+    if(!url->getHost()->sameAs("localhost")) {
       TEST_FAIL("[HttpUrlParse test Parse case3_1]");
       break;
     }
@@ -51,17 +51,17 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getPassword()->equals("abc")) {
+    if(!url->getPassword()->sameAs("abc")) {
       TEST_FAIL("[HttpUrlParse test Parse case4]");
       break;
     }
 
-    if(!url->getPath()->equals("test.cgi")) {
+    if(!url->getPath()->sameAs("test.cgi")) {
       TEST_FAIL("[HttpUrlParse test Parse case5] path is %s",url->getPath()->toChars());
       break;
     }
 
-    if(!url->getFragment()->equals("fffsss")) {
+    if(!url->getFragment()->sameAs("fffsss")) {
       TEST_FAIL("[HttpUrlParse test Parse case6]");
       break;
     }
@@ -69,12 +69,12 @@ void testHttpUrlParse() {
     auto query = url->getQuery();
     auto map = query->getValues();
 
-    if(!map->get("a")->equals("b")) {
+    if(!map->get("a")->sameAs("b")) {
       TEST_FAIL("[HttpUrlParse test Parse case8]");
       break;
     }
 
-    if(!map->get("c")->equals("d")) {
+    if(!map->get("c")->sameAs("d")) {
       TEST_FAIL("[HttpUrlParse test Parse case10]");
       break;
     }
@@ -89,12 +89,12 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getUser()->equals("abdd")) {
+    if(!url->getUser()->sameAs("abdd")) {
       TEST_FAIL("[HttpUrlParse test Parse case12]");
       break;
     }
 
-    if(!url->getHost()->equals("localhost")) {
+    if(!url->getHost()->sameAs("localhost")) {
       TEST_FAIL("[HttpUrlParse test Parse case13]");
       break;
     }
@@ -109,7 +109,7 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getPath()->equals("test.cgi")) {
+    if(!url->getPath()->sameAs("test.cgi")) {
       TEST_FAIL("[HttpUrlParse test Parse case16] path is %s",url->getPath()->toChars());
       break;
     }
@@ -121,12 +121,12 @@ void testHttpUrlParse() {
 
     auto query = url->getQuery();
     auto map = query->getValues();
-    if(!map->get("a")->equals("b")) {
+    if(!map->get("a")->sameAs("b")) {
       TEST_FAIL("[HttpUrlParse test Parse case19]");
       break;
     }
 
-    if(!map->get("c")->equals("d")) {
+    if(!map->get("c")->sameAs("d")) {
       TEST_FAIL("[HttpUrlParse test Parse case21]");
       break;
     }
@@ -140,22 +140,22 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getUser()->equals("su")) {
+    if(!url->getUser()->sameAs("su")) {
       TEST_FAIL("[HttpUrlParse test Parse case23]");
       break;
     }
 
-    if(!url->getPassword()->equals("abc")) {
+    if(!url->getPassword()->sameAs("abc")) {
       TEST_FAIL("[HttpUrlParse test Parse case24]");
       break;
     }
 
-    if(!url->getHost()->equals("localhost")) {
+    if(!url->getHost()->sameAs("localhost")) {
       TEST_FAIL("[HttpUrlParse test Parse case25]");
       break;
     }
 
-    if(!url->getPath()->equals("test/wangsl/01234")) {
+    if(!url->getPath()->sameAs("test/wangsl/01234")) {
       TEST_FAIL("[HttpUrlParse test Parse case26] path is %s",url->getPath()->toChars());
       break;
     }
@@ -180,12 +180,12 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getHost()->equals("ssaabb")) {
+    if(!url->getHost()->sameAs("ssaabb")) {
       TEST_FAIL("[HttpUrlParse test Parse case30]");
       break;
     }
 
-    if(!url->getPath()->equals("test/wangsl/01234")) {
+    if(!url->getPath()->sameAs("test/wangsl/01234")) {
       TEST_FAIL("[HttpUrlParse test Parse case31]");
       break;
     }
@@ -209,7 +209,7 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getHost()->equals("ssaabb")) {
+    if(!url->getHost()->sameAs("ssaabb")) {
       TEST_FAIL("[HttpUrlParse test Parse case35]");
       break;
     }
@@ -236,12 +236,12 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getUser()->equals("su")) {
+    if(!url->getUser()->sameAs("su")) {
       TEST_FAIL("[HttpUrlParse test Parse case39]");
       break;
     }
 
-    if(!url->getHost()->equals("localhost")) {
+    if(!url->getHost()->sameAs("localhost")) {
       TEST_FAIL("[HttpUrlParse test Parse case40]");
       break;
     }
@@ -251,17 +251,17 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getPassword()->equals("abc")) {
+    if(!url->getPassword()->sameAs("abc")) {
       TEST_FAIL("[HttpUrlParse test Parse case42]");
       break;
     }
 
-    if(!url->getPath()->equals("test.cgi")) {
+    if(!url->getPath()->sameAs("test.cgi")) {
       TEST_FAIL("[HttpUrlParse test Parse case43] path is %s",url->getPath()->toChars());
       break;
     }
 
-    if(!url->getFragment()->equals("fffsss")) {
+    if(!url->getFragment()->sameAs("fffsss")) {
       TEST_FAIL("[HttpUrlParse test Parse case44]");
       break;
     }
@@ -269,12 +269,12 @@ void testHttpUrlParse() {
     auto query = url->getQuery();
     auto map = query->getValues();
 
-    if(!map->get("a")->equals("b")) {
+    if(!map->get("a")->sameAs("b")) {
       TEST_FAIL("[HttpUrlParse test Parse case46]");
       break;
     }
 
-    if(!map->get("c")->equals("d")) {
+    if(!map->get("c")->sameAs("d")) {
       TEST_FAIL("[HttpUrlParse test Parse case48]");
       break;
     }
@@ -298,7 +298,7 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getHost()->equals("ssaabb")) {
+    if(!url->getHost()->sameAs("ssaabb")) {
       TEST_FAIL("[HttpUrlParse test Parse case52]");
       break;
     }
@@ -313,7 +313,7 @@ void testHttpUrlParse() {
       break;
     }
 
-    if(!url->getFragment()->equals("frag")) {
+    if(!url->getFragment()->sameAs("frag")) {
       TEST_FAIL("[HttpUrlParse test Parse case55]");
       break;
     }

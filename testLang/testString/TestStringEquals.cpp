@@ -18,42 +18,42 @@ void TestStringEquals() {
 
     while(1) {
         String str = createString(" abc  f ");
-        if(!str->equals(" abc  f ")) {
+        if(!str->sameAs(" abc  f ")) {
             TEST_FAIL("String equals test1");
             break;
         }
 
-        if(str->equals("a")) {
+        if(str->sameAs("a")) {
             TEST_FAIL("String equals test1_1");
             break;
         }
 
-        if(str->equals("ab")) {
+        if(str->sameAs("ab")) {
             TEST_FAIL("String equals test2");
             break;
         }
 
-        if(str->equals("abc")) {
+        if(str->sameAs("abc")) {
             TEST_FAIL("String equals test3");
             break;
         }
 
-        if(str->equals("abc ")) {
+        if(str->sameAs("abc ")) {
             TEST_FAIL("String equals test4");
             break;
         }
 
-        if(str->equals("abc  f")) {
+        if(str->sameAs("abc  f")) {
             TEST_FAIL("String equals test5");
             break;
         }
 
-        if(str->equals("     abc f      ")) {
+        if(str->sameAs("     abc f      ")) {
             TEST_FAIL("String equals test6");
             break;
         }
 
-        if(str->equals("A")) {
+        if(str->sameAs("A")) {
             TEST_FAIL("String equals test7");
             break;
         }

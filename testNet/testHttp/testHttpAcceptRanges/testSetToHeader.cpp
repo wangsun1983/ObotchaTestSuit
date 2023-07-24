@@ -20,7 +20,7 @@ void testSetToHeader() {
     //HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
     //ranges->load("bytes");
     auto ranges = header->getAcceptRanges();
-    if(!ranges->get()->equals("bytes")) {
+    if(!ranges->get()->sameAs("bytes")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test Parse case1]");
         break;
     }
@@ -35,7 +35,7 @@ void testSetToHeader() {
     //ranges->load("bytes");
     auto ranges = header->getAcceptRanges();
 
-    if(!ranges->get()->equals("none")) {
+    if(!ranges->get()->sameAs("none")) {
         TEST_FAIL("[HttpHeaderAcceptRanges test Parse case2]");
         break;
     }

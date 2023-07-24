@@ -16,7 +16,7 @@ void testToString() {
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     retryAfter->load(" Wed, 21 Oct 2015 07:28:00 GMT ");
-    if(!retryAfter->toString()->equals("Wed, 21 Oct 2015 07:28:00 GMT")) {
+    if(!retryAfter->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderRetryAfter test toString case1]");
     }
     break;
@@ -25,7 +25,7 @@ void testToString() {
   while(1) {
     HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
     retryAfter->load(" 120 ");
-    if(!retryAfter->toString()->equals("120")) {
+    if(!retryAfter->toString()->sameAs("120")) {
       TEST_FAIL("[HttpHeaderRetryAfter test toString case2]");
     }
     break;
@@ -38,7 +38,7 @@ void testToString() {
     header->setRetryAfter(retryAfter);
     
     auto retry = header->getRetryAfter();
-    if(!retry->toString()->equals("120")) {
+    if(!retry->toString()->sameAs("120")) {
       TEST_FAIL("[HttpHeaderRetryAfter test toString case3]");
     }
     break;

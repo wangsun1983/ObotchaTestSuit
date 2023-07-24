@@ -23,13 +23,13 @@ void testSetToHeader() {
     
     auto list = c->get();
     String v0 = list->get(0);
-    if(!v0->equals("Content-Length")) {
+    if(!v0->sameAs("Content-Length")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test setToHeader case1]");
       break;
     }
 
     String v1 = list->get(1);
-    if(!v1->equals("X-Kuma-Revision")) {
+    if(!v1->sameAs("X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlExposeHeaders test setToHeader case2]");
       break;
     }

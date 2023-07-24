@@ -14,14 +14,14 @@ void testFileGetSuffix() {
     //test1
     file = createFile("abc.cpp");
     String suffix = file->getSuffix();
-    if(!suffix->equals("cpp")) {
+    if(!suffix->sameAs("cpp")) {
        TEST_FAIL("[File Test {getSuffix()} case1]");
     }
 
     //test2
     file = createFile("abc.cpp.ca");
     suffix = file->getSuffix();
-    if(!suffix->equals("ca")) {
+    if(!suffix->sameAs("ca")) {
        TEST_FAIL("[File Test {getSuffix()} case2]");
     }
 
@@ -35,7 +35,7 @@ void testFileGetSuffix() {
     //test4
     file = createFile("1.3");
     suffix = file->getSuffix();
-    if(!suffix->equals("3")) {
+    if(!suffix->sameAs("3")) {
        TEST_FAIL("[File Test {getSuffix()} case4]");
     }
 
@@ -49,7 +49,7 @@ void testFileGetSuffix() {
     //test6
     file = createFile("/abc/tt.zip");
     suffix = file->getSuffix();
-    if(!suffix->equals("zip")) {
+    if(!suffix->sameAs("zip")) {
        TEST_FAIL("[File Test {getSuffix()} case6]");
     }
 

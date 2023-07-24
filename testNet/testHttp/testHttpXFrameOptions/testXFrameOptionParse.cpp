@@ -15,7 +15,7 @@ void testXFrameOptionsParse() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("deny");
-    if(!options->option->equals("deny")) {
+    if(!options->option->sameAs("deny")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case1] ,option is %s ",options->option->toChars());
       break;
     }
@@ -25,7 +25,7 @@ void testXFrameOptionsParse() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("sameorigin");
-    if(!options->option->equals("sameorigin")) {
+    if(!options->option->sameAs("sameorigin")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case2]");
       break;
     }
@@ -35,12 +35,12 @@ void testXFrameOptionsParse() {
   while(1) {
     HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
     options->load("allow-from https://example.com/");
-    if(!options->option->equals("allow-from")) {
+    if(!options->option->sameAs("allow-from")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case3]");
       break;
     }
 
-    if(!options->uri->equals("https://example.com/")) {
+    if(!options->uri->sameAs("https://example.com/")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case4],uri is %s",options->uri->toChars());
       break;
     }
