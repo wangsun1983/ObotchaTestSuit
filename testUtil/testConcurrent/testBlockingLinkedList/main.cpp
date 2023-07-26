@@ -31,8 +31,10 @@ extern void testBlockingLinkedListInt();
 extern void testBlockingLinkedListForeach();
 extern void testBlockingLinkedListRemoveAtOne();
 extern void testBlockingLinkedListRemoveOne();
+extern void testBlockingLinkedListInfiniteConfig();
 
 int main() {
+	testBlockingLinkedListInfiniteConfig();
     testBlockingLinkedListRemoveOne();
     testBlockingLinkedListRemoveAtOne();
     testBlockingLinkedListForeach();

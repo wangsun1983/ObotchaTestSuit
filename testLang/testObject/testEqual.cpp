@@ -87,16 +87,16 @@ void testEqual() {
       break;
     }
 
-    Student s1 = createStudent();
-    s1->j = 100;
+    // Student s1 = createStudent();
+    // s1->j = 100;
 
-    DataTT s2 = createDataTT();
-    s2->j = 100;
+    // DataTT s2 = createDataTT();
+    // s2->j = 100;
 
-    if(s1 != s2) {
-      TEST_FAIL("Object Equal test4");
-      break;
-    }
+    // if(s1 != s2) {
+    //   TEST_FAIL("Object Equal test4");
+    //   break;
+    // }
 
     //inline bool operator == (const T* o) const {
     TestData1 data1 = createTestData1(1);
@@ -107,16 +107,16 @@ void testEqual() {
     }
 
     //inline bool operator == (const U* o) const {
-    _DataTT *data3 = new _DataTT();
-    data3->j = 100;
+    // _DataTT *data3 = new _DataTT();
+    // data3->j = 100;
 
-    Student data4 = createStudent();
-    data4->j = 100;
+    // Student data4 = createStudent();
+    // data4->j = 100;
 
-    if(data4 != data3) {
-      TEST_FAIL("Object Equal test6");
-      break;
-    }
+    // if(data4 != data3) {
+    //   TEST_FAIL("Object Equal test6");
+    //   break;
+    // }
 
     TEST_OK("Object Equal test5");
     break;

@@ -11,14 +11,14 @@ int test_md5() {
     // String encrypt(File);
     while(1) {
         Md md = createMd(st(Md)::Md5);
-        String result = md->encrypt(f);
+        String result = md->encodeFile(f);
 
         if(result == nullptr || result->size() == 0) {
             TEST_FAIL("[TestMd5 Test {Md5:encrypt(File)} case1]");
             break;
         }
 
-        if(!result->equals("b1203a74f727d920322d388b279c3b2c")) {
+        if(!result->sameAs("b1203a74f727d920322d388b279c3b2c")) {
             TEST_FAIL("[TestMd5 Test {Md5:encrypt(File)} case1]");
             break;
         }
@@ -32,7 +32,7 @@ int test_md5() {
     while(1) {
         Md md = createMd(st(Md)::Md5);
         String str = createString("hello world");
-        String result = md->encrypt(str);
+        String result = md->encodeContent(str->toByteArray());
 
         if(result == nullptr || result->size() == 0) {
             TEST_FAIL("[TestMd5 Test {Md5:encrypt(String)} case1]");

@@ -16,7 +16,7 @@ void test_sha512() {
     //String encrypt(String str);
     while(1) {
         String s = createString("hello world");
-        String s1 = sha1->encrypt(s);
+        String s1 = sha1->encodeContent(s->toByteArray());
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha512:encrypt(String)} case1]");
             break;
@@ -30,13 +30,13 @@ void test_sha512() {
     //String encrypt(File);
     while(1) {
         File f = createFile("test_data.file");
-        String s1 = sha1->encrypt(f);
+        String s1 = sha1->encodeFile(f);
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha512:encrypt(File)} case1]");
             break;
         }
 
-        if(!s1->equals("44a83ca8ef452824c8e0e1fab98f30e1303ef71642f8c48104713a6cce84a721c5f2174be0b03071adef4205edcb8048ceb0f900a10cc7a28e752e181b5eec8a")) {
+        if(!s1->sameAs("44a83ca8ef452824c8e0e1fab98f30e1303ef71642f8c48104713a6cce84a721c5f2174be0b03071adef4205edcb8048ceb0f900a10cc7a28e752e181b5eec8a")) {
             TEST_FAIL("[TestSha Test {Sha512:encrypt(File)} case2]");
             break;
         }

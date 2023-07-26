@@ -26,7 +26,7 @@ int main() {
       }
 
       //aGVsbG8gd29ybGQ=
-      if(!r1->equals("aGVsbG8gd29ybGQ=")) {
+      if(!r1->sameAs("aGVsbG8gd29ybGQ=")) {
           TEST_FAIL("[ByteArray Test {decode(String)/encode(String)} case2]");
           break;
       }
@@ -99,12 +99,12 @@ int main() {
       Base64 base64 = createBase64();
       String content = createString("<<?\?\?>>");
       ByteArray encode = base64->encodeBase64Url(content->toByteArray());
-      if(!encode->toString()->equals("PDw_Pz8-Pg")) {
+      if(!encode->toString()->sameAs("PDw_Pz8-Pg")) {
           TEST_FAIL("[ByteArray Test {encode(File)} case3]");
       }
 
       ByteArray decode = base64->decodeBase64Url(encode);
-      if(!decode->toString()->equals("<<?\?\?>>")) {
+      if(!decode->toString()->sameAs("<<?\?\?>>")) {
           TEST_FAIL("[ByteArray Test {encode(File)} case4]");
       }
 

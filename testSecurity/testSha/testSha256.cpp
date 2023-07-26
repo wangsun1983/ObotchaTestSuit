@@ -16,7 +16,7 @@ void test_sha256() {
     //String encrypt(String str);
     while(1) {
         String s = createString("hello world");
-        String s1 = sha1->encrypt(s);
+        String s1 = sha1->encodeContent(s->toByteArray());
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha256:encrypt(String)} case1]");
             break;
@@ -30,13 +30,13 @@ void test_sha256() {
     //String encrypt(File);
     while(1) {
         File f = createFile("test_data.file");
-        String s1 = sha1->encrypt(f);
+        String s1 = sha1->encodeFile(f);
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha256:encrypt(File)} case1]");
             break;
         }
 
-        if(!s1->equals("6fc8ed2e78684172d2eb63bfd25879622632c1d250307b3b0fbd7574cba8df25")) {
+        if(!s1->sameAs("6fc8ed2e78684172d2eb63bfd25879622632c1d250307b3b0fbd7574cba8df25")) {
             TEST_FAIL("[TestSha Test {Sha256:encrypt(File)} case2]");
             break;
         }

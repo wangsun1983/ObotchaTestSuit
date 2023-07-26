@@ -11,7 +11,7 @@ int test_md2() {
     // String encrypt(File);
     while(1) {
         Md md = createMd(st(Md)::Md2);
-        String result = md->encrypt(f);
+        String result = md->encodeFile(f);
 #ifndef OPENSSL_NO_MD2
         if(result != nullptr) {
             TEST_FAIL("[TestMd5 Test {Md2:encrypt(File)} case1]");
@@ -32,7 +32,7 @@ int test_md2() {
     while(1) {
         Md md = createMd(st(Md)::Md2);
         String str = createString("hello world");
-        String result = md->encrypt(str);
+        String result = md->encodeContent(str->toByteArray());
 #ifndef OPENSSL_NO_MD2
         if(result != nullptr) {
             TEST_FAIL("[TestMd5 Test {Md2:encrypt(String)} case1]");

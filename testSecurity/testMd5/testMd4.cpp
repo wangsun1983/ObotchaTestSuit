@@ -11,7 +11,7 @@ int test_md4() {
     // String encrypt(File);
     while(1) {
         Md md = createMd(st(Md)::Md4);
-        String result = md->encrypt(f);
+        String result = md->encodeFile(f);
 
         if(result == nullptr || result->size() == 0) {
             TEST_FAIL("[TestMd5 Test {Md4:encrypt(File)} case1]");
@@ -27,7 +27,7 @@ int test_md4() {
     while(1) {
         Md md = createMd(st(Md)::Md4);
         String str = createString("hello world");
-        String result = md->encrypt(str);
+        String result = md->encodeContent(str->toByteArray());
 
         if(result == nullptr || result->size() == 0) {
             TEST_FAIL("[TestMd5 Test {Md4:encrypt(String)} case1]");

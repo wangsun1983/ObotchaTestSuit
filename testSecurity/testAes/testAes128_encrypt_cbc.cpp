@@ -24,7 +24,7 @@ void testAes128EncryptCbc() {
 
   String key = createString("12345678");
   Md md5sum = createMd(st(Md)::Md5);
-  String testDataMd5 = md5sum->encrypt(data);
+  String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {
     //create a test data
@@ -41,14 +41,14 @@ void testAes128EncryptCbc() {
       enckey->loadEncryptKey("./tmp/test_AES128_encrypt_cbc_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("AES128/CBC/PKCS5Padding");
       AES128->init(st(Cipher)::Encrypt,enckey);
-      AES128->encrypt(data,"./tmp/AES128_encrypt_cbc_outdata_pksc5");
+      AES128->encryptFile(data,"./tmp/AES128_encrypt_cbc_outdata_pksc5");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
       deckey->loadDecryptKey("./tmp/test_AES128_encrypt_cbc_deckey");
       Cipher AES1282 = st(CipherCreator)::getInstance("AES128/CBC/PKCS5Padding");
       AES1282->init(st(Cipher)::Decrypt,deckey);
-      AES1282->decrypt("./tmp/AES128_encrypt_cbc_outdata_pksc5","./tmp/AES128_encrypt_cbc_outdata_pksc5_dec");
-      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc5_dec"));
+      AES1282->decryptFile("./tmp/AES128_encrypt_cbc_outdata_pksc5","./tmp/AES128_encrypt_cbc_outdata_pksc5_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAES128 cbc PKCS5Padding case1]");
@@ -62,14 +62,14 @@ void testAes128EncryptCbc() {
       enckey->loadEncryptKey("./tmp/test_AES128_encrypt_cbc_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("AES128/CBC/PKCS7Padding");
       AES128->init(st(Cipher)::Encrypt,enckey);
-      AES128->encrypt(data,"./tmp/AES128_encrypt_cbc_outdata_pksc7");
+      AES128->encryptFile(data,"./tmp/AES128_encrypt_cbc_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
       deckey->loadDecryptKey("./tmp/test_AES128_encrypt_cbc_deckey");
       Cipher AES1282 = st(CipherCreator)::getInstance("AES128/CBC/PKCS7Padding");
       AES1282->init(st(Cipher)::Decrypt,deckey);
-      AES1282->decrypt("./tmp/AES128_encrypt_cbc_outdata_pksc7","./tmp/AES128_encrypt_cbc_outdata_pksc7_dec");
-      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc7_dec"));
+      AES1282->decryptFile("./tmp/AES128_encrypt_cbc_outdata_pksc7","./tmp/AES128_encrypt_cbc_outdata_pksc7_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAES128 cbc PKCS5Padding case1]");
@@ -82,14 +82,14 @@ void testAes128EncryptCbc() {
       enckey->loadEncryptKey("./tmp/test_AES128_encrypt_cbc_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("AES128/cbc/PKCS7Padding");
       AES128->init(st(Cipher)::Encrypt,enckey);
-      AES128->encrypt(data,"./tmp/AES128_encrypt_cbc_outdata_pksc7");
+      AES128->encryptFile(data,"./tmp/AES128_encrypt_cbc_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
       deckey->loadDecryptKey("./tmp/test_AES128_encrypt_cbc_deckey");
       Cipher AES1282 = st(CipherCreator)::getInstance("AES128/cbc/PKCS7Padding");
       AES1282->init(st(Cipher)::Decrypt,deckey);
-      AES1282->decrypt("./tmp/AES128_encrypt_cbc_outdata_pksc7","./tmp/AES128_encrypt_cbc_outdata_pksc7_dec");
-      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc7_dec"));
+      AES1282->decryptFile("./tmp/AES128_encrypt_cbc_outdata_pksc7","./tmp/AES128_encrypt_cbc_outdata_pksc7_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAES128 cbc PKCS7Padding case2]");
@@ -102,14 +102,14 @@ void testAes128EncryptCbc() {
       enckey->loadEncryptKey("./tmp/test_AES128_encrypt_cbc_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("AES128/cbc/ZeroPading");
       AES128->init(st(Cipher)::Encrypt,enckey);
-      AES128->encrypt(data,"./tmp/AES128_encrypt_cbc_outdata_pksc0");
+      AES128->encryptFile(data,"./tmp/AES128_encrypt_cbc_outdata_pksc0");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("AES128");
       deckey->loadDecryptKey("./tmp/test_AES128_encrypt_cbc_deckey");
       Cipher AES1282 = st(CipherCreator)::getInstance("AES128/cbc/ZeroPading");
       AES1282->init(st(Cipher)::Decrypt,deckey);
-      AES1282->decrypt("./tmp/AES128_encrypt_cbc_outdata_pksc0","./tmp/AES128_encrypt_cbc_outdata_pksc0_dec");
-      String result = md5sum->encrypt(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc0_dec"));
+      AES1282->decryptFile("./tmp/AES128_encrypt_cbc_outdata_pksc0","./tmp/AES128_encrypt_cbc_outdata_pksc0_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/AES128_encrypt_cbc_outdata_pksc0_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAES128 cbc ZeroPading case3]");

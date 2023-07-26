@@ -27,8 +27,10 @@ extern void testBlockingQueueUnlimited();
 extern void testBlockingQueueClear();
 extern void testBlockingQueueRemoveAt();
 extern void testBlockingQueueRemove();
+extern void testBlockingQueueInfiniteConfig();
 
 int main() {
+	testBlockingQueueInfiniteConfig();
     testEnqueueDequeue();
     testMultiThreadQueue();
     testBlockingQueueInt();

@@ -20,7 +20,7 @@ int main() {
         ByteArray array = stream->readAll();
         stream->close();
         Crc32 cc = createCrc32();
-        v1 = cc->encode(array);
+        v1 = cc->encodeContent(array)->toUint32()->toValue();
         if(v1 <= 0) {
             TEST_FAIL("[TestCrc32 Test {encode(ByteArray)} case1]");
             break;
@@ -37,9 +37,8 @@ int main() {
         stream->open();
         ByteArray array = stream->readAll();
         stream->close();
-        String str = array->toString();
         Crc32 cc = createCrc32();
-        v2 = cc->encode(str);
+        v2 = cc->encodeContent(array)->toUint32()->toValue();
         if(v2 <= 0) {
             TEST_FAIL("[TestCrc32 Test {encode(String)} case1]");
             break;
@@ -54,7 +53,7 @@ int main() {
     while(1) {
     	File f = createFile("testData.file");
         Crc32 cc = createCrc32();
-        v3 = cc->encode(f);
+        v3 = cc->encodeFile(f)->toUint32()->toValue();
         //TEST_FAIL("v is %ld \n",v);
         if(v3 <= 0) {
             TEST_FAIL("[TestCrc32 Test {encode(File)} case1]");

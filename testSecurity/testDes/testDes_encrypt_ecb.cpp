@@ -24,7 +24,7 @@ void testDesEncryptEcb() {
 
   String key = createString("12345678");
   Md md5sum = createMd(st(Md)::Md5);
-  String testDataMd5 = md5sum->encrypt(data);
+  String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {
     //create a test data
@@ -39,14 +39,14 @@ void testDesEncryptEcb() {
       enckey->loadEncryptKey("./tmp/test_des_encrypt_ecb_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/ECB/PKCS5Padding");
       des->init(st(Cipher)::Encrypt,enckey);
-      des->encrypt(data,"./tmp/des_encrypt_ecb_outdata_pksc5");
+      des->encryptFile(data,"./tmp/des_encrypt_ecb_outdata_pksc5");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_ecb_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS5Padding");
       des2->init(st(Cipher)::Decrypt,deckey);
-      des2->decrypt("./tmp/des_encrypt_ecb_outdata_pksc5","./tmp/des_encrypt_ecb_outdata_pksc5_dec");
-      String result = md5sum->encrypt(createFile("./tmp/des_encrypt_ecb_outdata_pksc5_dec"));
+      des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc5","./tmp/des_encrypt_ecb_outdata_pksc5_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS5Padding case1] [FAILED]--- \n");
@@ -59,14 +59,14 @@ void testDesEncryptEcb() {
       enckey->loadEncryptKey("./tmp/test_des_encrypt_ecb_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des->init(st(Cipher)::Encrypt,enckey);
-      des->encrypt(data,"./tmp/des_encrypt_ecb_outdata_pksc7");
+      des->encryptFile(data,"./tmp/des_encrypt_ecb_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_ecb_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des2->init(st(Cipher)::Decrypt,deckey);
-      des2->decrypt("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
-      String result = md5sum->encrypt(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
+      des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS5Padding case1] [FAILED]--- \n");
@@ -79,14 +79,14 @@ void testDesEncryptEcb() {
       enckey->loadEncryptKey("./tmp/test_des_encrypt_ecb_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des->init(st(Cipher)::Encrypt,enckey);
-      des->encrypt(data,"./tmp/des_encrypt_ecb_outdata_pksc7");
+      des->encryptFile(data,"./tmp/des_encrypt_ecb_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_ecb_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des2->init(st(Cipher)::Decrypt,deckey);
-      des2->decrypt("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
-      String result = md5sum->encrypt(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
+      des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS7Padding case2] [FAILED]--- \n");
@@ -99,14 +99,14 @@ void testDesEncryptEcb() {
       enckey->loadEncryptKey("./tmp/test_des_encrypt_ecb_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/ECB/ZeroPading");
       des->init(st(Cipher)::Encrypt,enckey);
-      des->encrypt(data,"./tmp/des_encrypt_ecb_outdata_pksc0");
+      des->encryptFile(data,"./tmp/des_encrypt_ecb_outdata_pksc0");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_ecb_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/ZeroPading");
       des2->init(st(Cipher)::Decrypt,deckey);
-      des2->decrypt("./tmp/des_encrypt_ecb_outdata_pksc0","./tmp/des_encrypt_ecb_outdata_pksc0_dec");
-      String result = md5sum->encrypt(createFile("./tmp/des_encrypt_ecb_outdata_pksc0_dec"));
+      des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc0","./tmp/des_encrypt_ecb_outdata_pksc0_dec");
+      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc0_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb ZeroPading case3] [FAILED]--- \n");
