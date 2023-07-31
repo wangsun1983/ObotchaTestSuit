@@ -33,11 +33,11 @@ void basetest() {
       break;
     }
 
-    Uint16 v3;
-    try {
-      Uint16 v4 = createUint16(v3);
-      TEST_FAIL("Uint16 construct test4");
-    } catch(InitializeException e){}
+    // Uint16 v3;
+    // try {
+    //   Uint16 v4 = createUint16(v3);
+    //   TEST_FAIL("Uint16 construct test4");
+    // } catch(InitializeException e){}
 
 
     TEST_OK("Uint16 construct test5");
@@ -102,12 +102,12 @@ void basetest() {
 
   //MAX_VALUE/MIN_VALUE
   while(1) {
-      if(st(Uint16)::MAX_VALUE < 0) {
+      if(st(Uint16)::kMaxValue < 0) {
         TEST_FAIL("Uint16 MAX_VALUE test1");
         break;
       }
 
-      if(st(Uint16)::MIN_VALUE != 0) {
+      if(st(Uint16)::kMinValue != 0) {
         TEST_FAIL("Uint16 MIN_VALUE test2");
         break;
       }

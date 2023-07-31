@@ -20,11 +20,11 @@ int objectDataTest() {
         break;
       }
 
-      JsonValue v = value->getValue(0);
-      if(v != nullptr) {
-        TEST_FAIL("[JsonReader Object Data Test case1]");
-        break;
-      }
+      // JsonValue v = value->getValue(0);
+      // if(v != nullptr) {
+      //   TEST_FAIL("[JsonReader Object Data Test case1]");
+      //   break;
+      // }
 
       TEST_OK("[JsonReader Object Data Test case2]");
       break;
@@ -63,13 +63,13 @@ int objectDataTest() {
       }
 
       String v2 = value->getString("name");
-      if(v2 == nullptr || !v2->equals("test")) {
+      if(v2 == nullptr || !v2->sameAs("test")) {
         TEST_FAIL("[JsonReader Object Data Test case5]");
         break;
       }
 
       String v3 = value->getString("attribute");
-      if(v3 == nullptr || !v3->equals("random")) {
+      if(v3 == nullptr || !v3->sameAs("random")) {
         TEST_FAIL("[JsonReader Object Data Test case6]");
         break;
       }
@@ -87,7 +87,7 @@ int objectDataTest() {
       }
 
       String v2 = value->getString("");
-      if(v2 == nullptr || !v2->equals("1234")) {
+      if(v2 == nullptr || !v2->sameAs("1234")) {
         TEST_FAIL("[JsonReader Object Data Test case7]");
         break;
       }

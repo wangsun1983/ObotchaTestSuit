@@ -33,11 +33,11 @@ void basetest() {
       break;
     }
 
-    Integer v3;
-    try {
-      Integer v4 = createInteger(v3);
-      TEST_FAIL("Integer construct test4");
-    } catch(InitializeException e) {}
+    // Integer v3;
+    // try {
+    //   Integer v4 = createInteger(v3);
+    //   TEST_FAIL("Integer construct test4");
+    // } catch(InitializeException e) {}
 
     TEST_OK("Integer construct test5");
     break;

@@ -22,7 +22,7 @@ int stringUnicodeDataTest() {
       }
 
       String v_int = value->getString();
-      if(v_int == nullptr || !v_int->equals("a")) {
+      if(v_int == nullptr || !v_int->sameAs("a")) {
         TEST_FAIL("[JsonReader String Unicode Data Test case2]");
         break;
       }
@@ -40,7 +40,7 @@ int stringUnicodeDataTest() {
       }
 
       String v_int = value->getString();
-      if(v_int == nullptr || !v_int->equals("¢")) {
+      if(v_int == nullptr || !v_int->sameAs("¢")) {
         TEST_FAIL("[JsonReader String Unicode Data Test case5]");
         break;
       }
@@ -58,7 +58,7 @@ int stringUnicodeDataTest() {
       }
 
       String v_int = value->getString();
-      if(v_int == nullptr || !v_int->equals("€")) {
+      if(v_int == nullptr || !v_int->sameAs("€")) {
         TEST_FAIL("[JsonReader String Unicode Data Test case8],v_int is %s ",v_int->toChars());
         break;
       }
@@ -76,8 +76,8 @@ int stringUnicodeDataTest() {
       }
 
       String v_int = value->getString();
-      if(v_int == nullptr || !v_int->equals("𝄞")) {
-        TEST_FAIL("[JsonReader String Unicode Data Test case11]");
+      if(v_int == nullptr || !v_int->sameAs("𝄞")) {
+		TEST_FAIL("[JsonReader String Unicode Data Test case11]");
         break;
       }
 
@@ -94,7 +94,7 @@ int stringUnicodeDataTest() {
       }
 
       String v_int = value->getString();
-      if(v_int == nullptr || !v_int->equals("Zażółć gęślą jaźń")) {
+      if(v_int == nullptr || !v_int->sameAs("Zażółć gęślą jaźń")) {
         TEST_FAIL("[JsonReader String Unicode Data Test case14]");
         break;
       }

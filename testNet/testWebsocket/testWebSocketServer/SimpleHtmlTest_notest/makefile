@@ -27,7 +27,7 @@ cflags = -fpic \
 		-I ../../../../../external/glog/include \
 		-I ../../../../../external/uuid/include \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-fsanitize=address\
 		-fno-omit-frame-pointer
 

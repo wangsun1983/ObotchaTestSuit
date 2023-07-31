@@ -19,21 +19,21 @@ int commentTest() {
       JsonValue v = root->getValue("test");
       JsonValue vv1 = v->getValueAt(0);
       String vv1_str = vv1->getString("a");
-      if(vv1_str == nullptr || !vv1_str->equals("aaa")) {
+      if(vv1_str == nullptr || !vv1_str->sameAs("aaa")) {
         TEST_FAIL("[JsonReader commonTest case1]");
         break;
       }
 
       JsonValue vv2 = v->getValueAt(1);
       String vv2_str = vv2->getString("b");
-      if(vv2_str == nullptr || !vv2_str->equals("bbb")) {
+      if(vv2_str == nullptr || !vv2_str->sameAs("bbb")) {
         TEST_FAIL("[JsonReader commonTest case2]");
         break;
       }
 
       JsonValue vv3 = v->getValueAt(2);
       String vv3_str = vv3->getString("c");
-      if(vv3_str == nullptr || !vv3_str->equals("ccc")) {
+      if(vv3_str == nullptr || !vv3_str->sameAs("ccc")) {
         TEST_FAIL("[JsonReader commonTest case3]");
         break;
       }

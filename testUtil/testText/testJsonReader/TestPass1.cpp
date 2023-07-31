@@ -19,7 +19,7 @@ int testpass1() {
     //first array;
     //"JSON Test Pattern pass1",
     String v1 = root->getStringAt(0);
-    if(!v1->equals("JSON Test Pattern pass1")) {
+    if(!v1->sameAs("JSON Test Pattern pass1")) {
       TEST_FAIL("[JsonReader testPass case1]");
       return 0;
     }
@@ -28,7 +28,7 @@ int testpass1() {
     JsonValue value1 = root->getValueAt(1);
     JsonValue value1_1 = value1->getValue("object with 1 member");
     String value1_2 = value1_1->getStringAt(0);
-    if(!value1_2->equals("array with 1 element")) {
+    if(!value1_2->sameAs("array with 1 element")) {
       TEST_FAIL("[JsonReader testPass case2]");
       return 0;
     }
@@ -136,77 +136,77 @@ int testpass1() {
 
         //"space": " ",
         String value8_8 = value8->getString("space");
-        if(!value8_8->equals(" ")) {
+        if(!value8_8->sameAs(" ")) {
           TEST_FAIL("[JsonReader testPass case16]");
           return 0;
         }
 
         //"quote": "\"",
         String value8_9 = value8->getString("quote");
-        if(!value8_9->equals("\"")) {
+        if(!value8_9->sameAs("\"")) {
           TEST_FAIL("[JsonReader testPass case17]");
           return 0;
         }
 
         //"backslash": "\\",
         String value8_10 = value8->getString("backslash");
-        if(!value8_10->equals("\\")) {
+        if(!value8_10->sameAs("\\")) {
           TEST_FAIL("[JsonReader testPass case18]");
           return 0;
         }
 
         //"controls": "\b\f\r\t",
         String value8_11 = value8->getString("controls");
-        if(!value8_11->equals("\b\f\n\r\t")) {
+        if(!value8_11->sameAs("\b\f\n\r\t")) {
           TEST_FAIL("[JsonReader testPass case19]");
           return 0;
         }
 
         //"slash": "/ & \/",
         String value8_12 = value8->getString("slash");
-        if(!value8_12->equals("/ & \/")) {
+        if(!value8_12->sameAs("/ & \/")) {
           TEST_FAIL("[JsonReader testPass case20]");
           return 0;
         }
 
         //"alpha": "abcdefghijklmnopqrstuvwyz",
         String value8_13 = value8->getString("alpha");
-        if(!value8_13->equals("abcdefghijklmnopqrstuvwyz")) {
+        if(!value8_13->sameAs("abcdefghijklmnopqrstuvwyz")) {
           TEST_FAIL("[JsonReader testPass case21]");
           return 0;
         }
 
         //"ALPHA": "ABCDEFGHIJKLMNOPQRSTUVWYZ",
         String value8_14 = value8->getString("ALPHA");
-        if(!value8_14->equals("ABCDEFGHIJKLMNOPQRSTUVWYZ")) {
+        if(!value8_14->sameAs("ABCDEFGHIJKLMNOPQRSTUVWYZ")) {
           TEST_FAIL("[JsonReader testPass case22]");
           return 0;
         }
 
         //"digit": "0123456789",
         String value8_15 = value8->getString("digit");
-        if(!value8_15->equals("0123456789")) {
+        if(!value8_15->sameAs("0123456789")) {
           TEST_FAIL("[JsonReader testPass case23]");
           return 0;
         }
 
         //"0123456789": "digit",
         String value8_16 = value8->getString("0123456789");
-        if(!value8_16->equals("digit")) {
+        if(!value8_16->sameAs("digit")) {
           TEST_FAIL("[JsonReader testPass case24]");
           return 0;
         }
 
         //"special": "`1~!@#$%^&*()_+-={':[,]}|;.</>?",
         String value8_17 = value8->getString("special");
-        if(!value8_17->equals("`1~!@#$%^&*()_+-={':[,]}|;.</>?")) {
+        if(!value8_17->sameAs("`1~!@#$%^&*()_+-={':[,]}|;.</>?")) {
           TEST_FAIL("[JsonReader testPass case25]");
           return 0;
         }
 
         //"hex": "\u0123\u4567\u89AB\uCDEF\uabcd\uef4A",
         String value8_18 = value8->getString("hex");
-        if(!value8_18->equals("\u0123\u4567\u89AB\uCDEF\uabcd\uef4A")) {
+        if(!value8_18->sameAs("\u0123\u4567\u89AB\uCDEF\uabcd\uef4A")) {
           TEST_FAIL("[JsonReader testPass case26]");
           return 0;
         }
@@ -248,28 +248,28 @@ int testpass1() {
 
         //"address": "50 St. James Street",
         String value8_24 = value8->getString("address");
-        if(!value8_24->equals("50 St. James Street")) {
+        if(!value8_24->sameAs("50 St. James Street")) {
           TEST_FAIL("[JsonReader testPass case32]");
           return 0;
         }
 
         //"url": "http://www.JSON.org/",
         String value8_25 = value8->getString("url");
-        if(!value8_25->equals("http://www.JSON.org/")) {
+        if(!value8_25->sameAs("http://www.JSON.org/")) {
           TEST_FAIL("[JsonReader testPass case33]");
           return 0;
         }
 
         //"comment": "// /* <!-- --",
         String value8_26 = value8->getString("comment");
-        if(!value8_26->equals("// /* <!-- --")) {
+        if(!value8_26->sameAs("// /* <!-- --")) {
           TEST_FAIL("[JsonReader testPass case34]");
           return 0;
         }
 
         //"# -- --> */": " ",
         String value8_27 = value8->getString("# -- --> */");
-        if(!value8_27->equals(" ")) {
+        if(!value8_27->sameAs(" ")) {
           TEST_FAIL("[JsonReader testPass case35]");
           return 0;
         }
@@ -317,14 +317,14 @@ int testpass1() {
             JsonReader reader = createJsonReader(value8_30);
             JsonValue value8_30_1 = reader->get();
             JsonValue value8_30_1_1 = value8_30_1->getValue("object with 1 member");
-            if(!value8_30_1_1->getStringAt(0)->equals("array with 1 element")) {
+            if(!value8_30_1_1->getStringAt(0)->sameAs("array with 1 element")) {
               TEST_FAIL("[JsonReader testPass case41]");
               return 0;
             }
 
         //"quotes": "&#34; \u0022 %22 0x22 034 &#x22;",
         String value8_31 = value8->getString("quotes");
-        if(!value8_31->equals("&#34; \u0022 %22 0x22 034 &#x22;")) {
+        if(!value8_31->sameAs("&#34; \u0022 %22 0x22 034 &#x22;")) {
           TEST_FAIL("[JsonReader testPass case42]");
           return 0;
         }
@@ -332,7 +332,7 @@ int testpass1() {
         //"\/\\\"\uCAFE\uBABE\uAB98\uFCDE\ubcda\uef4A\b\f\r\t`1~!@#$%^&*()_+-=[]{}|;:',./<>?"
         //: "A key can be any string"
         String value8_32 = value8->getString("\/\\\"\uCAFE\uBABE\uAB98\uFCDE\ubcda\uef4A\b\f\n\r\t`1~!@#$%^&*()_+-=[]{}|;:',./<>?");
-        if(!value8_32->equals("A key can be any string")) {
+        if(!value8_32->sameAs("A key can be any string")) {
           TEST_FAIL("[JsonReader testPass case43]");
           return 0;
         }

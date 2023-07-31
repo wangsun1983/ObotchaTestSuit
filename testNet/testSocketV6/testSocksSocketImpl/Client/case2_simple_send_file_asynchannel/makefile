@@ -26,8 +26,8 @@ cflags = -fpic \
 		-I ../../../../../../external/glog/include \
 		-I ../../../../../common \
 		-g \
-		-std=c++14 \
-		-std=c++14 \
+		-std=c++17 \
+		-std=c++17 \
 		-fsanitize=address\
 		-fno-omit-frame-pointer
 

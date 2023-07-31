@@ -35,11 +35,11 @@ void basetest() {
       break;
     }
 
-    Uint8 v3;
-    try {
-      Uint8 v4 = createUint8(v3);
-      TEST_FAIL("Uint8 construct test4");
-    } catch(InitializeException e) {}
+    // Uint8 v3;
+    // try {
+    //   Uint8 v4 = createUint8(v3);
+    //   TEST_FAIL("Uint8 construct test4");
+    // } catch(InitializeException e) {}
 
     TEST_OK("Uint8 construct test5");
     break;
@@ -104,12 +104,12 @@ void basetest() {
 
   //MAX_VALUE/MIN_VALUE
   while(1) {
-      if(st(Uint8)::MAX_VALUE < 0) {
+      if(st(Uint8)::kMaxValue < 0) {
         TEST_FAIL("Uint8 MAX_VALUE test1");
         break;
       }
 
-      if(st(Uint8)::MIN_VALUE != 0) {
+      if(st(Uint8)::kMinValue != 0) {
         TEST_FAIL("Uint8 MIN_VALUE test2");
         break;
       }

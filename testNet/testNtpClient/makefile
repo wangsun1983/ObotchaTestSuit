@@ -30,9 +30,9 @@ cflags = -fpic \
 		-I ../../../external/glog/include \
 		-I ../../common \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
 	

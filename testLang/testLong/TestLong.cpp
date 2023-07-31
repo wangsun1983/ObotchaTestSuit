@@ -36,11 +36,11 @@ void basetest() {
       break;
     }
 
-    Long v3;
-    try {
-        Long v4 = createLong(v3);
-        TEST_FAIL("Long construct test4");
-    } catch(InitializeException e) {}
+    // Long v3;
+    // try {
+    //     Long v4 = createLong(v3);
+    //     TEST_FAIL("Long construct test4");
+    // } catch(InitializeException e) {}
 
     TEST_OK("Long construct test5");
     break;

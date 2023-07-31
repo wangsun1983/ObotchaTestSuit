@@ -24,9 +24,9 @@ int testConfValueSet() {
     ConfReader r = createConfReader(createFile("./tmp/test1.conf"));
     auto value2 = r->get();
     
-    if(!value2->get(createString("tag1"))->equals("value1")
-        ||!value2->get(createString("tag2"))->equals("value2")
-        ||!value2->get(createString("tag3"))->equals("value3")) {
+    if(!value2->get(createString("tag1"))->sameAs("value1")
+        ||!value2->get(createString("tag2"))->sameAs("value2")
+        ||!value2->get(createString("tag3"))->sameAs("value3")) {
         TEST_FAIL("ConfValue Get/Set test1");
     }
     

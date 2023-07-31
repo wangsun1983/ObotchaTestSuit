@@ -32,8 +32,8 @@ int testImport() {
     
     ConfReader reader = createConfReader(createFile("./tmp/importdata1.conf"));
     auto __value = reader->get();
-    if(!__value->get("intValue")->equals("100")
-        ||!__value->get("stringValue")->equals("aabbcc")) {
+    if(!__value->get("intValue")->sameAs("100")
+        ||!__value->get("stringValue")->sameAs("aabbcc")) {
         TEST_FAIL("ConfValue import test1");
     }
     

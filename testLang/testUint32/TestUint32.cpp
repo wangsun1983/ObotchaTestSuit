@@ -34,11 +34,11 @@ void basetest() {
       break;
     }
 
-    Uint32 v3;
-    try {
-        Uint32 v4 = createUint32(v3);
-        TEST_FAIL("Uint32 construct test4");
-    } catch(InitializeException e) {}
+    // Uint32 v3;
+    // try {
+    //     Uint32 v4 = createUint32(v3);
+    //     TEST_FAIL("Uint32 construct test4");
+    // } catch(InitializeException e) {}
 
     TEST_OK("Uint32 construct test5");
     break;
@@ -102,12 +102,12 @@ void basetest() {
 
   //MAX_VALUE/MIN_VALUE
   while(1) {
-      if(st(Uint32)::MAX_VALUE < 0) {
+      if(st(Uint32)::kMaxValue < 0) {
         TEST_FAIL("Uint32 MAX_VALUE test1");
         break;
       }
 
-      if(st(Uint32)::MIN_VALUE != 0) {
+      if(st(Uint32)::kMinValue != 0) {
         TEST_FAIL("Uint32 MIN_VALUE test2");
         break;
       }

@@ -26,7 +26,7 @@ int testReflectTo() {
     ReflectData data = createReflectData();
     value->reflectTo(data);
     
-    if(data->intValue != 100 || !data->stringValue->equals("aabbcc")) {
+    if(data->intValue != 100 || !data->stringValue->sameAs("aabbcc")) {
         TEST_FAIL("ConfValue reflectTo case1");
     }
     

@@ -23,12 +23,12 @@ int testremove() {
     }
 
     String attr1 = arr->getStringAt(0);
-    if(!attr1->equals("abc1")) {
+    if(!attr1->sameAs("abc1")) {
       TEST_FAIL("[JsonReader testRemove case2]");
     }
 
     String attr2 = arr->getStringAt(1);
-    if(!attr2->equals("abc3")) {
+    if(!attr2->sameAs("abc3")) {
       TEST_FAIL("[JsonReader testRemove case3]");
     }
 

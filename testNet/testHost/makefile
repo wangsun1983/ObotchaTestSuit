@@ -29,9 +29,9 @@ cflags = -fpic \
 		-I ../../../external/http_parser/include \
 		-I ../../../external/glog/include \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
 	

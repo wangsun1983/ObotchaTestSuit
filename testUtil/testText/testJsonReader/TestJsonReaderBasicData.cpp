@@ -56,7 +56,7 @@ int basicDataTest() {
       JsonReader reader = createJsonReader(createFile("./test/data/test_basic_04.json"));
       JsonValue value = reader->get();
       String v = value->getString();
-      if(v == nullptr || !v->equals("abcdef")) {
+      if(v == nullptr || !v->sameAs("abcdef")) {
         TEST_FAIL("[JsonReader basicDataTest case7]");
         break;
       }

@@ -19,7 +19,7 @@ cflags = -fpic \
 		-I ../../../../external/openssl/include \
 		-I ../../../../external/libco \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
 

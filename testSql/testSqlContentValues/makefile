@@ -31,7 +31,7 @@ cflags = -fpic \
 		-I ../../common \
 		-O0 \
 		-g \
-		-std=c++14 \
+		-std=c++17 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
 

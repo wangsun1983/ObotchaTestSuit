@@ -128,7 +128,7 @@ int arrayDataTest() {
       Integer v3 = value->getIntegerAt(3);
       if(v0 == nullptr || v0->toValue() != 1
         ||v2 == nullptr || v2->toValue() != 12.3
-        ||v1 == nullptr || !v1->equals("abc")
+        ||v1 == nullptr || !v1->sameAs("abc")
         ||v3 == nullptr || v3->toValue() != -4) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case22]");
         break;
@@ -207,10 +207,10 @@ int arrayDataTest() {
       String str3 = value->getStringAt(2);
       String str4 = value->getStringAt(3);
 
-      if(str1 == nullptr || !str1->equals("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        ||str2 == nullptr || !str2->equals("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
-        ||str3 == nullptr || !str3->equals("ccccccccccccccccccccccc")
-        ||str4 == nullptr || !str4->equals("dddddddddddddddddddddddddddddddddddddddddddddddddddd")) {
+      if(str1 == nullptr || !str1->sameAs("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        ||str2 == nullptr || !str2->sameAs("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
+        ||str3 == nullptr || !str3->sameAs("ccccccccccccccccccccccc")
+        ||str4 == nullptr || !str4->sameAs("dddddddddddddddddddddddddddddddddddddddddddddddddddd")) {
           TEST_FAIL("[JsonReader SimpleRead {data test} case33]");
           break;
       }
@@ -250,7 +250,7 @@ int arrayDataTest() {
       }
 
       String vv1Value = vv1->getStringAt(0);
-      if(vv1Value == nullptr || !vv1Value->equals("A")) {
+      if(vv1Value == nullptr || !vv1Value->sameAs("A")) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case35]");
         break;
       }

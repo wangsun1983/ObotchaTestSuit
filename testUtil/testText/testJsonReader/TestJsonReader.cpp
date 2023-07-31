@@ -30,7 +30,7 @@ int basetest() {
         }
 
         String str1 = value->getString("c");
-        if(str1 == nullptr || !str1->equals("nihao")) {
+        if(str1 == nullptr || !str1->sameAs("nihao")) {
           TEST_FAIL("[JsonReader SimpleRead {getString()} case8]");
           break;
         }
@@ -39,7 +39,7 @@ int basetest() {
         JsonValue vv1 = arr3->getValueAt(0);
         String strvv1 = vv1->getString("vv");
         Integer intvv1 = vv1->getInteger("v1");
-        if(strvv1 == nullptr || !strvv1->equals("v1")
+        if(strvv1 == nullptr || !strvv1->sameAs("v1")
            ||intvv1 == nullptr || intvv1->toValue() != 1) {
              TEST_FAIL("[JsonReader SimpleRead {getValue()} case9]");
              break;
@@ -48,7 +48,7 @@ int basetest() {
         JsonValue vv2 = arr3->getValueAt(1);
         String strvv2 = vv2->getString("vv");
         Integer intvv2 = vv2->getInteger("v1");
-        if(strvv2 == nullptr || !strvv2->equals("v2")
+        if(strvv2 == nullptr || !strvv2->sameAs("v2")
            ||intvv2 == nullptr || intvv2->toValue() != 2) {
              TEST_FAIL("[JsonReader SimpleRead {getValue()} case10]");
              break;
@@ -156,7 +156,7 @@ int basetest() {
       value->put(S("test1"),createString("test1"));
 
       String test1 = value->getString("test1");
-      if(test1 == nullptr || !test1->equals("test1")) {
+      if(test1 == nullptr || !test1->sameAs("test1")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case1]");
         break;
       }
@@ -177,7 +177,7 @@ int basetest() {
       value->put(S("test3"),(char *)"test3");
 
       String test1 = value->getString("test3");
-      if(test1 == nullptr || !test1->equals("test3")) {
+      if(test1 == nullptr || !test1->sameAs("test3")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case4]");
         break;
       }
@@ -199,7 +199,7 @@ int basetest() {
       value->put(S("test5"),t);
 
       String test1 = value->getString("test5");
-      if(test1 == nullptr || !test1->equals("test5")) {
+      if(test1 == nullptr || !test1->sameAs("test5")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case7]");
         break;
       }
@@ -331,7 +331,7 @@ int basetest() {
       //start check
       JsonValue testArray = value->getValue("testarr1");
       String t1 = testArray->getStringAt(0);
-      if(!t1->equals("abc1")) {
+      if(!t1->sameAs("abc1")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case24]");
         break;
       }
@@ -345,7 +345,7 @@ int basetest() {
 
       JsonValue v3 = testArray->getValueAt(2);
       //TEST_FAIL("v3 is %d ",v3->size());
-      if(!v3->getString("jv1")->equals("jv1")) {
+      if(!v3->getString("jv1")->sameAs("jv1")) {
         TEST_FAIL("[JsonReader SimpleRead {put()} case26]");
         break;
       }
@@ -388,7 +388,7 @@ int basetest() {
     //String getString(String tag);
     while(1) {
       String v1 = value->getString("c");
-      if(v1 == nullptr || !v1->equals("nihao")) {
+      if(v1 == nullptr || !v1->sameAs("nihao")) {
         TEST_FAIL("[JsonReader SimpleRead {getString()} case１]");
         break;
       }
@@ -407,7 +407,7 @@ int basetest() {
     while(1) {
       JsonValue v1 = value->getValue(createString("c"));
       String str1 = v1->getString();
-      if(str1 == nullptr || !str1->equals("nihao")) {
+      if(str1 == nullptr || !str1->sameAs("nihao")) {
         TEST_FAIL("[JsonReader SimpleRead {getString()} case4]");
         break;
       }
@@ -525,21 +525,21 @@ int basetest() {
 
       String str1 = arr1->getStringAt(0);
       //TEST_FAIL("str1 is %s ",str1->toChars());
-      if(!str1->equals("abc1")) {
+      if(!str1->sameAs("abc1")) {
         TEST_FAIL("[JsonReader SimpleRead {getValue()} case3]");
         break;
       }
 
       str1 = arr1->getStringAt(1);
       //TEST_FAIL("str1 is %s ",str1->toChars());
-      if(!str1->equals("abc2")) {
+      if(!str1->sameAs("abc2")) {
         TEST_FAIL("[JsonReader SimpleRead {getValue()} case4]");
         break;
       }
 
       str1 = arr1->getStringAt(2);
       //TEST_FAIL("str1 is %s ",str1->toChars());
-      if(!str1->equals("abc3")) {
+      if(!str1->sameAs("abc3")) {
         TEST_FAIL("[JsonReader SimpleRead {getValue()} case5]");
         break;
       }
