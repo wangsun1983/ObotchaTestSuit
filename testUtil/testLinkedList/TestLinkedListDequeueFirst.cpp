@@ -24,7 +24,7 @@ void testTakeFirst() {
         String v2 = mList->takeFirst();
         String v3 = mList->takeFirst();
 
-        if(!v1->equals("a") ||!v2->equals("b") ||!v3->equals("c")) {
+        if(!v1->sameAs("a") ||!v2->sameAs("b") ||!v3->sameAs("c")) {
             TEST_FAIL("LinkedList Dequeue First test2,v1 is %s ,v2 is %s,v3 is %s ",v1->toChars(),v2->toChars(),v3->toChars());
             
             break;
@@ -50,7 +50,7 @@ void testTakeFirst() {
         }
 
         String v1 = mList->takeFirst();
-        if(!v1->equals("a")) {
+        if(!v1->sameAs("a")) {
             TEST_FAIL("LinkedList Dequeue First test6,v1 is %s ",v1->toChars());
             
             break;

@@ -54,7 +54,7 @@ void testBlockingLinkedListTryTakeLast() {
           break;
         }
 
-        if(!v1->equals("b") || !v2->equals("a")) {
+        if(!v1->sameAs("b") || !v2->sameAs("a")) {
           TEST_FAIL("BlockingLinkedList tryTakeLast test4 \n");
           break;
         }

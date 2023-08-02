@@ -19,7 +19,7 @@ void testBlockingLinkedListPeekLast() {
         list->put(createString("c"));
 
         String v = list->peekLast();
-        if(v == nullptr || !v->equals("c")) {
+        if(v == nullptr || !v->sameAs("c")) {
           TEST_FAIL("BlockingLinkedList PeekLast test1 \n");
           break;
         }

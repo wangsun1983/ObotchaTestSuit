@@ -19,7 +19,7 @@ void testBlockingQueuePeekFirst() {
         list->put(createString("c"));
 
         String v = list->peekFirst();
-        if(v == nullptr || !v->equals("a")) {
+        if(v == nullptr || !v->sameAs("a")) {
           TEST_FAIL("BlockingQueue PeekFirst test1");
           break;
         }

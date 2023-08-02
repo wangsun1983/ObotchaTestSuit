@@ -30,7 +30,7 @@ void testIniValue() {
       }
 
       String v2 = v1->get(S("abc1"));
-      if(v2 == nullptr || !v2->equals("1")) {
+      if(v2 == nullptr || !v2->sameAs("1")) {
         TEST_FAIL("IniValue test3");
         break;
       }
@@ -42,93 +42,93 @@ void testIniValue() {
         break;
       }
 
-      if(l1maps->get(S("a")) == nullptr || !l1maps->get(S("a"))->equals("1")) {
+      if(l1maps->get(S("a")) == nullptr || !l1maps->get(S("a"))->sameAs("1")) {
         TEST_FAIL("IniValue test5");
         break;
       }
 
-      if(l1maps->get(S("b")) == nullptr || !l1maps->get(S("b"))->equals("2")) {
+      if(l1maps->get(S("b")) == nullptr || !l1maps->get(S("b"))->sameAs("2")) {
         TEST_FAIL("IniValue test6");
         break;
       }
 
-      if(l1maps->get(S("c")) == nullptr || !l1maps->get(S("c"))->equals("3")) {
+      if(l1maps->get(S("c")) == nullptr || !l1maps->get(S("c"))->sameAs("3")) {
         TEST_FAIL("IniValue test7");
         break;
       }
 
-      if(l1maps->get(S("e")) == nullptr || !l1maps->get(S("e"))->equals("4")) {
+      if(l1maps->get(S("e")) == nullptr || !l1maps->get(S("e"))->sameAs("4")) {
         TEST_FAIL("IniValue test8");
         break;
       }
 
-      if(l1maps->get(S("f")) == nullptr || !l1maps->get(S("f"))->equals("5")) {
+      if(l1maps->get(S("f")) == nullptr || !l1maps->get(S("f"))->sameAs("5")) {
         TEST_FAIL("IniValue test9");
         break;
       }
 
-      if(l1maps->get(S("g")) == nullptr || !l1maps->get(S("g"))->equals("6")) {
+      if(l1maps->get(S("g")) == nullptr || !l1maps->get(S("g"))->sameAs("6")) {
         TEST_FAIL("IniValue test10");
         break;
       }
 
       //l2
       HashMap<String,String> l2maps = iniValues->get(S("l2"));
-      if(l2maps->get(S("a")) == nullptr || !l2maps->get(S("a"))->equals("7")) {
+      if(l2maps->get(S("a")) == nullptr || !l2maps->get(S("a"))->sameAs("7")) {
         TEST_FAIL("IniValue test10_1");
         break;
       }
 
-      if(l2maps->get(S("b")) == nullptr || !l2maps->get(S("b"))->equals("8")) {
+      if(l2maps->get(S("b")) == nullptr || !l2maps->get(S("b"))->sameAs("8")) {
         TEST_FAIL("IniValue test11");
         break;
       }
 
-      if(l2maps->get(S("c")) == nullptr || !l2maps->get(S("c"))->equals("9")) {
+      if(l2maps->get(S("c")) == nullptr || !l2maps->get(S("c"))->sameAs("9")) {
         TEST_FAIL("IniValue test12");
         break;
       }
 
-      if(l2maps->get(S("d")) == nullptr || !l2maps->get(S("d"))->equals("10")) {
+      if(l2maps->get(S("d")) == nullptr || !l2maps->get(S("d"))->sameAs("10")) {
         TEST_FAIL("IniValue test13");
         break;
       }
 
       //l3
       HashMap<String,String> l3maps = iniValues->get(S("l3"));
-      if(l3maps->get(S("a")) == nullptr || !l3maps->get(S("a"))->equals("1.1")) {
+      if(l3maps->get(S("a")) == nullptr || !l3maps->get(S("a"))->sameAs("1.1")) {
         TEST_FAIL("IniValue test14");
         break;
       }
 
-      if(l3maps->get(S("b")) == nullptr || !l3maps->get(S("b"))->equals("2.1")) {
+      if(l3maps->get(S("b")) == nullptr || !l3maps->get(S("b"))->sameAs("2.1")) {
         TEST_FAIL("IniValue test15");
         break;
       }
 
-      if(l3maps->get(S("c")) == nullptr || !l3maps->get(S("c"))->equals("3.1")) {
+      if(l3maps->get(S("c")) == nullptr || !l3maps->get(S("c"))->sameAs("3.1")) {
         TEST_FAIL("IniValue test16");
         break;
       }
 
       //l4
       HashMap<String,String> l4maps = iniValues->get(S("l4"));
-      if(l4maps->get(S("a")) == nullptr || !l4maps->get(S("a"))->equals("true")) {
+      if(l4maps->get(S("a")) == nullptr || !l4maps->get(S("a"))->sameAs("true")) {
         TEST_FAIL("IniValue test17");
         break;
       }
 
-      if(l4maps->get(S("b")) == nullptr || !l4maps->get(S("b"))->equals("false")) {
+      if(l4maps->get(S("b")) == nullptr || !l4maps->get(S("b"))->sameAs("false")) {
         TEST_FAIL("IniValue test18");
         break;
       }
 
-      if(l4maps->get(S("c")) == nullptr || !l4maps->get(S("c"))->equals("true")) {
+      if(l4maps->get(S("c")) == nullptr || !l4maps->get(S("c"))->sameAs("true")) {
         TEST_FAIL("IniValue test19");
         break;
       }
 
-      if(l4maps->get(S("d")) == nullptr || !l4maps->get(S("d"))->equals("false")) {
+      if(l4maps->get(S("d")) == nullptr || !l4maps->get(S("d"))->sameAs("false")) {
         TEST_FAIL("IniValue test20");
         break;
       }
@@ -148,7 +148,7 @@ void testIniValue() {
       }
 
       String v2 = v1->get(S("abc1f"));
-      if(v2 == nullptr || !v2->equals("12f")) {
+      if(v2 == nullptr || !v2->sameAs("12f")) {
         TEST_FAIL("IniValue test22");
         break;
       }
@@ -160,102 +160,102 @@ void testIniValue() {
         break;
       }
 
-      if(blanksMaps->get(S("a")) == nullptr || !blanksMaps->get(S("a"))->equals("1")) {
+      if(blanksMaps->get(S("a")) == nullptr || !blanksMaps->get(S("a"))->sameAs("1")) {
         TEST_FAIL("IniValue test23");
         break;
       }
 
-      if(blanksMaps->get(S("b")) == nullptr || !blanksMaps->get(S("b"))->equals("1")) {
+      if(blanksMaps->get(S("b")) == nullptr || !blanksMaps->get(S("b"))->sameAs("1")) {
         TEST_FAIL("IniValue test24");
         break;
       }
 
-      if(blanksMaps->get(S("c")) == nullptr || !blanksMaps->get(S("c"))->equals("1")) {
+      if(blanksMaps->get(S("c")) == nullptr || !blanksMaps->get(S("c"))->sameAs("1")) {
         TEST_FAIL("IniValue test25");
         break;
       }
 
-      if(blanksMaps->get(S("d")) == nullptr || !blanksMaps->get(S("d"))->equals("1")) {
+      if(blanksMaps->get(S("d")) == nullptr || !blanksMaps->get(S("d"))->sameAs("1")) {
         TEST_FAIL("IniValue test26");
         break;
       }
 
-      if(blanksMaps->get(S("e")) == nullptr || !blanksMaps->get(S("e"))->equals("1")) {
+      if(blanksMaps->get(S("e")) == nullptr || !blanksMaps->get(S("e"))->sameAs("1")) {
         TEST_FAIL("IniValue test27");
         break;
       }
 
-      if(blanksMaps->get(S("f")) == nullptr || !blanksMaps->get(S("f"))->equals("1")) {
+      if(blanksMaps->get(S("f")) == nullptr || !blanksMaps->get(S("f"))->sameAs("1")) {
         TEST_FAIL("IniValue test28");
         break;
       }
 
-      if(blanksMaps->get(S("g")) == nullptr || !blanksMaps->get(S("g"))->equals("1")) {
+      if(blanksMaps->get(S("g")) == nullptr || !blanksMaps->get(S("g"))->sameAs("1")) {
         TEST_FAIL("IniValue test29");
         break;
       }
 
-      if(blanksMaps->get(S("h")) == nullptr || !blanksMaps->get(S("h"))->equals("1")) {
+      if(blanksMaps->get(S("h")) == nullptr || !blanksMaps->get(S("h"))->sameAs("1")) {
         TEST_FAIL("IniValue test30");
         break;
       }
 
-      if(blanksMaps->get(S("i")) == nullptr || !blanksMaps->get(S("i"))->equals("1")) {
+      if(blanksMaps->get(S("i")) == nullptr || !blanksMaps->get(S("i"))->sameAs("1")) {
         TEST_FAIL("IniValue test31");
         break;
       }
 
-      if(blanksMaps->get(S("j")) == nullptr || !blanksMaps->get(S("j"))->equals("1")) {
+      if(blanksMaps->get(S("j")) == nullptr || !blanksMaps->get(S("j"))->sameAs("1")) {
         TEST_FAIL("IniValue test32");
         break;
       }
 
-      if(blanksMaps->get(S("k")) == nullptr || !blanksMaps->get(S("k"))->equals("1")) {
+      if(blanksMaps->get(S("k")) == nullptr || !blanksMaps->get(S("k"))->sameAs("1")) {
         TEST_FAIL("IniValue test33");
         break;
       }
 
-      if(blanksMaps->get(S("l")) == nullptr || !blanksMaps->get(S("l"))->equals("1")) {
+      if(blanksMaps->get(S("l")) == nullptr || !blanksMaps->get(S("l"))->sameAs("1")) {
         TEST_FAIL("IniValue test34");
         break;
       }
 
-      if(blanksMaps->get(S("m")) == nullptr || !blanksMaps->get(S("m"))->equals("1")) {
+      if(blanksMaps->get(S("m")) == nullptr || !blanksMaps->get(S("m"))->sameAs("1")) {
         TEST_FAIL("IniValue test35");
         break;
       }
 
-      if(blanksMaps->get(S("n")) == nullptr || !blanksMaps->get(S("n"))->equals("1")) {
+      if(blanksMaps->get(S("n")) == nullptr || !blanksMaps->get(S("n"))->sameAs("1")) {
         TEST_FAIL("IniValue test36");
         break;
       }
 
-      if(blanksMaps->get(S("o")) == nullptr || !blanksMaps->get(S("o"))->equals("1")) {
+      if(blanksMaps->get(S("o")) == nullptr || !blanksMaps->get(S("o"))->sameAs("1")) {
         TEST_FAIL("IniValue test37");
         break;
       }
 
-      if(blanksMaps->get(S("p")) == nullptr || !blanksMaps->get(S("p"))->equals("1")) {
+      if(blanksMaps->get(S("p")) == nullptr || !blanksMaps->get(S("p"))->sameAs("1")) {
         TEST_FAIL("IniValue test38");
         break;
       }
 
-      if(blanksMaps->get(S("q")) == nullptr || !blanksMaps->get(S("q"))->equals("1")) {
+      if(blanksMaps->get(S("q")) == nullptr || !blanksMaps->get(S("q"))->sameAs("1")) {
         TEST_FAIL("IniValue test39");
         break;
       }
 
-      if(blanksMaps->get(S("r")) == nullptr || !blanksMaps->get(S("r"))->equals("1")) {
+      if(blanksMaps->get(S("r")) == nullptr || !blanksMaps->get(S("r"))->sameAs("1")) {
         TEST_FAIL("IniValue test40");
         break;
       }
 
-      if(blanksMaps->get(S("s")) == nullptr || !blanksMaps->get(S("s"))->equals("1")) {
+      if(blanksMaps->get(S("s")) == nullptr || !blanksMaps->get(S("s"))->sameAs("1")) {
         TEST_FAIL("IniValue test41");
         break;
       }
 
-      if(blanksMaps->get(S("t")) == nullptr || !blanksMaps->get(S("t"))->equals("1")) {
+      if(blanksMaps->get(S("t")) == nullptr || !blanksMaps->get(S("t"))->sameAs("1")) {
         TEST_FAIL("IniValue test42");
         break;
       }
@@ -346,42 +346,42 @@ void testIniValue() {
         break;
       }
 
-      if(peculiarMaps->get(S("a")) == nullptr || !peculiarMaps->get(S("a"))->equals(";")) {
+      if(peculiarMaps->get(S("a")) == nullptr || !peculiarMaps->get(S("a"))->sameAs(";")) {
         TEST_FAIL("IniValue test57,v is %s \n",peculiarMaps->get(S("a"))->toChars());
         break;
       }
 
-      if(peculiarMaps->get(S("b")) == nullptr || !peculiarMaps->get(S("b"))->equals("#")) {
+      if(peculiarMaps->get(S("b")) == nullptr || !peculiarMaps->get(S("b"))->sameAs("#")) {
         TEST_FAIL("IniValue test58");
         break;
       }
 
-      if(peculiarMaps->get(S("c")) == nullptr || !peculiarMaps->get(S("c"))->equals(";")) {
+      if(peculiarMaps->get(S("c")) == nullptr || !peculiarMaps->get(S("c"))->sameAs(";")) {
         TEST_FAIL("IniValue test59");
         break;
       }
 
-      if(peculiarMaps->get(S("d")) == nullptr || !peculiarMaps->get(S("d"))->equals("#")) {
+      if(peculiarMaps->get(S("d")) == nullptr || !peculiarMaps->get(S("d"))->sameAs("#")) {
         TEST_FAIL("IniValue test60");
         break;
       }
 
-      if(peculiarMaps->get(S("e")) == nullptr || !peculiarMaps->get(S("e"))->equals("\\")) {
+      if(peculiarMaps->get(S("e")) == nullptr || !peculiarMaps->get(S("e"))->sameAs("\\")) {
         TEST_FAIL("IniValue test61");
         break;
       }
 
-      if(peculiarMaps->get(S("f")) == nullptr || !peculiarMaps->get(S("f"))->equals("\\")) {
+      if(peculiarMaps->get(S("f")) == nullptr || !peculiarMaps->get(S("f"))->sameAs("\\")) {
         TEST_FAIL("IniValue test62");
         break;
       }
 
-      if(peculiarMaps->get(S("g")) == nullptr || !peculiarMaps->get(S("g"))->equals("\\")) {
+      if(peculiarMaps->get(S("g")) == nullptr || !peculiarMaps->get(S("g"))->sameAs("\\")) {
         TEST_FAIL("IniValue test63");
         break;
       }
 
-      if(peculiarMaps->get(S("h")) == nullptr || !peculiarMaps->get(S("h"))->equals("\\")) {
+      if(peculiarMaps->get(S("h")) == nullptr || !peculiarMaps->get(S("h"))->sameAs("\\")) {
         TEST_FAIL("IniValue test64");
         break;
       }
@@ -408,7 +408,7 @@ void testIniValue() {
 
       //[quotes]
       HashMap<String,String> quotesMap = iniValues->get(S("quotes"));
-      if(quotesMap->get(S("s1")) == nullptr || !quotesMap->get(S("s1"))->equals("'")) {
+      if(quotesMap->get(S("s1")) == nullptr || !quotesMap->get(S("s1"))->sameAs("'")) {
         TEST_FAIL("IniValue test69_1,value is %s \n",quotesMap->get(S("s1"))->toChars());
         break;
       }
@@ -418,17 +418,17 @@ void testIniValue() {
         break;
       }
 
-      if(quotesMap->get(S("s3")) == nullptr || quotesMap->get(S("s3"))->equals("'")) {
+      if(quotesMap->get(S("s3")) == nullptr || quotesMap->get(S("s3"))->sameAs("'")) {
         TEST_FAIL("IniValue quotes test71_1");
         break;
       }
 
-      if(quotesMap->get(S("s4")) == nullptr || quotesMap->get(S("s4"))->equals("'")) {
+      if(quotesMap->get(S("s4")) == nullptr || quotesMap->get(S("s4"))->sameAs("'")) {
         TEST_FAIL("IniValue quotes test72_1");
         break;
       }
 
-      if(quotesMap->get(S("d1")) == nullptr || !quotesMap->get(S("d1"))->equals("\"")) {
+      if(quotesMap->get(S("d1")) == nullptr || !quotesMap->get(S("d1"))->sameAs("\"")) {
         TEST_FAIL("IniValue quotes test69,value is %s \n",quotesMap->get(S("d1"))->toChars());
         break;
       }
@@ -438,52 +438,52 @@ void testIniValue() {
         break;
       }
 
-      if(quotesMap->get(S("d3")) == nullptr || !quotesMap->get(S("d3"))->equals("\"\"\"")) {
+      if(quotesMap->get(S("d3")) == nullptr || !quotesMap->get(S("d3"))->sameAs("\"\"\"")) {
         TEST_FAIL("IniValue quotes test71,value is %s \n",quotesMap->get(S("d3"))->toChars());
         break;
       }
 
-      if(quotesMap->get(S("d4")) == nullptr || !quotesMap->get(S("d4"))->equals("\"\"\"\"")) {
+      if(quotesMap->get(S("d4")) == nullptr || !quotesMap->get(S("d4"))->sameAs("\"\"\"\"")) {
         TEST_FAIL("IniValue quotes test72 ,value is %s \n",quotesMap->get(S("d4"))->toChars());
         break;
       }
 
-      if(quotesMap->get(S("m1")) == nullptr || !quotesMap->get(S("m1"))->equals("\"")) {
+      if(quotesMap->get(S("m1")) == nullptr || !quotesMap->get(S("m1"))->sameAs("\"")) {
         TEST_FAIL("IniValue quotes test73");
         break;
       }
 
-      if(quotesMap->get(S("m2")) == nullptr || !quotesMap->get(S("m2"))->equals("\'")) {
+      if(quotesMap->get(S("m2")) == nullptr || !quotesMap->get(S("m2"))->sameAs("\'")) {
         TEST_FAIL("IniValue quotes test74");
         break;
       }
 
-      if(quotesMap->get(S("h1")) == nullptr || !quotesMap->get(S("h1"))->equals("hello\'world")) {
+      if(quotesMap->get(S("h1")) == nullptr || !quotesMap->get(S("h1"))->sameAs("hello\'world")) {
         TEST_FAIL("IniValue quotes test75 value is %s\n",quotesMap->get(S("h1"))->toChars());
         break;
       }
 
-      if(quotesMap->get(S("h2")) == nullptr || !quotesMap->get(S("h2"))->equals("hello")) {
+      if(quotesMap->get(S("h2")) == nullptr || !quotesMap->get(S("h2"))->sameAs("hello")) {
         TEST_FAIL("IniValue quotes test76");
         break;
       }
 
-      if(quotesMap->get(S("h3")) == nullptr || !quotesMap->get(S("h3"))->equals("hello")) {
+      if(quotesMap->get(S("h3")) == nullptr || !quotesMap->get(S("h3"))->sameAs("hello")) {
         TEST_FAIL("IniValue quotes test77");
         break;
       }
 
-      if(quotesMap->get(S("h4")) == nullptr || !quotesMap->get(S("h4"))->equals("hello\"world")) {
+      if(quotesMap->get(S("h4")) == nullptr || !quotesMap->get(S("h4"))->sameAs("hello\"world")) {
         TEST_FAIL("IniValue quotes test77");
         break;
       }
 
-      if(quotesMap->get(S("h5")) == nullptr || !quotesMap->get(S("h5"))->equals("hello")) {
+      if(quotesMap->get(S("h5")) == nullptr || !quotesMap->get(S("h5"))->sameAs("hello")) {
         TEST_FAIL("IniValue quotes test78");
         break;
       }
 
-      if(quotesMap->get(S("h6")) == nullptr || !quotesMap->get(S("h6"))->equals("hello")) {
+      if(quotesMap->get(S("h6")) == nullptr || !quotesMap->get(S("h6"))->sameAs("hello")) {
         TEST_FAIL("IniValue quotes test78");
         break;
       }

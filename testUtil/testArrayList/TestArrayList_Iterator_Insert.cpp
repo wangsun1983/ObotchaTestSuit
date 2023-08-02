@@ -18,7 +18,7 @@ void testArrayList_Iterator_Insert() {
 
     auto iterator = list->getIterator();
     iterator->insert(createString("a1"));
-    if(list->size() != 2 || !list->get(0)->equals("a1") || !list->get(1)->equals("a")) {
+    if(list->size() != 2 || !list->get(0)->sameAs("a1") || !list->get(1)->sameAs("a")) {
       TEST_FAIL("[ArrayList Iterator Insert test1]");
       break;
     }
@@ -32,13 +32,13 @@ void testArrayList_Iterator_Insert() {
     auto iterator = list->getIterator();
     iterator->next();
     iterator->insert(createString("a1"));
-    if(list->size() != 3 || !list->get(0)->equals("a") || !list->get(1)->equals("a1") ||!list->get(2)->equals("b")) {
+    if(list->size() != 3 || !list->get(0)->sameAs("a") || !list->get(1)->sameAs("a1") ||!list->get(2)->sameAs("b")) {
       TEST_FAIL("[ArrayList Iterator Insert test2]");
       break;
     }
 
     auto value = iterator->getValue();
-    if(value == nullptr || !value->equals("a1")) {
+    if(value == nullptr || !value->sameAs("a1")) {
       TEST_FAIL("[ArrayList Iterator Insert test3]");
       break;
     }

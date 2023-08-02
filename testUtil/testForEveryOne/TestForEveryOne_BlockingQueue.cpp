@@ -55,7 +55,7 @@ void testBlockingQueue() {
         abc = abc->append(v);
       }
 
-      if(!abc->equals("fedcba")) {
+      if(!abc->sameAs("fedcba")) {
         TEST_FAIL("ForEveryOne BlockingQueue case2,abc is %s",abc->toChars());
       }
 

@@ -61,7 +61,7 @@ void testInnerClassReflect() {
         }
 
         if(data2->data1->intData != 1000 ||
-          !data2->data2->stringData->equals("hello world")) {
+          !data2->data2->stringData->sameAs("hello world")) {
             TEST_FAIL("[JsonReflect Inner Data Reflect Test case2]  ");
         }
         break;

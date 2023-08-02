@@ -10,7 +10,7 @@ using namespace obotcha;
 int main() {
 
     //write a json
-    JsonWriter writer = createJsonWriter(createString("abc.json"));
+    JsonWriter writer = createJsonWriter(createString("./tmp/abc.json"));
     JsonValue value = createJsonValue();
     value->put("a",1);
     value->put("c","nihao");
@@ -26,7 +26,7 @@ int main() {
     writer->close();
 
     //read a Json
-    JsonReader reader = createJsonReader(createString("abc.json"));
+    JsonReader reader = createJsonReader(createString("./tmp/abc.json"));
     JsonValue value2 = reader->get();
     while(1) {
       Integer i1 = value->getInteger("a");
@@ -36,7 +36,7 @@ int main() {
       }
 
       String s1 = value->getString("c");
-      if(s1 == nullptr || !s1->equals("nihao")) {
+      if(s1 == nullptr || !s1->sameAs("nihao")) {
         TEST_FAIL("[JsonWriter Test {write()} case2]");
         break;
       }
@@ -48,19 +48,19 @@ int main() {
       }
 
       String ss1 = arr->getStringAt(0);
-      if(ss1 == nullptr || !ss1->equals("abc1")) {
+      if(ss1 == nullptr || !ss1->sameAs("abc1")) {
         TEST_FAIL("[JsonWriter Test {write()} case4]");
         break;
       }
 
       String ss2 = arr->getStringAt(1);
-      if(ss2 == nullptr || !ss2->equals("abc2")) {
+      if(ss2 == nullptr || !ss2->sameAs("abc2")) {
         TEST_FAIL("[JsonWriter Test {write()} case5]");
         break;
       }
 
       String ss3 = arr->getStringAt(2);
-      if(ss3 == nullptr || !ss3->equals("abc3")) {
+      if(ss3 == nullptr || !ss3->sameAs("abc3")) {
         TEST_FAIL("[JsonWriter Test {write()} case6]");
         break;
       }

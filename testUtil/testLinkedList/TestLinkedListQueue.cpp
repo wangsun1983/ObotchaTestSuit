@@ -28,7 +28,7 @@ void testLinkeListQueue() {
       int count = 0;
       while(size > 0) {
         String ss = list->takeFirst();
-        if(!ss->equals(vect[count])) {
+        if(!ss->sameAs(vect[count])) {
           TEST_FAIL("LinkedList queue test1");
         }
         count++;
@@ -86,7 +86,7 @@ void testLinkeListQueue() {
       int count = 0;
       while(size > 0) {
         String ss = list->takeLast();
-        if(!ss->equals(vect[count])) {
+        if(!ss->sameAs(vect[count])) {
           TEST_FAIL("LinkedList queue test3");
         }
         count++;

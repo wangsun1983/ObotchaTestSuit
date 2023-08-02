@@ -16,19 +16,19 @@ int basetest() {
         //getConf(String);
 
       String v1 = value->get(createString("Desktop-Picture"));
-      if(!v1->equals("/usr/images/earth.jpg")) {
+      if(!v1->sameAs("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case2] ");
         break;
       }
 
       String v2 = value->get(createString("Position"));
-      if(!v2->equals("Centered")) {
+      if(!v2->sameAs("Centered")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case3] ");
         break;
       }
 
       String v3 = value->get(S("Background Color"));
-      if(!v3->equals("Black")) {
+      if(!v3->sameAs("Black")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case4] ");
         break;
       }

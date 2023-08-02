@@ -74,7 +74,7 @@ void testLinkeListQueueIterator() {
       auto iterator = list->getIterator();
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(v->equals("b")) {
+        if(v->sameAs("b")) {
           iterator->remove();
           continue;
         }
@@ -116,7 +116,7 @@ void testLinkeListQueueIterator() {
       auto iterator = list->getIterator();
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(v->equals("e")) {
+        if(v->sameAs("e")) {
           iterator->remove();
           continue;
         }

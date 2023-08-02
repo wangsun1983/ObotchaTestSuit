@@ -18,9 +18,9 @@ void testBlockingQueueToArray() {
         list->put(createString("c"));
 
         ArrayList<String> ll = list->toArray();
-        if(ll->size() != 3 || !ll->get(0)->equals("a")
-        || !ll->get(1)->equals("b")
-        || !ll->get(2)->equals("c")) {
+        if(ll->size() != 3 || !ll->get(0)->sameAs("a")
+        || !ll->get(1)->sameAs("b")
+        || !ll->get(2)->sameAs("c")) {
           TEST_FAIL("BlockingQueue toArray test1");
           break;
         }

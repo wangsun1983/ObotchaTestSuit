@@ -278,7 +278,7 @@ void testHashMapInteger() {
         break;
       }
 
-      if(!str->equals("hello3")) {
+      if(!str->sameAs("hello3")) {
         TEST_FAIL("[MapIterator Integer Test special equal case2] [FAIL] ");
         break;
       }

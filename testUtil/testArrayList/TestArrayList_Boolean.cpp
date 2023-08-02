@@ -152,7 +152,7 @@ void testArrayList_Boolean() {
     list->add(createBoolean(true));
 
     Boolean v1 = list->removeAt(0);
-    if(!v1->equals(true)) {
+    if(!v1->sameAs(true)) {
       TEST_FAIL("[ArrayList<Boolean> Test {remove(int index)} case1]");
       break;
     }
@@ -410,10 +410,10 @@ void testArrayList_Boolean() {
     list->add(createBoolean(true));
 
     list->insert(1,createBoolean(false));
-    if(!list->get(0)->equals(true)
-    ||!list->get(1)->equals(false)
-    ||!list->get(2)->equals(true)
-    ||!list->get(3)->equals(true)) {
+    if(!list->get(0)->sameAs(true)
+    ||!list->get(1)->sameAs(false)
+    ||!list->get(2)->sameAs(true)
+    ||!list->get(3)->sameAs(true)) {
       TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,Boolean val)} case1]");
       break;
     }
@@ -458,10 +458,10 @@ void testArrayList_Boolean() {
     list->add(createBoolean(true));
 
     list->insert(1,createBoolean(false));
-    if(!list->get(0)->equals(true)
-    ||!list->get(1)->equals(false)
-    ||!list->get(2)->equals(true)
-    ||!list->get(3)->equals(true)) {
+    if(!list->get(0)->sameAs(true)
+    ||!list->get(1)->sameAs(false)
+    ||!list->get(2)->sameAs(true)
+    ||!list->get(3)->sameAs(true)) {
       TEST_FAIL("[ArrayList<Boolean> Test {insert(int index,bool val)} case1]");
       break;
     }

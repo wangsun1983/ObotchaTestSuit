@@ -19,14 +19,14 @@ void testArrayList_Iterator_GetValue() {
 
     auto iterator = list->getIterator();
     auto v = iterator->getValue();
-    if(v == nullptr || !v->equals("a")) {
+    if(v == nullptr || !v->sameAs("a")) {
       TEST_FAIL("[ArrayList Iterator GetValue test1]");
       break;
     }
 
     iterator->next();
     v = iterator->getValue();
-    if(v == nullptr || !v->equals("b")) {
+    if(v == nullptr || !v->sameAs("b")) {
       TEST_FAIL("[ArrayList Iterator GetValue test2]");
       break;
     }

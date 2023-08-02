@@ -24,7 +24,7 @@ void testPutLast() {
         String v2 = mList->takeLast();
         String v3 = mList->takeLast();
 
-        if(!v1->equals("c") ||!v2->equals("b") ||!v3->equals("a")) {
+        if(!v1->sameAs("c") ||!v2->sameAs("b") ||!v3->sameAs("a")) {
             TEST_FAIL("v1 is %s ,v2 is %s,v3 is %s ",v1->toChars(),v2->toChars(),v3->toChars());
             TEST_FAIL("LinkedList Dequeue Last test2");
             break;

@@ -32,7 +32,7 @@ void testFutureGetValue() {
         
         usleep(1000*100);
         auto value = future->getResult<MyData>();
-        if(!value->value2->equals("hello")) {
+        if(!value->value2->sameAs("hello")) {
             TEST_FAIL("Filament Future Get Value case1");
         }
         

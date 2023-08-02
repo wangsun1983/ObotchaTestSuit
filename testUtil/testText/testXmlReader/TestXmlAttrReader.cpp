@@ -71,7 +71,7 @@ void simpleattrtest() {
     XmlValue root = doc->getRootNode();
     //TEST_FAIL("name is %s \n",root->getName()->toChars());
     String name = root->getName();
-    if(name == nullptr ||!name->equals("EllipsoidParams")) {
+    if(name == nullptr ||!name->sameAs("EllipsoidParams")) {
         TEST_FAIL("[XmlReader Test parse()} case1]");
         return;;
     }
@@ -88,11 +88,11 @@ void simpleattrtest() {
         namecount = 0;
         while(attriterator->hasValue()) {
             //printf("attriterator value is %s \n",attriterator->getValue()->toChars());
-            if(!attriterator->getValue()->equals(testdata[nodecount][attrcount])) {
+            if(!attriterator->getValue()->sameAs(testdata[nodecount][attrcount])) {
                TEST_FAIL("[XmlReader Test parse()} case1]");
             }
             
-            if(!attriterator->getName()->equals(testname[namecount])) {
+            if(!attriterator->getName()->sameAs(testname[namecount])) {
                TEST_FAIL("[XmlReader Test parse()} case1]");
             }
             attriterator->next();

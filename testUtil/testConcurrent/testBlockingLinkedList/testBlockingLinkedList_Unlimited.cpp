@@ -45,7 +45,7 @@ void testBlockingLinkedListUnlimited() {
           break;
         }
 
-        if(str == nullptr || !str->equals("a")) {
+        if(str == nullptr || !str->sameAs("a")) {
           TEST_FAIL("BlockingLinkedList unlimited capacity test3 \n");
           break;
         }

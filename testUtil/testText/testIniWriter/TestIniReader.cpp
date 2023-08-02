@@ -35,7 +35,7 @@ void testIniReader() {
         }
 
         auto str1 = map1->get(S("abc1"));
-        if(str1 == nullptr || !str1->equals("1")) {
+        if(str1 == nullptr || !str1->sameAs("1")) {
           TEST_FAIL("IniWriter test3");
           break;
         }
@@ -47,7 +47,7 @@ void testIniReader() {
           break;
         }
 
-        if(map2->get(S("a")) == nullptr || !map2->get(S("a"))->equals("1")) {
+        if(map2->get(S("a")) == nullptr || !map2->get(S("a"))->sameAs("1")) {
           TEST_FAIL("IniWriter test5");
           break;
         }

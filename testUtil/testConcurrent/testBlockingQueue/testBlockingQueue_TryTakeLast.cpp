@@ -54,7 +54,7 @@ void testBlockingQueueTryTakeLast() {
           break;
         }
 
-        if(!v1->equals("b") || !v2->equals("a")) {
+        if(!v1->sameAs("b") || !v2->sameAs("a")) {
           TEST_FAIL("BlockingQueue tryTakeLast test4");
           break;
         }

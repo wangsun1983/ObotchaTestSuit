@@ -35,12 +35,12 @@ void testHashMapHashcode() {
     map->put(createTestHashCodeData(createString("b"),1),createString("this is b"));
 
     String str = map->get(createTestHashCodeData(createString("a"),1));
-    if(str == nullptr && !str->equals("this is a")) {
+    if(str == nullptr && !str->sameAs("this is a")) {
       TEST_FAIL("hashmap hashcode test case1");
     }
 
     String str2 = map->get(createTestHashCodeData(createString("b"),1));
-    if(str2 == nullptr && !str2->equals("this is b")) {
+    if(str2 == nullptr && !str2->sameAs("this is b")) {
       TEST_FAIL("hashmap hashcode test case2");
     }
 

@@ -40,19 +40,19 @@ int main() {
       XmlValue myroot = doc->getRootNode();
 
       XmlValue abcnode1 = myroot->getNode("aName");
-      if(abcnode1 == nullptr||!abcnode1->getStringValue()->equals("bValue")) {
+      if(abcnode1 == nullptr||!abcnode1->getStringValue()->sameAs("bValue")) {
         TEST_FAIL("[XmlWriter Test {write()} case1]");
         break;
       }
 
       String attr1 = abcnode1->getStringAttr("attr1");
-      if(attr1 == nullptr || !attr1->equals("aaa")) {
+      if(attr1 == nullptr || !attr1->sameAs("aaa")) {
         TEST_FAIL("[XmlWriter Test {write()} case2]");
         break;
       }
 
       String attr2 = abcnode1->getStringAttr("attr2");
-      if(attr2 == nullptr || !attr2->equals("bbb")) {
+      if(attr2 == nullptr || !attr2->sameAs("bbb")) {
         TEST_FAIL("[XmlWriter Test {write()} case3]");
         break;
       }

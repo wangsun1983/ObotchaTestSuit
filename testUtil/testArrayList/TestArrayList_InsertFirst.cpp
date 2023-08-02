@@ -24,10 +24,10 @@ void testArrayList_InsertFirst() {
     list->insertFirst(list2);
 
     if(list->size() != 4
-      || !list->get(0)->equals("c")
-      || !list->get(1)->equals("d")
-      || !list->get(2)->equals("a")
-      || !list->get(3)->equals("b")) {
+      || !list->get(0)->sameAs("c")
+      || !list->get(1)->sameAs("d")
+      || !list->get(2)->sameAs("a")
+      || !list->get(3)->sameAs("b")) {
         TEST_FAIL("[ArrayList insertFirst test1]");
         break;
       }
@@ -48,10 +48,10 @@ void testArrayList_InsertFirst() {
 
     list->insertFirst(list2,2);
     if(list->size() != 4
-      || !list->get(0)->equals("c")
-      || !list->get(1)->equals("d")
-      || !list->get(2)->equals("a")
-      || !list->get(3)->equals("b")) {
+      || !list->get(0)->sameAs("c")
+      || !list->get(1)->sameAs("d")
+      || !list->get(2)->sameAs("a")
+      || !list->get(3)->sameAs("b")) {
       TEST_FAIL("[ArrayList insertFirst test2]");
       break;
     }
@@ -91,8 +91,8 @@ void testArrayList_InsertFirst() {
       TEST_FAIL("[ArrayList insertFirst test4]");
     }
 
-    if(!list1->get(0)->equals("a") || !list1->get(1)->equals("b")
-      ||!list1->get(2)->equals("c")) {
+    if(!list1->get(0)->sameAs("a") || !list1->get(1)->sameAs("b")
+      ||!list1->get(2)->sameAs("c")) {
         TEST_FAIL("[ArrayList insertFirst test5]");
     }
     break;
@@ -110,8 +110,8 @@ void testArrayList_InsertFirst() {
       TEST_FAIL("[ArrayList insertFirst test6]");
     }
 
-    if(!list1->get(0)->equals("a") || !list1->get(1)->equals("b")
-      ||!list1->get(2)->equals("c")) {
+    if(!list1->get(0)->sameAs("a") || !list1->get(1)->sameAs("b")
+      ||!list1->get(2)->sameAs("c")) {
         TEST_FAIL("[ArrayList insertFirst test7]");
     }
     break;

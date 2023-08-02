@@ -29,19 +29,19 @@ void testConfIterator() {
       }
 
       String v1 = mHashMap->get(createString("Desktop-Picture"));
-      if(!v1->equals("/usr/images/earth.jpg")) {
+      if(!v1->sameAs("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case2] ");
         break;
       }
 
       String v2 = mHashMap->get(createString("Position"));
-      if(!v2->equals("Centered")) {
+      if(!v2->sameAs("Centered")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case3] ");
         break;
       }
 
       String v3 = mHashMap->get(createString("Background Color"));
-      if(!v3->equals("Black")) {
+      if(!v3->sameAs("Black")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case4] ");
         break;
       }

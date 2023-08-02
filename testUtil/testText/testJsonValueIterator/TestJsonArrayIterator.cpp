@@ -97,7 +97,7 @@ int testJsonArrayIterator() {
       int index = 0;
       while(iterator->hasValue()) {
         String tag  = iterator->getTag();
-        if(!tag->equals(tag_value[index])) {
+        if(!tag->sameAs(tag_value[index])) {
           TEST_FAIL("[JsonArrayIterator Test case7]");
           break;
         }

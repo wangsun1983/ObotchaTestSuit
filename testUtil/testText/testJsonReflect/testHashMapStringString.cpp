@@ -64,11 +64,11 @@ void testHashMapStringString() {
         break;
       }
 
-      if(!map2->get("tag1")->equals("val1")
-        ||!map2->get("tag2")->equals("val2")
-        ||!map2->get("tag3")->equals("val3")
-        ||!map2->get("tag4")->equals("val4")
-        ||!map2->get("tag5")->equals("val5")) {
+      if(!map2->get("tag1")->sameAs("val1")
+        ||!map2->get("tag2")->sameAs("val2")
+        ||!map2->get("tag3")->sameAs("val3")
+        ||!map2->get("tag4")->sameAs("val4")
+        ||!map2->get("tag5")->sameAs("val5")) {
           TEST_FAIL("[JsonReflect HashMap String String Test case2]  ");
           break;
       }
@@ -99,11 +99,11 @@ void testHashMapStringString() {
         break;
       }
 
-      if(!map2->get("tag1")->equals("val1")
-        ||!map2->get("tag2")->equals("val2")
-        ||!map2->get("tag3")->equals("val3")
-        ||!map2->get("tag4")->equals("val4")
-        ||!map2->get("tag5")->equals("val5")) {
+      if(!map2->get("tag1")->sameAs("val1")
+        ||!map2->get("tag2")->sameAs("val2")
+        ||!map2->get("tag3")->sameAs("val3")
+        ||!map2->get("tag4")->sameAs("val4")
+        ||!map2->get("tag5")->sameAs("val5")) {
           TEST_FAIL("[JsonReflect HashMap String String Test case4]  ");
           break;
       }
@@ -162,11 +162,11 @@ void testHashMapStringString() {
         break;
       }
 
-      if(!map1->get("tag1")->equals("val1")
-        ||!map1->get("tag2")->equals("val2")
-        ||!map1->get("tag3")->equals("val3")
-        ||!map1->get("tag4")->equals("val4")
-        ||!map1->get("tag5")->equals("val5")) {
+      if(!map1->get("tag1")->sameAs("val1")
+        ||!map1->get("tag2")->sameAs("val2")
+        ||!map1->get("tag3")->sameAs("val3")
+        ||!map1->get("tag4")->sameAs("val4")
+        ||!map1->get("tag5")->sameAs("val5")) {
           TEST_FAIL("[JsonReflect HashMap String String Test case7]  ");
           break;
       }
@@ -177,11 +177,11 @@ void testHashMapStringString() {
         break;
       }
 
-      if(!map2->get("2_tag1")->equals("2_val1")
-        ||!map2->get("2_tag2")->equals("2_val2")
-        ||!map2->get("2_tag3")->equals("2_val3")
-        ||!map2->get("2_tag4")->equals("2_val4")
-        ||!map2->get("2_tag5")->equals("2_val5")) {
+      if(!map2->get("2_tag1")->sameAs("2_val1")
+        ||!map2->get("2_tag2")->sameAs("2_val2")
+        ||!map2->get("2_tag3")->sameAs("2_val3")
+        ||!map2->get("2_tag4")->sameAs("2_val4")
+        ||!map2->get("2_tag5")->sameAs("2_val5")) {
           TEST_FAIL("[JsonReflect HashMap String String Test case9]  ");
           break;
       }

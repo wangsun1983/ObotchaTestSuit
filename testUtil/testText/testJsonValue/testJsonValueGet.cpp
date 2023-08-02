@@ -23,13 +23,13 @@ void testJsonValueGet() {
     
     auto nameValue = root->getValue("name");
     auto name = nameValue->getString();
-    if(name == nullptr || !name->equals("BeJson")) {
+    if(name == nullptr || !name->sameAs("BeJson")) {
         TEST_FAIL("JsonValue testJsonValueGet case2");
     }
     
     auto urlValue = root->getValue("url");
     auto url = urlValue->getString();
-    if(url == nullptr || !url->equals("http://www.bejson.com")) {
+    if(url == nullptr || !url->sameAs("http://www.bejson.com")) {
         TEST_FAIL("JsonValue testJsonValueGet case3");
     }
     
@@ -47,53 +47,53 @@ void testJsonValueGet() {
     
     auto addressValue = root->getValue("address");
     if(addressValue == nullptr 
-        || !addressValue->getString("street")->equals("street1")
-        || !addressValue->getString("city")->equals("suzhou")
-        || !addressValue->getString("country")->equals("China")){
+        || !addressValue->getString("street")->sameAs("street1")
+        || !addressValue->getString("city")->sameAs("suzhou")
+        || !addressValue->getString("country")->sameAs("China")){
         TEST_FAIL("JsonValue testJsonValueGet case6");
     }
     
     auto linksValue = root->getValue("links");
     auto arrValue0 = linksValue->getValueAt(0);
     if(arrValue0 == nullptr 
-        || !arrValue0->getString("name")->equals("Google")
-        || !arrValue0->getString("url")->equals("http://www.google.com")){
+        || !arrValue0->getString("name")->sameAs("Google")
+        || !arrValue0->getString("url")->sameAs("http://www.google.com")){
         TEST_FAIL("JsonValue testJsonValueGet case7");
     }
     
     auto arrValue1 = linksValue->getValueAt(1);
     if(arrValue1 == nullptr 
-        || !arrValue1->getString("name")->equals("Baidu")
-        || !arrValue1->getString("url")->equals("http://www.baidu.com")){
+        || !arrValue1->getString("name")->sameAs("Baidu")
+        || !arrValue1->getString("url")->sameAs("http://www.baidu.com")){
         TEST_FAIL("JsonValue testJsonValueGet case8");
     }
     
     auto arrValue2 = linksValue->getValueAt(2);
     if(arrValue2 == nullptr 
-        || !arrValue2->getString("name")->equals("SoSo")
-        || !arrValue2->getString("url")->equals("http://www.SoSo.com")){
+        || !arrValue2->getString("name")->sameAs("SoSo")
+        || !arrValue2->getString("url")->sameAs("http://www.SoSo.com")){
         TEST_FAIL("JsonValue testJsonValueGet case9");
     }
     
     //getlistitemat
     auto item0 = linksValue->getListItemAt(0);
     if(item0 == nullptr 
-        || !item0->getString("name")->equals("Google")
-        || !item0->getString("url")->equals("http://www.google.com")){
+        || !item0->getString("name")->sameAs("Google")
+        || !item0->getString("url")->sameAs("http://www.google.com")){
         TEST_FAIL("JsonValue testJsonValueGet case10");
     }
     
     auto item1 = linksValue->getListItemAt(1);
     if(item1 == nullptr 
-        || !item1->getString("name")->equals("Baidu")
-        || !item1->getString("url")->equals("http://www.baidu.com")){
+        || !item1->getString("name")->sameAs("Baidu")
+        || !item1->getString("url")->sameAs("http://www.baidu.com")){
         TEST_FAIL("JsonValue testJsonValueGet case11");
     }
     
     auto item2 = linksValue->getListItemAt(2);
     if(item2 == nullptr 
-        || !item2->getString("name")->equals("SoSo")
-        || !item2->getString("url")->equals("http://www.SoSo.com")){
+        || !item2->getString("name")->sameAs("SoSo")
+        || !item2->getString("url")->sameAs("http://www.SoSo.com")){
         TEST_FAIL("JsonValue testJsonValueGet case12");
     }
     
@@ -102,7 +102,7 @@ void testJsonValueGet() {
     auto str0 = stringList->getStringAt(0);
     auto str1 = stringList->getStringAt(1);
     auto str2 = stringList->getStringAt(2);
-    if(!str0->equals("link1") ||!str1->equals("link2") ||!str2->equals("link3")) {
+    if(!str0->sameAs("link1") ||!str1->sameAs("link2") ||!str2->sameAs("link3")) {
         TEST_FAIL("JsonValue testJsonValueGet case13,str0 is %s,str1 is %s,str2 is %s",str0->toChars(),str1->toChars(),str2->toChars());
     }
     

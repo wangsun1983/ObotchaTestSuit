@@ -15,9 +15,9 @@ void testConcurrentQueue_PutFirst() {
       list->putFirst(createString("b"));
       list->putFirst(createString("c"));
       ArrayList<String> ll = list->toArray();
-      if(ll->size() != 3 || !ll->get(0)->equals("c")
-          || !ll->get(1)->equals("b")
-          || !ll->get(2)->equals("a")) {
+      if(ll->size() != 3 || !ll->get(0)->sameAs("c")
+          || !ll->get(1)->sameAs("b")
+          || !ll->get(2)->sameAs("a")) {
             TEST_FAIL("ConcurrentQueue putFirst test1");
             break;
           }

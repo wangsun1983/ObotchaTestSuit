@@ -54,11 +54,11 @@ void testArrayListString() {
         break;
       }
 
-      if(!list2->get(0)->equals("val1")
-        ||!list2->get(1)->equals("val2")
-        ||!list2->get(2)->equals("val3")
-        ||!list2->get(3)->equals("val4")
-        ||!list2->get(4)->equals("val5")) {
+      if(!list2->get(0)->sameAs("val1")
+        ||!list2->get(1)->sameAs("val2")
+        ||!list2->get(2)->sameAs("val3")
+        ||!list2->get(3)->sameAs("val4")
+        ||!list2->get(4)->sameAs("val5")) {
           TEST_FAIL("[JsonReflect ArrayList String Test case2]  ");
           break;
       }
@@ -94,11 +94,11 @@ void testArrayListString() {
         break;
       }
 
-      if(!list2->get(0)->equals("val1")
-        ||!list2->get(1)->equals("val2")
-        ||!list2->get(2)->equals("val3")
-        ||!list2->get(3)->equals("val4")
-        ||!list2->get(4)->equals("val5")) {
+      if(!list2->get(0)->sameAs("val1")
+        ||!list2->get(1)->sameAs("val2")
+        ||!list2->get(2)->sameAs("val3")
+        ||!list2->get(3)->sameAs("val4")
+        ||!list2->get(4)->sameAs("val5")) {
           TEST_FAIL("[JsonReflect ArrayList String Test case4]  ");
           break;
       }

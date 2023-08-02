@@ -306,7 +306,7 @@ void testThreadCommonCase() {
     //  TEST_FAIL("name is %s ",name->toChars());
     //}
 
-    if(name == nullptr || !name->equals("mysetnametest")) {
+    if(name == nullptr || !name->sameAs("mysetnametest")) {
       TEST_FAIL("[Thread Test {setName()} case1]");
       break;
     }
@@ -323,7 +323,7 @@ void testThreadCommonCase() {
     t2->setName("mygetnametest");
 
     String name = t2->getName();
-    if(name == nullptr || !name->equals("mygetnametest")) {
+    if(name == nullptr || !name->sameAs("mygetnametest")) {
       TEST_FAIL("[Thread Test {getName()} case1]");
       break;
     }

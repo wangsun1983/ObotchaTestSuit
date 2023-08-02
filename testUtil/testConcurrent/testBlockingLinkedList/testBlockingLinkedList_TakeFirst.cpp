@@ -21,7 +21,7 @@ void testBlockingLinkedListTakeFirst() {
         list->put(createString("c"));
 
         String v = list->takeFirst();
-        if(v == nullptr || !v->equals("a")) {
+        if(v == nullptr || !v->sameAs("a")) {
           TEST_FAIL("BlockingLinkedList takeFirst test1 \n");
           break;
         }
@@ -44,7 +44,7 @@ void testBlockingLinkedListTakeFirst() {
       watcher->start();
       String v = list->takeFirst();
       long interval = watcher->stop();
-      if(v == nullptr || !v->equals("a")) {
+      if(v == nullptr || !v->sameAs("a")) {
         TEST_FAIL("BlockingLinkedList takeFirst test3 \n");
         break;
       }

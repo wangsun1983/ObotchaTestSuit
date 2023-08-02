@@ -17,7 +17,7 @@ void testLinkedListPeekLast() {
 
         auto v1 = mList->peekLast();
         auto v2 = mList->peekLast();
-        if(!v1->equals("c") || !v2->equals("c")) {
+        if(!v1->sameAs("c") || !v2->sameAs("c")) {
             TEST_FAIL("LinkedList PeekLast case1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
         }
         

@@ -64,7 +64,7 @@ void testBlockingLinkedListTryPutLast() {
       list->takeFirst();
       list->putLast(createString("e"));
       ArrayList<String> ll2 = list->toArray();
-      if(ll2->size() != 3 || !ll2->get(0)->equals("b")|| !ll2->get(1)->equals("c")|| !ll2->get(2)->equals("e")) {
+      if(ll2->size() != 3 || !ll2->get(0)->sameAs("b")|| !ll2->get(1)->sameAs("c")|| !ll2->get(2)->sameAs("e")) {
         TEST_FAIL("BlockingLinkedList tryPutLast test4 \n");
         break;
       }

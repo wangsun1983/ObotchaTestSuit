@@ -178,7 +178,7 @@ int testThreadExecutorPoolFutureResult() {
         ThreadPoolResultRunString stringRun = createThreadPoolResultRunString();
         f = pool->submit(stringRun);
         String ret9 = f->getResult(NullData<String>());
-        if(!ret9->equals("hello")) {
+        if(!ret9->sameAs("hello")) {
           printf("testThreadExecutorPoolFutureResult case10 -------[FAIL] \n");
           break;
         }

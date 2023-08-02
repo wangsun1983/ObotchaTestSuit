@@ -23,7 +23,7 @@ void testFutureGetString() {
         
         usleep(1000*100);
         auto value = future->getResult<String>();
-        if(!value->equals("hello")) {
+        if(!value->sameAs("hello")) {
             TEST_FAIL("Filament Future Get String case1,value is %s",value->toChars());
         }
         break;

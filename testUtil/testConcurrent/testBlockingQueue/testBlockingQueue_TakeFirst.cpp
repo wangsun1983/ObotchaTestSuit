@@ -21,7 +21,7 @@ void testBlockingQueueTakeFirst() {
         list->put(createString("c"));
 
         String v = list->takeFirst();
-        if(v == nullptr || !v->equals("a")) {
+        if(v == nullptr || !v->sameAs("a")) {
           TEST_FAIL("BlockingQueue takeFirst test1");
           break;
         }
@@ -44,7 +44,7 @@ void testBlockingQueueTakeFirst() {
       watcher->start();
       String v = list->takeFirst();
       long interval = watcher->stop();
-      if(v == nullptr || !v->equals("a")) {
+      if(v == nullptr || !v->sameAs("a")) {
         TEST_FAIL("BlockingQueue takeFirst test3");
         break;
       }

@@ -52,7 +52,7 @@ void testList() {
         abc = abc->append(v);
       }
 
-      if(!abc->equals("abcdef")) {
+      if(!abc->sameAs("abcdef")) {
         TEST_FAIL("ForEveryOne List case2");
       }
 

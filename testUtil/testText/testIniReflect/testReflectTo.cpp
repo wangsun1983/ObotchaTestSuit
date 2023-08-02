@@ -96,7 +96,7 @@ void testReflectTo() {
             TEST_FAIL("IniReflect ReflectTo case5,data1 is %d,data2 is %d",s->member1->data1,s->member1->data2);
         }
 
-        if(!s->member2->data1 || s->member2->data3 || !s->member2->data2->equals("hello world")) {
+        if(!s->member2->data1 || s->member2->data3 || !s->member2->data2->sameAs("hello world")) {
             TEST_FAIL("IniReflect ReflectTo case6,data2 is %s",s->member2->data2->toChars());
         }
     }

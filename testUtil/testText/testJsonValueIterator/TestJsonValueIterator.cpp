@@ -14,7 +14,7 @@ int testJsonValueIterator() {
     //String getTag();
     JsonValueIterator iterator = reader->get()->getIterator();
     while(1) {
-      if(!iterator->getTag()->equals("a")) {
+      if(!iterator->getTag()->sameAs("a")) {
         TEST_FAIL("[JsonValueIterator Test {getTag()} case1]");
         break;
       }
@@ -77,19 +77,19 @@ int testJsonValueIterator() {
       }
 
       String a1 = v1->getStringAt(0);
-      if(a1 == nullptr ||!a1->equals("abc1")) {
+      if(a1 == nullptr ||!a1->sameAs("abc1")) {
         TEST_FAIL("[JsonValueIterator Test {getArray()} case2]");
         break;
       }
 
       String a2 = v1->getStringAt(1);
-      if(a2 == nullptr ||!a2->equals("abc2")) {
+      if(a2 == nullptr ||!a2->sameAs("abc2")) {
         TEST_FAIL("[JsonValueIterator Test {getArray()} case3]");
         break;
       }
 
       String a3 = v1->getStringAt(2);
-      if(a3 == nullptr ||!a3->equals("abc3")) {
+      if(a3 == nullptr ||!a3->sameAs("abc3")) {
         TEST_FAIL("[JsonValueIterator Test {getArray()} case4]");
         break;
       }
@@ -125,7 +125,7 @@ int testJsonValueIterator() {
       }
 
       String t2 = v1->getString("vv");
-      if(t2 == nullptr || !t2->equals("v1")) {
+      if(t2 == nullptr || !t2->sameAs("v1")) {
         TEST_FAIL("[JsonValueIterator Test {getObject()} case3]");
         break;
       }
@@ -152,7 +152,7 @@ int testJsonValueIterator() {
     //String getString();
     while(1) {
       String v1 = iterator->getString();
-      if(v1 == nullptr ||!v1->equals("nihao")) {
+      if(v1 == nullptr ||!v1->sameAs("nihao")) {
         TEST_FAIL("[JsonValueIterator Test {getString()} case1]");
         break;
       }

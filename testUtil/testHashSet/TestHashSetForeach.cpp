@@ -27,8 +27,8 @@ void testHashSetForeach() {
 
     int index = 0;
     ForEveryOne(ss,set) {
-      if(ss->equals("abc") || ss->equals("abc1")
-        ||ss->equals("abc2") || ss->equals("abc3")) {
+      if(ss->sameAs("abc") || ss->sameAs("abc1")
+        ||ss->sameAs("abc2") || ss->sameAs("abc3")) {
           index++;
           continue;
         }

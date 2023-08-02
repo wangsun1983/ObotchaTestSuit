@@ -21,9 +21,9 @@ void testArrayList_String() {
           list->add(createString("a"));
           list->add(createString("b"));
           list->add(createString("c"));
-          if(!list->get(0)->equals("a")
-          || !list->get(1)->equals("b")
-          || !list->get(2)->equals("c")) {
+          if(!list->get(0)->sameAs("a")
+          || !list->get(1)->sameAs("b")
+          || !list->get(2)->sameAs("c")) {
               TEST_FAIL("[ArrayList<String> Test {add(char * val)} case1]");
               break;
           }
@@ -52,9 +52,9 @@ void testArrayList_String() {
           list->add(createString(s2));
           list->add(createString(s3));
 
-          if(!list->get(0)->equals("a")
-          || !list->get(1)->equals("b")
-          || !list->get(2)->equals("c")) {
+          if(!list->get(0)->sameAs("a")
+          || !list->get(1)->sameAs("b")
+          || !list->get(2)->sameAs("c")) {
               TEST_FAIL("[ArrayList<String> Test {add(std::string val) case1]");
               break;
           }
@@ -69,9 +69,9 @@ void testArrayList_String() {
         list->add(createString("a"));
         list->add(createString("b"));
         list->add(createString("c"));
-        if(!list->get(0)->equals("a")
-        || !list->get(1)->equals("b")
-        || !list->get(2)->equals("c")) {
+        if(!list->get(0)->sameAs("a")
+        || !list->get(1)->sameAs("b")
+        || !list->get(2)->sameAs("c")) {
             TEST_FAIL("[ArrayList<String> Test {add(String val)} case1]");
             break;
         }
@@ -92,10 +92,10 @@ void testArrayList_String() {
 
         list->add(list2);
 
-        if(!list->get(0)->equals("a")
-        || !list->get(1)->equals("b")
-        || !list->get(2)->equals("c")
-        || !list->get(3)->equals("d")) {
+        if(!list->get(0)->sameAs("a")
+        || !list->get(1)->sameAs("b")
+        || !list->get(2)->sameAs("c")
+        || !list->get(3)->sameAs("d")) {
             TEST_FAIL("[ArrayList<String> Test {add(ArrayList<String> list)}]");
             break;
         }
@@ -127,7 +127,7 @@ void testArrayList_String() {
         list->add(createString("c"));
 
         String v = list->removeAt(1);
-        if(!v->equals("b")) {
+        if(!v->sameAs("b")) {
           TEST_FAIL("[ArrayList<String> Test {remove(int index)} case1]");
           break;
         }
@@ -251,9 +251,9 @@ void testArrayList_String() {
         list->add(createString("c"));
 
         list->set(0,"d");
-        if(!list->get(0)->equals("d")
-        || !list->get(1)->equals("b")
-        || !list->get(2)->equals("c")) {
+        if(!list->get(0)->sameAs("d")
+        || !list->get(1)->sameAs("b")
+        || !list->get(2)->sameAs("c")) {
             TEST_FAIL("[ArrayList<String> Test {set(int index,String val)} case1]");
             break;
         }
@@ -292,9 +292,9 @@ void testArrayList_String() {
         list->add(createString("a"));
         list->add(createString("b"));
         list->add(createString("c"));
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("b")
-        ||!list->get(2)->equals("c")) {
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("b")
+        ||!list->get(2)->sameAs("c")) {
           TEST_FAIL("[ArrayList<String> Test {get(int index)} case1]");
           break;
         }
@@ -334,10 +334,10 @@ void testArrayList_String() {
         list->add(createString("c"));
 
         list->insert(1,createString("d"));
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("d")
-        ||!list->get(2)->equals("b")
-        ||!list->get(3)->equals("c")) {
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("d")
+        ||!list->get(2)->sameAs("b")
+        ||!list->get(3)->sameAs("c")) {
           TEST_FAIL("[ArrayList<String> Test {insert(int index,String val)} case1]");
           break;
         }
@@ -378,10 +378,10 @@ void testArrayList_String() {
         list->add(createString("c"));
 
         list->insert(1,createString("d"));
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("d")
-        ||!list->get(2)->equals("b")
-        ||!list->get(3)->equals("c")) {
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("d")
+        ||!list->get(2)->sameAs("b")
+        ||!list->get(3)->sameAs("c")) {
           TEST_FAIL("[ArrayList<String> Test {insert(int index,char* val)} case1]");
           break;
         }
@@ -422,10 +422,10 @@ void testArrayList_String() {
         list->add(createString(std::string("c")));
 
         list->insert(1,createString(std::string("d")));
-        if(!list->get(0)->equals(std::string("a"))
-        ||!list->get(1)->equals(std::string("d"))
-        ||!list->get(2)->equals(std::string("b"))
-        ||!list->get(3)->equals(std::string("c"))) {
+        if(!list->get(0)->sameAs(std::string("a"))
+        ||!list->get(1)->sameAs(std::string("d"))
+        ||!list->get(2)->sameAs(std::string("b"))
+        ||!list->get(3)->sameAs(std::string("c"))) {
           TEST_FAIL("[ArrayList<String> Test {insert(int index,std::string val)} case1]");
           break;
         }
@@ -470,11 +470,11 @@ void testArrayList_String() {
         list2->add(createString("e"));
 
         list->insert(2,list2);
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("b")
-        ||!list->get(2)->equals("d")
-        ||!list->get(3)->equals("e")
-        ||!list->get(4)->equals("c")){
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("b")
+        ||!list->get(2)->sameAs("d")
+        ||!list->get(3)->sameAs("e")
+        ||!list->get(4)->sameAs("c")){
           TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list)} case1]");
           break;
         }
@@ -534,11 +534,11 @@ void testArrayList_String() {
         //TEST_FAIL("list->get(2) is %s \n",list->get(2)->toChars());
         //TEST_FAIL("list->get(3) is %s \n",list->get(3)->toChars());
         //TEST_FAIL("list->get(4) is %s \n",list->get(4)->toChars());
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("b")
-        ||!list->get(2)->equals("d")
-        ||!list->get(3)->equals("e")
-        ||!list->get(4)->equals("c")){
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("b")
+        ||!list->get(2)->sameAs("d")
+        ||!list->get(3)->sameAs("e")
+        ||!list->get(4)->sameAs("c")){
           TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} case1]");
           break;
         }
@@ -565,9 +565,9 @@ void testArrayList_String() {
         //TEST_FAIL("list->get(4) is %s \n",list->get(4)->toChars());
         //TEST_FAIL("list->get(5) is %s \n",list->get(5)->toChars());
 
-        if(!list->get(0)->equals("a")
-        ||!list->get(1)->equals("b")
-        ||!list->get(2)->equals("c")){
+        if(!list->get(0)->sameAs("a")
+        ||!list->get(1)->sameAs("b")
+        ||!list->get(2)->sameAs("c")){
           TEST_FAIL("[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)}]");
           break;
         }
@@ -584,10 +584,10 @@ void testArrayList_String() {
     list->add(createString("c"));
 
     list->insertFirst(createString("d"));
-    if(!list->get(0)->equals("d")
-    ||!list->get(1)->equals("a")
-    ||!list->get(2)->equals("b")
-    ||!list->get(3)->equals("c")){
+    if(!list->get(0)->sameAs("d")
+    ||!list->get(1)->sameAs("a")
+    ||!list->get(2)->sameAs("b")
+    ||!list->get(3)->sameAs("c")){
       TEST_FAIL("[ArrayList<String> Test {insertFirst(String val)} case1]");
       break;
     }
@@ -612,10 +612,10 @@ void testArrayList_String() {
     list->add(createString("c"));
 
     list->insertFirst(createString("d"));
-    if(!list->get(0)->equals("d")
-    ||!list->get(1)->equals("a")
-    ||!list->get(2)->equals("b")
-    ||!list->get(3)->equals("c")){
+    if(!list->get(0)->sameAs("d")
+    ||!list->get(1)->sameAs("a")
+    ||!list->get(2)->sameAs("b")
+    ||!list->get(3)->sameAs("c")){
       TEST_FAIL("[ArrayList<String> Test {insertFirst(const char * val)} case1]");
       break;
     }
@@ -645,12 +645,12 @@ void testArrayList_String() {
     list2->add(createString("g"));
 
     list->insertFirst(list2);
-    if(!list->get(0)->equals("e")
-    ||!list->get(1)->equals("f")
-    ||!list->get(2)->equals("g")
-    ||!list->get(3)->equals("a")
-    ||!list->get(4)->equals("b")
-    ||!list->get(5)->equals("c")){
+    if(!list->get(0)->sameAs("e")
+    ||!list->get(1)->sameAs("f")
+    ||!list->get(2)->sameAs("g")
+    ||!list->get(3)->sameAs("a")
+    ||!list->get(4)->sameAs("b")
+    ||!list->get(5)->sameAs("c")){
       //TEST_FAIL("list->get(0) is %s \n",list->get(0)->toChars());
       //TEST_FAIL("list->get(1) is %s \n",list->get(1)->toChars());
       //TEST_FAIL("list->get(2) is %s \n",list->get(2)->toChars());
@@ -680,10 +680,10 @@ void testArrayList_String() {
     list->add(createString("c"));
 
     list->insertLast(createString("d"));
-    if(!list->get(0)->equals("a")
-    ||!list->get(1)->equals("b")
-    ||!list->get(2)->equals("c")
-    ||!list->get(3)->equals("d")){
+    if(!list->get(0)->sameAs("a")
+    ||!list->get(1)->sameAs("b")
+    ||!list->get(2)->sameAs("c")
+    ||!list->get(3)->sameAs("d")){
       TEST_FAIL("[ArrayList<String> Test {insertLast(String v)} case1]");
       break;
     }
@@ -706,10 +706,10 @@ void testArrayList_String() {
     list->add(createString("c"));
 
     list->insertLast(createString("d"));
-    if(!list->get(0)->equals("a")
-    ||!list->get(1)->equals("b")
-    ||!list->get(2)->equals("c")
-    ||!list->get(3)->equals("d")){
+    if(!list->get(0)->sameAs("a")
+    ||!list->get(1)->sameAs("b")
+    ||!list->get(2)->sameAs("c")
+    ||!list->get(3)->sameAs("d")){
       TEST_FAIL("[ArrayList<String> Test {insertLast(const char * s)} case1]");
       break;
     }
@@ -737,12 +737,12 @@ void testArrayList_String() {
     list2->add(createString("g"));
 
     list->insertLast(list2);
-    if(!list->get(0)->equals("a")
-    ||!list->get(1)->equals("b")
-    ||!list->get(2)->equals("c")
-    ||!list->get(3)->equals("e")
-    ||!list->get(4)->equals("f")
-    ||!list->get(5)->equals("g")){
+    if(!list->get(0)->sameAs("a")
+    ||!list->get(1)->sameAs("b")
+    ||!list->get(2)->sameAs("c")
+    ||!list->get(3)->sameAs("e")
+    ||!list->get(4)->sameAs("f")
+    ||!list->get(5)->sameAs("g")){
       TEST_FAIL("[ArrayList<String> Test {insertLast(ArrayList<String> list)} case1]");
       break;
     }
@@ -858,7 +858,7 @@ void testArrayList_String() {
     list->add(createString("e"));
     auto iterator = list->getIterator();
     while(iterator->hasValue()) {
-      if(iterator->getValue()->equals("c")) {
+      if(iterator->getValue()->sameAs("c")) {
         iterator->remove();
       }else {
         iterator->next();
@@ -870,8 +870,8 @@ void testArrayList_String() {
         break;
     }
 
-    if(!list->get(0)->equals("a") ||!list->get(1)->equals("b")
-      ||!list->get(2)->equals("d")||!list->get(3)->equals("e")) {
+    if(!list->get(0)->sameAs("a") ||!list->get(1)->sameAs("b")
+      ||!list->get(2)->sameAs("d")||!list->get(3)->sameAs("e")) {
         TEST_FAIL("[_ListIterator<String> Test {remove()} case2]");
         break;
     }

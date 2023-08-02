@@ -81,7 +81,7 @@ void testUserDataReflect() {
       if(data2->intData != 100 ||
           data2->byteData != 25 ||
           data2->longData != 102 ||
-         !data2->stringData->equals("hhh") ||
+         !data2->stringData->sameAs("hhh") ||
           data2->uint8Data != 103 ||
           data2->uint16Data != 104 ||
           data2->uint32Data != 105 ||

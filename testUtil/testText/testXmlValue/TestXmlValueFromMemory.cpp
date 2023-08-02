@@ -77,7 +77,7 @@ void testXmlValueFromMemory() {
     while(1) {
       String name = root->getName();
       //TEST_FAIL("name is %s \n",name->toChars());
-      if(name == nullptr || !name->equals("RegressionTests")) {
+      if(name == nullptr || !name->sameAs("RegressionTests")) {
         TEST_FAIL("[XmlValue TestFromMemory {getName()} case1]");
         break;
       }
@@ -89,7 +89,7 @@ void testXmlValueFromMemory() {
     //String getStringAttr(String attr)
     while(1) {
         String attr1 = root->getStringAttr("name");
-        if(attr1 == nullptr || !attr1->equals("rootn")) {
+        if(attr1 == nullptr || !attr1->sameAs("rootn")) {
           TEST_FAIL("[XmlValue TestFromMemory {getStringAttr()} case1]");
           break;
         }
@@ -149,7 +149,7 @@ void testXmlValueFromMemory() {
     //String getStringValue(String);
     while(1) {
       String value = root->getStringValue("teststring");
-      if(value == nullptr || !value->equals("test string")) {
+      if(value == nullptr || !value->sameAs("test string")) {
         TEST_FAIL("[XmlValue TestFromMemory {getStringValue()} case1]");
         break;
       }
@@ -215,43 +215,43 @@ void testXmlValueFromMemory() {
       }
 
       String t1 = v->getStringValue("testname");
-      if(t1 == nullptr || !t1->equals("noname")) {
+      if(t1 == nullptr || !t1->sameAs("noname")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case2]");
         break;
       }
 
       t1 = v->getStringValue("execpath");
-      if(t1 == nullptr || !t1->equals(".")) {
+      if(t1 == nullptr || !t1->sameAs(".")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case3]");
         break;
       }
 
       t1 = v->getStringValue("testprog");
-      if(t1 == nullptr || !t1->equals("xmllint")) {
+      if(t1 == nullptr || !t1->sameAs("xmllint")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case4]");
         break;
       }
 
       t1 = v->getStringValue("srcdir");
-      if(t1 == nullptr || !t1->equals("test")) {
+      if(t1 == nullptr || !t1->sameAs("test")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case5]");
         break;
       }
 
       t1 = v->getStringValue("resdir");
-      if(t1 == nullptr || !t1->equals("result")) {
+      if(t1 == nullptr || !t1->sameAs("result")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case6]");
         break;
       }
 
       t1 = v->getStringValue("file");
-      if(t1 == nullptr || !t1->equals("*.xml")) {
+      if(t1 == nullptr || !t1->sameAs("*.xml")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case7]");
         break;
       }
 
       String attr1 = v->getStringAttr("name");
-      if(attr1 == nullptr || !attr1->equals("BeiJing54")) {
+      if(attr1 == nullptr || !attr1->sameAs("BeiJing54")) {
         TEST_FAIL("[XmlValue TestFromMemory {getNode()} case8]");
         break;
       }
@@ -264,7 +264,7 @@ void testXmlValueFromMemory() {
     while(1) {
       XmlValue v = root->getNode("defaults");
       String na = v->getName();
-      if(na == nullptr || !na->equals("defaults")) {
+      if(na == nullptr || !na->sameAs("defaults")) {
         TEST_FAIL("[XmlValue TestFromMemory {getName()} case1]");
         break;
       }
@@ -290,43 +290,43 @@ void testXmlValueFromMemory() {
       }
 
       String t1 = v2->getStringValue("testname");
-      if(t1 == nullptr || !t1->equals("noname")) {
+      if(t1 == nullptr || !t1->sameAs("noname")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case2]");
         break;
       }
 
       t1 = v2->getStringValue("execpath");
-      if(t1 == nullptr || !t1->equals(".")) {
+      if(t1 == nullptr || !t1->sameAs(".")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case3]");
         break;
       }
 
       t1 = v2->getStringValue("testprog");
-      if(t1 == nullptr || !t1->equals("xmllint")) {
+      if(t1 == nullptr || !t1->sameAs("xmllint")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case4]");
         break;
       }
 
       t1 = v2->getStringValue("srcdir");
-      if(t1 == nullptr || !t1->equals("test")) {
+      if(t1 == nullptr || !t1->sameAs("test")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case5]");
         break;
       }
 
       t1 = v2->getStringValue("resdir");
-      if(t1 == nullptr || !t1->equals("result")) {
+      if(t1 == nullptr || !t1->sameAs("result")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case6]");
         break;
       }
 
       t1 = v2->getStringValue("file");
-      if(t1 == nullptr || !t1->equals("*.xml")) {
+      if(t1 == nullptr || !t1->sameAs("*.xml")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case7]");
         break;
       }
 
       String attr1 = v2->getStringAttr("name");
-      if(attr1 == nullptr || !attr1->equals("BeiJing54")) {
+      if(attr1 == nullptr || !attr1->sameAs("BeiJing54")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateName()} case8]");
         break;
       }
@@ -341,7 +341,7 @@ void testXmlValueFromMemory() {
       v->updateValue("new test");
 
       String t1 = root->getStringValue("teststring");
-      if(t1 == nullptr || !t1->equals("new test")) {
+      if(t1 == nullptr || !t1->sameAs("new test")) {
         TEST_FAIL("[XmlValue TestFromMemory {updateValue()} case1]");
         break;
       }
@@ -356,7 +356,7 @@ void testXmlValueFromMemory() {
       root->appendNode(node);
 
       XmlValue node2 = root->getNode("myt1");
-      if(node2 == nullptr || !node2->getStringValue()->equals("hello world")) {
+      if(node2 == nullptr || !node2->getStringValue()->sameAs("hello world")) {
         TEST_FAIL("[XmlValue TestFromMemory {appendNode()} case1]");
         break;
       }
@@ -377,7 +377,7 @@ void testXmlValueFromMemory() {
       //  TEST_FAIL("attr1 is %s,haha \n",attr1->toChars());
       //}
 
-      if(attr1 == nullptr || !attr1->equals("testAttr1 hello")) {
+      if(attr1 == nullptr || !attr1->sameAs("testAttr1 hello")) {
         TEST_FAIL("[XmlValue TestFromMemory {appendAttr()} case1]");
         break;
       }

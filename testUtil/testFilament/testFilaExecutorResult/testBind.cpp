@@ -26,7 +26,7 @@ void testBind() {
             st(FilaExecutorResult)::set(createString("abc"));
             
             auto ret = result->get<String>();
-            if(ret == nullptr || !ret->equals("abc")) {
+            if(ret == nullptr || !ret->sameAs("abc")) {
                 TEST_FAIL("Filament test FilaExecutorResult case1");
             }
             isRun = true;
@@ -52,7 +52,7 @@ void testBind() {
             st(FilaExecutorResult)::set(createString("abc2"));
             
             auto ret = result->get<String>();
-            if(ret == nullptr || !ret->equals("abc")) {
+            if(ret == nullptr || !ret->sameAs("abc")) {
                 TEST_FAIL("Filament test FilaExecutorResult case3");
             }
             isRun = true;

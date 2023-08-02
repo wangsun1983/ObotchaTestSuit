@@ -21,8 +21,8 @@ void testConcurrentQueue_RemoveAt() {
         break;
       }
       ArrayList<String> ll = list->toArray();
-      if(ll->size() != 2 || !ll->get(0)->equals("a")
-          || !ll->get(1)->equals("c")) {
+      if(ll->size() != 2 || !ll->get(0)->sameAs("a")
+          || !ll->get(1)->sameAs("c")) {
             TEST_FAIL("ConcurrentQueue RemoveAt test1_1");
             break;
           }

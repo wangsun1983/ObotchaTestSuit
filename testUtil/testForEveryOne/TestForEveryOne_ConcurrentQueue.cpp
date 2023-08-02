@@ -55,7 +55,7 @@ void testConcurrentQueue() {
         abc = abc->append(v);
       }
 
-      if(!abc->equals("abcdef")) {
+      if(!abc->sameAs("abcdef")) {
         TEST_FAIL("ForEveryOne ConcurrentQueue case2");
       }
 

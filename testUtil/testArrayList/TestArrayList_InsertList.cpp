@@ -27,8 +27,8 @@ void testArrayList_InsertList() {
       break;
     }
 
-    if(!list->get(0)->equals("a") ||!list->get(1)->equals("l1_a") ||!list->get(2)->equals("l1_b")
-      ||!list->get(3)->equals("b")) {
+    if(!list->get(0)->sameAs("a") ||!list->get(1)->sameAs("l1_a") ||!list->get(2)->sameAs("l1_b")
+      ||!list->get(3)->sameAs("b")) {
         TEST_FAIL("ArrayList InsertList case2");
     }
     break;
@@ -50,8 +50,8 @@ void testArrayList_InsertList() {
       break;
     }
 
-    if(!list->get(0)->equals("a") ||!list->get(1)->equals("l1_a") ||!list->get(2)->equals("l1_b")
-      ||!list->get(3)->equals("b")) {
+    if(!list->get(0)->sameAs("a") ||!list->get(1)->sameAs("l1_a") ||!list->get(2)->sameAs("l1_b")
+      ||!list->get(3)->sameAs("b")) {
         TEST_FAIL("ArrayList InsertList case4");
     }
     break;

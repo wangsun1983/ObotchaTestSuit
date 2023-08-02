@@ -21,7 +21,7 @@ void testStackPop() {
         TEST_FAIL("testStack pop case1");
     }
     
-    if(!v_a->equals("a") || !v_b->equals("b") || !v_c->equals("c")) {
+    if(!v_a->sameAs("a") || !v_b->sameAs("b") || !v_c->sameAs("c")) {
         TEST_FAIL("testStack pop case2");
     }
     break;

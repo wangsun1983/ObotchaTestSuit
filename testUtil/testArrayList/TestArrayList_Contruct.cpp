@@ -33,7 +33,7 @@ void testArrayList_Construct() {
       break;
     }
 
-    if(!list2->get(0)->equals("a") ||!list2->get(1)->equals("b") ||!list2->get(2)->equals("c")) {
+    if(!list2->get(0)->sameAs("a") ||!list2->get(1)->sameAs("b") ||!list2->get(2)->sameAs("c")) {
       TEST_FAIL("[ArrayList construct test3] ");
       break;
     }

@@ -23,10 +23,10 @@ void testArrayList_InsertLast() {
     list->insertLast(list2);
 
     if(list->size() != 4
-      || !list->get(0)->equals("a")
-      || !list->get(1)->equals("b")
-      || !list->get(2)->equals("c")
-      || !list->get(3)->equals("d")) {
+      || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("b")
+      || !list->get(2)->sameAs("c")
+      || !list->get(3)->sameAs("d")) {
         TEST_FAIL("[ArrayList InsertLast test1]");
         break;
       }
@@ -49,10 +49,10 @@ void testArrayList_InsertLast() {
     //TEST_FAIL("size is %d \n",list->size());
     //TEST_FAIL("a1 %s,a2 %s,a3 %s,a4 %s \n",list->get(0)->toChars(),list->get(1)->toChars(),list->get(2)->toChars(),list->get(3)->toChars());
     if(list->size() != 4
-      || !list->get(0)->equals("a")
-      || !list->get(1)->equals("b")
-      || !list->get(2)->equals("c")
-      || !list->get(3)->equals("d")) {
+      || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("b")
+      || !list->get(2)->sameAs("c")
+      || !list->get(3)->sameAs("d")) {
       TEST_FAIL("[ArrayList InsertLast test2]");
       break;
     }
@@ -90,7 +90,7 @@ void testArrayList_InsertLast() {
       break;
     }
 
-    if(!list->get(0)->equals("c") ||!list->get(1)->equals("d")) {
+    if(!list->get(0)->sameAs("c") ||!list->get(1)->sameAs("d")) {
         TEST_FAIL("[ArrayList InsertLast test5]");
         break;
     }

@@ -311,7 +311,7 @@ void testThreadPoolExecutor_GetResult() {
     Future f11 = pool->submit(stringRun);
     String r11 = f11->getResult<String>();
 
-    if(r11 == nullptr || !r11->equals("hello world")) {
+    if(r11 == nullptr || !r11->sameAs("hello world")) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case11");
       break;
     }
@@ -505,7 +505,7 @@ void testThreadPoolExecutor_GetResult() {
       break;
     }
 
-    if(r11 == nullptr || !r11->equals("hello world")) {
+    if(r11 == nullptr || !r11->sameAs("hello world")) {
       TEST_FAIL("[Future ThreadPoolExecutor GetResult case34");
       break;
     }

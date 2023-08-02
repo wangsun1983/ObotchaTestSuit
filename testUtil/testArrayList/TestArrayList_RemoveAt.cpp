@@ -18,7 +18,7 @@ void testArrayList_RemoveAt() {
     list->add(createString("b"));
 
     auto value = list->removeAt(0);
-    if(value == nullptr || !value->equals("a")) {
+    if(value == nullptr || !value->sameAs("a")) {
       TEST_FAIL("[ArrayList removeAt test1]");
       break;
     }

@@ -29,7 +29,7 @@ void testLinkeListBase() {
         int count = 0;
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
-          if(!v1->equals(list[count])) {
+          if(!v1->sameAs(list[count])) {
             TEST_FAIL("v1 is %s,vv is %s ",v1->toChars(),list[count].c_str());
             TEST_FAIL("LinkedList base test2");
             break;
@@ -95,7 +95,7 @@ void testLinkeListBase() {
         int count = 0;
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
-          if(!v1->equals(list[count])) {
+          if(!v1->sameAs(list[count])) {
             TEST_FAIL("LinkedList base test5,v1 is %s,vv is %s ",v1->toChars(),list[count].c_str());
             break;
           }
@@ -154,7 +154,7 @@ void testLinkeListBase() {
       LinkedListIterator<String> iterator = mList->getIterator();
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(v->equals("b")) {
+        if(v->sameAs("b")) {
           iterator->remove();
           continue;
         }
@@ -169,7 +169,7 @@ void testLinkeListBase() {
       int count = 0;
       while(iterator->hasValue()) {
           String v = iterator->getValue();
-          if(!v->equals(list[count])) {
+          if(!v->sameAs(list[count])) {
             TEST_FAIL("LinkedList base test9,v1 is %s,vv is %s ",v->toChars(),list[count].c_str());
 
             break;

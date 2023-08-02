@@ -29,7 +29,7 @@ void testPutFirst() {
         String v2 = mList->at(1);
         String v3 = mList->at(2);
 
-        if(!v1->equals("c") ||!v2->equals("b") ||!v3->equals("a")) {
+        if(!v1->sameAs("c") ||!v2->sameAs("b") ||!v3->sameAs("a")) {
             TEST_FAIL("LinkedList Enqueue First test2,v1 is %s ,v2 is %s,v3 is %s ",v1->toChars(),v2->toChars(),v3->toChars());
             
             break;
@@ -49,7 +49,7 @@ void testPutFirst() {
         }
 
         String v1 = mList->at(0);
-        if(!v1->equals("a")) {
+        if(!v1->sameAs("a")) {
             TEST_FAIL("LinkedList Enqueue First test5,v1 is %s ",v1->toChars());
             
             break;

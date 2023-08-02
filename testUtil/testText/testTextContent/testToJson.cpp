@@ -37,7 +37,7 @@ void testToJson() {
     }
     
     auto name = value->getString("name");
-    if(name == nullptr || !name->equals("wangsl")) {
+    if(name == nullptr || !name->sameAs("wangsl")) {
         TEST_FAIL("TextContent toJson case2");
     }
 

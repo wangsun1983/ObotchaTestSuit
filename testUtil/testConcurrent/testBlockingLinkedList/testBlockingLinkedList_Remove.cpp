@@ -30,7 +30,7 @@ void testBlockingLinkedListRemove() {
           break;
         }
 
-        if(!ll->get(0)->equals("a") || !ll->get(1)->equals("c")) {
+        if(!ll->get(0)->sameAs("a") || !ll->get(1)->sameAs("c")) {
           TEST_FAIL("BlockingLinkedList remove test3");
           break;
         }

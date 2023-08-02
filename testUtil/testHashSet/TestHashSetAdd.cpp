@@ -27,7 +27,7 @@ void testHashAdd() {
         int count = 0;
         while(it->hasValue()) {
           String vv = it->getValue();
-          if(!vv->equals("abc") && !vv->equals("abc1") && !vv->equals("abc2") && !vv->equals("abc3")) {
+          if(!vv->sameAs("abc") && !vv->sameAs("abc1") && !vv->sameAs("abc2") && !vv->sameAs("abc3")) {
             it->next();
             continue;
           }
@@ -45,7 +45,7 @@ void testHashAdd() {
         count = 0;
         while(it->hasValue()) {
           String vv = it->getValue();
-          if(!vv->equals("abc1") && !vv->equals("abc2") && !vv->equals("abc3")) {
+          if(!vv->sameAs("abc1") && !vv->sameAs("abc2") && !vv->sameAs("abc3")) {
             it->next();
             continue;
           }

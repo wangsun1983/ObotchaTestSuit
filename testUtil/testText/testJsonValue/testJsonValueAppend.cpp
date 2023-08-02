@@ -28,7 +28,7 @@ void testJsonValueAppend() {
     value->append(100);
     
     auto v1 = value->getListItemAt(0);
-    if(!v1->getString()->equals("string1")) {
+    if(!v1->getString()->sameAs("string1")) {
         TEST_FAIL("JsonValue testJsonValueAppend case1");
     }
     
@@ -49,7 +49,7 @@ void testJsonValueAppend() {
     User usr = createUser();
     objval->reflectTo(usr);
     
-    if(usr->age != 12 || !usr->name->equals("wang")) {
+    if(usr->age != 12 || !usr->name->sameAs("wang")) {
         TEST_FAIL("JsonValue testJsonValueAppend case4");
     }
     

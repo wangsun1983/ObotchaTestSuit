@@ -19,7 +19,7 @@ void testBlockingLinkedListPeekFirst() {
         list->put(createString("c"));
 
         String v = list->peekFirst();
-        if(v == nullptr || !v->equals("a")) {
+        if(v == nullptr || !v->sameAs("a")) {
           TEST_FAIL("BlockingLinkedList PeekFirst test1 \n");
           break;
         }

@@ -14,9 +14,9 @@ using namespace obotcha;
 void testReadWriteLock_GetName() {
   
   ReadWriteLock rwLock = createReadWriteLock(createString("testLock"));
-  if(!rwLock->getName()->equals("testLock")
-    ||!rwLock->getReadLock()->getName()->equals("testLock")
-    ||!rwLock->getWriteLock()->getName()->equals("testLock")) {
+  if(!rwLock->getName()->sameAs("testLock")
+    ||!rwLock->getReadLock()->getName()->sameAs("testLock")
+    ||!rwLock->getWriteLock()->getName()->sameAs("testLock")) {
     TEST_FAIL("[TestReadLock ReadWriteLock GetName case1]");
   }
 

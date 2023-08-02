@@ -16,19 +16,19 @@ void testLinkedListRemoveAt() {
         mList->putLast(createString("c"));
 
         auto str1 = mList->removeAt(1);
-        if(!str1->equals("b")) {
+        if(!str1->sameAs("b")) {
           TEST_FAIL("LinkedList RemoveAt test1");
           break;
         }
 
         auto str2 = mList->removeAt(1);
-        if(!str2->equals("c")) {
+        if(!str2->sameAs("c")) {
           TEST_FAIL("LinkedList RemoveAt test2");
           break;
         }
 
         auto str3 = mList->removeAt(0);
-        if(!str3->equals("a")) {
+        if(!str3->sameAs("a")) {
           TEST_FAIL("LinkedList RemoveAt test3");
           break;
         }
@@ -43,19 +43,19 @@ void testLinkedListRemoveAt() {
         mList->putLast(createString("c"));
 
         auto str1 = mList->removeAt(0);
-        if(!str1->equals("a")) {
+        if(!str1->sameAs("a")) {
           TEST_FAIL("LinkedList RemoveAt test4");
           break;
         }
 
         auto str2 = mList->removeAt(0);
-        if(!str2->equals("b")) {
+        if(!str2->sameAs("b")) {
           TEST_FAIL("LinkedList RemoveAt test5");
           break;
         }
 
         auto str3 = mList->removeAt(0);
-        if(!str3->equals("c")) {
+        if(!str3->sameAs("c")) {
           TEST_FAIL("LinkedList RemoveAt test6");
           break;
         }

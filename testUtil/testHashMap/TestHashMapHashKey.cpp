@@ -65,7 +65,7 @@ void testHashMapHashKey() {
         break;
       }
 
-      if(!str->equals("aaa")) {
+      if(!str->sameAs("aaa")) {
         TEST_FAIL("[HashMap test HashKey} test3]");
         break;
       }
@@ -96,13 +96,13 @@ void testHashMapHashKey() {
       }
 
       String str1 = map->get(key);
-      if(str1 == nullptr || !str1->equals("aaa")) {
+      if(str1 == nullptr || !str1->sameAs("aaa")) {
         TEST_FAIL("[HashMap test HashKey} test6]");
         break;
       }
 
       String str2 = map->get(key2);
-      if(str2 == nullptr || !str2->equals("aaa")) {
+      if(str2 == nullptr || !str2->sameAs("aaa")) {
         TEST_FAIL("[HashMap test HashKey} test7]");
         break;
       }
@@ -133,13 +133,13 @@ void testHashMapHashKey() {
       }
 
       String str1 = map->get(key);
-      if(str1 == nullptr || !str1->equals("aaa")) {
+      if(str1 == nullptr || !str1->sameAs("aaa")) {
         TEST_FAIL("[HashMap test HashKey} test10]str1 is %s ",str1->toChars());
         break;
       }
 
       String str2 = map->get(key2);
-      if(str2 == nullptr || !str2->equals("bbb")) {
+      if(str2 == nullptr || !str2->sameAs("bbb")) {
         TEST_FAIL("[HashMap test HashKey} test11]str2 is %s ",str2->toChars());
         break;
       }

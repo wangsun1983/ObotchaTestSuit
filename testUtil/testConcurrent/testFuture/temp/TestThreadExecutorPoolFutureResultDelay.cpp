@@ -251,7 +251,7 @@ int testThreadExecutorPoolFutureResultDelay() {
         trace1 = st(System)::CurrentTimeMillis();
         String ret9 = f->getResult(NullData<String>());
         interval = st(System)::CurrentTimeMillis() - trace1;
-        if(!ret9->equals("hello")) {
+        if(!ret9->sameAs("hello")) {
           printf("testThreadExecutorPoolFutureResultDelay case19 -------[FAIL] \n");
           break;
         }

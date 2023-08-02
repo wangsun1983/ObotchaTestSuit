@@ -27,7 +27,7 @@ void doConnect() {
     TEST_FAIL("Filament SimpleConnect case1");
   }
 
-  if(!data->toString()->equals("hello world")) {
+  if(!data->toString()->sameAs("hello world")) {
     TEST_FAIL("Filament SimpleConnect case2");
   }
 }

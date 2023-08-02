@@ -16,7 +16,7 @@ void testHashMapRemove() {
       map->put(createString("a"),createString("b"));
 
       auto value = map->remove(createString("a"));
-      if(value == nullptr || !value->equals("b")) {
+      if(value == nullptr || !value->sameAs("b")) {
           TEST_FAIL("[HashMap Remove Test case1]");
       }
       break;

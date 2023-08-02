@@ -19,8 +19,8 @@ void testArrayList_Insert() {
     list->add(createString("a"));
     list->add(createString("b"));
     list->insert(0,createString("c"));
-    if(list->size() != 3 || !list->get(0)->equals("c")
-      || !list->get(1)->equals("a")|| !list->get(2)->equals("b")) {
+    if(list->size() != 3 || !list->get(0)->sameAs("c")
+      || !list->get(1)->sameAs("a")|| !list->get(2)->sameAs("b")) {
       TEST_FAIL("[ArrayList Insert test1]");
       break;
     }
@@ -30,7 +30,7 @@ void testArrayList_Insert() {
   while(1) {
     ArrayList<String> list = createArrayList<String>();
     list->insert(0,createString("c"));
-    if(list->size() != 1 || !list->get(0)->equals("c")) {
+    if(list->size() != 1 || !list->get(0)->sameAs("c")) {
       TEST_FAIL("[ArrayList Insert test2]");
       break;
     }
@@ -41,7 +41,7 @@ void testArrayList_Insert() {
     ArrayList<String> list = createArrayList<String>();
     list->insert(0,createString("c"));
     list->insert(1,createString("d"));
-    if(list->size() != 2 || !list->get(0)->equals("c") || !list->get(1)->equals("d")) {
+    if(list->size() != 2 || !list->get(0)->sameAs("c") || !list->get(1)->sameAs("d")) {
       TEST_FAIL("[ArrayList Insert test3]");
       break;
     }
@@ -72,8 +72,8 @@ void testArrayList_Insert() {
     list2->add(createString("a"));
     list2->add(createString("b"));
     list->insert(0,list2);
-    if(list->size() != 3 || !list->get(0)->equals("a")
-      || !list->get(1)->equals("b")|| !list->get(2)->equals("c")) {
+    if(list->size() != 3 || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("b")|| !list->get(2)->sameAs("c")) {
       TEST_FAIL("[ArrayList Insert test5]");
       break;
     }
@@ -86,15 +86,15 @@ void testArrayList_Insert() {
     list2->add(createString("a"));
     list2->add(createString("b"));
     list->insert(0,list2);
-    if(list->size() != 2 || !list->get(0)->equals("a")
-      || !list->get(1)->equals("b")) {
+    if(list->size() != 2 || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("b")) {
       TEST_FAIL("[ArrayList Insert test6]");
       break;
     }
 
     list2->clear();
-    if(list->size() != 2 || !list->get(0)->equals("a")
-      || !list->get(1)->equals("b")) {
+    if(list->size() != 2 || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("b")) {
       TEST_FAIL("[ArrayList Insert test7]");
       break;
     }
@@ -112,11 +112,11 @@ void testArrayList_Insert() {
     list2->add(createString("a"));
     list2->add(createString("b"));
     list->insert(2,list2);
-    if(list->size() != 5 || !list->get(0)->equals("c")
-      || !list->get(1)->equals("d")
-      || !list->get(2)->equals("a")
-      || !list->get(3)->equals("b")
-      || !list->get(4)->equals("e")
+    if(list->size() != 5 || !list->get(0)->sameAs("c")
+      || !list->get(1)->sameAs("d")
+      || !list->get(2)->sameAs("a")
+      || !list->get(3)->sameAs("b")
+      || !list->get(4)->sameAs("e")
       ) {
       TEST_FAIL("[ArrayList Insert test8]");
       break;
@@ -132,8 +132,8 @@ void testArrayList_Insert() {
     list2->add(createString("a"));
     list2->add(createString("b"));
     list->insert(0,list2,1);
-    if(list->size() != 2 || !list->get(0)->equals("a")
-      || !list->get(1)->equals("c")) {
+    if(list->size() != 2 || !list->get(0)->sameAs("a")
+      || !list->get(1)->sameAs("c")) {
       TEST_FAIL("[ArrayList Insert test9]");
       break;
     }
@@ -146,7 +146,7 @@ void testArrayList_Insert() {
     list2->add(createString("a"));
     list2->add(createString("b"));
     list->insert(0,list2,1);
-    if(list->size() != 1 || !list->get(0)->equals("a")) {
+    if(list->size() != 1 || !list->get(0)->sameAs("a")) {
       TEST_FAIL("[ArrayList Insert test10]");
       break;
     }
@@ -178,15 +178,15 @@ void testArrayList_Insert() {
     list->insert(0,createString("b"));
     list->insert(1,createString("c"));
 
-    if(!list->get(0)->equals("b")) {
+    if(!list->get(0)->sameAs("b")) {
       TEST_FAIL("[ArrayList Insert test12]");
     }
 
-    if(!list->get(1)->equals("c")) {
+    if(!list->get(1)->sameAs("c")) {
       TEST_FAIL("[ArrayList Insert test13]");
     }
 
-    if(!list->get(2)->equals("a")) {
+    if(!list->get(2)->sameAs("a")) {
       TEST_FAIL("[ArrayList Insert test14]");
     }
     break;
@@ -200,7 +200,7 @@ void testArrayList_Insert() {
     }
 
     auto v1 = list->get(0);
-    if(!v1->equals("a")) {
+    if(!v1->sameAs("a")) {
       TEST_FAIL("[ArrayList Insert test16]");
     }
     break;
@@ -215,8 +215,8 @@ void testArrayList_Insert() {
       TEST_FAIL("[ArrayList Insert test17]");
     }
 
-    if(!list->get(0)->equals("a") ||!list->get(1)->equals("b")
-      ||!list->get(2)->equals("c")) {
+    if(!list->get(0)->sameAs("a") ||!list->get(1)->sameAs("b")
+      ||!list->get(2)->sameAs("c")) {
         TEST_FAIL("[ArrayList Insert test17]");
     }
     

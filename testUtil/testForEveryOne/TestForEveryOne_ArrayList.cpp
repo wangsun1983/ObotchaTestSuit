@@ -52,7 +52,7 @@ void testArrayList() {
         abc = abc->append(v);
       }
 
-      if(!abc->equals("abcdef")) {
+      if(!abc->sameAs("abcdef")) {
         TEST_FAIL("ForEveryOne ArrayLit case2");
       }
 

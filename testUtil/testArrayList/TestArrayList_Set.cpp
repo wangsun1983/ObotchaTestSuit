@@ -28,9 +28,9 @@ void testArrayList_Set() {
       TEST_FAIL("[testArrayList_Set Test case1]");
     }
 
-    if(!list->get(0)->equals("t1") ||
-      !list->get(1)->equals("t2") ||
-      !list->get(2)->equals("t3")) {
+    if(!list->get(0)->sameAs("t1") ||
+      !list->get(1)->sameAs("t2") ||
+      !list->get(2)->sameAs("t3")) {
       TEST_FAIL("[testArrayList_Set Test case2]");
     }
     break;

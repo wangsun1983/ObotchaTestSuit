@@ -17,7 +17,7 @@ void testLinkedListPeekFirst() {
 
         auto v1 = mList->peekFirst();
         auto v2 = mList->peekFirst();
-        if(!v1->equals("a") || !v2->equals("a")) {
+        if(!v1->sameAs("a") || !v2->sameAs("a")) {
             TEST_FAIL("LinkedList PeekFirst case1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());
         }
         

@@ -19,7 +19,7 @@ void testHashIteratorRemove() {
         HashSetIterator<String> iterator = set->getIterator();
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
-          if(v1->equals("abc2")) {
+          if(v1->sameAs("abc2")) {
             iterator->remove();
             continue;
           }
@@ -36,7 +36,7 @@ void testHashIteratorRemove() {
         iterator = set->getIterator();
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
-          if(!v1->equals("abc") && !v1->equals("abc1") && !v1->equals("abc3")) {
+          if(!v1->sameAs("abc") && !v1->sameAs("abc1") && !v1->sameAs("abc3")) {
             iterator->next();
             continue;
           }

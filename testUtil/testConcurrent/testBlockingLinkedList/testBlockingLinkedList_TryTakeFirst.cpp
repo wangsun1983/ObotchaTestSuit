@@ -54,7 +54,7 @@ void testBlockingLinkedListTryTakeFirst() {
           break;
         }
 
-        if(!v1->equals("a") || !v2->equals("b")) {
+        if(!v1->sameAs("a") || !v2->sameAs("b")) {
           TEST_FAIL("BlockingLinkedList tryTakeFirst test4 \n");
           break;
         }

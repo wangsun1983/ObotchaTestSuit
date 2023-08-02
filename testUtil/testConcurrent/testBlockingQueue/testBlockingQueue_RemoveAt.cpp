@@ -21,7 +21,7 @@ void testBlockingQueueRemoveAt() {
         list->put(createString("c"));
 
         String v = list->removeAt(1);
-        if(v == nullptr || !v->equals("b")) {
+        if(v == nullptr || !v->sameAs("b")) {
           TEST_FAIL("BlockingQueue removeAt test1");
           break;
         }

@@ -45,7 +45,7 @@ void testBlockingQueueUnlimited() {
           break;
         }
 
-        if(str == nullptr || !str->equals("a")) {
+        if(str == nullptr || !str->sameAs("a")) {
           TEST_FAIL("BlockingQueue unlimited capacity test3");
           break;
         }

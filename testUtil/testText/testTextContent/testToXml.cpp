@@ -40,7 +40,7 @@ void testToXml() {
     }
     
     auto name = value->getStringValue("name");
-    if(name == nullptr || !name->equals("wangsl")) {
+    if(name == nullptr || !name->sameAs("wangsl")) {
         TEST_FAIL("TextContent toXml case2");
     }
 

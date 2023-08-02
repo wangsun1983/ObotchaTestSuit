@@ -24,7 +24,7 @@ void testArrayList_Iterator_Remove() {
     }
 
     String value = iterator->getValue();
-    if(value == nullptr || !value->equals("b") || list->size() != 1) {
+    if(value == nullptr || !value->sameAs("b") || list->size() != 1) {
       TEST_FAIL("[ArrayList Iterator Remove test2]");
       break;
     }

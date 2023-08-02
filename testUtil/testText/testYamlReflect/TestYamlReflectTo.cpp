@@ -51,15 +51,15 @@ void testReflectTo() {
     auto value = r->parse();
     TestData data = createTestData();
     value->reflectTo(data);
-    if(!data->name->equals("Example Developer")) {
+    if(!data->name->sameAs("Example Developer")) {
         TEST_FAIL("[TestYamlReflect reflectTo case1]");
     }
 
-    if(!data->job->equals("Developer")) {
+    if(!data->job->sameAs("Developer")) {
         TEST_FAIL("[TestYamlReflect reflectTo case2]");
     }
 
-    if(!data->skill->equals("Elite")) {
+    if(!data->skill->sameAs("Elite")) {
         TEST_FAIL("[TestYamlReflect reflectTo case3]");
     }
 
@@ -71,16 +71,16 @@ void testReflectTo() {
         TEST_FAIL("[TestYamlReflect reflectTo case5,size is %d",data->foods->size());
     }
 
-    if(!data->foods->get(0)->equals("Apple") ||
-        !data->foods->get(1)->equals("Orange") ||
-        !data->foods->get(2)->equals("Strawberry") ||
-        !data->foods->get(3)->equals("Mango")) {
+    if(!data->foods->get(0)->sameAs("Apple") ||
+        !data->foods->get(1)->sameAs("Orange") ||
+        !data->foods->get(2)->sameAs("Strawberry") ||
+        !data->foods->get(3)->sameAs("Mango")) {
         TEST_FAIL("[TestYamlReflect reflectTo case6");
     }
 
-    if(!data->languages->ruby->equals("Elite") ||
-        !data->languages->python->equals("Elite") ||
-        !data->languages->dotnet->equals("Lame")) {
+    if(!data->languages->ruby->sameAs("Elite") ||
+        !data->languages->python->sameAs("Elite") ||
+        !data->languages->dotnet->sameAs("Lame")) {
         TEST_FAIL("[TestYamlReflect reflectTo case7");
     }
 
@@ -88,9 +88,9 @@ void testReflectTo() {
         TEST_FAIL("[TestYamlReflect reflectTo case8");
     }
 
-    if(!data->hobbies->get("footabll")->equals("like")
-        ||!data->hobbies->get("basketball")->equals("like")
-        ||!data->hobbies->get("sleep")->equals("dislike")) {
+    if(!data->hobbies->get("footabll")->sameAs("like")
+        ||!data->hobbies->get("basketball")->sameAs("like")
+        ||!data->hobbies->get("sleep")->sameAs("dislike")) {
         TEST_FAIL("[TestYamlReflect reflectTo case9");
     }
 
