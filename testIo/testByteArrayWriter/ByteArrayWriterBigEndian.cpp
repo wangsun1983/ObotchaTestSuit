@@ -16,7 +16,7 @@ using namespace obotcha;
 void testByteArrayBigEndian() {
     while(1) {
       ByteArray data = createByteArray(8);
-      ByteArrayWriter writer = createByteArrayWriter(data,Global::BigEndian);
+      ByteArrayWriter writer = createByteArrayWriter(data,Defination::BigEndian);
       writer->write<short int>(1);
       writer->write<short int>(2);
       writer->write<short int>(3);

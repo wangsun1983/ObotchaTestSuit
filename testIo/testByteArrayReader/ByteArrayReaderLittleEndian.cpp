@@ -18,7 +18,7 @@ void testByteArrayLittleEndian() {
     while(1) {
       ByteArray testData = createByteArray(array,8);
 
-      ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
+      ByteArrayReader reader = createByteArrayReader(testData,Defination::LittleEndian);
 
       //test short
       short int v1 = 0;
@@ -53,7 +53,7 @@ void testByteArrayLittleEndian() {
 
     while(1) {
       ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
+      ByteArrayReader reader = createByteArrayReader(testData,Defination::LittleEndian);
       int v1 = 0;
       v1 = array[0]|(array[1]<<8)|(array[2]<<16)|(array[3]<<24);
       int v1_chk = reader->read<int>();
@@ -72,7 +72,7 @@ void testByteArrayLittleEndian() {
 
     while(1) {
       ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
+      ByteArrayReader reader = createByteArrayReader(testData,Defination::LittleEndian);
       long v1 = 0;
       v1 = (long)array[0]|((long)array[1]<<8)|((long)array[2]<<16)|((long)array[3]<<24)|((long)array[4]<<32)|((long)array[5]<<40)|((long)array[6]<<48)|((long)array[7]<<56);
       long v1_chk = reader->read<long>();
@@ -85,7 +85,7 @@ void testByteArrayLittleEndian() {
 
     while(1) {
       ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,Global::LittleEndian);
+      ByteArrayReader reader = createByteArrayReader(testData,Defination::LittleEndian);
 
       for(int i = 0;i<8;i++) {
         byte v = reader->read<byte>();
