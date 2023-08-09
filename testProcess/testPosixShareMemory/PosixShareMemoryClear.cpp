@@ -20,13 +20,13 @@ void testShareMemoryClear() {
         
         ByteArray data2 = createByteArray(24);
         memory->read(data2);
-        if(!data2->toString()->equals("hello")) {
+        if(!data2->toString()->sameAs("hello")) {
             TEST_FAIL("[ShareMemory Test {clear()} case1]");
         }
         
         ByteArray data3 = createByteArray(24);
         memory->read(data3);
-        if(!data3->toString()->equals("hello")) {
+        if(!data3->toString()->sameAs("hello")) {
             TEST_FAIL("[ShareMemory Test {clear()} case2]");
         }
         

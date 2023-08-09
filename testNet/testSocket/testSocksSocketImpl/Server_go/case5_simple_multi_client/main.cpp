@@ -25,7 +25,7 @@ public:
   void onSocketMessage(int event,Socket s,ByteArray data) {
     switch(event) {
       case st(NetEvent)::Message: {
-        if(data != nullptr && data->toString()->equals("hello world")) {
+        if(data != nullptr && data->toString()->sameAs("hello world")) {
           latch->countDown();
         }
       }

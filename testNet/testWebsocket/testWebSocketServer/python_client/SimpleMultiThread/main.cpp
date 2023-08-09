@@ -38,7 +38,7 @@ public:
     int onData(WebSocketFrame message,WebSocketLinker client) {
         messageCount->incrementAndGet();
 
-        if(!message->getData()->toString()->equals("Hello, World")) {
+        if(!message->getData()->toString()->sameAs("Hello, World")) {
             TEST_FAIL("WebSocketServer MultiThread test2,message is %s",message->getData()->toString()->toChars());
         }
         return 0;

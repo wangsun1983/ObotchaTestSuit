@@ -41,7 +41,7 @@ void testFifoPipeAsync() {
 
               String str = createString((const char *)buff);
               printf("i get str is %s \n",str->toChars());
-              if(!str->equals("hello world")) {
+              if(!str->sameAs("hello world")) {
                 TEST_FAIL("[FifoPipe Test {AsyncWrite/AsyncRead()} case2]");
               }
               latch->countDown();

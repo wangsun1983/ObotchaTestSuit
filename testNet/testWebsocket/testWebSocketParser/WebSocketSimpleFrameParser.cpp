@@ -53,7 +53,7 @@ int testSimpleFrameParser() {
         return -1;
       }
 
-      if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hello")) {
+      if(frame->getData() == nullptr || !frame->getData()->toString()->sameAs("Hello")) {
         TEST_FAIL("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
         return -1;
       }
@@ -75,7 +75,7 @@ int testSimpleFrameParser() {
       return -1;
     }
 
-    if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hel")) {
+    if(frame->getData() == nullptr || !frame->getData()->toString()->sameAs("Hel")) {
       TEST_FAIL("testSimpleFrameParser case2  error,frame is %s\n",frame->getData()->toString()->toChars());
       return -1;
     }
@@ -117,7 +117,7 @@ int testSimpleFrameParser() {
     }
 
     ByteArray data = frame->getData();
-    if(data == nullptr || !data->toString()->equals("Hel")) {
+    if(data == nullptr || !data->toString()->sameAs("Hel")) {
       TEST_FAIL("testSimpleFrameParser case3 trace3 frame content is not equal");
       return -1;
     }
@@ -134,7 +134,7 @@ int testSimpleFrameParser() {
     }
 
     data = frame->getData();
-    if(data == nullptr || !data->toString()->equals("Hello")) {
+    if(data == nullptr || !data->toString()->sameAs("Hello")) {
       TEST_FAIL("testSimpleFrameParser case3 trace6 frame content is not equal");
       return -1;
     }
@@ -151,7 +151,7 @@ int testSimpleFrameParser() {
     }
 
     data = frame->getData();
-    if(data == nullptr || !data->toString()->equals("lo")) {
+    if(data == nullptr || !data->toString()->sameAs("lo")) {
       TEST_FAIL("testSimpleFrameParser case3 trace9 frame content is not equal");
       return -1;
     }

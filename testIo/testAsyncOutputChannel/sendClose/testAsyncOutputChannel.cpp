@@ -37,20 +37,22 @@ int main() {
     printf("connect ret is %d \n",ret);
 
     SocketMonitor monitor = createSocketMonitor();
+	printf("trace0 \n");
     monitor->bind(s,createMyListener());
-
+	printf("trace1 \n");
     OutputStream stream = s->getOutputStream();
     stream->open();
-
+	printf("trace2 \n");
     long index = 0;
 
     File file = createFile("./tmp/testdata");
 
     FileInputStream inputstream = createFileInputStream(file);
     inputstream->open();
-
+	printf("trace3 \n");
     while(1) {
         ByteArray data = createByteArray(1024*4);
+		printf("trace1 \n");
         int length = inputstream->read(data);
         index += length;
         data->quickShrink(length);

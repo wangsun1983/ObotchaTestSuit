@@ -47,7 +47,7 @@ public:
     int onData(WebSocketFrame message,WebSocketLinker client) {
         messageCount->incrementAndGet();
 
-        if(!message->getData()->toString()->equals("Hello, World")) {
+        if(!message->getData()->toString()->sameAs("Hello, World")) {
             printf("WebSocketServer MultiThread test2 [FAILED],message is %s \n",message->getData()->toString()->toChars());
         }
         return 0;

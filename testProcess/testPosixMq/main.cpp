@@ -21,10 +21,11 @@ extern void testAsyncProcessMqLambda();
 int main() {
   testAsyncProcessMqLambda();
 
-  testAsyncProcessMq();
+   testAsyncProcessMq();
+	
+   testProcessMqMultiClient();
+   testProcessMq();
+   
 
-  testProcessMqMultiClient();
-
-  testProcessMq();
   return 0;
 }

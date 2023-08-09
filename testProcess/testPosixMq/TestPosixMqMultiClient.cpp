@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
 //#include "Thread.hpp"
 //#include "ArrayList.hpp"
 #include "Integer.hpp"
@@ -24,7 +25,7 @@ void testProcessMqMultiClient() {
     Thread t1 = createThread([readMq1]{
       ByteArray data = createByteArray(readMq1->getMsgSize());
       int len = readMq1->receive(data);
-      if(!data->toString()->equals("hello")) {
+      if(!data->toString()->sameAs("hello")) {
         TEST_FAIL("[ProcessMq Test MultiClient {send/receive()} case1]");
       }
     });
@@ -34,7 +35,7 @@ void testProcessMqMultiClient() {
       sleep(2);
       ByteArray data = createByteArray(readMq2->getMsgSize());
       int len = readMq2->receive(data);
-      if(!data->toString()->equals("world")) {
+      if(!data->toString()->sameAs("world")) {
         TEST_FAIL("[ProcessMq Test MultiClient {send/receive()} case2]");
       }
     });
@@ -51,5 +52,7 @@ void testProcessMqMultiClient() {
     t2->join();
 
     sendMq->clear();
+	readMq1->close();
+	readMq2->close();
     TEST_OK("[ProcessMq Test MultiClient {send/receive()} case3]");
 }

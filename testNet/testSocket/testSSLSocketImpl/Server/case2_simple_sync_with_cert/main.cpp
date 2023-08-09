@@ -34,7 +34,7 @@ public:
           s->getOutputStream()->write(createString("hello i am server")->toByteArray());
           isFirst = false;
         } else {
-          if(!data->toString()->equals("hello i am server")) {
+          if(!data->toString()->sameAs("hello i am server")) {
             TEST_FAIL("testSSLSocketImpl simple sync case1");
           }
           mCond->notify();

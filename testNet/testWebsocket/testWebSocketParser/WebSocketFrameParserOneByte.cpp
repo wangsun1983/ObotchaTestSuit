@@ -127,7 +127,7 @@ int testWebFrameOneByteParser() {
       return -1;
     }
 
-    if(frame->getData() == nullptr || !frame->getData()->toString()->equals("Hello")) {
+    if(frame->getData() == nullptr || !frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameOneByteParser case6  error,frame is %s\n",frame->getData()->toString()->toChars());
       return -1;
     }

@@ -29,7 +29,7 @@ int testDirectPipe() {
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
      pp->write(array);
      exit(0);
   } else {
@@ -59,7 +59,7 @@ int testDirectPipe() {
    if(pid == 0) {
       //child process
       pp2->closeReadChannel();
-      ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+      ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
       pp2->write(array);
       exit(0);
    } else {
@@ -98,7 +98,7 @@ int testDirectPipe() {
        exit(0);
     } else {
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+       ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
        int result = pp3->write(array);
        if(result >= 0) {
            TEST_FAIL("[Pipe Test {direct closePipe()} case5]");

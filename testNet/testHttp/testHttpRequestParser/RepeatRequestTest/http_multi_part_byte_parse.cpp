@@ -18,7 +18,7 @@ void testRepeatRequest() {
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
     int index = 0;
     while(index < 1024*32) {
-      parser->pushData(createByteArray((const byte *)content,strlen(content)));
+      parser->pushData(createByteArray((byte *)content,strlen(content)));
       ArrayList<HttpPacket> packets = parser->doParse();
       if(packets->size() != 2) {
         TEST_FAIL("HttpPacketParser repeat message parse case2");

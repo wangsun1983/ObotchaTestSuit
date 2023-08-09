@@ -41,7 +41,7 @@ int testFrameParserException() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParserException case1 frame check frame is %s ",frame->getData()->toString()->toChars());
     }
   }

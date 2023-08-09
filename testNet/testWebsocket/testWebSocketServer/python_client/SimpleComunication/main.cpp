@@ -36,12 +36,12 @@ public:
     }
 
     int onData(WebSocketFrame message,WebSocketLinker client) {
-        if(message->getData()->toString()->equals("Finish")) {
+        if(message->getData()->toString()->sameAs("Finish")) {
             finishLatch->countDown();
             return 0;
         }
         
-        if(!message->getData()->toString()->equals("Hello,Server")) {
+        if(!message->getData()->toString()->sameAs("Hello,Server")) {
             TEST_FAIL("WebSocketServer Simple Count test10");
         }
                 

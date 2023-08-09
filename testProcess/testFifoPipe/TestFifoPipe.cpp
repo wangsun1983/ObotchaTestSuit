@@ -42,7 +42,7 @@ void testSyncFifoPipe() {
   if(pid == 0) {
     //child process,start write
     FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Write);
-    ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+    ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     fifo->write(array);
     return;
   } else {

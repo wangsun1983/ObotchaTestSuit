@@ -26,49 +26,49 @@ void testSetToHeader() {
       break;
     }
 
-    if(!detail1->product->sameAs("Mozilla")) {
+    if(!detail1->agentProduct->sameAs("Mozilla")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case1]");
       break;
     }
 
-    if(!detail1->version->sameAs("5.0")) {
+    if(!detail1->agentVersion->sameAs("5.0")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case2]");
       break;
     }
 
-    if(detail1->info == nullptr || !detail1->info->sameAs("Windows NT 6.1; Win64; x64; rv:47.0")) {
-      TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case3],info is %s ",detail1->info->toChars());
+    if(detail1->agentInfo == nullptr || !detail1->agentInfo->sameAs("Windows NT 6.1; Win64; x64; rv:47.0")) {
+      TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case3],info is %s ",detail1->agentInfo->toChars());
       break;
     }
 
     auto detail2 = lists->get(1);
-    if(!detail2->product->sameAs("Gecko")) {
+    if(!detail2->agentProduct->sameAs("Gecko")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case4]");
       break;
     }
 
-    if(!detail2->version->sameAs("20100101")) {
+    if(!detail2->agentVersion->sameAs("20100101")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case5]");
       break;
     }
 
-    if(detail2->info != nullptr) {
+    if(detail2->agentInfo != nullptr) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case6]");
       break;
     }
 
     auto detail3 = lists->get(2);
-    if(!detail3->product->sameAs("Firefox")) {
+    if(!detail3->agentProduct->sameAs("Firefox")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case7]");
       break;
     }
 
-    if(!detail3->version->sameAs("47.0")) {
+    if(!detail3->agentVersion->sameAs("47.0")) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case8]");
       break;
     }
 
-    if(detail3->info != nullptr) {
+    if(detail3->agentInfo != nullptr) {
       TEST_FAIL("[HttpHeaderUserAgent test SetToHeader case9]");
       break;
     }

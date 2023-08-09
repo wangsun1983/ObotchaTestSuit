@@ -10,7 +10,6 @@
 using namespace obotcha;
 
 int main() {
-    //signal(SIGPIPE, SIG_IGN);
     InetAddress addr = createInetLocalAddress("case1_socket");
     Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
     int ret = client->connect();  
@@ -20,7 +19,7 @@ int main() {
     auto fd = client->getFileDescriptor();
     SocketImpl impl = createSocketImpl(fd);
     ByteArray data1 = impl->read();
-    if(!data1->toString()->equals("hello")) {
+    if(!data1->toString()->sameAs("hello")) {
         TEST_FAIL("TestLocalSocket Client case14_read_disconnect case1");
     }
     

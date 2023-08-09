@@ -37,7 +37,7 @@ void testSendMessageDelayed() {
   Random rnd = createRandom();
 
   for(int i = 0;i<1024;i++) {
-    int interval = rnd->nextInt(100,800);
+    int interval = rnd->next<int>(100,800);
     {
       AutoLock l(delayDataMutex);
       DelayTestData *data = new DelayTestData();

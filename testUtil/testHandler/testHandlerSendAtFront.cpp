@@ -65,7 +65,8 @@ void testHandlerSendAtFront() {
     h->post([]{
       sleep(1);
     });
-
+	usleep(1000*100);
+	
     Message msg1 = createMessage();
     msg1->what = 1;
 
@@ -74,11 +75,11 @@ void testHandlerSendAtFront() {
 
     Message msg3 = createMessage();
     msg3->what = 3;
-
+	
     h->sendMessageAtFrontOfQueue(msg2);
     h->sendMessageAtFrontOfQueue(msg3);
 
-    usleep(1000*1100);
+    usleep(1000*1200);
     if(v != 2) {
       TEST_FAIL("[Handler Test {Send At Front} case2],v is %d",v);
     }

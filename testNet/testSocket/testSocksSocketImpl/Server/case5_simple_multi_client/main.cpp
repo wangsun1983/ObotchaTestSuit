@@ -33,7 +33,7 @@ public:
     int fd = s->getFileDescriptor()->getFd();
     switch(event) {
       case st(NetEvent)::Message: {
-        if(data != nullptr && data->toString()->equals("hello world")) {
+        if(data != nullptr && data->toString()->sameAs("hello world")) {
           latch->countDown();
         }
         disconnectMessages->put(fd,createString("OK"));

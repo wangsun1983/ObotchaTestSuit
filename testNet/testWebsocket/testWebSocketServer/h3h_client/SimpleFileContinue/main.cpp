@@ -87,8 +87,8 @@ int main() {
 /*
     //check md5
     Md md5 = createMd();
-    String base = md5->encrypt(createFile("./tmp/data"));
-    String rcv = md5->encrypt(createFile("./tmp/rcvfile"));
+    String base = md5->encodeFile(createFile("./tmp/data"));
+    String rcv = md5->encodeFile(createFile("./tmp/rcvfile"));
     if(!base->equals(rcv)) {
         TEST_FAIL("WebSocketServer SimpleFile test1");
     }

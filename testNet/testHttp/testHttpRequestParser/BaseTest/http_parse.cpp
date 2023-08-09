@@ -1337,7 +1337,7 @@ void testHttpParse() {
             printf("turn is %d msg is %s \n",turn,msg.raw);
             ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
             if(turn == 0) {
-                parser->pushData(createByteArray((const byte *)msg.raw,strlen(msg.raw)));
+                parser->pushData(createByteArray((byte *)msg.raw,strlen(msg.raw)));
                 packets = parser->doParse();
             } else {
                 int index = 0;
@@ -1378,7 +1378,7 @@ void testHttpParse() {
             if(strlen(msg.request_url) > 0) {
                 HttpUrl url = header->getUrl();
                 String rawDataUrl = url->getRawUrl();
-                if(rawDataUrl == nullptr || !rawDataUrl->equals(msg.request_url)) {
+                if(rawDataUrl == nullptr || !rawDataUrl->sameAs(msg.request_url)) {
                     TEST_FAIL("HttpPacketParse CheckRequestUrl failed,msg.request_url is %s,parse result is %s",msg.request_url,rawDataUrl->toChars());
                     TEST_FAIL("HttpPacketParse CheckRequestUrl failed,msg.request_url size is %zu,parse result is %d",strlen(msg.request_url),rawDataUrl->size());
                     continue;
@@ -1406,7 +1406,7 @@ void testHttpParse() {
             if(strlen(msg.fragment) > 0) {
                 HttpUrl url = header->getUrl();
                 String fragment = url->getFragment();
-                if(fragment == nullptr || !fragment->equals(msg.fragment)) {
+                if(fragment == nullptr || !fragment->sameAs(msg.fragment)) {
                     TEST_FAIL("HttpPacketParse CheckFragment failed,msg.request_path is %s,parse result is %s",msg.fragment,fragment->toChars());
                     continue;
                 }
@@ -1417,7 +1417,7 @@ void testHttpParse() {
                 HttpUrl url = header->getUrl();
                 String rawQuery = url->getRawQuery();
                 
-                if(rawQuery == nullptr || !rawQuery->equals(msg.query_string)) {
+                if(rawQuery == nullptr || !rawQuery->sameAs(msg.query_string)) {
                     TEST_FAIL("HttpPacketParse CheckQuery failed,msg.query_string is %s,parse result is %s",msg.query_string,rawQuery->toChars());
                     continue;
                 }
@@ -1432,7 +1432,7 @@ void testHttpParse() {
                   content = entity->getContent()->toString();
                 }
 
-                if(content == nullptr || !content->equals(msg.body)) {
+                if(content == nullptr || !content->sameAs(msg.body)) {
                     TEST_FAIL("HttpPacketParse CheckBody failed,msg.body is %s,parse result is %s",msg.body,content->toChars());
                     continue;
                 }
@@ -1442,7 +1442,7 @@ void testHttpParse() {
             if(msg.host != nullptr) {
                 HttpUrl url = header->getUrl();
                 String host = url->getHost();
-                if(host == nullptr || !host->equals(msg.host)) {
+                if(host == nullptr || !host->sameAs(msg.host)) {
                     TEST_FAIL("HttpPacketParse CheckHost failed,msg.host is %s,parse result is %s",msg.host,host->toChars());
                     continue;
                 }
@@ -1454,7 +1454,7 @@ void testHttpParse() {
                 String username = url->getUser();
                 String password = url->getPassword();
                 String userInfo = username->append(":")->append(password);
-                if(!userInfo->equals(msg.userinfo)) {
+                if(!userInfo->sameAs(msg.userinfo)) {
                     TEST_FAIL("HttpPacketParse CheckUserInfo failed,msg.userinfo is %s,parse result is %s",msg.userinfo,userInfo->toChars());
                     continue;
                 }
@@ -1521,7 +1521,7 @@ void testHttpParse() {
                     const char *value = msg.key_value[i];
 
                     String findValue = map->get(createString(key));
-                    if(!findValue->equals(value)) {
+                    if(!findValue->sameAs(value)) {
                         TEST_FAIL("HttpPacketParser CheckKeyValue Fail,parsed key is %s,parser value is %s",
                                     key,findValue->toChars());
                     }

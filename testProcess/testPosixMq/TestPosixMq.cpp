@@ -33,7 +33,7 @@ int testProcessMq() {
     sleep(10);
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Send);
     
-    ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+    ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
     mq->send(array);
     mq->close();
@@ -59,7 +59,8 @@ int testProcessMq() {
     mq->clear();
     TEST_OK("[ProcessMq Test {send/receive()} case3]");
   }
-
+  usleep(1000 *100);
+  
   //send(ByteArray data,int prio);
   //int receive(ByteArray buff);
   pid = fork();
@@ -67,43 +68,41 @@ int testProcessMq() {
     //child process
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Send);
     
-    ByteArray array = createByteArray((const byte *)&testData[0],testDatalength);
+    ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
-    mq->send(array);
-
-    ByteArray array2 = createByteArray((const byte *)&testData[1],testDatalength-1);
-    mq->send(array2,st(ProcessMq)::Normal);
+    int ret = mq->send(array);
+	
+    ByteArray array2 = createByteArray((byte *)&testData[1],testDatalength-1);
+    ret = mq->send(array2,5);
+	
     mq->close();
-    exit(0);
+    return 1;
   } else {
     sleep(1);
     ByteArray array = createByteArray(mq->getMsgSize());
-    //sleep(1);
-    //TEST_FAIL("father start read \n");
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
     
     int length = mq->receive(array);
-
-    if(length != testDatalength) {
-        TEST_FAIL("[ProcessMq Test {send/receive()} case4],length is %d",length);
+    if(length != testDatalength - 1) {
+        TEST_FAIL("[ProcessMq Test {send/receive()} case4],length is %d,testDatalength is %d",length,testDatalength);
         return 1;
     }
 
-    for(int i = 0; i < testDatalength;i++) {
-      if(array->at(i) != i) {
+    for(int i = 0; i < testDatalength - 1;i++) {
+      if(array->at(i) != i + 1) {
         TEST_FAIL("[ProcessMq Test {send/receive()} case5]");
         break;
       }
     }
 
     length = mq->receive(array);
-    if(length != testDatalength - 1) {
+    if(length != testDatalength) {
         TEST_FAIL("[ProcessMq Test {send/receive()} case6],length is %d,testDatalength is %d",length,testDatalength - 1);
         return 1;
     }
 
-    for(int i = 0; i < testDatalength - 1;i++) {
-      if(array->at(i) != i + 1) {
+    for(int i = 0; i < testDatalength;i++) {
+      if(array->at(i) != i) {
         TEST_FAIL("[ProcessMq Test {send/receive()} case6_1]");
         break;
       }
@@ -121,8 +120,6 @@ int testProcessMq() {
     exit(0);
   } else {
     ByteArray array = createByteArray(mq->getMsgSize());
-    //sleep(1);
-    //TEST_FAIL("father start read \n");
     ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
     long current = st(System)::CurrentTimeMillis();
     int length = mq->receiveTimeout(array,500);

@@ -79,7 +79,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case1 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
@@ -107,7 +107,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case1_3 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
 
@@ -117,7 +117,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame1->getData()->toString()->equals("Hello")) {
+    if(!frame1->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case1_5 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
@@ -144,7 +144,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case2 frame1 check failed frame is %s ",frame->getData()->toString()->toChars());
     }
 
@@ -154,7 +154,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case2 frame2 check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
@@ -264,7 +264,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case7 frame check failed frame is %s ",frame->getData()->toString()->toChars());
     }
   }
@@ -289,7 +289,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals("Hello")) {
+    if(!frame->getData()->toString()->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case7 frame check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
@@ -381,7 +381,7 @@ int testFrameParser() {
 
     WebSocketFrame frame = msgDatas->get(0);
     String message = frame->getData()->toString();
-    if(message == nullptr || !message->equals("Hello")) {
+    if(message == nullptr || !message->sameAs("Hello")) {
       TEST_FAIL("testFrameParser case8 frame check frame failed,current is %s ",message->toChars());
       return -1;
     }

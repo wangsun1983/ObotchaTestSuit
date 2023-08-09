@@ -60,7 +60,7 @@ public:
     }
 
     void onPong(String msg,WebSocketLinker client) {
-        //if(!msg->equals("hello")) {
+        //if(!msg->sameAs("hello")) {
         //    TEST_FAIL("WebSocketServer SimplePing test1");
         //}
         //latch->countDown();
@@ -68,7 +68,7 @@ public:
 
     int onPing(String msg,WebSocketLinker client) {
         printf("i receive a message,it is %s \n",msg->toChars());
-        if(!msg->equals("abc")) {
+        if(!msg->sameAs("abc")) {
             TEST_FAIL("WebSocketServer SimplePingByClient test1");
         }
         

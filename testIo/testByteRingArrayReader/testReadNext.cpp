@@ -29,7 +29,7 @@ void testReadNext() {
     int startIndex = ringarray->getStartIndex();
     int endIndex = ringarray->getEndIndex();
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case1]");
         return;
     }
@@ -37,7 +37,7 @@ void testReadNext() {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case1_1]");
         return;
     }
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case2]");
         return;
     }
@@ -45,7 +45,7 @@ void testReadNext() {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case2_1]");
         return;
     }
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case3]");
         return;
     }
@@ -53,7 +53,7 @@ void testReadNext() {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case3_1]");
         return;
     }
-    if(reader->readNext(v4) != ContinueRead) {
+    if(reader->readNext(v4) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case4]");
         return;
     }
@@ -62,7 +62,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v5) != ContinueRead) {
+    if(reader->readNext(v5) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case5]");
         return;
     }
@@ -71,7 +71,7 @@ void testReadNext() {
         return;
     }
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case6]");
         return;
     }
@@ -106,7 +106,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case1]");
         return;
     }
@@ -115,7 +115,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case2]");
         return;
     }
@@ -124,7 +124,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case3]");
         return;
     }
@@ -133,7 +133,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v4) != ContinueRead) {
+    if(reader->readNext(v4) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4]");
         return;
     }
@@ -142,7 +142,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v5) != ContinueRead) {
+    if(reader->readNext(v5) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case4_2]");
         return;
     }
@@ -153,7 +153,7 @@ void testReadNext() {
 
     byte end;
     int result = reader->readNext(end);
-    if(result != NoContentRead) {
+    if(result != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case6]");
         return;
     }
@@ -191,7 +191,7 @@ void testReadNext() {
     ringarray->setSize(3);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case1]");
         return;
     }
@@ -200,7 +200,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case2]");
         return;
     }
@@ -209,7 +209,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case3]");
         return;
     }
@@ -219,7 +219,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case6]");
         return;
     }
@@ -257,7 +257,7 @@ void testReadNext() {
     ringarray->setSize(2);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case1]");
         return;
     }
@@ -266,7 +266,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case2]");
         return;
     }
@@ -276,7 +276,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case6]");
         return;
     }
@@ -315,7 +315,7 @@ void testReadNext() {
     ringarray->setSize(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case1]");
         return;
     }
@@ -325,7 +325,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case6]");
         return;
     }
@@ -363,7 +363,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case1]");
         return;
     }
@@ -372,7 +372,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case2]");
         return;
     }
@@ -381,7 +381,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case3]");
         return;
     }
@@ -390,7 +390,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v4) != ContinueRead) {
+    if(reader->readNext(v4) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case4]");
         return;
     }
@@ -399,7 +399,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v5) != ContinueRead) {
+    if(reader->readNext(v5) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case5]");
         return;
     }
@@ -409,7 +409,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case6]");
         return;
     }
@@ -447,7 +447,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case1]");
         return;
     }
@@ -456,7 +456,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case2]");
         return;
     }
@@ -465,7 +465,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case3]");
         return;
     }
@@ -474,7 +474,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v4) != ContinueRead) {
+    if(reader->readNext(v4) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case4]");
         return;
     }
@@ -484,7 +484,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case6]");
         return;
     }
@@ -522,7 +522,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case1]");
         return;
     }
@@ -531,7 +531,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case2]");
         return;
     }
@@ -540,7 +540,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v3) != ContinueRead) {
+    if(reader->readNext(v3) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case3]");
         return;
     }
@@ -550,7 +550,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case6]");
         return;
     }
@@ -588,7 +588,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case1]");
         return;
     }
@@ -597,7 +597,7 @@ void testReadNext() {
         return;
     }
 
-    if(reader->readNext(v2) != ContinueRead) {
+    if(reader->readNext(v2) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case2]");
         return;
     }
@@ -607,7 +607,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case6]");
         return;
     }
@@ -645,7 +645,7 @@ void testReadNext() {
     ringarray->setEndIndex(1);
 
     ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
-    if(reader->readNext(v1) != ContinueRead) {
+    if(reader->readNext(v1) != st(Defination)::ContinueRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case1]");
         return;
     }
@@ -655,7 +655,7 @@ void testReadNext() {
     }
 
     byte end;
-    if(reader->readNext(end) != NoContentRead) {
+    if(reader->readNext(end) != st(Defination)::NoContentRead) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case6]");
         return;
     }

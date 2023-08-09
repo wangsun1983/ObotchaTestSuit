@@ -16,8 +16,10 @@ using namespace obotcha;
 extern int normalTest();
 extern void testArrayCopy();
 extern void testExecute();
+extern void testSleep();
 
 int main() {
+  testSleep();
   testArrayCopy();
   testExecute();
   //while(1){}

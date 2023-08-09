@@ -20,7 +20,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray(( byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       TEST_FAIL("HttpPacketParser multi message parse case1");
@@ -41,7 +41,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray((byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       TEST_FAIL("HttpPacketParser multi message parse case2");
@@ -75,7 +75,7 @@ void testMultiMessageParse() {
 
     HttpPacketParserImpl parser = createHttpPacketParserImpl();
 
-    parser->pushData(createByteArray((const byte *)content,strlen(content)));
+    parser->pushData(createByteArray((byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 1) {
       TEST_FAIL("HttpPacketParser multi message parse case3");
@@ -90,7 +90,7 @@ void testMultiMessageParse() {
 
     const char* content2 = "\r\n"
                             "WORLD";
-    parser->pushData(createByteArray((const byte *)content2,strlen(content2)));
+    parser->pushData(createByteArray((byte *)content2,strlen(content2)));
     packets = parser->doParse();
     if(packets->size() != 1) {
       TEST_FAIL("HttpPacketParser multi message parse case5");

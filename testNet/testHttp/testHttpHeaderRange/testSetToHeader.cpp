@@ -29,34 +29,34 @@ void testSetToHeader() {
     }
 
     auto item0 = list->get(0);
-    if(item0->start != 200) {
-      TEST_FAIL("[HttpHeaderRange test SetToHeader case3],item0->start is %d",item0->start);
+    if(item0->rangeStart != 200) {
+      TEST_FAIL("[HttpHeaderRange test SetToHeader case3],item0->rangeStart is %d",item0->rangeStart);
       break;
     }
 
-    if(item0->end != 1000) {
+    if(item0->rangeEnd != 1000) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case4]");
       break;
     }
 
     auto item1 = list->get(1);
-    if(item1->start != 2000) {
+    if(item1->rangeStart != 2000) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case5]");
       break;
     }
 
-    if(item1->end != 6576) {
+    if(item1->rangeEnd != 6576) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case6]");
       break;
     }
 
     auto item2 = list->get(2);
-    if(item2->start != 19000) {
+    if(item2->rangeStart != 19000) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case7]");
       break;
     }
 
-    if(item2->end != -1) {
+    if(item2->rangeEnd != -1) {
       TEST_FAIL("[HttpHeaderRange test SetToHeader case8]");
       break;
     }

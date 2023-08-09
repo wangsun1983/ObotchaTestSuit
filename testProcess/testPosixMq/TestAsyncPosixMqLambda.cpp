@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-
+#include <sys/wait.h>
 //#include "Thread.hpp"
 //#include "ArrayList.hpp"
 #include "Integer.hpp"
@@ -27,16 +27,20 @@ void testAsyncProcessMqLambda() {
       sleep(2);
       String s = createString("hello world");
       int ret = sendMq->send(s->toByteArray());
+	  sendMq->close();
       exit(0);
     } else {
       ProcessMq readMq1 = createProcessMq("lambd_test1",[](ByteArray data){
-        if(!data->toString()->equals("hello world")) {
+        if(!data->toString()->sameAs("hello world")) {
           TEST_FAIL("AsyncProcessMqLambda case1");
         }
         lambdaLatch->countDown();
       });
       lambdaLatch->await();
       readMq1->clear();
+	  int status = 0;
+	  waitpid(pid,&status,0);
+	  readMq1->close();
     }
 
     TEST_OK("[ProcessMq Test AsyncProcessMqLambda case100]");

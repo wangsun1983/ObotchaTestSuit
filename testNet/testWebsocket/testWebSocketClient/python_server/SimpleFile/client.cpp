@@ -24,7 +24,7 @@ public:
 
     int onData(WebSocketFrame data) {
         String message = data->getData()->toString();
-        if(!message->equals("closed")) {
+        if(!message->sameAs("closed")) {
             TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
         }
 
@@ -82,9 +82,9 @@ int main() {
     usleep(1000*200);
     
     Md md5sum = createMd();
-    String base = md5sum->encrypt(createFile("./tmp/testdata"));
+    String base = md5sum->encodeFile(createFile("./tmp/testdata"));
 
-    String newFile = md5sum->encrypt(createFile("./tmp/file"));
+    String newFile = md5sum->encodeFile(createFile("./tmp/file"));
 
     if(!base->equals(newFile)) {
       TEST_FAIL("WebSocketClient SimpleConnect case100");

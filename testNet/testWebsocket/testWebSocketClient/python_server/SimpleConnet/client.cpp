@@ -23,7 +23,7 @@ public:
 
     int onData(WebSocketFrame data) {
         String message = data->getData()->toString();
-        if(!message->equals("i am server")) {
+        if(!message->sameAs("i am server")) {
             TEST_FAIL("WebSocketClient SimpleConnect wrong response: %s",message->toChars());
         }
 

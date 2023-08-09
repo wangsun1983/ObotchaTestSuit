@@ -34,7 +34,7 @@ public:
     int onData(WebSocketFrame message,sp<_WebSocketLinker> client) {
         String data = message->getData()->toString();
         //printf("data is %s \n",data->toChars());
-        if(!data->equals("Hello, World")) {
+        if(!data->sameAs("Hello, World")) {
             TEST_FAIL("WebSocketServer Simple Connect By Golang test1");
         }
         latch->countDown();

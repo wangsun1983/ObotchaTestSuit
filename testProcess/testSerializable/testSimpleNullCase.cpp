@@ -49,7 +49,7 @@ void testOrpcSimpleNullCase() {
     TEST_FAIL("Serializable testNullCase case1");
   }
 
-  if(!newMembers->m1->m1->equals("this is m1") || newMembers->m1->m2 != 100) {
+  if(!newMembers->m1->m1->sameAs("this is m1") || newMembers->m1->m2 != 100) {
     TEST_FAIL("Serializable testNullCase case2");
   }
 

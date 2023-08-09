@@ -25,7 +25,7 @@ void testShareMemory() {
   if(pid == 0) {
       ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::WriteRead);
       
-      ByteArray arr = createByteArray((const byte *)&testData[0],32);
+      ByteArray arr = createByteArray((byte *)&testData[0],32);
       memory->write(arr);
       exit(0);
   } else {
@@ -95,7 +95,7 @@ void testShareMemory() {
   if(pid == 0) {
     ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::WriteRead);
     
-    ByteArray arr = createByteArray((const byte *)&testData[0],32);
+    ByteArray arr = createByteArray((byte *)&testData[0],32);
     if(memory->write(256,arr) != -EINVAL) {
       TEST_FAIL("[ShareMemory Test {write/read()} case10]");
     }

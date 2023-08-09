@@ -53,7 +53,7 @@ public:
 
     int onData(WebSocketFrame message,sp<_WebSocketLinker> client) {
         messageCount->incrementAndGet();
-        if(!message->getData()->toString()->equals("Hello, World")) {
+        if(!message->getData()->toString()->sameAs("Hello, World")) {
             TEST_FAIL("WebSocketServer Simple Count test10");
         } else {
             //TEST_FAIL("good!! \n");

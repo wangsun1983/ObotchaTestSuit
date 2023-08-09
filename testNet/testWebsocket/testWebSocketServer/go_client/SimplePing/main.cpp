@@ -48,7 +48,7 @@ public:
     }
 
     void onPong(String msg,WebSocketLinker client) {
-        if(!msg->equals("hello")) {
+        if(!msg->sameAs("hello")) {
             TEST_FAIL("WebSocketServer SimplePing test1");
         }
         latch->countDown();
