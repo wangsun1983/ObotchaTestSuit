@@ -1,3 +1,9 @@
+## Prepare
+-   pip3 install websockets
+-   pip3 install environ
+-   pip3 install rfile
+-   pip3 install websocket-client
+
 ## Test Sheet
 -   主要用于存放所有类的单元测试case
 -   也可作为示例代码参考

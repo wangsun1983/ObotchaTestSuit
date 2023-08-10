@@ -27,7 +27,7 @@ int testFrameParserException() {
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {

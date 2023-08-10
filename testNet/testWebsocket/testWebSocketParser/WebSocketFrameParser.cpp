@@ -65,7 +65,7 @@ int testFrameParser() {
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -93,7 +93,7 @@ int testFrameParser() {
 
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
@@ -130,7 +130,7 @@ int testFrameParser() {
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
@@ -176,7 +176,7 @@ int testFrameParser() {
       memcpy(payload_frame+2+2+4, (const char *)mask((char *)key, payload_copy, length), length);
 
       WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-      ByteArray loadData = createByteArray((const byte *)payload_frame,(2+2+4+length));
+      ByteArray loadData = createByteArray((byte *)payload_frame,(2+2+4+length));
       parser->pushParseData(loadData);
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
       if(msgDatas->size() != 1) {
@@ -190,7 +190,7 @@ int testFrameParser() {
         return -1;
       }
 
-      if(!frame->getData()->toString()->equals(payload)) {
+      if(!frame->getData()->toString()->sameAs(payload)) {
         TEST_FAIL("testFrameParser case3 frame check failed frame is %s ",frame->getData()->toString()->toChars());
         return -1;
       }
@@ -222,7 +222,7 @@ int testFrameParser() {
     memcpy(payload_frame+2+sizeof(uint64_t), key, 4);
     memcpy(payload_frame+2+sizeof(uint64_t)+4, (const char *)mask((char *)key, payload_copy, length), length);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload_frame,length+6+sizeof(uint64_t));
+    ByteArray loadData = createByteArray((byte *)payload_frame,length+6+sizeof(uint64_t));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
@@ -237,7 +237,7 @@ int testFrameParser() {
       return -1;
     }
 
-    if(!frame->getData()->toString()->equals(payload)) {
+    if(!frame->getData()->toString()->sameAs(payload)) {
       TEST_FAIL("testFrameParser case4 frame check failed frame is %s ",frame->getData()->toString()->toChars());
       return -1;
     }
@@ -250,7 +250,7 @@ int testFrameParser() {
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -275,7 +275,7 @@ int testFrameParser() {
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((const byte *)payload,strlen(payload));
+    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -301,7 +301,8 @@ int testFrameParser() {
     uint16_t length = strlen(payload);
     WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
 
-    ByteArray loadData = createByteArray((const byte *)payload,1);
+    ByteArray loadData = createByteArray((byte *)payload,1);
+	printf("loadData size is %d,loadData[0] is %x \n",loadData->size(),loadData[0]);
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
