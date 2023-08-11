@@ -29,14 +29,14 @@ CountDownLatch latch = createCountDownLatch(1);
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 
-void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
+void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
     switch(event) {
-        case st(NetEvent)::Connect: {
+        case st(Net)::Event::Connect: {
             //connectCount->incrementAndGet();
         }
         break;
 
-        case st(NetEvent)::Message: {
+        case st(Net)::Event::Message:: {
             messageCount->incrementAndGet();
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -44,7 +44,7 @@ void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket m
         }
         break;
 
-        case st(NetEvent)::Disconnect:{
+        case st(Net)::Event::Disconnect:{
             //disConnectCount->incrementAndGet();
             latch->countDown();
         }

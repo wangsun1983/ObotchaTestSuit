@@ -20,7 +20,7 @@ Condition mCond = createCondition();
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     printf("i received a message,event is %d \n",event);
     if(isFirst) {
       int len = s->getOutputStream()->write(createString("hello client")->toByteArray());

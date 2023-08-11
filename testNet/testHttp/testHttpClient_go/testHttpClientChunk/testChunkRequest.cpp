@@ -45,8 +45,15 @@ void testHttpClientChunk() {
   HttpGet get = createHttpGet(url);
   HttpClient client = createHttpClient();
   HttpResponse response = client->execute(get);
-
+  
+  usleep(1000*1000);
   //check response 
+  auto chunk = response->getEntity()->getChunk();
+  if(chunk == nullptr) {
+	  printf("chunk is null \n");
+  } else {
+	  printf("chunk is not null \n");
+  }
   ByteArray data = response->getEntity()->getChunk()->getInputStream()->readAll();
   if(!data->toString()->sameAs(result)) {
     //printf("i aacept data is \n%s||||\nexptect:\n%s|||\n",data->toString()->toChars(),result);

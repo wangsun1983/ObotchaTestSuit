@@ -43,15 +43,15 @@ public:
     filesize = prepareFilesize;
   }
 
-  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
+  void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case st(NetEvent)::Connect: {
+          case st(Net)::Event::Connect: {
               //TODO
               //printf("Connect !!!! \n");
           }
           break;
 
-          case st(NetEvent)::Message: {
+          case st(Net)::Event::Message:: {
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();
               auto contents = multiPart->getContents();
@@ -84,7 +84,7 @@ public:
           }
           break;
 
-          case st(NetEvent)::Disconnect:{
+          case st(Net)::Event::Disconnect:{
               //disConnectCount->incrementAndGet();
               //printf("disconnect !!!! \n");
           }

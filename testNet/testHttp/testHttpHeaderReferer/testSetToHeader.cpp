@@ -8,7 +8,7 @@
 #include "HttpHeaderReferer.hpp"
 #include "Math.hpp"
 #include "TestLog.hpp"
-#include "NetProtocol.hpp"
+#include "Net.hpp"
 #include "HttpHeader.hpp"
 
 using namespace obotcha;
@@ -41,7 +41,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(url->getScheme() != st(NetProtocol)::Https) {
+    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
       TEST_FAIL("[HttpHeaderReferer test SetToHeader case3]");
       break;
     }

@@ -23,7 +23,7 @@ CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
+  void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
           case HttpEvent::Connect: {
               

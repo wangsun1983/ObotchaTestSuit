@@ -24,16 +24,16 @@ public:
     index = i;
   }
 
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(NetEvent)::Message: {
+      case st(Net)::Event::Message:: {
         //printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
         array[index] += data->toString()->toBasicLong();
         s->getOutputStream()->write(createString("abc")->toByteArray());
       }
       break;
 
-      case st(NetEvent)::Disconnect: {
+      case st(Net)::Event::Disconnect: {
         latch->countDown();
       }
       break;

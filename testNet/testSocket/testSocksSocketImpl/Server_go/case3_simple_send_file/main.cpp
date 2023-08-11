@@ -22,9 +22,9 @@ long filesize = 0;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(NetEvent)::Message:
+      case st(Net)::Event::Message::
         stream->write(data);
         filesize-= data->size();
         if(filesize == 0) {
@@ -33,7 +33,7 @@ public:
         s->getOutputStream()->write(createString(" ")->toByteArray());
       break;
 
-      case st(NetEvent)::Disconnect:
+      case st(Net)::Event::Disconnect:
       //LOG_FAIL("disconnect!!!! \n");
       //mCond->notify();
       break;

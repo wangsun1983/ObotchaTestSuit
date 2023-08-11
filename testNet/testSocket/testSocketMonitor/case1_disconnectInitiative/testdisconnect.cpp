@@ -22,14 +22,14 @@ public:
         mName = name;
     }
     
-    void onSocketMessage(int event,Socket,ByteArray) {
+    void onSocketMessage(st(Net)::Event event,Socket,ByteArray) {
         printf("wangsl message!!!!! event is %d,name is %s \n",event,mName->toChars());;
         
         if(isServer) {
             return;
         }
         
-        if(event == st(NetEvent)::Disconnect) {
+        if(event == st(Net)::Event::Disconnect) {
             latch->countDown();
         }
     }

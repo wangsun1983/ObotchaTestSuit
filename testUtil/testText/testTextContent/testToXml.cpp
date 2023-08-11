@@ -28,7 +28,7 @@ void testToXml() {
     data->id = 123;
     data->name = createString("wangsl");
     
-    TextContent c = createTextContent(data,st(TextContent)::Xml);
+    TextContent c = createTextContent(data,st(TextContent)::Format::Xml);
     //printf("c is %s \n",c->get()->toChars());
     
     XmlReader reader = createXmlReader(c->get());

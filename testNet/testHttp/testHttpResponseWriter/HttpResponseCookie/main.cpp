@@ -23,14 +23,14 @@ int count = 0;
 
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
-  void onHttpMessage(int event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
+  void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case st(NetEvent)::Connect: {
+          case st(Net)::Event::Connect: {
               //connectlatch->countDown();
           }
           break;
 
-          case st(NetEvent)::Message: {
+          case st(Net)::Event::Message:: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();
@@ -73,7 +73,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(NetEvent)::Disconnect:{
+          case st(Net)::Event::Disconnect:{
               
           }
           break;

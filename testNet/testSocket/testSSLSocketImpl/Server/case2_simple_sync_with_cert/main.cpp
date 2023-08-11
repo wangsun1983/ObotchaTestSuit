@@ -27,9 +27,9 @@ Condition mCond = createCondition();
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(NetEvent)::Message: {
+      case st(Net)::Event::Message:: {
         if(isFirst) {
           s->getOutputStream()->write(createString("hello i am server")->toByteArray());
           isFirst = false;

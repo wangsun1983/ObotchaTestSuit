@@ -29,17 +29,17 @@ int count = 0;
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     int fd = s->getFileDescriptor()->getFd();
     switch(event) {
-      case st(NetEvent)::Message: {
+      case st(Net)::Event::Message:: {
         if(data != nullptr && data->toString()->sameAs("hello world")) {
           latch->countDown();
         }
         disconnectMessages->put(fd,createString("OK"));
       } break;
       
-      case st(NetEvent)::Disconnect: {
+      case st(Net)::Event::Disconnect: {
           if(disconnectMessages->remove(fd) == nullptr) {
             AutoLock l(mMutex);
             count++;

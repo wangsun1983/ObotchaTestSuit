@@ -16,7 +16,7 @@ void testSocketGetProtocol() {
         InetAddress addr = createInet4Address("10.0.0.1",12);
         SocksSocketImpl impl = createSocksSocketImpl(addr,nullptr);
         Socket s = createSocket(impl);
-        if(s->getProtocol() != st(Socket)::Tcp) {
+        if(s->getProtocol() != st(Net)::Protocol::Tcp) {
             TEST_FAIL("Socket getProtocol case1");
         }
         s->close();
@@ -27,7 +27,7 @@ void testSocketGetProtocol() {
         InetAddress addr = createInet4Address("10.0.0.1",12);
         DatagramSocketImpl impl = createDatagramSocketImpl(addr,nullptr);
         Socket s = createSocket(impl);
-        if(s->getProtocol() != st(Socket)::Udp) {
+        if(s->getProtocol() != st(Net)::Protocol::Udp) {
             TEST_FAIL("Socket getProtocol case2,protocol is %d",s->getProtocol());
         }
         s->close();

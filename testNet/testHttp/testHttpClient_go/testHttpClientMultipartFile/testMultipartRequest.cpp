@@ -48,7 +48,11 @@ void testMultipartRequest() {
 
   HttpClient client = createHttpClient();
   HttpResponse response = client->execute(post);
-
+  if(response == nullptr) {
+	  printf("no response!!!! \n");
+	  return;
+  }
+  
   //check response 
   ByteArray data = response->getEntity()->getContent();
   if(!data->toString()->sameAs("finish")) {

@@ -17,21 +17,21 @@ using namespace obotcha;
 void testHttpClientConnKey() {
   HashMap<HttpClientConnKey,String> maps = createHashMap<HttpClientConnKey,String>();
   
-  HttpClientConnKey key1 = createHttpClientConnKey(1,createString("1"),createString("1"),8888);
+  HttpClientConnKey key1 = createHttpClientConnKey(st(Net)::Protocol::Udp,createString("1"),createString("1"),8888);
   maps->put(key1,createString("key1"));
 
-  String s1 = maps->get(createHttpClientConnKey(1,createString("1"),createString("1"),8888));
+  String s1 = maps->get(createHttpClientConnKey(st(Net)::Protocol::Udp,createString("1"),createString("1"),8888));
   if(s1 == nullptr || !s1->sameAs("key1")) {
     TEST_FAIL("[testHttpClientConnKey test Parse case1]");
   }
 
-  maps->put(createHttpClientConnKey(1,createString("1"),createString("1"),8888),createString("key2"));
-  s1 = maps->get(createHttpClientConnKey(1,createString("1"),createString("1"),8888));
+  maps->put(createHttpClientConnKey(st(Net)::Protocol::Udp,createString("1"),createString("1"),8888),createString("key2"));
+  s1 = maps->get(createHttpClientConnKey(st(Net)::Protocol::Udp,createString("1"),createString("1"),8888));
   if(s1 == nullptr || !s1->sameAs("key2")) {
     TEST_FAIL("[testHttpClientConnKey test Parse case2]");
   }
 
-  String sx = maps->get(createHttpClientConnKey(2,createString("1"),createString("1"),8888));
+  String sx = maps->get(createHttpClientConnKey(st(Net)::Protocol::Ssl,createString("1"),createString("1"),8888));
   if(sx != nullptr) {
     TEST_FAIL("[testHttpClientConnKey test Parse case8],sx is %s \n",sx->toChars());
   }

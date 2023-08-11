@@ -22,9 +22,9 @@ CountDownLatch latch = createCountDownLatch(1024*12);
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(NetEvent)::Message: {
+      case st(Net)::Event::Message:: {
         if(data != nullptr && data->toString()->sameAs("hello world")) {
           latch->countDown();
         }

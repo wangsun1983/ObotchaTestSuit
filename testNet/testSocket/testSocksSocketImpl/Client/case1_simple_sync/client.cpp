@@ -29,16 +29,16 @@ MyHandler h = createMyHandler();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(NetEvent)::Message:
+      case st(Net)::Event::Message::
       //h->removeMessages(1);
       message = message->append(data->toString());
       messageCount++;
       //h->sendEmptyMessageDelayed(1,100);
       break;
 
-      case st(NetEvent)::Disconnect:
+      case st(Net)::Event::Disconnect:
       //disconnectCount++;
       AutoLock l(disconnectMutex);
       disconnectCond->notify();

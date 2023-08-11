@@ -35,14 +35,14 @@ public:
     index = i;
   }
 
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case Message: {
+      case st(Net)::Event::Message: {
         
       }
       break;
 
-      case Disconnect: {
+      case st(Net)::Event::Disconnect: {
         //printf("count is %d \n",latch->getCount());
         latch->countDown();
         h->removeMessages(0);

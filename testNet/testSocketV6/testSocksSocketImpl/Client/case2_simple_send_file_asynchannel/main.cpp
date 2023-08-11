@@ -17,9 +17,9 @@ Condition mCond = createCondition();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
-  void onSocketMessage(int event,Socket s,ByteArray data) {
+  void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case Disconnect: 
+      case st(Net)::Event::Disconnect: 
       mCond->notify();
       break;
     }

@@ -17,7 +17,7 @@ public:
 };
 
 #define MEMBER(X) \
-{ st(HttpMime)::Type##X,st(HttpMime)::X->toChars()}
+{ static_cast<int>(st(HttpMime)::Type::X),st(HttpMime)::X->toChars()}
 
 
 NameMap names[1024] = {
@@ -106,30 +106,38 @@ NameMap names[1024] = {
 
 
 void testNameIdConvert() {
-  for(int i = st(HttpMime)::TypeTextHtml;i <st(HttpMime)::TypeMax;i++ ) {
-      HttpMime mime = createHttpMime();//st(HttpMime)::createById(i);
-      mime->setId(i);
-      //mime->setTypeId(i);
+  //for(int i = st(HttpMime)::TypeTextHtml;i <st(HttpMime)::TypeMax;i++ ) {
+  //for(auto i = st(HttpMime)::Type.begin(); i != st(HttpMime)::Type.end();i++) {
+  for(auto i = (std::underlying_type<st(HttpMime)::Type>::type)st(HttpMime)::Type::TextHtml;
+          i <= (std::underlying_type<st(HttpMime)::Type>::type)st(HttpMime)::Type::XFormUrlEncoded;
+          i++) {
+	 
+	  HttpMime mime = createHttpMime();
+      mime->setTypeId(static_cast<st(HttpMime)::Type>(i));
       String f1 = mime->getType();
       if(!f1->sameAs(names[i].name)) {
         TEST_FAIL("[TestHttpMime name to id case1]");
       }
 
-      if(mime->getId() != i) {
-        TEST_FAIL("[TestHttpMime name to id case2] ,i is %d,id is %d",i,mime->getId());
+      if(mime->getTypeId() != static_cast<st(HttpMime)::Type>(i)) {
+        TEST_FAIL("[TestHttpMime name to id case2] ,i is %d,id is %d",
+					static_cast<int>(i),
+					static_cast<int>(mime->getTypeId()));
       }
   }
   
-  for(int i = st(HttpMime)::TypeTextHtml;i <st(HttpMime)::TypeMax;i++ ) {
+  for(auto i = (std::underlying_type<st(HttpMime)::Type>::type)st(HttpMime)::Type::TextHtml;
+          i <= (std::underlying_type<st(HttpMime)::Type>::type)st(HttpMime)::Type::XFormUrlEncoded;
+          i++) {
       HttpMime mime = createHttpMime();//st(HttpMime)::createById(i);
       mime->setType(names[i].name);
       
-      if(mime->getId() != i) {
-          TEST_FAIL("[TestHttpMime name to id case3] ,i is %d,id is %d",i,mime->getId());
+      if(mime->getTypeId() != static_cast<st(HttpMime)::Type>(i)) {
+          TEST_FAIL("[TestHttpMime name to id case3] ,i is %d,id is %d",static_cast<int>(i),static_cast<int>(mime->getTypeId()));
       }
       
       if(!mime->getType()->sameAs(names[i].name)) {
-          TEST_FAIL("[TestHttpMime name to id case4] ,i is %d,id is %d",i,mime->getId());
+          TEST_FAIL("[TestHttpMime name to id case4] ,i is %d,id is %d",static_cast<int>(i),static_cast<int>(mime->getTypeId()));
       }
   }
 

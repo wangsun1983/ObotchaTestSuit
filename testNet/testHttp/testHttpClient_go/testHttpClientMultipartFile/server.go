@@ -33,7 +33,7 @@ func close() {
 }
 
 func onTest(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseMultipartForm(32 << 20) // maxMemory 32MB
+	err := r.ParseMultipartForm(128 << 20) // maxMemory 32MB
   log.Printf("err is %v \n",err)
 
   if r.MultipartForm.Value != nil {

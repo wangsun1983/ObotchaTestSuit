@@ -327,7 +327,7 @@ void testHttpHeaderAppend() {
       break;
     }
     
-    if(header2->getProtocol() != st(NetProtocol)::Http) {
+    if(header2->getProtocol() != st(st(Net)::Protocol)::Http) {
       TEST_FAIL("[HttpHeader test Append case46]");
       break;
     }

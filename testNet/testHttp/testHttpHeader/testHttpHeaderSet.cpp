@@ -341,7 +341,7 @@ void testHttpHeaderSet() {
       break;
     }
     
-    if(header->getProtocol() != st(NetProtocol)::Http) {
+    if(header->getProtocol() != st(st(Net)::Protocol)::Http) {
       TEST_FAIL("[HttpHeader test Set case46]");
       break;
     }

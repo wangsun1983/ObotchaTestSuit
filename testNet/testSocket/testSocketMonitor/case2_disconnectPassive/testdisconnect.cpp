@@ -17,8 +17,8 @@ CountDownLatch latch = createCountDownLatch(1);
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
-    void onSocketMessage(int event,Socket,ByteArray) {
-        if(event == st(NetEvent)::Disconnect) {
+    void onSocketMessage(st(Net)::Event event,Socket,ByteArray) {
+        if(event == st(Net)::Event::Disconnect) {
             latch->countDown();
         }
     }

@@ -19,7 +19,7 @@
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
 #include "NetPort.hpp"
-#include "NetProtocol.hpp"
+#include "Net.hpp"
 
 using namespace obotcha;
 
@@ -38,14 +38,14 @@ int step = 0;
 ByteArray sendData = createByteArray(1024*1024*2);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
-  void onHttpMessage(int event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
+  void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
     
       switch(event) {
-          case st(NetEvent)::Connect: {
+          case st(Net)::Event::Connect: {
           }
           break;
 
-          case st(NetEvent)::Message: {
+          case st(Net)::Event::Message:: {
                 printf("write responce from server11111 \n");
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -55,7 +55,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
 
-          case st(NetEvent)::Disconnect:{
+          case st(Net)::Event::Disconnect:{
           }
           break;
       }

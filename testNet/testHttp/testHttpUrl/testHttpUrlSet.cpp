@@ -16,7 +16,7 @@ void testHttpUrlSet() {
   
   while(1) {
     HttpUrl url = createHttpUrl();
-    url->setScheme(st(NetProtocol)::Http);
+    url->setScheme(st(st(Net)::Protocol)::Http);
     url->setUser("su");
     url->setHost("localhost");
     url->setPort(1234);
