@@ -36,7 +36,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
         }
         break;
 
-        case st(Net)::Event::Message:: {
+        case st(Net)::Event::Message: {
             if(step == 0) {
               messageCount->incrementAndGet();
               HttpResponse response = createHttpResponse();

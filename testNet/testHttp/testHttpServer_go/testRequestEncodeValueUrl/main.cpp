@@ -32,7 +32,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
         }
         break;
 
-        case st(Net)::Event::Message:: {
+        case st(Net)::Event::Message: {
             //messageCount->incrementAndGet();
 			printf("server accept message trace1 \n");
             HttpHeader header = msg->getHeader();

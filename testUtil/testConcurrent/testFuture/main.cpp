@@ -27,7 +27,7 @@ extern void testPriorityPoolExecutor_Cancel();
 extern void testThreadPoolExecutor_CancelRunningTask();
 
 int main() {
-    
+    printf("test future \n");
     testPriorityPoolExecutor_Cancel();
     testPriorityPoolExecutor_Wait();
     testPriorityPoolExecutor_Multithread();

@@ -16,13 +16,16 @@ int main() {
     InetAddress addr = createInetLocalAddress("case6_socket");
     SocketOption option = createSocketOption();
     option->setSndTimeout(1000);
-    
+    printf("start trace1 \n");
+
     Socket client = createSocketBuilder()
                     ->setAddress(addr)
                     ->setOption(option)
                     ->newSocket();
+    printf("start trace2 \n");
     TimeWatcher watcher = createTimeWatcher();
     int ret = client->connect();
+    printf("ret is %d \n",ret);
     ByteArray data = createByteArray(1024*1024);
     for(int i = 0;i < 1024*1024;i++) {
         data[i] = 1;

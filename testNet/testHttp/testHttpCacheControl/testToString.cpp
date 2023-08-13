@@ -9,6 +9,7 @@
 #include "HttpHeaderCacheControl.hpp"
 #include "HttpPacket.hpp"
 #include "TestLog.hpp"
+#include "Http.hpp"
 
 using namespace obotcha;
 
@@ -16,7 +17,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->load("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Request));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(Http)::PacketType::Request));
 
     if(c->noCache() != c2->noCache()) {
       TEST_FAIL("[HttpHeaderCacheControl test toString case1]");
@@ -58,7 +59,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->load("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(Http)::PacketType::Response));
 
     if(c->noCache() != c2->noCache()) {
       TEST_FAIL("[HttpHeaderCacheControl test toString case8]");
@@ -100,7 +101,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->load("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(Http)::PacketType::Response));
 
     if(c->maxAgeSeconds() != c2->maxAgeSeconds()) {
       TEST_FAIL("[HttpHeaderCacheControl test toString case15]");
@@ -127,7 +128,7 @@ void testToString() {
   while(1) {
     HttpHeaderCacheControl c = createHttpHeaderCacheControl();
     c->load("public");
-    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(HttpPacket)::Response));
+    HttpHeaderCacheControl c2 = createHttpHeaderCacheControl(c->toString(st(Http)::PacketType::Response));
     if(c->isPublic() != c2->isPublic()) {
       TEST_FAIL("[HttpHeaderCacheControl test toString case19]");
       break;

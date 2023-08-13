@@ -56,7 +56,7 @@ int main() {
 
 
     Company comp = list->get(0);
-    if(!comp->name->equals("Wang") || comp->age != 12) {
+    if(!comp->name->sameAs("Wang") || comp->age != 12) {
         printf("comp name is %s \n",comp->name->toChars());
         TEST_FAIL("Sqlite3 testCreateDB case2");
     }
@@ -71,7 +71,7 @@ int main() {
     int index = 0;
     while(iterator->hasValue()) {
         List<String> data = iterator->getRowData();
-        if(!data[0]->equals("1") || !data[1]->equals("Wang") || !data[2]->equals("12")) {
+        if(!data[0]->sameAs("1") || !data[1]->sameAs("Wang") || !data[2]->sameAs("12")) {
             TEST_FAIL("Sqlite3 testCreateDB case4,data[0] is %s,data[1] is %s,data[2] is %s",
                 data[0]->toChars(),data[1]->toChars(),data[2]->toChars());
         }

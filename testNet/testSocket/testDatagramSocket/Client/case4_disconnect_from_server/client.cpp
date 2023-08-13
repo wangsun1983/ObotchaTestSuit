@@ -30,12 +30,12 @@ int main() {
     client->getOutputStream()->write(hello->toByteArray());
     client->close();
     
-    if(client->getOutputStream()->write(hello->toByteArray())!= -1) {
+    if(client->getOutputStream() != nullptr) {
        TEST_FAIL("TestDataGramSocket case4_disconnect_from_server case5");
     }
     
     ByteArray indata = createByteArray(4);
-    if(client->getInputStream()->read(indata)!= -1) {
+    if(client->getInputStream() != nullptr) {
        TEST_FAIL("TestDataGramSocket case4_disconnect_from_server case6");
     }
     

@@ -31,7 +31,7 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(Net)::Event::Message::
+      case st(Net)::Event::Message:
       //h->removeMessages(1);
       message = message->append(data->toString());
       messageCount++;

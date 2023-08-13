@@ -44,7 +44,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
                 if(!msg->getData()->toString()->equals("hello this is client")) {
                     TEST_FAIL("TestHttp2Server SimpleGetHeader test1");
                 }

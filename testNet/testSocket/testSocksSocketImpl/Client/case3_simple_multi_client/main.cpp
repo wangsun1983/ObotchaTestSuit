@@ -26,7 +26,7 @@ public:
 
   void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(Net)::Event::Message:: {
+      case st(Net)::Event::Message: {
         //printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
         array[index] += data->toString()->toBasicLong();
         s->getOutputStream()->write(createString("abc")->toByteArray());

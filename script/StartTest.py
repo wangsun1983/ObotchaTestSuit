@@ -131,7 +131,15 @@ def scanTest(path):
     if isPrepareFileExist:
         os.popen("sh prepare.sh").read()
     if isMakefileExist:
-        makeret = os.popen("cd " + path + " && make 2>&1").read()
+        makeret = os.popen("cd " + path + "&& make 2>&1").read()
+        try:
+            port_file = open('/tmp/obotcha_test_suit_port.txt', 'r')
+            list1 = port_file.readlines()
+            if port_file:
+                port_file.close()
+        except IOError:
+            os.popen("rm /tmp/obotcha_test_suit_port.txt").read()
+
         go_build_success = True
         env_path =  os.path.abspath('.') + "/" + "../3rdparty/go"
         if testType == TestType.TestRunGoServer :
@@ -157,10 +165,11 @@ def scanTest(path):
                 executefile += ll
                 executefile += "_"
 
-        if makeret.find("Error") > 0:
-            buildfile += "FAIL.log"
-        else:
+        #if makeret.find("Error") > 0:
+        if os.path.exists(path+"/mytest"):
             buildfile += "Success.log"
+        else:
+            buildfile += "Fail.log"
 
         print("build result is ",buildfile)
         #write BuildReport
@@ -240,7 +249,7 @@ def scanTest(path):
             printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + printTime + "]" + " Finish " + path)
 
-            if execThreadLog.find("[FAIL]") > 0:
+            if execThreadLog.find("[FAIL]") > 0 or execThreadLog.find("[OK]") <= 0:
                 executefile += "FAIL.log"
             else:
                 executefile += "Success.log"

@@ -51,7 +51,7 @@ public:
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
               //printf("i get a message \n");
               HttpEntity entity = msg->getEntity();
               HttpMultiPart multiPart = entity->getMultiPart();

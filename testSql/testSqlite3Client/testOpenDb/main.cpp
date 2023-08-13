@@ -75,7 +75,7 @@ int main() {
     while(iterator->hasValue()) {
         auto s = iterator->getValue();
         auto v = datalist->get(index);
-        if(s->age != v->age || s->id != v->id || !s->name->equals(v->name)) {
+        if(s->age != v->age || s->id != v->id || !s->name->sameAs(v->name)) {
             TEST_FAIL("Sqlite3 testOpenDB case3,index is %d",index);
         }
         index++;
@@ -97,7 +97,7 @@ int main() {
     while(iterator2->hasValue()) {
         List<String> s = iterator2->getRowData();
         auto v = datalist->get(index);
-        if(!s[0]->equals(st(String)::valueOf(v->age)) || !s[1]->equals(v->name) || !s[2]->equals(st(String)::valueOf(v->id))) {
+        if(!s[0]->sameAs(st(String)::valueOf(v->age)) || !s[1]->sameAs(v->name) || !s[2]->sameAs(st(String)::valueOf(v->id))) {
             TEST_FAIL("Sqlite3 testOpenDB case5index is %d",index);
         }
         index++;

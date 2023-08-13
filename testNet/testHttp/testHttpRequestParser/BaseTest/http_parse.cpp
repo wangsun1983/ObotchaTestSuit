@@ -7,6 +7,7 @@
 #include "HttpPacketParserImpl.hpp"
 #include "TestLog.hpp"
 #include "HttpMethod.hpp"
+#include "Http.hpp"
 
 using namespace obotcha;
 
@@ -77,7 +78,7 @@ extern "C" {
 const struct message requests[] =
 #define CURL_GET 0
 { {.name= "curl get"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /test HTTP/1.1\r\n"
                  "User-Agent: curl/7.18.0 (i486-pc-linux-gnu) libcurl/7.18.0 OpenSSL/0.9.8g zlib/1.2.3.3 libidn/1.1\r\n"
                  "Host: 0.0.0.0=5000\r\n"
@@ -104,7 +105,7 @@ const struct message requests[] =
 
 #define FIREFOX_GET 1
 , {.name= "firefox get"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /favicon.ico HTTP/1.1\r\n"
                  "Host: 0.0.0.0=5000\r\n"
                  "User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9) Gecko/2008061015 Firefox/3.0\r\n"
@@ -141,7 +142,7 @@ const struct message requests[] =
 
 #define DUMBLUCK 2
 , {.name= "dumbluck"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /dumbluck HTTP/1.1\r\n"
                  "aaaaaaaaaaaaa:++++++++++\r\n"
                  "\r\n"
@@ -164,7 +165,7 @@ const struct message requests[] =
 
 #define FRAGMENT_IN_URI 3
 , {.name= "fragment in url"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /forums/1/topics/2375?page=1#posts-17408 HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -184,7 +185,7 @@ const struct message requests[] =
 
 #define GET_NO_HEADERS_NO_BODY 4
 , {.name= "get no headers no body"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /get_no_headers_no_body/world HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -203,7 +204,7 @@ const struct message requests[] =
 
 #define GET_ONE_HEADER_NO_BODY 5
 , {.name= "get one header no body"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /get_one_header_no_body HTTP/1.1\r\n"
                  "Accept: */*\r\n"
                  "\r\n"
@@ -226,7 +227,7 @@ const struct message requests[] =
 
 #define GET_FUNKY_CONTENT_LENGTH 6
 , {.name= "get funky content length body hello"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /get_funky_content_length_body_hello HTTP/1.0\r\n"
                  "conTENT-Length: 5\r\n"
                  "\r\n"
@@ -250,7 +251,7 @@ const struct message requests[] =
 
 #define POST_IDENTITY_BODY_WORLD 7
 , {.name= "post identity body world"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /post_identity_body_world?q=search#hey HTTP/1.1\r\n"
                  "Accept: */*\r\n"
                  "Content-Length: 5\r\n"
@@ -276,7 +277,7 @@ const struct message requests[] =
 
 #define POST_CHUNKED_ALL_YOUR_BASE 8
 , {.name= "post - chunked body: all your base are belong to us"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /post_chunked_all_your_base HTTP/1.1\r\n"
                  "Transfer-Encoding: chunked\r\n"
                  "\r\n"
@@ -304,7 +305,7 @@ const struct message requests[] =
 
 #define TWO_CHUNKS_MULT_ZERO_END 9
 , {.name= "two chunks ; triple zero ending"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /two_chunks_mult_zero_end HTTP/1.1\r\n"
                  "Transfer-Encoding: chunked\r\n"
                  "\r\n"
@@ -333,7 +334,7 @@ const struct message requests[] =
 
 #define CHUNKED_W_TRAILING_HEADERS 10
 , {.name= "chunked with trailing headers. blech."
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /chunked_w_trailing_headers HTTP/1.1\r\n"
                  "Transfer-Encoding: chunked\r\n"
                  "\r\n"
@@ -366,7 +367,7 @@ const struct message requests[] =
 
 #define CHUNKED_W_NONSENSE_AFTER_LENGTH 11
 , {.name= "with nonsense after the length"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /chunked_w_nonsense_after_length HTTP/1.1\r\n"
                  "Transfer-Encoding: chunked\r\n"
                  "\r\n"
@@ -395,7 +396,7 @@ const struct message requests[] =
 
 #define WITH_QUOTES 12
 , {.name= "with quotes"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /with_\"stupid\"_quotes?foo=\"bar\" HTTP/1.1\r\n\r\n"
     ,.should_keep_alive= TRUE
     ,.message_complete_on_eof= FALSE
@@ -419,7 +420,7 @@ const struct message requests[] =
  * Compare with NO_CONTENT_LENGTH_RESPONSE.
  */
 , {.name = "apachebench get"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /test HTTP/1.0\r\n"
                  "Host: 0.0.0.0:5000\r\n"
                  "User-Agent: ApacheBench/2.3\r\n"
@@ -446,7 +447,7 @@ const struct message requests[] =
 /* Some clients include '?' characters in query strings.
  */
 , {.name = "query url with question mark"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /test.cgi?foo=bar?baz HTTP/1.1\r\n\r\n"
     ,.should_keep_alive= TRUE
     ,.message_complete_on_eof= FALSE
@@ -468,7 +469,7 @@ const struct message requests[] =
  * will send an extra CRLF before the next request
  */
 , {.name = "newline prefix get"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "\r\nGET /test HTTP/1.1\r\n\r\n"
     ,.should_keep_alive= TRUE
     ,.message_complete_on_eof= FALSE
@@ -487,7 +488,7 @@ const struct message requests[] =
 
 #define UPGRADE_REQUEST 16
 , {.name = "upgrade request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /demo HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "Connection: Upgrade\r\n"
@@ -524,7 +525,7 @@ const struct message requests[] =
 #if 0
 #define CONNECT_REQUEST 17
 , {.name = "connect request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "CONNECT 0-home0.netscape.com:443 HTTP/1.0\r\n"
                  "User-agent: Mozilla/1.1N\r\n"
                  "Proxy-authorization: basic aGVsbG86d29ybGQ=\r\n"
@@ -552,7 +553,7 @@ const struct message requests[] =
 
 #define REPORT_REQ 18
 , {.name= "report request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "REPORT /test HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -574,7 +575,7 @@ const struct message requests[] =
 
 #define NO_HTTP_VERSION 19
 , {.name= "request with no http version"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /\r\n"
                  "\r\n"
     ,.should_keep_alive= FALSE
@@ -594,7 +595,7 @@ const struct message requests[] =
 
 #define MSEARCH_REQ 20
 , {.name= "m-search request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "M-SEARCH * HTTP/1.1\r\n"
                  "HOST: 239.255.255.250:1900\r\n"
                  "MAN: \"ssdp:discover\"\r\n"
@@ -621,7 +622,7 @@ const struct message requests[] =
 #if 0
 #define LINE_FOLDING_IN_HEADER 21
 , {.name= "line folding in header value"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET / HTTP/1.1\r\n"
                  "Line1:     abc\r\n"
                  "\tdef\r\n"
@@ -660,7 +661,7 @@ const struct message requests[] =
 
 #define QUERY_TERMINATED_HOST 22
 , {.name= "host terminated by a query string"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET http://hypnotoad.org?hail=all HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -681,7 +682,7 @@ const struct message requests[] =
 
 #define QUERY_TERMINATED_HOSTPORT 23
 , {.name= "host:port terminated by a query string"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET http://hypnotoad.org:1234?hail=all HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -703,7 +704,7 @@ const struct message requests[] =
 
 #define SPACE_TERMINATED_HOSTPORT 24
 , {.name= "host:port terminated by a space"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET http://hypnotoad.org:1234 HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -725,7 +726,7 @@ const struct message requests[] =
 
 #define PATCH_REQ 25
 , {.name = "PATCH request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "PATCH /file.txt HTTP/1.1\r\n"
                  "Host: www.example.com\r\n"
                  "Content-Type: application/example\r\n"
@@ -754,7 +755,7 @@ const struct message requests[] =
 
 #define CONNECT_CAPS_REQUEST 26
 , {.name = "connect caps request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "CONNECT HOME0.NETSCAPE.COM:443 HTTP/1.0\r\n"
                  "User-agent: Mozilla/1.1N\r\n"
                  "Proxy-authorization: basic aGVsbG86d29ybGQ=\r\n"
@@ -780,7 +781,7 @@ const struct message requests[] =
 #if !HTTP_PARSER_STRICT
 #define UTF8_PATH_REQ 27
 , {.name= "utf-8 path request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /δ¶/δt/pope?q=1#narf HTTP/1.1\r\n"
                  "Host: github.com\r\n"
                  "\r\n"
@@ -802,7 +803,7 @@ const struct message requests[] =
 
 #define HOSTNAME_UNDERSCORE 28
 , {.name = "hostname underscore"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "CONNECT home_0.netscape.com:443 HTTP/1.0\r\n"
                  "User-agent: Mozilla/1.1N\r\n"
                  "Proxy-authorization: basic aGVsbG86d29ybGQ=\r\n"
@@ -836,7 +837,7 @@ const struct message requests[] =
                  "Content-Length: 4\r\n"
                  "\r\n"
                  "q=42\r\n" /* note the trailing CRLF */
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.should_keep_alive= TRUE
     ,.message_complete_on_eof= FALSE
     ,.http_major= 1
@@ -868,7 +869,7 @@ const struct message requests[] =
                  "Connection: close\r\n"
                  "\r\n"
                  "q=42\r\n" /* note the trailing CRLF */
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.should_keep_alive= FALSE
     ,.message_complete_on_eof= FALSE /* input buffer isn't empty when on_message_complete is called */
     ,.http_major= 1
@@ -893,7 +894,7 @@ const struct message requests[] =
 
 #define PURGE_REQ 31
 , {.name = "PURGE request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "PURGE /file.txt HTTP/1.1\r\n"
                  "Host: www.example.com\r\n"
                  "\r\n"
@@ -914,7 +915,7 @@ const struct message requests[] =
 
 #define SEARCH_REQ 32
 , {.name = "SEARCH request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "SEARCH / HTTP/1.1\r\n"
                  "Host: www.example.com\r\n"
                  "\r\n"
@@ -935,7 +936,7 @@ const struct message requests[] =
 
 #define PROXY_WITH_BASIC_AUTH 33
 , {.name= "host:port and basic_auth"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET http://a%12:b!&*$@hypnotoad.org:1234/toto HTTP/1.1\r\n"
                  "\r\n"
     ,.should_keep_alive= TRUE
@@ -957,7 +958,7 @@ const struct message requests[] =
 #if 0
 #define LINE_FOLDING_IN_HEADER_WITH_LF 34
 , {.name= "line folding in header value"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET / HTTP/1.1\n"
                  "Line1:     abc\n"
                  "\tdef\n"
@@ -996,7 +997,7 @@ const struct message requests[] =
 
 #define CONNECTION_MULTI 35
 , {.name = "multiple connection header values with folding"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /demo HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "Connection: Something,\r\n"
@@ -1033,7 +1034,7 @@ const struct message requests[] =
 
 #define CONNECTION_MULTI_LWS 36
 , {.name = "multiple connection header values with folding and lws"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /demo HTTP/1.1\r\n"
                  "Connection: keep-alive, upgrade\r\n"
                  "Upgrade: WebSocket\r\n"
@@ -1059,7 +1060,7 @@ const struct message requests[] =
 
 #define CONNECTION_MULTI_LWS_CRLF 37
 , {.name = "multiple connection header values with folding and lws"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "GET /demo HTTP/1.1\r\n"
                  "Connection: keep-alive, \r\n upgrade\r\n"
                  "Upgrade: WebSocket\r\n"
@@ -1085,7 +1086,7 @@ const struct message requests[] =
 
 #define UPGRADE_POST_REQUEST 38
 , {.name = "upgrade post request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /demo HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "Connection: Upgrade\r\n"
@@ -1115,7 +1116,7 @@ const struct message requests[] =
 #if 0
 #define CONNECT_WITH_BODY_REQUEST 39
 , {.name = "connect with body request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "CONNECT foo.bar.com:443 HTTP/1.0\r\n"
                  "User-agent: Mozilla/1.1N\r\n"
                  "Proxy-authorization: basic aGVsbG86d29ybGQ=\r\n"
@@ -1145,7 +1146,7 @@ const struct message requests[] =
 
 #define LINK_REQUEST 40
 , {.name = "link request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "LINK /images/my_dog.jpg HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "Link: <http://example.com/profiles/joe>; rel=\"tag\"\r\n"
@@ -1171,7 +1172,7 @@ const struct message requests[] =
 
 #define UNLINK_REQUEST 41
 , {.name = "unlink request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "UNLINK /images/my_dog.jpg HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "Link: <http://example.com/profiles/sally>; rel=\"tag\"\r\n"
@@ -1195,7 +1196,7 @@ const struct message requests[] =
 
 #define SOURCE_REQUEST 42
 , {.name = "source request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "SOURCE /music/sweet/music HTTP/1.1\r\n"
                  "Host: example.com\r\n"
                  "\r\n"
@@ -1216,7 +1217,7 @@ const struct message requests[] =
 
 #define SOURCE_ICE_REQUEST 43
 , {.name = "source request"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "SOURCE /music/sweet/music ICE/1.0\r\n"
                  "Host: example.com\r\n"
                  "\r\n"
@@ -1237,7 +1238,7 @@ const struct message requests[] =
 
 #define POST_MULTI_TE_LAST_CHUNKED 44
 , {.name= "post - multi coding transfer-encoding chunked body"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST / HTTP/1.1\r\n"
                  "Transfer-Encoding: deflate, chunked\r\n"
                  "\r\n"
@@ -1265,7 +1266,7 @@ const struct message requests[] =
 
 #define POST_MULTI_LINE_TE_LAST_CHUNKED 45
 , {.name= "post - multi line coding transfer-encoding chunked body"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST / HTTP/1.1\r\n"
                  "Transfer-Encoding: deflate,\r\n"
                  " chunked\r\n"
@@ -1294,7 +1295,7 @@ const struct message requests[] =
 
 #define CHUNKED_CONTENT_LENGTH 46
 , {.name= "chunked with content-length set, allow_chunked_length flag is set"
-    ,.type= st(HttpHeader)::Type::Request
+    ,.type= static_cast<int>(st(Http)::PacketType::Request)
     ,.raw= "POST /chunked_w_content_length HTTP/1.1\r\n"
                  "Content-Length: 10\r\n"
                  "Transfer-Encoding: chunked\r\n"
@@ -1334,7 +1335,7 @@ void testHttpParse() {
             //printf("////HttpPacketParser start %d ////\n",i);
             HttpPacketParserImpl parser = createHttpPacketParserImpl();
             struct message msg = requests[i];
-            printf("turn is %d msg is %s \n",turn,msg.raw);
+            //printf("turn is %d msg is %s \n",turn,msg.raw);
             ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
             if(turn == 0) {
                 parser->pushData(createByteArray((byte *)msg.raw,strlen(msg.raw)));
@@ -1363,7 +1364,7 @@ void testHttpParse() {
             HttpHeader header = packet->getHeader();
 
             //check Type
-            if(header->getType() != msg.type) {
+            if(static_cast<int>(header->getType()) != msg.type) {
                 TEST_FAIL("HttpPacketParse CheckType failed,msg.type is %d,parse result is %d",msg.type,header->getType());
                 continue;
             }
@@ -1481,7 +1482,6 @@ void testHttpParse() {
                     }
                     continue;
                 }
-                printf("start key is %s \n",key->toChars());
                 if(key->equalsIgnoreCase("Keep-Alive")) {
                     int timeout = packet->getHeader()->getKeepAlive()->getTimeout();
                     if(timeout != value->toBasicInt()) {
@@ -1557,4 +1557,7 @@ void testHttpParse() {
             }
         }
     }
+
+    TEST_OK("HttpRequestParser BaseTest case100");
+                    
 }

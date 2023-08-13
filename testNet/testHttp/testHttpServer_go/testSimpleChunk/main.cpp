@@ -43,7 +43,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
               if(isFirst) {
                 HttpResponse response = createHttpResponse();
                 HttpHeader header = createHttpHeader();

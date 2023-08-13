@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 void testSockAddress() {
-    SockAddress sockAddr = createSockAddress(st(InetAddress)::IPV4,
+    SockAddress sockAddr = createSockAddress(st(Net)::Family::Ipv4,
                                          createString("127.1.2.1"),
                                          12);
     if(sockAddr->port() != 12) {

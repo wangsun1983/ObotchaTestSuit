@@ -53,7 +53,6 @@ void testCachedPoolExecutor_Cancel() {
       }
       break;
   }
-
   while(1) {
     int value = 123;
     Future f1 = pool->submit([&value](){
@@ -74,7 +73,6 @@ void testCachedPoolExecutor_Cancel() {
     }
     break;
   }
-
   pool->shutdown();
   pool->awaitTermination();
 

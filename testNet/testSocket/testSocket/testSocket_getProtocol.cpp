@@ -38,7 +38,7 @@ void testSocketGetProtocol() {
         InetAddress addr = createInet4Address("10.0.0.1",12);
         SSLSocksSocketImpl impl = createSSLSocksSocketImpl(addr,nullptr);
         Socket s = createSocket(impl);
-        if(s->getProtocol() != st(Socket)::Ssl) {
+        if(s->getProtocol() != st(Net)::Protocol::Ssl) {
             TEST_FAIL("Socket getProtocol case3,protocol is %d",s->getProtocol());
         }
         s->close();

@@ -37,7 +37,7 @@ void testTimeCheck() {
     std::vector<uint64_t> intervals;
     
     for(int i = 0;i < 128;i++) {
-        auto interval = rand->nextInt(100,800);
+        auto interval = rand->next<int>(100,800);
         auto current = st(System)::CurrentTimeMillis();
         pool->schedule(interval,[&](uint64_t interval,uint64_t current) {
             m.lock();

@@ -45,7 +45,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
               auto data = msg->getEntity()->getContent()->toString();
               //printf("get data is %s \n",data->toChars());
               if(data->sameAs("hello world")) {

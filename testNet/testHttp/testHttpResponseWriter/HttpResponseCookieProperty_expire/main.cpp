@@ -33,7 +33,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
               if(count == 0) {
                 //first message to send response with cookie
                 HttpResponse response = createHttpResponse();

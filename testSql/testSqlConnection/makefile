@@ -9,6 +9,7 @@ cflags = -fpic \
 		-I ../../../util/coroutine/include/ \
 		-I ../../../external/mysql_connector/include/ \
 		-I ../../../sql/include/ \
+		-I ../../common/ \
 		-I ../../../util/text/include/ \
 		-I ../../../lang/include \
 		-I ../../../external/glog/include \

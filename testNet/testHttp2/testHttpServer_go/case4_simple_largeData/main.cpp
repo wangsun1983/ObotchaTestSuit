@@ -47,7 +47,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
                 if(acceptData == nullptr) {
                     acceptData = msg->getData();
                 } else {

@@ -8,7 +8,6 @@ cflags = -fpic \
 		-I ../../../util/concurrent/include/ \
 		-I ../../../util/coroutine/include/ \
 		-I ../../../util/text/include/ \
-		-I ../../../util/sql/include/ \
 		-I ../../../lang/include \
 		-I ../../../io/include \
 		-I ../../../util/include/ \
@@ -25,16 +24,13 @@ cflags = -fpic \
 		-I ../../../external/crc32/include \
 		-I ../../../external/openssl/include \
 		-I ../../../external/libco \
-		-I ../../../external/sqlite3/include \
-		-I ../../../external/http_parser/include \
 		-I ../../../external/glog/include \
-		-g \
-		-std=c++17 \
+		-I ../../common \
 		-g \
 		-std=c++17 \
 		-fsanitize=address \
 		-fno-omit-frame-pointer
-	
+
 external = -lpthread \
 				-ldl \
 				../../../out/lib/libobotcha.so \
@@ -42,7 +38,7 @@ external = -lpthread \
 
 files =
 link =
-libname	= testNtpClient
+libname	= testInetAddress
 
 everything : $(libname)
 

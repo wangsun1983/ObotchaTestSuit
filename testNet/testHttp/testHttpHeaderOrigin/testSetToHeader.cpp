@@ -37,7 +37,7 @@ void testSetToHeader() {
       break;
     }
 
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpHeaderOrigin test setToHeader case3]");
       break;
     }

@@ -37,11 +37,11 @@ void testSqlObjectValues() {
     
     SqlContentValues values = createSqlContentValues();
     values->put(data);
-    if(!values->getTags()->equals("(strData,intData,boolData)")) {
+    if(!values->getTags()->sameAs("(strData,intData,boolData)")) {
         TEST_FAIL("testSqlObjectValues cases1");
     }
     
-    if(!values->getValues()->equals("(\"this is string\",888,false)")) {
+    if(!values->getValues()->sameAs("(\"this is string\",888,false)")) {
         TEST_FAIL("testSqlObjectValues cases2");
     }
     

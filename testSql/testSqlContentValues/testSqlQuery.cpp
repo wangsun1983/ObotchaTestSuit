@@ -28,11 +28,11 @@ void testSimpleSql() {
     values->put(createString("a3"),false);
     values->putString(createString("a4"),789);
     
-    if(!values->getTags()->equals("(a4,a3,a2,a1)")) {
+    if(!values->getTags()->sameAs("(a4,a3,a2,a1)")) {
         TEST_FAIL("testSqlContentValues case1,tags is %s",values->getTags()->toChars());
     }
     
-    if(!values->getValues()->equals("(\"789\",false,456,123)")) {
+    if(!values->getValues()->sameAs("(\"789\",false,456,123)")) {
         TEST_FAIL("testSqlContentValues case2,values is %s",values->getValues()->toChars());
     }
             

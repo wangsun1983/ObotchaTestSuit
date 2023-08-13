@@ -32,7 +32,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
         }
         break;
 
-        case st(Net)::Event::Message:: {
+        case st(Net)::Event::Message: {
             //messageCount->incrementAndGet();
             HttpHeader header = msg->getHeader();
             auto cookies = header->getCookies();

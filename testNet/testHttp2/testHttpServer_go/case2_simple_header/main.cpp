@@ -44,7 +44,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
                 if(step == 0) {
                     HttpResponse response = createHttpResponse();
                     auto hh = response->getHeader();

@@ -31,7 +31,7 @@ void testHttpUrlParse() {
     //HttpUrlParser parser = createHttpUrl(request);
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
-    if(url->getScheme() != st(st(Net)::Protocol)::Http) {
+    if(url->getScheme() != st(Net)::Protocol::Http) {
       TEST_FAIL("[HttpUrlParse test Parse case2],scheme is %d",url->getScheme());
       break;
     }
@@ -84,7 +84,7 @@ void testHttpUrlParse() {
   while(1) {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
     HttpUrl url = createHttpUrl(request);
-    if(url->getScheme() != st(st(Net)::Protocol)::Http) {
+    if(url->getScheme() != st(Net)::Protocol::Http) {
       TEST_FAIL("[HttpUrlParse test Parse case11],scheme is %d",url->getScheme());
       break;
     }
@@ -135,7 +135,7 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://su:abc@localhost/test/wangsl/01234");
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case22],scheme is %d",url->getScheme());
       break;
     }
@@ -165,7 +165,7 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb/test/wangsl/01234");
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case27],scheme is %d",url->getScheme());
       break;
     }
@@ -194,7 +194,7 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123");
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case32],scheme is %d",url->getScheme());
       break;
     }
@@ -231,7 +231,7 @@ void testHttpUrlParse() {
     //HttpUrlParser parser = createHttpUrl(request);
     //HttpUrl url = parser->parseUrl(request);
     HttpUrl url = createHttpUrl(request);
-    if(url->getScheme() != -1) {
+    if(url->getScheme() != st(Net)::Protocol::UnKnown) {
       TEST_FAIL("[HttpUrlParse test Parse case38],scheme is %d",url->getScheme());
       break;
     }
@@ -283,7 +283,7 @@ void testHttpUrlParse() {
 
   while(1) {
     HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case49],scheme is %d",url->getScheme());
       break;
     }

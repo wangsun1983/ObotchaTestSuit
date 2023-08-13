@@ -11,6 +11,7 @@
 
 #include "HttpPacket.hpp"
 #include "HttpHeader.hpp"
+#include "Http.hpp"
 
 using namespace obotcha;
 
@@ -36,9 +37,9 @@ void testGetSetFunction() {
     }
     
     //getType/setType
-    p->setType(st(HttpPacket)::Type::Request);
+    p->setType(st(Http)::PacketType::Request);
     auto t1 = p->getType();
-    if(t1 != st(HttpPacket)::Type::Request) {
+    if(t1 != st(Http)::PacketType::Request) {
         TEST_FAIL("HttpPacket test set/get Entity case3,t1 is %d",t1);
     }
     break;

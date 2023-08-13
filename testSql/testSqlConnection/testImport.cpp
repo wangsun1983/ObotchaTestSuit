@@ -15,7 +15,9 @@
 #include "JsonWriter.hpp"
 #include "MySqlConnection.hpp"
 #include "SqlConnection.hpp"
+#include "MySqlConnectParam.hpp"
 #include <vector>
+#include "TestLog.hpp"
 
 using namespace obotcha;
 
@@ -52,5 +54,10 @@ int testSimpleSql() {
         iterator->next();
     }
 
+    if(records->getRowNum() == 0) {
+        TEST_FAIL("TestSqlConnection query case1");
+    }
 
+    TEST_OK("TestSqlConnection query case100");
+    return 0;
 }

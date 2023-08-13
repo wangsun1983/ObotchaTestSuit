@@ -65,13 +65,13 @@ int main() {
     }
     
     auto comp = list->get(0);
-    if(!comp->name->equals("Wang") || comp->age->toValue() != 12 || comp->id != 1) {
+    if(!comp->name->sameAs("Wang") || comp->age->toValue() != 12 || comp->id != 1) {
         TEST_FAIL("Sqlite3 testEraseDb case2");
         return 0;
     }
     
     comp = list->get(1);
-    if(!comp->name->equals("Sun") || comp->age->toValue() != 22 || comp->id != 2) {
+    if(!comp->name->sameAs("Sun") || comp->age->toValue() != 22 || comp->id != 2) {
         TEST_FAIL("Sqlite3 testEraseDb case3");
     }
     
@@ -85,7 +85,7 @@ int main() {
     }
     
     comp = list->get(0);
-    if(!comp->name->equals("Sun") || comp->age->toValue() != 22 || comp->id != 2) {
+    if(!comp->name->sameAs("Sun") || comp->age->toValue() != 22 || comp->id != 2) {
         TEST_FAIL("Sqlite3 testEraseDb case5");
     }
     

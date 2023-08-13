@@ -25,7 +25,7 @@ DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
   void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
-      case st(Net)::Event::Message::
+      case st(Net)::Event::Message:
         stream->write(data);
         filesize -= data->size();
         if(filesize == 0) {

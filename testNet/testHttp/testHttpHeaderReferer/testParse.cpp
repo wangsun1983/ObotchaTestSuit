@@ -34,7 +34,7 @@ void testParse() {
       break;
     }
 
-    if(url->getScheme() != st(st(Net)::Protocol)::Https) {
+    if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpHeaderReferer test parse case3]");
       break;
     }

@@ -52,7 +52,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(Net)::Event::Message:: {
+          case st(Net)::Event::Message: {
               if(msg->getHeader()->getMethod() == st(HttpMethod)::Get) {
                 HttpResponse response = createHttpResponse();
                 HttpEntity entity = createHttpEntity();

@@ -17,7 +17,7 @@ using namespace obotcha;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
-    void onSocketMessage(int,Socket,ByteArray) {
+    void onSocketMessage(st(Net)::Event,Socket,ByteArray) {
         //DoNothing
     }
 };

@@ -19,8 +19,9 @@ sock.bind(server_address)
 
 # Listen for incoming connections
 sock.listen(1)
-#print("start listen!!!")
+print("start listen!!!")
 time.sleep(10)
+print("start listen2!!!")
 
 
 # Wait for a connection

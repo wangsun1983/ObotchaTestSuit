@@ -12,6 +12,7 @@
 #include "Math.hpp"
 #include "HttpPacket.hpp"
 #include "TestLog.hpp"
+#include "Http.hpp"
 
 using namespace obotcha;
 
@@ -40,7 +41,7 @@ void testHttpHeaderToString() {
     HttpHeaderParser parser = createHttpHeaderParser(reader);
     HttpHeader header1 = parser->doParse();
 
-    String result = header1->toString(st(HttpPacket)::Request);
+    String result = header1->toString(st(Http)::PacketType::Request);
 
     result = result->append("\r\n\r\n");
     //reparse again
@@ -164,9 +165,9 @@ void testHttpHeaderToString() {
 
     HttpHeaderAcceptLanguageItem langItem1_0 = langs1->get(0);
     HttpHeaderAcceptLanguageItem langItem2_0 = langs2->get(0);
-
     if(!langItem1_0->lang->equals(langItem2_0->lang)) {
-      TEST_FAIL("[HttpHeaderToString test Parse case15]");
+      TEST_FAIL("[HttpHeaderToString test Parse case15],langItem1 is %s,liangItem2 is %s",
+                langItem1_0->lang->toChars(),langItem2_0->lang->toChars());
       break;
     }
 
