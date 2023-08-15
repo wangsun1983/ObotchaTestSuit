@@ -21,7 +21,7 @@ void testReadLittleEndian() {
       ByteArray testData = createByteArray(array,8);
       ByteRingArray ringArray = createByteRingArray(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(Defination)::LittleEndian);
+      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Little);
 
       //test short
       short int v1 = 0;
@@ -62,7 +62,7 @@ void testReadLittleEndian() {
       ByteArray testData = createByteArray(array,8);
       ByteRingArray ringArray = createByteRingArray(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(Defination)::LittleEndian);
+      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Little);
       
       int v1 = 0;
       v1 = array[0]|(array[1]<<8)|(array[2]<<16)|(array[3]<<24);
@@ -86,7 +86,7 @@ void testReadLittleEndian() {
       ByteArray testData = createByteArray(array,8);
       ByteRingArray ringArray = createByteRingArray(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(Defination)::LittleEndian);
+      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Little);
       
       long v1 = 0;
       v1 = (long)array[0]|((long)array[1]<<8)|((long)array[2]<<16)|((long)array[3]<<24)|((long)array[4]<<32)|((long)array[5]<<40)|((long)array[6]<<48)|((long)array[7]<<56);
@@ -103,7 +103,7 @@ void testReadLittleEndian() {
       ByteArray testData = createByteArray(array,8);
       ByteRingArray ringArray = createByteRingArray(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(Defination)::LittleEndian);
+      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Little);
       
       for(int i = 0;i<8;i++) {
         byte v = 0;
