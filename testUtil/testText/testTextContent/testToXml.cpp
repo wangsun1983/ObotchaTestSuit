@@ -12,6 +12,7 @@
 #include "JsonReader.hpp"
 #include "JsonValue.hpp"
 #include "XmlReader.hpp"
+#include "Text.hpp"
 
 using namespace obotcha;
 
@@ -28,7 +29,7 @@ void testToXml() {
     data->id = 123;
     data->name = createString("wangsl");
     
-    TextContent c = createTextContent(data,st(TextContent)::Format::Xml);
+    TextContent c = createTextContent(data,st(Text)::Format::Xml);
     //printf("c is %s \n",c->get()->toChars());
     
     XmlReader reader = createXmlReader(c->get());

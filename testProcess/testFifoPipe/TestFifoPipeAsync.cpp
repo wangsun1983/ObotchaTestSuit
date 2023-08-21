@@ -18,7 +18,7 @@
 #include "ByteArray.hpp"
 #include "TestLog.hpp"
 #include "Error.hpp"
-#include "EPollFileObserver.hpp"
+#include "EPollObserver.hpp"
 #include "CountDownLatch.hpp"
 
 using namespace obotcha;
@@ -28,7 +28,7 @@ void testFifoPipeAsync() {
   FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::AsyncRead);
   CountDownLatch latch = createCountDownLatch(1);
 
-  EPollFileObserver mPoll = createEPollFileObserver();
+  EPollObserver mPoll = createEPollObserver();
   mPoll->addObserver(
     fifo->getChannel(), EPOLLIN | EPOLLRDHUP | EPOLLHUP,
     [latch](int fd, uint32_t events) {

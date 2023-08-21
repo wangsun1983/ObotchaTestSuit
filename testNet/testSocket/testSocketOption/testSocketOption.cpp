@@ -15,22 +15,37 @@ using namespace obotcha;
 void testSocketOptions() {
     //_SocketOption* setReUseAddr(int);
     SocketOption option = createSocketOption();
-    option->setReUseAddr(1);
-    if(option->getReUseAddr() != 1) {
+    option->setReUseAddr(st(SocketOption)::Ability::Enable);
+    if(option->getReUseAddr() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption ReUseAddr test case1]");
     }
+	
+	option->setReUseAddr(st(SocketOption)::Ability::Disable);
+	if(option->getReUseAddr() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption ReUseAddr test case1_1]");
+	}
 
     //_SocketOption* setDnotRoute(int);
-    option->setDnotRoute(2);
-    if(option->getDnotRoute() != 2) {
+    option->setDnotRoute(st(SocketOption)::Ability::Enable);
+    if(option->getDnotRoute() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption DnotRoute test case1]");
     }
+	
+	option->setDnotRoute(st(SocketOption)::Ability::Disable);
+	if(option->getDnotRoute() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption DnotRoute test case1_1]");
+	}
 
     //_SocketOption* setBroadcast(int);
-    option->setBroadcast(3);
-    if(option->getBroadcast() != 3) {
+    option->setBroadcast(st(SocketOption)::Ability::Enable);
+    if(option->getBroadcast() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption Broadcast test case1]");
     }
+	
+	option->setBroadcast(st(SocketOption)::Ability::Disable);
+	if(option->getBroadcast() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption Broadcast test case1_1]");
+	}
 
     //_SocketOption* setSndBuffSize(int);
     option->setSndBuffSize(4);
@@ -45,40 +60,70 @@ void testSocketOptions() {
     }
 
     //_SocketOption* setKeepAlive(int);
-    option->setKeepAlive(5);
-    if(option->getKeepAlive() != 5) {
+    option->setKeepAlive(st(SocketOption)::Ability::Enable);
+    if(option->getKeepAlive() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption KeepAlive test case1]");
     }
+	
+	option->setKeepAlive(st(SocketOption)::Ability::Disable);
+	if(option->getKeepAlive() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption KeepAlive test case1_1]");
+	}
 
     //_SocketOption* setOobInline(int);
-    option->setOobInline(6);
-    if(option->getOobInline() != 6) {
+    option->setOobInline(st(SocketOption)::Ability::Enable);
+    if(option->getOobInline() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption OobInline test case1]");
     }
+	
+	option->setOobInline(st(SocketOption)::Ability::Disable);
+	if(option->getOobInline() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption OobInline test case1_1]");
+	}
 
     //_SocketOption* setNoCheck(int);
-    option->setNoCheck(7);
-    if(option->getNoCheck() != 7) {
+    option->setNoCheck(st(SocketOption)::Ability::Enable);
+    if(option->getNoCheck() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption NoCheck test case1]");
     }
+	
+	option->setNoCheck(st(SocketOption)::Ability::Disable);
+	if(option->getNoCheck() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption NoCheck test case1_1]");
+	}
 
     //_SocketOption* setLinger(int,int);
-    option->setLinger(8,9);
-    if(option->getLingerOnOFF() != 8 || option->getLingerValue() != 9) {
+    option->setLinger(st(SocketOption)::Ability::Enable,9);
+    if(option->getLingerOnOFF() != st(SocketOption)::Ability::Enable || option->getLingerValue() != 9) {
         TEST_FAIL("[SocketOption Linger test case1]");
     }
+	
+	option->setLinger(st(SocketOption)::Ability::Disable,9);
+	if(option->getLingerOnOFF() != st(SocketOption)::Ability::Disable || option->getLingerValue() != 9) {
+	    TEST_FAIL("[SocketOption Linger test case1_1]");
+	}
 
     //_SocketOption* setReUsePort(int);
-    option->setReUsePort(10);
-    if(option->getReUsePort() != 10) {
+    option->setReUsePort(st(SocketOption)::Ability::Enable);
+    if(option->getReUsePort() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption ReUsePort test case1]");
     }
+	
+	option->setReUsePort(st(SocketOption)::Ability::Disable);
+	if(option->getReUsePort() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption ReUsePort test case1_1]");
+	}
 
     //_SocketOption* setPassCred(int);
-    option->setPassCred(11);
-    if(option->getPassCred() != 11) {
+    option->setPassCred(st(SocketOption)::Ability::Enable);
+    if(option->getPassCred() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption PassCred test case1]");
     }
+	
+	option->setPassCred(st(SocketOption)::Ability::Disable);
+	if(option->getPassCred() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption PassCred test case1_1]");
+	}
 
     //_SocketOption* setPeerCred(int);
     option->setPeerCred(12);
@@ -198,10 +243,15 @@ void testSocketOptions() {
     }
 
     //_SocketOption* setZeroCopy(int);
-    option->setZeroCopy(24);
-    if(option->getZeroCopy() != 24) {
+    option->setZeroCopy(st(SocketOption)::Ability::Enable);
+    if(option->getZeroCopy() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption ZeroCopy test case1]");
     }
+	
+	option->setZeroCopy(st(SocketOption)::Ability::Disable);
+	if(option->getZeroCopy() != st(SocketOption)::Ability::Disable) {
+	    TEST_FAIL("[SocketOption ZeroCopy test case1_1]");
+	}
 
     //_SocketOption* setConnectionNum(int);
     option->setWaitAcceptQueueSize(25);

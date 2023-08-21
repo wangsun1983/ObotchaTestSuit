@@ -50,7 +50,7 @@ int main() {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Append);
+        stream->open(st(IO)::FileControlFlags::Append);
         String data = createString("");
         for(int i = 0;i < 1024;i++) {
           data = data->append(createString(st(System)::CurrentTimeMillis()));
@@ -68,7 +68,7 @@ int main() {
     ServerSocket server = createSocketBuilder()->setAddress(addr)->newServerSocket();
     server->bind();
 
-    stream->open(st(OutputStream)::Append);
+    stream->open(st(IO)::FileControlFlags::Append);
 
     SocketMonitor monitor = createSocketMonitor();
     int bindret = monitor->bind(server,createMyListener());

@@ -19,29 +19,29 @@ void testSetGetOption() {
     
     auto fd = f->open();
     int option = fd->getOption();
-    if((option & st(FileDescriptor)::ReadWriteOnly) == 0) {
+    if((option & st(IO)::FileControlFlags::ReadWrite) == 0) {
         TEST_FAIL("[FileDescriptor Set/Get/Remove/Option Test case1],option is %x",option);
     }
     
-    fd->addOption(st(FileDescriptor)::NonBlock);
+    fd->addOption(st(IO)::FileControlFlags::NonBlock);
     option = fd->getOption();
-    if((option & st(FileDescriptor)::ReadWriteOnly) == 0) {
+    if((option & st(IO)::FileControlFlags::ReadWrite) == 0) {
         TEST_FAIL("[FileDescriptor Set/Get/Remove/Option Test case2]");
     }
     
-    if((option & st(FileDescriptor)::NonBlock) == 0) {
+    if((option & st(IO)::FileControlFlags::NonBlock) == 0) {
         TEST_FAIL("[FileDescriptor Set/Get/Remove/Option Test case3]");
     }
     
-    fd->removeOption(st(FileDescriptor)::NonBlock);
+    fd->removeOption(st(IO)::FileControlFlags::NonBlock);
     option = fd->getOption();
-    if((option & st(FileDescriptor)::NonBlock) == st(FileDescriptor)::NonBlock) {
+    if((option & st(IO)::FileControlFlags::NonBlock) == st(IO)::FileControlFlags::NonBlock) {
         TEST_FAIL("[FileDescriptor Set/Get/Remove/Option Test case4],option is %x",option);
     }
     
-    fd->setOption(st(FileDescriptor)::NonBlock);
+    fd->setOption(st(IO)::FileControlFlags::NonBlock);
     option = fd->getOption();
-    if((option & st(FileDescriptor)::NonBlock) == 0) {
+    if((option & st(IO)::FileControlFlags::NonBlock) == 0) {
         TEST_FAIL("[FileDescriptor Set/Get/Remove/Option Test case5]option is %x",option);
     }
     

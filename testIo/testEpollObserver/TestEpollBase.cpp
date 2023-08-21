@@ -3,7 +3,7 @@
 #include <string.h>
 //#include "Thread.hpp"
 //#include "ArrayList.hpp"
-#include "EPollFileObserver.hpp"
+#include "EPollObserver.hpp"
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
@@ -41,7 +41,7 @@ public:
 
         int ret = listen(sock, 1024*64);
         {
-            observer = createEPollFileObserver();
+            observer = createEPollObserver();
             observer->addObserver(sock,EPOLLIN|EPOLLRDHUP,[](int fd,uint32_t events,int msock) {
                 if(fd == msock) {
                     struct sockaddr_in client_address;
@@ -52,12 +52,12 @@ public:
                     }
                     latch->countDown();
                 }
-                return 0;
+                return st(IO)::Epoll::Result::OK;
             },sock);
         }
     }
 
-    EPollFileObserver getObserver() {
+    EPollObserver getObserver() {
         return observer;
     }
 
@@ -71,7 +71,7 @@ public:
     }
 
 private:
-    EPollFileObserver observer;
+    EPollObserver observer;
     int sock;
 };
 

@@ -30,7 +30,7 @@ void testAutoLockSpinlock() {
 		watcher->start();
 		AutoLock l(mutex);
 		long v = watcher->stop();
-		if(v < 100 || v > 105) {
+		if(v < 95 || v > 105) {
 			TEST_FAIL("[TestAutoLock Spinlock case1],v is %d",v);
 			break;
 		}

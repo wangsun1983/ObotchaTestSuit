@@ -11,7 +11,7 @@
 using namespace obotcha;
 
 void testBlockingLinkedListInfiniteConfig() {
-    if(st(BlockingLinkedList)<int>::kLinkedListSizeInfinite != -1) {
+    if(st(BlockingLinkedList)<int>::kLinkedListSizeInfinite != 0) {
 		TEST_FAIL("BlockingLinkedList InfiniteConfig case1");
 	}
 

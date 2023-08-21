@@ -16,13 +16,13 @@ void fileoutput_trunc_test() {
         File file = createFile("./tmp/trucn_test1.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
         stream->close();
 
         FileOutputStream stream2 = createFileOutputStream(file);
-        stream2->open(st(OutputStream)::Trunc);
+        stream2->open(st(IO)::FileControlFlags::Trunc);
         stream2->write('b');
         stream2->flush();
         stream2->close();
@@ -50,7 +50,7 @@ void fileoutput_trunc_test() {
         File file = createFile("./tmp/trucn_test2.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         ByteArray data = createByteArray(12);
         for(int i = 0;i<12;i++) {
           data[i] = i;

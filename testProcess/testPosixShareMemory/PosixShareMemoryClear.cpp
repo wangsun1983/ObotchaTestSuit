@@ -6,7 +6,7 @@
 #include "Object.hpp"
 #include "StrongPointer.hpp"
 #include "ShareMemory.hpp"
-#include "EPollFileObserver.hpp"
+#include "EPollObserver.hpp"
 #include "TestLog.hpp"
 #include "File.hpp"
 

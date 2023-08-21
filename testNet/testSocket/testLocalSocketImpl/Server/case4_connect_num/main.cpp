@@ -23,7 +23,7 @@ Condition cond = createCondition();
 int main() {
   auto addr = createInetLocalAddress("case1_socket");
   auto option = createSocketOption();
-  option->setReUseAddr(true);
+  option->setReUseAddr(st(SocketOption)::Ability::Enable);
   option->setWaitAcceptQueueSize(1);
   auto sock = createSocketBuilder()
               ->setAddress(addr)

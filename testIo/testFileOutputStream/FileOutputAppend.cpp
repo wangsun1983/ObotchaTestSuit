@@ -16,13 +16,13 @@ void fileoutput_append_test() {
         File file = createFile("./tmp/output_append_test.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
         stream->close();
 
         FileOutputStream stream2 = createFileOutputStream(file);
-        stream2->open(st(OutputStream)::Append);
+        stream2->open(st(IO)::FileControlFlags::Append);
         stream2->write('b');
         stream2->flush();
         stream2->close();

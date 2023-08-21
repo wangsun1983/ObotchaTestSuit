@@ -62,7 +62,7 @@ int main() {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Append);
+        stream->open(st(IO)::FileControlFlags::Append);
         String data = createString(st(System)::CurrentTimeMillis());
         for(int j = 0;j < 32;j++) {
           data = data->append(createString(st(System)::CurrentTimeMillis()));

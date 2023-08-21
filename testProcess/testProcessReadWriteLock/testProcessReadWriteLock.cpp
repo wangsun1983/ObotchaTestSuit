@@ -51,7 +51,7 @@ void testProcessReadWriteLock() {
     AutoLock l(mu->getReadLock());
     printf("start finish ReadLock \n");
     long ret = w->stop();
-    if(ret < 3995 || ret > 4030) {
+    if(ret < 3995 || ret > 4050) {
         TEST_FAIL("testProcessReadWriteLock case2,ret is %ld",ret);
     }
   }

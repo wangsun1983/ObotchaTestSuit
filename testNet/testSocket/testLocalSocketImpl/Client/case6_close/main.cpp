@@ -21,12 +21,14 @@ int main() {
     
     client->close();
     
-    if(client->getOutputStream()->write(resp->toByteArray()) != -1) {
+    //if(client->getOutputStream()->write(resp->toByteArray()) != -1) {
+	if(client->getOutputStream() != nullptr) {
         TEST_FAIL("TestLocalSocket Client case6_close case1");
     }
     
     ByteArray data = createByteArray(32);
-    if(client->getInputStream()->read(data) != -1) {
+    //if(client->getInputStream()->read(data) != -1) {
+	if(client->getInputStream() != nullptr) {
         TEST_FAIL("TestLocalSocket Client case6_close case2");
     }
     

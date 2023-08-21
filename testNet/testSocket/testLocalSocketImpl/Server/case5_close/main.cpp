@@ -14,7 +14,7 @@ using namespace obotcha;
 int main() {
   auto addr = createInetLocalAddress("case1_socket");
   auto option = createSocketOption();
-  option->setReUseAddr(true);
+  option->setReUseAddr(st(SocketOption)::Ability::Enable);
   auto sock = createSocketBuilder()
               ->setAddress(addr)
               ->setOption(option)

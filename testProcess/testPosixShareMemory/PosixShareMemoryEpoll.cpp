@@ -6,14 +6,14 @@
 #include "Object.hpp"
 #include "StrongPointer.hpp"
 #include "ShareMemory.hpp"
-#include "EPollFileObserver.hpp"
+#include "EPollObserver.hpp"
 
 using namespace obotcha;
 
 //do not support ????
 void testShareMemoryEpoll() {
   ShareMemory memory = createShareMemory("shareMemoryabc1122",32,st(ShareMemory)::WriteRead);
-  EPollFileObserver mPoll = createEPollFileObserver();
+  EPollObserver mPoll = createEPollObserver();
   printf("channel is %d \n",memory->getChannel());
   mPoll->addObserver(
     memory->getChannel(), EPOLLIN | EPOLLRDHUP | EPOLLHUP,

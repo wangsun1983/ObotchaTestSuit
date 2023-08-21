@@ -15,7 +15,7 @@ void fileoutput_base_test() {
         File file = createFile("./tmp/base_test_1.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
         stream->close();
@@ -44,7 +44,7 @@ void fileoutput_base_test() {
         File file = createFile("./tmp/base_test_2.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         ByteArray b = createString("hello")->toByteArray();
         stream->write(b);
         stream->flush();
@@ -80,7 +80,7 @@ void fileoutput_base_test() {
         File file = createFile("./tmp/base_test_3.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
 
         ByteArray b = createString("helloworld")->toByteArray();
         stream->write(b,5);
@@ -117,7 +117,7 @@ void fileoutput_base_test() {
         File file = createFile("./tmp/base_test_4.txt");
         file->createNewFile();
         FileOutputStream stream = createFileOutputStream(file);
-        stream->open(st(OutputStream)::Trunc);
+        stream->open(st(IO)::FileControlFlags::Trunc);
         stream->writeString(createString("nihao,abc"));
         stream->flush();
         stream->close();

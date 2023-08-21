@@ -19,7 +19,8 @@ int main() {
   if(!file->exists()) {
     file->createNewFile();
     FileOutputStream stream = createFileOutputStream(file);
-    stream->open(st(OutputStream)::Trunc);
+    //stream->open(st(IO)::FileControlFlags::Trunc);
+	stream->open(st(IO)::FileControlFlags::Trunc);
     stream->write(createString("hello\nworld\nni\nhao")->toByteArray());
     stream->close();
   }

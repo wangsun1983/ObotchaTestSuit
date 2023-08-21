@@ -6,6 +6,7 @@
 #include "TestLog.hpp"
 #include "FileInputStream.hpp"
 #include "FileDescriptor.hpp"
+#include "IO.hpp"
 
 using namespace obotcha;
 
@@ -37,7 +38,8 @@ void testFileOpen() {
     
     //static open file
     auto descriptor = st(File)::open("./tmp/testOpen2.txt",
-                                    st(FileDescriptor)::ReadWriteOnly|st(FileDescriptor)::Create);
+                                    st(IO)::FileControlFlags::ReadWrite
+									|st(IO)::FileControlFlags::Create);
     if(descriptor == nullptr) {
         TEST_FAIL("[File Test {open()} case5]");
     }

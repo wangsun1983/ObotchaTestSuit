@@ -4,6 +4,9 @@
 -   pip3 install rfile
 -   pip3 install websocket-client
 
+## Test Command:
+-   python3 StartTest.py 2>&1 |tee exect.log
+
 ## Test Sheet
 -   主要用于存放所有类的单元测试case
 -   也可作为示例代码参考
