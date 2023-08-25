@@ -7,7 +7,7 @@
 #include "System.hpp"
 #include "Barrier.hpp"
 #include "TestLog.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "TimeWatcher.hpp"
 
 using namespace obotcha;

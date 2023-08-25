@@ -10,7 +10,7 @@
 #include "System.hpp"
 #include "ThreadPoolExecutor.hpp"
 #include "Error.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "InterruptedException.hpp"
 #include "TestLog.hpp"
 

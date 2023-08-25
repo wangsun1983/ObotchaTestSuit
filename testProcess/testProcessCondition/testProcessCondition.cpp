@@ -43,7 +43,6 @@ void testProcessCondition() {
     } else {
       ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
       ProcessMutex mu = createProcessMutex("abc");
-      printf("father start wait \n");
       TimeWatcher w = createTimeWatcher();
       w->start();
       AutoLock l(mu);

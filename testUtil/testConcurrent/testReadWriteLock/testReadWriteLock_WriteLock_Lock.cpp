@@ -5,7 +5,7 @@
 #include "Runnable.hpp"
 #include "Thread.hpp"
 #include "System.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
 #include "Error.hpp"

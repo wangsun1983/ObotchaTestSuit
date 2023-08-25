@@ -13,11 +13,11 @@
 #include "WebSocketComposer.hpp"
 #include "File.hpp"
 #include "FileOutputStream.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "CountDownLatch.hpp"
 #include "Inet4Address.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 
 #include "TestLog.hpp"
 #include "NetEvent.hpp"

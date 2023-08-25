@@ -12,6 +12,7 @@ extern void fileoutput_trunc_test();
 extern void fileoutput_append_test();
 extern void fileoutput_base_test();
 extern void fileoutput_close_test();
+extern void file_write_loop();
 
 int main() {
     //create a base test
@@ -26,7 +27,7 @@ int main() {
     }
     close(fd);
 #endif
-
+	file_write_loop();
     fileoutput_base_test();
     fileoutput_trunc_test();
     fileoutput_append_test();

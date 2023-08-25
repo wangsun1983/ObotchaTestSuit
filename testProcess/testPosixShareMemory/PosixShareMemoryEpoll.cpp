@@ -21,7 +21,7 @@ void testShareMemoryEpoll() {
           if(events&EPOLLIN != 0) {
               printf("i get a value \n");
           }
-          return 0;
+          return st(IO)::Epoll::Result::Ok;
     });
   
   memory->write(createString("hello")->toByteArray());

@@ -13,7 +13,7 @@
 #include "WebSocketComposer.hpp"
 #include "File.hpp"
 #include "FileOutputStream.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "CountDownLatch.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "System.hpp"
@@ -66,7 +66,7 @@ public:
         //latch->countDown();
     }
 
-    int onPing(String msg,WebSocketLinker client) {
+    st(WebSocket)::Response onPing(String msg,WebSocketLinker client) {
         printf("i receive a message,it is %s \n",msg->toChars());
         if(!msg->sameAs("abc")) {
             TEST_FAIL("WebSocketServer SimplePingByClient test1");
@@ -75,7 +75,7 @@ public:
         Message myMessage = createMessage();
         myMessage->data = Cast<Object>(client);
         handler->sendMessage(myMessage);
-        return 1;
+        return st(WebSocket)::Response::Manual;
     }
 
 private:

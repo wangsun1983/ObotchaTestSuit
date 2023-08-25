@@ -36,7 +36,8 @@ void setEnvPort(int p) {
     }
     FileOutputStream stream = createFileOutputStream(file);
     stream->open();
-    stream->write(createString(p)->toByteArray());
+	auto data = createString(p)->toByteArray();
+    stream->write(data);
     stream->flush();
     stream->close();
     

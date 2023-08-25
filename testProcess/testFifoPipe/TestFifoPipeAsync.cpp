@@ -25,7 +25,7 @@ using namespace obotcha;
 
 void testFifoPipeAsync() {
 
-  FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::AsyncRead);
+  FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::Type::AsyncRead);
   CountDownLatch latch = createCountDownLatch(1);
 
   EPollObserver mPoll = createEPollObserver();
@@ -46,11 +46,11 @@ void testFifoPipeAsync() {
               }
               latch->countDown();
           }
-          return 0;
+          return st(IO)::Epoll::Result::Ok;
     });
 
   Thread t = createThread([] {
-    FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::AsyncWrite);
+    FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::Type::AsyncWrite);
     String str = createString("hello world");
     fifo->write(str->toByteArray());
   });

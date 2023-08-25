@@ -41,13 +41,13 @@ void testSyncFifoPipe() {
   int pid = fork();
   if(pid == 0) {
     //child process,start write
-    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Write);
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Type::Write);
     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     fifo->write(array);
     return;
   } else {
     ByteArray array = createByteArray(testDatalength);
-    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Read);
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Type::Read);
     int length = fifo->read(array);
     if(length != testDatalength) {
       TEST_FAIL("[FifoPipe Test {write/read()} case1,length is %d,err is %s]",length,CurrentError);
@@ -67,12 +67,12 @@ void testSyncFifoPipe() {
   pid = fork();
   if(pid == 0) {
     //child process,start write
-    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Write);
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Type::Write);
     fifo->close();
     return;
   } else {
     ByteArray array = createByteArray(testDatalength);
-    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Read);
+    FifoPipe fifo = createFifoPipe("mytest123",st(FifoPipe)::Type::Read);
     
     sleep(1);
     int length = fifo->read(array);
@@ -85,7 +85,7 @@ void testSyncFifoPipe() {
   }
 
   //check clean
-  FifoPipe fifo = createFifoPipe("mytest1ab",st(FifoPipe)::AsyncRead);
+  FifoPipe fifo = createFifoPipe("mytest1ab",st(FifoPipe)::Type::AsyncRead);
   if(access(fifo->getName()->toChars(),F_OK) != 0) {
     TEST_FAIL("[FifoPipe Test {clear()} case1]");
   }

@@ -12,7 +12,7 @@
 #include "AutoLock.hpp"
 #include "Mutex.hpp"
 #include "ThreadCachedPoolExecutor.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "ArrayList.hpp"
 #include "TestLog.hpp"
 

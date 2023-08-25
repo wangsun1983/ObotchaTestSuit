@@ -139,6 +139,8 @@ def scanTest(path):
                 port_file.close()
         except IOError:
             os.popen("rm /tmp/obotcha_test_suit_port.txt").read()
+        except UnicodeDecodeError:
+            os.popen("rm /tmp/obotcha_test_suit_port.txt").read()
 
         go_build_success = True
         env_path =  os.path.abspath('.') + "/" + "../3rdparty/go"

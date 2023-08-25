@@ -43,7 +43,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 cookie1->setPropertyPath("path123");
                 //cookie1->setPropertyDomain("domain123");
                 Calendar c = createCalendar();//->getDateTime()
-                c->add(st(Calendar)::DayOfMonth,1);
+                c->add(st(Calendar)::Field::DayOfMonth,1);
                 printf("time zone is %d \n",st(TimeZone)::getZone());
                 setExpires = (c->toTimeMillis())/1000;
 

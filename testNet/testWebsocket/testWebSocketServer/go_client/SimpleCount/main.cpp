@@ -13,7 +13,7 @@
 #include "WebSocketComposer.hpp"
 #include "File.hpp"
 #include "FileOutputStream.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "CountDownLatch.hpp"
 #include "WebSocketServerBuilder.hpp"
 #include "Inet4Address.hpp"

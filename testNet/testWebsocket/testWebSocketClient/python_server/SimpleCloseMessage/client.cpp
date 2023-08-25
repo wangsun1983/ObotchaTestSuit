@@ -40,12 +40,11 @@ public:
 
     void onPong(String) {
         //printf("111111 onPong fd \n");
-        //return 0;
     }
-
-    int onPing(String) {
+    
+    st(WebSocket)::Response onPing(String) {
         //printf("111111 onPing fd \n");
-        return 0;
+        return st(WebSocket)::Response::Auto;
     }
 };
 

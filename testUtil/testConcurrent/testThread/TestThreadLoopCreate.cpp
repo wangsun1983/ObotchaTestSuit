@@ -9,7 +9,7 @@
 #include "AutoLock.hpp"
 #include "System.hpp"
 #include "Error.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;

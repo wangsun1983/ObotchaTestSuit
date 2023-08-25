@@ -9,7 +9,7 @@
 #include "Integer.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
-#include "AtomicInteger.hpp"
+#include "AtomicNumber.hpp"
 
 using namespace obotcha;
 

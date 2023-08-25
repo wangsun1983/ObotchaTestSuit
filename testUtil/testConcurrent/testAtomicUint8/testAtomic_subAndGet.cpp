@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "AtomicUint8.hpp"
+#include "AtomicNumber.hpp"
 #include "Thread.hpp"
 #include "TestLog.hpp"
 using namespace obotcha;
