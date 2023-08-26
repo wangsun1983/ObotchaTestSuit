@@ -22,13 +22,13 @@ void testPriorityPoolExecutor_Cancel() {
                 ->newPriorityThreadPool();
 
       int value = 100;
-      Future f1 = pool->preempt(st(Executor)::High,[&value](){
+      Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
         usleep(200*1000);
         value = 222;
         st(ExecutorResult)::set(333);
       });
 
-      Future f2 = pool->preempt(st(Executor)::High,[](){
+      Future f2 = pool->preempt(st(Concurrent)::TaskPriority::High,[](){
         st(ExecutorResult)::set(100);
       });
 
@@ -61,7 +61,7 @@ void testPriorityPoolExecutor_Cancel() {
                 ->newPriorityThreadPool();
 
     int value = 123;
-    Future f1 = pool->preempt(st(Executor)::High,[&value](){
+    Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
       value = 222;
       st(ExecutorResult)::set(333);
     });
@@ -84,13 +84,13 @@ void testPriorityPoolExecutor_Cancel() {
     auto pool = createExecutorBuilder()
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i < 1024;i++) {
-      Future f = pool->preempt(st(Executor)::High,[] {
+      Future f = pool->preempt(st(Concurrent)::TaskPriority::High,[] {
 
       });
       lists->add(f);
@@ -102,7 +102,7 @@ void testPriorityPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() != st(ExecutorTask)::Cancel) {
+      if(f->getStatus() != st(Concurrent)::Status::Interrupt) {
         TEST_FAIL("[Future PriorityPoolExecutor Cancel case6");
         break;
       }
@@ -115,13 +115,13 @@ void testPriorityPoolExecutor_Cancel() {
     auto pool = createExecutorBuilder()
                 ->setDefaultThreadNum(12)
                 ->newPriorityThreadPool();
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
     ArrayList<Future> lists = createArrayList<Future>();
     for(int i = 0;i < 1024*32;i++) {
-      Future f = pool->preempt(st(Executor)::High,[] {
+      Future f = pool->preempt(st(Concurrent)::TaskPriority::High,[] {
         usleep(1*1000);
       });
       lists->add(f);
@@ -145,7 +145,7 @@ void testPriorityPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() == st(ExecutorTask)::Cancel) {
+      if(f->getStatus() == st(Concurrent)::Status::Interrupt) {
         count++;
       }
       iterator->next();

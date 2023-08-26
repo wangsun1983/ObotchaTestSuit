@@ -21,11 +21,11 @@ void testPendingTask() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Low,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Low,[]{
         usleep(1000*50);
     });
     
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
         usleep(1000*50);
     });
     

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IntArray>
+	<stringlists>
+		<tmp>a</tmp>
+		<tmp>b</tmp>
+	</stringlists>
+	<uint64lists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</uint64lists>
+	<uint32lists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</uint32lists>
+	<uint16lists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</uint16lists>
+	<uint8lists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</uint8lists>
+	<floatlists>
+		<tmp>1.100000023841858</tmp>
+		<tmp>2.200000047683716</tmp>
+	</floatlists>
+	<doublelists>
+		<tmp>1.1</tmp>
+		<tmp>2.2</tmp>
+	</doublelists>
+	<boollists>
+		<tmp>true</tmp>
+		<tmp>false</tmp>
+	</boollists>
+	<longlists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</longlists>
+	<intlists>
+		<tmp>1</tmp>
+		<tmp>2</tmp>
+	</intlists>
+</IntArray>
+

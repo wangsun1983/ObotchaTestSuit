@@ -35,7 +35,7 @@ void testSubmitMultiThread() {
 
     Thread t1 = createThread([&count1,&pool,&latch,&mutex1]{
       for(int i = 0;i<1024*32;i++) {
-        pool->preempt(st(Executor)::Low,[&count1,&latch,&mutex1]{
+        pool->preempt(st(Concurrent)::TaskPriority::Low,[&count1,&latch,&mutex1]{
           {
             AutoLock l(mutex1);
             count1 = count1 + 1;
@@ -48,7 +48,7 @@ void testSubmitMultiThread() {
 
     Thread t2 = createThread([&count2,&pool,&latch,&mutex2]{
       for(int i = 0;i<1024*32;i++) {
-        pool->preempt(st(Executor)::Medium,[&count2,&latch,&mutex2]{
+        pool->preempt(st(Concurrent)::TaskPriority::Medium,[&count2,&latch,&mutex2]{
           {
             AutoLock l(mutex2);
             count2 = count2 + 2;
@@ -61,7 +61,7 @@ void testSubmitMultiThread() {
 
     Thread t3 = createThread([&count3,&pool,&latch,&mutex3]{
       for(int i = 0;i<1024*32;i++) {
-        pool->preempt(st(Executor)::High,[&count3,&latch,&mutex3]{
+        pool->preempt(st(Concurrent)::TaskPriority::High,[&count3,&latch,&mutex3]{
           {
             AutoLock l(mutex3);
             count3 = count3 + 3;

@@ -226,15 +226,15 @@ void testThreadCommonCase() {
     Thread2 t2 = createThread2();
     t2->setName("testgetstatus");
     t2->start();
-    int status = t2->getStatus();
-    if(status != st(Thread)::Running && status != st(Thread)::Idle) {
+    auto status = t2->getStatus();
+    if(status != st(Concurrent)::Status::Running && status != st(Concurrent)::Status::Idle) {
       TEST_FAIL("[Thread Test {getStatus()} case1]");
       break;
     }
 
     sleep(1);
     status = t2->getStatus();
-    if(status != st(Thread)::Running) {
+    if(status != st(Concurrent)::Status::Running) {
       TEST_FAIL("[Thread Test {getStatus()} case2]");
       break;
     }

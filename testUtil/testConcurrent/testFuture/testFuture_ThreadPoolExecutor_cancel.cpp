@@ -106,7 +106,7 @@ void testThreadPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() != st(ExecutorTask)::Cancel) {
+      if(f->getStatus() != st(Concurrent)::Status::Interrupt) {
         TEST_FAIL("[Future ThreadPoolExecutor Cancel case6");
         break;
       }
@@ -149,7 +149,7 @@ void testThreadPoolExecutor_Cancel() {
     auto iterator = lists->getIterator();
     while(iterator->hasValue()) {
       auto f = iterator->getValue();
-      if(f->getStatus() == st(ExecutorTask)::Cancel) {
+      if(f->getStatus() == st(Concurrent)::Status::Interrupt) {
         count++;
       }
       iterator->next();

@@ -23,11 +23,11 @@ void testAwaitTermination() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(100*1000);
     });
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(100*1000);
     });
 
@@ -49,7 +49,7 @@ void testAwaitTermination() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(200*1000);
     });
     usleep(10);

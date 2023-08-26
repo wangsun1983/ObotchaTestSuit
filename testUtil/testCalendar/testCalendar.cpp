@@ -55,9 +55,9 @@ extern void testCalendarGetDays();
 
 void simpleTest() {
   Calendar c = createCalendar(9277732677921l);
-  printf("day of week is %d \n",c->get(st(Calendar)::DayOfWeek));
-  printf("day of year is %d \n",c->get(st(Calendar)::DayOfYear));
-  printf("day of month is %d \n",c->get(st(Calendar)::DayOfMonth));
+  printf("day of week is %d \n",c->get(st(Calendar)::Field::DayOfWeek));
+  printf("day of year is %d \n",c->get(st(Calendar)::Field::DayOfYear));
+  printf("day of month is %d \n",c->get(st(Calendar)::Field::DayOfMonth));
 }
 
 ArrayList<TimeData> analyse(File f) {

@@ -29,27 +29,27 @@ int testCalendarDecreaseYear_Interval() {
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
 
-        testCalendar->add(st(Calendar)::Year,-i);
+        testCalendar->add(st(Calendar)::Field::Year,-i);
         d1 = yearList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
 
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {testCalendarDecreaseYear_Interval()} case1]");
@@ -69,27 +69,27 @@ int testCalendarDecreaseDay_Interval() {
 
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
-        testCalendar->add(st(Calendar)::DayOfYear,-i);
+        testCalendar->add(st(Calendar)::Field::DayOfYear,-i);
         d1 = dateList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
 
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {testCalendarDecreaseDay_Interval()} case1]");
@@ -107,27 +107,27 @@ int testCalendarDecreaseMonth_Interval() {
     Calendar c1 = createCalendar(d1->time);
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
-        testCalendar->add(st(Calendar)::Month,-i);
+        testCalendar->add(st(Calendar)::Field::Month,-i);
         d1 = monthList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
 
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {testCalendarDecreaseMonth_Interval()} case1]");
@@ -147,26 +147,26 @@ int testCalendarDecreaseHour_Interval() {
     Calendar c1 = createCalendar(d1->time);
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
-        testCalendar->add(st(Calendar)::Hour,-i);
+        testCalendar->add(st(Calendar)::Field::Hour,-i);
         d1 = hourList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
                printf("decreaseHour is %d \n",i);
                TEST_FAIL("[Calendar Test {testCalendarDecreaseHour_Interval()} case1]");
@@ -185,26 +185,26 @@ int testCalendarDecreaseMinute_Interval() {
     Calendar c1 = createCalendar(d1->time);
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
-        testCalendar->add(st(Calendar)::Minute,-i);
+        testCalendar->add(st(Calendar)::Field::Minute,-i);
         d1 = minuteList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
                TEST_FAIL("[Calendar Test {testCalendarDecreaseMinute_Interval()} case1]");
                return -1;
@@ -222,26 +222,26 @@ int testCalendarDecreaseSecond_Interval() {
     Calendar c1 = createCalendar(d1->time);
     for(int i = 0;i < size;i++) {
         Calendar testCalendar = createCalendar(c1);
-        testCalendar->add(st(Calendar)::Second,-i);
+        testCalendar->add(st(Calendar)::Field::Second,-i);
         d1 = secondList->get(size - i -1);
-        if(testCalendar->get(st(Calendar)::Year) != d1->year ||
-             testCalendar->get(st(Calendar)::Month) != d1->month ||
-             testCalendar->get(st(Calendar)::DayOfYear) != (d1->dayOfYear - 1) ||
-             testCalendar->get(st(Calendar)::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
-             testCalendar->get(st(Calendar)::DayOfMonth) != d1->dayOfMonth ||
-             testCalendar->get(st(Calendar)::Hour) != d1->hour ||
-             testCalendar->get(st(Calendar)::Minute) != d1->minute ||
-             testCalendar->get(st(Calendar)::Second) != d1->second ||
-             testCalendar->get(st(Calendar)::MSecond) != d1->millisecond) {
-               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Year),d1->year);
-               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Month),d1->month);
-               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::DayOfYear),d1->dayOfYear -1);
-               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
-               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::DayOfMonth),d1->dayOfMonth);
-               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Hour),d1->hour);
-               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Minute),d1->minute);
-               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::MSecond),d1->millisecond);
+        if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
+             testCalendar->get(st(Calendar)::Field::Month) != d1->month ||
+             testCalendar->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
+             testCalendar->get(st(Calendar)::Field::DayOfWeek) != convertDayOfWeekFromJava(d1->dayOfWeek)||
+             testCalendar->get(st(Calendar)::Field::DayOfMonth) != d1->dayOfMonth ||
+             testCalendar->get(st(Calendar)::Field::Hour) != d1->hour ||
+             testCalendar->get(st(Calendar)::Field::Minute) != d1->minute ||
+             testCalendar->get(st(Calendar)::Field::Second) != d1->second ||
+             testCalendar->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+               printf("Calndear year is %d,data year is %d \n",testCalendar->get(st(Calendar)::Field::Year),d1->year);
+               printf("Calndear month is %d,data month is %d \n",testCalendar->get(st(Calendar)::Field::Month),d1->month);
+               printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",testCalendar->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear -1);
+               printf("Calndear dayOfWeek is %d,data dayOfWeek is %d \n",testCalendar->get(st(Calendar)::Field::DayOfWeek),convertDayOfWeekFromJava(d1->dayOfWeek));
+               printf("Calndear dayOfMonth is %d,data dayOfMonth is %d \n",testCalendar->get(st(Calendar)::Field::DayOfMonth),d1->dayOfMonth);
+               printf("Calndear hour is %d,data hour is %d \n",testCalendar->get(st(Calendar)::Field::Hour),d1->hour);
+               printf("Calndear minute is %d,data minute is %d \n",testCalendar->get(st(Calendar)::Field::Minute),d1->minute);
+               printf("Calndear second is %d,data second is %d \n",testCalendar->get(st(Calendar)::Field::Second),d1->second);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",testCalendar->get(st(Calendar)::Field::MSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
                TEST_FAIL("[Calendar Test {testCalendarDecreaseSecond_Interval()} case1]");
                return -1;

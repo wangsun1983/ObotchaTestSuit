@@ -18,7 +18,7 @@ void testReadLock_TryLock() {
   while(1) {
     ReadWriteLock rwLock = createReadWriteLock();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger();
+    AtomicInteger value = createAtomicInteger(0);
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
       if(ret != -EBUSY) {
@@ -38,7 +38,7 @@ void testReadLock_TryLock() {
   while(1) {
     ReadWriteLock rwLock = createReadWriteLock();
     rwLock->getReadLock()->lock();
-    AtomicInteger value = createAtomicInteger();
+    AtomicInteger value = createAtomicInteger(0);
     Thread t = createThread([&rwLock,&value]{
       int ret = rwLock->getReadLock()->tryLock();
       if(ret != 0) {

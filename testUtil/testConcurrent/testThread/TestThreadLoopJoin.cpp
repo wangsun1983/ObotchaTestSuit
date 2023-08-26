@@ -64,7 +64,7 @@ void testThreadLoopJoin() {
   }
   
   for(int i = 0;i<1024*8;i++) {
-      if(list2->get(i)->getStatus() != st(Thread)::Running) {
+      if(list2->get(i)->getStatus() != st(Concurrent)::Status::Running) {
         TEST_FAIL("[Thread Test {Loop join()} special case1");
         break;
       }

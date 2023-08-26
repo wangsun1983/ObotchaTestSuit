@@ -16,37 +16,37 @@ using namespace obotcha;
 DECLARE_CLASS(MyPriorityThread) IMPLEMENTS(Thread) {
 public:
     void run() {
-        setPriority(st(Thread)::ThreadPriority::High);
-        int priority = getPriority();
-        if(priority != -EOPNOTSUPP) {
+        setPriority(st(Thread)::Priority::High);
+        auto priority = getPriority();
+        if(priority != st(Thread)::Priority::Error) {
             TEST_OK("[Thread Test {Set Priority()} case1],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Low);
+        setPriority(st(Thread)::Priority::Low);
         priority = getPriority();
-        if(priority != -EOPNOTSUPP) {
+        if(priority != st(Thread)::Priority::Error) {
             TEST_OK("[Thread Test {Set Priority()} case2],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Normal);
+        setPriority(st(Thread)::Priority::Normal);
         priority = getPriority();
-        if(priority != -EOPNOTSUPP) {
+        if(priority != st(Thread)::Priority::Error) {
             TEST_OK("[Thread Test {Set Priority()} case3],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Highest);
+        setPriority(st(Thread)::Priority::Highest);
         priority = getPriority();
-        if(priority != -EOPNOTSUPP) {
+        if(priority != st(Thread)::Priority::Error) {
             TEST_OK("[Thread Test {Set Priority()} case4],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Realtime);
+        setPriority(st(Thread)::Priority::Realtime);
         priority = getPriority();
-        if(priority != -EOPNOTSUPP) {
+        if(priority != st(Thread)::Priority::Error) {
             TEST_OK("[Thread Test {Set Priority()} case5],priority is %d",priority);
         }
 
@@ -57,30 +57,30 @@ public:
             TEST_OK("[Thread Test {Set Priority()} case6],policy is %d",policy);
         }
 
-        int ret = setPriority(st(Thread)::ThreadPriority::Low);
+        int ret = setPriority(st(Thread)::Priority::Low);
         priority = getPriority();
-        if(priority != st(Thread)::ThreadPriority::Low) {
+        if(priority != st(Thread)::Priority::Low) {
             TEST_OK("[Thread Test {Set Priority()} case7],priority is %d,ret is %d",priority,ret);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Normal);
+        setPriority(st(Thread)::Priority::Normal);
         priority = getPriority();
-        if(priority != st(Thread)::ThreadPriority::Normal) {
+        if(priority != st(Thread)::Priority::Normal) {
             TEST_OK("[Thread Test {Set Priority()} case8],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Highest);
+        setPriority(st(Thread)::Priority::Highest);
         priority = getPriority();
-        if(priority != st(Thread)::ThreadPriority::Highest) {
+        if(priority != st(Thread)::Priority::Highest) {
             TEST_OK("[Thread Test {Set Priority()} case9],priority is %d",priority);
         }
 
         sleep(1);
-        setPriority(st(Thread)::ThreadPriority::Realtime);
+        setPriority(st(Thread)::Priority::Realtime);
         priority = getPriority();
-        if(priority != st(Thread)::ThreadPriority::Realtime) {
+        if(priority != st(Thread)::Priority::Realtime) {
 
             TEST_OK("[Thread Test {Set Priority()} case10],priority is %d",priority);
         }

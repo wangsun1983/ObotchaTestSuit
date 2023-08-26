@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlReflectData>
+	<member2>
+		<uint64Data>17</uint64Data>
+		<boolData>false</boolData>
+		<uint32Data>16</uint32Data>
+		<uint16Data>15</uint16Data>
+		<floatData>12.19999980926514</floatData>
+		<uint8Data>14</uint8Data>
+		<longData>13</longData>
+		<doubleData>11.1</doubleData>
+		<stringData>b</stringData>
+		<byteData>12</byteData>
+		<intData>11</intData>
+	</member2>
+	<member1>
+		<uint64Data>7</uint64Data>
+		<boolData>false</boolData>
+		<uint32Data>6</uint32Data>
+		<uint16Data>5</uint16Data>
+		<floatData>2.200000047683716</floatData>
+		<uint8Data>4</uint8Data>
+		<longData>3</longData>
+		<doubleData>1.1</doubleData>
+		<stringData>a</stringData>
+		<byteData>2</byteData>
+		<intData>1</intData>
+	</member1>
+</XmlReflectData>
+

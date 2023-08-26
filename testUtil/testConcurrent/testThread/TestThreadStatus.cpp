@@ -20,7 +20,7 @@ void testThreadStatus() {
            usleep(100); 
         });
         
-        if(thread->getStatus() != st(Thread)::NotStart) {
+        if(thread->getStatus() != st(Concurrent)::Status::NotStart) {
             TEST_FAIL("[Thread Test {getStatus()} case1],status is %d",thread->getStatus());
         }
         break;
@@ -33,7 +33,7 @@ void testThreadStatus() {
         thread->start();
         
         usleep(100);
-        if(thread->getStatus() != st(Thread)::Running) {
+        if(thread->getStatus() != st(Concurrent)::Status::Running) {
             TEST_FAIL("[Thread Test {getStatus()} case2],status is %d",thread->getStatus());
         
         }
@@ -48,7 +48,7 @@ void testThreadStatus() {
         thread->start();
         
         usleep(200);
-        if(thread->getStatus() != st(Thread)::Complete) {
+        if(thread->getStatus() != st(Concurrent)::Status::Complete) {
             TEST_FAIL("[Thread Test {getStatus()} case2],status is %d",thread->getStatus());
         
         }
@@ -64,7 +64,7 @@ void testThreadStatus() {
         
         usleep(100);
         thread->interrupt();
-        if(thread->getStatus() != st(Thread)::Interrupting) {
+        if(thread->getStatus() != st(Concurrent)::Status::Interrupt) {
             TEST_FAIL("[Thread Test {getStatus()} case3],status is %d",thread->getStatus());
         
         }

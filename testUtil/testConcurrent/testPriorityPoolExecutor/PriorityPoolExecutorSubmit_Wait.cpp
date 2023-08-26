@@ -23,16 +23,16 @@ void testSubmitWait() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(100*1000);
     });
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(100*1000);
     });
 
     watch->start();
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
 
     });
     long result = watch->stop();
@@ -52,16 +52,16 @@ void testSubmitWait() {
               ->setMaxThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(100*1000);
     });
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
 
     });
 
     watch->start();
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
 
     });
     long result = watch->stop();
@@ -82,15 +82,15 @@ void testSubmitWait() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
       usleep(200*1000);
     });
 
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
     });
 
     watch->start();
-    pool->preempt(st(Executor)::Medium,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::Medium,[]{
     });
 
     long result = watch->stop();

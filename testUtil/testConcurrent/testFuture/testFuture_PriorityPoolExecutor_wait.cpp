@@ -25,7 +25,7 @@ void testPriorityPoolExecutor_Wait() {
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
       int value = 100;
-      Future f1 = pool->preempt(st(Executor)::High,[&value](){
+      Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
         usleep(200*1000);
         value = 222;
         st(ExecutorResult)::set(333);
@@ -49,7 +49,7 @@ void testPriorityPoolExecutor_Wait() {
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
       int value = 100;
-      Future f1 = pool->preempt(st(Executor)::High,[&value](){
+      Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
         usleep(200*1000);
         value = 222;
         st(ExecutorResult)::set(333);
@@ -76,7 +76,7 @@ void testPriorityPoolExecutor_Wait() {
   while(1) {
     auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newPriorityThreadPool();
     int value = 100;
-    Future f1 = pool->preempt(st(Executor)::High,[&value](){
+    Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
       usleep(200*1000);
       value = 222;
       st(ExecutorResult)::set(333);
@@ -100,27 +100,27 @@ void testPriorityPoolExecutor_Wait() {
                 ->setDefaultThreadNum(3)
                 ->newPriorityThreadPool();
     CountDownLatch latch = createCountDownLatch(3);
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    Future f1 = pool->preempt(st(Executor)::High,[]{
+    Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       //
     });
 
-    Future f2 = pool->preempt(st(Executor)::High,[]{
+    Future f2 = pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       //
     });
 
-    Future f3 = pool->preempt(st(Executor)::High,[]{
+    Future f3 = pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       //
     });
 
@@ -157,11 +157,11 @@ void testPriorityPoolExecutor_Wait() {
 
   while(1) {
     auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newPriorityThreadPool();
-    pool->preempt(st(Executor)::High,[]{
+    pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    Future f = pool->preempt(st(Executor)::High,[]{
+    Future f = pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       //TODO
     });
 

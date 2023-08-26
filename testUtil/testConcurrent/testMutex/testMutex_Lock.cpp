@@ -35,7 +35,7 @@ int testMutex_Lock() {
     }
 
     while(1) {
-      Mutex t = createMutex(st(Mutex)::Normal);
+      Mutex t = createMutex(st(Lock)::Type::Normal);
       watch->start();
       t->lock(100);
       t->lock(100);
