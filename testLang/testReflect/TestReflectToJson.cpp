@@ -127,11 +127,11 @@ void testReflectToJson() {
       TEST_FAIL("testReflectToJson test11");
     }
 
-    if(st(Math)::compareDouble(result->member1->doubleData,result->member1->doubleData) != st(Math)::AlmostEqual) {
+    if(st(Double)::Compare(result->member1->doubleData,result->member1->doubleData) != 0) {
       TEST_FAIL("testReflectToJson test12");
     }
 
-    if(st(Math)::compareFloat(result->member1->floatData,result->member1->floatData) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(result->member1->floatData,result->member1->floatData) != 0) {
       TEST_FAIL("testReflectToJson test13");
     }
 
@@ -175,11 +175,11 @@ void testReflectToJson() {
       TEST_FAIL("testReflectToJson test11");
     }
 
-    if(st(Math)::compareDouble(result->member1->doubleData,result->member1->doubleData) != st(Math)::AlmostEqual) {
+    if(st(Double)::Compare(result->member1->doubleData,result->member1->doubleData) != 0) {
       TEST_FAIL("testReflectToJson test12");
     }
 
-    if(st(Math)::compareFloat(result->member1->floatData,result->member1->floatData) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(result->member1->floatData,result->member1->floatData) != 0) {
       TEST_FAIL("testReflectToJson test13");
     }
 
@@ -224,11 +224,11 @@ void testReflectToJson() {
       TEST_FAIL("testReflectToJson test23");
     }
 
-    if(st(Math)::compareDouble(result->member2->doubleData,result->member2->doubleData) != st(Math)::AlmostEqual) {
+    if(st(Double)::Compare(result->member2->doubleData,result->member2->doubleData) != 0) {
       TEST_FAIL("testReflectToJson test24");
     }
 
-    if(st(Math)::compareFloat(result->member2->floatData,result->member2->floatData) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(result->member2->floatData,result->member2->floatData) != 0) {
       TEST_FAIL("testReflectToJson test25");
     }
 

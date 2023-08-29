@@ -63,12 +63,12 @@ void testEncodingParse() {
         break;
     }
 
-    if(st(Math)::compareFloat(encodings->get(2)->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodings->get(2)->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeaderAccept test Parse case5],weight is %f",encodings->get(2)->weight);
       break;
     }
 
-    if(st(Math)::compareFloat(encodings->get(3)->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodings->get(3)->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeaderAccept test Parse case5],weight is %f",encodings->get(3)->weight);
       break;
     }

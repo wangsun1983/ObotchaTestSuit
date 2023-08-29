@@ -17,6 +17,7 @@
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "NetEvent.hpp"
+#include "AtomicNumber.hpp"
 
 using namespace obotcha;
 

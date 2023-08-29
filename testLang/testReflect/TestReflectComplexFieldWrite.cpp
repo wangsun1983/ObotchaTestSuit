@@ -99,7 +99,7 @@ void testReflectComplexFieldWrite() {
         break;
       }
 
-      if(st(Math)::compareFloat(data->data1->complexMember1->floatData,2.2) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(data->data1->complexMember1->floatData,2.2) != 0) {
         TEST_FAIL("Reflect Reflect Complex Write test4");
         break;
       }

@@ -34,7 +34,7 @@ void parseWrongTest() {
         TEST_FAIL("Parse wrong float string case3,s is %lf",f->toValue());
       }
 
-      if(!st(Float)::IsEqual(f->toValue(),0.123)) {
+      if(st(Float)::Compare(f->toValue(),0.123) != 0) {
         TEST_FAIL("Parse wrong float string case4");
       }
       break;

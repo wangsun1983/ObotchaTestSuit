@@ -79,7 +79,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(charSetItem2->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(charSetItem2->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case8] charSetItem2->weight is %lf",charSetItem2->weight);
       break;
     }
@@ -105,7 +105,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem1->weight,1.0) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem1->weight,1.0) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case11] weight is %lf",encodingItem1->weight);
       break;
     }
@@ -116,7 +116,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem2->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem2->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case13]");
       break;
     }
@@ -141,7 +141,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem2->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem2->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case17]");
       break;
     }
@@ -152,7 +152,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem3->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem3->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case19]");
       break;
     }
@@ -163,7 +163,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem4->weight,0.7) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem4->weight,0.7) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case21]");
       break;
     }
@@ -174,7 +174,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem5->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem5->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case23]");
       break;
     }
@@ -220,7 +220,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem3->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem3->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case29]");
       break;
     }
@@ -231,7 +231,7 @@ void testHttpHeaderParse() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem4->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem4->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeaderParse test Parse case31]");
       break;
     }

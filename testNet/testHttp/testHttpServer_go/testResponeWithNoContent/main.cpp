@@ -13,6 +13,7 @@
 #include "HttpServerBuilder.hpp"
 #include "Inet4Address.hpp"
 #include "CountDownLatch.hpp"
+#include "AtomicNumber.hpp"
 
 #include "TestLog.hpp"
 #include "NetPort.hpp"

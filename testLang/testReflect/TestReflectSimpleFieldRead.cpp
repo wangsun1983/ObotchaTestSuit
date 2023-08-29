@@ -87,7 +87,7 @@ void testReflectFieldRead() {
       }
 
       f = data1->getField("floatData");
-      if(st(Math)::compareFloat(2.2,f->getFloatValue()) != st(Math)::AlmostEqual || f->getType() != st(Field)::Type::Float) {
+      if(st(Float)::Compare(2.2,f->getFloatValue()) != 0 || f->getType() != st(Field)::Type::Float) {
         TEST_FAIL("Reflect Reflect Field Read test4");
         break;
       }
@@ -179,7 +179,7 @@ void testReflectFieldRead() {
       f = data2->getField("floatData");
       Float floatV = Cast<Float>(f->getObjectValue());
       if(floatV == nullptr
-        ||st(Math)::compareFloat(floatV->toValue(),2.2) != st(Math)::AlmostEqual
+        ||st(Float)::Compare(floatV->toValue(),2.2) != 0
         || f->getType() != st(Field)::Type::Object) {
         TEST_FAIL("Reflect Reflect Field Read test15");
         break;

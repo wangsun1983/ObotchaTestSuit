@@ -7,14 +7,13 @@
 #include "StrongPointer.hpp"
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
-#include "AtomicInteger.hpp"
 #include "TimeWatcher.hpp"
 #include "AutoLock.hpp"
-#include "AtomicLong.hpp"
 #include "CountDownLatch.hpp"
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include <netinet/in.h>
+#include "IO.hpp"
 
 
 using namespace obotcha;
@@ -52,7 +51,7 @@ public:
                     }
                     latch->countDown();
                 }
-                return st(IO)::Epoll::Result::OK;
+                return st(IO)::Epoll::Result::Ok;
             },sock);
         }
     }

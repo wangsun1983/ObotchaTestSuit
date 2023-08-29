@@ -83,7 +83,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(charSetItem2->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(charSetItem2->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeader test Append case8]  char set is %s ",charSetItem2->type->toChars());
       break;
     }
@@ -109,7 +109,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem1->weight,1.0) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem1->weight,1.0) != 0) {
       TEST_FAIL("[HttpHeader test Append case11]  weight is %lf ",encodingItem1->weight);
       break;
     }
@@ -120,7 +120,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem2->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem2->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeader test Append case13]");
       break;
     }
@@ -145,7 +145,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem2->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem2->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeader test Append case17]");
       break;
     }
@@ -156,7 +156,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem3->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem3->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeader test Append case19]");
       break;
     }
@@ -167,7 +167,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem4->weight,0.7) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem4->weight,0.7) != 0) {
       TEST_FAIL("[HttpHeader test Append case21]");
       break;
     }
@@ -178,7 +178,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem5->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem5->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeader test Append case23]");
       break;
     }
@@ -224,7 +224,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem3->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem3->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeader test Append case29]");
       break;
     }
@@ -235,7 +235,7 @@ void testHttpHeaderAppend() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem4->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem4->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeader test Append case31]");
       break;
     }

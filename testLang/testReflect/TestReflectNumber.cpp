@@ -86,7 +86,7 @@ void testReflectNumber() {
       }
 
       if(rdata3->floatData == nullptr
-        ||st(Math)::compareFloat(data->floatData->toValue(),rdata3->floatData->toValue()) != st(Math)::AlmostEqual) {
+        ||st(Float)::Compare(data->floatData->toValue(),rdata3->floatData->toValue()) != 0) {
         TEST_FAIL("Reflect Number To File test4");
         break;
       }

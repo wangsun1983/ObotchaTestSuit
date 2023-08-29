@@ -102,7 +102,7 @@ void testReflectFieldWrite() {
         break;
       }
 
-      if(st(Math)::compareFloat(data1->floatData,2.2) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(data1->floatData,2.2) != 0) {
         TEST_FAIL("Reflect Reflect Field Write test4");
         break;
       }
@@ -209,7 +209,7 @@ void testReflectFieldWrite() {
       }
 
       if(data1->floatData == nullptr
-        ||st(Math)::compareFloat(data1->floatData->toValue(),2.2) != st(Math)::AlmostEqual) {
+        ||st(Float)::Compare(data1->floatData->toValue(),2.2) != 0) {
         TEST_FAIL("Reflect Reflect Field Write test16");
         break;
       }

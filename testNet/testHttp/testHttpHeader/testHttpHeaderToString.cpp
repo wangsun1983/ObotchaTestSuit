@@ -103,7 +103,7 @@ void testHttpHeaderToString() {
 
     HttpHeaderAcceptCharSetItem charSetItem1_2 = charsets1->get(1);
     HttpHeaderAcceptCharSetItem charSetItem2_2 = charsets2->get(1);
-    if(st(Math)::compareFloat(charSetItem1_2->weight,charSetItem2_2->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(charSetItem1_2->weight,charSetItem2_2->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case8]");
       break;
     }
@@ -134,7 +134,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem1_1->weight,encodingItem2_1->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem1_1->weight,encodingItem2_1->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case11] [FAILED] weight is %lf \n",encodingItem2_1->weight);
       break;
     }
@@ -146,7 +146,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(encodingItem1_2->weight,encodingItem2_2->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(encodingItem1_2->weight,encodingItem2_2->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case13]");
       break;
     }
@@ -179,7 +179,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem1_1->weight,langItem2_1->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem1_1->weight,langItem2_1->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case17]");
       break;
     }
@@ -191,7 +191,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem1_2->weight,langItem2_2->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem1_2->weight,langItem2_2->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case19]");
       break;
     }
@@ -203,7 +203,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem1_3->weight,langItem2_3->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem1_3->weight,langItem2_3->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case21]");
       break;
     }
@@ -215,7 +215,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(langItem1_4->weight,langItem2_4->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(langItem1_4->weight,langItem2_4->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case23]");
       break;
     }
@@ -272,7 +272,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem1_2->weight,acceptItem2_2->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem1_2->weight,acceptItem2_2->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case29]");
       break;
     }
@@ -284,7 +284,7 @@ void testHttpHeaderToString() {
       break;
     }
 
-    if(st(Math)::compareFloat(acceptItem1_3->weight,acceptItem2_3->weight) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(acceptItem1_3->weight,acceptItem2_3->weight) != 0) {
       TEST_FAIL("[HttpHeaderToString test Parse case31]");
       break;
     }

@@ -17,6 +17,7 @@
 #include "Enviroment.hpp"
 #include "HttpMethod.hpp"
 #include "NetEvent.hpp"
+#include "AtomicNumber.hpp"
 
 #include "TestLog.hpp"
 #include "NetPort.hpp"
@@ -49,14 +50,14 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           break;
 
           case st(Net)::Event::Message: {
-              if(msg->getHeader()->getMethod() == st(HttpMethod)::Get) {
+              if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Get) {
                 HttpResponse response = createHttpResponse();
                 HttpEntity entity = createHttpEntity();
                 entity->setContent(createString("this is server")->toByteArray());
                 response->setEntity(entity);
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
-              } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Post) {
+              } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Post) {
                 String str = msg->getEntity()->getContent()->toString();
                 if(!str->sameAs("i am client")) {
                   TEST_FAIL("TestHttpServer SimpleClientConnect test1");

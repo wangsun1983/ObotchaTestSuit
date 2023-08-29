@@ -33,22 +33,22 @@ void testSetToHeader() {
         break;
     }
 
-    if(st(Math)::compareFloat(languages->get(1)->weight,0.9) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(languages->get(1)->weight,0.9) != 0) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test SetToHeader case3] [FAILED],weight is %f",languages->get(1)->weight);
       break;
     }
 
-    if(st(Math)::compareFloat(languages->get(2)->weight,0.8) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(languages->get(2)->weight,0.8) != 0) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test SetToHeader case4]");
       break;
     }
 
-    if(st(Math)::compareFloat(languages->get(3)->weight,0.7) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(languages->get(3)->weight,0.7) != 0) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test SetToHeader case5]");
       break;
     }
 
-    if(st(Math)::compareFloat(languages->get(4)->weight,0.5) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(languages->get(4)->weight,0.5) != 0) {
       TEST_FAIL("[HttpHeaderAcceptLanguage test SetToHeader case6]");
       break;
     }

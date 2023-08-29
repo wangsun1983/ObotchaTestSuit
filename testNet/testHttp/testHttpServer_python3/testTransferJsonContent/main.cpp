@@ -53,7 +53,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           break;
 
           case st(Net)::Event::Message: {
-              if(msg->getHeader()->getMethod() == st(HttpMethod)::Get) {
+              if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Get) {
                 HttpResponse response = createHttpResponse();
                 HttpEntity entity = createHttpEntity();
                 MyData data = createMyData();
@@ -67,7 +67,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
                 latch->countDown();
-              } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Post) {
+              } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Post) {
                 String str = msg->getEntity()->getContent()->toString();
                 //JsonValue value = createJsonValue();
                 JsonReader reader = createJsonReader(str);

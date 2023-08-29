@@ -14,7 +14,7 @@
 #include "Inet4Address.hpp"
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
-
+#include "AtomicNumber.hpp"
 
 #include "TestLog.hpp"
 #include "NetPort.hpp"

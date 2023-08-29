@@ -90,7 +90,7 @@ void testSetToHeader() {
         break;
     }
 
-    if(st(Math)::compareFloat(charsets->get(2)->weight,0.1) != st(Math)::AlmostEqual) {
+    if(st(Float)::Compare(charsets->get(2)->weight,0.1) != 0) {
         TEST_FAIL("[HttpHeaderAcceptCharSet test setToHeader case12],weight is %f",charsets->get(2)->weight);
         break;
     }

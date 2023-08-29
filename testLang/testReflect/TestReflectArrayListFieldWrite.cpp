@@ -134,7 +134,7 @@ void testReflectArrayListFieldWrite() {
         break;
       }
 
-      if(st(Math)::compareFloat(d1->floatData,2.2) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(d1->floatData,2.2) != 0) {
         TEST_FAIL("Reflect ArrayList Field Write test4-------[FAIL] \n");
         break;
       }
@@ -190,7 +190,7 @@ void testReflectArrayListFieldWrite() {
         break;
       }
 
-      if(st(Math)::compareFloat(d2->floatData,12.2) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(d2->floatData,12.2) != 0) {
         TEST_FAIL("Reflect ArrayList Field Write test15-------[FAIL] \n");
         break;
       }

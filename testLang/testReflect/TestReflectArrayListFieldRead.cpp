@@ -92,7 +92,7 @@ void testReflectArrayListFieldRead() {
       }
 
       f = data1->getField("floatData");
-      if(st(Math)::compareFloat(2.2,f->getFloatValue()) != st(Math)::AlmostEqual
+      if(st(Float)::Compare(2.2,f->getFloatValue()) != 0
         || f->getType() != st(Field)::Type::Float) {
         TEST_FAIL("Reflect ArrayList Field Read test4");
         break;

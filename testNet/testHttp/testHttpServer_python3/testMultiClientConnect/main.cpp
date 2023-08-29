@@ -15,6 +15,7 @@
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
 #include "Enviroment.hpp"
+#include "AtomicNumber.hpp"
 
 #include "TestLog.hpp"
 #include "NetPort.hpp"
