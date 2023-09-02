@@ -17,7 +17,7 @@ void testStartIndex() {
     ByteRingArray array = createByteRingArray(5);
     array->push(1);
     if(array->getStartIndex() != 0) {
-      TEST_FAIL("[ByteRingArray Test Start Index case1]");
+      TEST_FAIL("[ByteRingArray Test Start Index case1],startIndex is %d",array->getStartIndex());
       return;
     }
 

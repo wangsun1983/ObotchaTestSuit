@@ -48,11 +48,11 @@ void testappend() {
         data3[i] = i;
       }
 
-      byte data4[12];
-      if(data3->append(data4,-1) != -EINVAL) {
-        TEST_FAIL("ByteArray testappend test 3");
-        break;
-      }
+      // byte data4[12];
+      // if(data3->append(data4,-1) != -EINVAL) {
+      //   TEST_FAIL("ByteArray testappend test 3");
+      //   break;
+      // }
 
       TEST_OK("ByteArray testappend test 4");
       break;

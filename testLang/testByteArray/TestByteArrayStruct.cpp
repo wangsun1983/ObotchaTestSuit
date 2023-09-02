@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "ArrayIndexOutOfBoundsException.hpp"
 #include "TestLog.hpp"
+#include "ByteArrayTransformer.hpp"
 
 using namespace obotcha;
 
@@ -20,44 +21,63 @@ int data3;
 
 void testByteArrayStruct() {
   while(1) {
-    ByteArray array = createByteArray(sizeof(MyData));
-    MyData *p = array->get<MyData>();
-    p->data1 = 1;
-    p->data2 = 2;
-    p->data3 = 100;
-
-    MyData *p2 = array->get<MyData>();
-    if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
-      TEST_FAIL("ByteArray test Struct test 1");
+    ByteArray array = st(ByteArrayTransformer)::Alloc<MyData>();
+    auto p = st(ByteArrayTransformer)::Convert<MyData>(array);
+	p->data1 = 1;
+	p->data2 = 2;
+	p->data3 = 100;
+		
+	MyData *p2 = st(ByteArrayTransformer)::Convert<MyData>(array);
+	if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
+       TEST_FAIL("ByteArray test Struct test 1");
     }
     break;
   }
 
   while(1) {
-    ByteArray array = createByteArray(1024);
     MyData p;
     p.data1 = 1;
     p.data2 = 2;
     p.data3 = 100;
-    array->apply(&p);
+    ByteArray array = st(ByteArrayTransformer)::Convert(&p);
 
-    MyData *p2 = array->get<MyData>();
+    MyData *p2 = st(ByteArrayTransformer)::Convert<MyData>(array);
     if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
       TEST_FAIL("ByteArray test Struct test 2");
     }
     break;
   }
-
+  
   while(1) {
-    ByteArray array = st(ByteArray)::Alloc<MyData>();
-    MyData *p = array->get<MyData>();
-    p->data1 = 1;
-    p->data2 = 2;
-    p->data3 = 100;
-
-    MyData *p2 = array->get<MyData>();
+    MyData p;
+    p.data1 = 1;
+    p.data2 = 2;
+    p.data3 = 100;
+    ByteArray array = st(ByteArrayTransformer)::Duplicate(&p);
+	p.data1 = 100;
+	p.data2 = 200;
+	p.data3 = 300;
+	
+    MyData *p2 = st(ByteArrayTransformer)::Convert<MyData>(array);
     if(p2->data1 != 1 || p2->data2 != 2 || p2->data3 != 100) {
       TEST_FAIL("ByteArray test Struct test 3");
+    }
+    break;
+  }
+  
+  while(1) {
+    MyData p;
+    p.data1 = 1;
+    p.data2 = 2;
+    p.data3 = 100;
+    ByteArray array = st(ByteArrayTransformer)::Convert(&p);
+  	p.data1 = 100;
+  	p.data2 = 200;
+  	p.data3 = 300;
+  	
+    MyData *p2 = st(ByteArrayTransformer)::Convert<MyData>(array);
+    if(p2->data1 != 100 || p2->data2 != 200 || p2->data3 != 300) {
+      TEST_FAIL("ByteArray test Struct test 4");
     }
     break;
   }

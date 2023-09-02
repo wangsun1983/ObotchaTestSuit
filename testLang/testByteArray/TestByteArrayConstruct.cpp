@@ -193,5 +193,39 @@ void testConstruct() {
       }
       break;
     }
+	
+	while(1) {
+		ByteArray data1 = createByteArray(5);
+		ByteArray data2 = createByteArray(data1,0,1);
+		if(data2->size() != 1) {
+			TEST_FAIL("ByteArray test Construct test 17");
+		}
+		
+		ByteArray data3 = createByteArray(data1,0,5);
+		if(data3->size() != 5) {
+			TEST_FAIL("ByteArray test Construct test 18");
+		}
+		
+		try {
+			ByteArray data4 = createByteArray(data1,1,5);
+			TEST_FAIL("ByteArray test Construct test 19");
+		} catch(...) {}
+		
+		try {
+			ByteArray data5 = createByteArray(data1,2,4);
+			TEST_FAIL("ByteArray test Construct test 20");
+		} catch(...) {}
+		
+		ByteArray data6 = createByteArray(data1,2,3);
+		if(data6->size() != 3) {
+			TEST_FAIL("ByteArray test Construct test 21");
+		}
+		
+		ByteArray data7 = createByteArray(data1,0,0);
+		if(data7->size() != 5) {
+			TEST_FAIL("ByteArray test Construct test 22");
+		}
+		break;
+	}
     TEST_OK("ByteArray test Construct test 100");
 }
