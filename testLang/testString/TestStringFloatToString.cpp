@@ -17,10 +17,9 @@ using namespace obotcha;
 void TestStringFloatToString() {
 
     while(1) {
-        auto str1 = createString(createFloat(1.0f),1);
-        printf("str1 is %s \n",str1->toChars());
-        if(!str1->sameAs("1.0")) {
-            TEST_FAIL("String Float toString test1");
+        auto str1 = createString(createFloat(1.01f),5);
+        if(!str1->sameAs("1.01")) {
+            TEST_FAIL("String Float toString test1,str is %s",str1->toChars());
         }
         break;
     }

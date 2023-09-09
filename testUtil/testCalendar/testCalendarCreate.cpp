@@ -36,7 +36,7 @@ int testCaldnerCreate() {
              c1->get(st(Calendar)::Field::Hour) != d1->hour ||
              c1->get(st(Calendar)::Field::Minute) != d1->minute ||
              c1->get(st(Calendar)::Field::Second) != d1->second ||
-             c1->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+             c1->get(st(Calendar)::Field::MilliSecond) != d1->millisecond) {
 
                printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",c1->get(st(Calendar)::Field::Month),d1->month);
@@ -46,7 +46,7 @@ int testCaldnerCreate() {
                printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {Calendar(long int timeMillis)} case1]");
@@ -66,7 +66,7 @@ int testCaldnerCreate() {
              c1->get(st(Calendar)::Field::Hour) != d1->hour ||
              c1->get(st(Calendar)::Field::Minute) != d1->minute ||
              c1->get(st(Calendar)::Field::Second) != d1->second ||
-             c1->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+             c1->get(st(Calendar)::Field::MilliSecond) != d1->millisecond) {
 
                printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",c1->get(st(Calendar)::Field::Month),d1->month);
@@ -76,7 +76,7 @@ int testCaldnerCreate() {
                printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {Calendar(long int timeMillis)} case2]");
@@ -96,7 +96,7 @@ int testCaldnerCreate() {
              c1->get(st(Calendar)::Field::Hour) != d1->hour ||
              c1->get(st(Calendar)::Field::Minute) != d1->minute ||
              c1->get(st(Calendar)::Field::Second) != d1->second ||
-             c1->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+             c1->get(st(Calendar)::Field::MilliSecond) != d1->millisecond) {
 
                printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",c1->get(st(Calendar)::Field::Month),d1->month);
@@ -106,7 +106,7 @@ int testCaldnerCreate() {
                printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {Calendar(long int timeMillis)} case3]");
@@ -126,7 +126,7 @@ int testCaldnerCreate() {
              c1->get(st(Calendar)::Field::Hour) != d1->hour ||
              c1->get(st(Calendar)::Field::Minute) != d1->minute ||
              c1->get(st(Calendar)::Field::Second) != d1->second ||
-             c1->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+             c1->get(st(Calendar)::Field::MilliSecond) != d1->millisecond) {
                printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",c1->get(st(Calendar)::Field::Month),d1->month);
                printf("Calndear dayOfYear is %d,data dayOfYear is %d \n",c1->get(st(Calendar)::Field::DayOfYear),d1->dayOfYear - 1);
@@ -135,7 +135,7 @@ int testCaldnerCreate() {
                printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
                TEST_OK("[Calendar Test {Calendar(long int timeMillis)} case4]");
                break;
@@ -154,7 +154,7 @@ int testCaldnerCreate() {
              c1->get(st(Calendar)::Field::Hour) != d1->hour ||
              c1->get(st(Calendar)::Field::Minute) != d1->minute ||
              c1->get(st(Calendar)::Field::Second) != d1->second ||
-             c1->get(st(Calendar)::Field::MSecond) != d1->millisecond) {
+             c1->get(st(Calendar)::Field::MilliSecond) != d1->millisecond) {
 
                printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
                printf("Calndear month is %d,data month is %d \n",c1->get(st(Calendar)::Field::Month),d1->month);
@@ -164,7 +164,7 @@ int testCaldnerCreate() {
                printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+               printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                printf("current time is %ld \n",d1->time);
 
                TEST_FAIL("[Calendar Test {Calendar(long int timeMillis)} case5]");
@@ -193,7 +193,7 @@ int testCaldnerCreate() {
               printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
               printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
               printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-              printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+              printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
               printf("testdata time is %ld,calendar time is %ld \n",d1->time,c1->toTimeMillis());
 
               TEST_FAIL("[Calendar Test {Calendar(int,int,int,int,int,int)} case1]");
@@ -215,7 +215,7 @@ int testCaldnerCreate() {
                 printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                 printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                 printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                 printf("testdata time is %ld,calendar time is %ld \n",d1->time,c1->toTimeMillis());
 
                 TEST_FAIL("[Calendar Test {Calendar(int,int,int,int,int,int)} case2]");
@@ -237,7 +237,7 @@ int testCaldnerCreate() {
                 printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                 printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                 printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                 printf("testdata time is %ld,calendar time is %ld \n",d1->time,c1->toTimeMillis());
 
                 TEST_FAIL("[Calendar Test {Calendar(int,int,int,int,int,int)} case3]");
@@ -259,7 +259,7 @@ int testCaldnerCreate() {
                 printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                 printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                 printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                 printf("testdata time is %ld,calendar time is %ld \n",d1->time,c1->toTimeMillis());
 
                 TEST_FAIL("[Calendar Test {Calendar(int,int,int,int,int,int)} case4]");
@@ -281,7 +281,7 @@ int testCaldnerCreate() {
                 printf("Calndear hour is %d,data hour is %d \n",c1->get(st(Calendar)::Field::Hour),d1->hour);
                 printf("Calndear minute is %d,data minute is %d \n",c1->get(st(Calendar)::Field::Minute),d1->minute);
                 printf("Calndear second is %d,data second is %d \n",c1->get(st(Calendar)::Field::Second),d1->second);
-                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MSecond),d1->millisecond);
+                printf("Calndear millisecond is %d,data millisecond is %d \n",c1->get(st(Calendar)::Field::MilliSecond),d1->millisecond);
                 printf("testdata time is %ld,calendar time is %ld \n",d1->time,c1->toTimeMillis());
 
                 TEST_FAIL("[Calendar Test {Calendar(int,int,int,int,int,int)} case5]");

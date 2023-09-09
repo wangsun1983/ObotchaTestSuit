@@ -13,8 +13,10 @@ using namespace obotcha;
 extern int testLruAdd();
 extern int testLruRemove();
 extern int testLruUpdate();
+extern int testLruIteator();
 
 int main() {
+  testLruIteator();
   testLruAdd();
   testLruRemove();
   testLruUpdate();

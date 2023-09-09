@@ -28,8 +28,10 @@ extern void testBlockingQueue();
 extern void testHashSet();
 extern void testConcurrentHashSet();
 extern void testList();
+extern void testLruCache();
 
 int main() {
+	testLruCache();
     testList();
     testConcurrentHashSet();
     testHashSet();

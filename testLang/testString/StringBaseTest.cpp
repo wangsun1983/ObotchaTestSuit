@@ -225,14 +225,14 @@ void basetest() {
   //    _String(Double v);
   while(1) {
     Double v1 = createDouble(1.2);
-    String str1 = createString(v1,1);
+    String str1 = createString(v1,2);
     if(!str1->sameAs("1.2")) {
       TEST_FAIL("BaseTest String construct test27");
       break;
     }
 
     Double v2 = createDouble(1.3);
-    String str2 = createString(v2,1);
+    String str2 = createString(v2,2);
     if(!str2->sameAs("1.3")) {
       TEST_FAIL("BaseTest String construct test28");
       break;
@@ -699,8 +699,8 @@ void basetest() {
   while(1) {
     String abc = "1.234567";
     Float f = abc->toFloat();
-    if(f->toValue() != 1.23457) {
-       TEST_FAIL("BaseTest String toFloat test1");
+    if(st(Float)::Compare(f->toValue(),1.234567) != 0) {
+       TEST_FAIL("BaseTest String toFloat test1,value is %lf",f->toValue());
        break;
     }
 
@@ -900,22 +900,25 @@ void basetest() {
 
   //static String valueOf(Double v);
   while(1) {
-    Double v1 = createDouble(100);
-    String a1 = createString(v1,1);
-    if(!a1->sameAs("100.0")) {
+    Double v1 = createDouble(100.12345);
+    String a1 = createString(v1,8);
+    if(!a1->sameAs("100.12345")) {
       //TODO
-      TEST_FAIL("BaseTest String valueOf test7");
+      TEST_FAIL("BaseTest String valueOf test7,a1 is %s,expect is %s",
+					a1->toChars(),"100.12345");
       break;
     }
 
-/*
-    Double v2;
-    String a2 = createString(v2);
-    if(a2 != nullptr) {
-      TEST_FAIL("BaseTest String valueOf test8");
+
+    Double v2 = createDouble(100.12345);
+    String a2 = createString(v1,5); //(100=>3,12=>2)
+    if(!a2->sameAs("100.12")) {
+      //TODO
+      TEST_FAIL("BaseTest String valueOf test7_1,a2 is %s,expect is %s",
+    				a2->toChars(),"100.12345");
       break;
     }
-*/
+
     TEST_OK("BaseTest String valueOf test9");
     break;
   }
@@ -924,9 +927,9 @@ void basetest() {
   //static String valueOf(Float v);
   while(1) {
     Float v1 = createFloat(100);
-    String a1 = createString(v1,1);
-    if(!a1->sameAs("100.0")) {
-      TEST_FAIL("BaseTest String valueOf test10");
+    String a1 = createString(v1,3);
+    if(!a1->sameAs("100")) {
+      TEST_FAIL("BaseTest String valueOf test10,a1 is %s,expected is %s",a1->toChars(),"100.0");
       break;
     }
 /*

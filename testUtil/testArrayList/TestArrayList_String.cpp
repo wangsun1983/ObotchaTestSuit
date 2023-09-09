@@ -235,7 +235,7 @@ void testArrayList_String() {
           break;
         }
 
-        if(list->indexOf("d") >= 0) {
+        if(list->indexOf("d") != -1) {
           TEST_FAIL("[ArrayList<String> Test {indexOf(String v)} case3]");
           break;
         }

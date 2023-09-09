@@ -14,8 +14,10 @@ extern void testPerformance();
 extern void testToString();
 extern void testSubString();
 extern void testReset();
+extern void testCrop();
 
 int main() {
+	testCrop();
     testAppend();
     testToString();
     testSubString();

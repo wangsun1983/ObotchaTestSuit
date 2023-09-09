@@ -47,11 +47,22 @@ extern int testCalendarDecreaseHour_Interval();
 extern int testCalendarDecreaseMinute_Interval();
 extern int testCalendarDecreaseSecond_Interval();
 
-
 extern int convertDayOfWeekFromJava(int);
 
 extern void testCalendarIsLeapYear();
 extern void testCalendarGetDays();
+
+extern void testCalendarSetYear();
+extern void testCalendarSetMonth();
+extern void testCalendarSetDayOfWeek();
+extern void testCalendarSetDayOfMonth();
+extern void testCalendarSetDayOfYear();
+extern void testCalendarSetYearSpecial();
+extern void testCalendarSetMonthSpecial();
+extern void testCalendarSetMonthSpecial2();
+extern void testCalendarEqual();
+
+extern void testCalendarGetMaxium();
 
 void simpleTest() {
   Calendar c = createCalendar(9277732677921l);
@@ -171,8 +182,8 @@ ArrayList<TimeData> analyse(File f) {
 
 
 int main() {
-    //Test
-    //printf("start calndar test \n");
+    //Test 
+#if 0
     File dateFile = createFile("./testData/date.txt");
     File hourFile = createFile("./testData/hour.txt");
     File minuteFile = createFile("./testData/minute.txt");
@@ -186,7 +197,8 @@ int main() {
     secondList = analyse(secondFile);
     yearList = analyse(yearFile);
     monthList = analyse(monthFile);
-
+	
+	testCalendarGetMaxium();
     testCaldnerCreate();
     testCalendarIncreaseYear();
     testCalendarIncreaseDay();
@@ -216,8 +228,20 @@ int main() {
     testCalendarDecreaseMinute_Interval();
     testCalendarDecreaseSecond_Interval();
     testCalendarIsLeapYear();
-
     testCalendarGetDays();
+	
+	testCalendarSetYear();
+	testCalendarSetMonth();
+
+	testCalendarSetDayOfWeek();
+	testCalendarSetDayOfMonth();
+	testCalendarSetDayOfYear();
+
+	testCalendarSetYearSpecial();
+	testCalendarSetMonthSpecial();
+	testCalendarSetMonthSpecial2();
+#endif	
+	testCalendarEqual();
 
     return 0;
 

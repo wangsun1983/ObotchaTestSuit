@@ -83,8 +83,8 @@ int main() {
             //std::cout<<"v1 is "<<v1;
             for(int ckindex = 0;ckindex < index;ckindex++) {
                 //if(v1 == array[ckindex]) {
-                if(st(Math)::compareDouble(v1,array[ckindex]) == st(Math)::AlmostEqual) {
-                    std::cout<<"v1 is "<<v1<<";array["<<ckindex<<"] = "<<array[ckindex]<<std::endl;
+                if(st(Double)::Compare(v1,array[ckindex]) == 0) {
+                    //std::cout<<"v1 is "<<v1<<";array["<<ckindex<<"] = "<<array[ckindex]<<std::endl;
                     isOk = false;
                     break;
                 }
@@ -115,7 +115,7 @@ int main() {
             double min = 10.0001;
             double max = 15.00001;
             double t = rand->next<double>(min,max);
-            if(st(Math)::compareDouble(t,min) == st(Math)::Param2Greater || st(Math)::compareDouble(t,max) == st(Math)::Param1Greater) {
+            if(st(Double)::Compare(t,min) !=  1|| st(Double)::Compare(t,max) != -1) {
                 TEST_FAIL("[TestRandom Test {next<double>(double,double)} case1]");
                 break;
             }
@@ -131,7 +131,7 @@ int main() {
         for(int index = 0;index < 1000;index++) {
             double min = 10.0001;
             double t = rand->next<double>(min,st(Double)::kMaxValue);
-            if(st(Math)::compareDouble(t,min) == st(Math)::Param2Greater) {
+            if(st(Double)::Compare(t,min) != 1) {
                 TEST_FAIL("[TestRandom Test {next<double>(double)} case1]");
                 break;
             }

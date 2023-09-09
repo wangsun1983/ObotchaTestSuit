@@ -25,6 +25,7 @@ void TestStringregionMatchesIgnoreCase() {
             TEST_FAIL("String Region Matches IgnoreCase test2");
         }
         
+		//bc123dddff
         if(str->regionMatchesIgnoreCase(1,createString("BC123dddff"),0,24)) {
             TEST_FAIL("String Region Matches IgnoreCase test3");
         }

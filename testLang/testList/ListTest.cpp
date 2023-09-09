@@ -18,8 +18,10 @@ extern void testConstruct();
 extern void testExceptoin();
 extern void testListValueUpdate();
 extern void testIterator();
+extern void testRemove();
 
 int main() {
+  testRemove();
   testIterator();
   listobjecttest();
   basetest();
