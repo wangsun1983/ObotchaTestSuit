@@ -14,6 +14,8 @@
 #include "JsonWriter.hpp"
 #include "Math.hpp"
 #include "TestLog.hpp"
+#include "Float.hpp"
+#include "Double.hpp"
 
 using namespace obotcha;
 
@@ -74,7 +76,7 @@ void testUserDataReflect() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/userdata_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/userdata_test1.json"));
       JsonValue value2 = reader->get();
       ReflectUserData data2 = createReflectUserData();
       value2->reflectTo(data2);
@@ -90,11 +92,11 @@ void testUserDataReflect() {
             TEST_FAIL("[JsonReflect UserData Reflect Test case1]  ");
       }
 
-      if(st(Math)::compareDouble(data2->doubleData,100.10) != st(Math)::AlmostEqual) {
+      if(st(Double)::Compare(data2->doubleData,100.10) != 0) {
           TEST_FAIL("[JsonReflect UserData Reflect Test case1_1]  ");
       }
 
-      if(st(Math)::compareFloat(data2->floatData,101.10) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(data2->floatData,101.10) != 0) {
           TEST_FAIL("[JsonReflect UserData Reflect Test case1_2]  ");
       }
       break;
@@ -118,7 +120,7 @@ void testUserDataReflect() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/userdata_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/userdata_test2.json"));
       JsonValue value2 = reader->get();
       ReflectUserData data2 = createReflectUserData();
       value2->reflectTo(data2);
@@ -147,11 +149,11 @@ void testUserDataReflect() {
           TEST_FAIL("[JsonReflect UserData Reflect Test case3]  ");
         }
 
-        if(st(Math)::compareFloat(data->floatObjData->toValue(),102.10) != st(Math)::AlmostEqual) {
+        if(st(Float)::Compare(data->floatObjData->toValue(),102.10) != 0) {
             TEST_FAIL("[JsonReflect UserData Reflect Test case3_1]  ");
         }
 
-        if(st(Math)::compareDouble(data->doubleObjData->toValue(),103.20) != st(Math)::AlmostEqual) {
+        if(st(Double)::Compare(data->doubleObjData->toValue(),103.20) != 0) {
             TEST_FAIL("[JsonReflect UserData Reflect Test case3_2]  ");
         }
         break;

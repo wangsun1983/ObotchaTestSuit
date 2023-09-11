@@ -3,6 +3,7 @@
 
 #include "LinkedList.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 

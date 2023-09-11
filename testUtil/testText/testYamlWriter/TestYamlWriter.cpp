@@ -99,7 +99,7 @@ void testYamlWriter() {
     data->hobbies->put(S("basketball"),S("Elite"));
     data->hobbies->put(S("sleep"),S("dislike"));
 
-    YamlReader r = createYamlReader(createFile("./tmp/tmp.yaml"));
+    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/tmp.yaml"));
     auto node = r->parse();
     TestData v2 = createTestData();
     node->reflectTo(v2);

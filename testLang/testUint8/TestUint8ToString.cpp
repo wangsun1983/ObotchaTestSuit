@@ -9,6 +9,7 @@
 #include "StrongPointer.hpp"
 #include "InitializeException.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 

@@ -60,7 +60,7 @@ void testMapList() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/userdata_list_map_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/userdata_list_map_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/userdata_list_map_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       MapListUserData data2 = createMapListUserData();

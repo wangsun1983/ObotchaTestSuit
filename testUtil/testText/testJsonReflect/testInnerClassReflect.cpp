@@ -50,7 +50,7 @@ void testInnerClassReflect() {
         value->importFrom(data);
         writer->write(value);
 
-        JsonReader reader = createJsonReader(createFile("./tmp/inner_class_test1.json"));
+        JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/inner_class_test1.json"));
         JsonValue value2 = reader->get();
         OuterData data2 = createOuterData();
         value2->reflectTo(data2);

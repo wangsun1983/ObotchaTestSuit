@@ -14,7 +14,7 @@ using namespace obotcha;
 int integerDataTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_01.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_01.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case1]");
@@ -33,7 +33,7 @@ int integerDataTest() {
 
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_02.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case3]");
@@ -51,7 +51,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_03.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case6]");
@@ -69,7 +69,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_04.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case9]");
@@ -87,7 +87,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_05.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case11]");
@@ -105,7 +105,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_06_64bits.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_06_64bits.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case14]");
@@ -123,7 +123,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_07_64bits.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_07_64bits.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case17]");
@@ -141,7 +141,7 @@ int integerDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_integer_08_64bits.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_integer_08_64bits.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Integer Data Test case20]");

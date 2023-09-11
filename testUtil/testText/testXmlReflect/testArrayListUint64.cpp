@@ -42,7 +42,7 @@ void testArrayListUint64() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Uint32_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Uint32_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint32_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<Uint64> list2 = createArrayList<Uint64>();
@@ -85,7 +85,7 @@ void testArrayListUint64() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Uint32_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Uint32_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint32_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       Uint64List2 list2 = createUint64List2();

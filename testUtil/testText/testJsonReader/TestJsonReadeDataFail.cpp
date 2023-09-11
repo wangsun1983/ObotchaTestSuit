@@ -14,7 +14,7 @@ int dataFailTest() {
     while(1) {
       for(int index = 1;index <=33;index++) {
         String str = createString("./test/jsonchecker/fail")->append(createString(index),".json");
-        JsonReader reader = createJsonReader(createFile(str));
+        JsonReader reader = createJsonReader()->loadFile(createFile(str));
         JsonValue value = reader->get();
         if(value != nullptr) {
           TEST_FAIL("[JsonReader Data Fail Test case%d]",index);

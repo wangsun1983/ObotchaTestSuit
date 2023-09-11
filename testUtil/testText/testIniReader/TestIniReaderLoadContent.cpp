@@ -18,9 +18,9 @@ void testIniReaderLoadContent() {
         FileInputStream stream = createFileInputStream("./testData.ini");
         stream->open();
         auto data = stream->readAll();
-        IniReader reader = createIniReader(data->toString());
+        IniReader reader = createIniReader()->loadContent(data->toString());
         
-        auto maps = reader->parse()->getAll();
+        auto maps = reader->get()->getAll();
         if(maps->size() != 5) {
           TEST_FAIL("IniReader LoadContent test1,maps size is %d",maps->size());
           break;

@@ -7,15 +7,16 @@
 #include "Boolean.hpp"
 #include "Math.hpp"
 #include "TestLog.hpp"
+#include "Float.hpp"
 
 using namespace obotcha;
 
 void testHashMapFloatFloat() {
     while(1) {
-      HashMap<float,float> map = createHashMap<float,float>();
-      map->put(1.1,100.01);
-      float v = map->get(1.1);
-      if(st(Math)::compareFloat(v,100.01) != st(Math)::AlmostEqual) {
+      HashMap<float,Float> map = createHashMap<float,Float>();
+      map->put(1.1,createFloat(100.01));
+      float v = map->get(1.1)->toValue();
+      if(st(Float)::Compare(v,100.01) != 0) {
         TEST_FAIL("[HashMap<float,float>} test1],v is %f ",v);
         break;
       }
@@ -23,16 +24,10 @@ void testHashMapFloatFloat() {
     }
 
     while(1) {
-      HashMap<float,float> map = createHashMap<float,float>();
-      map->put(1.1,100.01);
-      bool isExcpetion = false;
-      try {
-        map->get(2.1);
-      } catch(...) {
-        isExcpetion = true;
-      }
-
-      if(!isExcpetion) {
+      HashMap<float,Float> map = createHashMap<float,Float>();
+      map->put(1.1,createFloat(100.01));
+      auto v = map->get(2.1);
+      if(v != nullptr) {
         TEST_FAIL("[HashMap<float,float>} test2] ");
         break;
       }
@@ -40,20 +35,20 @@ void testHashMapFloatFloat() {
     }
 
     while(1) {
-      HashMap<float,float> map = createHashMap<float,float>();
-      map->put(1.1,100.01);
-      map->put(1.1,200.01);
-      map->put(2.1,100.01);
+      HashMap<float,Float> map = createHashMap<float,Float>();
+      map->put(1.1,createFloat(100.01));
+      map->put(1.1,createFloat(200.01));
+      map->put(2.1,createFloat(100.01));
       if(map->size() != 2) {
         TEST_FAIL("[HashMap<float,float>} test3] ");
         break;
       }
 
-      float v1 = map->get(1.1);
-      float v2 = map->get(2.1);
+      float v1 = map->get(1.1)->toValue();
+      float v2 = map->get(2.1)->toValue();
 
-      if(st(Math)::compareFloat(v1,200.01) != st(Math)::AlmostEqual
-      || st(Math)::compareFloat(v2,100.01) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(v1,200.01) != 0
+      || st(Float)::Compare(v2,100.01) != 0) {
         TEST_FAIL("[HashMap<float,float>} test4],v1 is %f,v2 is %f ",v1,v2);
         break;
       }

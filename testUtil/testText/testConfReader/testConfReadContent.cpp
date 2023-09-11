@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 int testReadContent() {
-    ConfReader reader = createConfReader(createString("Desktop-Picture = /usr/images/earth.jpg \r\n \
+    ConfReader reader = createConfReader()->loadContent(createString("Desktop-Picture = /usr/images/earth.jpg \r\n \
                                             Position = Centered \r\n \
                                             \"Background Color\" = Black \r\n \
                                             NULL=  \r\n \

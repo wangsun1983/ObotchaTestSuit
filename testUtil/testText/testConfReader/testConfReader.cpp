@@ -11,7 +11,7 @@ using namespace obotcha;
 
 int basetest() {
     while(1) {
-      ConfReader reader = createConfReader(createFile("simple.conf"));
+      ConfReader reader = createConfReader()->loadFile(createFile("simple.conf"));
       auto value = reader->get();
         //getConf(String);
 

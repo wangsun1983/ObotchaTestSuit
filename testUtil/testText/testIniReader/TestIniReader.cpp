@@ -14,8 +14,8 @@ using namespace obotcha;
 void testIniReader() {
 
     while(1) {
-        IniReader reader = createIniReader(createFile("./testData.ini"));
-        auto maps = reader->parse()->getAll();
+        IniReader reader = createIniReader()->loadFile(createFile("./testData.ini"));
+        auto maps = reader->get()->getAll();
         if(maps->size() != 5) {
           TEST_FAIL("IniReader test1");
           break;

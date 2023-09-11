@@ -43,7 +43,7 @@ void testArrayListString() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_string_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_string_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<String> list2 = createArrayList<String>();
@@ -80,7 +80,7 @@ void testArrayListString() {
       value->importFrom(ll);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_string_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_string_test2.json"));
       JsonValue value2 = reader->get();
 
       //ArrayList<String> list2 = createArrayList<String>();

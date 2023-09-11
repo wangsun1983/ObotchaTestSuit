@@ -3,7 +3,7 @@
 
 #include "Stack.hpp"
 #include "TestLog.hpp"
-
+#include "String.hpp"
 using namespace obotcha;
 
 DECLARE_CLASS(TestPushData) {
@@ -17,10 +17,10 @@ public:
 
 void testStackPush() {
   while(1) {
-    Stack<int> ss = createStack<int>();
+    Stack<Integer> ss = createStack<Integer>();
 
     for(int i = 0;i<1024*32;i++) {
-      ss->push(i);
+      ss->push(createInteger(i));
     }
 
     if(ss->size() != 1024*32) {
@@ -29,7 +29,7 @@ void testStackPush() {
     }
 
     for(int i = 1024*32 - 1;i >= 0;i--) {
-      if(ss->pop() != i) {
+      if(ss->pop() != createInteger(i)) {
         TEST_FAIL("testStack push test2");
         break;
       }

@@ -34,7 +34,7 @@ void testHashMapUint64Uint64() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint64_Uint64_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint64_Uint64_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint64_Uint64_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Uint64,Uint64> maps2 = createHashMap<Uint64,Uint64>();
@@ -77,7 +77,7 @@ void testHashMapUint64Uint64() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint64_Uint64_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint64_Uint64_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint64_Uint64_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       HashmapDataUint64 data2 = createHashmapDataUint64();

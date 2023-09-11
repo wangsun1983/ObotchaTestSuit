@@ -30,7 +30,7 @@ int testImport() {
     ConfWriter writer = createConfWriter(createFile("./tmp/importdata1.conf"));
     writer->write(value);
     
-    ConfReader reader = createConfReader(createFile("./tmp/importdata1.conf"));
+    ConfReader reader = createConfReader()->loadFile(createFile("./tmp/importdata1.conf"));
     auto __value = reader->get();
     if(!__value->get("intValue")->sameAs("100")
         ||!__value->get("stringValue")->sameAs("aabbcc")) {

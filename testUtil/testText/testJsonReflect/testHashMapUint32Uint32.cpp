@@ -33,7 +33,7 @@ void testHashMapUint32Uint32() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Uint32_Uint32_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Uint32_Uint32_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Uint32,Uint32> maps2 = createHashMap<Uint32,Uint32>();
@@ -77,7 +77,7 @@ void testHashMapUint32Uint32() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Uint32_Uint32_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Uint32_Uint32_test2.json"));
       JsonValue value2 = reader->get();
 
       HashmapDataUint32 data2 = createHashmapDataUint32();

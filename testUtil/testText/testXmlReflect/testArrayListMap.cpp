@@ -72,7 +72,7 @@ void testArrayListMap() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_map_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_map_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_map_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<HashMap<Integer,ListMapItem>> list2 = createArrayList<HashMap<Integer,ListMapItem>>();
@@ -172,7 +172,7 @@ void testArrayListMap() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_map_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_map_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_map_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       ListMapData data2 = createListMapData();

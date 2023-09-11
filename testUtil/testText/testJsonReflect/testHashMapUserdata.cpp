@@ -47,7 +47,7 @@ void testHashMapUserdata() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_userdata_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_userdata_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Integer,MapUserData> maps2 = createHashMap<Integer,MapUserData>();

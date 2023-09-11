@@ -34,7 +34,7 @@ void testHashMapLongLong() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Long_Long_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Long_Long_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Long_Long_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Long,Long> maps2 = createHashMap<Long,Long>();
@@ -77,7 +77,7 @@ void testHashMapLongLong() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Long_Long_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Long_Long_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Long_Long_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       HashmapDataLong data2 = createHashmapDataLong();

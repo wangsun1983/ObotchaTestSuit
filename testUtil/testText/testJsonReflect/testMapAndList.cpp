@@ -60,7 +60,7 @@ void testMapList() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/userdata_list_map_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/userdata_list_map_test2.json"));
       JsonValue value2 = reader->get();
 
       MapListUserData data2 = createMapListUserData();

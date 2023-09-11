@@ -52,7 +52,7 @@ void testArrayUserData() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_userdata_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_userdata_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<ArrayItemUserdata> list2 = createArrayList<ArrayItemUserdata>();
@@ -106,7 +106,7 @@ void testArrayUserData() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_userdata_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_userdata_test2.json"));
       JsonValue value2 = reader->get();
 
       Userdatas data2 = createUserdatas();

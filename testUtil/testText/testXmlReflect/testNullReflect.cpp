@@ -46,7 +46,7 @@ void testNullReflect() {
   XmlWriter writer = createXmlWriter(doc);
   writer->write("./tmp/testNull.xml");
 
-  XmlReader reader = createXmlReader(createFile("./tmp/testNull.xml"));
+  XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/testNull.xml"));
   XmlDocument doc2 = reader->get();
 
   MyInfo info2 = createMyInfo();

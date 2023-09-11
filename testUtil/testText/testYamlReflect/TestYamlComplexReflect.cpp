@@ -54,7 +54,7 @@ void testReflectComplex() {
     w->write(v);
 
     //do check
-    YamlReader r = createYamlReader(createFile("./tmp/complex.yaml"));
+    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/complex.yaml"));
     auto result = r->parse();
     ClassRoom ro = createClassRoom();
     result->reflectTo(ro);

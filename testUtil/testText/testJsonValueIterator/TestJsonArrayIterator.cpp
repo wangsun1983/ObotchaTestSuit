@@ -12,7 +12,7 @@ using namespace obotcha;
 
 int testJsonArrayIterator() {
     while(1) {
-      JsonReader reader = createJsonReader(createFile("stringarray.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("stringarray.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       ArrayList<String> list = createArrayList<String>();
@@ -40,7 +40,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("intarray.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("intarray.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       int array[] = {1, 100, 123};
@@ -64,7 +64,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("booljson.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("booljson.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       bool array[] = {true, false, true};
@@ -88,7 +88,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("object.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("object.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       int val_array[] = {1, 2, 3};

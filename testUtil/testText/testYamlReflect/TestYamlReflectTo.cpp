@@ -47,7 +47,7 @@ public:
 };
 
 void testReflectTo() {
-    YamlReader r = createYamlReader(createFile("./test.yaml"));
+    YamlReader r = createYamlReader()->loadFile(createFile("./test.yaml"));
     auto value = r->parse();
     TestData data = createTestData();
     value->reflectTo(data);

@@ -14,6 +14,7 @@ extern void equaltest();
 extern void updatetest();
 extern void hashcodetest();
 extern void parseWrongTest();
+extern void compareTest();
 
 int main() {
     basetest();
@@ -21,5 +22,6 @@ int main() {
     updatetest();
     hashcodetest();
     parseWrongTest();
+	compareTest();
     return 0;
 }

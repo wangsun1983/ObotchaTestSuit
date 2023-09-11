@@ -54,7 +54,7 @@ void testReflectNumber() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/output1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/output1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/output1.xml"));
       XmlDocument doc2 = reader->get();
       NumberXmlReflectData rdata3 = createNumberXmlReflectData();
       doc2->reflectTo(rdata3);
@@ -75,7 +75,7 @@ void testReflectNumber() {
       }
 
       if(rdata3->floatData == nullptr
-        ||st(Math)::compareFloat(data->floatData->toValue(),rdata3->floatData->toValue()) != st(Math)::AlmostEqual) {
+        ||st(Float)::Compare(data->floatData->toValue(),rdata3->floatData->toValue()) != 0) {
         TEST_FAIL("data->floatData is %lf,rdata3->floatData is %lf \n",data->floatData->toValue(),rdata3->floatData->toValue());
         TEST_FAIL("XmlReflect Number To File test4");
         break;

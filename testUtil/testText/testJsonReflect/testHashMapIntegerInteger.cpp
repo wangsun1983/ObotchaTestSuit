@@ -33,7 +33,7 @@ void testHashMapIntegerInteger() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_integer_integer_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_integer_integer_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Integer,Integer> maps2 = createHashMap<Integer,Integer>();
@@ -77,7 +77,7 @@ void testHashMapIntegerInteger() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_integer_integer_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_integer_integer_test2.json"));
       JsonValue value2 = reader->get();
 
       HashmapDataInteger data2 = createHashmapDataInteger();

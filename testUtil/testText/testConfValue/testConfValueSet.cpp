@@ -21,7 +21,7 @@ int testConfValueSet() {
     ConfWriter writer = createConfWriter(createFile("./tmp/test1.conf"));
     writer->write(value);
     
-    ConfReader r = createConfReader(createFile("./tmp/test1.conf"));
+    ConfReader r = createConfReader()->loadFile(createFile("./tmp/test1.conf"));
     auto value2 = r->get();
     
     if(!value2->get(createString("tag1"))->sameAs("value1")

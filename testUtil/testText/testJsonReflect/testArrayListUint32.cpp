@@ -42,7 +42,7 @@ void testArrayListUint32() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Uint32_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Uint32_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<Uint32> list2 = createArrayList<Uint32>();
@@ -86,7 +86,7 @@ void testArrayListUint32() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Uint32_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Uint32_test2.json"));
       JsonValue value2 = reader->get();
 
       Uint32List2 list2 = createUint32List2();

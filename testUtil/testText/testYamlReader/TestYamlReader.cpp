@@ -14,7 +14,7 @@ struct TestData {
 };
 
 int main() {
-    YamlReader reader = createYamlReader(createFile("test.yaml"));
+    YamlReader reader = createYamlReader()->loadFile(createFile("test.yaml"));
     YamlValue root = reader->parse();
 
     //version: '{build}'

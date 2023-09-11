@@ -13,12 +13,12 @@ using namespace obotcha;
 
 int testcreate() {
 
-    ConfReader reader = createConfReader(createFile("simple.conf"));
+    ConfReader reader = createConfReader()->loadFile(createFile("simple.conf"));
     auto value = reader->get();
     ConfWriter writer = createConfWriter(createFile("./tmp/simple2.conf"));
     writer->write(value);
     
-    ConfReader reader2 = createConfReader(createFile("./tmp/simple2.conf"));
+    ConfReader reader2 = createConfReader()->loadFile(createFile("./tmp/simple2.conf"));
     auto value2 = reader->get();
     
     auto iterator = value->getIterator();

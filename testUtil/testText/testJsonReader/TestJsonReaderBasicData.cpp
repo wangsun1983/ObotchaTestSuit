@@ -14,7 +14,7 @@ using namespace obotcha;
 int basicDataTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_01.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_01.json"));
       JsonValue value = reader->get();
       Integer v = value->getInteger();
       if(v == nullptr || v->toValue() != 123456789) {
@@ -27,7 +27,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_02.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_02.json"));
       JsonValue value = reader->get();
       Integer v = value->getInteger();
       if(v == nullptr || v->toValue() != -123456789) {
@@ -40,7 +40,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_03.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_03.json"));
       JsonValue value = reader->get();
       Double v = value->getDouble();
       if(v == nullptr || v->toValue() != 1.2345678) {
@@ -53,7 +53,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_04.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_04.json"));
       JsonValue value = reader->get();
       String v = value->getString();
       if(v == nullptr || !v->sameAs("abcdef")) {
@@ -66,7 +66,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_05.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_05.json"));
       JsonValue value = reader->get();
       if(value != nullptr) {
         TEST_FAIL("[JsonReader basicDataTest case9]");
@@ -78,7 +78,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_06.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_06.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader basicDataTest case12]");
@@ -96,7 +96,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_07.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_07.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader basicDataTest case15]");
@@ -114,7 +114,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_08.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_08.json"));
       JsonValue value = reader->get();
       if(value != nullptr) {
         TEST_FAIL("[JsonReader basicDataTest case18]");
@@ -126,7 +126,7 @@ int basicDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_basic_09.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_basic_09.json"));
       JsonValue value = reader->get();
       if(value != nullptr) {
         TEST_FAIL("[JsonReader basicDataTest case21]");

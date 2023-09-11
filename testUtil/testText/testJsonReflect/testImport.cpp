@@ -117,7 +117,7 @@ void testImport() {
     JsonWriter writer = createJsonWriter(createString("wangslabc.json"));
     writer->write(value);
     writer->close();*/
-    JsonReader reader = createJsonReader(createFile("wangslabc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("wangslabc.json"));
     JsonValue value = reader->get();
 
     ImportData info = createImportData();

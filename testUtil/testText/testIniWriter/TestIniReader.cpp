@@ -15,13 +15,13 @@ using namespace obotcha;
 void testIniReader() {
 
     while(1) {
-        IniReader reader = createIniReader(createFile("testData.ini"));
-        IniValue v = reader->parse();
+        IniReader reader = createIniReader()->loadFile(createFile("testData.ini"));
+        IniValue v = reader->get();
         auto writer = createIniWriter(createFile("./tmp/testData0.ini"));
         writer->write(v);
-        IniReader reader2 = createIniReader(createFile("./tmp/testData0.ini"));
+        IniReader reader2 = createIniReader()->loadFile(createFile("./tmp/testData0.ini"));
       
-        auto maps = reader2->parse()->getAll();
+        auto maps = reader2->get()->getAll();
         if(maps->size() != 5) {
           TEST_FAIL("IniWriter test1");
           break;

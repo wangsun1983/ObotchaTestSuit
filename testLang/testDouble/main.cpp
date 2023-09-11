@@ -12,11 +12,13 @@ extern void basetest();
 extern void equaltest();
 extern void testToString();
 extern void hashtest();
+extern void compareTest();
 
 int main() {
   basetest();
   equaltest();
   testToString();
   hashtest();
+  compareTest();
   return 0;
 }

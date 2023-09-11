@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 int testJsonValueIterator() {
-    JsonReader reader = createJsonReader(createFile("abc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("abc.json"));
     //String getTag();
     JsonValueIterator iterator = reader->get()->getIterator();
     while(1) {

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 
 void testsopenvreader() {
-    XmlReader reader = createXmlReader(createFile("sopenv.xml"));
+    XmlReader reader = createXmlReader()->loadFile(createFile("sopenv.xml"));
     XmlValue value = reader->get()->getRootNode();
     XmlValue value_1 = value->getNode(createString("soapenv:Body"));
     XmlValue value_1_1 = value_1->getNode(createString("ResponseMessage"));

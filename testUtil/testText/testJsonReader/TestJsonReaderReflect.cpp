@@ -22,7 +22,7 @@ public:
 };
 
 int testreflect() {
-    JsonReader mReader = createJsonReader(createFile("reflect.json"));
+    JsonReader mReader = createJsonReader()->loadFile(createFile("reflect.json"));
     //MyReflectData data = mReader->reflect<st(MyReflectData)>();
     MyReflectData data = createMyReflectData();
     mReader->get()->reflectTo(data);

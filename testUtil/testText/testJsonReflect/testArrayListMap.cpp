@@ -72,7 +72,7 @@ void testArrayListMap() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_map_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_map_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<HashMap<Integer,ListMapItem>> list2 = createArrayList<HashMap<Integer,ListMapItem>>();
@@ -173,7 +173,7 @@ void testArrayListMap() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_map_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_map_test2.json"));
       JsonValue value2 = reader->get();
 
       ListMapData data2 = createListMapData();

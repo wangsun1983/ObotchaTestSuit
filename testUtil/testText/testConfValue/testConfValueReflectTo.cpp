@@ -20,7 +20,7 @@ public:
 };
 
 int testReflectTo() {
-    ConfReader reader = createConfReader(createFile("./reflectdata.conf"));
+    ConfReader reader = createConfReader()->loadFile(createFile("./reflectdata.conf"));
     auto value = reader->get();
     
     ReflectData data = createReflectData();

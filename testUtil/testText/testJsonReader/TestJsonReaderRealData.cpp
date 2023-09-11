@@ -8,12 +8,13 @@
 #include "Log.hpp"
 #include "TestLog.hpp"
 #include "Math.hpp"
+#include "Double.hpp"
 
 using namespace obotcha;
 
 int realDataTest() {
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_01.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_01.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case1]");
@@ -31,7 +32,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_02.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case4]");
@@ -49,7 +50,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_03.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case7]");
@@ -67,7 +68,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_04.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case10]");
@@ -86,7 +87,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_05.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case10]");
@@ -104,7 +105,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_06.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_06.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case13]");
@@ -123,7 +124,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_07.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_07.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case13]");
@@ -142,7 +143,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_07.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_07.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case13]");
@@ -161,7 +162,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_08.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_08.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case16]");
@@ -180,7 +181,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_09.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_09.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case19]");
@@ -188,7 +189,7 @@ int realDataTest() {
       }
 
       Double v_int = value->getDouble();
-      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),1.9e+19) != st(Math)::AlmostEqual) {
+      if(v_int == nullptr || st(Double)::Compare(v_int->toValue(),1.9e+19) != 0) {
         TEST_FAIL("[JsonReader Real Data Test case20],v_int is %lf,v2 is %lf ",v_int->toValue(),1.9e+19);
         break;
       }
@@ -198,7 +199,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_10.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_10.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case22]");
@@ -206,7 +207,7 @@ int realDataTest() {
       }
 
       Long v_int = value->getLong();
-      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),-2200000001) != st(Math)::AlmostEqual) {
+      if(v_int == nullptr || st(Double)::Compare(v_int->toValue(),-2200000001) != 0) {
         TEST_FAIL("[JsonReader Real Data Test case23],v_int is %lf ",v_int->toValue());
 
         break;
@@ -217,7 +218,7 @@ int realDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_real_11.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_real_11.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Real Data Test case19]");
@@ -225,7 +226,7 @@ int realDataTest() {
       }
 
       Double v_int = value->getDouble();
-      if(v_int == nullptr || st(Math)::compareDouble(v_int->toValue(),-9.3e+18) != st(Math)::AlmostEqual) {
+      if(v_int == nullptr || st(Double)::Compare(v_int->toValue(),-9.3e+18) != 0) {
         TEST_FAIL("[JsonReader Real Data Test case20],v_int is %lf ",v_int->toValue());
 
         break;

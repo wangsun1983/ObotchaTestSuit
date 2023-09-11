@@ -77,7 +77,7 @@ void testImportFrom() {
     w->write(value);
 
     //
-    YamlReader r = createYamlReader(createFile("./tmp/import.yaml"));
+    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/import.yaml"));
     auto node = r->parse();
     Worker v2 = createWorker();
     node->reflectTo(v2);

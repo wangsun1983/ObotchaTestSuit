@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 int basetest() {
-    JsonReader reader = createJsonReader(createFile("abc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("abc.json"));
     JsonValue value = reader->get();
 
     //String getString(String tag);

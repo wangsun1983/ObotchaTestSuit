@@ -44,7 +44,7 @@ void testHashMapStringString() {
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/map_string_string_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/map_string_string_test1.json"));
       JsonValue value2 = reader->get();
 /*
       auto iterator = value2->getIterator();
@@ -88,7 +88,7 @@ void testHashMapStringString() {
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/map_string_string_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/map_string_string_test2.json"));
       JsonValue value2 = reader->get();
       StringStringMap checkValue = createStringStringMap();
       value2->reflectTo(checkValue);
@@ -117,7 +117,7 @@ void testHashMapStringString() {
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/map_string_string_test3.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/map_string_string_test3.json"));
       JsonValue value2 = reader->get();
 
       //HashMap<String,String>map2 = createHashMap<String,String>();
@@ -151,7 +151,7 @@ void testHashMapStringString() {
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/map_string_string_test4.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/map_string_string_test4.json"));
       JsonValue value2 = reader->get();
       StringStringMap2 checkValue = createStringStringMap2();
       value2->reflectTo(checkValue);

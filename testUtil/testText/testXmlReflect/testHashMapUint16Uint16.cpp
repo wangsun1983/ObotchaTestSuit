@@ -34,7 +34,7 @@ void testHashMapUint16Uint16() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint16_Uint16_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint16_Uint16_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Uint16,Uint16> maps2 = createHashMap<Uint16,Uint16>();
@@ -77,7 +77,7 @@ void testHashMapUint16Uint16() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint16_Uint16_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint16_Uint16_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       HashmapDataUint16 data2 = createHashmapDataUint16();

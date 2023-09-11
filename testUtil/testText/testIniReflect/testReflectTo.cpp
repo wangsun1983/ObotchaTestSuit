@@ -55,8 +55,8 @@ public:
 void testReflectTo() {
     //test simple1
     {
-        IniReader r = createIniReader(createFile("./simple1.ini"));
-        IniValue v = r->parse();
+        IniReader r = createIniReader()->loadFile(createFile("./simple1.ini"));
+        IniValue v = r->get();
         SIMPLE1 s = createSIMPLE1();
         v->reflectTo(s);
 
@@ -67,8 +67,8 @@ void testReflectTo() {
 
     //test simple2
     {
-        IniReader r = createIniReader(createFile("./simple2.ini"));
-        IniValue v = r->parse();
+        IniReader r = createIniReader()->loadFile(createFile("./simple2.ini"));
+        IniValue v = r->get();
         SIMPLE2 s = createSIMPLE2();
         v->reflectTo(s);
 
@@ -83,8 +83,8 @@ void testReflectTo() {
 
     //test simple3
     {
-        IniReader r = createIniReader(createFile("./simple3.ini"));
-        IniValue v = r->parse();
+        IniReader r = createIniReader()->loadFile(createFile("./simple3.ini"));
+        IniValue v = r->get();
         SIMPLE3 s = createSIMPLE3();
         v->reflectTo(s);
 

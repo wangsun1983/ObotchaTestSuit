@@ -42,7 +42,7 @@ void testArrayListInteger() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Integer_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Integer_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Integer_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<Integer> list2 = createArrayList<Integer>();
@@ -85,7 +85,7 @@ void testArrayListInteger() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Integer_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Integer_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Integer_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       IntegerList2 list2 = createIntegerList2();

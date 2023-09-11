@@ -14,7 +14,7 @@ using namespace obotcha;
 int stringUnicodeDataTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_string_unicode_01.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_unicode_01.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Unicode Data Test case1]");
@@ -32,7 +32,7 @@ int stringUnicodeDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_string_unicode_02.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_unicode_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Unicode Data Test case4]");
@@ -50,7 +50,7 @@ int stringUnicodeDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_string_unicode_03.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_unicode_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Unicode Data Test case7]");
@@ -68,7 +68,7 @@ int stringUnicodeDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_string_unicode_04.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_unicode_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Unicode Data Test case10]");
@@ -86,7 +86,7 @@ int stringUnicodeDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader(createFile("./test/data/test_string_unicode_05.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_unicode_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Unicode Data Test case13]");

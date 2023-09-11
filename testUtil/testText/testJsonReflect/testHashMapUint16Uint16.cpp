@@ -33,7 +33,7 @@ void testHashMapUint16Uint16() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Uint16_Uint16_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Uint16,Uint16> maps2 = createHashMap<Uint16,Uint16>();
@@ -77,7 +77,7 @@ void testHashMapUint16Uint16() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Uint16_Uint16_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test2.json"));
       JsonValue value2 = reader->get();
 
       HashmapDataUint16 data2 = createHashmapDataUint16();

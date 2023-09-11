@@ -49,8 +49,8 @@ void testSaveFile() {
     IniWriter w = createIniWriter(createFile("./tmp/save.ini"));
     w->write(v);
 
-    IniReader reader = createIniReader(createFile("./tmp/save.ini"));
-    auto v2 = reader->parse();
+    IniReader reader = createIniReader()->loadFile(createFile("./tmp/save.ini"));
+    auto v2 = reader->get();
 
     SaveData d2 = createSaveData();
     v2->reflectTo(d2);

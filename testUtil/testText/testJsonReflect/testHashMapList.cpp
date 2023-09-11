@@ -70,7 +70,7 @@ void testHashMapList() {
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_list_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_list_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Integer,ArrayList<ListItem1>> map2 = createHashMap<Integer,ArrayList<ListItem1>>();

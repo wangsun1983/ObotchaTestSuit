@@ -42,7 +42,7 @@ void testArrayListLong() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Long_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Long_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Long_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<Long> list2 = createArrayList<Long>();
@@ -85,7 +85,7 @@ void testArrayListLong() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Long_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Long_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Long_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       LongList2 list2 = createLongList2();

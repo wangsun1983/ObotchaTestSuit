@@ -33,7 +33,7 @@ void testHashMapByteByte() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Byte_Byte_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Byte_Byte_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Byte,Byte> maps2 = createHashMap<Byte,Byte>();
@@ -77,7 +77,7 @@ void testHashMapByteByte() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Byte_Byte_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Byte_Byte_test2.json"));
       JsonValue value2 = reader->get();
 
       HashmapDataByte data2 = createHashmapDataByte();

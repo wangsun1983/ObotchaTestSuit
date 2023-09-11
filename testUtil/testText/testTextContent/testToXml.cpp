@@ -32,7 +32,7 @@ void testToXml() {
     TextContent c = createTextContent(data,st(Text)::Format::Xml);
     //printf("c is %s \n",c->get()->toChars());
     
-    XmlReader reader = createXmlReader(c->get());
+    XmlReader reader = createXmlReader()->loadContent(c->get());
     XmlValue value = reader->get()->getRootNode();
     
     auto id = value->getIntegerValue("id");

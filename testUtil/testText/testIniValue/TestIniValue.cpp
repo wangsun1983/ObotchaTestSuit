@@ -24,8 +24,8 @@ void testIniValue() {
       IniWriter w = createIniWriter(createFile("./tmp/test1.ini"));
       w->write(v1);
       
-      IniReader r = createIniReader(createFile("./tmp/test1.ini"));
-      auto v2 = r->parse();
+      IniReader r = createIniReader()->loadFile(createFile("./tmp/test1.ini"));
+      auto v2 = r->get();
       
       if(!v2->get("tag1")->equals(v1->get("tag1"))) {
         TEST_FAIL("IniValue test set case1");

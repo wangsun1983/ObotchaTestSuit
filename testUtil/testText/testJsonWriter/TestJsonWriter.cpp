@@ -4,6 +4,7 @@
 #include "JsonWriter.hpp"
 #include "JsonReader.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 
@@ -26,7 +27,7 @@ int main() {
     writer->close();
 
     //read a Json
-    JsonReader reader = createJsonReader(createString("./tmp/abc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createString("./tmp/abc.json"));
     JsonValue value2 = reader->get();
     while(1) {
       Integer i1 = value->getInteger("a");

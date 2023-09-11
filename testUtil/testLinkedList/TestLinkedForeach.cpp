@@ -4,7 +4,7 @@
 #include "LinkedList.hpp"
 #include "TestLog.hpp"
 #include "ForEveryOne.hpp"
-
+#include "String.hpp"
 using namespace obotcha;
 
 void testLinkeListForeach() {

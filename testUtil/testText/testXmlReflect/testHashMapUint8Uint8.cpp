@@ -34,7 +34,7 @@ void testHashMapUint8Uint8() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint8_Uint8_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint8_Uint8_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint8_Uint8_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Uint8,Uint8> maps2 = createHashMap<Uint8,Uint8>();
@@ -77,7 +77,7 @@ void testHashMapUint8Uint8() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint8_Uint8_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint8_Uint8_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile("./tmp/hashmap_Uint8_Uint8_test2.xml");
       XmlDocument doc2 = reader->get();
 
       HashmapDataUint8 data2 = createHashmapDataUint8();

@@ -118,7 +118,7 @@ int main() {
     if(v18 != 2) {
         TEST_FAIL("Math abs test21");
     }
-#endif
+
     
     if(st(Math)::compareDouble(1.21,1.21) != st(Math)::AlmostEqual) {
         TEST_FAIL("Math abs test22");
@@ -143,7 +143,7 @@ int main() {
     if(st(Math)::compareFloat(1.31,1.41) != st(Math)::Param2Greater) {
         TEST_FAIL("Math abs test24");
     }
-    
+#endif
     TEST_OK("Math abs test100");
     return 0;
 }

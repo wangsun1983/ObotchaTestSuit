@@ -52,7 +52,7 @@ void testArrayUserData() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_userdata_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_userdata_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_userdata_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<ArrayItemUserdata> list2 = createArrayList<ArrayItemUserdata>();
@@ -105,7 +105,7 @@ void testArrayUserData() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_userdata_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_userdata_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_userdata_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       Userdatas data2 = createUserdatas();

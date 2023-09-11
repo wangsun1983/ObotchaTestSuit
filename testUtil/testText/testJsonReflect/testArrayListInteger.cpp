@@ -42,7 +42,7 @@ void testArrayListInteger() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Integer_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Integer_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<Integer> list2 = createArrayList<Integer>();
@@ -86,7 +86,7 @@ void testArrayListInteger() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Integer_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Integer_test2.json"));
       JsonValue value2 = reader->get();
 
       IntegerList2 list2 = createIntegerList2();

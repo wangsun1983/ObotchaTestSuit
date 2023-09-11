@@ -33,7 +33,7 @@ void testHashMapLongLong() {
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Long_Long_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Long_Long_test1.json"));
       JsonValue value2 = reader->get();
 
       HashMap<Long,Long> maps2 = createHashMap<Long,Long>();
@@ -77,7 +77,7 @@ void testHashMapLongLong() {
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/hashmap_Long_Long_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_Long_Long_test2.json"));
       JsonValue value2 = reader->get();
 
       HashmapDataLong data2 = createHashmapDataLong();

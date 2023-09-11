@@ -63,7 +63,7 @@ void testReflectToArrayXml() {
     XmlWriter writer = createXmlWriter(doc);
     writer->write("output2.xml");
 
-    XmlReader reader = createXmlReader(createFile("output2.xml"));
+    XmlReader reader = createXmlReader()->loadFile(createFile("output2.xml"));
     XmlDocument doc2 = reader->get();
     XmlReflectArrayListData rdata3 = createXmlReflectArrayListData();
     doc2->reflectTo(rdata3);

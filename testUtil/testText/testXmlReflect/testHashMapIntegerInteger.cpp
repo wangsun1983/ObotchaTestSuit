@@ -34,7 +34,7 @@ void testHashMapIntegerInteger() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_integer_integer_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_integer_integer_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_integer_integer_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Integer,Integer> maps2 = createHashMap<Integer,Integer>();
@@ -77,7 +77,7 @@ void testHashMapIntegerInteger() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_integer_integer_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_integer_integer_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_integer_integer_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       HashmapDataInteger data2 = createHashmapDataInteger();

@@ -45,7 +45,7 @@ public:
 
 void testReflect() {
 
-    JsonReader reader = createJsonReader(createFile("abc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("abc.json"));
     JsonValue value = reader->get();
 
     PersonInfo info = createPersonInfo();

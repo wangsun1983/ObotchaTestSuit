@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 void testJsonValueSize() {
-    JsonReader reader = createJsonReader(createFile("./abc.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("./abc.json"));
     JsonValue root = reader->get();
     
     auto isNonProfitValue = root->getValue("isNonProfit");

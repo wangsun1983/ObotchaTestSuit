@@ -42,7 +42,7 @@ void testArrayListUint16() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Uint16_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Uint16_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint16_test1.xml"));
       XmlDocument doc2 = reader->get();
       ArrayList<Uint16> list2 = createArrayList<Uint16>();
       doc2->reflectTo(list2);
@@ -84,7 +84,7 @@ void testArrayListUint16() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_Uint16_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_Uint16_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint16_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       Uint16List2 list2 = createUint16List2();

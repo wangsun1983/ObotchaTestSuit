@@ -34,7 +34,7 @@ void testHashMapByteByte() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Byte_Byte_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Byte_Byte_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Byte_Byte_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Byte,Byte> maps2 = createHashMap<Byte,Byte>();
@@ -77,7 +77,7 @@ void testHashMapByteByte() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Byte_Byte_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Byte_Byte_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Byte_Byte_test2.xml"));
       XmlDocument doc2 = reader->get();
       HashmapDataByte data2 = createHashmapDataByte();
       doc2->reflectTo(data2);

@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 int testremove() {
-    JsonReader mReader = createJsonReader(createFile("abc.json"));
+    JsonReader mReader = createJsonReader()->loadFile(createFile("abc.json"));
     JsonValue root = mReader->get();
 
     JsonValue arr = root->getValue("arr");

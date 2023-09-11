@@ -47,7 +47,7 @@ void testHashMapUserdata() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_userdata_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_userdata_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_userdata_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Integer,MapUserData> maps2 = createHashMap<Integer,MapUserData>();

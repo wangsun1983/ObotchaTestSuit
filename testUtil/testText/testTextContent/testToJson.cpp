@@ -29,7 +29,7 @@ void testToJson() {
     
     TextContent c = createTextContent(data);
     
-    JsonReader v = createJsonReader(c->get());
+    JsonReader v = createJsonReader()->loadContent(c->get());
     JsonValue value = v->get();
     auto id = value->getInteger("id");
     if(id == nullptr || id->toValue() != 123) {

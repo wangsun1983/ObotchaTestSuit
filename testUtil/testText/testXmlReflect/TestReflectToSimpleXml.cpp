@@ -76,7 +76,7 @@ void testReflectToSimpleXml() {
     XmlWriter writer = createXmlWriter(doc);
     writer->write("output4.xml");
 
-    XmlReader reader = createXmlReader(createFile("output4.xml"));
+    XmlReader reader = createXmlReader()->loadFile(createFile("output4.xml"));
     XmlDocument doc2 = reader->get();
     XmlReflectData rdata3 = createXmlReflectData();
     doc2->reflectTo(rdata3);

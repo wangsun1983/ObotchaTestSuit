@@ -3,7 +3,7 @@
 
 #include "Stack.hpp"
 #include "TestLog.hpp"
-
+#include "String.hpp"
 using namespace obotcha;
 
 DECLARE_CLASS(TestSizeData) {
@@ -17,31 +17,25 @@ public:
 
 void testStackSize() {
   while(1) {
-    Stack<int> stack = createStack<int>();
-    stack->push(1);
-    stack->push(2);
+    Stack<Integer> stack = createStack<Integer>();
+    stack->push(createInteger(1));
+    stack->push(createInteger(2));
 
     if(stack->size() != 2) {
       TEST_FAIL("testStack size test1");
       break;
     }
 
-    int v1 = stack->pop();
-    int v2 = stack->pop();
+    int v1 = stack->pop()->toValue();
+    int v2 = stack->pop()->toValue();
 
     if(v1 != 2 || v2 != 1) {
       TEST_FAIL("testStack size test2");
       break;
     }
-
-    bool isException = false;
-    try {
-      int v2 = stack->pop();
-    } catch(...) {
-      isException = true;
-    }
-
-    if(!isException) {
+	
+    auto v3 = stack->pop();
+    if(v3 != nullptr) {
       TEST_FAIL("testStack size test3");
       break;
     }

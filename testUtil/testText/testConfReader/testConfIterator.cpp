@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 void testConfIterator() {
-    ConfReader reader = createConfReader(createFile("simple.conf"));
+    ConfReader reader = createConfReader()->loadFile(createFile("simple.conf"));
     //ConfIterator(String);
     auto value = reader->get();
     while(1) {

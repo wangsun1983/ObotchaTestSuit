@@ -50,7 +50,7 @@ void testInnerClassReflect() {
         doc->importFrom(data);
         XmlWriter writer = createXmlWriter(doc);
         writer->write("./tmp/inner_class_test1.xml");
-        XmlReader reader = createXmlReader(createFile("./tmp/inner_class_test1.xml"));
+        XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/inner_class_test1.xml"));
         XmlDocument doc2 = reader->get();
 
         OuterData data2 = createOuterData();

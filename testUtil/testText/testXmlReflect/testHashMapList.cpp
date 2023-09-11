@@ -70,7 +70,7 @@ void testHashMapList() {
       doc->importFrom(map);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_list_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_list_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_list_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Integer,ArrayList<ListItem1>> map2 = createHashMap<Integer,ArrayList<ListItem1>>();

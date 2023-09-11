@@ -34,7 +34,7 @@ void testHashMapUint32Uint32() {
       doc->importFrom(maps);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint32_Uint32_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint32_Uint32_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint32_Uint32_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<Uint32,Uint32> maps2 = createHashMap<Uint32,Uint32>();
@@ -77,7 +77,7 @@ void testHashMapUint32Uint32() {
       doc->importFrom(data);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/hashmap_Uint32_Uint32_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/hashmap_Uint32_Uint32_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint32_Uint32_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       HashmapDataUint32 data2 = createHashmapDataUint32();

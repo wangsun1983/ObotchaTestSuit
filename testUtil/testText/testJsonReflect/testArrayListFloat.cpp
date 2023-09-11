@@ -43,7 +43,7 @@ void testArrayListFloat() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Float_test1.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Float_test1.json"));
       JsonValue value2 = reader->get();
 
       ArrayList<Float> list2 = createArrayList<Float>();
@@ -54,11 +54,11 @@ void testArrayListFloat() {
         break;
       }
 
-      if(st(Math)::compareFloat(list2->get(0)->toValue(),1.1) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->get(1)->toValue(),2.2) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->get(2)->toValue(),3.3) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->get(3)->toValue(),4.4) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->get(4)->toValue(),5.5) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(list2->get(0)->toValue(),1.1) != 0
+        ||st(Float)::Compare(list2->get(1)->toValue(),2.2) != 0
+        ||st(Float)::Compare(list2->get(2)->toValue(),3.3) != 0
+        ||st(Float)::Compare(list2->get(3)->toValue(),4.4) != 0
+        ||st(Float)::Compare(list2->get(4)->toValue(),5.5) != 0) {
           TEST_FAIL("[JsonReflect ArrayList Float Test case2]");
           break;
       }
@@ -87,26 +87,26 @@ void testArrayListFloat() {
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader(createFile("./tmp/list_Float_test2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Float_test2.json"));
       JsonValue value2 = reader->get();
 
       FloatList2 list2 = createFloatList2();
       value2->reflectTo(list2);
 
-      if(st(Math)::compareFloat(list2->list1->get(0)->toValue(),1.1) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list1->get(1)->toValue(),2.2) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list1->get(2)->toValue(),3.3) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list1->get(3)->toValue(),4.4) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list1->get(4)->toValue(),5.5) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(list2->list1->get(0)->toValue(),1.1) != 0
+        ||st(Float)::Compare(list2->list1->get(1)->toValue(),2.2) != 0
+        ||st(Float)::Compare(list2->list1->get(2)->toValue(),3.3) != 0
+        ||st(Float)::Compare(list2->list1->get(3)->toValue(),4.4) != 0
+        ||st(Float)::Compare(list2->list1->get(4)->toValue(),5.5) != 0) {
           TEST_FAIL("[JsonReflect ArrayList Float Test case3]");
           break;
       }
 
-      if(st(Math)::compareFloat(list2->list2->get(0)->toValue(),6.6) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list2->get(1)->toValue(),7.7) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list2->get(2)->toValue(),8.8) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list2->get(3)->toValue(),9.9) != st(Math)::AlmostEqual
-        ||st(Math)::compareFloat(list2->list2->get(4)->toValue(),10.1) != st(Math)::AlmostEqual) {
+      if(st(Float)::Compare(list2->list2->get(0)->toValue(),6.6) != 0
+        ||st(Float)::Compare(list2->list2->get(1)->toValue(),7.7) != 0
+        ||st(Float)::Compare(list2->list2->get(2)->toValue(),8.8) != 0
+        ||st(Float)::Compare(list2->list2->get(3)->toValue(),9.9) != 0
+        ||st(Float)::Compare(list2->list2->get(4)->toValue(),10.1) != 0) {
           TEST_FAIL("[JsonReflect ArrayList Float Test case4]");
           break;
       }

@@ -44,7 +44,7 @@ void testHashMapStringString() {
       doc->importFrom(map);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/map_string_string_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/map_string_string_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/map_string_string_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       HashMap<String,String>map2 = createHashMap<String,String>();
@@ -79,7 +79,7 @@ void testHashMapStringString() {
       doc->importFrom(map);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/map_string_string_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/map_string_string_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/map_string_string_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       StringStringMap checkValue = createStringStringMap();
@@ -122,7 +122,7 @@ void testHashMapStringString() {
       doc->importFrom(map);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/map_string_string_test4.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/map_string_string_test4.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/map_string_string_test4.xml"));
       XmlDocument doc2 = reader->get();
 
       StringStringMap2 checkValue = createStringStringMap2();

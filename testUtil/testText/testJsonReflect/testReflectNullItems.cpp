@@ -45,7 +45,7 @@ void testReflectNullItems() {
   JsonWriter writer = createJsonWriter(createString("./abc.json"));
   writer->write(value);
 
-  JsonReader reader = createJsonReader(createFile("./abc.json"));
+  JsonReader reader = createJsonReader()->loadFile(createFile("./abc.json"));
   JsonValue value2 = reader->get();
 
   MyInfo info2 = createMyInfo();

@@ -12,6 +12,7 @@
 #include "IllegalArgumentException.hpp"
 #include "NullPointerException.hpp"
 #include "TestLog.hpp"
+#include "String.hpp"
 
 using namespace obotcha;
 

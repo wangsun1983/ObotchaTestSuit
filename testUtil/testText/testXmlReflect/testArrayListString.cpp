@@ -43,7 +43,7 @@ void testArrayListString() {
       doc->importFrom(list);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_string_test1.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_string_test1.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_string_test1.xml"));
       XmlDocument doc2 = reader->get();
 
       ArrayList<String> list2 = createArrayList<String>();
@@ -79,7 +79,7 @@ void testArrayListString() {
       doc->importFrom(ll);
       XmlWriter writer = createXmlWriter(doc);
       writer->write("./tmp/list_string_test2.xml");
-      XmlReader reader = createXmlReader(createFile("./tmp/list_string_test2.xml"));
+      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_string_test2.xml"));
       XmlDocument doc2 = reader->get();
 
       //ArrayList<String> list2 = createArrayList<String>();
