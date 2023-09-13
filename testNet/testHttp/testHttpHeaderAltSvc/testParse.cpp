@@ -44,7 +44,7 @@ void testParse() {
     }
 
     if(item2->url->getHost() != nullptr) {
-      TEST_FAIL("[HttpHeaderAltSvc test Parse case6]");
+      TEST_FAIL("[HttpHeaderAltSvc test Parse case6],host is %s",item2->url->getHost()->toChars());
       break;
     }
 

@@ -22,17 +22,17 @@ void testSetToHeader() {
     auto c = header->getAllowMethods();
     c->load("POST, GET, OPTIONS");
     auto list = c->get();
-    if(list->get(0)->toValue() != st(HttpMethod)::Post) {
+    if(list[0] != st(HttpMethod)::Id::Post) {
       TEST_FAIL("[HttpHeaderAccessControlAllowMethods test setToHeader case1]");
       break;
     }
 
-    if(list->get(1)->toValue() != st(HttpMethod)::Get) {
+    if(list[1] != st(HttpMethod)::Id::Get) {
       TEST_FAIL("[HttpHeaderAccessControlAllowMethods test setToHeader case2]");
       break;
     }
 
-    if(list->get(2)->toValue() != st(HttpMethod)::Options) {
+    if(list[2] != st(HttpMethod)::Id::Options) {
       TEST_FAIL("[HttpHeaderAccessControlAllowMethods test setToHeader case3]");
       break;
     }

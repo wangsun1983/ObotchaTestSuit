@@ -14,131 +14,131 @@ using namespace obotcha;
 
 void testToString() {
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Delete)->equals(st(HttpMethod)::DeleteString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Delete)->equals(st(HttpMethod)::DeleteString)) {
         TEST_FAIL("testHttpMethod toString case1");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Get)->equals(st(HttpMethod)::GetString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Get)->equals(st(HttpMethod)::GetString)) {
         TEST_FAIL("testHttpMethod toString case2");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Head)->equals(st(HttpMethod)::HeadString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Head)->equals(st(HttpMethod)::HeadString)) {
         TEST_FAIL("testHttpMethod toString case3");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Post)->equals(st(HttpMethod)::PostString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Post)->equals(st(HttpMethod)::PostString)) {
         TEST_FAIL("testHttpMethod toString case4");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Put)->equals(st(HttpMethod)::PutString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Put)->equals(st(HttpMethod)::PutString)) {
         TEST_FAIL("testHttpMethod toString case5");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Connect)->equals(st(HttpMethod)::ConnectString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Connect)->equals(st(HttpMethod)::ConnectString)) {
         TEST_FAIL("testHttpMethod toString case6");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Options)->equals(st(HttpMethod)::OptionsString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Options)->equals(st(HttpMethod)::OptionsString)) {
         TEST_FAIL("testHttpMethod toString case7");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Trace)->equals(st(HttpMethod)::TraceString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Trace)->equals(st(HttpMethod)::TraceString)) {
         TEST_FAIL("testHttpMethod toString case8");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Copy)->equals(st(HttpMethod)::CopyString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Copy)->equals(st(HttpMethod)::CopyString)) {
         TEST_FAIL("testHttpMethod toString case9");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Lock)->equals(st(HttpMethod)::LockString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Lock)->equals(st(HttpMethod)::LockString)) {
         TEST_FAIL("testHttpMethod toString case10");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Mkcol)->equals(st(HttpMethod)::MkcolString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Mkcol)->equals(st(HttpMethod)::MkcolString)) {
         TEST_FAIL("testHttpMethod toString case11");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Move)->equals(st(HttpMethod)::MoveString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Move)->equals(st(HttpMethod)::MoveString)) {
         TEST_FAIL("testHttpMethod toString case12");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::PropFind)->equals(st(HttpMethod)::PropFindString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::PropFind)->equals(st(HttpMethod)::PropFindString)) {
         TEST_FAIL("testHttpMethod toString case13");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::PropPatch)->equals(st(HttpMethod)::PropPatchString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::PropPatch)->equals(st(HttpMethod)::PropPatchString)) {
         TEST_FAIL("testHttpMethod toString case14");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Move)->equals(st(HttpMethod)::MoveString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Move)->equals(st(HttpMethod)::MoveString)) {
         TEST_FAIL("testHttpMethod toString case15");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Unlock)->equals(st(HttpMethod)::UnlockString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Unlock)->equals(st(HttpMethod)::UnlockString)) {
         TEST_FAIL("testHttpMethod toString case16");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Report)->equals(st(HttpMethod)::ReportString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Report)->equals(st(HttpMethod)::ReportString)) {
         TEST_FAIL("testHttpMethod toString case17");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::MkActivity)->equals(st(HttpMethod)::MkActivityString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::MkActivity)->equals(st(HttpMethod)::MkActivityString)) {
         TEST_FAIL("testHttpMethod toString case18");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Checkout)->equals(st(HttpMethod)::CheckoutString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Checkout)->equals(st(HttpMethod)::CheckoutString)) {
         TEST_FAIL("testHttpMethod toString case19");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Merge)->equals(st(HttpMethod)::MergeString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Merge)->equals(st(HttpMethod)::MergeString)) {
         TEST_FAIL("testHttpMethod toString case20");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Merge)->equals(st(HttpMethod)::MergeString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Merge)->equals(st(HttpMethod)::MergeString)) {
         TEST_FAIL("testHttpMethod toString case21");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Msearch)->equals(st(HttpMethod)::MsearchString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Msearch)->equals(st(HttpMethod)::MsearchString)) {
         TEST_FAIL("testHttpMethod toString case22");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Notify)->equals(st(HttpMethod)::NotifyString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Notify)->equals(st(HttpMethod)::NotifyString)) {
         TEST_FAIL("testHttpMethod toString case23");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Subscribe)->equals(st(HttpMethod)::SubscribeString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Subscribe)->equals(st(HttpMethod)::SubscribeString)) {
         TEST_FAIL("testHttpMethod toString case24");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::UnSubscribe)->equals(st(HttpMethod)::UnSubscribeString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::UnSubscribe)->equals(st(HttpMethod)::UnSubscribeString)) {
         TEST_FAIL("testHttpMethod toString case25");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Patch)->equals(st(HttpMethod)::PatchString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Patch)->equals(st(HttpMethod)::PatchString)) {
         TEST_FAIL("testHttpMethod toString case26");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Purge)->equals(st(HttpMethod)::PurgeString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Purge)->equals(st(HttpMethod)::PurgeString)) {
         TEST_FAIL("testHttpMethod toString case27");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Link)->equals(st(HttpMethod)::LinkString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Link)->equals(st(HttpMethod)::LinkString)) {
         TEST_FAIL("testHttpMethod toString case28");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Search)->equals(st(HttpMethod)::SearchString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Search)->equals(st(HttpMethod)::SearchString)) {
         TEST_FAIL("testHttpMethod toString case29");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Unlink)->equals(st(HttpMethod)::UnlinkString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Unlink)->equals(st(HttpMethod)::UnlinkString)) {
         TEST_FAIL("testHttpMethod toString case30");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Source)->equals(st(HttpMethod)::SourceString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Source)->equals(st(HttpMethod)::SourceString)) {
         TEST_FAIL("testHttpMethod toString case31");
     }
     
-    if(!st(HttpMethod)::toString(st(HttpMethod)::Pri)->equals(st(HttpMethod)::PriString)) {
+    if(!st(HttpMethod)::toString(st(HttpMethod)::Id::Pri)->equals(st(HttpMethod)::PriString)) {
         TEST_FAIL("testHttpMethod toString case32");
     }
     

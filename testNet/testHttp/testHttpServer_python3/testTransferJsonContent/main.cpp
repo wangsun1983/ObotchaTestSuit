@@ -14,7 +14,6 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "HttpMethod.hpp"
 #include "NetEvent.hpp"
 #include "JsonValue.hpp"
@@ -70,7 +69,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
               } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Post) {
                 String str = msg->getEntity()->getContent()->toString();
                 //JsonValue value = createJsonValue();
-                JsonReader reader = createJsonReader(str);
+                JsonReader reader = createJsonReader()->loadContent(str);
                 auto value = reader->get();
                 MyData data = createMyData();
                 value->reflectTo(data);

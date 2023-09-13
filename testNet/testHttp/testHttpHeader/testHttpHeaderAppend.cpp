@@ -35,7 +35,7 @@ void testHttpHeaderAppend() {
                  "Hot diggity dogg";
 
     HttpHeader header = createHttpHeader();
-    header->setMethod(st(HttpMethod)::Get);
+    header->setMethod(st(HttpMethod)::Id::Get);
 
     HttpUrl url = createHttpUrl();
     url->setPath("demo");
@@ -306,7 +306,7 @@ void testHttpHeaderAppend() {
 
     HttpHeaderLink link = links->get(0);
     if(!link->url->sameAs("https://example.com")) {
-      TEST_FAIL("[HttpHeader test Append case42]");
+      TEST_FAIL("[HttpHeader test Append case42],link is %s",link->url->toChars());
       break;
     }
 

@@ -39,7 +39,7 @@ void testHttpHeaderParse() {
     HttpHeaderParser parser = createHttpHeaderParser(reader);
     HttpHeader header = parser->doParse();
 
-    if(header->getMethod() != st(HttpMethod)::Get) {
+    if(header->getMethod() != st(HttpMethod)::Id::Get) {
       TEST_FAIL("[HttpHeaderParse test Parse case1] method is %d",header->getMethod());
       break;
     }
@@ -237,23 +237,23 @@ void testHttpHeaderParse() {
     }
 
     //"Allow: GET, POST, HEAD\r\n"
-    ArrayList<Integer> allows = header->getAllow()->get();
+    auto allows = header->getAllow()->get();
     if(allows->size() != 3) {
       TEST_FAIL("[HttpHeaderParse test Parse case32]");
       break;
     }
 
-    if(allows->get(0)->toValue() != st(HttpMethod)::Get) {
+    if(allows[0] != st(HttpMethod)::Id::Get) {
       TEST_FAIL("[HttpHeaderParse test Parse case32_1]");
       break;
     }
 
-    if(allows->get(1)->toValue() != st(HttpMethod)::Post) {
+    if(allows[1] != st(HttpMethod)::Id::Post) {
       TEST_FAIL("[HttpHeaderParse test Parse case32_2]");
       break;
     }
 
-    if(allows->get(2)->toValue() != st(HttpMethod)::Head) {
+    if(allows[2] != st(HttpMethod)::Id::Head) {
       TEST_FAIL("[HttpHeaderParse test Parse case32_3]");
       break;
     }

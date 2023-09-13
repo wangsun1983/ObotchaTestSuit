@@ -35,7 +35,7 @@ void testHttpHeaderSet() {
                  "Hot diggity dogg";
 
     HttpHeader header = createHttpHeader();
-    header->setMethod(st(HttpMethod)::Get);
+    header->setMethod(st(HttpMethod)::Id::Get);
 
     HttpUrl url = createHttpUrl();
     url->setPath("demo");
@@ -57,7 +57,7 @@ void testHttpHeaderSet() {
     header->set("X-Frame-Options","allow-from https://example.com/");
 
     //check
-    if(header->getMethod() != st(HttpMethod)::Get) {
+    if(header->getMethod() != st(HttpMethod)::Id::Get) {
       TEST_FAIL("[HttpHeader test Set case1]  method is %d",header->getMethod());
       break;
     }

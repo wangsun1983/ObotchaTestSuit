@@ -19,8 +19,10 @@ extern void testHandlerSendAtFront();
 extern void testHandlerSendDelayed();
 extern void testHandlerLooper();
 extern void testHandlerLooperQuit();
+extern void testHandlerStress();
 
 int main() {
+  testHandlerStress();
   testHandlerLooperQuit();
   testHandlerLooper();
   testHandlerLambda();

@@ -17,7 +17,7 @@ void testParse() {
   while(1) {
     HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
     c->load("POST");
-    if(c->get() != st(HttpMethod)::Post){
+    if(c->get() != st(HttpMethod)::Id::Post){
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test Parse case1]");
       break;
     }

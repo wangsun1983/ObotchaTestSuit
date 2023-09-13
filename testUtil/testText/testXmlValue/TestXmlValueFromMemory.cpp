@@ -125,7 +125,7 @@ void testXmlValueFromMemory() {
     //Double getDoubleAttr(String attr);
     while(1) {
       Double attr1 = root->getDoubleAttr("doublev");
-      if(attr1 == nullptr || st(Math)::compareDouble(attr1->toValue(),1.1)!= st(Math)::AlmostEqual) {
+      if(attr1 == nullptr || st(Double)::Compare(attr1->toValue(),1.1)!= 0) {
         TEST_FAIL("[XmlValue TestFromMemory {getDoubleAttr()} case1]");
         break;
       }
@@ -137,7 +137,7 @@ void testXmlValueFromMemory() {
     //Float getFloatAttr(String attr);
     while(1) {
       Float attr1 = root->getFloatAttr("floatv");
-      if(attr1 == nullptr || st(Math)::compareFloat(attr1->toValue(),2.2)!= st(Math)::AlmostEqual) {
+      if(attr1 == nullptr || st(Float)::Compare(attr1->toValue(),2.2)!= 0) {
         TEST_FAIL("[XmlValue TestFromMemory {getFloatAttr()} case1]");
         break;
       }
@@ -185,7 +185,7 @@ void testXmlValueFromMemory() {
     //Double getDoubleValue(String);
     while(1) {
       Double value = root->getDoubleValue("testdouble");
-      if(value == nullptr || st(Math)::compareDouble(value->toValue(),1.11)!= st(Math)::AlmostEqual) {
+      if(value == nullptr || st(Double)::Compare(value->toValue(),1.11)!= 0) {
         TEST_FAIL("[XmlValue TestFromMemory {getDoubleValue()} case1]");
         break;
       }
@@ -197,7 +197,7 @@ void testXmlValueFromMemory() {
     //Double getFloatValue(String);
     while(1) {
       Float value = root->getFloatValue("testfloat");
-      if(value == nullptr || st(Math)::compareFloat(value->toValue(),2.22)!= st(Math)::AlmostEqual) {
+      if(value == nullptr || st(Float)::Compare(value->toValue(),2.22)!= 0) {
         TEST_FAIL("[XmlValue TestFromMemory {getFloatValue()} case1]");
         break;
       }

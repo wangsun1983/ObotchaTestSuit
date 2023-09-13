@@ -19,7 +19,7 @@ void testSetToHeader() {
     HttpHeader header = createHttpHeader();
     header->set(createString("Access-Control-Request-Method"),createString("POST"));
     auto c = header->getAccessControlRequestMethod();
-    if(c->get() != st(HttpMethod)::Post){
+    if(c->get() != st(HttpMethod)::Id::Post){
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test setToHeader case1]");
       break;
     }
@@ -32,7 +32,7 @@ void testSetToHeader() {
     meth->load("POST");
     header->setAccessControlRequestMethod(meth);
     auto c = header->getAccessControlRequestMethod();
-    if(c->get() != st(HttpMethod)::Post){
+    if(c->get() != st(HttpMethod)::Id::Post){
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test setToHeader case2]");
       break;
     }
