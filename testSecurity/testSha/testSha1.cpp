@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void test_sha1() {
 
-    Sha sha1 = createSha(SHA_1);
+    Sha sha1 = createSha(st(Sha)::Type::Sha1);
     //String encrypt(String str);
 
     while(1) {

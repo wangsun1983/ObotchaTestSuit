@@ -16,7 +16,7 @@ using namespace obotcha;
 
 int testProcessMq() {
 
-  ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Send);
+  ProcessMq mq = createProcessMq("abc",false);
   mq->clear();
 
   const int testDatalength = 32;
@@ -31,7 +31,7 @@ int testProcessMq() {
   if(pid == 0) {
     //child process
     sleep(10);
-    ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Send);
+    ProcessMq mq = createProcessMq("abc",false);
     
     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
@@ -42,7 +42,7 @@ int testProcessMq() {
     ByteArray array = createByteArray(mq->getMsgSize());
     //sleep(1);
     //TEST_FAIL("father start read \n");
-    ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
+    ProcessMq mq = createProcessMq("abc",false);
     
     int length = mq->receive(array);
     if(length < testDatalength) {
@@ -66,7 +66,7 @@ int testProcessMq() {
   pid = fork();
   if(pid == 0) {
     //child process
-    ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Send);
+    ProcessMq mq = createProcessMq("abc",false);
     
     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
@@ -80,7 +80,7 @@ int testProcessMq() {
   } else {
     sleep(1);
     ByteArray array = createByteArray(mq->getMsgSize());
-    ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
+    ProcessMq mq = createProcessMq("abc",false);
     
     int length = mq->receive(array);
     if(length != testDatalength - 1) {
@@ -120,7 +120,7 @@ int testProcessMq() {
     exit(0);
   } else {
     ByteArray array = createByteArray(mq->getMsgSize());
-    ProcessMq mq = createProcessMq("abc",st(ProcessMq)::Recv);
+    ProcessMq mq = createProcessMq("abc",false);
     long current = st(System)::CurrentTimeMillis();
     int length = mq->receiveTimeout(array,500);
     

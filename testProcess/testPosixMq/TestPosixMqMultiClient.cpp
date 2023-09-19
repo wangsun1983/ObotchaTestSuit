@@ -18,9 +18,9 @@ using namespace obotcha;
 
 
 void testProcessMqMultiClient() {
-    ProcessMq sendMq = createProcessMq("multiabc1",st(ProcessMq)::Send);
-    ProcessMq readMq1 = createProcessMq("multiabc1",st(ProcessMq)::Recv);
-    ProcessMq readMq2 = createProcessMq("multiabc1",st(ProcessMq)::Recv);
+    ProcessMq sendMq = createProcessMq("multiabc1",false);
+    ProcessMq readMq1 = createProcessMq("multiabc1",false);
+    ProcessMq readMq2 = createProcessMq("multiabc1",false);
       
     Thread t1 = createThread([readMq1]{
       ByteArray data = createByteArray(readMq1->getMsgSize());

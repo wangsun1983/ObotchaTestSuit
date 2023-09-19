@@ -64,7 +64,7 @@ void testReflectNumber() {
       jwriter->close();
 
 
-      JsonReader reader = createJsonReader(createFile("output4.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("output4.json"));
       JsonValue readValue = reader->get();
 
       NumberReflectData rdata3 = createNumberReflectData();

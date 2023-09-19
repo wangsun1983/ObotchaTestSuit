@@ -24,7 +24,7 @@ void testBlockingLinkedListTryTakeFirst() {
 
         break;
     }
-
+#if 0
     while(1) {
       BlockingLinkedList<int> list = createBlockingLinkedList<int>();
       bool isException = false;
@@ -40,7 +40,7 @@ void testBlockingLinkedListTryTakeFirst() {
       }
       break;
     }
-
+#endif
     while(1) {
         BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
         list->put(createString("a"));

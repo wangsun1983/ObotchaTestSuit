@@ -69,7 +69,7 @@ void testReflectArrayHashmap() {
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader(createFile("output_array_hashmap_case1_1.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output_array_hashmap_case1_1.json"));
     JsonValue readValue = reader->get();
     ArrayHashMap result = createArrayHashMap();
     readValue->reflectTo(result);

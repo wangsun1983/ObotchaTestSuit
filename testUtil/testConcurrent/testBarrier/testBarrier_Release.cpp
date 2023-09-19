@@ -85,6 +85,40 @@ void testBarrierRelease() {
     t3->join();
     break;
   }
+  
+  while(1) {
+	  Barrier b = createBarrier(5);
+	  Thread t1 = createThread([&]{
+		TimeWatcher w = createTimeWatcher();
+		w->start();
+		b->await();
+		auto ret = w->stop();
+		if(ret < 195 || ret > 205) {
+			TEST_FAIL("[Barrier Test {Release test} case4],ret is %d",ret);
+		}
+	  });
+	  
+	  Thread t2 = createThread([&]{
+	  	TimeWatcher w = createTimeWatcher();
+	  	w->start();
+	  	b->await();
+	  	auto ret = w->stop();
+	  	if(ret < 195 || ret > 205) {
+	  		TEST_FAIL("[Barrier Test {Release test} case5],ret is %d",ret);
+	  	}
+	  });
+	  
+	  t1->start();
+	  t2->start();
+	  
+	  usleep(200*1000);
+	  b->release();
+	  
+	  t1->join();
+	  t2->join();
+	  TEST_OK("[Barrier Test {Release test} case6]");
+	  break;
+  }
 
   TEST_OK("[Barrier Test {Release test} case100]");
 }

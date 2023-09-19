@@ -62,7 +62,7 @@ void testReflectToArrayJson() {
     JsonWriter jwriter = createJsonWriter("output2.json");
     jwriter->write(jvalue);
 
-    JsonReader reader = createJsonReader(createFile("output2.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output2.json"));
     JsonValue readValue = reader->get();
 
     ReflectArrayListData rdata3 = createReflectArrayListData();

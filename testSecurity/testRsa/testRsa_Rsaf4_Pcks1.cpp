@@ -41,13 +41,13 @@ void testRsaf4Pcks1() {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
       enckey->loadEncryptKey("./tmp/test_RSAF4_pcks1_encrypt_enckey");
       Cipher AES128 = st(CipherCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
-      AES128->init(st(Cipher)::Encrypt,enckey);
+      AES128->init(st(Cipher)::Mode::Encrypt,enckey);
       AES128->encryptFile(data,"./tmp/RSAF4_pcks1_encrypt_outdata");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
       deckey->loadDecryptKey("./tmp/test_RSAF4_pcks1_encrypt_deckey");
       Cipher AES1282 = st(CipherCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
-      AES1282->init(st(Cipher)::Decrypt,deckey);
+      AES1282->init(st(Cipher)::Mode::Decrypt,deckey);
       AES1282->decryptFile("./tmp/RSAF4_pcks1_encrypt_outdata","./tmp/RSAF4_pcks1_encrypt_outdata_dec");
       String result = md5sum->encodeFile(createFile("./tmp/RSAF4_pcks1_encrypt_outdata_dec"));
 

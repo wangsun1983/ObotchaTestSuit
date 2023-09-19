@@ -73,7 +73,7 @@ void testReflectToSimpleJson() {
     jvalue->importFrom(data);
     JsonWriter jwriter = createJsonWriter("output1.json");
     jwriter->write(jvalue);
-    JsonReader reader = createJsonReader(createFile("output1.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output1.json"));
     JsonValue readValue = reader->get();
 
     ReflectData rdata3 = createReflectData();

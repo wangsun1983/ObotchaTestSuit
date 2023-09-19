@@ -35,11 +35,11 @@ public:
         return nullptr;
     }
     
-    int getPendingTaskNum() {
+    size_t getPendingTaskNum() {
         return 0;
     }
     
-    int getExecutingThreadNum() {
+    size_t getExecutingThreadNum() {
         return 0;
     }
     

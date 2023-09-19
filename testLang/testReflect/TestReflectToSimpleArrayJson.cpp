@@ -81,7 +81,7 @@ void testReflectToSimpleArrayJson() {
     JsonWriter jwriter = createJsonWriter("output3.json");
     jwriter->write(jvalue);
 
-    JsonReader reader = createJsonReader(createFile("output3.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output3.json"));
     JsonValue readValue = reader->get();
 
     IntArray rdata3 = createIntArray();

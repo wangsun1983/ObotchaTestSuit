@@ -10,6 +10,7 @@
 
 using namespace obotcha;
 
+#if 0
 DECLARE_CLASS(EnqueueIntThread1) IMPLEMENTS(Thread) {
 public:
     _EnqueueIntThread1(BlockingQueue<int> queue) {
@@ -24,9 +25,10 @@ public:
 private:
     BlockingQueue<int> mQueue;
 };
+#endif
 
 void testBlockingQueueInt() {
-
+#if 0
     while(1) {
         BlockingQueue<int> list = createBlockingQueue<int>(5);
         list->putFirst(1);
@@ -89,5 +91,5 @@ void testBlockingQueueInt() {
         TEST_OK("BlockingQueue<int> takeFirst test4");
         break;
     }
-
+#endif
 }

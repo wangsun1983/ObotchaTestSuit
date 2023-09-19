@@ -78,7 +78,7 @@ void testReflectArrayList2() {
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader(createFile("output_arraylist_case2_2.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output_arraylist_case2_2.json"));
     JsonValue readValue = reader->get();
 
     ArrayDataList3 ll_chk = createArrayDataList3();
@@ -202,7 +202,7 @@ void testReflectArrayList2() {
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader(createFile("output_arraylist_case2_1.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output_arraylist_case2_1.json"));
     JsonValue readValue = reader->get();
 
     ArrayDataList2 ll2 = createArrayDataList2();

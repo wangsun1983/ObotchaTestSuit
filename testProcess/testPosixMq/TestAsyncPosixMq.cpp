@@ -34,14 +34,16 @@ void testAsyncProcessMq() {
     int pid = fork();
     if(pid == 0) {
       sleep(1);
-      ProcessMq sendMq = createProcessMq("asynctest2",st(ProcessMq)::Send);
+      ProcessMq sendMq = createProcessMq("asynctest2",false);
       String s = createString("hello world");
       sendMq->send(s->toByteArray());
 	  usleep(1000*100);
 	  sendMq->close();
       exit(0);
     } else {
-      ProcessMq readMq1 = createProcessMq("asynctest2",createPosixTestListener());
+      ProcessMq readMq1 = createProcessMq("asynctest2",true);
+	  readMq1->setListener(createPosixTestListener());
+	  
       ProcessMqLatch->await();
       readMq1->clear();
 	  int status = 0;

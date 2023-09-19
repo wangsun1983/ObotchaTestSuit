@@ -78,7 +78,7 @@ void testReflectToJson() {
     JsonWriter jwriter = createJsonWriter("output1.json");
     jwriter->write(jvalue);
 
-    JsonReader r = createJsonReader(createFile("output1.json"));
+    JsonReader r = createJsonReader()->loadFile(createFile("output1.json"));
 
     ReflectData result = createReflectData();
     JsonValue jvalue1 = r->get();

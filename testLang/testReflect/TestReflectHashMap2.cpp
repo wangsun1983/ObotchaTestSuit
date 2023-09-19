@@ -88,7 +88,7 @@ void testReflectMap2() {
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader(createFile("output_hashmap_case2_2.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output_hashmap_case2_2.json"));
     JsonValue readValue = reader->get();
 
     TestMapData2 result = createTestMapData2();
@@ -159,7 +159,7 @@ void testReflectMap2() {
     JsonWriter jwriter = createJsonWriter("output_hashmap_case2_1.json");
     jwriter->write(jvalue);
 
-    JsonReader reader = createJsonReader(createFile("output_hashmap_case2_1.json"));
+    JsonReader reader = createJsonReader()->loadFile(createFile("output_hashmap_case2_1.json"));
     JsonValue readValue = reader->get();
 
     TestMapData1 result = createTestMapData1();

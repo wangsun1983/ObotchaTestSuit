@@ -24,7 +24,7 @@ void testBlockingQueueTryTakeFirst() {
 
         break;
     }
-
+#if 0
     while(1) {
       BlockingQueue<int> list = createBlockingQueue<int>();
       bool isException = false;
@@ -40,7 +40,7 @@ void testBlockingQueueTryTakeFirst() {
       }
       break;
     }
-
+#endif
     while(1) {
         BlockingQueue<String> list = createBlockingQueue<String>(3);
         list->put(createString("a"));

@@ -38,13 +38,13 @@ void testDesEncryptCbc() {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("DES");
       enckey->loadEncryptKey("./tmp/test_des_encrypt_cbc_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/CBC/PKCS5Padding");
-      des->init(st(Cipher)::Encrypt,enckey);
+      des->init(st(Cipher)::Mode::Encrypt,enckey);
       des->encryptFile(data,"./tmp/des_encrypt_cbc_outdata_pksc5");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_cbc_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/CBC/PKCS5Padding");
-      des2->init(st(Cipher)::Decrypt,deckey);
+      des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_cbc_outdata_pksc5","./tmp/des_encrypt_cbc_outdata_pksc5_dec");
       String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_cbc_outdata_pksc5_dec"));
 
@@ -58,13 +58,13 @@ void testDesEncryptCbc() {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("DES");
       enckey->loadEncryptKey("./tmp/test_des_encrypt_cbc_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/CBC/PKCS7Padding");
-      des->init(st(Cipher)::Encrypt,enckey);
+      des->init(st(Cipher)::Mode::Encrypt,enckey);
       des->encryptFile(data,"./tmp/des_encrypt_cbc_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_cbc_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/CBC/PKCS7Padding");
-      des2->init(st(Cipher)::Decrypt,deckey);
+      des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_cbc_outdata_pksc7","./tmp/des_encrypt_cbc_outdata_pksc7_dec");
       String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_cbc_outdata_pksc7_dec"));
 
@@ -78,13 +78,13 @@ void testDesEncryptCbc() {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("DES");
       enckey->loadEncryptKey("./tmp/test_des_encrypt_cbc_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/cbc/PKCS7Padding");
-      des->init(st(Cipher)::Encrypt,enckey);
+      des->init(st(Cipher)::Mode::Encrypt,enckey);
       des->encryptFile(data,"./tmp/des_encrypt_cbc_outdata_pksc7");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_cbc_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/cbc/PKCS7Padding");
-      des2->init(st(Cipher)::Decrypt,deckey);
+      des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_cbc_outdata_pksc7","./tmp/des_encrypt_cbc_outdata_pksc7_dec");
       String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_cbc_outdata_pksc7_dec"));
 
@@ -98,13 +98,13 @@ void testDesEncryptCbc() {
       SecretKey enckey = st(SecretKeyCreator)::getInstance("DES");
       enckey->loadEncryptKey("./tmp/test_des_encrypt_cbc_enckey");
       Cipher des = st(CipherCreator)::getInstance("DES/cbc/ZeroPading");
-      des->init(st(Cipher)::Encrypt,enckey);
+      des->init(st(Cipher)::Mode::Encrypt,enckey);
       des->encryptFile(data,"./tmp/des_encrypt_cbc_outdata_pksc0");
 
       SecretKey deckey = st(SecretKeyCreator)::getInstance("DES");
       deckey->loadDecryptKey("./tmp/test_des_encrypt_cbc_deckey");
       Cipher des2 = st(CipherCreator)::getInstance("DES/cbc/ZeroPading");
-      des2->init(st(Cipher)::Decrypt,deckey);
+      des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_cbc_outdata_pksc0","./tmp/des_encrypt_cbc_outdata_pksc0_dec");
       String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_cbc_outdata_pksc0_dec"));
 

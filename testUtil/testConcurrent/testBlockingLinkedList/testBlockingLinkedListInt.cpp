@@ -10,6 +10,7 @@
 
 using namespace obotcha;
 
+#if 0
 DECLARE_CLASS(EnqueueIntThread1) IMPLEMENTS(Thread) {
 public:
     _EnqueueIntThread1(BlockingLinkedList<int> queue) {
@@ -24,8 +25,11 @@ public:
 private:
     BlockingLinkedList<int> mQueue;
 };
+#endif
 
 void testBlockingLinkedListInt() {
+//do not support primitive value
+#if 0	
     while(1) {
         BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
         list->putFirst(1);
@@ -88,5 +92,5 @@ void testBlockingLinkedListInt() {
         TEST_OK("BlockingLinkedList<int> takeFirst test4");
         break;
     }
-
+#endif
 }

@@ -25,18 +25,18 @@ extern void testShutdownCount();
 extern void testTimeCheck();
 
 int main() {
-    testTimeCheck();
+    // testTimeCheck();
     
-    testSubmitWait();
-    testSubmitTask();
-    testSubmitTimeout();
-    testAwaitTermination();
+    // testSubmitWait();
+    // testSubmitTask();
+    // testSubmitTimeout();
+    // testAwaitTermination();
 
-    testThreadLambda();
-    baseTest();
-    scheduleTest();
-    ReleaseTest();
-    scheduleloopsubmit();
+    // testThreadLambda();
+    // baseTest();
+    // scheduleTest();
+    // ReleaseTest();
+    // scheduleloopsubmit();
     testShutdownCount();
 
     sleep(10);

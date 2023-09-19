@@ -124,6 +124,7 @@ void testYamlWriter() {
         ||!data->foods->get(1)->equals(v2->foods->get(1))
         ||!data->foods->get(2)->equals(v2->foods->get(2))
         ||!data->foods->get(3)->equals(v2->foods->get(3))) {
+		printf("food[0] is %s,read food[0] is %s \n",data->foods->get(0)->toChars(),v2->foods->get(0)->toChars());
         TEST_FAIL("[TestYamlWriter Import case5]");
     }
 

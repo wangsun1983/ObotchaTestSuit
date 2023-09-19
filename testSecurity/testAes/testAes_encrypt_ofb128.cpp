@@ -36,13 +36,13 @@ void testAesEncryptOfb128() {
     SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/OFB128");
     enckey->loadEncryptKey("./tmp/test_Aes_encrypt_Ofb128_enckey");
     Cipher Aes = st(CipherCreator)::getInstance("AES/OFB128/PKCS5Padding");
-    Aes->init(st(Cipher)::Encrypt,enckey);
+    Aes->init(st(Cipher)::Mode::Encrypt,enckey);
     Aes->encryptFile(data,"./tmp/Aes_encrypt_Ofb128_outdata_pksc5");
 
     SecretKey deckey = st(SecretKeyCreator)::getInstance("AES/OFB128");
     deckey->loadDecryptKey("./tmp/test_Aes_encrypt_Ofb128_deckey");
     Cipher Aes2 = st(CipherCreator)::getInstance("AES/OFB128/PKCS5Padding");
-    Aes2->init(st(Cipher)::Decrypt,deckey);
+    Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
     Aes2->decryptFile("./tmp/Aes_encrypt_Ofb128_outdata_pksc5","./tmp/Aes_encrypt_Ofb128_outdata_pksc5_dec");
     String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Ofb128_outdata_pksc5_dec"));
 

@@ -60,7 +60,7 @@ void testReflectHashMapFieldWrite() {
         JsonWriter jwriter = createJsonWriter("output_hashmap_1.json");
         jwriter->write(jvalue);
 
-        JsonReader reader = createJsonReader(createFile("output_hashmap_1.json"));
+        JsonReader reader = createJsonReader()->loadFile(createFile("output_hashmap_1.json"));
         JsonValue readValue = reader->get();
 
         Container rdata3 = createContainer();
@@ -128,7 +128,7 @@ void testReflectHashMapFieldWrite() {
       JsonWriter jwriter = createJsonWriter("output_hashmap_2.json");
       jwriter->write(jvalue);
 
-      JsonReader reader = createJsonReader(createFile("output_hashmap_2.json"));
+      JsonReader reader = createJsonReader()->loadFile(createFile("output_hashmap_2.json"));
       JsonValue readValue = reader->get();
       ContainerLists ll2 = createContainerLists();
       readValue->reflectTo(ll2);
