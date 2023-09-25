@@ -22,8 +22,12 @@ extern void testReadLock_LoopLock();
 extern void testReadLock_LockTimeout();
 extern void testWriteLock_LockTimeout();
 extern void testReadWriteLock_GetName();
+extern void testReadLock_AutoLock();
+extern void testReadLock_UnlockException();
 
 int main() {
+  testReadLock_UnlockException();
+  testReadLock_AutoLock();
   testReadLock_LockTimeout();
   testWriteLock_LockTimeout();
   testReadLock_LoopLock();

@@ -12,8 +12,12 @@
 using namespace obotcha;
 
 extern void testExecutorParam();
+extern void testIsExecuting();
+extern void testGetSetRemoveTask();
 
 int main() {
+	testGetSetRemoveTask();
     testExecutorParam();
+	testIsExecuting();
     return 0;
 }

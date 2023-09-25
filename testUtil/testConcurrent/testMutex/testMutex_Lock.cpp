@@ -46,6 +46,20 @@ int testMutex_Lock() {
       }
       break;
     }
+	
+	while(1) {
+	  Mutex t = createMutex(st(Lock)::Type::Normal);
+	  watch->start();
+	  t->lock(100);
+	  t->lock(100);
+	  t->lock(100);
+	  long result = watch->stop();
+	  if(result < 200 || result > 205) {
+	    TEST_FAIL("[TestMutex Lock case2_1]");
+	    break;
+	  }
+	  break;
+	}
 
     while(1) {
       Mutex t = createMutex();
@@ -93,6 +107,33 @@ int testMutex_Lock() {
       }
       break;
     }
+	
+	while(1) {
+		Mutex t = createMutex();
+		t->lock();
+		t->lock();
+		
+		Thread t1 = createThread([&] {
+			t->lock();
+		});
+		t1->start();
+		t->unlock();
+		watch->start();
+		t1->join(100);
+		auto r = watch->stop();
+		if(r < 95 || r > 105) {
+			TEST_FAIL("[TestMutex Lock case6]");
+		}
+		
+		watch->start();
+		t->unlock();
+		t1->join();
+		r = watch->stop();
+		if(r < 0 || r > 5) {
+			TEST_FAIL("[TestMutex Lock case7]");
+		}
+		break;
+	}
     TEST_OK("[TestMutex Lock case100]");
     return 0;
 }

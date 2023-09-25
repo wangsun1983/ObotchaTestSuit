@@ -26,7 +26,7 @@ void testScheduledPoolExecutor_Wait() {
       int value = 100;
       Future f1 = pool->schedule(200,[&value](){
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
       watcher->start();
       f1->wait();
@@ -48,7 +48,7 @@ void testScheduledPoolExecutor_Wait() {
       int value = 100;
       Future f1 = pool->schedule(200,[&value](){
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
 
       watcher->start();
@@ -78,7 +78,7 @@ void testScheduledPoolExecutor_Wait() {
     Future f1 = pool->schedule(200,[&value](){
       usleep(200*1000);
       value = 222;
-      st(ExecutorResult)::set(333);
+      st(ExecutorResult)::Set(333);
     });
     usleep(100);
     f1->cancel();

@@ -71,21 +71,30 @@ void testReadWriteLock_Lock() {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
-        rwLock->getWriteLock()->unlock();
+		try {
+			rwLock->getWriteLock()->unlock();
+			TEST_FAIL("[TestReadLock ReadWriteLock Lock case3_1]");
+		} catch(...) {}
     });
 
     Thread t1 = createThread([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
-        rwLock->getWriteLock()->unlock();
+        try {
+        	rwLock->getWriteLock()->unlock();
+        	TEST_FAIL("[TestReadLock ReadWriteLock Lock case3_2]");
+        } catch(...) {}
     });
 
     Thread t2 = createThread([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
-        rwLock->getWriteLock()->unlock();
+        try {
+        	rwLock->getWriteLock()->unlock();
+        	TEST_FAIL("[TestReadLock ReadWriteLock Lock case3_3]");
+        } catch(...) {}
     });
 
     t->start();

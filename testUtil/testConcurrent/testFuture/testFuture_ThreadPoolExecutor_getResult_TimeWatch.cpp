@@ -24,7 +24,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
   while(1) {
       Future f1 = pool->submit([]{
           usleep(200*1000);
-          st(ExecutorResult)::set(111);
+          st(ExecutorResult)::Set(111);
       });
       watcher->start();
       int ret = f1->getResult<int>();
@@ -85,7 +85,7 @@ void testThreadPoolExecutor_GetResult_TimeWatch() {
   while(1) {
       Future f1 = pool->submit([]{
           usleep(200*1000);
-          st(ExecutorResult)::set(123);
+          st(ExecutorResult)::Set(123);
       });
       watcher->start();
       bool isException = false;

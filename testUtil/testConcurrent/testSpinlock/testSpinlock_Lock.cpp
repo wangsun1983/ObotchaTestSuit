@@ -12,9 +12,10 @@
 
 using namespace obotcha;
 
-int testSpinlockLock() {
+void testSpinlockLock() {
 	TimeWatcher watcher = createTimeWatcher();
-
+	watcher->start();
+	watcher->stop();
 	while(1) {
 		SpinLock l = createSpinLock();
 		Thread t = createThread([&l]{
@@ -30,12 +31,11 @@ int testSpinlockLock() {
 		long v = watcher->stop();
 		if(v < 95 || v > 105) {
 			TEST_FAIL("[TestSpinlock Lock case1],v is %d",v);
-			break;
 		}
 		l->unlock();
+		t->join();
 		break;
 	}
 
 	TEST_OK("[TestSpinlock Lock case100]");
-	return 0;
 }

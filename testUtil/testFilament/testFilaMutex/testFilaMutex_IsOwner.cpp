@@ -12,7 +12,6 @@ using namespace std;
 using namespace obotcha;
 
 void testFilaMutexIsOwner() {
-
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();

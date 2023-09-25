@@ -33,7 +33,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
 
     Future f1 = pool->submit([]{
       usleep(100*1000);
-      st(ExecutorResult)::set(100);
+      st(ExecutorResult)::Set(100);
     });
 
     usleep(10*1000);
@@ -65,7 +65,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
     });
 
     Future f1 = pool->submit([]{
-      st(ExecutorResult)::set(createInterruptTestData(123));
+      st(ExecutorResult)::Set(createInterruptTestData(123));
     });
 
     Thread t = createThread([&pool]{
@@ -112,7 +112,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
     });
 
     Future f1 = pool->submit([]{
-      st(ExecutorResult)::set(123);
+      st(ExecutorResult)::Set(123);
     });
 
     Thread t = createThread([&pool]{

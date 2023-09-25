@@ -11,9 +11,11 @@
 using namespace std;
 using namespace obotcha;
 
-extern void testSimpleSleep();
+extern void testFilaRoutineDestroy();
 
 int main() {
-  testSimpleSleep();
+  for(int i = 0;i < 1024;i++) {
+	testFilaRoutineDestroy();
+  }
   return 0;
 }

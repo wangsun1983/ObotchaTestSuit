@@ -2,6 +2,11 @@
 #include "TestLog.hpp"
 #include "Future.hpp"
 
+#include "ThreadCachedPoolExecutor.hpp"
+#include "ThreadPoolExecutor.hpp"
+#include "ThreadPriorityPoolExecutor.hpp"
+#include "ThreadScheduledPoolExecutor.hpp"
+
 using namespace obotcha;
 
 DECLARE_CLASS(MyExecutor) IMPLEMENTS(Executor) {
@@ -74,6 +79,93 @@ void testExecutorParam() {
     if(t->getMaxSubmitTaskWaitTime() != 6) {
         TEST_FAIL("Test Executor Param case6");
     }
+	
+	while(1) {
+		auto pool = createThreadPoolExecutor(1,/*mMaxPendingTaskNum*/
+											2,/*mDefaultThreadNum*/
+											3 /*mMaxSubmitTaskWaitTime*/);
+		if(pool->getMaxPendingTaskNum() != 1) {
+			TEST_FAIL("Test Executor Param case7,result is %d",pool->getMaxPendingTaskNum());
+		}
+		
+		if(pool->getDefaultThreadNum() != 2) {
+			TEST_FAIL("Test Executor Param case8,result is %d",pool->getDefaultThreadNum());
+		}
+		
+		if(pool->getMaxSubmitTaskWaitTime() != 3) {
+			TEST_FAIL("Test Executor Param case8_1,result is %d",pool->getMaxSubmitTaskWaitTime());
+		}
+		pool->shutdown();
+		pool->awaitTermination();
+		break;
+	}
+	
+	while(1) {
+		auto pool = createThreadCachedPoolExecutor(1,/*mMaxPendingTaskNum, */
+		                                           5,/*mMaxThreadNum, */
+		                                           3,/*mMinThreadNum,*/
+		                                           4,/*mMaxSubmitTaskWaitTime,*/
+		                                           7/*mMaxNoWorkingTime*/);
+	    if(pool->getMaxPendingTaskNum() != 1) {
+	    	TEST_FAIL("Test Executor Param case9");
+	    }
+	
+		if(pool->getMaxThreadNum() != 5) {
+			TEST_FAIL("Test Executor Param case10");
+		}
+		
+		if(pool->getMinThreadNum() != 3) {
+			TEST_FAIL("Test Executor Param case11");
+		}
+		
+		if(pool->getMaxNoWorkingTime() != 7) {
+			TEST_FAIL("Test Executor Param case12");
+		}
+		
+		if(pool->getMaxSubmitTaskWaitTime() != 4) {
+			TEST_FAIL("Test Executor Param case13");
+		}
+		pool->shutdown();
+		pool->awaitTermination();
+		break;
+	}
+	
+	while(1) {
+		auto pool = createThreadScheduledPoolExecutor(9,/*mMaxPendingTaskNum,*/
+		                                              10 /*mMaxSubmitTaskWaitTime*/);
+												
+	    if(pool->getMaxPendingTaskNum() != 9) {
+			TEST_FAIL("Test Executor Param case14");
+		}
+		
+		if(pool->getMaxSubmitTaskWaitTime() != 10) {
+			TEST_FAIL("Test Executor Param case15");
+		}
+		pool->shutdown();
+		pool->awaitTermination();
+		break;
+	}
+	
+	while(1) {
+		auto pool = createThreadPriorityPoolExecutor(6,/*mMaxPendingTaskNum, */
+                                                     7,/*mDefaultThreadNum,*/
+                                                     8 /*mMaxSubmitTaskWaitTime*/);
+												
+	    if(pool->getMaxPendingTaskNum() != 6) {
+			TEST_FAIL("Test Executor Param case16");
+		}
+		
+		if(pool->getDefaultThreadNum() != 7) {
+			TEST_FAIL("Test Executor Param case17");
+		}
+		
+		if(pool->getMaxSubmitTaskWaitTime() != 8) {
+			TEST_FAIL("Test Executor Param case18");
+		}
+		pool->shutdown();
+		pool->awaitTermination();
+		break;
+	}
     
     TEST_OK("Test Executor Param case100");
 }

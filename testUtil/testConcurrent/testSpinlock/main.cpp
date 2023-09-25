@@ -14,8 +14,12 @@ using namespace obotcha;
 
 extern void testSpinlockLock();
 extern void testSpinlockTryLock();
+extern void testSpinlockTimeout();
+extern void testSpinlockunLock();
 
 int main() {
+  testSpinlockunLock();
+  testSpinlockTimeout();
   testSpinlockLock();
   testSpinlockTryLock();
   return 1;

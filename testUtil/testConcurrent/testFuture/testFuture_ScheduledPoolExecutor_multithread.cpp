@@ -26,7 +26,7 @@ void testScheduledPoolExecutor_Multithread() {
       //TEST_FAIL("trace2 \n");
       Future t = pool->schedule(10,[&latch,i]{
         //TEST_FAIL("thread_start \n");
-        st(ExecutorResult)::set(i);
+        st(ExecutorResult)::Set(i);
         latch->countDown();
       });
       lists->add(t);

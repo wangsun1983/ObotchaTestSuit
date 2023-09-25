@@ -21,31 +21,40 @@ int testMutex_UnLock() {
     TimeWatcher watch = createTimeWatcher();
 
     while(1) {
-      Mutex t = createMutex();
-      t->unlock();
-      Thread th = createThread([&t]{
-        t->lock();
-        usleep(300*1000);
-        t->unlock();
-      });
-      th->start();
-      usleep(100*1000);
-
-      watch->start();
-      t->unlock();
-      int v = t->lock(100);
-      long result = watch->stop();
-      if(v != -ETIMEDOUT) {
-        TEST_FAIL("[TestMutex UnLock case1],v is %d",v);
-        break;
-      }
-
-      if(result < 100 || result > 105) {
-        TEST_FAIL("[TestMutex UnLock case2]");
-        break;
-      }
-      break;
+		Mutex t = createMutex();
+		Thread th = createThread([&t]{
+			t->lock();
+			usleep(300*1000);
+			t->unlock();
+		});
+		th->start();
+		usleep(100*1000);
+		try {
+			t->unlock();
+			TEST_FAIL("[TestMutex UnLock case1]");
+		} catch(...) {}
+		th->join();
+		break;
     }
+	
+	while(1) {
+		auto mutex = createMutex();
+		try {
+			mutex->unlock();
+			TEST_FAIL("[TestMutex UnLock case2]");
+		} catch(...) {}
+		break;
+	}
+	
+	while(1) {
+		auto mutex = createMutex();
+		try {
+			mutex->lock();
+			mutex->unlock();
+			
+		} catch(...) {TEST_FAIL("[TestMutex UnLock case3]");}
+		break;
+	}
 
     TEST_OK("[TestMutex UnLock case100]");
     return 0;

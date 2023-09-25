@@ -142,7 +142,7 @@ int testMutexNormal() {
             TEST_FAIL("[TestMutex Test {lock()} case1]");
             break;
         }
-
+		mThread1->join();
         TEST_OK("[TestMutex Test {lock()} case2]");
         break;
     }
@@ -171,12 +171,10 @@ int testMutexNormal() {
     //unlock()
     while(1) {
         Mutex t = createMutex();
-        int ret = t->unlock();
-        if(ret != -1) {
-            TEST_FAIL("[TestMutex Test {unlock()} case1],ret is %d",ret);
-            break;
-        }
-
+		try {
+			int ret = t->unlock();
+			TEST_FAIL("[TestMutex Test {unlock()} case1],ret is %d",ret);
+		} catch(...) {}
         TEST_OK("[TestMutex Test {unlock()} case2]");
         break;
     }

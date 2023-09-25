@@ -13,7 +13,6 @@ using namespace std;
 using namespace obotcha;
 
 void testFilaMutexLock() {
-
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
@@ -22,7 +21,7 @@ void testFilaMutexLock() {
         croutine->execute([&mutex] {
             AutoLock l(mutex);
             //mutex->lock();
-            st(Fila)::sleep(200);
+            st(Fila)::Sleep(200);
         });
         usleep(1000*100);
         
@@ -39,7 +38,7 @@ void testFilaMutexLock() {
         usleep(1000 * 300);
         break;
     }
-    
+
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
@@ -48,7 +47,7 @@ void testFilaMutexLock() {
         croutine->execute([&mutex] {
             AutoLock l(mutex);
             //mutex->lock();
-            st(Fila)::sleep(200);
+            st(Fila)::Sleep(200);
         });
         usleep(1000*100);
         
@@ -71,7 +70,7 @@ void testFilaMutexLock() {
         }
         break;
     }
-    
+
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
@@ -103,7 +102,7 @@ void testFilaMutexLock() {
         }
         break;
     }
-    
+
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
@@ -114,7 +113,7 @@ void testFilaMutexLock() {
             AutoLock l(mutex);
             for(int i = 0;i < 1024;i++) {
                 value++;
-                st(Fila)::sleep(1);
+                st(Fila)::Sleep(1);
             }
         });
         
@@ -122,7 +121,7 @@ void testFilaMutexLock() {
             AutoLock l(mutex);
             for(int i = 0;i < 1024;i++) {
                 value++;
-                st(Fila)::sleep(1);
+                st(Fila)::Sleep(1);
             }
         });
         
@@ -130,7 +129,7 @@ void testFilaMutexLock() {
             AutoLock l(mutex);
             for(int i = 0;i < 1024;i++) {
                 value++;
-                st(Fila)::sleep(1);
+                st(Fila)::Sleep(1);
             }
         });
         
@@ -151,7 +150,7 @@ void testFilaMutexLock() {
         croutine->execute([&mutex] {
             AutoLock l(mutex);
             //mutex->lock();
-            st(Fila)::sleep(1000);
+            st(Fila)::Sleep(1000);
         });
         usleep(1000*100);
         
@@ -160,7 +159,7 @@ void testFilaMutexLock() {
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
-            if(interval > 905 || interval < 895) {
+            if(interval > 915 || interval < 895) {
                 TEST_FAIL("FilaMutex test Lock case7,interval is %d",interval);
             }
         });
@@ -172,7 +171,7 @@ void testFilaMutexLock() {
         break;
     }
     
-    
+
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
@@ -180,7 +179,7 @@ void testFilaMutexLock() {
         
         croutine->execute([&mutex] {
             mutex->lock();
-            st(Fila)::sleep(1000);
+            st(Fila)::Sleep(1000);
             mutex->unlock();
         });
         usleep(1000*100);
@@ -191,7 +190,7 @@ void testFilaMutexLock() {
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
-            if(interval > 905 || interval < 895) {
+            if(interval > 915 || interval < 895) {
                 TEST_FAIL("FilaMutex test Lock case8,interval is %d",interval);
             }
             
@@ -208,6 +207,38 @@ void testFilaMutexLock() {
         }
         break;
     }
+
+	while(1) {
+		TimeWatcher watcher = createTimeWatcher();
+	    FilaRoutine croutine = createFilaRoutine();
+	    croutine->start();
+	    FilaMutex mutex = createFilaMutex();
+		croutine->execute([&] {
+			mutex->lock();
+			mutex->lock();
+			mutex->unlock();
+			st(Fila)::Sleep(300);
+			mutex->unlock();
+		});
+		
+		int count = 0;
+		croutine->execute([&] {
+			watcher->start();
+			mutex->lock();
+			auto r = watcher->stop();
+			if(r < 295 || r > 315) {
+				TEST_FAIL("FilaMutex test Lock case9,r is %d",r);
+			}
+			count = 1;
+		});
+		
+		usleep(400*1000);
+		if(count != 1) {
+			TEST_FAIL("FilaMutex test Lock case10");
+		}
+		
+		break;
+	}
 
     TEST_OK("FilaMutex test Lock case100");
 }

@@ -20,7 +20,7 @@ DECLARE_CLASS(FutureThreadPoolCancelTask) IMPLEMENTS(Runnable){
 public:
   void run() {
     usleep(1000*100);
-    st(ExecutorResult)::set(100);
+    st(ExecutorResult)::Set(100);
   }
 
   bool onInterrupt() {
@@ -32,7 +32,7 @@ DECLARE_CLASS(FutureThreadPoolNoCancelTask) IMPLEMENTS(Runnable){
 public:
   void run() {
     usleep(1000*100);
-    st(ExecutorResult)::set(888);
+    st(ExecutorResult)::Set(888);
   }
 
   bool onInterrupt() {

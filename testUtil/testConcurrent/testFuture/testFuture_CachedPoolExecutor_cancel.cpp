@@ -24,11 +24,11 @@ void testCachedPoolExecutor_Cancel() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
 
       Future f2 = pool->submit([](){
-        st(ExecutorResult)::set(100);
+        st(ExecutorResult)::Set(100);
       });
 
       usleep(100*1000);
@@ -57,7 +57,7 @@ void testCachedPoolExecutor_Cancel() {
     int value = 123;
     Future f1 = pool->submit([&value](){
       value = 222;
-      st(ExecutorResult)::set(333);
+      st(ExecutorResult)::Set(333);
     });
     usleep(100*1000);
     f1->cancel();

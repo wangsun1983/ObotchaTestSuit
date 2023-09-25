@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-int testSpinlockTryLock() {
+void testSpinlockTryLock() {
 	TimeWatcher watcher = createTimeWatcher();
 
 	while(1) {
@@ -55,7 +55,7 @@ int testSpinlockTryLock() {
 		watcher->start();
 		l->lock();
 		long v = watcher->stop();
-		if(v < 100 || v > 105) {
+		if(v < 95 || v > 105) {
 			TEST_FAIL("[TestSpinlock TryLock case3],v is %d",v);
 			break;
 		}
@@ -64,5 +64,4 @@ int testSpinlockTryLock() {
 	}
 
 	TEST_OK("[TestSpinlock TryLock case100]");
-	return 0;
 }

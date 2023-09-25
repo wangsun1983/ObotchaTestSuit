@@ -13,8 +13,12 @@ using namespace obotcha;
 
 extern void testFilaMutexIsOwner();
 extern void testFilaMutexLock();
+extern void testMutexUnlock();
+extern void testFilaMutexLockTimeout();
 
 int main() {
+  testFilaMutexLockTimeout();
+  testMutexUnlock();
   testFilaMutexIsOwner();
   testFilaMutexLock();
 

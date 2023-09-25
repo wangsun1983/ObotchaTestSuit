@@ -23,7 +23,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
 
       bool isException = false;
@@ -45,7 +45,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::set(createInteger(100));
+        st(ExecutorResult)::Set(createInteger(100));
       });
 
       int result = f1->getResult<int>();

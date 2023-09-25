@@ -26,42 +26,42 @@ public:
         MyResult r = createMyResult();
         r->value1 = 100;
         r->value2 = 123;
-        st(ExecutorResult)::set(r);
+        st(ExecutorResult)::Set(r);
     }
 };
 
 DECLARE_CLASS(RunTestInt) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(1);
+        st(ExecutorResult)::Set(1);
     }
 };
 
 DECLARE_CLASS(RunTestByte) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((byte)2);
+        st(ExecutorResult)::Set((byte)2);
     }
 };
 
 DECLARE_CLASS(RunTestDouble) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(3.3);
+        st(ExecutorResult)::Set(3.3);
     }
 };
 
 DECLARE_CLASS(RunTestBoolFalse) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(false);
+        st(ExecutorResult)::Set(false);
     }
 };
 
 DECLARE_CLASS(RunTestBoolTrue) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(true);
+        st(ExecutorResult)::Set(true);
     }
 };
 
@@ -69,35 +69,35 @@ public:
 DECLARE_CLASS(RunTestLong) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((long)400);
+        st(ExecutorResult)::Set((long)400);
     }
 };
 
 DECLARE_CLASS(RunTestUint16) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint16_t)5);
+        st(ExecutorResult)::Set((uint16_t)5);
     }
 };
 
 DECLARE_CLASS(RunTestUint32) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint32_t)6);
+        st(ExecutorResult)::Set((uint32_t)6);
     }
 };
 
 DECLARE_CLASS(RunTestUint64) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint64_t)7);
+        st(ExecutorResult)::Set((uint64_t)7);
     }
 };
 
 DECLARE_CLASS(RunTestString) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(createString("hello world"));
+        st(ExecutorResult)::Set(createString("hello world"));
     }
 };
 
@@ -108,7 +108,7 @@ public:
         MyResult r = createMyResult();
         r->value1 = 100;
         r->value2 = 123;
-        st(ExecutorResult)::set(r);
+        st(ExecutorResult)::Set(r);
         sleep(1);
     }
 };
@@ -116,7 +116,7 @@ public:
 DECLARE_CLASS(RunTestIntDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(1);
+        st(ExecutorResult)::Set(1);
         sleep(1);
     }
 };
@@ -124,7 +124,7 @@ public:
 DECLARE_CLASS(RunTestByteDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((byte)2);
+        st(ExecutorResult)::Set((byte)2);
         sleep(1);
     }
 };
@@ -132,7 +132,7 @@ public:
 DECLARE_CLASS(RunTestDoubleDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(3.3);
+        st(ExecutorResult)::Set(3.3);
         sleep(1);
     }
 };
@@ -140,7 +140,7 @@ public:
 DECLARE_CLASS(RunTestBoolFalseDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(false);
+        st(ExecutorResult)::Set(false);
         sleep(1);
     }
 };
@@ -148,7 +148,7 @@ public:
 DECLARE_CLASS(RunTestBoolTrueDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(true);
+        st(ExecutorResult)::Set(true);
         sleep(1);
     }
 };
@@ -157,7 +157,7 @@ public:
 DECLARE_CLASS(RunTestLongDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((long)400);
+        st(ExecutorResult)::Set((long)400);
         sleep(1);
     }
 };
@@ -165,7 +165,7 @@ public:
 DECLARE_CLASS(RunTestUint16Delayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint16_t)5);
+        st(ExecutorResult)::Set((uint16_t)5);
         sleep(1);
     }
 };
@@ -173,7 +173,7 @@ public:
 DECLARE_CLASS(RunTestUint32Delayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint32_t)6);
+        st(ExecutorResult)::Set((uint32_t)6);
         sleep(1);
     }
 };
@@ -181,7 +181,7 @@ public:
 DECLARE_CLASS(RunTestUint64Delayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set((uint64_t)7);
+        st(ExecutorResult)::Set((uint64_t)7);
         sleep(1);
     }
 };
@@ -189,7 +189,7 @@ public:
 DECLARE_CLASS(RunTestStringDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::set(createString("hello world"));
+        st(ExecutorResult)::Set(createString("hello world"));
         sleep(1);
     }
 };

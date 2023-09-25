@@ -23,7 +23,7 @@ void testSimpleSleep() {
         croutine->execute([&runCount]{
           TimeWatcher watcher = createTimeWatcher();
           watcher->start();
-          st(Fila)::sleep(100);
+          st(Fila)::Sleep(100);
           long v = watcher->stop();
           if(v < 95 || v > 105) {
             TEST_FAIL("Filament test sleep case1");
@@ -34,7 +34,7 @@ void testSimpleSleep() {
         croutine->execute([&runCount]{
           TimeWatcher watcher = createTimeWatcher();
           watcher->start();
-          st(Fila)::sleep(200);
+          st(Fila)::Sleep(200);
           long v = watcher->stop();
           if(v < 195 || v > 205) {
             TEST_FAIL("Filament test sleep case2");
@@ -52,7 +52,7 @@ void testSimpleSleep() {
     while(1) {
         TimeWatcher watcher = createTimeWatcher();
         watcher->start();
-        st(Fila)::sleep(100);
+        st(Fila)::Sleep(100);
         auto v = watcher->stop();
         
         if(v < 95 || v > 105) {

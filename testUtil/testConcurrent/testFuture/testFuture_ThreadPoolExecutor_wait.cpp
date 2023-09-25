@@ -29,7 +29,7 @@ void testThreadPoolExecutor_Wait() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
 
       watcher->start();
@@ -52,7 +52,7 @@ void testThreadPoolExecutor_Wait() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::set(333);
+        st(ExecutorResult)::Set(333);
       });
 
       watcher->start();
@@ -78,7 +78,7 @@ void testThreadPoolExecutor_Wait() {
     Future f1 = pool->submit([&value](){
       usleep(200*1000);
       value = 222;
-      st(ExecutorResult)::set(333);
+      st(ExecutorResult)::Set(333);
     });
     usleep(100);
     f1->cancel();

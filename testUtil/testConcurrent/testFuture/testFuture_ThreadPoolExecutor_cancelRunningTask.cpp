@@ -27,7 +27,7 @@ public:
       while(isStop == 1) {
         usleep(1000 * 200);
       }
-      st(ExecutorResult)::set(333);
+      st(ExecutorResult)::Set(333);
     }
 
     bool onInterrupt() { 
@@ -43,7 +43,7 @@ DECLARE_CLASS(NoStopTask) IMPLEMENTS(Runnable) {
 public:
     void run() {
       usleep(1000 * 200);
-      st(ExecutorResult)::set(111);
+      st(ExecutorResult)::Set(111);
     }
 
     bool onInterrupt() { 
