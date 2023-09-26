@@ -54,6 +54,8 @@ void testMutexUnlock() {
 			}
 		});
 		usleep(1000*100);
+		c->shutdown();
+		c->awaitTermination();
 		break;
 	}
 
@@ -85,6 +87,8 @@ void testMutexUnlock() {
 		if(count != 1) {
 			TEST_FAIL("FilaMutex test unlock case6");
 		}
+		c->shutdown();
+		c->awaitTermination();
 		break;
 	}
 
@@ -117,6 +121,8 @@ void testMutexUnlock() {
 		if(count != 1) {
 			TEST_FAIL("FilaMutex test unlock case8");
 		}
+		c->shutdown();
+		c->awaitTermination();
 		break;
 	}
 	
@@ -183,6 +189,8 @@ void testMutexUnlock() {
 		if(count != 6) {
 			TEST_FAIL("FilaMutex test unlock case9,count is %d,i is %d",count,i);
 		}
+		c->shutdown();
+		c->awaitTermination();
 	}
     TEST_OK("FilaMutex test unlock case100");
 }

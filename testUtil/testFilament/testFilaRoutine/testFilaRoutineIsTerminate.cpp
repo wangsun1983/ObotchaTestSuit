@@ -8,25 +8,31 @@
 #include "Filament.hpp"
 #include "TimeWatcher.hpp"
 #include "Fila.hpp"
+#include "TimeWatcher.hpp"
 
 using namespace std;
 using namespace obotcha;
 
-void testFilaRoutineDestroy() {
-	//case1
-	for(int i = 0;i < 1024;i++) {
-		FilaMutex mutex = createFilaMutex();
-		std::vector<int> data;
+void testFilaRoutineIsTerminated() {
+	//case1	
+	while(1) {
 		FilaRoutine croutine = createFilaRoutine();
 		croutine->start();
 		croutine->execute([&] {
 			AutoLock l(mutex);
-			st(Fila)::Sleep(200);
+			st(Fila)::Sleep(100);
 		});
+		
+		if(croutine->isTerminated()) {
+			TEST_FAIL("FilaMutex isTerminated case1");
+		}
+		
 		croutine->shutdown();
-		croutine->awaitTermination();
-		printf("count is %d \n",croutine->getStrongCount());
+		if(!croutine->isTerminated()) {
+			TEST_FAIL("FilaMutex isTerminated case2");
+		}
+		break;
 	}
 	
-	TEST_OK("FilaMutex test unlock case100");
+	TEST_OK("FilaMutex isTerminated case100");
 }

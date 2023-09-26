@@ -40,7 +40,8 @@ void testFilaMutexLockTimeout() {
 				TEST_FAIL("FilaMutex test Lock Timeout case2");
 			}
 		});
-		usleep(1000*100);
+		c->shutdown();
+		c->awaitTermination();
 		break;
 	}
 	
@@ -66,7 +67,8 @@ void testFilaMutexLockTimeout() {
 				TEST_FAIL("FilaMutex test Lock Timeout case3,r is %d",r);
 			}
 		});
-		usleep(1000*200);
+		c->shutdown();
+		c->awaitTermination();
 		break;
 	}
 	
@@ -91,7 +93,9 @@ void testFilaMutexLockTimeout() {
 			}
 		});
 		t1->start();
-		usleep(200*1000);
+		c->shutdown();
+		c->awaitTermination();
+		t1->join();
 		break;
 	}
 	

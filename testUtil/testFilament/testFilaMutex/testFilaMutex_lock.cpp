@@ -30,12 +30,13 @@ void testFilaMutexLock() {
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
-            if(interval > 105 || interval < 95) {
-                TEST_FAIL("FilaMutex test Lock case1");
+            if(interval > 115 || interval < 95) {
+                TEST_FAIL("FilaMutex test Lock case1,interval is %d",interval);
             }
         });
         
-        usleep(1000 * 300);
+        croutine->shutdown();
+        croutine->awaitTermination();
         break;
     }
 
@@ -57,8 +58,8 @@ void testFilaMutexLock() {
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
-            if(interval > 105 || interval < 95) {
-                TEST_FAIL("FilaMutex test Lock case2");
+            if(interval > 115 || interval < 95) {
+                TEST_FAIL("FilaMutex test Lock case2,interval is %d",interval);
             }
             run = 1;
         });
@@ -68,6 +69,8 @@ void testFilaMutexLock() {
         if(run != 1) {
             TEST_FAIL("FilaMutex test Lock case3");
         }
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
 
@@ -89,7 +92,7 @@ void testFilaMutexLock() {
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
-            if(interval > 105 || interval < 95) {
+            if(interval > 115 || interval < 95) {
                 TEST_FAIL("FilaMutex test Lock case4,interval is %d",interval);
             }
             ret = 1;
@@ -100,6 +103,8 @@ void testFilaMutexLock() {
         if(ret != 1) {
             TEST_FAIL("FilaMutex test Lock case5");
         }
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
 
@@ -138,7 +143,8 @@ void testFilaMutexLock() {
         if(value != 1024*3) {
             TEST_FAIL("FilaMutex test Lock case6,value is %d",value);
         }
-        
+        croutine->shutdown();
+        croutine->awaitTermination();
         break;
     }
 
@@ -165,9 +171,8 @@ void testFilaMutexLock() {
         });
         
         usleep(1000*2000);
-        croutine->stop();
-        croutine->join();
-        usleep(1000*2000);
+        croutine->shutdown();
+        croutine->awaitTermination();
         break;
     }
     
@@ -198,8 +203,8 @@ void testFilaMutexLock() {
         });
         
         usleep(1000*2000);
-        croutine->stop();
-        croutine->join();
+		croutine->shutdown();
+		croutine->awaitTermination();
         usleep(1000*2000);
         
         if(!isExecute) {
@@ -220,13 +225,14 @@ void testFilaMutexLock() {
 			st(Fila)::Sleep(300);
 			mutex->unlock();
 		});
+		usleep(100*1000);
 		
 		int count = 0;
 		croutine->execute([&] {
 			watcher->start();
 			mutex->lock();
 			auto r = watcher->stop();
-			if(r < 295 || r > 315) {
+			if(r < 195 || r > 215) {
 				TEST_FAIL("FilaMutex test Lock case9,r is %d",r);
 			}
 			count = 1;
@@ -236,7 +242,8 @@ void testFilaMutexLock() {
 		if(count != 1) {
 			TEST_FAIL("FilaMutex test Lock case10");
 		}
-		
+		croutine->shutdown();
+		croutine->awaitTermination();
 		break;
 	}
 

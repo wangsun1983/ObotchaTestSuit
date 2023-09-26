@@ -42,7 +42,8 @@ void testFilaMutexIsOwner() {
         if(testCount != 2) {
             TEST_FAIL("FilaMutex test isOwner case3,testCount is %d",testCount);
         }
-        
+        croutine->shutdown();
+        croutine->awaitTermination();
         break;
     }
     
@@ -86,6 +87,8 @@ void testFilaMutexIsOwner() {
         });
         
         t->join();
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
     
@@ -111,6 +114,8 @@ void testFilaMutexIsOwner() {
         t->start();
         
         t->join();
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
     

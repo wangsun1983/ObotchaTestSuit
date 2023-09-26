@@ -11,11 +11,20 @@
 using namespace std;
 using namespace obotcha;
 
-extern void testFilaRoutineDestroy();
+extern void testFilaRoutineShutdown();
+extern void testFilaRoutineAwait();
+extern void testFilaRoutineGetSize();
+extern void testFilaRoutineIsTerminated();
+extern void testFilaRoutineSubmit();
+extern void testFilaRoutineExecute();
 
 int main() {
-  for(int i = 0;i < 1024;i++) {
-	testFilaRoutineDestroy();
-  }
+  testFilaRoutineExecute();
+  testFilaRoutineSubmit();
+  testFilaRoutineIsTerminated();
+  testFilaRoutineGetSize();
+  testFilaRoutineAwait();
+  testFilaRoutineShutdown();
+  
   return 0;
 }
