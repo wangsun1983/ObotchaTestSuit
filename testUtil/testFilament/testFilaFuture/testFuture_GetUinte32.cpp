@@ -18,7 +18,7 @@ void testFutureGetUint32() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(FilaExecutorResult)::set<uint32_t>(123);
+            st(FilaExecutorResult)::Set<uint32_t>(123);
         });
         
         usleep(1000*100);

@@ -13,9 +13,12 @@ using namespace obotcha;
 
 extern void testWaitTimeout();
 extern void testNotify();
-
+extern void testWaitCounts();
+extern void testNotifyAll();
 int main() {
-  testNotify();
-  testWaitTimeout();
+	testNotifyAll();
+   //testWaitCounts();
+  //testNotify();
+  //testWaitTimeout();
   return 0;
 }

@@ -20,8 +20,8 @@ void testFutureWait() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(Fila)::sleep(200);
-            st(FilaExecutorResult)::set<int>(100);
+            st(Fila)::Sleep(200);
+            st(FilaExecutorResult)::Set<int>(100);
         });
         
         usleep(1000*100);
@@ -44,8 +44,8 @@ void testFutureWait() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(Fila)::sleep(1000);
-            st(FilaExecutorResult)::set<int>(100);
+            st(Fila)::Sleep(1000);
+            st(FilaExecutorResult)::Set<int>(100);
         });
         
         TimeWatcher watcher = createTimeWatcher();
@@ -68,8 +68,8 @@ void testFutureWait() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(Fila)::sleep(100);
-            st(FilaExecutorResult)::set<int>(100);
+            st(Fila)::Sleep(100);
+            st(FilaExecutorResult)::Set<int>(100);
         });
         
         TimeWatcher watcher = createTimeWatcher();
@@ -93,8 +93,8 @@ void testFutureWait() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(Fila)::sleep(100);
-            st(FilaExecutorResult)::set<int>(100);
+            st(Fila)::Sleep(100);
+            st(FilaExecutorResult)::Set<int>(100);
         });
         
         int v1 = 0;
@@ -120,8 +120,8 @@ void testFutureWait() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(Fila)::sleep(100);
-            st(FilaExecutorResult)::set<int>(100);
+            st(Fila)::Sleep(100);
+            st(FilaExecutorResult)::Set<int>(100);
         });
         
         int v1 = 0;
@@ -134,7 +134,7 @@ void testFutureWait() {
             v2 = future->getResult<int>();
         });
         
-        st(Fila)::sleep(200);
+        st(Fila)::Sleep(200);
         if(v1 != 100 || v2 != 100) {
             TEST_FAIL("Filament Future wait case8");
         }

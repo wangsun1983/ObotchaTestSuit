@@ -18,7 +18,7 @@ void testFutureGetString() {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(FilaExecutorResult)::set(createString("hello"));
+            st(FilaExecutorResult)::Set(createString("hello"));
         });
         
         usleep(1000*100);

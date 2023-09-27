@@ -17,7 +17,7 @@ DECLARE_CLASS(MyFutureTask) IMPLEMENTS(Filament){
 public:
     void run() {
       usleep(1000*100);
-      st(FilaExecutorResult)::set(createInteger(100));
+      st(FilaExecutorResult)::Set(createInteger(100));
     }
 };
 

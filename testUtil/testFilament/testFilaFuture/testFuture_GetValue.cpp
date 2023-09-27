@@ -27,7 +27,7 @@ void testFutureGetValue() {
             MyData data = createMyData();
             data->value1 = 100;
             data->value2 = createString("hello");
-            st(FilaExecutorResult)::set(data);
+            st(FilaExecutorResult)::Set(data);
         });
         
         usleep(1000*100);
