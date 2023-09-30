@@ -16,9 +16,9 @@ extern void testNotify();
 extern void testWaitCounts();
 extern void testNotifyAll();
 int main() {
-	testNotifyAll();
-   //testWaitCounts();
-  //testNotify();
-  //testWaitTimeout();
+  testNotifyAll();
+  testWaitCounts();
+  testNotify();
+  testWaitTimeout();
   return 0;
 }

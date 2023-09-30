@@ -20,14 +20,17 @@ void testFilaRoutineIsTerminated() {
 		croutine->start();
 		croutine->execute([&] {
 			AutoLock l(mutex);
-			st(Fila)::Sleep(100);
+			try {
+				st(Fila)::Sleep(100);
+			} catch(...) {}
 		});
 		
 		if(croutine->isTerminated()) {
 			TEST_FAIL("FilaMutex isTerminated case1");
 		}
-		
+		usleep(1000*10);
 		croutine->shutdown();
+		usleep(1000*10);
 		if(!croutine->isTerminated()) {
 			TEST_FAIL("FilaMutex isTerminated case2");
 		}

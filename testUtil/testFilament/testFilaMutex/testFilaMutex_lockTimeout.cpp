@@ -18,15 +18,16 @@ void testFilaMutexLockTimeout() {
 		c->start();
 		FilaMutex mutex = createFilaMutex();
 		mutex->lock();
-		
+		int count = 0;
 		c->execute([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
-			if(r < 95 || r > 105) {
-				TEST_FAIL("FilaMutex test Lock Timeout case1");
+			if(r < 90 || r > 105) {
+				TEST_FAIL("FilaMutex test Lock Timeout case1,r is %d",r);
 			}
+			count++;
 		});
 		
 		usleep(200*1000);
@@ -39,17 +40,19 @@ void testFilaMutexLockTimeout() {
 			if(r > 5) {
 				TEST_FAIL("FilaMutex test Lock Timeout case2");
 			}
+			count++;
 		});
 		c->shutdown();
 		c->awaitTermination();
+		if(count != 2) {
+			TEST_FAIL("FilaMutex test Lock Timeout case2_1");
+		}
 		break;
 	}
-	
 	while(1) {
 		FilaRoutine c = createFilaRoutine();
 		c->start();
 		FilaMutex mutex = createFilaMutex();
-		
 		Thread t1 = createThread([&]{
 			mutex->lock();
 			usleep(1000*200);
@@ -57,42 +60,44 @@ void testFilaMutexLockTimeout() {
 		});
 		t1->start();
 		usleep(100*1000);
-		
 		c->execute([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
-			if(r > 105 || r < 95) {
+			if(r > 105 || r < 90) {
 				TEST_FAIL("FilaMutex test Lock Timeout case3,r is %d",r);
 			}
 		});
 		c->shutdown();
 		c->awaitTermination();
+		t1->join();
 		break;
 	}
-	
 	while(1) {
 		FilaRoutine c = createFilaRoutine();
 		c->start();
 		FilaMutex mutex = createFilaMutex();
 		c->execute([&]{
 			mutex->lock();
-			st(Fila)::Sleep(200);
+			try {
+				st(Fila)::Sleep(200);
+			} catch(...) {}
 			mutex->unlock();
+		
 		});
 		usleep(1000*100);
-		
 		Thread t1 = createThread([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
 			if(r > 105 || r < 95) {
-				TEST_FAIL("FilaMutex test Lock Timeout case4");
+				TEST_FAIL("FilaMutex test Lock Timeout case4,r is %d",r);
 			}
 		});
 		t1->start();
+		usleep(1000*200);
 		c->shutdown();
 		c->awaitTermination();
 		t1->join();

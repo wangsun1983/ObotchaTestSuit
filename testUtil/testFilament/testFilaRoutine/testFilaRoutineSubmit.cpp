@@ -81,6 +81,7 @@ void testFilaRoutineSubmit() {
 		for(int i = 0 ; i < 128;i++) {
 			croutine->submit(createMyFilament());
 		}
+		usleep(1000*10);
 		croutine->shutdown();
 		croutine->awaitTermination();
 		if(st(MyFilament)::count != 128) {

@@ -21,9 +21,15 @@ void testFilaRoutineAwait() {
 		std::vector<int> data;
 		FilaRoutine croutine = createFilaRoutine();
 		croutine->start();
+		Thread t1 = createThread([&] {
+			AutoLock l(mutex);
+			usleep(500*1000);
+		});
+		t1->start();
+		usleep(1000*100);
+		
 		croutine->execute([&] {
 			AutoLock l(mutex);
-			st(Fila)::Sleep(500);
 		});
 		croutine->shutdown();
 		w->start();
@@ -36,9 +42,10 @@ void testFilaRoutineAwait() {
 		w->start();
 		croutine->awaitTermination();
 		r = w->stop();
-		if(r < 395 || r > 415) {
+		if(r < 295 || r > 315) {
 			TEST_FAIL("FilaRoutine awaitTermination case2,wait cost: %ld",r);
 		}
+		t1->join();
 		break;
 	}
 	

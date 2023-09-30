@@ -19,7 +19,7 @@ void testFutureWait() {
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
-        FilaFuture future = croutine->submit([]{
+        FilaFuture future = croutine->submit([&]{
             st(Fila)::Sleep(200);
             st(FilaExecutorResult)::Set<int>(100);
         });
@@ -36,6 +36,9 @@ void testFutureWait() {
         if(interval < 95 || interval > 105) {
             TEST_FAIL("Filament Future wait case2");
         }
+		
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
 
@@ -43,11 +46,13 @@ void testFutureWait() {
     while(1) {
         FilaRoutine croutine = createFilaRoutine();
         croutine->start();
-        FilaFuture future = croutine->submit([]{
-            st(Fila)::Sleep(1000);
+		int count = 0;
+        FilaFuture future = croutine->submit([&]{
+            st(Fila)::Sleep(200);
             st(FilaExecutorResult)::Set<int>(100);
+			count++;
         });
-        
+        usleep(1000*100);
         TimeWatcher watcher = createTimeWatcher();
         watcher->start();
         int value = 0;
@@ -60,7 +65,14 @@ void testFutureWait() {
         if(interval < 95 || interval > 105) {
             TEST_FAIL("Filament Future wait case4");
         }
-        sleep(2);
+		
+        usleep(1000*150);
+		if(count != 1) {
+			TEST_FAIL("Filament Future wait case4_1,count is %d",count);
+		}
+		
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
     
@@ -86,6 +98,8 @@ void testFutureWait() {
             TEST_FAIL("Filament Future wait case6");
         }
         sleep(2);
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
     
@@ -113,6 +127,9 @@ void testFutureWait() {
         if(v1 != 100 || v2 != 100) {
             TEST_FAIL("Filament Future wait case7");
         }
+		
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
     
@@ -138,9 +155,10 @@ void testFutureWait() {
         if(v1 != 100 || v2 != 100) {
             TEST_FAIL("Filament Future wait case8");
         }
+		
+		croutine->shutdown();
+		croutine->awaitTermination();
         break;
     }
-
-
     TEST_OK("Filament Future wait case100");
   }

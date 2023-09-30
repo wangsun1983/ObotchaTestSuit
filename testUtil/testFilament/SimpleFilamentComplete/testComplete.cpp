@@ -18,11 +18,11 @@ void testOnComplete() {
     FilaRoutine croutine = createFilaRoutine();
     croutine->start();
     croutine->execute([]{
-      st(Fila)::sleep(300);
+      st(Fila)::Sleep(300);
     });
 
     croutine->execute([]{
-      st(Fila)::sleep(200);
+      st(Fila)::Sleep(200);
       sleepLatch->countDown();
     });
 

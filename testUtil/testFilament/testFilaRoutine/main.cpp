@@ -17,14 +17,15 @@ extern void testFilaRoutineGetSize();
 extern void testFilaRoutineIsTerminated();
 extern void testFilaRoutineSubmit();
 extern void testFilaRoutineExecute();
+extern void testFilaRoutineShutdownInSleep();
 
 int main() {
+  testFilaRoutineShutdownInSleep();
   testFilaRoutineExecute();
   testFilaRoutineSubmit();
   testFilaRoutineIsTerminated();
   testFilaRoutineGetSize();
   testFilaRoutineAwait();
   testFilaRoutineShutdown();
-  
   return 0;
 }

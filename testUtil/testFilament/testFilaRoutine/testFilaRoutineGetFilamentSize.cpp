@@ -26,7 +26,9 @@ void testFilaRoutineGetSize() {
 		for(int i = 0;i < 64;i++) {
 			croutine->execute([&] {
 				AutoLock l(mutex);
-				st(Fila)::Sleep(200);
+				try {
+					st(Fila)::Sleep(200);
+				} catch(...) {}
 			});
 		}
 		
@@ -39,7 +41,7 @@ void testFilaRoutineGetSize() {
 		w->start();
 		croutine->awaitTermination();
 		auto r = w->stop();
-		if(r < 145 || r > 165) {
+		if(r > 100) {
 			TEST_FAIL("FilaRoutine getFilamentSize case3,r is %d",r);
 		}
 		

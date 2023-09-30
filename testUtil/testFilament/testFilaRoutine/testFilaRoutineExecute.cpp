@@ -38,7 +38,7 @@ void testFilaRoutineExecute() {
 		}
 		usleep(1000*100);
 		if(count != 128) {
-			TEST_FAIL("FilaMutex execute case1,count is %d",count);
+			TEST_FAIL("FileRoutine execute case1,count is %d",count);
 		}
 		croutine->shutdown();
 		croutine->awaitTermination();
@@ -51,13 +51,15 @@ void testFilaRoutineExecute() {
 		for(int i = 0 ; i < 128;i++) {
 			croutine->execute(createMyFilament2());
 		}
+		usleep(1000*10);
 		croutine->shutdown();
+		usleep(1000*200);
 		croutine->awaitTermination();
 		if(st(MyFilament2)::count != 128) {
-			TEST_FAIL("FilaMutex execute case2,count is %d",st(MyFilament2)::count);
+			TEST_FAIL("FileRoutine execute case2,count is %d",st(MyFilament2)::count);
 		}
 		break;
 	}
 	
-	TEST_OK("FilaMutex execute case100");
+	TEST_OK("FileRoutine execute case100");
 }
