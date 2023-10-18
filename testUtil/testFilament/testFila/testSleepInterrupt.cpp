@@ -30,13 +30,10 @@ void testSleepInterrupt() {
 		int count = 0;
 		auto f = croutine->submit([&]{
 		  count = 1;
-		  int ret = 0;
 		  try {
-		  	ret = st(Fila)::Sleep(300);
-		  } catch(...){}
-		  if(ret != 0) {
-			TEST_FAIL("Filament test sleep interrupt case1");  
-		  }
+			st(Fila)::Sleep(300);
+			TEST_FAIL("Filament test sleep interrupt case1"); 
+		  } catch(...) {}
 		});
 		usleep(1000*100);
 		Thread t = createThread([&]{
@@ -55,7 +52,7 @@ void testSleepInterrupt() {
 		}
 		
 		if(f->getStatus() != st(Concurrent)::Status::Interrupt) {
-			TEST_FAIL("Filament test sleep interrupt case4,f->getStatus() is %d",static_cast<int>(f->getStatus()));
+			TEST_FAIL("Filament test sleep interrupt case4");
 		}
 		break;
 	}

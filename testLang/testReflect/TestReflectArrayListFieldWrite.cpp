@@ -54,7 +54,7 @@ void testReflectArrayListFieldWrite() {
       f->setValue(1.1);
 
       f = data1->getField("floatData");
-      f->setValue(2.2);
+      f->setValue(2.2f);
 
       f = data1->getField("longData");
       f->setValue(3);
@@ -89,7 +89,7 @@ void testReflectArrayListFieldWrite() {
       f->setValue(11.1);
 
       f = data2->getField("floatData");
-      f->setValue(12.2);
+      f->setValue(12.2f);
 
       f = data2->getField("longData");
       f->setValue(13);

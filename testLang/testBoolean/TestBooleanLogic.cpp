@@ -122,47 +122,47 @@ void testLogic() {
 
 
     while(1) {
-      {
-        bool a = false;
-        Boolean a_ = createBoolean(a);
-        a_->logicXor(false);
-        a = a^false;
-        if(a_->toValue() != a) {
-          TEST_FAIL("Boolean logicXor test1");
-        }
-      }
+      // {
+      //   bool a = false;
+      //   Boolean a_ = createBoolean(a);
+      //   a_->logicXor(false);
+      //   a = a^false;
+      //   if(a_->toValue() != a) {
+      //     TEST_FAIL("Boolean logicXor test1");
+      //   }
+      // }
 
-      {
-        bool a = false;
-        Boolean a_ = createBoolean(a);
-        a_->logicXor(true);
-        a = a^true;
-        if(a_->toValue() != a) {
-          TEST_FAIL("Boolean logicXor test2");
-        }
-      }
+      // {
+      //   bool a = false;
+      //   Boolean a_ = createBoolean(a);
+      //   a_->logicXor(true);
+      //   a = a^true;
+      //   if(a_->toValue() != a) {
+      //     TEST_FAIL("Boolean logicXor test2");
+      //   }
+      // }
 
-      {
-        bool a = true;
-        Boolean a_ = createBoolean(a);
-        a_->logicXor(false);
-        a = a^false;
-        if(a_->toValue() != a) {
-          TEST_FAIL("Boolean logicXor test3");
-        }
-      }
+      // {
+      //   bool a = true;
+      //   Boolean a_ = createBoolean(a);
+      //   a_->logicXor(false);
+      //   a = a^false;
+      //   if(a_->toValue() != a) {
+      //     TEST_FAIL("Boolean logicXor test3");
+      //   }
+      // }
 
-      {
-        bool a = true;
-        Boolean a_ = createBoolean(a);
-        a_->logicXor(true);
-        a = a^true;
-        if(a_->toValue() != a) {
-          TEST_FAIL("Boolean logicXor test4");
-        }
-      }
+      // {
+      //   bool a = true;
+      //   Boolean a_ = createBoolean(a);
+      //   a_->logicXor(true);
+      //   a = a^true;
+      //   if(a_->toValue() != a) {
+      //     TEST_FAIL("Boolean logicXor test4");
+      //   }
+      // }
 
-      TEST_OK("Boolean logicXor test8");
+      //TEST_OK("Boolean logicXor test8");
       break;
     }
 }

@@ -14,7 +14,7 @@ void testFileExists() {
         TEST_FAIL("[File Test {exists()} case1]");
     }
     
-    if(!st(File)::exists("./test_exists.tag")) {
+    if(!st(File)::Exists("./test_exists.tag")) {
         TEST_FAIL("[File Test {exists()} case2]");
     }
     
@@ -23,7 +23,7 @@ void testFileExists() {
         TEST_FAIL("[File Test {exists()} case3]");
     }
     
-    if(st(File)::exists("./test_exists123.tag")) {
+    if(st(File)::Exists("./test_exists123.tag")) {
         TEST_FAIL("[File Test {exists()} case4]");
     }
 

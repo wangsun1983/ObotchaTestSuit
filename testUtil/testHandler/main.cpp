@@ -20,8 +20,10 @@ extern void testHandlerSendDelayed();
 extern void testHandlerLooper();
 extern void testHandlerLooperQuit();
 extern void testHandlerStress();
+extern void testHandlerSendToTarget();
 
 int main() {
+  testHandlerSendToTarget();
   testHandlerStress();
   testHandlerLooperQuit();
   testHandlerLooper();

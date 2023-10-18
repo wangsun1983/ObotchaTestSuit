@@ -7,9 +7,27 @@
 #include "Reflect.hpp"
 
 using namespace obotcha;
-extern void testProcessMutex();
+extern int testProcessMutex();
+extern int testThreadMutex();
+extern int testLockTimeout();
+extern int testTryLock();
 
 int main() {
-  testProcessMutex();
+  if(testProcessMutex() == -1) {
+	  return 0;
+  }
+  
+  if(testThreadMutex() == -1) {
+	  return 0;
+  }
+  
+  if(testLockTimeout() == -1) {
+	  return 0;
+  }
+  
+  if(testTryLock() == -1) {
+	  return 0;
+  }
+  
   return 0;
 }

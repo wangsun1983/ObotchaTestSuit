@@ -21,9 +21,9 @@ void testFilaMutexLock() {
         croutine->execute([&mutex] {
             AutoLock l(mutex);
             //mutex->lock();
-            try {
-                st(Fila)::Sleep(200);
-            }catch(...) {}
+			try {
+				st(Fila)::Sleep(200);
+			} catch(...){}
         });
         usleep(1000*100);
         
@@ -36,8 +36,8 @@ void testFilaMutexLock() {
                 TEST_FAIL("FilaMutex test Lock case1,interval is %d",interval);
             }
         });
-        usleep(1000*200);
-
+        
+		usleep(200*1000);
         croutine->shutdown();
         croutine->awaitTermination();
         break;
@@ -51,7 +51,9 @@ void testFilaMutexLock() {
         croutine->execute([&mutex] {
             AutoLock l(mutex);
             //mutex->lock();
-            st(Fila)::Sleep(200);
+			try {
+				st(Fila)::Sleep(200);
+			}catch(...) {}
         });
         usleep(1000*100);
         

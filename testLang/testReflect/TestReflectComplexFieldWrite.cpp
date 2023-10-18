@@ -61,7 +61,7 @@ void testReflectComplexFieldWrite() {
       f->setValue(1.1);
 
       f = data1->getField("floatData");
-      f->setValue(2.2);
+      f->setValue(2.2f);
 
       f = data1->getField("longData");
       f->setValue(3);

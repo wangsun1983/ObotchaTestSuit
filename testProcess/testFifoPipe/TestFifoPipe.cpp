@@ -22,22 +22,13 @@
 using namespace obotcha;
 
 void testSyncFifoPipe() {
-
-  //int res = mkfifo("a.fifo",0666);
-  //printf("res is %d \n",res);
-
-  //int fd = open("a.fifo",O_WRONLY);
-  //printf("fd is %d \n",fd);
-
   const int testDatalength = 32;
   char testData[testDatalength];
   for(int i = 0;i<testDatalength;i++) {
     testData[i] = i;
   }
-
-
-  //int write(ByteArray data);
-  //int read(ByteArray buff);
+  
+  st(FifoPipe)::Create("mytest123");
   int pid = fork();
   if(pid == 0) {
     //child process,start write
@@ -80,16 +71,18 @@ void testSyncFifoPipe() {
       TEST_FAIL("[FifoPipe Test {close()} case1],length is %d",length);
     }
 
-    fifo->clear();
+    //fifo->clear();
     TEST_OK("[FifoPipe Test {close()} case2]");
   }
 
   //check clean
+  st(FifoPipe)::Create("mytest1ab");
   FifoPipe fifo = createFifoPipe("mytest1ab",st(FifoPipe)::Type::AsyncRead);
   if(access(fifo->getName()->toChars(),F_OK) != 0) {
     TEST_FAIL("[FifoPipe Test {clear()} case1]");
   }
-  fifo->clear();
+  //fifo->clear();
+  st(FifoPipe)::Clear("mytest1ab");
   if(access(fifo->getName()->toChars(),F_OK) == 0) {
     TEST_FAIL("[FifoPipe Test {clear()} case2]");
   }

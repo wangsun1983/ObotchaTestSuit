@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #include "Reflect.hpp"
 #include "String.hpp"
@@ -12,23 +14,29 @@
 
 using namespace obotcha;
 
-void testProcessMutex() {
+int testProcessMutex() {
+  st(ProcessMutex)::Create("abc1");
   int pid = fork();
+  
   if(pid == 0) {
-    ProcessMutex mu = createProcessMutex("abc");
+    ProcessMutex mu = createProcessMutex("abc1");
     AutoLock l(mu);
-    sleep(5);
-    return;
+    usleep(1000*500);
+    return -1;
   } else {
-    ProcessMutex mu = createProcessMutex("abc");
-    sleep(1);
+    ProcessMutex mu = createProcessMutex("abc1");
+    usleep(1000*100);
     TimeWatcher w = createTimeWatcher();
     w->start();
     AutoLock l(mu);
     long ret = w->stop();
-    if(ret < 3995 || ret > 4030) {
+    if(ret < 395 || ret > 405) {
         TEST_FAIL("testProcessMutex case1,ret is %ld",ret);
     }
+	
+	int status = 0;
+	wait(&status);
   }
   TEST_OK("testProcessMutex case100");
+  return 0;
 }

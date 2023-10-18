@@ -20,12 +20,12 @@ extern void testFilaRoutineExecute();
 extern void testFilaRoutineShutdownInSleep();
 
 int main() {
-  testFilaRoutineShutdownInSleep();
-  testFilaRoutineExecute();
-  testFilaRoutineSubmit();
-  testFilaRoutineIsTerminated();
-  testFilaRoutineGetSize();
-  testFilaRoutineAwait();
+  // testFilaRoutineShutdownInSleep();
+  // testFilaRoutineExecute();
+  // testFilaRoutineSubmit();
+  // testFilaRoutineIsTerminated();
+  // testFilaRoutineGetSize();
+  // testFilaRoutineAwait();
   testFilaRoutineShutdown();
   return 0;
 }

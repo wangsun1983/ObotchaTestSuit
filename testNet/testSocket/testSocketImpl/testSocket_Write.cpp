@@ -24,7 +24,7 @@ void testSocketWrite() {
     while(1) {
         File file1 = createFile("./tmp/write1.txt");
         file1->createNewFile();
-        auto fd = st(File)::open(createString("./tmp/write1.txt"));
+        auto fd = st(File)::Open(createString("./tmp/write1.txt"));
         SocketImpl impl = createSocketImpl(fd);
         
         ByteArray data = createByteArray(32);
@@ -51,7 +51,7 @@ void testSocketWrite() {
     while(1) {
         File file1 = createFile("./tmp/write2.txt");
         file1->createNewFile();
-        auto fd = st(File)::open(createString("./tmp/write2.txt"));
+        auto fd = st(File)::Open(createString("./tmp/write2.txt"));
         SocketImpl impl = createSocketImpl(fd);
         
         ByteArray data = createByteArray(32);
@@ -82,7 +82,7 @@ void testSocketWrite() {
     while(1) {
         File file1 = createFile("./tmp/write3.txt");
         file1->createNewFile();
-        auto fd = st(File)::open(createString("./tmp/write3.txt"));
+        auto fd = st(File)::Open(createString("./tmp/write3.txt"));
         SocketImpl impl = createSocketImpl(fd);
         
         ByteArray data = createByteArray(32);

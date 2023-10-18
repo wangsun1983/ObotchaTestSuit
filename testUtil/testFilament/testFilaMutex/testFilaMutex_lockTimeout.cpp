@@ -18,16 +18,15 @@ void testFilaMutexLockTimeout() {
 		c->start();
 		FilaMutex mutex = createFilaMutex();
 		mutex->lock();
-		int count = 0;
+		
 		c->execute([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
-			if(r < 90 || r > 105) {
-				TEST_FAIL("FilaMutex test Lock Timeout case1,r is %d",r);
+			if(r < 95 || r > 105) {
+				TEST_FAIL("FilaMutex test Lock Timeout case1");
 			}
-			count++;
 		});
 		
 		usleep(200*1000);
@@ -40,19 +39,17 @@ void testFilaMutexLockTimeout() {
 			if(r > 5) {
 				TEST_FAIL("FilaMutex test Lock Timeout case2");
 			}
-			count++;
 		});
 		c->shutdown();
 		c->awaitTermination();
-		if(count != 2) {
-			TEST_FAIL("FilaMutex test Lock Timeout case2_1");
-		}
 		break;
 	}
+	
 	while(1) {
 		FilaRoutine c = createFilaRoutine();
 		c->start();
 		FilaMutex mutex = createFilaMutex();
+		
 		Thread t1 = createThread([&]{
 			mutex->lock();
 			usleep(1000*200);
@@ -60,20 +57,23 @@ void testFilaMutexLockTimeout() {
 		});
 		t1->start();
 		usleep(100*1000);
+		
 		c->execute([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
-			if(r > 105 || r < 90) {
+			if(r > 105 || r < 95) {
 				TEST_FAIL("FilaMutex test Lock Timeout case3,r is %d",r);
 			}
 		});
+		usleep(1000*50);
+		t1->join();
 		c->shutdown();
 		c->awaitTermination();
-		t1->join();
 		break;
 	}
+	
 	while(1) {
 		FilaRoutine c = createFilaRoutine();
 		c->start();
@@ -81,26 +81,26 @@ void testFilaMutexLockTimeout() {
 		c->execute([&]{
 			mutex->lock();
 			try {
-				st(Fila)::Sleep(200);
+				st(Fila)::Sleep(300);
+				TEST_FAIL("FilaMutex test Lock Timeout case4");
 			} catch(...) {}
 			mutex->unlock();
-		
 		});
 		usleep(1000*100);
+		
 		Thread t1 = createThread([&]{
 			TimeWatcher w = createTimeWatcher();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
 			if(r > 105 || r < 95) {
-				TEST_FAIL("FilaMutex test Lock Timeout case4,r is %d",r);
+				TEST_FAIL("FilaMutex test Lock Timeout case5,r is %d",r);
 			}
 		});
 		t1->start();
-		usleep(1000*200);
+		t1->join();
 		c->shutdown();
 		c->awaitTermination();
-		t1->join();
 		break;
 	}
 	

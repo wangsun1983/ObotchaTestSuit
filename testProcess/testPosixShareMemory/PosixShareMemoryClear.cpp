@@ -13,8 +13,9 @@
 using namespace obotcha;
 
 void testShareMemoryClear() {
+	st(ShareMemory)::Create("aabbcc11",12);
     while(1) {
-        ShareMemory memory = createShareMemory("aabbcc11",12,st(ShareMemory)::WriteRead);
+        ShareMemory memory = createShareMemory("aabbcc11",12,st(ShareMemory)::Type::WriteRead);
         ByteArray data = createString("hello")->toByteArray();
         memory->write(data);
         

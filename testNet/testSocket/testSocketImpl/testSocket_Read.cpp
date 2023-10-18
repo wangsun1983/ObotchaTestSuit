@@ -30,7 +30,7 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::open(createString("./tmp/readdata.txt"));
+        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
         SocketImpl impl = createSocketImpl(fd);
         ByteArray data = createByteArray(32);
         
@@ -48,7 +48,7 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::open(createString("./tmp/readdata.txt"));
+        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
         SocketImpl impl = createSocketImpl(fd);
         ByteArray data = createByteArray(32);
         
@@ -77,7 +77,7 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::open(createString("./tmp/readdata.txt"));
+        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
         SocketImpl impl = createSocketImpl(fd);
         ByteArray data = createByteArray(32);
         

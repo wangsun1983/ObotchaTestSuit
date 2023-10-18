@@ -37,7 +37,7 @@ void testFileOpen() {
     }
     
     //static open file
-    auto descriptor = st(File)::open("./tmp/testOpen2.txt",
+    auto descriptor = st(File)::Open("./tmp/testOpen2.txt",
                                     st(IO)::FileControlFlags::ReadWrite
 									|st(IO)::FileControlFlags::Create);
     if(descriptor == nullptr) {
@@ -49,7 +49,7 @@ void testFileOpen() {
         TEST_FAIL("[File Test {open()} case6]");
     }
     
-    descriptor = st(File)::open("./tmp/testOpen3.txt");
+    descriptor = st(File)::Open("./tmp/testOpen3.txt");
     if(descriptor != nullptr) {
         TEST_FAIL("[File Test {open()} case7]");
     }

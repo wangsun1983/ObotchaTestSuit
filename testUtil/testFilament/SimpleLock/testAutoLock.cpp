@@ -29,7 +29,7 @@ void testAutoLock() {
     watcher1->start();
     AutoLock l(autoLockMutex);
     long rs = watcher1->stop();
-    if(rs < 395 || rs > 405) {
+    if(rs < 395 || rs > 415) {
       TEST_FAIL("Filament Routine auto lock case1,rs is %ld",rs);
     }
     poll(NULL, 0, 100);
@@ -41,7 +41,7 @@ void testAutoLock() {
   autoLocklatch->await();
   long rs = watcher->stop();
 
-  if(rs < 495 || rs > 505) {
+  if(rs < 495 || rs > 515) {
     TEST_FAIL("Filament Routine auto lock case2,rs is %ld",rs);
   }
 

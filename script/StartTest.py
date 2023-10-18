@@ -21,7 +21,8 @@ testPath = [
     "../testLang",
     "../testNet",
     "../testNet/testHttp",
-    "../testNet/testHttp/testHttpClient_go",
+    "../testNet/testHttp/testHttpConnection_go",
+    "../testNet/testHttp/testHttpConnection_python3",
     #do not test"./testNet/testHttp/testHttpClient_python",
     "../testNet/testHttp/testHttpServer_go",
     "../testNet/testHttp/testHttpServer_python3",
@@ -131,6 +132,7 @@ def scanTest(path):
     if isPrepareFileExist:
         os.popen("sh prepare.sh").read()
     if isMakefileExist:
+        os.popen("cd " + path + "&& rm mytest").read()
         makeret = os.popen("cd " + path + "&& make 2>&1").read()
         try:
             port_file = open('/tmp/obotcha_test_suit_port.txt', 'r')
@@ -182,7 +184,7 @@ def scanTest(path):
         #test
         global execThreadLog
 
-        if makeret.find("Error") < 0:
+        if os.path.exists(path+"/mytest"):
             printTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
             print("[" + printTime + "]" + " Start " + path)
             prepare(path)

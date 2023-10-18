@@ -25,6 +25,7 @@ using namespace obotcha;
 
 void testFifoPipeAsync() {
 
+  st(FifoPipe)::Create("mytestasync");
   FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::Type::AsyncRead);
   CountDownLatch latch = createCountDownLatch(1);
 
@@ -59,6 +60,6 @@ void testFifoPipeAsync() {
   latch->await();
 
   mPoll->close();
-  fifo->clear();
+  //fifo->clear();
   TEST_OK("[FifoPipe Test {AsyncWrite/AsyncRead()()} case100]");
 }

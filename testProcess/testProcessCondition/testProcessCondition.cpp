@@ -15,20 +15,21 @@
 
 using namespace obotcha;
 
-void testProcessCondition() {
+int testProcessCondition() {
+  st(ProcessCondition)::Create("abc_cond1");
+  st(ProcessMutex)::Create("abc");
   int pid = fork();
   if(pid == 0) {
-    ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
+    ProcessCondition cond = createProcessCondition("abc_cond1");
     sleep(3);
     cond->notifyAll();
-    exit(0);
+    return -1;
   } else {
     pid = fork();
 
     if(pid == 0) {
-      ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
-      ProcessMutex mu = createProcessMutex("./tmp/abc");
-      printf("child start wait \n");
+      ProcessCondition cond = createProcessCondition("abc_cond1");
+      ProcessMutex mu = createProcessMutex("abc");
       TimeWatcher w = createTimeWatcher();
       w->start();
       AutoLock l(mu);
@@ -39,9 +40,9 @@ void testProcessCondition() {
       }
 
       TEST_OK("testProcessCondition Child Process case1_1 ");
-      exit(0);
+      return -1;
     } else {
-      ProcessCondition cond = createProcessCondition("./tmp/abc_cond1");
+      ProcessCondition cond = createProcessCondition("abc_cond1");
       ProcessMutex mu = createProcessMutex("abc");
       TimeWatcher w = createTimeWatcher();
       w->start();
@@ -51,11 +52,11 @@ void testProcessCondition() {
       if(ret < 2995 || ret > 3050) {
           TEST_FAIL("testProcessCondition case2,ret is %ld",ret);
       }
-
       ::wait(nullptr);
       TEST_OK("testProcessCondition case3");
     }
     
   }
   TEST_OK("testProcessCondition case100");
+  return 0;
 }

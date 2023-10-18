@@ -13,8 +13,10 @@ extern void testShareMemory();
 extern void testShareMemoryEpoll();
 extern void testShareMemoryClose();
 extern void testShareMemoryClear();
+extern void testShareMemoryReadWrite();
 
 int main() {
+  testShareMemoryReadWrite();
   //testShareMemoryEpoll();
   testShareMemory();
   testShareMemoryClose();

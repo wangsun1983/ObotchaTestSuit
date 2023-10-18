@@ -15,8 +15,7 @@ using namespace obotcha;
 
 void testFilaRoutineShutdown() {
 	//case1	
-	TimeWatcher w = createTimeWatcher();
-
+	TimeWatcher w = createTimeWatcher();	
 	while(1) {
 		int case1_count = 0;
 		for(int i = 0;i < 256;i++) {
@@ -52,7 +51,7 @@ void testFilaRoutineShutdown() {
 		}
 		break;
 	}
-
+	
 	while(1) {
 		int case1_count = 0;
 		for(int i = 0;i < 256;i++) {
@@ -81,17 +80,14 @@ void testFilaRoutineShutdown() {
 		}
 		break;
 	}
-
+	
 	while(1) {
 		FilaRoutine croutine = createFilaRoutine();
 		croutine->start();
 		croutine->execute([&] {
 			AutoLock l(mutex);
-			try {
-				st(Fila)::Sleep(200);
-			} catch(...){}
+			st(Fila)::Sleep(200);
 		});
-		usleep(100*1000);
 		croutine->shutdown();
 		auto future = croutine->submit([&] {
 			AutoLock l(mutex);

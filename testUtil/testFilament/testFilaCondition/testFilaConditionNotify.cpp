@@ -35,7 +35,6 @@ void testNotify() {
 			cond->notify();
 		});
 		
-		usleep(1000*200);
 		c->shutdown();
 		c->awaitTermination();
 		if(count != 1) {

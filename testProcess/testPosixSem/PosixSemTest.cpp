@@ -13,26 +13,27 @@
 
 using namespace obotcha;
 
-int main() {
+int normalTest() {
  
-  {
-    ProcessSem sem = createProcessSem("sem_test1",0);
-    sem->clear();
+  // {
+  //   ProcessSem sem = createProcessSem("sem_test1",0);
+  //   sem->clear();
 
-    ProcessSem sem2 = createProcessSem("sem_test2",0);
-    sem2->clear();
+  //   ProcessSem sem2 = createProcessSem("sem_test2",0);
+  //   sem2->clear();
 
-    ProcessSem sem3 = createProcessSem("sem_test3",100);
-    sem3->clear();
-  }
+  //   ProcessSem sem3 = createProcessSem("sem_test3",100);
+  //   sem3->clear();
+  // }
   //wait()
+  st(ProcessSem)::Create("sem_test1");
   int pid = fork();
   if(pid == 0) {
-      ProcessSem sem = createProcessSem("sem_test1",0);
+      ProcessSem sem = createProcessSem("sem_test1");
       int ret = sem->wait();
       exit(0);
   } else {
-      ProcessSem sem = createProcessSem("sem_test1",0);
+      ProcessSem sem = createProcessSem("sem_test1");
       sleep(1);
       sem->post();
       TimeWatcher t = createTimeWatcher();
@@ -42,24 +43,25 @@ int main() {
       if(v > 100) {
         TEST_FAIL("[ProcessSem Test {wait()} case1] v is %ld",v);
       }
-      sem->clear();
+      //sem->clear();
       TEST_OK("[ProcessSem Test {wait()} case2]");
   }
 
   //wait(long)
+  st(ProcessSem)::Create("sem_test2",0);
   pid = fork();
   if(pid == 0) {
-      ProcessSem sem = createProcessSem("sem_test2",0);
+      ProcessSem sem = createProcessSem("sem_test2");
       sleep(1);
       int ret = sem->post();
       exit(0);
   } else {
-      ProcessSem sem = createProcessSem("sem_test2",0);
+      ProcessSem sem = createProcessSem("sem_test2");
       long current = st(System)::CurrentTimeMillis();
       sem->wait(500);
       long waittime = (st(System)::CurrentTimeMillis() - current);
 
-      sem->clear();
+      //sem->clear();
       if(waittime > 505 || waittime <495) {
           TEST_FAIL("[ProcessSem Test {wait(long)} case1],waittime is %ld",waittime);
           return 1;
@@ -71,12 +73,13 @@ int main() {
 
   //int getValue();
   {
-      auto sem3 = createProcessSem("sem_test3",0);
+	  st(ProcessSem)::Create("sem_test3",0);
+      auto sem3 = createProcessSem("sem_test3");
       sem3->post();
       if(sem3->getValue() != 1) {
         TEST_FAIL("[ProcessSem Test {getValue()} case1]");
       }
       TEST_OK("[ProcessSem Test {getValue()} case2]");
   }
-
+  return 0;
 }

@@ -5,6 +5,7 @@ cflags = -fpic \
 		-I ../../../../util/concurrent/include/ \
 		-I ../../../../util/coroutine/include/ \
 		-I ../../../../util/text/include/ \
+        -I ../../../../util/handler/include/ \
 		-I ../../../../lang/include \
 		-I ../../../../io/include \
 		-I ../../../../util/include/ \
@@ -12,7 +13,7 @@ cflags = -fpic \
 		-I ../../../../net/websocket/include \
 		-I ../../../../net/socket/include \
 		-I ../../../../net/http/include \
-		-I ../../../../net/http/client/include \
+        -I ../../../../net/http/client/include \
 		-I ../../../../security/include \
 		-I ../../../../process/include \
 		-I ../../../../external/iniparser/include \
@@ -42,7 +43,7 @@ sharelib = -Wl,-rpath=../../../../out/lib/ \
 
 files =
 link =
-libname	= testHttpHeaderRefererPolicy
+libname	= testHttpMime
 
 everything : $(libname)
 

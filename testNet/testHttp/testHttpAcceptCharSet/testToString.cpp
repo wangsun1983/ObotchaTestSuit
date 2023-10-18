@@ -16,7 +16,7 @@ void testCharSetToString() {
     HttpHeaderAcceptCharSet charset = createHttpHeaderAcceptCharSet();
     charset->load("iso-8859-1");
     if(!charset->toString()->sameAs("iso-8859-1")) {
-      TEST_FAIL("[HttpHeaderAcceptCharSet test toString case1]");
+      TEST_FAIL("[HttpHeaderAcceptCharSet test toString case1],charset is %s",charset->toString()->toChars());
       break;
     }
     break;

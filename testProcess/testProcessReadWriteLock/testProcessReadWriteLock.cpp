@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <sys/time.h>
 
+#include <sys/wait.h>
+
 #include "Reflect.hpp"
 #include "String.hpp"
 #include "Reflect.hpp"
@@ -9,19 +11,21 @@
 #include "AutoLock.hpp"
 #include "TimeWatcher.hpp"
 #include "TestLog.hpp"
+#include <sys/wait.h>
 
 using namespace obotcha;
 
-void testProcessReadWriteLock() {
+int testProcessReadWriteLock() {
+  st(ProcessReadWriteLock)::Create("abc");
   int pid = fork();
   
   if(pid == 0) {
-    ProcessReadWriteLock mu = createProcessReadWriteLock("./abc");
+    ProcessReadWriteLock mu = createProcessReadWriteLock("abc");
     AutoLock l(mu->getReadLock());
     sleep(5);
-    exit(0);
+    return -1;
   } else {
-    ProcessReadWriteLock mu = createProcessReadWriteLock("./abc");
+    ProcessReadWriteLock mu = createProcessReadWriteLock("abc");
     sleep(1);
     TimeWatcher w = createTimeWatcher();
     w->start();
@@ -30,30 +34,29 @@ void testProcessReadWriteLock() {
     if(ret < 0 || ret > 5) {
         TEST_FAIL("testProcessReadWriteLock case1,ret is %ld",ret);
     }
-    printf("ttt \n");
+	wait(nullptr);
   }
   sleep(6);
 
   pid = fork();
   if(pid == 0) {
-    ProcessReadWriteLock mu = createProcessReadWriteLock("./abc");
-    printf("start getWriteLock \n");
-    AutoLock l(mu->getWriteLock());
-    printf("start getWriteLock trace1\n");
+    ProcessReadWriteLock mu = createProcessReadWriteLock("abc");
+    mu->getWriteLock()->lock();
     sleep(5);
-    exit(0);
+	int ret = mu->getWriteLock()->unlock();
+	return -1;
   } else {
-    ProcessReadWriteLock mu = createProcessReadWriteLock("./abc");
+    ProcessReadWriteLock mu = createProcessReadWriteLock("abc");
     sleep(1);
     TimeWatcher w = createTimeWatcher();
     w->start();
-    printf("start getReadLock \n");
     AutoLock l(mu->getReadLock());
-    printf("start finish ReadLock \n");
     long ret = w->stop();
     if(ret < 3995 || ret > 4050) {
         TEST_FAIL("testProcessReadWriteLock case2,ret is %ld",ret);
     }
+	wait(nullptr);
   }
   TEST_OK("testProcessMutex case100");
+  return 0;
 }
