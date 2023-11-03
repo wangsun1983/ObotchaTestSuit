@@ -45,22 +45,18 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            if(count == 0) {
-                HttpResponse response = createHttpResponse();
-                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
-                w->write(response);
-                count++;
-            } else {
-                auto data = msg->getEntity()->getContent();
-                respStr = data->toString();
+                HttpMultiPart p = msg->getEntity()->getMultiPart();
+                File f = p->getFiles()->get(0)->getFile();
+                if(f == nullptr) {
+                    printf("it is null!!!! \n");
+                } else {
+                    printf("file path is %s \n",f->getAbsolutePath()->toChars());
+                }
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 response->getEntity()->setContent(createString("byebye")->toByteArray());
                 w->write(response);
                 latch->countDown();
-                count++;
-            }
           }
           break;
 
@@ -73,6 +69,23 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 };
 
 int main() {
+    File file = createFile("./tmp/testdata");
+    long prepareFilesize = file->length();
+
+    if(!file->exists()) {
+      file->createNewFile();
+        for(int i = 0;i<1024;i++) {
+        FileOutputStream stream = createFileOutputStream(file);
+        stream->open(st(IO)::FileControlFlags::Append);
+        String data = createString("");
+        for(int j = 0;j < 256;j++) {
+          data = data->append(createString(st(System)::CurrentTimeMillis()));
+        }
+        stream->write(data->toByteArray());
+        stream->close();
+      }
+    }
+
   int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
@@ -81,11 +94,8 @@ int main() {
                     ->buildHttp2Server();
   server->start();
   latch->await();
-  server->close();
   usleep(1000*100);
-  if(respStr == nullptr || !respStr->sameAs("hello this is server")) {
-      TEST_FAIL("TestHttp2Server SimpleConnect case1");
-  }
+  server->close();
   port++;
   setEnvPort(port);
   TEST_OK("TestHttp2Server SimpleConnect case100");

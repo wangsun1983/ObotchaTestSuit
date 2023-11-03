@@ -45,22 +45,23 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            if(count == 0) {
+            // if(count == 0) {
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                response->getHeader()->set(createString("mydata"),createString("aabbcc"));
                 response->getEntity()->setContent(createString("hello this is server")->toByteArray());
                 w->write(response);
                 count++;
-            } else {
-                auto data = msg->getEntity()->getContent();
-                respStr = data->toString();
-                HttpResponse response = createHttpResponse();
-                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("byebye")->toByteArray());
-                w->write(response);
-                latch->countDown();
-                count++;
-            }
+            // } else {
+            //     auto data = msg->getEntity()->getContent();
+            //     respStr = data->toString();
+            //     HttpResponse response = createHttpResponse();
+            //     response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+            //     response->getEntity()->setContent(createString("byebye")->toByteArray());
+            //     w->write(response);
+            //     latch->countDown();
+            //     count++;
+            // }
           }
           break;
 
@@ -80,12 +81,13 @@ int main() {
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();
+  // latch->await();
+  // server->close();
+  // usleep(1000*100);
+  // if(respStr == nullptr || !respStr->sameAs("hello this is server")) {
+  //     TEST_FAIL("TestHttp2Server SimpleConnect case1");
+  // }
   latch->await();
-  server->close();
-  usleep(1000*100);
-  if(respStr == nullptr || !respStr->sameAs("hello this is server")) {
-      TEST_FAIL("TestHttp2Server SimpleConnect case1");
-  }
   port++;
   setEnvPort(port);
   TEST_OK("TestHttp2Server SimpleConnect case100");

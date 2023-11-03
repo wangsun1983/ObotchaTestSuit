@@ -3,6 +3,8 @@
 -   pip3 install environ
 -   pip3 install rfile
 -   pip3 install websocket-client
+-   pip3 install httpx
+-   pip3 install httpx[http2]
 
 ## Test Command:
 -   python3 StartTest.py 2>&1 |tee exect.log
