@@ -15,6 +15,12 @@ extern void testByteArrayBigEndian();
 extern void testByteArrayWriterArray();
 extern void testByteArrayWriterString();
 extern void testByteArrayWriterGet();
+extern void testWithData();
+extern void testWriteOverFlow();
+extern void testSkipBy();
+extern void testSetIndex();
+extern void testGetRemainSize();
+extern void testGetByteArray();
 
 int main() {
     testByteArrayWriterGet();
@@ -22,5 +28,11 @@ int main() {
     testByteArrayWriterArray();
     testByteArrayBigEndian();
     testByteArrayLittleEndian();
+    testWithData();
+    testWriteOverFlow();
+    testSkipBy();
+    testSetIndex();
+    testGetRemainSize();
+    testGetByteArray();
     return 0;
 }

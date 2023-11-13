@@ -16,8 +16,18 @@ extern void testFileOpen();
 extern void testFileCreateDirs();
 extern void testFileIsDirectory();
 extern void testFileExists();
+extern void testIsFile();
+extern void testFileLength();
+extern void testFileList();
+extern void testFileSetProperty();
+extern void testFileMode();
 
 int main() {
+    testFileMode();
+    testFileSetProperty();
+    testFileList();
+    testFileLength();
+    testIsFile();
     testFileRename();
     testFileOpen();
     testFileGetTime();

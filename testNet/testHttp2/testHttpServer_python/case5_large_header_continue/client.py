@@ -8,12 +8,15 @@ client = httpx.Client(headers={"User-Agent": "hello/world"},http1=False, http2=T
 # get
 headers = {"mydata":"1"}
 
-count = 0
-while count < 1024*32:
-    headers[str(count)] = str(count) + 'a'
-    count = count+1
+#count = 0
+#while count < 1024*32:
+#    headers[str(count)] = str(count) + 'a'
+#    count = count+1
 
 resp = client.get("http://127.0.0.1:8080/aaa",headers = headers)
+print(resp.headers)
 
+#index = 1024*30
+#print("!!!!!!!! find a header!!!!!!!,v is " + resp.headers[str(index)])
 #client.post("http://127.0.0.1:8080/aaa",data=str(result).encode('utf-8'))
 #print(result)

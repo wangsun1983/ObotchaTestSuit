@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testFileRename() {
     //test1
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     
     auto file = createFile("./tmp/abc.cpp");
     file->createNewFile();

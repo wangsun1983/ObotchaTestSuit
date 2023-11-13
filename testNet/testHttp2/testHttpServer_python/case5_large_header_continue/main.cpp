@@ -45,13 +45,17 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            printf("i accept a message \n");
-            auto str = msg->getHeader()->get(createString("mydata"));
-            if(str != nullptr) {
-                printf("str's size is %d \n",str->size());
-            } else {
-                printf("str's size is 0 \n");
+            HttpResponse response = createHttpResponse();
+            response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+            for(int i = 0;i < 1024 * 4;i++) {
+                String header = createString(i);
+                String value = header->append("a");
+                response->getHeader()->set(header,value);
             }
+            response->getHeader()->set(createString("mydata"),createString("myvalue"));
+            //response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+            w->write(response);
+            
           }
           break;
 

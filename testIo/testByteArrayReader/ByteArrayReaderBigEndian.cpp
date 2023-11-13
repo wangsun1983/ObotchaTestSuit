@@ -94,6 +94,65 @@ void testByteArrayBigEndian() {
       }
       break;
     }
+    
+    //////
+    while(1) {
+        byte array2[] = {0x01,0x02};
+        ByteArray testData = createByteArray(array2,2);
+        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        
+        auto v1 = (array2[0]<<8 | array2[1]);
+        int v2_chk = reader->read<int>();
+        if(v1 != v2_chk) {
+          TEST_FAIL("[TestByteArrayReader BigEndian case9],v1 is %d,v2_chk is %d",v1,v2_chk);
+        }
+        break;
+    }
+    
+    while(1) {
+        byte array2[] = {0x01};
+        ByteArray testData = createByteArray(array2,1);
+        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        
+        auto v1 = array2[0];
+        int v2_chk = reader->read<int>();
+        if(v1 != v2_chk) {
+          TEST_FAIL("[TestByteArrayReader BigEndian case10],v1 is %d,v2_chk is %d",v1,v2_chk);
+        }
+        break;
+    }
+    
+    while(1) {
+        byte array2[] = {0x01,0x02};
+        ByteArray testData = createByteArray(array2,2);
+        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        
+        auto v1 = (array2[0]<<8|array2[1]);
+        long v2_chk = reader->read<long>();
+        if(v1 != v2_chk) {
+          TEST_FAIL("[TestByteArrayReader BigEndian case11],v1 is %d,v2_chk is %d",v1,v2_chk);
+        }
+        break;
+    }
+    
+    while(1) {
+        byte array2[] = {0x01,0x02};
+        ByteArray testData = createByteArray(array2,2);
+        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        
+        auto v1 = reader->read<int>();
+        int v1_chk = (array2[0]<<8|array2[1]);
+        if(v1 != v1_chk) {
+          TEST_FAIL("[TestByteArrayReader BigEndian case12],v1 is %d,v2_chk is %d",v1,v1_chk);
+        }
+        
+        try {
+            auto v2 = reader->read<int>();
+            TEST_FAIL("[TestByteArrayReader BigEndian case13]");
+        } catch(...){}
+        
+        break;
+    }
 
     TEST_OK("[TestByteArrayReader BigEndian case8]");
 }

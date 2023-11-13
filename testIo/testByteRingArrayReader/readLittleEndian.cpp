@@ -26,8 +26,8 @@ void testReadLittleEndian() {
       //test short
       short int v1 = 0;
       v1 = array[0]|(array[1]<<8);
-      short v1_chk = 0;
-      reader->read<short>(v1_chk);
+      short int v1_chk = 0;
+      reader->read<short int>(v1_chk);
       if(v1 != v1_chk) {
         TEST_FAIL("[TestByteRingArrayReader LittleEndia case1],v1 is %d,v1_chk is %d",v1,v1_chk);
       }

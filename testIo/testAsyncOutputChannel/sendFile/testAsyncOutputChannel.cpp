@@ -26,7 +26,7 @@ public:
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("./tmp/testdata"),1024*1024*1);
+    createSampleFile(createFile("./tmp/testdata"),1024*1024*4);
 
     int port = getEnvPort();
     Socket s = createSocketBuilder()

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <sys/wait.h>
 
 #include "Thread.hpp"
 #include "Object.hpp"
@@ -15,9 +16,17 @@ extern void testIsClosed();
 extern void testIsSocket();
 extern void testIsAsync();
 extern void testSetGetOption();
+extern void testFileRdLock();
+extern void testFileWrLock();
+extern void testFileMonitor();
+
 int main() {
     File f = createFile("./tmp/base_data");
     f->createNewFile();
+    testFileMonitor();
+    
+    testFileRdLock();
+    testFileWrLock();
     
     testIsClosed();
     testIsSocket();
