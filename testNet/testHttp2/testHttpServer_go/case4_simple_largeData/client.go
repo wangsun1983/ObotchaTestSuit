@@ -10,9 +10,9 @@ import (
   "golang.org/x/net/http2"
   "../../../../common"
   //"strings"
-  "bytes"
   "strconv"
   "time"
+  "bytes"
 )
 
 //export GOPATH=/home/sunliwang/mysource/Obotcha/ObotchaTestSuite/3rdparty/go
@@ -23,7 +23,7 @@ import (
 func main() {
   port := testnet.GetEnvPort()
   fmt.Println("port is ",port)
-  url := "http://127.0.0.1:" + strconv.Itoa(port) + "/aaa"
+  url := "http://127.0.0.1:" + strconv.Itoa(8080) + "/aaa"
   for i:= 0; i < 1;i++ {
     client(url)
   }
@@ -40,32 +40,25 @@ func client(url string) {
           return net.Dial(netw, addr)
       },
   }
+
+  var arr [4*1024*1024]byte
   
-  //init data
-  var arr [1024*1024*2]byte
-  
-  for i:= 0; i < 1024*1024*2;i++ {
+  for i:= 0; i < 4*1024*1024;i++ {
     arr[i] = (byte)(i%32)
   }
   
   httpClient := http.Client{Transport: tr}
   fmt.Println("start")
-  
-  resp, err := httpClient.Post(url,"text/plain", bytes.NewReader(arr[:]))
-  fmt.Println("end")
+  //resp, err := httpClient.Post(url,"text/plain", strings.NewReader("hello this is client"))
+  req, err := http.NewRequest("POST", url, bytes.NewReader(arr[:]))
   //resp, err := httpClient.Get(url)
   //fmt.Println("start2")
+  resp, err := httpClient.Do(req)
   if err != nil {
       log.Fatal(err)
   }
   defer resp.Body.Close()
-  fmt.Println("status code is ",resp.StatusCode)
   
-  if resp.StatusCode != http.StatusOK {
-      fmt.Println("resp StatusCode:", resp.StatusCode)
-      return
-  }
-
   body, err := ioutil.ReadAll(resp.Body)
   if err != nil {
       log.Fatal(err)

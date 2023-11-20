@@ -14,7 +14,6 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
@@ -45,7 +44,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-                if(!msg->getData()->toString()->equals("hello this is client")) {
+                if(!msg->getEntity()->getContent()->toString()->sameAs("hello this is client")) {
                     TEST_FAIL("TestHttp2Server SimpleGetHeader test1");
                 }
                 
@@ -53,7 +52,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
                 auto v1 = header->get("Mytest1");
                 auto v2 = header->get("Mytest2");
                 
-                if(!v1->equals("MyValue1")|| !v2->equals("MyValue2")) {
+                if(!v1->sameAs("MyValue1")|| !v2->sameAs("MyValue2")) {
                     TEST_FAIL("TestHttp2Server SimpleGetHeader test2");
                 }
                 

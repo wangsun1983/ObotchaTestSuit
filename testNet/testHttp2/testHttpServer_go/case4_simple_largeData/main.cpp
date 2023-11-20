@@ -14,7 +14,6 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
@@ -48,19 +47,20 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-                if(acceptData == nullptr) {
-                    acceptData = msg->getData();
-                } else {
-                    acceptData->append(msg->getData());
-                }
-                
-                if(acceptData->size() >= 1024*1024*2) {
+                // if(acceptData == nullptr) {
+                //     acceptData = msg->getEntity()->getContent();
+                // } else {
+                //     acceptData->append(msg->getEntity()->getContent());
+                // }
+                //printf("accept total size is %ld \n",acceptData->size());
+                acceptData = msg->getEntity()->getContent();
+                //if(acceptData->size() >= 1024*1024*2) {
                     HttpResponse response = createHttpResponse();
                     response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                     response->getEntity()->setContent(createString("hello this is server")->toByteArray());
                     w->write(response);
                     connectlatch->countDown();
-                }
+                //}
           }
           break;
 
@@ -74,9 +74,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
 int main() {
   int port = getEnvPort();
+  printf("server port is %d \n",port);
   MyHttpListener listener = createMyHttpListener();
   Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
+                    ->setAddress(createInet4Address(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();
@@ -84,11 +85,11 @@ int main() {
   server->close();
   usleep(1000*100);
   
-  if(acceptData->size() != 1024*1024*2) {
-      TEST_FAIL("TestHttp2Server Simple Large data test1");
+  if(acceptData->size() != 1024*1024*4) {
+      TEST_FAIL("TestHttp2Server Simple Large data test1,data size is %ld",acceptData->size());
   }
   
-  for(int i = 0;i < 1024*1024*2;i++) {
+  for(int i = 0;i < 1024*1024*4;i++) {
         if(acceptData[i] != i%32) {
             TEST_FAIL("TestHttp2Server Simple Large data test2, index is %d,value is %d,expected is %d",
                     i,acceptData[i],i%32);

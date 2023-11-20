@@ -21,8 +21,13 @@ extern void testHandlerLooper();
 extern void testHandlerLooperQuit();
 extern void testHandlerStress();
 extern void testHandlerSendToTarget();
+extern void testHandlerFrontMessage();
+extern void testHandlerRemoveEqualMessage();
 
 int main() {
+  testHandlerRemoveEqualMessage();
+
+  testHandlerFrontMessage();
   testHandlerSendToTarget();
   testHandlerStress();
   testHandlerLooperQuit();

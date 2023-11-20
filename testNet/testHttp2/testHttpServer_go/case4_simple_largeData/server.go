@@ -18,6 +18,7 @@ type serverHandler struct {
 func (sh *serverHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
     fmt.Println(req)
     //w.Header().Set("server", "h2test")
+    fmt.Println("aaabbb");
     w.Write([]byte("hello this is server"))
 }
 

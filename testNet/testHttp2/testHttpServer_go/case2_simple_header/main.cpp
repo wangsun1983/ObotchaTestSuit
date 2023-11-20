@@ -14,7 +14,6 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
@@ -56,8 +55,8 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
                     step++;
                 } else {
                     usleep(1000*10);
-                    String value = msg->getData()->toString();
-                    if(!value->equals("mytest1=[myvalue1],mytest2=[myvalue2]")) {
+                    String value = msg->getEntity()->getContent()->toString();
+                    if(!value->sameAs("mytest1=[myvalue1],mytest2=[myvalue2]")) {
                         TEST_FAIL("TestHttp2Server SimpleHeader test1");
                     }
                     printf("value is %s \n",value->toChars());
