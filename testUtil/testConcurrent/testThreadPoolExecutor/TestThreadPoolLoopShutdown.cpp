@@ -22,7 +22,7 @@ DECLARE_CLASS(MyLoopShutdownRunnable1) IMPLEMENTS(Runnable) {
 public:
     void run() {
       try {
-        st(Thread)::sleep(100);
+        st(Thread)::Sleep(100);
       }catch(InterruptedException &e) {
         //interruptCount->add(1);
       }

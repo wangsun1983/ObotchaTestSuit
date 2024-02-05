@@ -40,6 +40,7 @@ int testLockTimeout() {
 		if(ret < 295 || ret > 305) {
 			TEST_FAIL("testProcessMuex lock timeout case2,ret is %ld",ret);
 		}
+        mu->unlock();
 		int status = 0;
 		wait(&status);
 	  }
@@ -64,6 +65,8 @@ int testLockTimeout() {
 			TEST_FAIL("testProcessMuex lock timeout case3,ret is %ld",ret);
 		}
 		mu->unlock();
+        int status = 0;
+        wait(&status);
 	  }
 	  break;
   }

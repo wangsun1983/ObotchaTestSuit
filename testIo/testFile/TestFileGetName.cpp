@@ -58,6 +58,54 @@ void testFileGetName() {
     if(name == nullptr || !name->sameAs("c")) {
       TEST_FAIL("[File Test {getName()} case7]");
     }
+    
+    //test1
+    file = createFile("//Obotcha/test/testFile////abc.cpp");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("abc.cpp")) {
+      TEST_FAIL("[File Test {getName()} case8],name is %s",name->toChars());
+    }
+    
+    //test2
+    file = createFile("Obotcha/test/testFile//abcdir///");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("abcdir")) {
+      TEST_FAIL("[File Test {getName()} case9],name is %s",name->toChars());
+    }
+
+    //test4
+    file = createFile("////");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("/")) {
+      TEST_FAIL("[File Test {getName()} case10]");
+    }
+    
+    //test5
+    file = createFile("//a/");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("a")) {
+      TEST_FAIL("[File Test {getName()} case11]");
+    }
+    
+    //test6
+    file = createFile("a");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("a")) {
+      TEST_FAIL("[File Test {getName()} case12]");
+    }
+    
+    //test7
+    file = createFile("a//c");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("c")) {
+      TEST_FAIL("[File Test {getName()} case13]");
+    }
+    
+    file = createFile("a//c  d.jpg");
+    name = file->getName();
+    if(name == nullptr || !name->sameAs("c  d.jpg")) {
+      TEST_FAIL("[File Test {getName()} case14]");
+    }
 
     TEST_OK("[File Test {getName()} case100]");
 

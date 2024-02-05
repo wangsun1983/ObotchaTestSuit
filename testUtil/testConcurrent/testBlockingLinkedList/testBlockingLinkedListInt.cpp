@@ -18,7 +18,7 @@ public:
     }
 
     void run() {
-        st(Thread)::sleep(1000*5);
+        st(Thread)::Sleep(1000*5);
         mQueue->takeFirst();
     }
 

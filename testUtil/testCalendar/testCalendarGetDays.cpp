@@ -7,7 +7,7 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 #include "ForEveryOne.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
@@ -21,7 +21,7 @@ public:
 };
 
 void testCalendarGetDays() {
-    BufferedReader input = createBufferedReader(createFile("./testData/days.txt"));
+    TextLineReader input = createTextLineReader(createFile("./testData/days.txt"));
     ArrayList<DayTestItem> items = createArrayList<DayTestItem>();
     while(1) {
         auto line = input->readLine();
@@ -44,7 +44,7 @@ void testCalendarGetDays() {
         int year = item->year;
         int days = item->days;
         
-        int _days = st(Calendar)::isLeapYear(year)?366:365;
+        int _days = st(Calendar)::IsLeapYear(year)?366:365;
         if(days != _days) {
             TEST_FAIL("testCalendarGetDays case2,expect is %d,actual is %d",days,_days);
         }

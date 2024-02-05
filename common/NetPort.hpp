@@ -7,7 +7,7 @@
 
 #include "File.hpp"
 #include "FileOutputStream.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 #define DEFAULT_PORT 4000
 #define DEFAULT_PATH "/tmp/obotcha_test_suit_port.txt"
@@ -18,7 +18,7 @@ using namespace obotcha;
 int getEnvPort() {
     File file = createFile(DEFAULT_PATH);
     if(file->exists()) {
-        BufferedReader r = createBufferedReader(file);
+        TextLineReader r = createTextLineReader(file);
         String value = r->readLine();
         return (value != nullptr)?value->toBasicInt():DEFAULT_PORT;
     }

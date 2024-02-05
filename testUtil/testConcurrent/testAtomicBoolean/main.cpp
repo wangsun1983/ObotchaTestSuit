@@ -8,7 +8,7 @@ using namespace obotcha;
 int main() {
     AtomicBoolean value = createAtomicBoolean(false);
     Thread t1 = createThread([&value] {
-        st(Thread)::sleep(1000);
+        st(Thread)::Sleep(1000);
         value->set(true);
     });
     

@@ -10,7 +10,7 @@ int test_md5() {
     File f = createFile("test_data.file");
     // String encrypt(File);
     while(1) {
-        Md md = createMd(st(Md)::Md5);
+        Md md = createMd(st(Md)::Type::Md5);
         String result = md->encodeFile(f);
 
         if(result == nullptr || result->size() == 0) {
@@ -30,7 +30,7 @@ int test_md5() {
 
     //String encrypt(String);
     while(1) {
-        Md md = createMd(st(Md)::Md5);
+        Md md = createMd(st(Md)::Type::Md5);
         String str = createString("hello world");
         String result = md->encodeContent(str->toByteArray());
 

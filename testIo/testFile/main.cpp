@@ -40,4 +40,5 @@ int main() {
     testFileCreateDirs();
     testFileIsDirectory();
     testFileExists();
+    return 0;
 }

@@ -14,12 +14,12 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "Net.hpp"
+#include "Md.hpp"
 
 using namespace obotcha;
 
@@ -36,7 +36,7 @@ CountDownLatch connectlatch = createCountDownLatch(1);
 int step = 0;
 long size = 0;
 
-ByteArray sendData = createByteArray(1024*64);
+ByteArray sendData = createByteArray(1024*1024*8);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -48,6 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
+            printf("message trace1 \n");
             HttpResponse response = createHttpResponse();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             response->getEntity()->setContent(sendData);
@@ -65,9 +66,18 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 };
 
 int main() {
-  for(long i = 0; i < 1024*64;i++) {
+  for(long i = 0; i < 1024*1024*8;i++) {
       sendData[i] = i % 32;
   }
+  
+  File file = createFile("./tmp/abc");
+  file->createNewFile();
+  printf("start test \n");
+  FileOutputStream stream = createFileOutputStream(file);
+  stream->open(O_TRUNC);
+  stream->write(sendData);
+  stream->flush();
+  stream->close();
   
   int port = getEnvPort();
   MyHttpListener listener = createMyHttpListener();
@@ -81,6 +91,16 @@ int main() {
   server->close();
   port++;
   setEnvPort(port);
+  
+  
+  auto md = createMd();
+  
+  auto a1 = md->encodeFile(createFile("./tmp/abc"));
+  auto a2 = md->encodeFile(createFile("./tmp/abc2"));
+  if(!a1->sameAs(a2)) {
+      TEST_FAIL("TestHttp2Server Simple Large data test1");
+  }
+  
   TEST_OK("TestHttp2Server Simple Large data test100");
 
   return 0;

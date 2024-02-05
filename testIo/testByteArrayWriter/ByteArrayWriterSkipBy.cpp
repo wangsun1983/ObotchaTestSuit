@@ -11,7 +11,7 @@
 #include <string.h>
 #include "TestLog.hpp"
 #include "File.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 
@@ -34,10 +34,10 @@ void testSkipBy() {
         TEST_FAIL("[TestByteArrayWriter test skipBy case3]");
     }
     
-    ret = writer->skipBy(1);
-    if(ret != -1) {
+    try {
+        ret = writer->skipBy(1);
         TEST_FAIL("[TestByteArrayWriter test skipBy case4]");
-    }
+    } catch(...) {}
     
     writer->reset();
     ret = writer->skipBy(2);
@@ -45,10 +45,10 @@ void testSkipBy() {
         TEST_FAIL("[TestByteArrayWriter test skipBy case5]");
     }
     
-    ret = writer->skipBy(2);
-    if(ret != -1) {
+    try {
+        ret = writer->skipBy(2);
         TEST_FAIL("[TestByteArrayWriter test skipBy case6]");
-    }
-    
+    } catch(...) {}
+       
     TEST_OK("[TestByteArrayWriter test skipBy case100]");
 }

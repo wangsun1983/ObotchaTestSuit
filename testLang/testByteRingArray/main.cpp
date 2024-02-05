@@ -17,8 +17,17 @@ extern void testPopAll();
 extern void testPopTo();
 extern void testByteRingArrayPopWithParam();
 extern void testByteArrayCapacity();
+extern void testSetStartIndex();
+extern void testSetNextIndex();
+extern void testBytRingArrayEdgeDetection();
+extern void testByteRingArrayPushOne();
 
 int main() {
+  //testByteRingArrayPushOne();
+
+  testBytRingArrayEdgeDetection();
+  testSetStartIndex();
+  testSetNextIndex();
   testByteArrayCapacity();
   testStartIndex();
   normal_test();
@@ -28,5 +37,6 @@ int main() {
   testPopAll();
   testPopTo();
   testByteRingArrayPopWithParam();
+
   return 0;
 }

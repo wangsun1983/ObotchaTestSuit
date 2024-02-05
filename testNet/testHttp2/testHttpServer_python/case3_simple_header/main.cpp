@@ -45,23 +45,35 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            // if(count == 0) {
+            if(count == 0) {
                 HttpResponse response = createHttpResponse();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 response->getHeader()->set(createString("mydata"),createString("aabbcc"));
                 response->getEntity()->setContent(createString("hello this is server")->toByteArray());
                 w->write(response);
                 count++;
-            // } else {
-            //     auto data = msg->getEntity()->getContent();
-            //     respStr = data->toString();
-            //     HttpResponse response = createHttpResponse();
-            //     response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-            //     response->getEntity()->setContent(createString("byebye")->toByteArray());
-            //     w->write(response);
-            //     latch->countDown();
-            //     count++;
-            // }
+                
+                //check header
+                auto header = msg->getHeader();
+                auto respHeader1 = header->get("mydata");
+                if(respHeader1 == nullptr || !respHeader1->sameAs("mydata from python")) {
+                    TEST_FAIL("TestHttp2Server SimpleHeader case1");
+                }
+            } else {
+                HttpResponse response = createHttpResponse();
+                response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
+                response->getEntity()->setContent(createString("byebye")->toByteArray());
+                w->write(response);
+                latch->countDown();
+                count++;
+                
+                //check header
+                auto header2 = msg->getHeader();
+                auto respHeader2 = header2->get("mydata2");
+                if(respHeader2 == nullptr || !respHeader2->sameAs("mydata2 from python2")) {
+                    TEST_FAIL("TestHttp2Server SimpleHeader case2");
+                }
+            }
           }
           break;
 
@@ -81,13 +93,10 @@ int main() {
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();
-  // latch->await();
-  // server->close();
-  // usleep(1000*100);
-  // if(respStr == nullptr || !respStr->sameAs("hello this is server")) {
-  //     TEST_FAIL("TestHttp2Server SimpleConnect case1");
-  // }
   latch->await();
+  server->close();
+  usleep(1000*100);
+  //latch->await();
   port++;
   setEnvPort(port);
   TEST_OK("TestHttp2Server SimpleConnect case100");

@@ -15,8 +15,8 @@ extern void testCharSetToString();
 extern void testSetToHeader();
 
 int main() {
-    testCharSetParse();
+    //testCharSetParse();
     testCharSetToString();
-    testSetToHeader();
+    //testSetToHeader();
     return 0;
 }

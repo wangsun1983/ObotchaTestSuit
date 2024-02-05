@@ -4,7 +4,9 @@ cflags = -fpic \
 		-lrt \
 		-I ../../../../../util/concurrent/include/ \
 		-I ../../../../../util/coroutine/include/ \
+        -I ../../../../../util/handler/include/ \
 		-I ../../../../../util/text/include/ \
+        -I ../../../../../util/time/include/ \
 		-I ../../../../../lang/include \
 		-I ../../../../../io/include \
 		-I ../../../../../util/include/ \

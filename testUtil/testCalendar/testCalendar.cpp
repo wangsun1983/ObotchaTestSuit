@@ -7,7 +7,7 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 
@@ -75,7 +75,7 @@ ArrayList<TimeData> analyse(File f) {
     bool isStart = true;
     TimeData data = nullptr;
     ArrayList<TimeData> list = createArrayList<TimeData>();
-    BufferedReader reader = createBufferedReader(f);
+    TextLineReader reader = createTextLineReader(f);
 
     while(1) {
 
@@ -183,7 +183,7 @@ ArrayList<TimeData> analyse(File f) {
 
 int main() {
     //Test 
-#if 0
+
     File dateFile = createFile("./testData/date.txt");
     File hourFile = createFile("./testData/hour.txt");
     File minuteFile = createFile("./testData/minute.txt");
@@ -240,7 +240,7 @@ int main() {
 	testCalendarSetYearSpecial();
 	testCalendarSetMonthSpecial();
 	testCalendarSetMonthSpecial2();
-#endif	
+
 	testCalendarEqual();
 
     return 0;

@@ -30,7 +30,7 @@ public:
     }
 };
 
-int main() {
+void testStartWatch() {
     //prepare data
     File file = createFile("./tmp/testdata.txt");
     file->removeAll();
@@ -60,6 +60,6 @@ int main() {
     if(v > 200) {
         TEST_FAIL("testFileWatcher case3");
     }
-    
+    watcher->close();
     TEST_OK("testFileWatcher case100");
 }

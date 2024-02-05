@@ -11,43 +11,48 @@
 #include <string.h>
 #include "TestLog.hpp"
 #include "File.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 
-
 void testWriteOverFlow() {
+    int ret = 0;
     ByteArray data = createByteArray(5);
     ByteArrayWriter writer = createByteArrayWriter(data);
-    int ret = writer->write<long>(56);
-    writer->reset();
-    if(ret != -1) {
+    try {
+        int ret = writer->write<long>(56);
         TEST_FAIL("[TestByteArrayWriter test overflow case1]");
-    }
+    } catch(...) {}
+    
+    writer->reset();
     
     ByteArray testdata1 = createByteArray(5);
     ByteArray testdata2 = createByteArray(7);
-    ret = writer->write(testdata1,0,5);
-    writer->reset();
-    if(ret == -1) {
+    try {
+        ret = writer->write(testdata1,0,5);
+    } catch(...) {
         TEST_FAIL("[TestByteArrayWriter test overflow case2]");
     }
-    
-    ret = writer->write(testdata2,1,6);
     writer->reset();
-    if(ret != -1) {
+    
+    try {
+        ret = writer->write(testdata2,1,6);
         TEST_FAIL("[TestByteArrayWriter test overflow case3]");
-    }
+    } catch(...) {}
     
-    ret = writer->write(testdata2->toValue(),6);
     writer->reset();
-    if(ret != -1) {
-        TEST_FAIL("[TestByteArrayWriter test overflow case4]");
-    }
     
+    try {
+        ret = writer->write(testdata2->toValue(),6);
+        TEST_FAIL("[TestByteArrayWriter test overflow case4]");
+    } catch(...) {
+    }
+    writer->reset();
+        
     const char*p = "hello,world.haha";
-    ret = writer->write(p,5);    
-    if(ret == -1) {
+    try {
+        ret = writer->write(p,5);
+    } catch(...) {
         TEST_FAIL("[TestByteArrayWriter test overflow case6]");
     }
     writer->reset();
@@ -57,11 +62,11 @@ void testWriteOverFlow() {
             data[0],data[1],data[2],data[3],data[4]);
     }
     
-    ret = writer->write(p,6);
-    writer->reset();
-    if(ret != -1) {
+    try {
+        ret = writer->write(p,6);
         TEST_FAIL("[TestByteArrayWriter test overflow case8]");
-    }
+    } catch(...) {}
+    writer->reset();
     
     TEST_OK("[TestByteArrayWriter test overflow case100]");
 }

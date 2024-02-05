@@ -11,7 +11,7 @@
 #include <string.h>
 #include "TestLog.hpp"
 #include "File.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 
@@ -19,7 +19,7 @@ using namespace obotcha;
 void testWithData() {
     while(1) {
         File f = createFile("./testdata/little_endian1.txt");
-        BufferedReader reader = createBufferedReader(f);
+        TextLineReader reader = createTextLineReader(f);
         String str = nullptr;
         while((str = reader->readLine()) != nullptr) {
             ArrayList<String> items = str->split(" ");
@@ -41,7 +41,7 @@ void testWithData() {
     
     while(1) {
         File f = createFile("./testdata/big_endian1.txt");
-        BufferedReader reader = createBufferedReader(f);
+        TextLineReader reader = createTextLineReader(f);
         String str = nullptr;
         while((str = reader->readLine()) != nullptr) {
             ArrayList<String> items = str->split(" ");

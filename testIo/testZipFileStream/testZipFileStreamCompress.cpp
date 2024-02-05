@@ -34,7 +34,7 @@ void testZipCompress() {
     f2->createDir();
     system("unzip ./tmp/base_data_genzip.zip -d ./tmp/deCompress_check1/");
 
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     String base1 = md->encodeFile(createFile("./tmp/base_data"));
     String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check1/base_data"));
 
@@ -61,7 +61,7 @@ void testZipCompress() {
     f2->createDir();
     system("unzip -P 123456 ./tmp/base_data_pwd_genzip.zip -d ./tmp/deCompress_check2/");
 
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     String base1 = md->encodeFile(createFile("./tmp/base_data"));
     String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check2/base_data"));
 

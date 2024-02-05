@@ -32,7 +32,7 @@ void testPopTo() {
         //
         ByteArray result = arr1->popTo(0);
         if(result->size() != 1) {
-            TEST_FAIL("[ByteRingArray Test popTo case1]");
+            TEST_FAIL("[ByteRingArray Test popTo case1],size is %d",result->size());
             break;
         }
 

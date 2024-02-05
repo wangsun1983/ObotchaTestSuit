@@ -19,7 +19,7 @@ public:
   void run() {
       //value->incrementAndGet();
       //TEST_FAIL("sleep1 start");
-      st(Thread)::sleep(5);
+      st(Thread)::Sleep(5);
       //TEST_FAIL("sleep2 start");
   }
 };

@@ -101,7 +101,7 @@ void testByteArrayLittleEndian() {
         ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Little);
         
         auto v1 = (array2[0] | array2[1] <<8);
-        int v2_chk = reader->read<int>();
+        int v2_chk = reader->read<short int>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader LittleEndia case9],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -114,7 +114,7 @@ void testByteArrayLittleEndian() {
         ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Little);
         
         auto v1 = array2[0];
-        int v2_chk = reader->read<int>();
+        byte v2_chk = reader->read<byte>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader LittleEndia case10],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -127,7 +127,7 @@ void testByteArrayLittleEndian() {
         ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Little);
         
         auto v1 = (array2[0]|array2[1]<<8);
-        long v2_chk = reader->read<long>();
+        long v2_chk = reader->read<short int>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader LittleEndia case11],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -139,7 +139,7 @@ void testByteArrayLittleEndian() {
         ByteArray testData = createByteArray(array2,2);
         ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Little);
         
-        auto v1 = reader->read<int>();
+        auto v1 = reader->read<short int>();
         int v1_chk = (array2[0]|array2[1]<<8);
         if(v1 != v1_chk) {
           TEST_FAIL("[TestByteArrayReader LittleEndia case12],v1 is %d,v2_chk is %d",v1,v1_chk);

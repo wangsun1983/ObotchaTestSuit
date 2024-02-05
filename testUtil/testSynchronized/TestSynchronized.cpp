@@ -32,7 +32,7 @@ void testSynchronized() {
             wa->start();
             Synchronized(mutex) {
                 loop++;
-                st(Thread)::sleep(200);
+                st(Thread)::Sleep(200);
             }
             
             long interval = wa->stop();

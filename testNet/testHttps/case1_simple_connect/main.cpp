@@ -14,7 +14,7 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
+#include "Net.hpp"
 
 using namespace obotcha;
 
@@ -25,12 +25,12 @@ int step = 0;
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case HttpEvent::Connect: {
+          case st(Net)::Event::Connect: {
               
           }
           break;
 
-          case HttpEvent::Message: {
+          case st(Net)::Event::Message: {
               printf("write response connect!!! \n");
               //if(step == 0) {
                 HttpResponse response = createHttpResponse();
@@ -48,7 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case HttpEvent::Disconnect:{
+          case st(Net)::Event::Disconnect:{
           }
           break;
       }
@@ -57,11 +57,14 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 int main() {
   MyHttpListener listener = createMyHttpListener();
+  HttpOption option = createHttpOption();
+  option->setSSLCertificatePath("server.crt");
+  option->setSSLKeyPath("server.key");
+  
   HttpServer server = createHttpServerBuilder()
                     ->setAddress(createInet4Address(1260))
                     ->setListener(listener)
-                    ->setCertificatePath("server.crt")
-                    ->setKeyPath("server.key")
+                    ->setOption(option)
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();

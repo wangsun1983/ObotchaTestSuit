@@ -22,7 +22,7 @@ public:
 
   void run() {
       try {
-        st(Thread)::sleep(100000000);
+        st(Thread)::Sleep(100000000);
       } catch(...){}
       count++;
   }

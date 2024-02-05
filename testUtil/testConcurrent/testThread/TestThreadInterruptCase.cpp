@@ -26,7 +26,7 @@ DECLARE_CLASS(MyTest1Thread) IMPLEMENTS(Thread) {
 public:
     void run() {
         try {
-            st(Thread)::sleep();
+            st(Thread)::Sleep();
         }catch(InterruptedException &e){
             myTest1Interrupt = 1;
         }

@@ -5,7 +5,7 @@
 		<boolData>false</boolData>
 		<uint32Data>16</uint32Data>
 		<uint16Data>15</uint16Data>
-		<floatData>12.19999980926514</floatData>
+		<floatData>12.1999998</floatData>
 		<uint8Data>14</uint8Data>
 		<longData>13</longData>
 		<doubleData>11.1</doubleData>
@@ -18,7 +18,7 @@
 		<boolData>false</boolData>
 		<uint32Data>6</uint32Data>
 		<uint16Data>5</uint16Data>
-		<floatData>2.200000047683716</floatData>
+		<floatData>2.2</floatData>
 		<uint8Data>4</uint8Data>
 		<longData>3</longData>
 		<doubleData>1.1</doubleData>

@@ -21,19 +21,19 @@ void testPoolReferenceCount() {
             pool = createExecutorBuilder()->setDefaultThreadNum(3)->newThreadPool();
             pool->submit([]() {
               try {
-                st(Thread)::sleep(10);
+                st(Thread)::Sleep(10);
               } catch(...){}
             });
 
             pool->submit([]() {
               try {
-                st(Thread)::sleep(10);
+                st(Thread)::Sleep(10);
               } catch(...){}
             });
 
             pool->submit([]() {
               try {
-                st(Thread)::sleep(10);
+                st(Thread)::Sleep(10);
               } catch(...){}
             });
         }
@@ -58,7 +58,7 @@ void testPoolReferenceCount() {
         auto pool = createExecutorBuilder()->setDefaultThreadNum(4)->newThreadPool();
         pool->submit([]() {
           try {
-            st(Thread)::sleep(100);
+            st(Thread)::Sleep(100);
           } catch(...){}
         });
         

@@ -6,7 +6,7 @@
 #include "Uint16.hpp"
 #include "StrongPointer.hpp"
 #include "String.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 #include "FileOutputStream.hpp"
 
 using namespace obotcha;

@@ -26,7 +26,7 @@ void testCalendarIsLeapYear() {
             }
         }
         
-        if(expectResult != st(Calendar)::isLeapYear(i)) {
+        if(expectResult != st(Calendar)::IsLeapYear(i)) {
             TEST_FAIL("testCalendarIsLeapYear case1,year is %d",i);
         }
     }

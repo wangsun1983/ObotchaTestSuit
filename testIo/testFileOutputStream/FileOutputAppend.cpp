@@ -90,7 +90,7 @@ void fileoutput_append_test() {
         inputstream = createFileInputStream(file);
         inputstream->open();
         content3 = inputstream->readAll();
-        data = content3->toString();
+        auto data = content3->toString();
         if(content3 == nullptr || content3->size() != 8 ||
             !data->sameAs("this i c")) {
             TEST_FAIL("[TestFileOutputStream Test {open(Append)} case6]");

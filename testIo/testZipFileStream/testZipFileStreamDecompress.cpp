@@ -35,7 +35,7 @@ void testZipDecompress() {
       break;
     }
 
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     String base1 = md->encodeFile(createFile("./tmp/base_data"));
     String decompress1 = md->encodeFile(createFile("./tmp/decompress_data/tmp/base_data"));
 
@@ -65,7 +65,7 @@ void testZipDecompress() {
       break;
     }
 
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     String base1 = md->encodeFile(createFile("./tmp/base_data"));
     String decompress1 = md->encodeFile(createFile("./tmp/decompress_password_data/tmp/base_data"));
 
@@ -78,7 +78,7 @@ void testZipDecompress() {
   }
 
   while(1) {
-    Md md = createMd(st(Md)::Md5);
+    Md md = createMd(st(Md)::Type::Md5);
     String base1 = md->encodeFile(createFile("./tmp/base_data"));
 
     ZipFileStream stream = createZipFileStream();

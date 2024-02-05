@@ -21,7 +21,7 @@ std::atomic_int priorityInterruptCount{0};
 DECLARE_CLASS(PriorityCancelTask) IMPLEMENTS(Runnable){
 public:
     void run() {
-      usleep(1000*500);
+      usleep(1000*1000);
     }
 
     bool onInterrupt() {

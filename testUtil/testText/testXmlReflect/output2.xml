@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlReflectArrayListData>
+	<lists>
+		<ArrayListMember>
+			<stringMember>1</stringMember>
+			<uint64Member>1</uint64Member>
+			<boolMember>true</boolMember>
+			<intMember>1</intMember>
+		</ArrayListMember>
+		<ArrayListMember>
+			<stringMember>2</stringMember>
+			<uint64Member>21</uint64Member>
+			<boolMember>true</boolMember>
+			<intMember>21</intMember>
+		</ArrayListMember>
+		<ArrayListMember>
+			<stringMember>3</stringMember>
+			<uint64Member>31</uint64Member>
+			<boolMember>true</boolMember>
+			<intMember>31</intMember>
+		</ArrayListMember>
+	</lists>
+</XmlReflectArrayListData>
+

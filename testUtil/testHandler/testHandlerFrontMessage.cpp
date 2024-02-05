@@ -23,6 +23,7 @@ public:
         switch(msg->what) {
             case 100:
             handler1_count = 123;
+            usleep(120*1000);
             break;
             
             case 125:
@@ -75,8 +76,8 @@ void testHandlerFrontMessage() {
     handler->sendMessageAtFrontOfQueue(msg5);
     usleep(1000*400);
 
-    if(time_127 >= time_126 || time_126 > time_127) {
-       TEST_FAIL("[Handler Test front message case2],time_126 is %ld,time_127 is %ld",time_126,time_127);
+    if(time_127 >= time_126 || time_125 > time_126 || time_127 > time_125 ) {
+       TEST_FAIL("[Handler Test front message case2],time_125 is %ld time_126 is %ld,time_127 is %ld",time_125,time_126,time_127);
     }
     
     //case3

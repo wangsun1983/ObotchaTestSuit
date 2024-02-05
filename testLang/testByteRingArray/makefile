@@ -3,7 +3,8 @@ gcc = g++
 cflags = -fpic \
 		-lrt \
 		-I ../../../util/concurrent/include/ \
-		-I ../../../util/coroutine/include/ \
+		-I ../../../lang/include \
+		-I ../../../io/include \
 		-I ../../../util/text/include/ \
 		-I ../../../util/handler/include/ \
 		-I ../../../lang/include \

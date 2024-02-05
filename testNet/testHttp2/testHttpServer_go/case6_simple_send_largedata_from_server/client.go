@@ -13,6 +13,7 @@ import (
   //"bytes"
   "strconv"
   "time"
+  "os"
 )
 
 //export GOPATH=/home/sunliwang/mysource/Obotcha/ObotchaTestSuite/3rdparty/go
@@ -67,5 +68,8 @@ func client(url string) {
 
   fmt.Println("body size is ",len(body));
   
+  //write file
+  file,err := os.OpenFile("./tmp/abc2",os.O_TRUNC|os.O_CREATE|os.O_WRONLY,0666);
+  file.Write(body)
   time.Sleep(time.Duration(1)*time.Second)
 }

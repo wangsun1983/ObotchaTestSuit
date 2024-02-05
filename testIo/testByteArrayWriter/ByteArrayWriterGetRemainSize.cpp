@@ -11,7 +11,7 @@
 #include <string.h>
 #include "TestLog.hpp"
 #include "File.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 

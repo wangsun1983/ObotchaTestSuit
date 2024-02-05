@@ -20,8 +20,12 @@ extern void testGetIndex();
 extern void testGetRemainSize();
 extern void testSetIndex();
 extern void testIsReadable();
+extern void testByteArrayReaderHtonl();
+extern void testEdgeDetection();
 
 int main() {
+    testEdgeDetection();
+    testByteArrayReaderHtonl();
     testReaderArray();
     testByteArrayLittleEndian();
     testByteArrayBigEndian();

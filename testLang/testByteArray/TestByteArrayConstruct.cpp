@@ -163,10 +163,10 @@ void testConstruct() {
         TEST_FAIL("ByteArray test Construct test 13");
         break;
       }
-
+      
       for(int j = 0;j< data1->size();j++) {
         if(data[j + 10] != data1[j]) {
-          TEST_FAIL("ByteArray test Construct test 14");
+          TEST_FAIL("ByteArray test Construct test 14,data is %d,data2 is %d",data[j+10],data1[j]);
           break;
         }
       }

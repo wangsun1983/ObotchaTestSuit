@@ -23,7 +23,7 @@ int testNoBlockPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(st(Pipe)::NonBlock);
+  Pipe pp = createPipe(st(IO)::NonBlock);
   
   int pid = fork();
   if(pid == 0) {
@@ -52,7 +52,7 @@ int testNoBlockPipe() {
    TEST_OK("[Pipe Test {noblock write/read()} case3]");
 
 
-   Pipe pp1_1 = createPipe(st(Pipe)::NonBlock);
+   Pipe pp1_1 = createPipe(st(IO)::NonBlock);
 
    pid = fork();
    if(pid == 0) {
@@ -74,7 +74,7 @@ int testNoBlockPipe() {
 
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(st(Pipe)::NonBlock);
+   Pipe pp2 = createPipe(st(IO)::NonBlock);
    
 
    pid = fork();
@@ -106,7 +106,7 @@ int testNoBlockPipe() {
     TEST_OK("[Pipe Test {noblock closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(st(Pipe)::NonBlock);
+    Pipe pp3 = createPipe(st(IO)::NonBlock);
 
     pid = fork();
     if(pid == 0) {

@@ -21,7 +21,7 @@ public:
     void run() {
         //TEST_FAIL("i am running ");
         try {
-            st(Thread)::sleep(10*1000);
+            st(Thread)::Sleep(10*1000);
         } catch(InterruptedException &e) {
             interruptVal = 2;
         }

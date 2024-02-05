@@ -23,7 +23,7 @@ public:
 
   void run() {
       try {
-        st(Thread)::sleep(50*1000);
+        st(Thread)::Sleep(50*1000);
       } catch(InterruptedException &e) {
           myLongSleepExceptionTest1 = 1;
       }

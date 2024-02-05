@@ -6,9 +6,9 @@
 #include "Object.hpp"
 #include "HttpMime.hpp"
 #include "HttpHeaderAcceptCh.hpp"
-#include "HttpClient.hpp"
 #include "HttpUrl.hpp"
 #include "HttpGet.hpp"
+#include "HttpConnection.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
@@ -32,7 +32,7 @@ void testClientCrawler() {
   for(i = 0;testUrl[i] != nullptr;i++) {
     printf("==============start do [%s]============\n",testUrl[i]);
     HttpGet get = createHttpGet(testUrl[i]);
-    HttpClient client = createHttpClient();
+    HttpConnection client = createHttpConnection(createHttpUrl(testUrl[i]));
     HttpResponse response = client->execute(get);
 
     if(response->isChunked()) {

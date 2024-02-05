@@ -23,7 +23,7 @@ void testAes128EncryptCbc() {
   stream->close();
 
   String key = createString("12345678");
-  Md md5sum = createMd(st(Md)::Md5);
+  Md md5sum = createMd(st(Md)::Type::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {

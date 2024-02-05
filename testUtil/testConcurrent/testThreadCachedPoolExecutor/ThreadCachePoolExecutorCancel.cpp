@@ -24,7 +24,7 @@ DECLARE_CLASS(CancelRunnable) IMPLEMENTS(Runnable) {
 public:
    void run() {
       try{
-        st(Thread)::sleep(1000 * 500);
+        st(Thread)::Sleep(1000 * 500);
       }catch(InterruptedException e){}
    }
 

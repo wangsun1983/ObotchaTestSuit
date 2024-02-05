@@ -19,7 +19,7 @@ DECLARE_CLASS(MySleepWaitRun) IMPLEMENTS(Runnable) {
 public:
     void run() {
         try {
-            st(Thread)::sleep();
+            st(Thread)::Sleep();
         } catch(...) {}
         count++;
     }

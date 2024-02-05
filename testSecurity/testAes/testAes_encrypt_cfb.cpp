@@ -23,7 +23,7 @@ void testAesEncryptCfb() {
   stream->close();
 
   String key = createString("1234567812345678");
-  Md md5sum = createMd(st(Md)::Md5);
+  Md md5sum = createMd(st(Md)::Type::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   //pkcs5

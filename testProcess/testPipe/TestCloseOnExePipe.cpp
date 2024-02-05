@@ -10,6 +10,7 @@
 #include "Pipe.hpp"
 #include "ByteArray.hpp"
 #include "TestLog.hpp"
+#include "IO.hpp"
 
 using namespace obotcha;
 
@@ -23,7 +24,7 @@ int testCloseOnExecPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(st(Pipe)::CloseOnExec);
+  Pipe pp = createPipe(st(IO)::CloseExec);
 
   int pid = fork();
   if(pid == 0) {
@@ -51,7 +52,7 @@ int testCloseOnExecPipe() {
    TEST_OK("[Pipe Test {closeonexe write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(st(Pipe)::CloseOnExec);
+   Pipe pp2 = createPipe(st(IO)::CloseExec);
 
    pid = fork();
    if(pid == 0) {
@@ -81,7 +82,7 @@ int testCloseOnExecPipe() {
     TEST_OK("[Pipe Test {closeonexe closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(st(Pipe)::CloseOnExec);
+    Pipe pp3 = createPipe(st(IO)::CloseExec);
 
     pid = fork();
     if(pid == 0) {

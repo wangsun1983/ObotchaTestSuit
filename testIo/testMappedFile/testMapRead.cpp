@@ -36,7 +36,6 @@ void testMapRead() {
 
       stream->read(data);
       str = data->toString();
-      //printf("dump2 str is %s \n",str->toChars());
       if(!str->sameAs(tt)) {
         TEST_FAIL("TestMappedFile read case2,str is %s \n",str->toChars());
         break;

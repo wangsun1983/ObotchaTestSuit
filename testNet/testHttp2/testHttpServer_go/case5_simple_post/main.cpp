@@ -14,7 +14,6 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"

@@ -7,11 +7,12 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TestLog.hpp"
+#include "Util.hpp"
 
 using namespace obotcha;
 
 void testBlockingLinkedListInfiniteConfig() {
-    if(st(BlockingLinkedList)<int>::kLinkedListSizeInfinite != 0) {
+    if(st(Util)::Container::kInfiniteSize != 0) {
 		TEST_FAIL("BlockingLinkedList InfiniteConfig case1");
 	}
 

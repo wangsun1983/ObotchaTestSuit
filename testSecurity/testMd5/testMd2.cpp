@@ -10,7 +10,7 @@ int test_md2() {
     File f = createFile("test_data.file");
     // String encrypt(File);
     while(1) {
-        Md md = createMd(st(Md)::Md2);
+        Md md = createMd(st(Md)::Type::Md2);
         String result = md->encodeFile(f);
 #ifndef OPENSSL_NO_MD2
         if(result != nullptr) {
@@ -30,7 +30,7 @@ int test_md2() {
 
     //String encrypt(String);
     while(1) {
-        Md md = createMd(st(Md)::Md2);
+        Md md = createMd(st(Md)::Type::Md2);
         String str = createString("hello world");
         String result = md->encodeContent(str->toByteArray());
 #ifndef OPENSSL_NO_MD2

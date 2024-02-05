@@ -46,7 +46,7 @@ void testCountDownLatch_Await() {
 		  latch->countDown();
 		});
 
-		t1->start();
+		t->start();
 		watcher->start();
 		int ret = latch->await();
 		auto cost = watcher->stop();
@@ -124,22 +124,22 @@ void testCountDownLatch_Await() {
 		t3->join();
 		t4->join();
 		
-		if(cost1 > 205 || cost1 < 195) {
+		if(cost1 != 0) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost1 is %ld",cost1);
 		}
 		
-		if(cost2 > 205 || cost2 < 195) {
+		if(cost2 != 0) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost2 is %ld",cost2);
 		}
 		
-		if(cost3 > 205 || cost3 < 195) {
+		if(cost3 != 0) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost3 is %ld",cost3);
 		}
 		
-		if(cost4 > 205 || cost4 < 195) {
-			TEST_FAIL("[TestCountDownLatch await case7],cost2 is %ld",cost4);
+		if(cost4 != 0) {
+			TEST_FAIL("[TestCountDownLatch await case7],cost4 is %ld",cost4);
 		}
-		
+		break;
 	}
     TEST_OK("[TestCountDownLatch await case100]");
 }

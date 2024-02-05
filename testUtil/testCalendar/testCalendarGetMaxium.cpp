@@ -7,7 +7,7 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "BufferedReader.hpp"
+#include "TextLineReader.hpp"
 #include "ForEveryOne.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
@@ -31,7 +31,7 @@ void testCalendarGetMaxium() {
 	if(!f->exists()) {
 		printf("file not found \n");
 	}
-	BufferedReader reader = createBufferedReader(f);
+	TextLineReader reader = createTextLineReader(f);
 	MaxiumData data = nullptr;
 	
 	while(1) {

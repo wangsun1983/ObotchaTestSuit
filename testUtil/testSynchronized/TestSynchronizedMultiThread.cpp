@@ -44,7 +44,9 @@ void testSynchronizedMultiThread() {
 
         Thread t2 = createThread([&mutex,&run2]{
             usleep(1000*200);
-            mutex->unlock();
+            try {
+                mutex->unlock();
+            } catch(...) {}
             run2++;
         });
         t2->start();

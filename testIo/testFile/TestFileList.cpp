@@ -39,7 +39,7 @@ void testFileList() {
     int hitCount = 0;
     ForEveryOne(path,list1) {
         ForEveryOne(path2,paths) {
-            if(path2->contains(path)) {
+            if(path->contains(path2)) {
                 hitCount++;
                 break;
             }
@@ -47,12 +47,12 @@ void testFileList() {
     }
     
     if(hitCount != 2) {
-        TEST_FAIL("[File Test {list()} case2],hitCount is %d \n",hitCount);
+        TEST_FAIL("[File Test {list()} case2],hitCount is %d",hitCount);
     }
     
     auto list2 = f1->listFiles();
     if(list2->size() != 2) {
-        TEST_FAIL("[File Test {list()} case3],size is %d \n",list2->size());
+        TEST_FAIL("[File Test {list()} case3],size is %d",list2->size());
     }
     
     hitCount = 0;

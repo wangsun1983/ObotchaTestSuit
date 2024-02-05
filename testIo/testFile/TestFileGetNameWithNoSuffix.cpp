@@ -51,6 +51,19 @@ void testFileGetNameWithNoSuffix() {
     if(!name->sameAs("tt")) {
        TEST_FAIL("[File Test {getNameWithNoSuffix()} case6]");
     }
+    
+    //test7
+    file = createFile("/abc/.zip");
+    name = file->getNameWithNoSuffix();
+    if(!name->sameAs(".zip")) {
+       TEST_FAIL("[File Test {getNameWithNoSuffix()} case7]");
+    }
+    
+    file = createFile(".zip");
+    name = file->getNameWithNoSuffix();
+    if(!name->sameAs(".zip")) {
+       TEST_FAIL("[File Test {getNameWithNoSuffix()} case8]");
+    }
 
     TEST_OK("[File Test {getNameWithNoSuffix()} case100]");
 }

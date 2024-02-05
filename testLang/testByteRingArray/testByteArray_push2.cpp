@@ -77,8 +77,9 @@ void testByteRingArrayPush2() {
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setStartIndex(1);
       ringarray->setEndIndex(4);
+      ringarray->setStartIndex(1);
+      
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
       ByteArray data = createByteArray(2);
@@ -107,8 +108,9 @@ void testByteRingArrayPush2() {
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setStartIndex(2);
       ringarray->setEndIndex(4);
+      ringarray->setStartIndex(2);
+
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
       ByteArray data = createByteArray(3);
@@ -139,8 +141,9 @@ void testByteRingArrayPush2() {
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setStartIndex(3);
       ringarray->setEndIndex(4);
+      ringarray->setStartIndex(3);
+      
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
       ByteArray data = createByteArray(4);

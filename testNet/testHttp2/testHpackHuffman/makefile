@@ -5,10 +5,14 @@ cflags = -fpic \
 		-I ../../../../util/concurrent/include/ \
 		-I ../../../../util/coroutine/include/ \
 		-I ../../../../util/text/include/ \
+        -I ../../../../util/time/include/ \
+        -I ../../../../util/handler/include/ \
 		-I ../../../../lang/include \
 		-I ../../../../io/include \
 		-I ../../../../util/include/ \
 		-I ../../../../net/include \
+        -I ../../../../net/http/include \
+        -I ../../../../net/socket/include \
 		-I ../../../../security/include \
 		-I ../../../../process/include \
 		-I ../../../../external/iniparser/include \

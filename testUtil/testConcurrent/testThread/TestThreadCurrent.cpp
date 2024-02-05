@@ -20,8 +20,8 @@ void testThreadCurrent() {
       bool isRun = false;
       Thread t1 = createThread([&isRun] {
         usleep(1000 * 100);
-        if(st(Thread)::current() != gThread
-            ||st(Thread)::current() == nullptr) {
+        if(st(Thread)::Current() != gThread
+            ||st(Thread)::Current() == nullptr) {
             TEST_FAIL("[Thread Test {Current()} case1]");
         }
         isRun = true;
@@ -35,7 +35,7 @@ void testThreadCurrent() {
       break;
   }
   
-  if(st(Thread)::current() != nullptr) {
+  if(st(Thread)::Current() != nullptr) {
     TEST_FAIL("[Thread Test {Current()} case3]");
   }
   

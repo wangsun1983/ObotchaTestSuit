@@ -46,7 +46,7 @@ public:
       break;
 
       case st(Net)::Event::Disconnect: {
-        //printf("count is %d \n",latch->getCount());
+        printf("count is %d \n",latch->getCount());
         latch->countDown();
         h->removeMessages(0);
         h->sendEmptyMessageDelayed(0,2000);
@@ -73,7 +73,7 @@ int main() {
             TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test1,i is %d,fd is %d",i,client->getFileDescriptor()->getFd());
             continue;
           }
-
+        
           monitor->bind(client,createMyListener(i));
     }
     
@@ -87,5 +87,6 @@ int main() {
     }
 
     TEST_OK("TestLocalSocket Client case4_simple_multi_test test100");
+    usleep(1000*1000);
     return 0;
 }

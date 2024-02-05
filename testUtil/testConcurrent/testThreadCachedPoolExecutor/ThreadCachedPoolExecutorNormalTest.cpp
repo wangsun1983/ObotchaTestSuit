@@ -19,7 +19,7 @@ DECLARE_CLASS(RunTest1) IMPLEMENTS(Runnable) {
 public:
     void run() {
         try {
-            st(Thread)::sleep(10*1000);
+            st(Thread)::Sleep(10*1000);
         } catch(InterruptedException &e){
             
         }

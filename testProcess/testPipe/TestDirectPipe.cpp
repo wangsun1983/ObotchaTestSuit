@@ -10,6 +10,7 @@
 #include "Pipe.hpp"
 #include "ByteArray.hpp"
 #include "TestLog.hpp"
+#include "IO.hpp"
 
 using namespace obotcha;
 
@@ -23,7 +24,7 @@ int testDirectPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(st(Pipe)::Direct);
+  Pipe pp = createPipe(st(IO)::Direct);
   
 
   int pid = fork();
@@ -52,7 +53,7 @@ int testDirectPipe() {
    TEST_OK("[Pipe Test {direct write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(st(Pipe)::Direct);
+   Pipe pp2 = createPipe(st(IO)::Direct);
    
 
    pid = fork();
@@ -83,7 +84,7 @@ int testDirectPipe() {
     TEST_OK("[Pipe Test {direct closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(st(Pipe)::Direct);
+    Pipe pp3 = createPipe(st(IO)::Direct);
     
 
     pid = fork();

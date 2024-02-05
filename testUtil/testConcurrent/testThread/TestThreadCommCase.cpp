@@ -148,7 +148,7 @@ void testThreadCommonCase() {
         t->start();
         t->join();
     }
-    st(Thread)::sleep(1000);
+    st(Thread)::Sleep(1000);
 
     if(TestData1 != 100 || disposeVal != 0) {
       TEST_FAIL("[Thread Test {create()} case1]");
@@ -171,7 +171,7 @@ void testThreadCommonCase() {
         t->start();
         t->join();
     }
-    st(Thread)::sleep(1000);
+    st(Thread)::Sleep(1000);
 
     if(TestData1 != 100 || disposeVal != 0) {
       TEST_FAIL("[Thread Test {create()} case3]");
@@ -344,7 +344,7 @@ void testThreadCommonCase() {
   while(1) {
       long current = st(System)::CurrentTimeMillis();
 
-      st(Thread)::sleep(1000);
+      st(Thread)::Sleep(1000);
 
       long current2 = st(System)::CurrentTimeMillis();
       if((current2 - current) > 1005) {
