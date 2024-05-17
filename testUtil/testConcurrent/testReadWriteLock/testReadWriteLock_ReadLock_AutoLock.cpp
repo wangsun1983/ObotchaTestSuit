@@ -13,22 +13,22 @@
 using namespace obotcha;
 
 void testReadLock_AutoLock() {
-  TimeWatcher w = createTimeWatcher();
+  TimeWatcher w = TimeWatcher::New();
   
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     
-    Thread t = createThread([&] {
+    Thread t = Thread::New([&] {
 		AutoLock l(rwLock->getReadLock());
 		usleep(1000*200);
     });
 	t->start();
 	
-    Thread t1 = createThread([&] {
+    Thread t1 = Thread::New([&] {
 		AutoLock l(rwLock->getWriteLock());
     });
 
-    Thread t2 = createThread([&] {
+    Thread t2 = Thread::New([&] {
 		AutoLock l(rwLock->getWriteLock());
     });
 	usleep(1000*100);
@@ -47,19 +47,19 @@ void testReadLock_AutoLock() {
   }
   
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     
-    Thread t = createThread([&] {
+    Thread t = Thread::New([&] {
   		AutoLock l(rwLock->getReadLock());
   		usleep(1000*200);
     });
   	t->start();
   	
-    Thread t1 = createThread([&] {
+    Thread t1 = Thread::New([&] {
   		AutoLock l(rwLock->getReadLock());
     });
   
-    Thread t2 = createThread([&] {
+    Thread t2 = Thread::New([&] {
   		AutoLock l(rwLock->getReadLock());
     });
   	usleep(1000*100);
@@ -78,20 +78,20 @@ void testReadLock_AutoLock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     
-    Thread t = createThread([&] {
+    Thread t = Thread::New([&] {
   		AutoLock l(rwLock->getReadLock());
   		usleep(1000*200);
     });
   	t->start();
   	
-    Thread t1 = createThread([&] {
+    Thread t1 = Thread::New([&] {
   		AutoLock l(rwLock->getWriteLock());
 		usleep(1000*300);
     });
 	
-	Thread t2 = createThread([&] {
+	Thread t2 = Thread::New([&] {
 		AutoLock l(rwLock->getWriteLock());
 	});
   

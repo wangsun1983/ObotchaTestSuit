@@ -16,17 +16,17 @@ bool isFirst = true;
 
 int main() {
   int port = getEnvPort();
-  InetAddress addr = createInet4Address(port);
-  ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
+  InetAddress addr = Inet4Address::New(port);
+  ServerSocket sock = SocketBuilder::New()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
   printf("i start waiting accept \n");
   auto client = sock->accept();
   printf("i start read accept \n");
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
     auto stream = client->getInputStream();
-    ByteArray data = createByteArray(32);
+    ByteArray data = ByteArray::New(32);
     watch->start();
     int len = stream->read(data);
     long result = watch->stop();

@@ -61,16 +61,16 @@ public:
 
 void testEqual() {
   while(1) {
-    TestData1 d1 = createTestData1(1);
-    TestData1 d2 = createTestData1(2);
+    TestData1 d1 = TestData1::New(1);
+    TestData1 d2 = TestData1::New(2);
     if(d1 != d2) {
       TEST_FAIL("Object Equal test1");
       break;
     }
 
-    TestData2 d3 = createTestData2();
+    TestData2 d3 = TestData2::New();
     d3->j = 10;
-    TestData2 d4 = createTestData2();
+    TestData2 d4 = TestData2::New();
     d4->j = 10;
     if(d3 != d4) {
       TEST_FAIL("Object Equal test2");
@@ -78,9 +78,9 @@ void testEqual() {
     }
 
     //inline bool operator == (const sp<U>& o) const {
-    TestData3 d5 = createTestData3();
+    TestData3 d5 = TestData3::New();
     d3->j = 10;
-    TestData3 d6 = createTestData3();
+    TestData3 d6 = TestData3::New();
     d4->j = 10;
     if(d5 == d6) {
       TEST_FAIL("Object Equal test3");
@@ -99,7 +99,7 @@ void testEqual() {
     // }
 
     //inline bool operator == (const T* o) const {
-    TestData1 data1 = createTestData1(1);
+    TestData1 data1 = TestData1::New(1);
     _TestData1 *data2 = new _TestData1(1);
     if(data1 != data2) {
       TEST_FAIL("Object Equal test5");

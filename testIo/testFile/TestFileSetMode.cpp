@@ -9,7 +9,7 @@
 using namespace obotcha;
 
 void testFileMode() {
-    File file = createFile("./tmp/mode.data");
+    File file = File::New("./tmp/mode.data");
     if(!file->exists()) {
         file->createNewFile();
     }

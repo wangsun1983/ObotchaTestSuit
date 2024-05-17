@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
+    HttpHeaderSourceMap timing = HttpHeaderSourceMap::New();
     timing->load("/path/to/file.js.map");
     if(!timing->get()->sameAs("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderSourceMap timing = createHttpHeaderSourceMap();
+    HttpHeaderSourceMap timing = HttpHeaderSourceMap::New();
     timing->set("/path/to/file.js.map");
     if(!timing->get()->sameAs("/path/to/file.js.map")) {
       TEST_FAIL("[HttpHeaderSourceMap test Parse case2]");

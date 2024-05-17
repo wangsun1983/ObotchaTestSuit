@@ -5,7 +5,7 @@ using namespace obotcha;
 
 void testPriority() {
 #if 0    
-  ByteArray array = createByteArray(10);
+  ByteArray array = ByteArray::New(10);
   array->setPriorityWeight(100);
   if(array->getPriorityWeight() != 100) {
     TEST_OK("ByteArray testPriority test 1");

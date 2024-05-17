@@ -11,7 +11,7 @@ using namespace obotcha;
 
 void testByteArrayCapacity() {
 
-    ByteRingArray array = createByteRingArray(16);
+    ByteRingArray array = ByteRingArray::New(16);
     if(array->getCapacity() != 16) {
         TEST_FAIL("[ByteRingArray Test Capacity case1]");
     }

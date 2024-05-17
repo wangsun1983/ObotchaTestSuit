@@ -10,16 +10,16 @@ using namespace obotcha;
 
 void testConcurrentStack_Size() {
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      Thread t1 = Thread::New([&]{
           for(int i = 0;i < 32*1024;i++) {
-              list->push(createString(i));
+              list->push(String::New(i));
           }
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           for(int i = 0;i < 32*1024;i++) {
-              list->push(createString(i));
+              list->push(String::New(i));
           }
       });
       

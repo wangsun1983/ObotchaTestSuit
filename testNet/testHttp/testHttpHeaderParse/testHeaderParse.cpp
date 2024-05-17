@@ -33,10 +33,10 @@ void testHttpHeaderParse() {
                  "\r\n"
                  "Hot diggity dogg";
 
-    ByteRingArray ringArray = createByteRingArray(1024*4);
+    ByteRingArray ringArray = ByteRingArray::New(1024*4);
     ringArray->push((byte *)raw,0,strlen(raw));
-    ByteRingArrayReader reader = createByteRingArrayReader(ringArray);
-    HttpHeaderParser parser = createHttpHeaderParser(reader);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray);
+    HttpHeaderParser parser = HttpHeaderParser::New(reader);
     HttpHeader header = parser->doParse();
 
     if(header->getMethod() != st(HttpMethod)::Id::Get) {

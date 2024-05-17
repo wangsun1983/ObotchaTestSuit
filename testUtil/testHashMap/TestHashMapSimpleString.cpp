@@ -18,9 +18,9 @@ void testHashMapSimpleString() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+        HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
         std::string tag = "tag1";
-        SimpleStringData tt = createSimpleStringData();
+        SimpleStringData tt = SimpleStringData::New();
         tt->i = 100;
         map->put(tag,tt);
 
@@ -46,9 +46,9 @@ void testHashMapSimpleString() {
 
     //void remove(T t)
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       std::string tag = "tag1";
-      SimpleStringData tt = createSimpleStringData();
+      SimpleStringData tt = SimpleStringData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -78,9 +78,9 @@ void testHashMapSimpleString() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       std::string tag = "tag1";
-      SimpleStringData tt = createSimpleStringData();
+      SimpleStringData tt = SimpleStringData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -101,9 +101,9 @@ void testHashMapSimpleString() {
 
     //void clear()
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       std::string tag = "tag1";
-      SimpleStringData tt = createSimpleStringData();
+      SimpleStringData tt = SimpleStringData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put("tag2",tt);
@@ -115,7 +115,7 @@ void testHashMapSimpleString() {
         break;
       }
 
-      HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map2 = HashMap<std::string,SimpleStringData>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap String Test {clear()} case2]");
@@ -128,9 +128,9 @@ void testHashMapSimpleString() {
 
     //int size()
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       std::string tag = "tag1";
-      SimpleStringData tt = createSimpleStringData();
+      SimpleStringData tt = SimpleStringData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put("tag2",tt);
@@ -145,9 +145,9 @@ void testHashMapSimpleString() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleStringData tt = createSimpleStringData();
+        SimpleStringData tt = SimpleStringData::New();
         tt->i = index;
         //TEST_FAIL("put index is %d ",index);
         map->put(std::to_string(index),tt);
@@ -169,7 +169,7 @@ void testHashMapSimpleString() {
         }
       }
 
-      HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map2 = HashMap<std::string,SimpleStringData>::New();
       ArrayList<std::string>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap String Test {keySet()} case3]");
@@ -182,9 +182,9 @@ void testHashMapSimpleString() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleStringData tt = createSimpleStringData();
+        SimpleStringData tt = SimpleStringData::New();
         tt->i = index;
         map->put(std::to_string(index),tt);
       }
@@ -199,7 +199,7 @@ void testHashMapSimpleString() {
         }
       }
 
-      HashMap<std::string,SimpleStringData> map2 = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map2 = HashMap<std::string,SimpleStringData>::New();
       ArrayList<SimpleStringData>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap String Test {entrySet()} case2]");
@@ -213,9 +213,9 @@ void testHashMapSimpleString() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<std::string,SimpleStringData> map = createHashMap<std::string,SimpleStringData>();
+      HashMap<std::string,SimpleStringData> map = HashMap<std::string,SimpleStringData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleStringData tt = createSimpleStringData();
+        SimpleStringData tt = SimpleStringData::New();
         tt->i = index;
         map->put(std::to_string(index),tt);
       }

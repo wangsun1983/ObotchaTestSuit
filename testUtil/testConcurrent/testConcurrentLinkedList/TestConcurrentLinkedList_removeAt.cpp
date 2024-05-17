@@ -11,18 +11,18 @@ using namespace obotcha;
 
 void testConcurrentLinkedList_removeAt() {
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putFirst(createString("bbcc"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putFirst(String::New("bbcc"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->acquireReadLock()->lock();
           usleep(200*1000);
           list->acquireReadLock()->unlock();
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           list->removeAt(0);
           auto r = w->stop();
@@ -43,18 +43,18 @@ void testConcurrentLinkedList_removeAt() {
     }
     
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->remove(createString("bbcc"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->remove(String::New("bbcc"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->syncWriteAction([&]{
               usleep(200*1000);
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           list->removeAt(0);
           auto r = w->stop();

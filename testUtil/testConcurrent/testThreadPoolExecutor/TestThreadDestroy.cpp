@@ -29,8 +29,8 @@ void testThreadDestroy() {
     while(1) {
         //try {
             {
-                ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
-                pool->submit(createMyDestroyTest());
+                ThreadPoolExecutor pool = ExecutorBuilder::New()->newThreadPool();
+                pool->submit(MyDestroyTest::New());
                 pool->shutdown();
             }
             sleep(10);

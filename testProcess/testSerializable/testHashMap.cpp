@@ -41,21 +41,21 @@ public:
 };
 
 void testOrpcHashMap() {
-    MyTestDataMap mm = createMyTestDataMap();
-    mm->map = createHashMap<MyTestMapKey,MyTestMapValue>();
+    MyTestDataMap mm = MyTestDataMap::New();
+    mm->map = HashMap<MyTestMapKey,MyTestMapValue>::New();
 
-    MyTestMapKey key1 = createMyTestMapKey();
+    MyTestMapKey key1 = MyTestMapKey::New();
     key1->v1 = 111;
 
-    MyTestMapValue value1 = createMyTestMapValue();
-    value1->m1 = createString("value1");
+    MyTestMapValue value1 = MyTestMapValue::New();
+    value1->m1 = String::New("value1");
     value1->m2 = 111222;
 
-    MyTestMapKey key2 = createMyTestMapKey();
+    MyTestMapKey key2 = MyTestMapKey::New();
     key2->v1 = 222;
 
-    MyTestMapValue value2 = createMyTestMapValue();
-    value2->m1 = createString("value2");
+    MyTestMapValue value2 = MyTestMapValue::New();
+    value2->m1 = String::New("value2");
     value2->m2 = 333444;
 
     mm->map->put(key1,value1);

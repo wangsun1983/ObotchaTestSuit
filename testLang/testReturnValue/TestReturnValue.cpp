@@ -16,7 +16,7 @@
 using namespace obotcha;
 
 DefRet(String,Integer) getValue() {
-  return MakeRet(createString("hello1"),createInteger(100));
+  return MakeRet(String::New("hello1"),Integer::New(100));
 }
 
 void testReturnValue() {

@@ -17,7 +17,7 @@ using namespace obotcha;
 
 void testFutureWait() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([&]{
             st(Fila)::Sleep(200);
@@ -25,7 +25,7 @@ void testFutureWait() {
         });
         
         usleep(1000*100);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         auto value = future->getResult<int>();
         auto interval = watcher->stop();
@@ -44,7 +44,7 @@ void testFutureWait() {
 
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
 		int count = 0;
         FilaFuture future = croutine->submit([&]{
@@ -53,7 +53,7 @@ void testFutureWait() {
 			count++;
         });
         usleep(1000*100);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         int value = 0;
         try {
@@ -77,14 +77,14 @@ void testFutureWait() {
     }
     
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
             st(Fila)::Sleep(100);
             st(FilaExecutorResult)::Set<int>(100);
         });
         
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         int value = 0;
         try {
@@ -104,7 +104,7 @@ void testFutureWait() {
     }
     
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
             st(Fila)::Sleep(100);
@@ -112,12 +112,12 @@ void testFutureWait() {
         });
         
         int v1 = 0;
-        Thread t1 = createThread([&future,&v1]{
+        Thread t1 = Thread::New([&future,&v1]{
             v1 = future->getResult<int>();
         });
         
         int v2 = 0;
-        Thread t2 = createThread([&future,&v2]{
+        Thread t2 = Thread::New([&future,&v2]{
             v2 = future->getResult<int>();
         });
         t1->start();
@@ -134,7 +134,7 @@ void testFutureWait() {
     }
     
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
             st(Fila)::Sleep(100);

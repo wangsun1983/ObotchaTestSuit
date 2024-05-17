@@ -18,7 +18,7 @@ public:
   long finished;
 };
 
-Mutex delayDataMutex = createMutex();
+Mutex delayDataMutex = Mutex::New();
 std::vector<DelayTestData *> datas;
 
 DECLARE_CLASS(MyDelayedHandler) IMPLEMENTS(Handler) {
@@ -33,8 +33,8 @@ public:
 
 
 void testSendMessageDelayed() {
-  MyDelayedHandler m = createMyDelayedHandler();
-  Random rnd = createRandom();
+  MyDelayedHandler m = MyDelayedHandler::New();
+  Random rnd = Random::New();
 
   for(int i = 0;i<1024;i++) {
     int interval = rnd->next<int>(100,800);

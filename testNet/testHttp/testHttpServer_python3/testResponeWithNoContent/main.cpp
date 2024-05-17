@@ -21,11 +21,11 @@
 
 using namespace obotcha;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disConnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
+AtomicInteger connectCount = AtomicInteger::New(0);
+AtomicInteger disConnectCount = AtomicInteger::New(0);
+AtomicInteger messageCount = AtomicInteger::New(0);
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
@@ -39,7 +39,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 
         case st(Net)::Event::Message: {
             messageCount->incrementAndGet();
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             w->write(response);
         }
@@ -57,12 +57,20 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   latch->await();
   server->close();
 

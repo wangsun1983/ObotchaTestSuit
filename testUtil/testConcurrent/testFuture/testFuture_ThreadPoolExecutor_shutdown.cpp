@@ -42,19 +42,19 @@ public:
 
 void testThreadPoolExecutor_shutdown() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(32)
               ->newThreadPool();
 
-    Future f = pool->submit(createFutureThreadPoolCancelTask());
+    Future f = pool->submit(FutureThreadPoolCancelTask::New());
 
-    Thread t = createThread([](ThreadPoolExecutor pool) {
+    Thread t = Thread::New([](ThreadPoolExecutor pool) {
         usleep(1000*50);
         pool->shutdown();
     },pool);
     t->start();
 
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     watch->start();
     bool isException = false;
     try {
@@ -77,19 +77,19 @@ void testThreadPoolExecutor_shutdown() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(32)
               ->newThreadPool();
 
-    Future f = pool->submit(createFutureThreadPoolNoCancelTask());
+    Future f = pool->submit(FutureThreadPoolNoCancelTask::New());
 
-    Thread t = createThread([](ThreadPoolExecutor pool) {
+    Thread t = Thread::New([](ThreadPoolExecutor pool) {
         usleep(1000*50);
         pool->shutdown();
     },pool);
     t->start();
 
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     watch->start();
     bool isException = false;
     int value = 0;

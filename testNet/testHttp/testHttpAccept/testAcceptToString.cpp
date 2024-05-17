@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testEncodingToString() {
   while(1) {
-    HttpHeaderAccept encoding1 = createHttpHeaderAccept();
+    HttpHeaderAccept encoding1 = HttpHeaderAccept::New();
     encoding1->load("text/html");
     if(!encoding1->toString()->sameAs("text/html")) {
       TEST_FAIL("[HttpHeaderAccept test toString case1]encoding is %s",encoding1->toString()->toChars());
@@ -22,7 +22,7 @@ void testEncodingToString() {
   }
 
   while(1) {
-    HttpHeaderAccept encoding1 = createHttpHeaderAccept();
+    HttpHeaderAccept encoding1 = HttpHeaderAccept::New();
     encoding1->load("image/*");
     if(!encoding1->toString()->sameAs("image/*")) {
       TEST_FAIL("[HttpHeaderAccept test toString case2]encoding is %s",encoding1->toString()->toChars());
@@ -31,7 +31,7 @@ void testEncodingToString() {
   }
 
   while(1) {
-    HttpHeaderAccept encoding1 = createHttpHeaderAccept();
+    HttpHeaderAccept encoding1 = HttpHeaderAccept::New();
     encoding1->load("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     if(!encoding1->toString()->sameAs("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")) {
       TEST_FAIL("[HttpHeaderAccept test toString case3]encoding is %s",encoding1->toString()->toChars());
@@ -40,8 +40,8 @@ void testEncodingToString() {
   }
   
   while(1) {
-    HttpHeaderAccept accept = createHttpHeaderAccept();
-    HttpHeader header = createHttpHeader();
+    HttpHeaderAccept accept = HttpHeaderAccept::New();
+    HttpHeader header = HttpHeader::New();
     accept->load("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     header->setAccept(accept);
     

@@ -13,14 +13,14 @@ using namespace obotcha;
 void hashcodeTest() {
 
   while(1) {
-    Integer t1 = createInteger(1);
-    Integer t2 = createInteger(1);
+    Integer t1 = Integer::New(1);
+    Integer t2 = Integer::New(1);
     if(t1->hashcode() != t2->hashcode()) {
       TEST_FAIL("Integer hashcode test1");
       break;
     }
 
-    Integer t3 = createInteger(2);
+    Integer t3 = Integer::New(2);
     if(t1->hashcode() == t3->hashcode()) {
       TEST_FAIL("Integer hashcode test2");
       break;

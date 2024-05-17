@@ -13,13 +13,13 @@ using namespace obotcha;
 
 void testCalendarEqual() {
     auto time = st(System)::CurrentTimeMillis();
-	auto c1 = createCalendar(time);
-	auto c2 = createCalendar(time);
+	auto c1 = Calendar::New(time);
+	auto c2 = Calendar::New(time);
 	if(c1 != c2) {
 		TEST_FAIL("testCalendar equal case1");
 	}
 	
-	auto c3 = createCalendar(time + 1);
+	auto c3 = Calendar::New(time + 1);
 	if(c1 == c3) {
 		TEST_FAIL("testCalendar equal case2");
 	}

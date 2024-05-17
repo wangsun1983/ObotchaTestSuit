@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
+    HttpHeaderAccessControlExposeHeaders c = HttpHeaderAccessControlExposeHeaders::New();
     c->load("Content-Length, X-Kuma-Revision");
     if(c->toString()->sameAs("Content-Length, X-Kuma-Revision")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]");
@@ -24,9 +24,9 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
+    HttpHeaderAccessControlExposeHeaders c = HttpHeaderAccessControlExposeHeaders::New();
     c->load("Content-Length, X-Kuma-Revision");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setExposeHeaders(c);
     
     auto c2 = header->getExposeHeaders();

@@ -12,11 +12,11 @@
 using namespace std;
 using namespace obotcha;
 
-FilaMutex mMutex = createFilaMutex();
-CountDownLatch latch = createCountDownLatch(1);
+FilaMutex mMutex = FilaMutex::New();
+CountDownLatch latch = CountDownLatch::New(1);
 
 void testSimpleLock() {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
     croutine->execute([]{
       mMutex->lock();
@@ -26,7 +26,7 @@ void testSimpleLock() {
     });
 
     usleep(1000*100);
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     watcher->start();
     mMutex->lock();
     long ret = watcher->stop();

@@ -37,19 +37,19 @@ public:
 };
 
 void testNullReflect() {
-  XmlDocument doc = createXmlDocument();
-  MyInfo info = createMyInfo();
+  XmlDocument doc = XmlDocument::New();
+  MyInfo info = MyInfo::New();
   info->age = 12;
 
   doc->importFrom(info);
 
-  XmlWriter writer = createXmlWriter(doc);
+  XmlWriter writer = XmlWriter::New(doc);
   writer->write("./tmp/testNull.xml");
 
-  XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/testNull.xml"));
+  XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/testNull.xml"));
   XmlDocument doc2 = reader->get();
 
-  MyInfo info2 = createMyInfo();
+  MyInfo info2 = MyInfo::New();
   doc2->reflectTo(info2);
 
   if(info2->age != 12) {

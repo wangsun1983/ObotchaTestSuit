@@ -26,18 +26,18 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
-        File f = createFile("./tmp/rcvfile");
+        File f = File::New("./tmp/rcvfile");
         if(f->exists()) {
             f->removeAll();
         }
         f->createNewFile();
 
-        stream = createFileOutputStream(f);
+        stream = FileOutputStream::New(f);
         stream->open();
     }
 
@@ -70,12 +70,12 @@ private:
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
 
     int port = getEnvPort();
-    InetAddress address = createInet4Address(port);
+    InetAddress address = Inet4Address::New(port);
     printf("address is %s,r port is %d \n",address->toString()->toChars(),port);
-    WebSocketServer server = createWebSocketServerBuilder()
+    WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->build();
@@ -86,9 +86,9 @@ int main() {
 
 /*
     //check md5
-    Md md5 = createMd();
-    String base = md5->encodeFile(createFile("./tmp/data"));
-    String rcv = md5->encodeFile(createFile("./tmp/rcvfile"));
+    Md md5 = Md::New();
+    String base = md5->encodeFile(File::New("./tmp/data"));
+    String rcv = md5->encodeFile(File::New("./tmp/rcvfile"));
     if(!base->equals(rcv)) {
         TEST_FAIL("WebSocketServer SimpleFile test1");
     }

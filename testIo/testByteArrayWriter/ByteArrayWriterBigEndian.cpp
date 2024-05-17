@@ -15,8 +15,8 @@ using namespace obotcha;
 
 void testByteArrayBigEndian() {
     while(1) {
-      ByteArray data = createByteArray(8);
-      ByteArrayWriter writer = createByteArrayWriter(data,st(IO)::Endianness::Big);
+      ByteArray data = ByteArray::New(8);
+      ByteArrayWriter writer = ByteArrayWriter::New(data,st(IO)::Endianness::Big);
       writer->write<short int>(1);
       writer->write<short int>(2);
       writer->write<short int>(3);

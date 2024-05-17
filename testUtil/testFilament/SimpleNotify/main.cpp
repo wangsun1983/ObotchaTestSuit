@@ -15,16 +15,16 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(2);
-//Mutex mu = createMutex();
-//Condition cond = createCondition();
-FilaCondition cond = createFilaCondition();
-FilaMutex mu = createFilaMutex();
+CountDownLatch latch = CountDownLatch::New(2);
+//Mutex mu = Mutex::New();
+//Condition cond = Condition::New();
+FilaCondition cond = FilaCondition::New();
+FilaMutex mu = FilaMutex::New();
 
 int value = 0;
 
 int main(void) {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
 
     croutine->execute([] {
@@ -41,7 +41,7 @@ int main(void) {
         latch->countDown();
     });
 
-    Thread t = createThread([]{
+    Thread t = Thread::New([]{
         sleep(1);
         cond->notifyAll();
     });

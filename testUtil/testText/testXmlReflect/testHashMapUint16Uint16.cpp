@@ -25,38 +25,38 @@ public:
 
 void testHashMapUint16Uint16() {
     while(1) {
-      HashMap<Uint16,Uint16> maps = createHashMap<Uint16,Uint16>();
-      maps->put(createUint16(1),createUint16(10));
-      maps->put(createUint16(2),createUint16(20));
-      maps->put(createUint16(3),createUint16(30));
+      HashMap<Uint16,Uint16> maps = HashMap<Uint16,Uint16>::New();
+      maps->put(Uint16::New(1),Uint16::New(10));
+      maps->put(Uint16::New(2),Uint16::New(20));
+      maps->put(Uint16::New(3),Uint16::New(30));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(maps);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/hashmap_Uint16_Uint16_test1.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test1.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/hashmap_Uint16_Uint16_test1.xml"));
       XmlDocument doc2 = reader->get();
 
-      HashMap<Uint16,Uint16> maps2 = createHashMap<Uint16,Uint16>();
+      HashMap<Uint16,Uint16> maps2 = HashMap<Uint16,Uint16>::New();
       doc2->reflectTo(maps2);
       if(maps2->size() != 3) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case1]");
         break;
       }
 
-      auto v1 = maps2->get(createUint16(1));
+      auto v1 = maps2->get(Uint16::New(1));
       if(v1 == nullptr || v1->toValue() != 10) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case2]");
         break;
       }
 
-      auto v2 = maps2->get(createUint16(2));
+      auto v2 = maps2->get(Uint16::New(2));
       if(v2 == nullptr || v2->toValue() != 20) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case3]");
         break;
       }
 
-      auto v3 = maps2->get(createUint16(3));
+      auto v3 = maps2->get(Uint16::New(3));
       if(v3 == nullptr || v3->toValue() != 30) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case4]");
         break;
@@ -66,21 +66,21 @@ void testHashMapUint16Uint16() {
     }
 
     while(1) {
-      HashmapDataUint16 data = createHashmapDataUint16();
-      HashMap<Uint16,Uint16> maps = createHashMap<Uint16,Uint16>();
-      maps->put(createUint16(1),createUint16(10));
-      maps->put(createUint16(2),createUint16(20));
-      maps->put(createUint16(3),createUint16(30));
+      HashmapDataUint16 data = HashmapDataUint16::New();
+      HashMap<Uint16,Uint16> maps = HashMap<Uint16,Uint16>::New();
+      maps->put(Uint16::New(1),Uint16::New(10));
+      maps->put(Uint16::New(2),Uint16::New(20));
+      maps->put(Uint16::New(3),Uint16::New(30));
       data->maps = maps;
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(data);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/hashmap_Uint16_Uint16_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/hashmap_Uint16_Uint16_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/hashmap_Uint16_Uint16_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      HashmapDataUint16 data2 = createHashmapDataUint16();
+      HashmapDataUint16 data2 = HashmapDataUint16::New();
       doc2->reflectTo(data2);
       HashMap<Uint16,Uint16> maps2 = data2->maps;
       if(maps2->size() != 3) {
@@ -88,19 +88,19 @@ void testHashMapUint16Uint16() {
         break;
       }
 
-      auto v1 = maps2->get(createUint16(1));
+      auto v1 = maps2->get(Uint16::New(1));
       if(v1 == nullptr || v1->toValue() != 10) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case6]");
         break;
       }
 
-      auto v2 = maps2->get(createUint16(2));
+      auto v2 = maps2->get(Uint16::New(2));
       if(v2 == nullptr || v2->toValue() != 20) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case7]");
         break;
       }
 
-      auto v3 = maps2->get(createUint16(3));
+      auto v3 = maps2->get(Uint16::New(3));
       if(v3 == nullptr || v3->toValue() != 30) {
         TEST_FAIL("[XmlReflect HashMap Uint16 Uint16 Test case8]");
         break;

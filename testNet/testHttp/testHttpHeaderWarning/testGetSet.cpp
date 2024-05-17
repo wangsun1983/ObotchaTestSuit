@@ -14,23 +14,23 @@ using namespace obotcha;
 
 void testGetSet() {
 
-    HttpHeaderWarning warning = createHttpHeaderWarning();
+    HttpHeaderWarning warning = HttpHeaderWarning::New();
     warning->setCode(100);
     if(warning->getCode() != 100) {
         TEST_FAIL("[HttpHeaderWarning test GetSet case1]");
     }
     
-    warning->setAgent(createString("aagent"));
-    if(!warning->getAgent()->equals(createString("aagent"))) {
+    warning->setAgent(String::New("aagent"));
+    if(!warning->getAgent()->equals(String::New("aagent"))) {
         TEST_FAIL("[HttpHeaderWarning test GetSet case2]");
     }
     
-    warning->setText(createString("ttext"));
-    if(!warning->getText()->equals(createString("ttext"))) {
+    warning->setText(String::New("ttext"));
+    if(!warning->getText()->equals(String::New("ttext"))) {
         TEST_FAIL("[HttpHeaderWarning test GetSet case3]");
     }
     
-    auto date = createHttpDate(createDateTime());
+    auto date = HttpDate::New(DateTime::New());
     warning->setDateTime(date);
     if(date != warning->getDateTime()) {
         TEST_FAIL("[HttpHeaderWarning test GetSet case4]");

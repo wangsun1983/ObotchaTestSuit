@@ -16,7 +16,7 @@
 
 using namespace obotcha;
 
-AtomicInteger myloopvalue = createAtomicInteger(0);
+AtomicInteger myloopvalue = AtomicInteger::New(0);
 
 DECLARE_CLASS(MyLoopSubmit) IMPLEMENTS(Runnable) {
 public:
@@ -31,8 +31,8 @@ public:
     }
 };
 
-Mutex myloopsubmitMutex = createMutex("MyMutex");
-ArrayList<long> currentTimeList = createArrayList<long>();
+Mutex myloopsubmitMutex = Mutex::New("MyMutex");
+ArrayList<long> currentTimeList = ArrayList<long>::New();
 
 DECLARE_CLASS(MyLoopTimeSubmit) IMPLEMENTS(Runnable) {
 public:
@@ -50,10 +50,10 @@ public:
 
 int scheduleloopsubmit() {
     //test1
-    ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
+    ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
     long time = st(System)::CurrentTimeMillis();
     for(int i = 0; i < 32*1024;i++) {
-        pool->schedule(0,createMyLoopSubmit());
+        pool->schedule(0,MyLoopSubmit::New());
     }
 
     sleep(1);
@@ -63,10 +63,10 @@ int scheduleloopsubmit() {
     pool->shutdown();
 
     //test2
-    myloopvalue = createAtomicInteger(0);
-    pool = createExecutorBuilder()->newScheduledThreadPool();
+    myloopvalue = AtomicInteger::New(0);
+    pool = ExecutorBuilder::New()->newScheduledThreadPool();
     for(int i = 0; i < 32*1024;i++) {
-        pool->schedule(100,createMyLoopSubmit());
+        pool->schedule(100,MyLoopSubmit::New());
     }
 
     sleep(5);
@@ -78,7 +78,7 @@ int scheduleloopsubmit() {
 
 #if 0 //need test
     //test3
-    pool = createExecutorBuilder()->newScheduledThreadPool();
+    pool = ExecutorBuilder::New()->newScheduledThreadPool();
     time = st(System)::CurrentTimeMillis();
 
     for(int i = 0; i < 32*1024;i++) {

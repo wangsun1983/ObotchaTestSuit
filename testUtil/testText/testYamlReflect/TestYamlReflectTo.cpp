@@ -47,9 +47,9 @@ public:
 };
 
 void testReflectTo() {
-    YamlReader r = createYamlReader()->loadFile(createFile("./test.yaml"));
+    YamlReader r = YamlReader::New()->loadFile(File::New("./test.yaml"));
     auto value = r->parse();
-    TestData data = createTestData();
+    TestData data = TestData::New();
     value->reflectTo(data);
     if(!data->name->sameAs("Example Developer")) {
         TEST_FAIL("[TestYamlReflect reflectTo case1]");

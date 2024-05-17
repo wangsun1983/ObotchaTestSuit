@@ -13,8 +13,8 @@ using namespace obotcha;
 
 int main() {
     signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case1_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case1_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     if(ret != 0) {
@@ -29,10 +29,10 @@ int main() {
     }
     
     //close python  server
-    InetAddress addr2 = createInetLocalAddress("case1_socket");
-    Socket client2 = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr2 = InetLocalAddress::New("case1_socket");
+    Socket client2 = SocketBuilder::New()->setAddress(addr)->newSocket();
     int ret2 = client2->connect();
-    String data = createString("abcd");
+    String data = String::New("abcd");
     client2->getOutputStream()->write(data->toByteArray());
     client2->getOutputStream()->write(data->toByteArray());
     

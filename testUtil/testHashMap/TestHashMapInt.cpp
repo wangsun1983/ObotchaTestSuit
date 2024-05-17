@@ -16,9 +16,9 @@ void testHashMapInt() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+        HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
         int tag = 1;
-        TTInt tt = createTTInt();
+        TTInt tt = TTInt::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -44,9 +44,9 @@ void testHashMapInt() {
 
     //void remove(T t)
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       int tag = 1;
-      TTInt tt = createTTInt();
+      TTInt tt = TTInt::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -72,9 +72,9 @@ void testHashMapInt() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       int tag = 1;
-      TTInt tt = createTTInt();
+      TTInt tt = TTInt::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -95,9 +95,9 @@ void testHashMapInt() {
 
     //void clear()
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       int tag = 1;
-      TTInt tt = createTTInt();
+      TTInt tt = TTInt::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -109,7 +109,7 @@ void testHashMapInt() {
         break;
       }
 
-      HashMap<int,TTInt> map2 = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map2 = HashMap<int,TTInt>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap int Test {clear()} case2]");
@@ -122,9 +122,9 @@ void testHashMapInt() {
 
     //int size()
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       int tag = 1;
-      TTInt tt = createTTInt();
+      TTInt tt = TTInt::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -139,9 +139,9 @@ void testHashMapInt() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       for(int index = 0;index < 100;index++) {
-        TTInt tt = createTTInt();
+        TTInt tt = TTInt::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -162,7 +162,7 @@ void testHashMapInt() {
         }
       }
 
-      HashMap<int,TTInt> map2 = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map2 = HashMap<int,TTInt>::New();
       ArrayList<int>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap int Test {keySet()} case3]");
@@ -175,9 +175,9 @@ void testHashMapInt() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       for(int index = 0;index < 100;index++) {
-        TTInt tt = createTTInt();
+        TTInt tt = TTInt::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -192,7 +192,7 @@ void testHashMapInt() {
         }
       }
 
-      HashMap<int,TTInt> map2 = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map2 = HashMap<int,TTInt>::New();
       ArrayList<TTInt>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap int Test {entrySet()} case2]");
@@ -206,9 +206,9 @@ void testHashMapInt() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<int,TTInt> map = createHashMap<int,TTInt>();
+      HashMap<int,TTInt> map = HashMap<int,TTInt>::New();
       for(int index = 0;index < 100;index++) {
-        TTInt tt = createTTInt();
+        TTInt tt = TTInt::New();
         tt->i = index;
         map->put(index,tt);
       }

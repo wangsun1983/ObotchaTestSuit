@@ -9,7 +9,7 @@ using namespace obotcha;
 
 void testOrAndGet() {
     while(1) {
-      AtomicInteger integer = createAtomicInteger(1);
+      AtomicInteger integer = AtomicInteger::New(1);
       int v = integer->orAndGet(2);
       if(v != 3) {
         TEST_FAIL("AtomicInteger testOrAndGet test1");

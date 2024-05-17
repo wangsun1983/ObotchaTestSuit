@@ -21,7 +21,7 @@ std::atomic_int priorityInterruptCount{0};
 DECLARE_CLASS(PriorityCancelTask) IMPLEMENTS(Runnable){
 public:
     void run() {
-      usleep(1000*1000);
+      usleep(1000*500);
     }
 
     bool onInterrupt() {
@@ -31,14 +31,14 @@ public:
 };
 
 void testShutdownCount() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 
     for(int i = 0;i<32*1024;i++) {
-      pool->submit(createPriorityCancelTask());
+      pool->submit(PriorityCancelTask::New());
     }
 
     usleep(1000*100);

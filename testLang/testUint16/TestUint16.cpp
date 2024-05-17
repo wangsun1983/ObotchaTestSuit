@@ -14,7 +14,7 @@ using namespace obotcha;
 void basetest() {
   //_Uint16(int v);
   while(1) {
-      Uint16 v1 = createUint16(10);
+      Uint16 v1 = Uint16::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Uint16 construct test1");
           break;
@@ -26,8 +26,8 @@ void basetest() {
 
   //  _Uint16(Uint16 v);
   while(1) {
-    Uint16 v1 = createUint16(11);
-    Uint16 v2 = createUint16(v1);
+    Uint16 v1 = Uint16::New(11);
+    Uint16 v2 = Uint16::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint16 construct test3");
       break;
@@ -35,7 +35,7 @@ void basetest() {
 
     // Uint16 v3;
     // try {
-    //   Uint16 v4 = createUint16(v3);
+    //   Uint16 v4 = Uint16::New(v3);
     //   TEST_FAIL("Uint16 construct test4");
     // } catch(InitializeException e){}
 
@@ -46,8 +46,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Uint16 v1 = createUint16(11);
-    Uint16 v2 = createUint16(v1);
+    Uint16 v1 = Uint16::New(11);
+    Uint16 v2 = Uint16::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint16 toValue test1");
       break;
@@ -59,8 +59,8 @@ void basetest() {
 
   //bool equals(Uint16 p);
   while(1) {
-    Uint16 v1 = createUint16(11);
-    Uint16 v2 = createUint16(11);
+    Uint16 v1 = Uint16::New(11);
+    Uint16 v2 = Uint16::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Uint16 equals test1");
       break;
@@ -77,7 +77,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Uint16 v1 = createUint16(11);
+    Uint16 v1 = Uint16::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Uint16 equals test4");
       break;
@@ -89,8 +89,8 @@ void basetest() {
 
   //==
   while(1) {
-    Uint16 v1 = createUint16(12);
-    Uint16 v2 = createUint16(12);
+    Uint16 v1 = Uint16::New(12);
+    Uint16 v2 = Uint16::New(12);
     if(v1 != v2) {
       TEST_FAIL("Uint16 [==] test1");
       break;
@@ -118,13 +118,13 @@ void basetest() {
   
   //update
   while(1) {
-      Uint16 v1 = createUint16(12);
+      Uint16 v1 = Uint16::New(12);
       v1->update(20);
       if(v1->toValue() != 20) {
         TEST_FAIL("Uint16 update test3");
       }
       
-      Uint16 v2 = createUint16(52);
+      Uint16 v2 = Uint16::New(52);
       v1->update(v2);
       if(v1->toValue() != 52) {
         TEST_FAIL("Uint16 update test4");

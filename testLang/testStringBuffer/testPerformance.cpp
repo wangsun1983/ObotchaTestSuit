@@ -5,10 +5,10 @@
 using namespace obotcha;
 
 void testPerformance() {
-    TimeWatcher t = createTimeWatcher();
+    TimeWatcher t = TimeWatcher::New();
     t->start();
     for(int i = 0;i < 1024*1024;i++) {
-      StringBuffer buffer = createStringBuffer(256);
+      StringBuffer buffer = StringBuffer::New(256);
       buffer->append("abc");
       buffer->append("abc2");
       buffer->append("abc3");
@@ -21,7 +21,7 @@ void testPerformance() {
 
     t->start();
     for(int i = 0;i < 1024*1024;i++) {
-      String buffer = createString("");
+      String buffer = String::New("");
       buffer = buffer->append("abc");
       buffer = buffer->append("abc2");
       buffer = buffer->append("abc3");

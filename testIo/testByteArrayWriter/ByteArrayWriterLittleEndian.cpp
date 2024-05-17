@@ -15,8 +15,8 @@ using namespace obotcha;
 
 void testByteArrayLittleEndian() {
     while(1) {
-      ByteArray data = createByteArray(8);
-      ByteArrayWriter writer = createByteArrayWriter(data);
+      ByteArray data = ByteArray::New(8);
+      ByteArrayWriter writer = ByteArrayWriter::New(data);
       writer->write<short int>(1);
       writer->write<short int>(2);
       writer->write<short int>(3);
@@ -70,8 +70,8 @@ void testByteArrayLittleEndian() {
     }
 
     while(1) {
-      ByteArray data = createByteArray(8);
-      ByteArrayWriter writer = createByteArrayWriter(data);
+      ByteArray data = ByteArray::New(8);
+      ByteArrayWriter writer = ByteArrayWriter::New(data);
 
       byte testData[8] = {0};
       long val = 12345678;
@@ -87,8 +87,8 @@ void testByteArrayLittleEndian() {
     }
 
     while(1) {
-      ByteArray data = createByteArray(8);
-      ByteArrayWriter writer = createByteArrayWriter(data);
+      ByteArray data = ByteArray::New(8);
+      ByteArrayWriter writer = ByteArrayWriter::New(data);
 
       byte testData[8] = {0};
       int val1 = 1234;

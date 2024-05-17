@@ -16,16 +16,16 @@ using namespace obotcha;
 
 void testAutoLockMutex() {
 	while(1) {
-		Mutex mutex = createMutex();
+		Mutex mutex = Mutex::New();
 
-		Thread t = createThread([&]{
+		Thread t = Thread::New([&]{
 		  AutoLock l(mutex);
 			usleep(200*1000);
 		});
 		t->start();
 
 		usleep(100*1000);
-		TimeWatcher watcher = createTimeWatcher();
+		TimeWatcher watcher = TimeWatcher::New();
 		watcher->start();
 		AutoLock l(mutex);
 		long v = watcher->stop();

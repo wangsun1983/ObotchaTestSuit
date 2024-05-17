@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Date"),
-                createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Date"),
+                String::New(" Wed, 21 Oct 2015 07:28:00 GMT"));
     
     auto headerDate = header->getDate();
     auto date = headerDate->get()->toDateTime();
@@ -56,8 +56,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderDate date_1 = createHttpHeaderDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderDate date_1 = HttpHeaderDate::New(String::New(" Wed, 21 Oct 2015 07:28:00 GMT"));
     header->setDate(date_1);
     
     auto headerDate = header->getDate();

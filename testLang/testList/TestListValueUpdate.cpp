@@ -21,8 +21,8 @@ public:
 void testListValueUpdate() {
   //construct1
   while(1) {
-    List<TestUpdateData> values =  createList<TestUpdateData>(5);
-    TestUpdateData data1 = createTestUpdateData();
+    List<TestUpdateData> values =  List<TestUpdateData>::New(5);
+    TestUpdateData data1 = TestUpdateData::New();
     values[0] = data1;
     data1->i = 123;
     data1->j = 456;

@@ -18,9 +18,9 @@ void testMultiMessageParse() {
                 "Accept: */*\r\n"
                 "\r\n";
 
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
 
-    parser->pushData(createByteArray(( byte *)content,strlen(content)));
+    parser->pushData(ByteArray::New(( byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       TEST_FAIL("HttpPacketParser multi message parse case1");
@@ -39,9 +39,9 @@ void testMultiMessageParse() {
                               "\r\n"
                               "WORLD";
 
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
 
-    parser->pushData(createByteArray((byte *)content,strlen(content)));
+    parser->pushData(ByteArray::New((byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 2) {
       TEST_FAIL("HttpPacketParser multi message parse case2");
@@ -73,9 +73,9 @@ void testMultiMessageParse() {
                               "conTENT-Length: 5\r\n";
 
 
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
 
-    parser->pushData(createByteArray((byte *)content,strlen(content)));
+    parser->pushData(ByteArray::New((byte *)content,strlen(content)));
     ArrayList<HttpPacket> packets = parser->doParse();
     if(packets->size() != 1) {
       TEST_FAIL("HttpPacketParser multi message parse case3");
@@ -90,7 +90,7 @@ void testMultiMessageParse() {
 
     const char* content2 = "\r\n"
                             "WORLD";
-    parser->pushData(createByteArray((byte *)content2,strlen(content2)));
+    parser->pushData(ByteArray::New((byte *)content2,strlen(content2)));
     packets = parser->doParse();
     if(packets->size() != 1) {
       TEST_FAIL("HttpPacketParser multi message parse case5");
@@ -112,12 +112,12 @@ void testMultiMessageParse() {
                  "conTENT-Length: 5\r\n"
                  "\r\n"
                  "HELLO";
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
     ArrayList<HttpPacket> packets;
     int i = 0;
 
     for(;i<strlen(content);i++) {
-      ByteArray data = createByteArray(1);
+      ByteArray data = ByteArray::New(1);
       data[0] = (byte)content[i];
       parser->pushData(data);
       packets = parser->doParse();
@@ -147,12 +147,12 @@ void testMultiMessageParse() {
                               "\r\n"
                               "WORLD";
 
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
-    ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
+    ArrayList<HttpPacket> packets = ArrayList<HttpPacket>::New();
     int i = 0;
 
     for(;i<strlen(content);i++) {
-      ByteArray data = createByteArray(1);
+      ByteArray data = ByteArray::New(1);
       data[0] = (byte)content[i];
       parser->pushData(data);
       auto ret = parser->doParse();

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
+    HttpHeaderAccessControlAllowCredentials c = HttpHeaderAccessControlAllowCredentials::New();
     c->load("true");
     if(!c->toString()->sameAs("true")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case1]");
@@ -23,7 +23,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderAccessControlAllowCredentials c = createHttpHeaderAccessControlAllowCredentials();
+    HttpHeaderAccessControlAllowCredentials c = HttpHeaderAccessControlAllowCredentials::New();
     c->load("false");
     if(!c->toString()->sameAs("false")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test toString case2]");

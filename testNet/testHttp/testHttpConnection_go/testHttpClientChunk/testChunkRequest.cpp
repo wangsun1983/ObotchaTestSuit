@@ -40,11 +40,11 @@ void testHttpClientChunk() {
   int port = getEnvPort();
   printf("port is %d \n",port);
 
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
   printf("url is %s \n",url->toChars());
-  HttpGet get = createHttpGet(url);
-  HttpConnection client = createHttpConnection(
-                            createString("http://127.0.0.1:")->append(createString(port)));
+  HttpGet get = HttpGet::New(url);
+  HttpConnection client = HttpConnection::New(
+                            String::New("http://127.0.0.1:")->append(String::New(port)));
   client->connect();
   
   HttpResponse response = client->execute(get);

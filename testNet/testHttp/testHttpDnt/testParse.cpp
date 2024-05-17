@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderDnt dnt = createHttpHeaderDnt();
+    HttpHeaderDnt dnt = HttpHeaderDnt::New();
     dnt->load("1");
     int val = dnt->get();
     if(val != 1) {
@@ -24,7 +24,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderDnt dnt = createHttpHeaderDnt();
+    HttpHeaderDnt dnt = HttpHeaderDnt::New();
     dnt->load("0");
     int val = dnt->get();
     if(val != 0) {

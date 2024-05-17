@@ -16,7 +16,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(2);
+CountDownLatch latch = CountDownLatch::New(2);
 
 DECLARE_CLASS(SigListner) IMPLEMENTS(SignalListener) {
 public:
@@ -27,8 +27,8 @@ public:
 
 void testSignalCatcher() {
     SignalCatcher cat = st(SignalCatcher)::getInstance();
-    cat->regist(10,createSigListner());
-    cat->regist(10,createSigListner());
+    cat->regist(10,SigListner::New());
+    cat->regist(10,SigListner::New());
 
     kill(getpid(),SIGUSR1);
 

@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 void testSetPort() {
-    InetAddress addr1 = createInet4Address("192.168.1.1",12);
+    InetAddress addr1 = Inet4Address::New("192.168.1.1",12);
     if(addr1->getPort() != 12) {
         TEST_FAIL("InetAddress SetPort case1");
     }

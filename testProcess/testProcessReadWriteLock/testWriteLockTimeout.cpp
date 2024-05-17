@@ -19,14 +19,14 @@ int testWriteLockTimeout() {
 	  int pid = fork();
 	  
 	  if(pid == 0) {
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc6");
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc6");
 		AutoLock l(mu->getReadLock());
 		usleep(1000*300);
 		return -1;
 	  } else {
 		usleep(1000*100);
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc6");
-		TimeWatcher watcher = createTimeWatcher();
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc6");
+		TimeWatcher watcher = TimeWatcher::New();
 		watcher->start();
 		mu->getWriteLock()->lock(100);
 		auto ret = watcher->stop();
@@ -49,15 +49,15 @@ int testWriteLockTimeout() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-	  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc6");
+	  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc6");
 	  		AutoLock l1(mu->getReadLock());
 			AutoLock l2(mu->getReadLock());
 	  		usleep(1000*300);
 	  		return -1;
 	  } else {
 	  		usleep(1000*100);
-	  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc6");
-	  		TimeWatcher watcher = createTimeWatcher();
+	  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc6");
+	  		TimeWatcher watcher = TimeWatcher::New();
 	  		watcher->start();
 	  		mu->getWriteLock()->lock(100);
 	  		auto ret = watcher->stop();

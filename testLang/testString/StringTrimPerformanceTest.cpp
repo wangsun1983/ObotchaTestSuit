@@ -10,16 +10,16 @@
 #include "IllegalArgumentException.hpp"
 #include "TransformException.hpp"
 #include "IllegalArgumentException.hpp"
-#include "TimeWatcher.hpp"
+//#include "TimeWatcher.hpp"
 #include "TestLog.hpp"
 
 using namespace obotcha;
 
 void trimPerformance() {
 #if 0
-   TimeWatcher watch = createTimeWatcher();
+   TimeWatcher watch = TimeWatcher::New();
    watch->start();
-   String mytest = createString(" a bc d s f g s");
+   String mytest = String::New(" a bc d s f g s");
    for(int i = 0;i<1024*1024;i++) {
      mytest->subString(2,4);
    }

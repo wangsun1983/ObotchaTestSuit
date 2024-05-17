@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    HttpHeaderSecFetchUser save = HttpHeaderSecFetchUser::New();
     save->load("?1");
     if(!save->get()->sameAs("?1")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    HttpHeaderSecFetchUser save = HttpHeaderSecFetchUser::New();
     save->load("?0");
     if(!save->get()->sameAs("?0")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test Parse case2]");

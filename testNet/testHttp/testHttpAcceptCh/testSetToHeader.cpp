@@ -13,8 +13,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-CH"),createString("DPR, Viewport-Width, Width"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-CH"),String::New("DPR, Viewport-Width, Width"));
     auto acceptCh = header->getAcceptCh();
     if(!acceptCh->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test toString case1]");
@@ -24,8 +24,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    auto acceptCh = createHttpHeaderAcceptCh();
+    HttpHeader header = HttpHeader::New();
+    auto acceptCh = HttpHeaderAcceptCh::New();
     acceptCh->load("DPR, Viewport-Width, Width");
     header->setAcceptCh(acceptCh);
     

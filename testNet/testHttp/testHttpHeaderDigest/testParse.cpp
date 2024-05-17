@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderDigest digest = createHttpHeaderDigest();
+    HttpHeaderDigest digest = HttpHeaderDigest::New();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();
     if(list->size() != 1) {
@@ -31,7 +31,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderDigest digest = createHttpHeaderDigest();
+    HttpHeaderDigest digest = HttpHeaderDigest::New();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637 ");
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();
     if(list->size() != 2) {

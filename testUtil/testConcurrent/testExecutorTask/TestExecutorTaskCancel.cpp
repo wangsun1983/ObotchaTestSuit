@@ -24,7 +24,7 @@ public:
 void testExecutorTaskCancel() {
 	while(1) {
 		int r1 = 0;
-		auto task = createExecutorTask(createMyRunnable2(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable2::New(),[&](ExecutorTask task){
 			if(r1 == 0) {
 				r1 = 2;
 			} else if(r1 == 2) {
@@ -46,7 +46,7 @@ void testExecutorTaskCancel() {
 	
 	while(1) {
 		int r1 = 0;
-		auto task = createExecutorTask(createMyRunnable2(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable2::New(),[&](ExecutorTask task){
 			if(r1 == 0) {
 				r1 = 2;
 			} else if(r1 == 2) {

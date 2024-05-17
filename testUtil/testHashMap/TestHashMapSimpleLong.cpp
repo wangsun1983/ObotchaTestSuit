@@ -18,9 +18,9 @@ void testHashMapSimpleLong() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+        HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
         long tag = 1;
-        SimpleLongData tt = createSimpleLongData();
+        SimpleLongData tt = SimpleLongData::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -46,9 +46,9 @@ void testHashMapSimpleLong() {
 
     //void remove(T t)
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       long tag = 1;
-      SimpleLongData tt = createSimpleLongData();
+      SimpleLongData tt = SimpleLongData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -78,9 +78,9 @@ void testHashMapSimpleLong() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       long tag = 1;
-      SimpleLongData tt = createSimpleLongData();
+      SimpleLongData tt = SimpleLongData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -101,9 +101,9 @@ void testHashMapSimpleLong() {
 
     //void clear()
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       long tag = 1;
-      SimpleLongData tt = createSimpleLongData();
+      SimpleLongData tt = SimpleLongData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -115,7 +115,7 @@ void testHashMapSimpleLong() {
         break;
       }
 
-      HashMap<long,SimpleLongData> map2 = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map2 = HashMap<long,SimpleLongData>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Simple Long Test {clear()} case2]");
@@ -128,9 +128,9 @@ void testHashMapSimpleLong() {
 
     //int size()
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       long tag = 1;
-      SimpleLongData tt = createSimpleLongData();
+      SimpleLongData tt = SimpleLongData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -145,9 +145,9 @@ void testHashMapSimpleLong() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleLongData tt = createSimpleLongData();
+        SimpleLongData tt = SimpleLongData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -168,7 +168,7 @@ void testHashMapSimpleLong() {
         }
       }
 
-      HashMap<long,SimpleLongData> map2 = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map2 = HashMap<long,SimpleLongData>::New();
       ArrayList<long>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Simple Long Test {keySet()} case3]");
@@ -181,9 +181,9 @@ void testHashMapSimpleLong() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleLongData tt = createSimpleLongData();
+        SimpleLongData tt = SimpleLongData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -198,7 +198,7 @@ void testHashMapSimpleLong() {
         }
       }
 
-      HashMap<long,SimpleLongData> map2 = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map2 = HashMap<long,SimpleLongData>::New();
       ArrayList<SimpleLongData>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Simple Long Test {entrySet()} case2]");
@@ -212,9 +212,9 @@ void testHashMapSimpleLong() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<long,SimpleLongData> map = createHashMap<long,SimpleLongData>();
+      HashMap<long,SimpleLongData> map = HashMap<long,SimpleLongData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleLongData tt = createSimpleLongData();
+        SimpleLongData tt = SimpleLongData::New();
         tt->i = index;
         map->put(index,tt);
       }

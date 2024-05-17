@@ -58,7 +58,7 @@ void normalTest() {
 
     while(1) {
         {
-			ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();//st(Executors)::newFixedThreadPool(1,1);
+			ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();//st(Executors)::newFixedThreadPool(1,1);
 			pool->shutdown();
 		}
 
@@ -70,7 +70,7 @@ void normalTest() {
 
     //_ThreadPoolExecutor();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
         pool->shutdown();
         TEST_OK("[TestThreadPoolExecutor Test {constructor2()} case1] ");
         break;
@@ -79,8 +79,8 @@ void normalTest() {
 
     //void shutdown();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
-        pool->submit(createMyRunTest1());
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        pool->submit(MyRunTest1::New());
         pool->shutdown();
         sleep(5);
         //if(!pool->isShutdown()) {
@@ -88,13 +88,13 @@ void normalTest() {
         //    break;
         //}
 
-        Future task = pool->submit(createMyRunTest1());
+        Future task = pool->submit(MyRunTest1::New());
         if(task != nullptr) {
             TEST_FAIL("[TestThreadPoolExecutor Test {shutdown()} case2]");
             break;
         }
 
-        auto result = pool->submit(createMyRunTest1());
+        auto result = pool->submit(MyRunTest1::New());
         if(result != nullptr) {
             TEST_FAIL("[TestThreadPoolExecutor Test {shutdown()} case3]");
             break;
@@ -106,17 +106,17 @@ void normalTest() {
 
     //int awaitTermination(long timeout);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
         int result = pool->awaitTermination(1000);
         if(result != -1) {
             TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case1]");
             break;
         }
 
-        runTest2Mutex = createMutex();
+        runTest2Mutex = Mutex::New();
         runTest2Mutex->lock();
 
-        pool->submit(createRunTest2());
+        pool->submit(RunTest2::New());
 		//TEST_FAIL("start at % ld ",st(System)::CurrentTimeMillis());
         sleep(1);
 		//TEST_FAIL("start end % ld ",st(System)::CurrentTimeMillis());
@@ -145,14 +145,14 @@ void normalTest() {
 
     //int awaitTermination(long timeout = 0);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
         //int result = pool->awaitTermination(0);
         //if(result != -InvalidStatus) {
         //    TEST_FAIL("[TestThreadPoolExecutor Test {awaitTermination()} case5]");
         //    break;
         //}
 
-        pool->submit(createMyRunTest1());
+        pool->submit(MyRunTest1::New());
         pool->shutdown();
 
         long current = st(System)::CurrentTimeMillis();
@@ -178,8 +178,8 @@ void normalTest() {
 
     //int awaitTermination(long timeout = max);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
-        pool->submit(createMyRunTest1());
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        pool->submit(MyRunTest1::New());
         pool->shutdown();
 
         long current = st(System)::CurrentTimeMillis();
@@ -197,7 +197,7 @@ void normalTest() {
 
     //int getExecutingThreadNum();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
         if(pool->getExecutingThreadNum() != 100) {
             TEST_FAIL("[TestThreadPoolExecutor Test {getExecutingThreadNum()} case1]");
             break;
@@ -209,15 +209,15 @@ void normalTest() {
 
     //submit(Runnable task);
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
-        Future task = pool->submit(createMyRunTest1());
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)->setDefaultThreadNum(1)->newThreadPool();
+        Future task = pool->submit(MyRunTest1::New());
         if(task == nullptr) {
             TEST_FAIL("[TestThreadPoolExecutor Test {submit()} case1]");
             break;
         }
 
         long current = st(System)::CurrentTimeMillis();
-        Future task2 = pool->submit(createMyRunTest1());
+        Future task2 = pool->submit(MyRunTest1::New());
         int v = st(System)::CurrentTimeMillis() - current;
         if(v >10005) {
             TEST_FAIL("[TestThreadPoolExecutor Test {submit()} case2]");

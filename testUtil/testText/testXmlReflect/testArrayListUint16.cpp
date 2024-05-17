@@ -31,20 +31,20 @@ public:
 
 void testArrayListUint16() {
     while(1) {
-      ArrayList<Uint16> list = createArrayList<Uint16>();
-      list->add(createUint16(1));
-      list->add(createUint16(2));
-      list->add(createUint16(3));
-      list->add(createUint16(4));
-      list->add(createUint16(5));
+      ArrayList<Uint16> list = ArrayList<Uint16>::New();
+      list->add(Uint16::New(1));
+      list->add(Uint16::New(2));
+      list->add(Uint16::New(3));
+      list->add(Uint16::New(4));
+      list->add(Uint16::New(5));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint16_test1.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint16_test1.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint16_test1.xml"));
       XmlDocument doc2 = reader->get();
-      ArrayList<Uint16> list2 = createArrayList<Uint16>();
+      ArrayList<Uint16> list2 = ArrayList<Uint16>::New();
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -64,30 +64,30 @@ void testArrayListUint16() {
     }
 
     while(1) {
-      Uint16List2 list = createUint16List2();
-      list->list1 = createArrayList<Uint16>();
-      list->list2 = createArrayList<Uint16>();
+      Uint16List2 list = Uint16List2::New();
+      list->list1 = ArrayList<Uint16>::New();
+      list->list2 = ArrayList<Uint16>::New();
 
-      list->list1->add(createUint16(1));
-      list->list1->add(createUint16(2));
-      list->list1->add(createUint16(3));
-      list->list1->add(createUint16(4));
-      list->list1->add(createUint16(5));
+      list->list1->add(Uint16::New(1));
+      list->list1->add(Uint16::New(2));
+      list->list1->add(Uint16::New(3));
+      list->list1->add(Uint16::New(4));
+      list->list1->add(Uint16::New(5));
 
-      list->list2->add(createUint16(6));
-      list->list2->add(createUint16(7));
-      list->list2->add(createUint16(8));
-      list->list2->add(createUint16(9));
-      list->list2->add(createUint16(10));
+      list->list2->add(Uint16::New(6));
+      list->list2->add(Uint16::New(7));
+      list->list2->add(Uint16::New(8));
+      list->list2->add(Uint16::New(9));
+      list->list2->add(Uint16::New(10));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint16_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint16_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint16_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      Uint16List2 list2 = createUint16List2();
+      Uint16List2 list2 = Uint16List2::New();
       doc2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

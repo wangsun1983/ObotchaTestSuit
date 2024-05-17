@@ -9,7 +9,7 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(150);
+CountDownLatch latch = CountDownLatch::New(150);
 
 DECLARE_CLASS(MyRun1) IMPLEMENTS(Filament) {
 public:
@@ -42,12 +42,12 @@ public:
 };
 
 int main(void) {
-    ArrayList<Filament> list = createArrayList<Filament>();
-    MyRun1 f1 = createMyRun1();
-    MyRun2 f2 = createMyRun2();
-    MyRun3 f3 = createMyRun3();
+    ArrayList<Filament> list = ArrayList<Filament>::New();
+    MyRun1 f1 = MyRun1::New();
+    MyRun2 f2 = MyRun2::New();
+    MyRun3 f3 = MyRun3::New();
 
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
 
     croutine->execute(f1);

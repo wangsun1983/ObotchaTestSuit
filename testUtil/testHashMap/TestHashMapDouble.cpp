@@ -18,9 +18,9 @@ void testHashMapDouble() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<Double,TT3> map = createHashMap<Double,TT3>();
-        Double tag = createDouble(1);
-        TT3 tt = createTT3();
+        HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
+        Double tag = Double::New(1);
+        TT3 tt = TT3::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -34,7 +34,7 @@ void testHashMapDouble() {
           break;
         }
 
-        map->put(createDouble(2),nullptr);
+        map->put(Double::New(2),nullptr);
         if(map->size() != 2) {
           TEST_FAIL("[HashMap Double Test {put(T t,U u)/get(T t)} case3]");
           break;
@@ -52,14 +52,14 @@ void testHashMapDouble() {
 
     //void remove(T t)
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
-      Double tag = createDouble(1);
-      TT3 tt = createTT3();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
+      Double tag = Double::New(1);
+      TT3 tt = TT3::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createDouble(1));
+      map->remove(Double::New(1));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap Double Test {remove(T t)} case1]");
         break;
@@ -73,7 +73,7 @@ void testHashMapDouble() {
         break;
       }
 
-      map->remove(createDouble(1));
+      map->remove(Double::New(1));
       if(map->size() != 0) {
         TEST_FAIL("[HashMap Double Test {remove(T t)} case3]");
         break;
@@ -85,9 +85,9 @@ void testHashMapDouble() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
-      Double tag = createDouble(1);
-      TT3 tt = createTT3();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
+      Double tag = Double::New(1);
+      TT3 tt = TT3::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -96,7 +96,7 @@ void testHashMapDouble() {
         break;
       }
 
-      map->remove(createDouble(1));
+      map->remove(Double::New(1));
       if(!map->isEmpty()) {
         TEST_FAIL("[HashMap Double Test {isEmpty()} case2]");
         break;
@@ -108,12 +108,12 @@ void testHashMapDouble() {
 
     //void clear()
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
-      Double tag = createDouble(1);
-      TT3 tt = createTT3();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
+      Double tag = Double::New(1);
+      TT3 tt = TT3::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createDouble(2),tt);
+      map->put(Double::New(2),tt);
 
       int size = map->size();
       map->clear();
@@ -122,7 +122,7 @@ void testHashMapDouble() {
         break;
       }
 
-      HashMap<Double,TT3> map2 = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map2 = HashMap<Double,TT3>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Double Test {clear()} case2]");
@@ -135,12 +135,12 @@ void testHashMapDouble() {
 
     //int size()
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
-      Double tag = createDouble(1);
-      TT3 tt = createTT3();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
+      Double tag = Double::New(1);
+      TT3 tt = TT3::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createDouble(2),tt);
+      map->put(Double::New(2),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap Double Test {size()} case1]");
         break;
@@ -152,11 +152,11 @@ void testHashMapDouble() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
       for(int index = 0;index < 100;index++) {
-        TT3 tt = createTT3();
+        TT3 tt = TT3::New();
         tt->i = index;
-        map->put(createDouble(index),tt);
+        map->put(Double::New(index),tt);
       }
 
       ArrayList<Double> keys = map->keySet();
@@ -175,7 +175,7 @@ void testHashMapDouble() {
         }
       }
 
-      HashMap<Double,TT3> map2 = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map2 = HashMap<Double,TT3>::New();
       ArrayList<Double>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Double Test {keySet()} case3]");
@@ -188,24 +188,24 @@ void testHashMapDouble() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
       for(int index = 0;index < 100;index++) {
-        TT3 tt = createTT3();
+        TT3 tt = TT3::New();
         tt->i = index;
-        map->put(createDouble(index),tt);
+        map->put(Double::New(index),tt);
       }
 
       ArrayList<TT3> keys = map->entrySet();
       int size = keys->size();
       for(int index = 0;index < size;index++) {
         TT3 key1 = keys->get(index);
-        if(map->get(createDouble(key1->i)) == nullptr) {
+        if(map->get(Double::New(key1->i)) == nullptr) {
           TEST_FAIL("[HashMap Double Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<Double,TT3> map2 = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map2 = HashMap<Double,TT3>::New();
       ArrayList<TT3>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Double Test {entrySet()} case2]");
@@ -219,11 +219,11 @@ void testHashMapDouble() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<Double,TT3> map = createHashMap<Double,TT3>();
+      HashMap<Double,TT3> map = HashMap<Double,TT3>::New();
       for(int index = 0;index < 100;index++) {
-        TT3 tt = createTT3();
+        TT3 tt = TT3::New();
         tt->i = index;
-        map->put(createDouble(index),tt);
+        map->put(Double::New(index),tt);
       }
 
       int index = 0;

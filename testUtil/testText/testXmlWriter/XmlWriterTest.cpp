@@ -17,10 +17,10 @@
 using namespace obotcha;
 using namespace rapidxml;
 int main() {
-    XmlDocument document = createXmlDocument();
+    XmlDocument document = XmlDocument::New();
     XmlValue root = document->newRootNode("my root");
-    String abc1 = createString("aName");
-    String abc2 = createString("bValue");
+    String abc1 = String::New("aName");
+    String abc2 = String::New("bValue");
     XmlValue node1 = document->newNode("aName","bValue");//createXmlValue(document);
     //XmlAttribute attr1 = document->newAttribute("attr1","aaa");
     //node1->appendAttr(attr1);
@@ -28,14 +28,14 @@ int main() {
     node1->appendAttr("attr2","bbb");
     root->appendNode(node1);
 
-    XmlWriter xmlWriter = createXmlWriter(document);
+    XmlWriter xmlWriter = XmlWriter::New(document);
 
-    //File file = createFile("my.xml");
+    //File file = File::New("my.xml");
     //file->createNewFile();
     xmlWriter->write("my.xml");
 
     while(1) {
-      XmlReader reader = createXmlReader()->loadFile(createFile("my.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("my.xml"));
       XmlDocument doc = reader->get();
       XmlValue myroot = doc->getRootNode();
 
@@ -88,7 +88,7 @@ int main() {
     TEST_FAIL("toString3 is %s \n",text3.data());
 
 
-    //XmlWriter writer = createXmlWriter(document);
+    //XmlWriter writer = XmlWriter::New(document);
     //writer->write("my.xml");
 
     //String str2 = document->toString();

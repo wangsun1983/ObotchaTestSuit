@@ -15,24 +15,24 @@ using namespace obotcha;
 void testShareMemoryClear() {
 	st(ShareMemory)::Create("aabbcc11",12);
     while(1) {
-        ShareMemory memory = createShareMemory("aabbcc11",12,st(ShareMemory)::Type::WriteRead);
-        ByteArray data = createString("hello")->toByteArray();
+        ShareMemory memory = ShareMemory::New("aabbcc11",12,st(ShareMemory)::Type::WriteRead);
+        ByteArray data = String::New("hello")->toByteArray();
         memory->write(data);
         
-        ByteArray data2 = createByteArray(24);
+        ByteArray data2 = ByteArray::New(24);
         memory->read(data2);
         if(!data2->toString()->sameAs("hello")) {
             TEST_FAIL("[ShareMemory Test {clear()} case1]");
         }
         
-        ByteArray data3 = createByteArray(24);
+        ByteArray data3 = ByteArray::New(24);
         memory->read(data3);
         if(!data3->toString()->sameAs("hello")) {
             TEST_FAIL("[ShareMemory Test {clear()} case2]");
         }
         
         memory->clear();
-        auto data4 = createByteArray(24);
+        auto data4 = ByteArray::New(24);
         int ret = memory->read(data4);
         for(int i = 0;i < data4->size();i++) {
             if(data4[i] != 0) {

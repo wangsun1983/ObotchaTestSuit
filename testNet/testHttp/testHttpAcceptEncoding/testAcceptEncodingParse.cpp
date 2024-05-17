@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testEncodingParse() {
   while(1) {
-    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = HttpHeaderAcceptEncoding::New();
     encoding1->load("gzip, compress, br");
     auto encodings = encoding1->get();
     if(encodings->size() != 3) {
@@ -30,7 +30,7 @@ void testEncodingParse() {
   }
 
   while(1) {
-    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = HttpHeaderAcceptEncoding::New();
     encoding1->load("deflate, gzip;q=1.0, *;q=0.5");
     auto encodings = encoding1->get();
     if(encodings->size() != 3) {

@@ -14,13 +14,13 @@ extern void testMappedFileOutputStream();
 
 int main() {
   //prepare data
-  File file = createFile("./tmp/base_data");
+  File file = File::New("./tmp/base_data");
   file->removeAll();
   if(!file->exists()) {
     file->createNewFile();
-    FileOutputStream stream = createFileOutputStream(file);
+    FileOutputStream stream = FileOutputStream::New(file);
     stream->open(st(IO)::FileControlFlags::Trunc);
-    stream->write(createString("hello world,this is a test data.")->toByteArray());
+    stream->write(String::New("hello world,this is a test data.")->toByteArray());
     stream->close();
   }
 

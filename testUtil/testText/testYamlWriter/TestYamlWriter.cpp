@@ -48,60 +48,60 @@ public:
 };
 
 void testYamlWriter() {
-    YamlValue value = createYamlValue();
-    value->set(createString("name"),S("wang"));
+    YamlValue value = YamlValue::New();
+    value->set(String::New("name"),S("wang"));
     value->set(S("job"),S("developer"));
     value->set(S("skill"),S("Elite"));
     value->set(S("employed"),S("true"));
 
-    YamlValue foods = createYamlValue();
+    YamlValue foods = YamlValue::New();
     foods->pushBack(S("Apple"));
     foods->pushBack(S("Orange"));
     foods->pushBack(S("Strawberry"));
     foods->pushBack(S("Mango"));
     value->set(S("foods"),foods);
 
-    YamlValue languages = createYamlValue();
+    YamlValue languages = YamlValue::New();
     languages->set(S("ruby"),S("Elite"));
     languages->set(S("python"),S("Elite"));
     languages->set(S("dotnet"),S("Lame"));
     value->set(S("languages"),languages);
 
-    YamlValue hobbies = createYamlValue();
+    YamlValue hobbies = YamlValue::New();
     hobbies->set(S("football"),S("like"));
     hobbies->set(S("basketball"),S("Elite"));
     hobbies->set(S("sleep"),S("dislike"));
     value->set(S("hobbies"),hobbies);
 
-    YamlWriter w = createYamlWriter(createFile("./tmp/tmp.yaml"));
+    YamlWriter w = YamlWriter::New(File::New("./tmp/tmp.yaml"));
     w->write(value);
 
 
-    TestData data = createTestData();
+    TestData data = TestData::New();
     data->name = "wang";
     data->job = "developer";
     data->skill = "Elite";
     data->employed = true;
 
-    data->foods = createArrayList<String>();
-    data->foods->add(createString("Apple"));
-    data->foods->add(createString("Orange"));
-    data->foods->add(createString("Strawberry"));
-    data->foods->add(createString("Mango"));
+    data->foods = ArrayList<String>::New();
+    data->foods->add(String::New("Apple"));
+    data->foods->add(String::New("Orange"));
+    data->foods->add(String::New("Strawberry"));
+    data->foods->add(String::New("Mango"));
 
-    data->languages = createLanaguage();
+    data->languages = Lanaguage::New();
     data->languages->ruby = "Elite";
     data->languages->python = "Elite";
     data->languages->dotnet = "Lame";
 
-    data->hobbies = createHashMap<String,String>();
+    data->hobbies = HashMap<String,String>::New();
     data->hobbies->put(S("football"),S("like"));
     data->hobbies->put(S("basketball"),S("Elite"));
     data->hobbies->put(S("sleep"),S("dislike"));
 
-    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/tmp.yaml"));
+    YamlReader r = YamlReader::New()->loadFile(File::New("./tmp/tmp.yaml"));
     auto node = r->parse();
-    TestData v2 = createTestData();
+    TestData v2 = TestData::New();
     node->reflectTo(v2);
     
     if(!data->name->equals(v2->name)) {

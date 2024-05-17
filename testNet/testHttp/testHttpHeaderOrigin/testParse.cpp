@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderOrigin match = createHttpHeaderOrigin();
+    HttpHeaderOrigin match = HttpHeaderOrigin::New();
     match->load("");
     HttpUrl url = match->get();
     if(url == nullptr){
@@ -26,7 +26,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderOrigin match = createHttpHeaderOrigin();
+    HttpHeaderOrigin match = HttpHeaderOrigin::New();
     match->load("https://developer.mozilla.org:1234");
     HttpUrl url = match->get();
     if(url == nullptr){

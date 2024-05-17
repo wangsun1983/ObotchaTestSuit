@@ -12,10 +12,10 @@
 using namespace obotcha;
 
 void testBlockingLinkedListTryTakeLast() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
         String v = list->tryTakeLast();
         if(v != nullptr) {
           TEST_FAIL("BlockingLinkedList tryTakeLast test1 \n");
@@ -26,7 +26,7 @@ void testBlockingLinkedListTryTakeLast() {
     }
 #if 0
     while(1) {
-      BlockingLinkedList<int> list = createBlockingLinkedList<int>();
+      BlockingLinkedList<int> list =BlockingLinkedList<int>::New();
       bool isException = false;
       try {
         int v = list->tryTakeLast();
@@ -42,9 +42,9 @@ void testBlockingLinkedListTryTakeLast() {
     }
 #endif
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
 
         String v1 = list->tryTakeLast();
         String v2 = list->tryTakeLast();

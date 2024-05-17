@@ -13,12 +13,12 @@ using namespace obotcha;
 void testBlockingLinkedListTryPutLast() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
-        bool result = list->tryPutLast(createString("d"));
+        bool result = list->tryPutLast(String::New("d"));
         if(result) {
           TEST_FAIL("BlockingLinkedList tryPutLast test1 \n");
           break;
@@ -32,20 +32,20 @@ void testBlockingLinkedListTryPutLast() {
     }
 
     while(1) {
-      BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-      list->tryPutLast(createString("a"));
-      list->tryPutLast(createString("b"));
-      list->tryPutLast(createString("c"));
-      list->tryPutLast(createString("d"));
+      BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+      list->tryPutLast(String::New("a"));
+      list->tryPutLast(String::New("b"));
+      list->tryPutLast(String::New("c"));
+      list->tryPutLast(String::New("d"));
       if(list->size() != 3) {
         TEST_FAIL("BlockingLinkedList tryPutLast test2 \n");
         break;
       }
 
-      ArrayList<String> result = createArrayList<String>();
-      result->add(createString("a"));
-      result->add(createString("b"));
-      result->add(createString("c"));
+      ArrayList<String> result = ArrayList<String>::New();
+      result->add(String::New("a"));
+      result->add(String::New("b"));
+      result->add(String::New("c"));
       auto iterator = result->getIterator();
       while(iterator->hasValue()) {
         auto v = iterator->getValue();
@@ -57,12 +57,12 @@ void testBlockingLinkedListTryPutLast() {
         iterator->next();
       }
 
-      list->tryPutLast(createString("a"));
-      list->tryPutLast(createString("b"));
-      list->tryPutLast(createString("c"));
-      list->tryPutLast(createString("d"));
+      list->tryPutLast(String::New("a"));
+      list->tryPutLast(String::New("b"));
+      list->tryPutLast(String::New("c"));
+      list->tryPutLast(String::New("d"));
       list->takeFirst();
-      list->putLast(createString("e"));
+      list->putLast(String::New("e"));
       ArrayList<String> ll2 = list->toArray();
       if(ll2->size() != 3 || !ll2->get(0)->sameAs("b")|| !ll2->get(1)->sameAs("c")|| !ll2->get(2)->sameAs("e")) {
         TEST_FAIL("BlockingLinkedList tryPutLast test4 \n");

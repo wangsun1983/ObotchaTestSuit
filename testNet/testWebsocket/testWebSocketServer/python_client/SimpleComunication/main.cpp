@@ -25,9 +25,9 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(256);
-AtomicInteger connectNum = createAtomicInteger(0);
-CountDownLatch finishLatch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(256);
+AtomicInteger connectNum = AtomicInteger::New(0);
+CountDownLatch finishLatch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
@@ -71,11 +71,11 @@ public:
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
     int port = getEnvPort();
     
-    InetAddress address = createInet4Address(port);
-    WebSocketServer server = createWebSocketServerBuilder()
+    InetAddress address = Inet4Address::New(port);
+    WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->addListener("mytest2",l)

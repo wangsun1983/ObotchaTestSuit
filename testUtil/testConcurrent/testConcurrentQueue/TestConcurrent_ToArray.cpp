@@ -10,10 +10,10 @@ using namespace obotcha;
 
 void testConcurrentQueue_ToArray() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
       ArrayList<String> ll = list->toArray();
       if(ll->size() != 3 || !ll->get(0)->sameAs("a")
           || !ll->get(1)->sameAs("b")
@@ -25,7 +25,7 @@ void testConcurrentQueue_ToArray() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -40,7 +40,7 @@ void testConcurrentQueue_ToArray() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       ArrayList<int> ll = list->toArray();
       if(ll->size() != 0) {
             TEST_FAIL("ConcurrentQueue toArray test3");

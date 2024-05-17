@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Language"),
-                createString("de-DE, en-CA"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Content-Language"),
+                String::New("de-DE, en-CA"));
     auto c = header->getContentLanguage();
     auto list = c->get();
     if(!list->get(0)->sameAs("de-DE")) {

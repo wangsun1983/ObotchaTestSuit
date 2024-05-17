@@ -23,11 +23,11 @@ public:
 int testLruUpdate() {
     //case 1
     while(1) {
-      LruCache<String,MyUpdateData> lru = createLruCache<String,MyUpdateData>(3);
+      LruCache<String,MyUpdateData> lru = LruCache<String,MyUpdateData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyUpdateData d = createMyUpdateData();
+        MyUpdateData d = MyUpdateData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -36,9 +36,9 @@ int testLruUpdate() {
       }
 
       //[14,13,12]
-      MyUpdateData data1 = createMyUpdateData();
+      MyUpdateData data1 = MyUpdateData::New();
       data1->i = 15;
-      lru->put(createString(15),data1);
+      lru->put(String::New(15),data1);
       if(lru->size() != 3) {
         TEST_FAIL("[LruCache Test {update()} case2]");
         return 1;
@@ -64,11 +64,11 @@ int testLruUpdate() {
 
     //case 2
     while(1) {
-      LruCache<String,MyUpdateData> lru = createLruCache<String,MyUpdateData>(3);
+      LruCache<String,MyUpdateData> lru = LruCache<String,MyUpdateData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyUpdateData d = createMyUpdateData();
+        MyUpdateData d = MyUpdateData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -77,7 +77,7 @@ int testLruUpdate() {
       }
 
       //[14,13,12]
-      MyUpdateData data1 = lru->get(createString(12)); //->[12,14,13]
+      MyUpdateData data1 = lru->get(String::New(12)); //->[12,14,13]
 
       if(lru->size() != 3) {
         TEST_FAIL("[LruCache Test {update()} case6]");
@@ -104,11 +104,11 @@ int testLruUpdate() {
 
     //case 3
     while(1) {
-      LruCache<String,MyUpdateData> lru = createLruCache<String,MyUpdateData>(3);
+      LruCache<String,MyUpdateData> lru = LruCache<String,MyUpdateData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyUpdateData d = createMyUpdateData();
+        MyUpdateData d = MyUpdateData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -117,7 +117,7 @@ int testLruUpdate() {
       }
 
       //[14,13,12]
-      MyUpdateData data1 = lru->get(createString(14)); //->[14,13,12]
+      MyUpdateData data1 = lru->get(String::New(14)); //->[14,13,12]
 
       if(lru->size() != 3) {
         TEST_FAIL("[LruCache Test {update()} case11]");

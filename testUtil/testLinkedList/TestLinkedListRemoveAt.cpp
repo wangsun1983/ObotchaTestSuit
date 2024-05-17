@@ -10,10 +10,10 @@ void testLinkedListRemoveAt() {
 
     //case1 string putLast
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         auto str1 = mList->removeAt(1);
         if(!str1->sameAs("b")) {
@@ -37,10 +37,10 @@ void testLinkedListRemoveAt() {
     }
 
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         auto str1 = mList->removeAt(0);
         if(!str1->sameAs("a")) {
@@ -64,10 +64,10 @@ void testLinkedListRemoveAt() {
     }
 
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         String v = mList->removeAt(5);
         if(v != nullptr) {

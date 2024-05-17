@@ -32,21 +32,21 @@ public:
 
 void testArrayListFloat() {
     while(1) {
-      ArrayList<Float> list = createArrayList<Float>();
-      list->add(createFloat(1.1));
-      list->add(createFloat(2.2));
-      list->add(createFloat(3.3));
-      list->add(createFloat(4.4));
-      list->add(createFloat(5.5));
+      ArrayList<Float> list = ArrayList<Float>::New();
+      list->add(Float::New(1.1));
+      list->add(Float::New(2.2));
+      list->add(Float::New(3.3));
+      list->add(Float::New(4.4));
+      list->add(Float::New(5.5));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Float_test1.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Float_test1.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Float_test1.xml"));
       XmlDocument doc2 = reader->get();
 
-      ArrayList<Float> list2 = createArrayList<Float>();
+      ArrayList<Float> list2 = ArrayList<Float>::New();
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -66,30 +66,30 @@ void testArrayListFloat() {
     }
 
     while(1) {
-      FloatList2 list = createFloatList2();
-      list->list1 = createArrayList<Float>();
-      list->list2 = createArrayList<Float>();
+      FloatList2 list = FloatList2::New();
+      list->list1 = ArrayList<Float>::New();
+      list->list2 = ArrayList<Float>::New();
 
-      list->list1->add(createFloat(1.1));
-      list->list1->add(createFloat(2.2));
-      list->list1->add(createFloat(3.3));
-      list->list1->add(createFloat(4.4));
-      list->list1->add(createFloat(5.5));
+      list->list1->add(Float::New(1.1));
+      list->list1->add(Float::New(2.2));
+      list->list1->add(Float::New(3.3));
+      list->list1->add(Float::New(4.4));
+      list->list1->add(Float::New(5.5));
 
-      list->list2->add(createFloat(6.6));
-      list->list2->add(createFloat(7.7));
-      list->list2->add(createFloat(8.8));
-      list->list2->add(createFloat(9.9));
-      list->list2->add(createFloat(10.1));
+      list->list2->add(Float::New(6.6));
+      list->list2->add(Float::New(7.7));
+      list->list2->add(Float::New(8.8));
+      list->list2->add(Float::New(9.9));
+      list->list2->add(Float::New(10.1));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Float_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Float_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Float_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      FloatList2 list2 = createFloatList2();
+      FloatList2 list2 = FloatList2::New();
       doc2->reflectTo(list2);
 
       if(st(Float)::Compare(list2->list1->get(0)->toValue(),1.1) != 0

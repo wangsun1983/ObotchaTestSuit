@@ -12,8 +12,8 @@ using namespace obotcha;
 
 
 void testNoDataRead() {
-    ByteRingArray ringarray = createByteRingArray(5);
-    auto reader = createByteRingArrayReader(ringarray);
+    ByteRingArray ringarray = ByteRingArray::New(5);
+    auto reader = ByteRingArrayReader::New(ringarray);
     reader->move(0);
     ByteArray data = reader->pop();
     if(data != nullptr) {

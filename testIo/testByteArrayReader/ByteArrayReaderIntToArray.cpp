@@ -56,18 +56,18 @@ public class test {
 
 void testReaderArrayIntToArray() {
     while(1) {
-        File f = createFile("./testdata/little_endian1.txt");
-        TextLineReader reader = createTextLineReader(f);
+        File f = File::New("./testdata/little_endian1.txt");
+        TextLineReader reader = TextLineReader::New(f);
         String str = nullptr;
         while((str = reader->readLine()) != nullptr) {
             ArrayList<String> items = str->split(" ");
             int num = items->get(0)->toBasicInt();
-            ByteArray data = createByteArray(4);
+            ByteArray data = ByteArray::New(4);
             data[0] = items->get(1)->toBasicInt();
             data[1] = items->get(2)->toBasicInt();
             data[2] = items->get(3)->toBasicInt();
             data[3] = items->get(4)->toBasicInt();
-            ByteArrayReader myreader = createByteArrayReader(data,st(IO)::Endianness::Little);
+            ByteArrayReader myreader = ByteArrayReader::New(data,st(IO)::Endianness::Little);
             int v = myreader->read<int>();
              // printf("%d,%d,%d,%d [%d,%d]",
              //     data[0],data[1],data[2],data[3],v,num);
@@ -80,18 +80,18 @@ void testReaderArrayIntToArray() {
     }
     
     while(1) {
-        File f = createFile("./testdata/big_endian1.txt");
-        TextLineReader reader = createTextLineReader(f);
+        File f = File::New("./testdata/big_endian1.txt");
+        TextLineReader reader = TextLineReader::New(f);
         String str = nullptr;
         while((str = reader->readLine()) != nullptr) {
             ArrayList<String> items = str->split(" ");
             int num = items->get(0)->toBasicInt();
-            ByteArray data = createByteArray(4);
+            ByteArray data = ByteArray::New(4);
             data[0] = items->get(1)->toBasicInt();
             data[1] = items->get(2)->toBasicInt();
             data[2] = items->get(3)->toBasicInt();
             data[3] = items->get(4)->toBasicInt();
-            ByteArrayReader myreader = createByteArrayReader(data,st(IO)::Endianness::Big);
+            ByteArrayReader myreader = ByteArrayReader::New(data,st(IO)::Endianness::Big);
             int v = myreader->read<int>();
             if(v != num) {
                 TEST_FAIL("[TestByteArrayReader IntToArray case2],v is %d,num is %d",v,num);

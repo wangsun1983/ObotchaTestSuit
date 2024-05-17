@@ -19,12 +19,12 @@ public:
 
 void testHttpSession() {
   while(1) {
-    MyData data = createMyData();
+    MyData data = MyData::New();
     data->v1 = 100;
     data->v2 = 123;
 
-    HttpSession ss = createHttpSession();
-    ss->setAttribute("a",createString("value_a"));
+    HttpSession ss = HttpSession::New();
+    ss->setAttribute("a",String::New("value_a"));
     ss->setAttribute("b",data);
 
     if(ss->size() != 2) {
@@ -62,7 +62,7 @@ void testHttpSession() {
       break;
     }
 
-    ss->setAttribute("a",createString("value_a"));
+    ss->setAttribute("a",String::New("value_a"));
     ss->setAttribute("b",data);
 
     ArrayList<String> names = ss->getAttributeNames();
@@ -71,7 +71,7 @@ void testHttpSession() {
       break;
     }
 
-    if(!names->contains(createString("a")) || !names->contains(createString("b"))) {
+    if(!names->contains(String::New("a")) || !names->contains(String::New("b"))) {
       TEST_FAIL("[testHttpSession test Parse case8]");
       break;
     }

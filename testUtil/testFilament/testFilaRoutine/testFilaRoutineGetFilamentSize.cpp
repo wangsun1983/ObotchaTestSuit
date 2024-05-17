@@ -16,8 +16,8 @@ using namespace obotcha;
 void testFilaRoutineGetSize() {
 	//case1	
 	while(1) {
-		TimeWatcher w = createTimeWatcher();
-		FilaRoutine croutine = createFilaRoutine();
+		TimeWatcher w = TimeWatcher::New();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		if(croutine->getFilamentSize() != 0) {
 			TEST_FAIL("FilaRoutine getFilamentSize case1");

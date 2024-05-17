@@ -31,7 +31,7 @@ void testThreadQuickJoin() {
 
   while(1) {
     for(int i = 0;i < 1024*32;i++) {
-      Thread t = createThread(createJoinRun1());
+      Thread t = Thread::New(JoinRun1::New());
       t->start();
       t->join();
     }

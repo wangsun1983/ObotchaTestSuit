@@ -16,7 +16,7 @@ using namespace obotcha;
 void testByteArrayClear() {
 
     while(1) {
-      ByteArray data = createByteArray(32);
+      ByteArray data = ByteArray::New(32);
       for(int i = 0; i < 32;i++) {
         data[i] = i;
       }

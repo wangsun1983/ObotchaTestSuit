@@ -25,7 +25,7 @@ public:
 void testHandlerSize() {
   //case 1
   while(1) {
-    MyHandler1 handler1 = createMyHandler1();
+    MyHandler1 handler1 = MyHandler1::New();
     handler1->sendEmptyMessageDelayed(1,1000*10);
     handler1->sendEmptyMessageDelayed(2,1000*10);
     handler1->sendEmptyMessageDelayed(3,1000*10);
@@ -42,7 +42,7 @@ void testHandlerSize() {
 
   //case 2
   while(1) {
-    MyHandler1 handler1 = createMyHandler1();
+    MyHandler1 handler1 = MyHandler1::New();
     handler1->sendEmptyMessage(1);
     handler1->sendEmptyMessageDelayed(2,1000*10);
     handler1->sendEmptyMessageDelayed(3,1000*10);
@@ -59,7 +59,7 @@ void testHandlerSize() {
 
   //case 3
   while(1) {
-    MyHandler1 handler1 = createMyHandler1();
+    MyHandler1 handler1 = MyHandler1::New();
     handler1->sendEmptyMessage(1);
     handler1->sendEmptyMessage(2);
     handler1->sendEmptyMessage(3);

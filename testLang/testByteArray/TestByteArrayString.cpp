@@ -16,7 +16,7 @@ using namespace obotcha;
 
 void testByteArrayStringConvert() {
   while(1) {
-    String str = createString("abc test");
+    String str = String::New("abc test");
     ByteArray array = str->toByteArray();
 
     String v = array->toString();

@@ -25,14 +25,14 @@ public:
 
 
 void testToXml() {
-    MyXmlData data = createMyXmlData();
+    MyXmlData data = MyXmlData::New();
     data->id = 123;
-    data->name = createString("wangsl");
+    data->name = String::New("wangsl");
     
-    TextContent c = createTextContent(data,st(Text)::Format::Xml);
+    TextContent c = TextContent::New(data,st(Text)::Format::Xml);
     //printf("c is %s \n",c->get()->toChars());
     
-    XmlReader reader = createXmlReader()->loadContent(c->get());
+    XmlReader reader = XmlReader::New()->loadContent(c->get());
     XmlValue value = reader->get()->getRootNode();
     
     auto id = value->getIntegerValue("id");

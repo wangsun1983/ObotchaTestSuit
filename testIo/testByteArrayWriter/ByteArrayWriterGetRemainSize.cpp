@@ -17,8 +17,8 @@ using namespace obotcha;
 
 
 void testGetRemainSize() {
-    ByteArray data = createByteArray(5);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(5);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
     writer->write<byte>(1);
     if(writer->getRemainSize() != 4) {
         TEST_FAIL("[TestByteArrayWriter test getRemainSize case1]");

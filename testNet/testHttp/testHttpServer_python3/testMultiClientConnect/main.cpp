@@ -22,12 +22,12 @@
 
 using namespace obotcha;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disConnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
+AtomicInteger connectCount = AtomicInteger::New(0);
+AtomicInteger disConnectCount = AtomicInteger::New(0);
+AtomicInteger messageCount = AtomicInteger::New(0);
 
-CountDownLatch connectlatch = createCountDownLatch(1024*32);
-CountDownLatch disconnetlatch = createCountDownLatch(1024*32);
+CountDownLatch connectlatch = CountDownLatch::New(1024*32);
+CountDownLatch disconnetlatch = CountDownLatch::New(1024*32);
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
@@ -47,9 +47,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           break;
 
           case st(Net)::Event::Message: {
-              HttpResponse response = createHttpResponse();
+              HttpResponse response = HttpResponse::New();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-              response->getEntity()->setContent(createString(messageCount->getAndIncrement())->toByteArray());
+              response->getEntity()->setContent(String::New(messageCount->getAndIncrement())->toByteArray());
               if(w->write(response) < 0) {
                   printf("failed to write,err is %s \n",strerror(errno));
               }
@@ -68,13 +68,21 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 int main() {
   int port = getEnvPort();
 
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
-  MyHandler h = createMyHandler();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,1*1000);
   connectlatch->await();
   disconnetlatch->await();

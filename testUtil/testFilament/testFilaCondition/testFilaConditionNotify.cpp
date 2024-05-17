@@ -14,14 +14,14 @@ using namespace obotcha;
 
 void testNotify() {
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,200);
 			auto r = w->stop();
@@ -44,10 +44,10 @@ void testNotify() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		
 		int hit = 0;
 		int unhit = 0;
@@ -55,7 +55,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,200);
 			auto r = w->stop();
@@ -69,7 +69,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,200);
 			auto r = w->stop();
@@ -106,14 +106,14 @@ void testNotify() {
 	}
 
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,200);
 			auto r = w->stop();
@@ -124,7 +124,7 @@ void testNotify() {
 		});
 		usleep(1000*100);
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			cond->notify();
 		});
 		t1->start();
@@ -139,10 +139,10 @@ void testNotify() {
 	}
 
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		
 		int hit = 0;
 		int firsthit = 0;
@@ -151,7 +151,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();
@@ -165,7 +165,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();
@@ -178,13 +178,13 @@ void testNotify() {
 		});
 		
 		usleep(1000*100);
-		Thread t1 = createThread([&] {
+		Thread t1 = Thread::New([&] {
 			cond->notify();
 		});
 		t1->start();
 		
 		usleep(1000*200);
-		Thread t2 = createThread([&] {
+		Thread t2 = Thread::New([&] {
 			cond->notify();
 		});
 		t2->start();
@@ -210,13 +210,13 @@ void testNotify() {
 	}
 
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
-		Thread t1 = createThread([&] {
-			TimeWatcher w = createTimeWatcher();
+		Thread t1 = Thread::New([&] {
+			TimeWatcher w = TimeWatcher::New();
 			AutoLock l(m);
 			w->start();
 			cond->wait(m);
@@ -244,10 +244,10 @@ void testNotify() {
 
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		
 		int hit = 0;
 		int firsthit = 0;
@@ -256,7 +256,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();
@@ -268,9 +268,9 @@ void testNotify() {
 			count++;
 		});
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();
@@ -284,7 +284,7 @@ void testNotify() {
 		t1->start();
 		
 		usleep(1000*100);
-		Thread t2 = createThread([&] {
+		Thread t2 = Thread::New([&] {
 			cond->notify();
 		});
 		t2->start();
@@ -316,13 +316,13 @@ void testNotify() {
 	}
 
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
 		c->execute([&]{
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			count++;
 			w->start();
 			m->lock();
@@ -348,10 +348,10 @@ void testNotify() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		
 		int hit = 0;
 		int firsthit = 0;
@@ -360,7 +360,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();
@@ -374,7 +374,7 @@ void testNotify() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,400);
 			auto r = w->stop();

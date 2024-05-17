@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 void testStringFind() {
-    String abc = createString("i aa ibd ii");
+    String abc = String::New("i aa ibd ii");
     int index = abc->find("i");
     if(index != 0) {
         TEST_FAIL("String Find test1");
@@ -41,7 +41,7 @@ void testStringFind() {
         TEST_FAIL("String Find test5");
     }
 
-    abc = createString("1{{ i {{ ibd {{");
+    abc = String::New("1{{ i {{ ibd {{");
     index = abc->find("{{",0);
     if(index != 1) {
         TEST_FAIL("String Find test6");

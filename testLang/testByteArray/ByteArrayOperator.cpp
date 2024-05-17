@@ -16,7 +16,7 @@ void operatortest() {
   while(1) {
 
       //case1
-      ByteArray array = createByteArray(5);
+      ByteArray array = ByteArray::New(5);
       array[0] = 0;
       array[1] = 1;
       array[2] = 2;
@@ -33,14 +33,14 @@ void operatortest() {
       }
 
       //case2
-      ByteArray array2 = createByteArray(5);
+      ByteArray array2 = ByteArray::New(5);
       try {
         array2[100] = 1;
         TEST_FAIL("ByteArray operatortest test 2");
       } catch(ArrayIndexOutOfBoundsException e) {}
 
       //case 3
-      ByteArray array3 = createByteArray(128);
+      ByteArray array3 = ByteArray::New(128);
       for(int i = 0;i<128;i++) {
         array3[i] = i+1;
       }
@@ -59,7 +59,7 @@ void operatortest() {
 
   //-1 index
   while(1) {
-    ByteArray arr1 = createByteArray(16);
+    ByteArray arr1 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       arr1[i] = i;
     }

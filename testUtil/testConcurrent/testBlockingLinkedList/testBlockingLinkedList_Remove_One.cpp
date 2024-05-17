@@ -14,23 +14,23 @@ using namespace obotcha;
 void testBlockingLinkedListRemoveOne() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(1);
-        list->put(createString("a"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(1);
+        list->put(String::New("a"));
         
-        Thread t1 = createThread([&]{
+        Thread t1 = Thread::New([&]{
             usleep(100*1000);
-            TimeWatcher watcher = createTimeWatcher();
+            TimeWatcher watcher = TimeWatcher::New();
             watcher->start();
-            list->put(createString("b"));
+            list->put(String::New("b"));
             auto ret = watcher->stop();
             if(ret < 95 || ret > 105) {
                 TEST_FAIL("BlockingLinkedList remove one test1,ret is %ld",ret);
             }
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             usleep(200*1000);
-            list->remove(createString("a"));
+            list->remove(String::New("a"));
         });
         
         t1->start();

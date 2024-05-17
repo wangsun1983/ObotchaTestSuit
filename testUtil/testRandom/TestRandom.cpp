@@ -14,7 +14,7 @@ int main() {
     while(1) {
         int array[1000];
         bool isOk = true;
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 1000;index++) {
             int v1 = rand->next<int>();
             for(int ckindex = 0;ckindex < index;ckindex++) {
@@ -44,7 +44,7 @@ int main() {
     while(1) {
         int max = 100;
         int min = 10;
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 100000;index++) {
             int v = rand->next<int>(min,max);
             if(v > max || v < min) {
@@ -60,7 +60,7 @@ int main() {
     //static int next<int>(int min);
     while(1) {
         int min = 10;
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 100000;index++) {
             int v = rand->next<int>(min,st(Integer)::kMaxValue);
             if(v < min) {
@@ -77,7 +77,7 @@ int main() {
     while(1) {
         double array[1000];
         bool isOk = true;
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 1000;index++) {
             double v1 = rand->next<double>();
             //std::cout<<"v1 is "<<v1;
@@ -110,7 +110,7 @@ int main() {
 
     //static double next<double>(double min,double max);
     while(1) {
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 1000;index++) {
             double min = 10.0001;
             double max = 15.00001;
@@ -127,7 +127,7 @@ int main() {
 
     //static double next<double>(double min);
     while(1) {
-        Random rand = createRandom();
+        Random rand = Random::New();
         for(int index = 0;index < 1000;index++) {
             double min = 10.0001;
             double t = rand->next<double>(min,st(Double)::kMaxValue);
@@ -143,9 +143,9 @@ int main() {
 
     //static void nextBytes(ByteArray);
     while(1) {
-        Random rand = createRandom();
+        Random rand = Random::New();
 		for(int i = 0;i < 16;i++) {
-			ByteArray data = createByteArray(32);
+			ByteArray data = ByteArray::New(32);
 			rand->nextBytes(data);
 			int maxHit = 4;
 			

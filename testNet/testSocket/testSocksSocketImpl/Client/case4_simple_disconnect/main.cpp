@@ -15,8 +15,8 @@
 
 using namespace obotcha;
 
-Condition mwaitcond = createCondition();
-Mutex mMutex = createMutex();
+Condition mwaitcond = Condition::New();
+Mutex mMutex = Mutex::New();
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
@@ -25,8 +25,8 @@ public:
   }
 };
 
-CountDownLatch latch = createCountDownLatch(1024);
-MyHandler h = createMyHandler();
+CountDownLatch latch = CountDownLatch::New(1024);
+MyHandler h = MyHandler::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -57,19 +57,19 @@ private:
 
 
 int main() {
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     long sum = 0;
     int port = getEnvPort();
 
     for(int i = 0;i<1024;i++) {
-      InetAddress addr = createInet4Address(port);
-      Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+      InetAddress addr = Inet4Address::New(port);
+      Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
         TEST_FAIL("TestTcpSocket case4_simple_multi_test test1,i is %d",i);
         continue;
       }
 
-      monitor->bind(client,createMyListener(i));
+      monitor->bind(client,MyListener::New(i));
     }
     
     {

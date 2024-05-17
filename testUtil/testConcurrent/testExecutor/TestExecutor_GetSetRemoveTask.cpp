@@ -8,8 +8,8 @@ using namespace obotcha;
 
 void testGetSetRemoveTask() {
     while(1) {
-		ExecutorTask task = createExecutorTask(nullptr,nullptr);
-		Thread t1 = createThread([&]{
+		ExecutorTask task = ExecutorTask::New(nullptr,nullptr);
+		Thread t1 = Thread::New([&]{
 			st(Executor)::SetCurrentTask(task);
 			if(st(Executor)::GetCurrentTask() != task) {
 				TEST_FAIL("Test Executor GetSetRemoveTask case1");
@@ -24,9 +24,9 @@ void testGetSetRemoveTask() {
 	}
 	
 	while(1) {
-		ExecutorTask task = createExecutorTask(nullptr,nullptr);
+		ExecutorTask task = ExecutorTask::New(nullptr,nullptr);
 		st(Executor)::SetCurrentTask(task);
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			st(Executor)::RemoveCurrentTask();
 		});
 		t1->start();

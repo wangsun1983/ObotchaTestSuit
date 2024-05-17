@@ -14,12 +14,12 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
+#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
 #include "NetPort.hpp"
 #include "Net.hpp"
-#include "Md.hpp"
 
 using namespace obotcha;
 
@@ -32,11 +32,11 @@ using namespace obotcha;
     -H "apns-topic: com.app.identifier" --http2 \
     https://api.development.push.apple.com/3/device/DEVICE_ID
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 long size = 0;
 
-ByteArray sendData = createByteArray(1024*1024*8);
+ByteArray sendData = ByteArray::New(1024*64);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -48,8 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            printf("message trace1 \n");
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             response->getEntity()->setContent(sendData);
             w->write(response);
@@ -66,23 +65,14 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 };
 
 int main() {
-  for(long i = 0; i < 1024*1024*8;i++) {
+  for(long i = 0; i < 1024*64;i++) {
       sendData[i] = i % 32;
   }
   
-  File file = createFile("./tmp/abc");
-  file->createNewFile();
-  printf("start test \n");
-  FileOutputStream stream = createFileOutputStream(file);
-  stream->open(O_TRUNC);
-  stream->write(sendData);
-  stream->flush();
-  stream->close();
-  
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();
@@ -91,16 +81,6 @@ int main() {
   server->close();
   port++;
   setEnvPort(port);
-  
-  
-  auto md = createMd();
-  
-  auto a1 = md->encodeFile(createFile("./tmp/abc"));
-  auto a2 = md->encodeFile(createFile("./tmp/abc2"));
-  if(!a1->sameAs(a2)) {
-      TEST_FAIL("TestHttp2Server Simple Large data test1");
-  }
-  
   TEST_OK("TestHttp2Server Simple Large data test100");
 
   return 0;

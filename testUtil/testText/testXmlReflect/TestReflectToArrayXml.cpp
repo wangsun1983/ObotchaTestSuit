@@ -34,38 +34,38 @@ public:
 void testReflectToArrayXml() {
   //test1
   while(1) {
-    XmlReflectArrayListData data = createXmlReflectArrayListData();
-    data->lists = createArrayList<ArrayListMember>();
+    XmlReflectArrayListData data = XmlReflectArrayListData::New();
+    data->lists = ArrayList<ArrayListMember>::New();
 
-    ArrayListMember m1 = createArrayListMember();
+    ArrayListMember m1 = ArrayListMember::New();
     m1->intMember = 1;
     m1->boolMember = true;
     m1->uint64Member = 1;
-    m1->stringMember = createString("1");
+    m1->stringMember = String::New("1");
     data->lists->add(m1);
 
-    ArrayListMember m2 = createArrayListMember();
+    ArrayListMember m2 = ArrayListMember::New();
     m2->intMember = 21;
     m2->boolMember = true;
     m2->uint64Member = 21;
-    m2->stringMember = createString("2");
+    m2->stringMember = String::New("2");
     data->lists->add(m2);
 
-    ArrayListMember m3 = createArrayListMember();
+    ArrayListMember m3 = ArrayListMember::New();
     m3->intMember = 31;
     m3->boolMember = true;
     m3->uint64Member = 31;
-    m3->stringMember = createString("3");
+    m3->stringMember = String::New("3");
     data->lists->add(m3);
 
-    XmlDocument doc = createXmlDocument();
+    XmlDocument doc = XmlDocument::New();
     doc->importFrom(data);
-    XmlWriter writer = createXmlWriter(doc);
+    XmlWriter writer = XmlWriter::New(doc);
     writer->write("output2.xml");
 
-    XmlReader reader = createXmlReader()->loadFile(createFile("output2.xml"));
+    XmlReader reader = XmlReader::New()->loadFile(File::New("output2.xml"));
     XmlDocument doc2 = reader->get();
-    XmlReflectArrayListData rdata3 = createXmlReflectArrayListData();
+    XmlReflectArrayListData rdata3 = XmlReflectArrayListData::New();
     doc2->reflectTo(rdata3);
 
     if(rdata3 == nullptr || rdata3->lists == nullptr || rdata3->lists->size() != 3) {

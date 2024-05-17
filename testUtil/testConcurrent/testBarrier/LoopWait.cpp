@@ -11,8 +11,8 @@
 
 using namespace obotcha;
 
-AtomicInteger loopValue = createAtomicInteger(0);
-Barrier barrier_257 = createBarrier(256 + 1);
+AtomicInteger loopValue = AtomicInteger::New(0);
+Barrier barrier_257 = Barrier::New(256 + 1);
 
 DECLARE_CLASS(LoopSubmitRun) IMPLEMENTS(Runnable) {
 public:
@@ -25,7 +25,7 @@ public:
 int looptest() {
   //test1
   for(int i = 0;i < 256;i++) {
-    Thread t = createThread(createLoopSubmitRun());
+    Thread t = Thread::New(LoopSubmitRun::New());
     t->start();
   }
   barrier_257->await();

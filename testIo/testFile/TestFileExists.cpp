@@ -9,7 +9,7 @@
 using namespace obotcha;
 
 void testFileExists() {
-    File f = createFile("./test_exists.tag");
+    File f = File::New("./test_exists.tag");
     if(!f->exists()) {
         TEST_FAIL("[File Test {exists()} case1]");
     }
@@ -18,7 +18,7 @@ void testFileExists() {
         TEST_FAIL("[File Test {exists()} case2]");
     }
     
-    File f2 = createFile("./test_exists123.tag");
+    File f2 = File::New("./test_exists123.tag");
     if(f2->exists()) {
         TEST_FAIL("[File Test {exists()} case3]");
     }

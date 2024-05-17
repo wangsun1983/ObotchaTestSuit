@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(st(HttpHeader)::Version,createString("2.3"));
+    HttpHeader header = HttpHeader::New();
+    header->set(st(HttpHeader)::Version,String::New("2.3"));
     auto ver = header->getVersion();
     
     if(ver->getMajorVer() != 2) {

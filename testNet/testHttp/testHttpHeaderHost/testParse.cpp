@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderHost digest = createHttpHeaderHost();
+    HttpHeaderHost digest = HttpHeaderHost::New();
     digest->load(" developer.mozilla.org:1234");
     auto host = digest->getHost();
     if(!host->sameAs("developer.mozilla.org")) {
@@ -29,7 +29,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderHost digest = createHttpHeaderHost();
+    HttpHeaderHost digest = HttpHeaderHost::New();
     digest->load(" developer.mozilla.org");
     auto host = digest->getHost();
     if(!host->sameAs("developer.mozilla.org")) {
@@ -40,7 +40,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderHost digest = createHttpHeaderHost();
+    HttpHeaderHost digest = HttpHeaderHost::New();
     digest->setHost(" developer.mozilla.org");
     auto host = digest->getHost();
     if(!host->sameAs("developer.mozilla.org")) {

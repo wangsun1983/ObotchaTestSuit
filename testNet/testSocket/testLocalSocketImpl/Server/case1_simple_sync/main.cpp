@@ -11,11 +11,11 @@
 
 using namespace obotcha;
 
-String message = createString("");
+String message = String::New("");
 bool isFirst = true;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
@@ -24,7 +24,7 @@ public:
     switch(event) {
       case st(Net)::Event::Message: {
         if(isFirst) {
-          int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+          int len = s->getOutputStream()->write(String::New("hello client")->toByteArray());
           isFirst = false;
           mCond->notify();
           return;
@@ -38,17 +38,17 @@ public:
 };
 
 int main() {
-  auto addr = createInetLocalAddress("case1_socket");
-  auto option = createSocketOption();
+  auto addr = InetLocalAddress::New("case1_socket");
+  auto option = SocketOption::New();
   option->setReUseAddr(st(SocketOption)::Ability::Enable);
-  auto sock = createSocketBuilder()
+  auto sock = SocketBuilder::New()
               ->setAddress(addr)
               ->setOption(option)
               ->newServerSocket();
 
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor();
-  MyListener l = createMyListener();
+  SocketMonitor monitor = SocketMonitor::New();
+  MyListener l = MyListener::New();
   monitor->bind(sock,l);
   AutoLock ll(mMutex);
   mCond->wait(mMutex);

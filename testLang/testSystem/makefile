@@ -3,7 +3,7 @@ gcc = g++
 cflags = -fpic \
 		-lrt \
 		-I ../../../util/concurrent/include/ \
-		-I ../../../io/include \
+		-I ../../../util/coroutine/include/ \
 		-I ../../../util/text/include/ \
         -I ../../../util/time/include/ \
 		-I ../../../lang/include \
@@ -46,3 +46,4 @@ everything : $(libname)
 
 $(libname): $(link)
 	clang++ *.cpp $(cflags) -o mytest $(external) $(sharelib)
+

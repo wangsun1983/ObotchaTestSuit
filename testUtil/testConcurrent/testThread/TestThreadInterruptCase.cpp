@@ -55,7 +55,7 @@ public:
 void testThreadInterruptCase() {
     //TestThread onInterrupt case1
     while(1) {
-        MyTest1Thread thread = createMyTest1Thread();
+        MyTest1Thread thread = MyTest1Thread::New();
         thread->start();
         sleep(1);
         thread->interrupt();
@@ -68,8 +68,8 @@ void testThreadInterruptCase() {
     }
 
     while(1) {
-        MyTest2Run r2 = createMyTest2Run();
-        Thread t = createThread(r2);
+        MyTest2Run r2 = MyTest2Run::New();
+        Thread t = Thread::New(r2);
         mytest2count = 0;
         t->start();
 

@@ -43,8 +43,8 @@ public:
 
 
 int numTest() {
-    mutex = createMutex();
-    ThreadCachedPoolExecutor pool = createExecutorBuilder()
+    mutex = Mutex::New();
+    ThreadCachedPoolExecutor pool = ExecutorBuilder::New()
                                     ->setMaxThreadNum(4)
                                     ->setMaxNoWorkingTime(1000)
                                     ->newCachedThreadPool();
@@ -53,7 +53,7 @@ int numTest() {
         int testNum = 1024*32;
         //int maxThreadNum = 0;
         for(int i = 0;i < testNum;i++) {
-            MyRunTest5 run1 = createMyRunTest5();
+            MyRunTest5 run1 = MyRunTest5::New();
             pool->submit(run1);
             usleep(1000);
         }
@@ -68,9 +68,9 @@ int numTest() {
         sleep(5);
 
         //test6
-        pool = createExecutorBuilder()->newCachedThreadPool();
+        pool = ExecutorBuilder::New()->newCachedThreadPool();
         for(int i = 0;i < testNum;i++) {
-            MyRunTest6 run2 = createMyRunTest6();
+            MyRunTest6 run2 = MyRunTest6::New();
             pool->submit(run2);
         }
         sleep(16);

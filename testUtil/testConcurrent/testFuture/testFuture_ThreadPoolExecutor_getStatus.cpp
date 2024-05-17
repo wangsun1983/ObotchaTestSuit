@@ -16,7 +16,7 @@ using namespace obotcha;
 
 void testThreadPoolExecutor_getStatus() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
     Future f1 = pool->submit([]{
@@ -44,7 +44,7 @@ void testThreadPoolExecutor_getStatus() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
     Future f1 = pool->submit([]{

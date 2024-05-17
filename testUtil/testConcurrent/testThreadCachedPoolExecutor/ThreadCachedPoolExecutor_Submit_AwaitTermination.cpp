@@ -16,10 +16,10 @@
 using namespace obotcha;
 
 void CachedPoolSubmit_AwaitTermination() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->setMaxNoWorkingTime(200)
@@ -28,13 +28,13 @@ void CachedPoolSubmit_AwaitTermination() {
     Future f1 = pool->submit([]{
       usleep(100*1000);
     });
-    usleep(1000*50);
+
     pool->shutdown();
     watch->start();
     pool->awaitTermination();
     long result = watch->stop();
-    if(result < 50 || result > 55) {
-      TEST_FAIL("[TestCachedPoolExecutor AwaitTermination test1],result is %d",result);
+    if(result < 100 || result > 105) {
+      TEST_FAIL("[TestCachedPoolExecutor AwaitTermination test1]");
       break;
     }
     break;

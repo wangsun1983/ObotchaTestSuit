@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSleepInThread() {
 	while(1) {
-		TimeWatcher w = createTimeWatcher();
-		Thread t = createThread([&] {
+		TimeWatcher w = TimeWatcher::New();
+		Thread t = Thread::New([&] {
 			w->start();
 			st(Fila)::Sleep(100);
 			auto ret = w->stop();

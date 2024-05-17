@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testReadLock_LoopLock() {
 
-  ReadWriteLock rwlock = createReadWriteLock();
+  ReadWriteLock rwlock = ReadWriteLock::New();
   auto readlock = rwlock->getReadLock();
   auto writelock = rwlock->getWriteLock();
   readlock->lock();

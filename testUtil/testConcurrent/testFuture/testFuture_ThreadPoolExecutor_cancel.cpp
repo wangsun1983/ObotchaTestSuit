@@ -17,7 +17,7 @@ using namespace obotcha;
 void testThreadPoolExecutor_Cancel() {
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
@@ -58,7 +58,7 @@ void testThreadPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
@@ -85,14 +85,14 @@ void testThreadPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([]{
       usleep(100*1000);
     });
 
-    ArrayList<Future> lists = createArrayList<Future>();
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i < 1024;i++) {
       Future f = pool->submit([] {
 
@@ -116,14 +116,14 @@ void testThreadPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(12)
                 ->newThreadPool();
     pool->submit([]{
       usleep(100*1000);
     });
 
-    ArrayList<Future> lists = createArrayList<Future>();
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i < 1024*32;i++) {
       Future f = pool->submit([] {
         usleep(1*1000);
@@ -131,7 +131,7 @@ void testThreadPoolExecutor_Cancel() {
       lists->add(f);
     }
 
-    Thread t = createThread([&lists] {
+    Thread t = Thread::New([&lists] {
       auto iterator = lists->getIterator();
       while(iterator->hasValue()) {
         auto f = iterator->getValue();

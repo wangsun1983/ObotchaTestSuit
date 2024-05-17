@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testGetSet() {
   while(1) {
-    HttpHeaderSecWebSocketVersion c = createHttpHeaderSecWebSocketVersion();
+    HttpHeaderSecWebSocketVersion c = HttpHeaderSecWebSocketVersion::New();
     c->set(13);
     if(!c->toString()->sameAs("13")) {
       TEST_FAIL("[HttpHeaderSecWebSocketVersion test GetSet case1],str is %s",c->toString()->toChars());

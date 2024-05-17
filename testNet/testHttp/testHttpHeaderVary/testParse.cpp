@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderVary match = createHttpHeaderVary();
+    HttpHeaderVary match = HttpHeaderVary::New();
     match->load("no-referrer, User-Agent");
 
     ArrayList<String> list = match->get();
@@ -30,7 +30,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderVary match = createHttpHeaderVary(createString("no-referrer, User-Agent"));
+    HttpHeaderVary match = HttpHeaderVary::New(String::New("no-referrer, User-Agent"));
     ArrayList<String> list = match->get();
     if(list->size() != 2) {
       TEST_FAIL("[HttpHeaderVary test Parse case3]");

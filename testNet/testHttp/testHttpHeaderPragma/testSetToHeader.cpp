@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Pragma"),
-                createString(" no-cache "));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Pragma"),
+                String::New(" no-cache "));
     auto pragma = header->getPragma();
     if(!pragma->get()->sameAs("no-cache")){
       TEST_OK("[HttpHeaderPragma test setToHeader case1]");

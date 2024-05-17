@@ -20,7 +20,7 @@ int testProcessCondition() {
   st(ProcessMutex)::Create("abc");
   int pid = fork();
   if(pid == 0) {
-    ProcessCondition cond = createProcessCondition("abc_cond1");
+    ProcessCondition cond = ProcessCondition::New("abc_cond1");
     sleep(3);
     cond->notifyAll();
     return -1;
@@ -28,9 +28,9 @@ int testProcessCondition() {
     pid = fork();
 
     if(pid == 0) {
-      ProcessCondition cond = createProcessCondition("abc_cond1");
-      ProcessMutex mu = createProcessMutex("abc");
-      TimeWatcher w = createTimeWatcher();
+      ProcessCondition cond = ProcessCondition::New("abc_cond1");
+      ProcessMutex mu = ProcessMutex::New("abc");
+      TimeWatcher w = TimeWatcher::New();
       w->start();
       AutoLock l(mu);
       cond->wait(mu);
@@ -42,9 +42,9 @@ int testProcessCondition() {
       TEST_OK("testProcessCondition Child Process case1_1 ");
       return -1;
     } else {
-      ProcessCondition cond = createProcessCondition("abc_cond1");
-      ProcessMutex mu = createProcessMutex("abc");
-      TimeWatcher w = createTimeWatcher();
+      ProcessCondition cond = ProcessCondition::New("abc_cond1");
+      ProcessMutex mu = ProcessMutex::New("abc");
+      TimeWatcher w = TimeWatcher::New();
       w->start();
       AutoLock l(mu);
       cond->wait(mu);

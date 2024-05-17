@@ -18,7 +18,7 @@ void testgrow() {
     //test growTo case
     while(1) {
       //case1
-      ByteArray arr = createByteArray(8);
+      ByteArray arr = ByteArray::New(8);
       for(int i = 0;i<8;i++) {
         arr[i] = i;
       }
@@ -44,7 +44,7 @@ void testgrow() {
       }
 
       //case2
-      ByteArray arr2 = createByteArray(8);
+      ByteArray arr2 = ByteArray::New(8);
       if(arr2->growTo(2) != -EINVAL) {
         TEST_FAIL("ByteArray testgrow test 4");
         break;
@@ -57,7 +57,7 @@ void testgrow() {
     //test clear
     while(1) {
       //case1
-      ByteArray arr = createByteArray(8);
+      ByteArray arr = ByteArray::New(8);
       for(int i = 0;i<8;i++) {
         arr[i] = i;
       }
@@ -88,7 +88,7 @@ void testgrow() {
     //test growBy
     while(1) {
       //case1
-      ByteArray arr = createByteArray(8);
+      ByteArray arr = ByteArray::New(8);
       for(int i = 0;i<8;i++) {
         arr[i] = i;
       }

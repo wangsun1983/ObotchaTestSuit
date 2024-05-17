@@ -24,10 +24,10 @@ int testCalendarDecreaseYear_Interval() {
     int size = yearList->size();
     TimeData d1 = yearList->get(size - 1);
 
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
 
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
 
         testCalendar->add(st(Calendar)::Field::Year,-i);
         d1 = yearList->get(size - i -1);
@@ -65,10 +65,10 @@ int testCalendarDecreaseDay_Interval() {
     int size = dateList->size();
     TimeData d1 = dateList->get(size - 1);
 
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
 
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
         testCalendar->add(st(Calendar)::Field::DayOfYear,-i);
         d1 = dateList->get(size - i -1);
         if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
@@ -104,9 +104,9 @@ int testCalendarDecreaseDay_Interval() {
 int testCalendarDecreaseMonth_Interval() {
     int size = monthList->size();
     TimeData d1 = monthList->get(size - 1);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
         testCalendar->add(st(Calendar)::Field::Month,-i);
         d1 = monthList->get(size - i -1);
         if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
@@ -144,9 +144,9 @@ int testCalendarDecreaseMonth_Interval() {
 int testCalendarDecreaseHour_Interval() {
     int size = hourList->size();
     TimeData d1 = hourList->get(size - 1);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
         testCalendar->add(st(Calendar)::Field::Hour,-i);
         d1 = hourList->get(size - i -1);
         if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
@@ -182,9 +182,9 @@ int testCalendarDecreaseHour_Interval() {
 int testCalendarDecreaseMinute_Interval() {
     int size = minuteList->size();
     TimeData d1 = minuteList->get(size - 1);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
         testCalendar->add(st(Calendar)::Field::Minute,-i);
         d1 = minuteList->get(size - i -1);
         if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||
@@ -219,9 +219,9 @@ int testCalendarDecreaseMinute_Interval() {
 int testCalendarDecreaseSecond_Interval() {
     int size = secondList->size();
     TimeData d1 = secondList->get(size - 1);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 0;i < size;i++) {
-        Calendar testCalendar = createCalendar(c1);
+        Calendar testCalendar = Calendar::New(c1);
         testCalendar->add(st(Calendar)::Field::Second,-i);
         d1 = secondList->get(size - i -1);
         if(testCalendar->get(st(Calendar)::Field::Year) != d1->year ||

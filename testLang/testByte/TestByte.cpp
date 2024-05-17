@@ -18,7 +18,7 @@ using namespace obotcha;
 void basetest() {
   //_Byte(Byte v);
   while(1) {
-      Byte v1 = createByte(10);
+      Byte v1 = Byte::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Byte construct test1");
           break;
@@ -30,8 +30,8 @@ void basetest() {
 
   // _Byte(Byte v);
   while(1) {
-    Byte v1 = createByte(11);
-    Byte v2 = createByte(v1);
+    Byte v1 = Byte::New(11);
+    Byte v2 = Byte::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Byte construct test3");
       break;
@@ -43,8 +43,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Byte v1 = createByte(11);
-    Byte v2 = createByte(v1);
+    Byte v1 = Byte::New(11);
+    Byte v2 = Byte::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Byte toValue test1");
       break;
@@ -56,8 +56,8 @@ void basetest() {
 
   //bool equals(Integer p);
   while(1) {
-    Byte v1 = createByte(11);
-    Byte v2 = createByte(11);
+    Byte v1 = Byte::New(11);
+    Byte v2 = Byte::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Byte equals test1");
       break;
@@ -69,7 +69,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Byte v1 = createByte(11);
+    Byte v1 = Byte::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Byte equals test4");
       break;
@@ -81,8 +81,8 @@ void basetest() {
 
   //==
   while(1) {
-    Byte v1 = createByte(12);
-    Byte v2 = createByte(12);
+    Byte v1 = Byte::New(12);
+    Byte v2 = Byte::New(12);
     if(v1 != v2) {
       TEST_FAIL("Byte [==] test1");
       break;

@@ -19,10 +19,10 @@ using namespace obotcha;
 
 void testZipCompress() {
   while(1) {
-    ZipFileStream stream = createZipFileStream();
+    ZipFileStream stream = ZipFileStream::New();
 
     stream->compress("./tmp/base_data","./tmp/base_data_genzip.zip");
-    File f = createFile("./tmp/base_data_genzip.zip");
+    File f = File::New("./tmp/base_data_genzip.zip");
 
     if(!f->exists()) {
       TEST_FAIL("[LibraryFile Compress Test case1]");
@@ -30,13 +30,13 @@ void testZipCompress() {
     }
 
     //start decompress
-    File f2 = createFile("./tmp/deCompress_check1/");
+    File f2 = File::New("./tmp/deCompress_check1/");
     f2->createDir();
     system("unzip ./tmp/base_data_genzip.zip -d ./tmp/deCompress_check1/");
 
-    Md md = createMd(st(Md)::Type::Md5);
-    String base1 = md->encodeFile(createFile("./tmp/base_data"));
-    String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check1/base_data"));
+    Md md = Md::New(st(Md)::Type::Md5);
+    String base1 = md->encodeFile(File::New("./tmp/base_data"));
+    String decompress1 = md->encodeFile(File::New("./tmp/deCompress_check1/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Compress Test case2]");
@@ -46,10 +46,10 @@ void testZipCompress() {
   }
 
   while(1) {
-    ZipFileStream stream = createZipFileStream();
+    ZipFileStream stream = ZipFileStream::New();
 
     stream->compressWithPassword("./tmp/base_data","./tmp/base_data_pwd_genzip.zip","123456");
-    File f = createFile("./tmp/base_data_pwd_genzip.zip");
+    File f = File::New("./tmp/base_data_pwd_genzip.zip");
 
     if(!f->exists()) {
       TEST_FAIL("[LibraryFile Compress Test case3]");
@@ -57,13 +57,13 @@ void testZipCompress() {
     }
 
     //start decompress
-    File f2 = createFile("./tmp/deCompress_check2/");
+    File f2 = File::New("./tmp/deCompress_check2/");
     f2->createDir();
     system("unzip -P 123456 ./tmp/base_data_pwd_genzip.zip -d ./tmp/deCompress_check2/");
 
-    Md md = createMd(st(Md)::Type::Md5);
-    String base1 = md->encodeFile(createFile("./tmp/base_data"));
-    String decompress1 = md->encodeFile(createFile("./tmp/deCompress_check2/base_data"));
+    Md md = Md::New(st(Md)::Type::Md5);
+    String base1 = md->encodeFile(File::New("./tmp/base_data"));
+    String decompress1 = md->encodeFile(File::New("./tmp/deCompress_check2/base_data"));
 
     if(!base1->equals(decompress1)) {
       TEST_FAIL("[LibraryFile Compress Test case4]");

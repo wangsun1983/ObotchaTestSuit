@@ -18,7 +18,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(50);
+CountDownLatch latch = CountDownLatch::New(50);
 
 DECLARE_CLASS(BaseTestServer1) IMPLEMENTS(Thread) {
 public:
@@ -40,7 +40,7 @@ public:
 
         int ret = listen(sock, 1024*64);
         {
-            observer = createEPollObserver();
+            observer = EPollObserver::New();
             observer->addObserver(sock,EPOLLIN|EPOLLRDHUP,[](int fd,uint32_t events,int msock) {
                 if(fd == msock) {
                     struct sockaddr_in client_address;
@@ -76,9 +76,9 @@ private:
 
 int basetest() {
     //test1
-    BaseTestServer1 server1 = createBaseTestServer1();
+    BaseTestServer1 server1 = BaseTestServer1::New();
     server1->start();
-    latch->await(1000*100);
+    latch->await(1000*1000);
     if(latch->getCount() != 0) {
         TEST_FAIL("testEpollObserver case1,count is %d",latch->getCount());
     }

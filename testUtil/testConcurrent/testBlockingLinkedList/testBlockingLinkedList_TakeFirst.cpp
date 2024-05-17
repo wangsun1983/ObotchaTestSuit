@@ -12,13 +12,13 @@
 using namespace obotcha;
 
 void testBlockingLinkedListTakeFirst() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         String v = list->takeFirst();
         if(v == nullptr || !v->sameAs("a")) {
@@ -34,10 +34,10 @@ void testBlockingLinkedListTakeFirst() {
     }
 
     while(1) {
-      BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-      Thread t = createThread([&list] {
+      BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+      Thread t = Thread::New([&list] {
         usleep(100*1000);
-        list->put(createString("a"));
+        list->put(String::New("a"));
       });
       t->start();
 

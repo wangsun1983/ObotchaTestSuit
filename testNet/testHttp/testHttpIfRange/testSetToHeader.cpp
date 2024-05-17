@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("If-Range"),createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("If-Range"),String::New(" Wed, 21 Oct 2015 07:28:00 GMT"));
     auto range = header->getIfRange();
     range->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(range->getDate() == nullptr) {
@@ -58,9 +58,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeaderIfRange range = createHttpHeaderIfRange();
+    HttpHeaderIfRange range = HttpHeaderIfRange::New();
     range->load("\"abcds\"");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setIfRange(range);
     auto rr = header->getIfRange();
     if(rr->getTag()== nullptr || !rr->getTag()->sameAs("abcds")) {

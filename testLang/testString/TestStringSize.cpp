@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringSize() {
 
     while(1) {
-        String str = createString(" abc f ");
+        String str = String::New(" abc f ");
         if(str->size() != 7) {
             TEST_FAIL("String size test1");
             break;
@@ -28,7 +28,7 @@ void TestStringSize() {
         buff[1] = 'b';
         buff[3] = 'd';
         buff[4] = 'f';
-        str = createString(buff);
+        str = String::New(buff);
         if(str->size() != 2) {
             TEST_FAIL("String size1 test2");
             break;

@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testMutexUnlock() {
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
+		FilaMutex m = FilaMutex::New();
 		
 		c->execute([&]{
 			try {
@@ -60,10 +60,10 @@ void testMutexUnlock() {
 	}
 
 	while(1) {
-		FilaMutex m = createFilaMutex();
-		FilaRoutine c = createFilaRoutine();
+		FilaMutex m = FilaMutex::New();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			m->lock();
 			usleep(1000*300);
 			m->unlock();
@@ -73,7 +73,7 @@ void testMutexUnlock() {
 		
 		int count = 0;
 		c->execute([&]{
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			m->lock();
 			auto r = w->stop();
@@ -93,8 +93,8 @@ void testMutexUnlock() {
 	}
 
 	while(1) {
-		FilaMutex m = createFilaMutex();
-		FilaRoutine c = createFilaRoutine();
+		FilaMutex m = FilaMutex::New();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
 		
 		c->execute([&]{
@@ -105,8 +105,8 @@ void testMutexUnlock() {
 		usleep(1000*100);
 		
 		int count = 0;
-		Thread t1 = createThread([&]{
-			TimeWatcher w = createTimeWatcher();
+		Thread t1 = Thread::New([&]{
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			m->lock();
 			auto r = w->stop();
@@ -127,8 +127,8 @@ void testMutexUnlock() {
 	}
 	
 	for(int i = 0;i < 128;i++) {
-		FilaMutex m = createFilaMutex();
-		FilaRoutine c = createFilaRoutine();
+		FilaMutex m = FilaMutex::New();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
 		int count = 0;
 		
@@ -159,7 +159,7 @@ void testMutexUnlock() {
 			m->unlock();
 		});
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			m->lock();
 			count++;
 			usleep(1000*100);
@@ -167,7 +167,7 @@ void testMutexUnlock() {
 		});
 		t1->start();
 		
-		Thread t2 = createThread([&]{
+		Thread t2 = Thread::New([&]{
 			m->lock();
 			count++;
 			usleep(1000*100);
@@ -175,7 +175,7 @@ void testMutexUnlock() {
 		});
 		t2->start();
 		
-		Thread t3 = createThread([&]{
+		Thread t3 = Thread::New([&]{
 			m->lock();
 			count++;
 			usleep(1000*100);

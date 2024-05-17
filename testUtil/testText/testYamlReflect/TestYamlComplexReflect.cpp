@@ -27,36 +27,36 @@ public:
 };
 
 void testReflectComplex() {
-    Student a = createStudent();
+    Student a = Student::New();
     a->name = "i am a";
     a->age = 12;
     a->tall = true;
 
-    Student b = createStudent();
+    Student b = Student::New();
     b->name = "i am b";
     b->age = 13;
     b->tall = false;
 
-    ClassRoom room = createClassRoom();
+    ClassRoom room = ClassRoom::New();
     room->classname = "class one";
-    room->students = createArrayList<Student>();
+    room->students = ArrayList<Student>::New();
     room->students->add(a);
     room->students->add(b);
 
-    room->maps = createHashMap<String,Student>();
+    room->maps = HashMap<String,Student>::New();
     room->maps->put("good",a);
     room->maps->put("normal",b);
 
-    YamlValue v = createYamlValue();
+    YamlValue v = YamlValue::New();
     v->importFrom(room);
 
-    YamlWriter w = createYamlWriter(createFile("./tmp/complex.yaml"));
+    YamlWriter w = YamlWriter::New(File::New("./tmp/complex.yaml"));
     w->write(v);
 
     //do check
-    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/complex.yaml"));
+    YamlReader r = YamlReader::New()->loadFile(File::New("./tmp/complex.yaml"));
     auto result = r->parse();
-    ClassRoom ro = createClassRoom();
+    ClassRoom ro = ClassRoom::New();
     result->reflectTo(ro);
 
     if(!room->classname->equals(ro->classname)) {

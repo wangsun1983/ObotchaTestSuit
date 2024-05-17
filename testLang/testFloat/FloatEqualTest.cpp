@@ -17,8 +17,8 @@ void equaltest() {
 
   while(1) {
     //case 1
-    Float d1 = createFloat(1.1);
-    Float d1_1 = createFloat(1.1);
+    Float d1 = Float::New(1.1);
+    Float d1_1 = Float::New(1.1);
 
     if(!d1->equals(d1_1)) {
         TEST_FAIL("Float equal special test1");
@@ -26,8 +26,8 @@ void equaltest() {
     }
 
     //case 2
-    Float d2 = createFloat(1.1);
-    Float d2_1 = createFloat(1.2);
+    Float d2 = Float::New(1.1);
+    Float d2_1 = Float::New(1.2);
 
     if(d2->equals(d2_1)) {
         TEST_FAIL("Float equal special test2");
@@ -40,8 +40,8 @@ void equaltest() {
 
   while(1) {
     //case 1
-    Float d1 = createFloat(1.1);
-    Float d1_1 = createFloat(1.1);
+    Float d1 = Float::New(1.1);
+    Float d1_1 = Float::New(1.1);
 
     if(d1!= d1_1) {
         TEST_FAIL("Float equal special test5");
@@ -49,8 +49,8 @@ void equaltest() {
     }
 
     //case 2
-    Float d2 = createFloat(1.1);
-    Float d2_1 = createFloat(1.2);
+    Float d2 = Float::New(1.1);
+    Float d2_1 = Float::New(1.2);
 
     if(d2 == d2_1) {
         TEST_FAIL("Float equal special test6");
@@ -58,7 +58,7 @@ void equaltest() {
     }
 
     //case 3
-    Float d3 = createFloat(1.1);
+    Float d3 = Float::New(1.1);
     Float d3_1;
     if(d3 == d3_1) {
       TEST_FAIL("Float equal special test7");

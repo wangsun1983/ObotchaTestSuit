@@ -27,17 +27,17 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
     void handleMessage(Message msg) {
         auto client = Cast<WebSocketLinker>(msg->data);
-        client->sendTextMessage(createString("hello"));
+        client->sendTextMessage(String::New("hello"));
     }
 };
 
-MyHandler handler = createMyHandler();
+MyHandler handler = MyHandler::New();
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
@@ -46,7 +46,7 @@ public:
     }
 
     int onData(WebSocketFrame message,WebSocketLinker client) {
-        //client->sendPingMessage(createString("hello")->toByteArray());
+        //client->sendPingMessage(String::New("hello")->toByteArray());
         return 0;
     }
 
@@ -72,7 +72,7 @@ public:
             TEST_FAIL("WebSocketServer SimplePingByClient test1");
         }
         
-        Message myMessage = createMessage();
+        Message myMessage = Message::New();
         myMessage->data = Cast<Object>(client);
         handler->sendMessage(myMessage);
         return st(WebSocket)::Response::Manual;
@@ -83,11 +83,11 @@ private:
 };
 
 int main() {
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
 
     int port = getEnvPort();
-    InetAddress address = createInet4Address(port);
-    WebSocketServer server = createWebSocketServerBuilder()
+    InetAddress address = Inet4Address::New(port);
+    WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->build();

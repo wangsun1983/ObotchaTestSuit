@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAllow c = createHttpHeaderAllow();
+    HttpHeaderAllow c = HttpHeaderAllow::New();
     c->load("POST, GET, OPTIONS");
     if(!c->toString()->sameAs("POST, GET, OPTIONS")) {
       TEST_FAIL("[HttpHeaderAllow test toString case1],str is %s\n",c->toString()->toChars());
@@ -24,8 +24,8 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderAllow c = createHttpHeaderAllow();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderAllow c = HttpHeaderAllow::New();
     c->load("POST, GET, OPTIONS");
     header->setAllow(c);
     

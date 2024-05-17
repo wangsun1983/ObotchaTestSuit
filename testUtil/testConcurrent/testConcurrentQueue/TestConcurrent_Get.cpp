@@ -10,7 +10,7 @@ using namespace obotcha;
 
 void testConcurrentQueue_Get() {
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       bool isException = false;
       try {
         list->get(10);

@@ -30,16 +30,16 @@ public:
 
 void testArrayUserData() {
     while(1) {
-      ArrayList<ArrayItemUserdata> list = createArrayList<ArrayItemUserdata>();
-      ArrayItemUserdata d1 = createArrayItemUserdata();
+      ArrayList<ArrayItemUserdata> list = ArrayList<ArrayItemUserdata>::New();
+      ArrayItemUserdata d1 = ArrayItemUserdata::New();
       d1->data1 = 1;
       d1->data2 = 1;
 
-      ArrayItemUserdata d2 = createArrayItemUserdata();
+      ArrayItemUserdata d2 = ArrayItemUserdata::New();
       d2->data1 = 2;
       d2->data2 = 2;
 
-      ArrayItemUserdata d3 = createArrayItemUserdata();
+      ArrayItemUserdata d3 = ArrayItemUserdata::New();
       d3->data1 = 3;
       d3->data2 = 3;
 
@@ -47,15 +47,15 @@ void testArrayUserData() {
       list->add(d2);
       list->add(d3);
 
-      JsonWriter writer = createJsonWriter("./tmp/list_userdata_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_userdata_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_userdata_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_userdata_test1.json"));
       JsonValue value2 = reader->get();
 
-      ArrayList<ArrayItemUserdata> list2 = createArrayList<ArrayItemUserdata>();
+      ArrayList<ArrayItemUserdata> list2 = ArrayList<ArrayItemUserdata>::New();
       value2->reflectTo(list2);
 
       if(list2->size() != 3) {
@@ -82,17 +82,17 @@ void testArrayUserData() {
     }
 
     while(1) {
-      Userdatas data = createUserdatas();
-      ArrayList<ArrayItemUserdata> list = createArrayList<ArrayItemUserdata>();
-      ArrayItemUserdata d1 = createArrayItemUserdata();
+      Userdatas data = Userdatas::New();
+      ArrayList<ArrayItemUserdata> list = ArrayList<ArrayItemUserdata>::New();
+      ArrayItemUserdata d1 = ArrayItemUserdata::New();
       d1->data1 = 1;
       d1->data2 = 1;
 
-      ArrayItemUserdata d2 = createArrayItemUserdata();
+      ArrayItemUserdata d2 = ArrayItemUserdata::New();
       d2->data1 = 2;
       d2->data2 = 2;
 
-      ArrayItemUserdata d3 = createArrayItemUserdata();
+      ArrayItemUserdata d3 = ArrayItemUserdata::New();
       d3->data1 = 3;
       d3->data2 = 3;
 
@@ -101,15 +101,15 @@ void testArrayUserData() {
       list->add(d3);
       data->item = list;
 
-      JsonWriter writer = createJsonWriter("./tmp/list_userdata_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_userdata_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_userdata_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_userdata_test2.json"));
       JsonValue value2 = reader->get();
 
-      Userdatas data2 = createUserdatas();
+      Userdatas data2 = Userdatas::New();
       value2->reflectTo(data2);
 
       ArrayList<ArrayItemUserdata> list2 = data2->item;

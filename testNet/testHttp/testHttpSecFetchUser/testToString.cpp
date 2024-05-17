@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    HttpHeaderSecFetchUser save = HttpHeaderSecFetchUser::New();
     save->load("navigate");
     if(!save->toString()->sameAs("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case1]");
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    HttpHeaderSecFetchUser save = HttpHeaderSecFetchUser::New();
     save->load("nested-navigate");
     if(!save->toString()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case2]");
@@ -32,7 +32,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
+    HttpHeaderSecFetchUser save = HttpHeaderSecFetchUser::New();
     save->set("nested-navigate");
     if(!save->toString()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test toString case3]");

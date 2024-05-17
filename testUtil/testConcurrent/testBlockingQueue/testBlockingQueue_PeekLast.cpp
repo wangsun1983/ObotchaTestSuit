@@ -13,10 +13,10 @@ using namespace obotcha;
 void testBlockingQueuePeekLast() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         String v = list->peekLast();
         if(v == nullptr || !v->sameAs("c")) {
@@ -32,7 +32,7 @@ void testBlockingQueuePeekLast() {
     }
 
     while(1) {
-      BlockingQueue<String> list = createBlockingQueue<String>(3);
+      BlockingQueue<String> list = BlockingQueue<String>::New(3);
 
       String v = list->peekLast();
       if(v != nullptr) {

@@ -90,7 +90,7 @@ int testThreadExecutorPoolFutureDelayCancel() {
 
     while(1) {
         ScheduledExecutorService pool = st(Executors)::newScheduledThreadPool();
-        TestScheduleCancelDelayRun1 run1 = createTestScheduleCancelDelayRun1();
+        TestScheduleCancelDelayRun1 run1 = TestScheduleCancelDelayRun1::New();
         Future f = pool->schedule(run1,100);
         sleep(1);
         f->cancel();
@@ -106,9 +106,9 @@ int testThreadExecutorPoolFutureDelayCancel() {
 
     while(1) {
         ScheduledExecutorService pool = st(Executors)::newScheduledThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<50;i++) {
-            Future f = pool->schedule(createTestScheduleCancelDelayRun1(),100);
+            Future f = pool->schedule(TestScheduleCancelDelayRun1::New(),100);
             futurelist->add(f);
         }
 
@@ -133,9 +133,9 @@ int testThreadExecutorPoolFutureDelayCancel() {
 
     while(1) {
         ScheduledExecutorService pool = st(Executors)::newScheduledThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<50;i++) {
-            Future f = pool->schedule(createTestScheduleCancelDelayRun1(),100);
+            Future f = pool->schedule(TestScheduleCancelDelayRun1::New(),100);
             futurelist->add(f);
         }
 
@@ -158,9 +158,9 @@ int testThreadExecutorPoolFutureDelayCancel() {
 
     while(1) {
         ScheduledExecutorService pool = st(Executors)::newScheduledThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<55;i++) {
-            Future f = pool->schedule(createTestScheduleCancelDelayRun1(),100);
+            Future f = pool->schedule(TestScheduleCancelDelayRun1::New(),100);
             futurelist->add(f);
         }
 
@@ -176,8 +176,8 @@ int testThreadExecutorPoolFutureDelayCancel() {
         long start = st(System)::CurrentTimeMillis();
         //for(int i = 0;i<50;i++) {
         printf("submit testcancel run1 \n");
-        Future f1 = pool->schedule(createTestScheduleCancelDelayRun1(),100);
-        Future f2 = pool->schedule(createTestScheduleCancelDelayRun1(),100);
+        Future f1 = pool->schedule(TestScheduleCancelDelayRun1::New(),100);
+        Future f2 = pool->schedule(TestScheduleCancelDelayRun1::New(),100);
         long end = st(System)::CurrentTimeMillis();
         if((end - start) > 10) {
             printf("---[TestFuture ScheduledThreadPool Delay Test {cancel()} case5] [Fail],%d --- \n",end-start);
@@ -191,10 +191,10 @@ int testThreadExecutorPoolFutureDelayCancel() {
 
     while(1) {
         ScheduledExecutorService pool = st(Executors)::newScheduledThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
-        ArrayList<TestScheduleCancelDelayRun2> runlist = createArrayList<TestScheduleCancelDelayRun2>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
+        ArrayList<TestScheduleCancelDelayRun2> runlist = ArrayList<TestScheduleCancelDelayRun2>::New();
         for(int i = 0;i<55;i++) {
-            TestScheduleCancelDelayRun2 run2 = createTestScheduleCancelDelayRun2();
+            TestScheduleCancelDelayRun2 run2 = TestScheduleCancelDelayRun2::New();
             run2->setCount(i);
             runlist->add(run2);
             Future f = pool->schedule(run2,100);

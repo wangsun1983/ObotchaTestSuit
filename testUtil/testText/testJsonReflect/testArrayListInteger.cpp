@@ -30,22 +30,22 @@ public:
 
 void testArrayListInteger() {
     while(1) {
-      ArrayList<Integer> list = createArrayList<Integer>();
-      list->add(createInteger(1));
-      list->add(createInteger(2));
-      list->add(createInteger(3));
-      list->add(createInteger(4));
-      list->add(createInteger(5));
+      ArrayList<Integer> list = ArrayList<Integer>::New();
+      list->add(Integer::New(1));
+      list->add(Integer::New(2));
+      list->add(Integer::New(3));
+      list->add(Integer::New(4));
+      list->add(Integer::New(5));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Integer_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Integer_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Integer_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Integer_test1.json"));
       JsonValue value2 = reader->get();
 
-      ArrayList<Integer> list2 = createArrayList<Integer>();
+      ArrayList<Integer> list2 = ArrayList<Integer>::New();
       value2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -65,31 +65,31 @@ void testArrayListInteger() {
     }
 
     while(1) {
-      IntegerList2 list = createIntegerList2();
-      list->list1 = createArrayList<Integer>();
-      list->list2 = createArrayList<Integer>();
+      IntegerList2 list = IntegerList2::New();
+      list->list1 = ArrayList<Integer>::New();
+      list->list2 = ArrayList<Integer>::New();
 
-      list->list1->add(createInteger(1));
-      list->list1->add(createInteger(2));
-      list->list1->add(createInteger(3));
-      list->list1->add(createInteger(4));
-      list->list1->add(createInteger(5));
+      list->list1->add(Integer::New(1));
+      list->list1->add(Integer::New(2));
+      list->list1->add(Integer::New(3));
+      list->list1->add(Integer::New(4));
+      list->list1->add(Integer::New(5));
 
-      list->list2->add(createInteger(6));
-      list->list2->add(createInteger(7));
-      list->list2->add(createInteger(8));
-      list->list2->add(createInteger(9));
-      list->list2->add(createInteger(10));
+      list->list2->add(Integer::New(6));
+      list->list2->add(Integer::New(7));
+      list->list2->add(Integer::New(8));
+      list->list2->add(Integer::New(9));
+      list->list2->add(Integer::New(10));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Integer_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Integer_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Integer_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Integer_test2.json"));
       JsonValue value2 = reader->get();
 
-      IntegerList2 list2 = createIntegerList2();
+      IntegerList2 list2 = IntegerList2::New();
       value2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

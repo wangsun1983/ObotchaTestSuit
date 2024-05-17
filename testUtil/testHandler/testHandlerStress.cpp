@@ -36,26 +36,26 @@ private:
 
 void testHandlerStress() {
   
-  HandlerThread handlerThread = createHandlerThread();
+  HandlerThread handlerThread = HandlerThread::New();
   handlerThread->start();
   
-  StressHandler h = createStressHandler(handlerThread->getLooper());
+  StressHandler h = StressHandler::New(handlerThread->getLooper());
   
-  Thread t1 = createThread([&h] {
+  Thread t1 = Thread::New([&h] {
      for(int i = 0;i < 1024*16;i++) {
 		 auto time = st(System)::CurrentTimeMillis();
-		 auto msg = createMessage(1);
-		 msg->data = createLong(time);
+		 auto msg = Message::New(1);
+		 msg->data = Long::New(time);
 		 h->sendMessage(msg);
 		 usleep(1000);
 	 }
   });
   
-  Thread t2 = createThread([&h] {
+  Thread t2 = Thread::New([&h] {
      for(int i = 0;i < 1024*16;i++) {
   		 auto time = st(System)::CurrentTimeMillis();
-  		 auto msg = createMessage(1);
-  		 msg->data = createLong(time);
+  		 auto msg = Message::New(1);
+  		 msg->data = Long::New(time);
   		 h->sendMessage(msg);
   		 usleep(1000);
   	 }

@@ -22,14 +22,14 @@ public:
     }
 };
 
-BlockingQueue<Socket> socketQueue = createBlockingQueue<Socket>();
-MyListener listener = createMyListener();
-CountDownLatch latch = createCountDownLatch(2);
+BlockingQueue<Socket> socketQueue = BlockingQueue<Socket>::New();
+MyListener listener = MyListener::New();
+CountDownLatch latch = CountDownLatch::New(2);
 
 void testUnbind() {
     while(1) {
-        SocketMonitor monitor = createSocketMonitor();
-        Thread t1 = createThread([&monitor]{
+        SocketMonitor monitor = SocketMonitor::New();
+        Thread t1 = Thread::New([&monitor]{
             while(1) {
                 auto socket = socketQueue->takeLast();
                 if(socket == nullptr) {
@@ -43,10 +43,10 @@ void testUnbind() {
         });
         t1->start();
         
-        Thread t2 = createThread([&monitor]{
+        Thread t2 = Thread::New([&monitor]{
             for(int i = 0;i <1024*128;i++) {
-                auto addr = createInet4Address(i%4096 + 4096);
-                auto socket = createSocketBuilder()
+                auto addr = Inet4Address::New(i%4096 + 4096);
+                auto socket = SocketBuilder::New()
                             ->setAddress(Cast<InetAddress>(addr))
                             ->newSocket();
                             

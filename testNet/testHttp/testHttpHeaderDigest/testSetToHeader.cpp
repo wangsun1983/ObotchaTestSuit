@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Digest"),
-                createString(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE="));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Digest"),
+                String::New(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE="));
     
     auto digest = header->getDigest();
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();
@@ -35,9 +35,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Digest"),
-                createString(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637 "));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Digest"),
+                String::New(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637 "));
     
     auto digest = header->getDigest();
     ArrayList<HttpHeaderDigestItem> list = digest->getDigests();

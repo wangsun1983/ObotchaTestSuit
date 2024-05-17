@@ -16,14 +16,14 @@ void testHttpSessionExipre() {
 
     while(1) {
         HttpSession ss = st(HttpSessionManager)::getInstance()->createSession(2);
-        ss->setAttribute("a",createString("value_a"));
-        String v = ss->getAttribute<String>(createString("a"));
+        ss->setAttribute("a",String::New("value_a"));
+        String v = ss->getAttribute<String>(String::New("a"));
         if(v == nullptr || !v->sameAs("value_a")) {
             TEST_FAIL("[testHttpSessionExpire case1]");
         }
         
         sleep(3);
-        v = ss->getAttribute<String>(createString("a"));
+        v = ss->getAttribute<String>(String::New("a"));
         if(v != nullptr) {
             TEST_FAIL("[testHttpSessionExpire case2]");
         }
@@ -32,22 +32,22 @@ void testHttpSessionExipre() {
     
     while(1) {
         HttpSession ss = st(HttpSessionManager)::getInstance()->createSession(2);
-        ss->setAttribute("a",createString("value_a"));
+        ss->setAttribute("a",String::New("value_a"));
         sleep(1);
-        String v = ss->getAttribute<String>(createString("a"));
+        String v = ss->getAttribute<String>(String::New("a"));
         if(v == nullptr || !v->sameAs("value_a")) {
             TEST_FAIL("[testHttpSessionExpire case3]");
         }
         
         sleep(1);
-        v = ss->getAttribute<String>(createString("a"));
-        if(v == nullptr || !createString("value_a")->equals(v)) {
+        v = ss->getAttribute<String>(String::New("a"));
+        if(v == nullptr || !String::New("value_a")->equals(v)) {
             TEST_FAIL("[testHttpSessionExpire case4]");
         }
         
         usleep(1000*2100);
-        v = ss->getAttribute<String>(createString("a"));
-        if(v != nullptr || createString("value_a")->equals(v)) {
+        v = ss->getAttribute<String>(String::New("a"));
+        if(v != nullptr || String::New("value_a")->equals(v)) {
             TEST_FAIL("[testHttpSessionExpire case5]");
         }
         break;

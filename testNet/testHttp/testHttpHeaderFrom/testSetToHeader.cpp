@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("From"),createString(" webmaster@example.org"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("From"),String::New(" webmaster@example.org"));
     auto digest = header->getFrom();
     if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test setToHeader case1]");

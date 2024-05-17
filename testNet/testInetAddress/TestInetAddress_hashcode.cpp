@@ -12,14 +12,14 @@
 using namespace obotcha;
 
 void testHashCode() {
-    InetAddress addr1 = createInet4Address("192.168.1.1",12);
-    InetAddress addr2 = createInet4Address("192.168.1.1",13);
+    InetAddress addr1 = Inet4Address::New("192.168.1.1",12);
+    InetAddress addr2 = Inet4Address::New("192.168.1.1",13);
     if(addr1->hashcode() == addr2->hashcode()) {
         TEST_OK("InetAddress hashcode case1");
     }
     
-    InetAddress addr3 = createInet4Address("192.168.1.12",12);
-    InetAddress addr4 = createInet4Address("192.168.1.12",12);
+    InetAddress addr3 = Inet4Address::New("192.168.1.12",12);
+    InetAddress addr4 = Inet4Address::New("192.168.1.12",12);
     if(addr4->hashcode() != addr3->hashcode()) {
         TEST_OK("InetAddress hashcode case2");
     }

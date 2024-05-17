@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
+    HttpHeaderUpgrade upgrade = HttpHeaderUpgrade::New();
     upgrade->load(" websocket ");
     if(!upgrade->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test toString case1]");
@@ -23,10 +23,10 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
+    HttpHeaderUpgrade upgrade = HttpHeaderUpgrade::New();
     upgrade->load(" websocket ");
     
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setUpgrade(upgrade);
     auto upgrade2 = header->getUpgrade();
     if(!upgrade2->toString()->sameAs("websocket")) {
@@ -36,10 +36,10 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
+    HttpHeaderUpgrade upgrade = HttpHeaderUpgrade::New();
     upgrade->set(" websocket ");
     
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setUpgrade(upgrade);
     auto upgrade2 = header->getUpgrade();
     if(!upgrade2->toString()->sameAs("websocket")) {

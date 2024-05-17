@@ -16,7 +16,7 @@ void testExceptoin() {
   //construct1
   while(1) {
     bool isException = false;
-    List<int> values = createList<int>(3);
+    List<int> values = List<int>::New(3);
     values[0] = 1;
     values[1] = 2;
     values[2] = 3;

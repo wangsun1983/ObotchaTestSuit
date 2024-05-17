@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Sec-WebSocket-Protocol"),
-                createString(" chat, superchat"));
+    auto header = HttpHeader::New();
+    header->set(String::New("Sec-WebSocket-Protocol"),
+                String::New(" chat, superchat"));
     auto c = header->getWebSocketProtocol();
     auto list = c->get();
     if(!list->get(0)->sameAs("chat")) {

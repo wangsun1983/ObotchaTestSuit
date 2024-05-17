@@ -8,10 +8,10 @@ using namespace obotcha;
 
 void testStackPop() {
   while(1) {
-    Stack<String> ss = createStack<String>();
-    ss->push(createString("a"));
-    ss->push(createString("b"));
-    ss->push(createString("c"));
+    Stack<String> ss = Stack<String>::New();
+    ss->push(String::New("a"));
+    ss->push(String::New("b"));
+    ss->push(String::New("c"));
     
     auto v_c = ss->pop();
     auto v_b = ss->pop();
@@ -28,14 +28,14 @@ void testStackPop() {
   }
   
   while(1) {
-    Stack<String> ss = createStack<String>();
+    Stack<String> ss = Stack<String>::New();
     for(int i = 0;i < 32*1024;i++) {
-        ss->push(createString(i));
+        ss->push(String::New(i));
     }
     
     for(int j = 32*1024-1;j >= 0;j--) {
         auto v = ss->pop();
-        if(!v->equals(createString(j))) {
+        if(!v->equals(String::New(j))) {
             TEST_FAIL("testStack pop case3,v is %s,j is %d",v->toChars(),j);
             break;
         }

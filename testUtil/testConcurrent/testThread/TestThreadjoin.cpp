@@ -104,11 +104,11 @@ private:
 
 void testThreadJoin() {
   while(1) {
-    JoinTestThread t1 = createJoinTestThread();
+    JoinTestThread t1 = JoinTestThread::New();
     t1->start();
-    JoinTestThread2 t2 = createJoinTestThread2(t1);
+    JoinTestThread2 t2 = JoinTestThread2::New(t1);
     t2->start();
-    JoinTestThread3 t3 = createJoinTestThread3(t1);
+    JoinTestThread3 t3 = JoinTestThread3::New(t1);
     t3->start();
 
     sleep(15);
@@ -123,7 +123,7 @@ void testThreadJoin() {
   }
 
   while(1) {
-    JoinTestThread4 t4 = createJoinTestThread4();
+    JoinTestThread4 t4 = JoinTestThread4::New();
     t4->start();
     sleep(1);
     if(!t4->isWake()) {
@@ -143,7 +143,7 @@ void testThreadJoin() {
   }
 
   while(1) {
-    JoinTestThread4 t4 = createJoinTestThread4();
+    JoinTestThread4 t4 = JoinTestThread4::New();
     t4->start();
     sleep(1);
     if(!t4->isWake()) {
@@ -163,7 +163,7 @@ void testThreadJoin() {
   }
 
   while(1) {
-    JoinTestThread5 t5 = createJoinTestThread5();
+    JoinTestThread5 t5 = JoinTestThread5::New();
     t5->start();
     sleep(1);
 

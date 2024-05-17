@@ -12,8 +12,8 @@ using namespace obotcha;
 void basetest() {
 
   //Test Construct
-  Double t0 = createDouble(100.01);
-  Double t0_1 = createDouble(t0);
+  Double t0 = Double::New(100.01);
+  Double t0_1 = Double::New(t0);
   if(t0 == t0_1){
     TEST_OK("Double construct test1");
   } else {
@@ -21,8 +21,8 @@ void basetest() {
   }
 
   //Test bool equals(Double p);
-  Double t1 = createDouble(1.2);
-  Double t2 = createDouble(1.2);
+  Double t1 = Double::New(1.2);
+  Double t2 = Double::New(1.2);
 
   if(t1->equals(t2)) {
     TEST_OK("Double equal test1");
@@ -37,7 +37,7 @@ void basetest() {
   }
 
   //Test bool equals(int p);
-  Double t3 = createDouble(1.1);
+  Double t3 = Double::New(1.1);
   if(t3->sameAs(1.1)) {
     TEST_OK("Double equal test2");
   } else {

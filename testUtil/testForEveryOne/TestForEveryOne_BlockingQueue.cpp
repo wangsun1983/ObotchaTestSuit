@@ -22,7 +22,7 @@ using namespace obotcha;
 
 void testBlockingQueue() {
     while(1) {
-      BlockingQueue<int> list = createBlockingQueue<int>();
+      BlockingQueue<int> list = BlockingQueue<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -42,13 +42,13 @@ void testBlockingQueue() {
     }
 
     while(1) {
-      BlockingQueue<String> list = createBlockingQueue<String>();
-      list->putFirst(createString("a"));
-      list->putFirst(createString("b"));
-      list->putFirst(createString("c"));
-      list->putFirst(createString("d"));
-      list->putFirst(createString("e"));
-      list->putFirst(createString("f"));
+      BlockingQueue<String> list = BlockingQueue<String>::New();
+      list->putFirst(String::New("a"));
+      list->putFirst(String::New("b"));
+      list->putFirst(String::New("c"));
+      list->putFirst(String::New("d"));
+      list->putFirst(String::New("e"));
+      list->putFirst(String::New("f"));
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -63,7 +63,7 @@ void testBlockingQueue() {
     }
 
     while(1) {
-      BlockingQueue<String> list = createBlockingQueue<String>();
+      BlockingQueue<String> list = BlockingQueue<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;
@@ -77,20 +77,20 @@ void testBlockingQueue() {
 
 
     while(1) {
-      BlockingQueue<String> list = createBlockingQueue<String>();
-      list->put(createString("a"));
-      list->put(createString("b"));
-      Thread t1 = createThread([&]{
+      BlockingQueue<String> list = BlockingQueue<String>::New();
+      list->put(String::New("a"));
+      list->put(String::New("b"));
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
-        list->put(createString("c"));
+        list->put(String::New("c"));
         auto result = watcher->stop();
         if(result > 1005 || result < 995) {
           TEST_FAIL("ForEveryOne BlockingQueue case4,result is %ld",result);

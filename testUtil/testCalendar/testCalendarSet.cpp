@@ -7,7 +7,6 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "TextLineReader.hpp"
 #include "ForEveryOne.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
@@ -26,7 +25,7 @@ extern int convertDayOfWeekFromJava(int);
 void testCalendarSetYear() {
     int size = yearList->size();
     TimeData d1 = yearList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     
     for(int i = 1;i < size;i = i+3) {
 		d1 = yearList->get(i);
@@ -61,7 +60,7 @@ void testCalendarSetYear() {
 void testCalendarSetMonth() {
     int size = monthList->size();
     TimeData d1 = monthList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i = i+3) {
 		d1 = monthList->get(i);
 		c1->set(st(Calendar)::Field::Year,d1->year);
@@ -96,7 +95,7 @@ void testCalendarSetMonth() {
 
 void testCalendarSetDayOfWeek() {
 	auto now = st(System)::CurrentTimeMillis();
-	auto c = createCalendar(now);
+	auto c = Calendar::New(now);
     auto year = c->get(st(Calendar)::Field::Year);
 	auto month = c->get(st(Calendar)::Field::Month);
 	auto dayOfWeek = c->get(st(Calendar)::Field::DayOfWeek);
@@ -108,7 +107,7 @@ void testCalendarSetDayOfWeek() {
 		auto value = i%7;
 		c->set(st(Calendar)::Field::DayOfWeek,value);
 		auto expectTime = baseTimes + ((long)value + 1)*24*60*60*1000;
-		auto expectDate = createCalendar(expectTime);
+		auto expectDate = Calendar::New(expectTime);
 		if(c->get(st(Calendar)::Field::Year) != expectDate->get(st(Calendar)::Field::Year) ||
 		   c->get(st(Calendar)::Field::Month) != expectDate->get(st(Calendar)::Field::Month) ||
 		   c->get(st(Calendar)::Field::DayOfWeek) != expectDate->get(st(Calendar)::Field::DayOfWeek) ||
@@ -123,7 +122,7 @@ void testCalendarSetDayOfWeek() {
 
 void testCalendarSetDayOfMonth() {
 	auto now = st(System)::CurrentTimeMillis();
-	auto c = createCalendar(now);
+	auto c = Calendar::New(now);
 	auto year = c->get(st(Calendar)::Field::Year);
 	auto month = c->get(st(Calendar)::Field::Month);
 	auto dayOfWeek = c->get(st(Calendar)::Field::DayOfWeek);
@@ -137,7 +136,7 @@ void testCalendarSetDayOfMonth() {
 		auto value = i%(maxdays - 1) + 1;
 		c->set(st(Calendar)::Field::DayOfMonth,value);
 		auto expectTime = baseTimes + ((long)value)*24*60*60*1000;
-		auto expectDate = createCalendar(expectTime);
+		auto expectDate = Calendar::New(expectTime);
 		if(c->get(st(Calendar)::Field::Year) != expectDate->get(st(Calendar)::Field::Year) ||
 		   c->get(st(Calendar)::Field::Month) != expectDate->get(st(Calendar)::Field::Month) ||
 		   c->get(st(Calendar)::Field::DayOfWeek) != expectDate->get(st(Calendar)::Field::DayOfWeek) ||
@@ -152,7 +151,7 @@ void testCalendarSetDayOfMonth() {
 
 void testCalendarSetDayOfYear() {
 	auto now = st(System)::CurrentTimeMillis();
-	auto c = createCalendar(now);
+	auto c = Calendar::New(now);
 	auto year = c->get(st(Calendar)::Field::Year);
 	auto month = c->get(st(Calendar)::Field::Month);
 	auto dayOfWeek = c->get(st(Calendar)::Field::DayOfWeek);
@@ -167,7 +166,7 @@ void testCalendarSetDayOfYear() {
 		auto value = i%maxdays;
 		c->set(st(Calendar)::Field::DayOfYear,value);
 		auto expectTime = baseTimes + ((long)value + 1)*24*60*60*1000;
-		auto expectDate = createCalendar(expectTime);
+		auto expectDate = Calendar::New(expectTime);
 		if(c->get(st(Calendar)::Field::Year) != expectDate->get(st(Calendar)::Field::Year) ||
 		   c->get(st(Calendar)::Field::Month) != expectDate->get(st(Calendar)::Field::Month) ||
 		   c->get(st(Calendar)::Field::DayOfWeek) != expectDate->get(st(Calendar)::Field::DayOfWeek) ||
@@ -188,7 +187,7 @@ void testCalendarSetDayOfYear() {
 }
 
 void testCalendarSetYearSpecial() {
-	auto c = createCalendar(2000,st(Calendar)::Month::February,29,1,1,0,0);
+	auto c = Calendar::New(2000,st(Calendar)::Month::February,29,1,1,0,0);
 	c->set(st(Calendar)::Field::Year,2023);
 	// printf("current year is %d \n",c->get(st(Calendar)::Field::Year));
 	// printf("current month is %d \n",c->get(st(Calendar)::Field::Month));
@@ -207,7 +206,7 @@ void testCalendarSetYearSpecial() {
 }
 
 void testCalendarSetMonthSpecial() {
-	auto c = createCalendar(2023,st(Calendar)::Month::February,28,1,1,0,0);
+	auto c = Calendar::New(2023,st(Calendar)::Month::February,28,1,1,0,0);
 	c->set(st(Calendar)::Field::Month,st(Calendar)::Month::April);
 	// printf("current year is %d \n",c->get(st(Calendar)::Field::Year));
 	// printf("current month is %d \n",c->get(st(Calendar)::Field::Month));
@@ -226,7 +225,7 @@ void testCalendarSetMonthSpecial() {
 }
 
 void testCalendarSetMonthSpecial2() {
-	auto c = createCalendar(2023,st(Calendar)::Month::April,30,1,1,0,0);
+	auto c = Calendar::New(2023,st(Calendar)::Month::April,30,1,1,0,0);
 	c->set(st(Calendar)::Field::Month,st(Calendar)::Month::February);
 	// printf("current year is %d \n",c->get(st(Calendar)::Field::Year));
 	// printf("current month is %d \n",c->get(st(Calendar)::Field::Month));

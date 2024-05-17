@@ -18,11 +18,11 @@ void testChunkTailingOneByteParse() {
                  "Content-Type: text/plain\r\n"
                  "\r\n";
 
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
-    ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
+    ArrayList<HttpPacket> packets = ArrayList<HttpPacket>::New();
     int i = 0;
     for(;i<strlen(content);i++) {
-      ByteArray data = createByteArray(1);
+      ByteArray data = ByteArray::New(1);
       data[0] = (byte)content[i];
 
       parser->pushData(data);

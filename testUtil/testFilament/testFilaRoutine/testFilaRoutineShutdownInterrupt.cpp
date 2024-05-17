@@ -15,10 +15,10 @@ using namespace obotcha;
 
 void testFilaRoutineShutdownInSleep() {
 	//case1	
-	TimeWatcher w = createTimeWatcher();	
+	TimeWatcher w = TimeWatcher::New();	
 #if 0	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		int count = 0;
 		croutine->execute([&] {
@@ -48,7 +48,7 @@ void testFilaRoutineShutdownInSleep() {
 		});
 		
 		usleep(1000*100);
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			croutine->shutdown();
 		});
 		t1->start();
@@ -62,11 +62,11 @@ void testFilaRoutineShutdownInSleep() {
 #endif	
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		int count = 0;
-		FilaMutex mutex = createFilaMutex();
-		FilaCondition condition = createFilaCondition();
+		FilaMutex mutex = FilaMutex::New();
+		FilaCondition condition = FilaCondition::New();
 		croutine->execute([&] {
 			w->start();
 			try {
@@ -96,7 +96,7 @@ void testFilaRoutineShutdownInSleep() {
 		});
 		
 		usleep(1000*100);
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			croutine->shutdown();
 		});
 		t1->start();

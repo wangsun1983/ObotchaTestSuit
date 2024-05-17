@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void setToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    //HttpHeaderExpect expect = createHttpHeaderExpect();
-    header->set(createString("Expect"),createString("100-continue"));
+    HttpHeader header = HttpHeader::New();
+    //HttpHeaderExpect expect = HttpHeaderExpect::New();
+    header->set(String::New("Expect"),String::New("100-continue"));
     auto expect = header->getExpect();
     auto str = expect->get();
     if(!str->sameAs("100-continue")) {

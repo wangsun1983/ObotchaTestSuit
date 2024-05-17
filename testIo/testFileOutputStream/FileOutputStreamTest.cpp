@@ -12,9 +12,9 @@ using namespace obotcha;
 void fileoutput_base_test() {
     //bool _FileOutputStream::write(char c)
     while(1) {
-        File file = createFile("./tmp/base_test_1.txt");
+        File file = File::New("./tmp/base_test_1.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
@@ -25,7 +25,7 @@ void fileoutput_base_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 1 ||content->at(0) != 'a') {
@@ -41,11 +41,11 @@ void fileoutput_base_test() {
 
     //bool _FileOutputStream::write(ByteArray buff)
     while(1) {
-        File file = createFile("./tmp/base_test_2.txt");
+        File file = File::New("./tmp/base_test_2.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
-        ByteArray b = createString("hello")->toByteArray();
+        ByteArray b = String::New("hello")->toByteArray();
         stream->write(b);
         stream->flush();
         stream->close();
@@ -55,7 +55,7 @@ void fileoutput_base_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 5) {
@@ -77,12 +77,12 @@ void fileoutput_base_test() {
 
     //bool _FileOutputStream::write(ByteArray buff,long size)
     while(1) {
-        File file = createFile("./tmp/base_test_3.txt");
+        File file = File::New("./tmp/base_test_3.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
 
-        ByteArray b = createString("helloworld")->toByteArray();
+        ByteArray b = String::New("helloworld")->toByteArray();
         stream->write(b,5);
         stream->flush();
         stream->close();
@@ -92,7 +92,7 @@ void fileoutput_base_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 5) {
@@ -114,11 +114,11 @@ void fileoutput_base_test() {
 
     //bool _FileOutputStream::writeString(String s)
     while(1) {
-        File file = createFile("./tmp/base_test_4.txt");
+        File file = File::New("./tmp/base_test_4.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
-        stream->writeString(createString("nihao,abc"));
+        stream->writeString(String::New("nihao,abc"));
         stream->flush();
         stream->close();
 
@@ -127,7 +127,7 @@ void fileoutput_base_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 9) {

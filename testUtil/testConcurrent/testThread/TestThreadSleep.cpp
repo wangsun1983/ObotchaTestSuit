@@ -34,7 +34,7 @@ void testThreadSleep() {
 
   while(1) {
     for(int i = 0;i < 1024*32;i++) {
-      Thread t = createThread(createSleepRun1());
+      Thread t = Thread::New(SleepRun1::New());
       t->start();
       usleep(100);
       t->interrupt();

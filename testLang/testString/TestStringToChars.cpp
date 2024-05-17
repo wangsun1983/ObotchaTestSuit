@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringToChars() {
 
     while(1) {
-        String str = createString("abcdef");
+        String str = String::New("abcdef");
         const char *p = str->toChars();
         if(strlen(p) != str->size()) {
             TEST_FAIL("String toChars test1");

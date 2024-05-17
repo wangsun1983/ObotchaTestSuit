@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 int testThreadLambda() {
-    ThreadScheduledPoolExecutor t = createExecutorBuilder()->newScheduledThreadPool();
+    ThreadScheduledPoolExecutor t = ExecutorBuilder::New()->newScheduledThreadPool();
     while(1) {
         long time1 = 0;
         long time2 = st(System)::CurrentTimeMillis();

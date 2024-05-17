@@ -14,10 +14,10 @@
 
 using namespace obotcha;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
-FileOutputStream stream = createFileOutputStream("./tmp/file");
+FileOutputStream stream = FileOutputStream::New("./tmp/file");
 long filesize = 0;
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
@@ -31,7 +31,7 @@ public:
         if(filesize == 0) {
           mCond->notify();
         }
-        s->getOutputStream()->write(createString(" ")->toByteArray());
+        s->getOutputStream()->write(String::New(" ")->toByteArray());
       break;
 
       case st(Net)::Event::Disconnect:
@@ -44,17 +44,17 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     
 
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Append);
-        String data = createString("");
+        String data = String::New("");
         for(int i = 0;i < 1024;i++) {
-          data = data->append(createString(st(System)::CurrentTimeMillis()));
+          data = data->append(String::New(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();
@@ -65,22 +65,22 @@ int main() {
 
     stream->open();
     int port = getEnvPort();
-    InetAddress addr = createInet6Address(port);
+    InetAddress addr = Inet6Address::New(port);
 
-    Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
+    Socket client = SocketBuilder::New()->setAddress(addr)->newDatagramSocket();
     client->bind();
 
     stream->open(st(IO)::FileControlFlags::Append);
 
-    SocketMonitor monitor = createSocketMonitor();
-    int bindret = monitor->bind(client,createMyListener());
+    SocketMonitor monitor = SocketMonitor::New();
+    int bindret = monitor->bind(client,MyListener::New());
 
     AutoLock l(mMutex);
     mCond->wait(mMutex);
     usleep(1000*1000);
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
-    String v2 = md5->encodeFile(createFile("./tmp/file"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/testdata"));
+    String v2 = md5->encodeFile(File::New("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket Server case3_simple_send_file test1 ,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());

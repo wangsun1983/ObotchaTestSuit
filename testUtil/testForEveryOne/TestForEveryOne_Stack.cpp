@@ -20,7 +20,7 @@ using namespace obotcha;
 
 void testStack() {
     while(1) {
-      Stack<int> list = createStack<int>();
+      Stack<int> list = Stack<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -40,7 +40,7 @@ void testStack() {
     }
 
     while(1) {
-      Stack<String> list = createStack<String>();
+      Stack<String> list = Stack<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;

@@ -10,11 +10,11 @@
 
 using namespace obotcha;
 
-String message = createString("");
+String message = String::New("");
 bool isFirst = true;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
@@ -23,7 +23,7 @@ public:
     switch(event) {
       case st(Net)::Event::Message: {
         if(isFirst) {
-          int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+          int len = s->getOutputStream()->write(String::New("hello client")->toByteArray());
           isFirst = false;
           mCond->notify();
           return;
@@ -38,19 +38,19 @@ public:
 
 int main() {
   int port = getEnvPort();
-  InetAddress addr = createInet4Address(port);
-  ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
+  InetAddress addr = Inet4Address::New(port);
+  ServerSocket sock = SocketBuilder::New()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor();
-  MyListener l = createMyListener();
+  SocketMonitor monitor = SocketMonitor::New();
+  MyListener l = MyListener::New();
   monitor->bind(sock,l);
   AutoLock ll(mMutex);
   mCond->wait(mMutex);
 
   sleep(1);
-  int count = message->counts(createString("hello client"));
+  int count = message->counts(String::New("hello client"));
     
-  if(message->counts(createString("hello client")) != 50) {
+  if(message->counts(String::New("hello client")) != 50) {
     TEST_FAIL("---TestDataGramSocket Server case1_simple_sync test2 [FAILED]--- count is %d,message is %s \n",count,message->toChars());
   }
   monitor->close();

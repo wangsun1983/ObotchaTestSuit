@@ -12,27 +12,27 @@ using namespace obotcha;
 int messageCount = 0;
 int disconnectCount = 0;
 
-Mutex disconnectMutex = createMutex();
-Condition disconnectCond = createCondition();
+Mutex disconnectMutex = Mutex::New();
+Condition disconnectCond = Condition::New();
 
-String message = createString("");
+String message = String::New("");
 
 int main() {
     int port = getEnvPort();
-    InetAddress addr = createInet6Address(port);
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = Inet6Address::New(port);
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
 
-    String resp = createString("hello server");
+    String resp = String::New("hello server");
     client->getOutputStream()->write(resp->toByteArray());
 
     int count = 0;
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     bool isFirst = false;
 
     while(count < 1024) {
-      ByteArray data = createByteArray(128);
+      ByteArray data = ByteArray::New(128);
       watcher->start();
       int len = client->getInputStream()->read(data);
       long interval = watcher->stop();

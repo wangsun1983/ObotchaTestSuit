@@ -17,22 +17,22 @@ using namespace obotcha;
 void TestStringStartsWith() {
 
     while(1) {
-        String str = createString("abc");
+        String str = String::New("abc");
         if(!str->startsWith("ab")) {
             TEST_FAIL("String startsWith test1");
         }
         
-        str = createString(" abc");
+        str = String::New(" abc");
         if(str->startsWith("ab")) {
             TEST_FAIL("String startsWith test2");
         }
         
-        str = createString("Abc");
+        str = String::New("Abc");
         if(str->startsWith("ab")) {
             TEST_FAIL("String startsWith test3");
         }
         
-        str = createString("A bc");
+        str = String::New("A bc");
         if(str->startsWith("ab")) {
             TEST_FAIL("String startsWith test4");
         }
@@ -40,45 +40,45 @@ void TestStringStartsWith() {
     }
     
     while(1) {
-        String str = createString("abc");
-        if(!str->startsWith(createString("ab"))) {
+        String str = String::New("abc");
+        if(!str->startsWith(String::New("ab"))) {
             TEST_FAIL("String startsWith test5");
         }
         
-        str = createString(" abc");
-        if(str->startsWith(createString("ab"))) {
+        str = String::New(" abc");
+        if(str->startsWith(String::New("ab"))) {
             TEST_FAIL("String startsWith test6");
         }
         
-        str = createString("Abc");
-        if(str->startsWith(createString("ab"))) {
+        str = String::New("Abc");
+        if(str->startsWith(String::New("ab"))) {
             TEST_FAIL("String startsWith test7");
         }
         
-        str = createString("A bc");
-        if(str->startsWith(createString("ab"))) {
+        str = String::New("A bc");
+        if(str->startsWith(String::New("ab"))) {
             TEST_FAIL("String startsWith test8");
         }
         break;
     }
     
     while(1) {
-        String str = createString("abc");
+        String str = String::New("abc");
         if(!str->startsWith(std::string("ab"))) {
             TEST_FAIL("String startsWith test9");
         }
         
-        str = createString(" abc");
+        str = String::New(" abc");
         if(str->startsWith(std::string("ab"))) {
             TEST_FAIL("String startsWith test10");
         }
         
-        str = createString("Abc");
+        str = String::New("Abc");
         if(str->startsWith(std::string("ab"))) {
             TEST_FAIL("String startsWith test11");
         }
         
-        str = createString("A bc");
+        str = String::New("A bc");
         if(str->startsWith(std::string("ab"))) {
             TEST_FAIL("String startsWith test12");
         }

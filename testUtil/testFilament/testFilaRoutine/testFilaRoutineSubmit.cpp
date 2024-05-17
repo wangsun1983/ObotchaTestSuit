@@ -26,7 +26,7 @@ int _MyFilament::count = 0;
 void testFilaRoutineSubmit() {
 	//case1	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		auto f = croutine->submit([&] {
 			st(FilaExecutorResult)::Set(123);
@@ -42,11 +42,11 @@ void testFilaRoutineSubmit() {
 	}
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
-		FilaMutex m = createFilaMutex();
+		FilaMutex m = FilaMutex::New();
 		int count = 0;
-		ArrayList<FilaFuture> list = createArrayList<FilaFuture>();
+		ArrayList<FilaFuture> list = ArrayList<FilaFuture>::New();
 		for(int i = 0; i < 128;i ++) {
 			auto f1 = croutine->submit([&,i] {
 				AutoLock l(m);
@@ -76,10 +76,10 @@ void testFilaRoutineSubmit() {
 	}
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		for(int i = 0 ; i < 128;i++) {
-			croutine->submit(createMyFilament());
+			croutine->submit(MyFilament::New());
 		}
 		usleep(1000*10);
 		croutine->shutdown();

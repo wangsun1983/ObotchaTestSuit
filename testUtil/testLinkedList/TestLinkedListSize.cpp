@@ -11,7 +11,7 @@ void testLinkedListSize() {
 
     //case1 string takeFirst
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");

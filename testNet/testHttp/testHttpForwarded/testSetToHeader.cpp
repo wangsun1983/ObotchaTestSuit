@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Forwarded"),createString("For=\"[2001:db8:cafe::17]:4711\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Forwarded"),String::New("For=\"[2001:db8:cafe::17]:4711\""));
     auto encoding1 = header->getForwarded();
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test setToHeader case1]");
@@ -30,8 +30,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Forwarded"),createString("For=\"[2001:db8:cafe::17]:4711\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Forwarded"),String::New("For=\"[2001:db8:cafe::17]:4711\""));
     auto encoding1 = header->getForwarded();
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test setToHeader case3]");
@@ -46,8 +46,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Forwarded"),createString("for=\"_mdn\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Forwarded"),String::New("for=\"_mdn\""));
     auto encoding1 = header->getForwarded();
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test setToHeader case5]");
@@ -62,8 +62,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Forwarded"),createString("for=192.0.2.60; proto=http; by=203.0.113.43"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Forwarded"),String::New("for=192.0.2.60; proto=http; by=203.0.113.43"));
     auto encoding1 = header->getForwarded();
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test setToHeader case5]");
@@ -88,8 +88,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderForwarded forward = createHttpHeaderForwarded();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderForwarded forward = HttpHeaderForwarded::New();
     forward->load("for=192.0.2.60; proto=http; by=203.0.113.43");
     header->setForwarded(forward);
     auto encoding1 = header->getForwarded();

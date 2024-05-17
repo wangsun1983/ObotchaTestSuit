@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Methods"),createString("POST, GET, OPTIONS"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Methods"),String::New("POST, GET, OPTIONS"));
     
     auto c = header->getAllowMethods();
     c->load("POST, GET, OPTIONS");

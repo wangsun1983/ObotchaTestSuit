@@ -13,9 +13,9 @@ using namespace obotcha;
 void testBlockingLinkedListUnlimited() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>();
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New();
         for(int i = 0;i<1024;i++) {
-          list->put(createString(i));
+          list->put(String::New(i));
         }
 
         if(list->size() != 1024) {
@@ -31,10 +31,10 @@ void testBlockingLinkedListUnlimited() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        Thread t = createThread([&list]{
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
-          list->put(createString("a"));
+          list->put(String::New("a"));
         });
         t->start();
         long time1 = st(System)::CurrentTimeMillis();

@@ -10,14 +10,14 @@
 using namespace obotcha;
 
 int main() {
-    InetAddress addr = createInetLocalAddress("case1_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case1_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
     int ret = client->connect();  
-    String resp = createString("hello server");
+    String resp = String::New("hello server");
     client->getOutputStream()->write(resp->toByteArray());
     
     auto fd = client->getFileDescriptor();
-    SocketImpl impl = createSocketImpl(fd);
+    SocketImpl impl = SocketImpl::New(fd);
     ByteArray data1 = impl->read();
     if(!data1->toString()->sameAs("hello")) {
         TEST_FAIL("TestLocalSocket Client case14_read_disconnect case1");

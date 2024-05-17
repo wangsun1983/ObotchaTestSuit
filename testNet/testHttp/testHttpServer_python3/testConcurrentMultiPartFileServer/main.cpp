@@ -23,7 +23,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(16*32);
+CountDownLatch latch = CountDownLatch::New(16*32);
 long prepareFilesize = 0;
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -69,16 +69,16 @@ public:
                   ForEveryOne(file,files) {
                     File f = file->getFile();
                     //start md5 check
-                    Md md5 = createMd();
-                    String v1 = md5->encodeFile(createFile("data"));
-                    String v2 = md5->encodeFile(createFile(f->getAbsolutePath()->toChars()));
+                    Md md5 = Md::New();
+                    String v1 = md5->encodeFile(File::New("data"));
+                    String v2 = md5->encodeFile(File::New(f->getAbsolutePath()->toChars()));
                     if(v1 != v2) {
                       TEST_FAIL("TestHttpServer MultiPartFileServer test error,path is %s",f->getAbsolutePath()->toChars());
                     }
                   }
               }
 
-              HttpResponse response = createHttpResponse();
+              HttpResponse response = HttpResponse::New();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
               int len = w->write(response);
               latch->countDown();
@@ -98,44 +98,52 @@ public:
 int main() {
   //create testfile
   //prepare file
-  File file = createFile("data");
+  File file = File::New("data");
   long prepareFilesize = file->length();
-
+  
   if(!file->exists()) {
     file->createNewFile();
       for(int i = 0;i<128;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Append);
-      String data = createString("");
+      String data = String::New("");
       for(int j = 0;j < 512;j++) {
-        data = data->append(createString(st(System)::CurrentTimeMillis()));
+        data = data->append(String::New(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();
     }
   }
 
-  MyHandler h = createMyHandler();
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,10*1024);
 
   int port = getEnvPort();
 
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
 
   latch->await();
 
   server->close();
 
   //md5 sum
-  File f = createFile("tmp");
-  Md md5sum = createMd();
+  File f = File::New("tmp");
+  Md md5sum = Md::New();
 
-  String base = md5sum->encodeFile(createFile("data"));
+  String base = md5sum->encodeFile(File::New("data"));
 
   auto files = f->listFiles();
   auto iterator = files->getIterator();

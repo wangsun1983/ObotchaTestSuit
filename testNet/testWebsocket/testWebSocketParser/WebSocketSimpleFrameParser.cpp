@@ -43,8 +43,8 @@ int testSimpleFrameParser() {
   {
       uint8_t msg[] = { 0x81u, 0x85u, 0x37u, 0xfau, 0x21u, 0x3du, 0x7fu, 0x9fu,
                     0x4du, 0x51u, 0x58u };
-      WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-      ByteArray loadData = createByteArray((byte *)msg,sizeof(msg)/sizeof(uint8_t));
+      WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+      ByteArray loadData = ByteArray::New((byte *)msg,sizeof(msg)/sizeof(uint8_t));
       parser->pushParseData(loadData);
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
       WebSocketFrame frame = msgDatas->get(0);
@@ -64,8 +64,8 @@ int testSimpleFrameParser() {
     uint8_t msg[] = { 0x01, 0x03, 0x48, 0x65, 0x6c, /* "Hel" */
                     0x80, 0x02, 0x6c, 0x6f }; /* "lo" */
     printf("start test case 2 \n");
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)msg,sizeof(msg)/sizeof(uint8_t));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)msg,sizeof(msg)/sizeof(uint8_t));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
@@ -100,8 +100,8 @@ int testSimpleFrameParser() {
                   0x89, 0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f,
                   0x80, 0x02, 0x6c, 0x6f }; /* "lo" */
 
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)msg,sizeof(msg)/sizeof(uint8_t));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)msg,sizeof(msg)/sizeof(uint8_t));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
@@ -167,8 +167,8 @@ int testSimpleFrameParser() {
   {
     uint8_t msg[] = { 0x81, 0x00 };
 
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)msg,sizeof(msg)/sizeof(uint8_t));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)msg,sizeof(msg)/sizeof(uint8_t));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
@@ -189,8 +189,8 @@ int testSimpleFrameParser() {
   {
     uint8_t msg[] = { 0x81, 0x7f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
 
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)msg,sizeof(msg)/sizeof(uint8_t));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)msg,sizeof(msg)/sizeof(uint8_t));
 
     parser->pushParseData(loadData);
     try {

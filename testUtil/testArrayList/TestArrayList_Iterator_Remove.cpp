@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testArrayList_Iterator_Remove() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
     auto iterator = list->getIterator();
     if(!iterator->remove()) {
@@ -37,7 +37,7 @@ void testArrayList_Iterator_Remove() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     auto iterator = list->getIterator();
     if(iterator->remove()) {
       TEST_FAIL("[ArrayList Iterator Remove test4]");

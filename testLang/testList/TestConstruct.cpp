@@ -21,16 +21,16 @@ public:
 void testConstruct() {
   //construct1
   while(1) {
-    List<ConstructData> mylist1 = createList<ConstructData>(4);
-    ConstructData data1 = createConstructData();
+    List<ConstructData> mylist1 = List<ConstructData>::New(4);
+    ConstructData data1 = ConstructData::New();
     data1->i = 1;
     data1->j = 1;
 
-    ConstructData data2 = createConstructData();
+    ConstructData data2 = ConstructData::New();
     data2->i = 2;
     data2->j = 2;
 
-    ConstructData data3 = createConstructData();
+    ConstructData data3 = ConstructData::New();
     data3->i = 3;
     data3->j = 3;
 
@@ -38,7 +38,7 @@ void testConstruct() {
     mylist1[1] = data2;
     mylist1[2] = data3;
 
-    List<ConstructData> mylist2 = createList<ConstructData>(mylist1);
+    List<ConstructData> mylist2 = List<ConstructData>::New(mylist1);
     if(mylist2[0]->i != 1 || mylist2[0]->j != 1) {
       TEST_FAIL("List construct test");
       break;

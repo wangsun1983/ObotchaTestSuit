@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderContentLength upgrade = createHttpHeaderContentLength();
+    HttpHeaderContentLength upgrade = HttpHeaderContentLength::New();
     upgrade->load(" 123 ");
     if(!upgrade->toString()->sameAs("123")) {
       TEST_FAIL("[HttpHeaderContentLength test toString case1]");

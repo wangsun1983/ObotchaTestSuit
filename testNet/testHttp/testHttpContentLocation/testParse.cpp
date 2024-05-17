@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderContentLocation location = createHttpHeaderContentLocation();
+    HttpHeaderContentLocation location = HttpHeaderContentLocation::New();
     location->load("/index.html");
     if(location->get() == nullptr || !location->get()->sameAs("/index.html")) {
       TEST_FAIL("[HttpHeaderContentLocation test Parse case1]");

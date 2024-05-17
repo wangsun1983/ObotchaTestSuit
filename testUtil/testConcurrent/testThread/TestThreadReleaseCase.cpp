@@ -17,7 +17,7 @@ static int disposeVal = -1;
 
 using namespace obotcha;
 
-Mutex myReleaseMutex = createMutex();
+Mutex myReleaseMutex = Mutex::New();
 int mReleaseCount = 0;
 
 DECLARE_CLASS(MyReleaseTestThread) IMPLEMENTS(Thread) {
@@ -59,7 +59,7 @@ void testThreadRelease() {
     //TestThread onInterrupt case1
     while(1) {
         for(int i = 0;i < 50;i++) {
-            Thread t = createMyReleaseTestThread();
+            Thread t = MyReleaseTestThread::New();
             t->start();
         }
 
@@ -75,9 +75,9 @@ void testThreadRelease() {
 
     while(1) {
         mReleaseCount = 0;
-        ArrayList<Thread> list = createArrayList<Thread>();
+        ArrayList<Thread> list = ArrayList<Thread>::New();
         for(int i = 0;i < 50;i++) {
-            Thread t = createMyReleaseTestThread();
+            Thread t = MyReleaseTestThread::New();
             t->start();
             list->add(t);
         }
@@ -101,9 +101,9 @@ void testThreadRelease() {
     //interrupt
     while(1) {
         mReleaseCount = 0;
-        ArrayList<Thread> list = createArrayList<Thread>();
+        ArrayList<Thread> list = ArrayList<Thread>::New();
         for(int i = 0;i < 50;i++) {
-            Thread t = createMyReleaseTest2Thread();
+            Thread t = MyReleaseTest2Thread::New();
             t->start();
             list->add(t);
         }

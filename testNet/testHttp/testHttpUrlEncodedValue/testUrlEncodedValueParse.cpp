@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testUrlEncodedValueParse() {
   while(1) {
-    HttpUrlEncodedValue v = createHttpUrlEncodedValue("abc=1&bbb=qq&ccc=ffds");
+    HttpUrlEncodedValue v = HttpUrlEncodedValue::New("abc=1&bbb=qq&ccc=ffds");
     auto map = v->getValues();
     //KeyValuePair<String,String> l0 = list->get(0);
     //if(!l0->getKey()->sameAs("abc")) {

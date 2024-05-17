@@ -17,10 +17,10 @@ void testMapRead() {
     close(fd);
 
     while(1) {
-      MappedFile f = createMappedFile("./tmp/abc.txt",256);
+      MappedFile f = MappedFile::New("./tmp/abc.txt",256);
       auto stream = f->getInputStream();
       stream->open();
-      ByteArray data = createByteArray(1024);
+      ByteArray data = ByteArray::New(1024);
       String str = nullptr;     
       stream->read(data);
 
@@ -36,6 +36,7 @@ void testMapRead() {
 
       stream->read(data);
       str = data->toString();
+      //printf("dump2 str is %s \n",str->toChars());
       if(!str->sameAs(tt)) {
         TEST_FAIL("TestMappedFile read case2,str is %s \n",str->toChars());
         break;

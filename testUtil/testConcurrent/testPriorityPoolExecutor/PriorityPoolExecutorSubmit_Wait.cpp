@@ -16,9 +16,9 @@
 using namespace obotcha;
 
 void testSubmitWait() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
@@ -47,7 +47,7 @@ void testSubmitWait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(1)
               ->newPriorityThreadPool();
@@ -76,7 +76,7 @@ void testSubmitWait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->setMaxSubmitTaskWaitTime(100)
               ->setDefaultThreadNum(1)

@@ -45,10 +45,10 @@ public:
 
 void testReflect() {
 
-    JsonReader reader = createJsonReader()->loadFile(createFile("abc.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("abc.json"));
     JsonValue value = reader->get();
 
-    PersonInfo info = createPersonInfo();
+    PersonInfo info = PersonInfo::New();
     value->reflectTo(info);
 
     TEST_FAIL("info name is %s ",info->name->toChars());

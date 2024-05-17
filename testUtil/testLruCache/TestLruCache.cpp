@@ -24,11 +24,11 @@ int testLruAdd() {
 
     //case 1
     while(1) {
-      LruCache<String,MyData> lru = createLruCache<String,MyData>(3);
+      LruCache<String,MyData> lru = LruCache<String,MyData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyData d = createMyData();
+        MyData d = MyData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -36,9 +36,9 @@ int testLruAdd() {
         return 1;
       }
 
-      MyData m1 = lru->get(createString(14));
-      MyData m2 = lru->get(createString(13));
-      MyData m3 = lru->get(createString(12));
+      MyData m1 = lru->get(String::New(14));
+      MyData m2 = lru->get(String::New(13));
+      MyData m3 = lru->get(String::New(12));
 
       if(m1 == nullptr || m2 == nullptr || m3 == nullptr) {
         TEST_FAIL("[LruCache Test {put()} case2]");
@@ -56,11 +56,11 @@ int testLruAdd() {
 
     //case 2
     while(1) {
-      LruCache<String,MyData> lru = createLruCache<String,MyData>(3);
+      LruCache<String,MyData> lru = LruCache<String,MyData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyData d = createMyData();
+        MyData d = MyData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       MyData m1 = lru->at(0); //14
@@ -71,7 +71,7 @@ int testLruAdd() {
         return 1;
       }
 
-      lru->get(createString(13));
+      lru->get(String::New(13));
       m1 = lru->at(0); //13
       m2 = lru->at(1); //14
       m3 = lru->at(2); //12
@@ -80,7 +80,7 @@ int testLruAdd() {
         return 1;
       }
 
-      lru->get(createString(12));
+      lru->get(String::New(12));
       m1 = lru->at(0); //12
       m2 = lru->at(1); //13
       m3 = lru->at(2); //14
@@ -89,7 +89,7 @@ int testLruAdd() {
         return 1;
       }
 
-      lru->get(createString(14));
+      lru->get(String::New(14));
       m1 = lru->at(0); //14
       m2 = lru->at(1); //12
       m3 = lru->at(2); //13

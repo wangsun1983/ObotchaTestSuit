@@ -19,8 +19,8 @@ using namespace obotcha;
 
 void testZipFileStreamRead() {
   while(1) {
-    ZipFileStream stream = createZipFileStream();
-    ByteArray data = createByteArray(1024);
+    ZipFileStream stream = ZipFileStream::New();
+    ByteArray data = ByteArray::New(1024);
     try {
         stream->read(data);
         TEST_FAIL("ZipFileStreamRead case1");

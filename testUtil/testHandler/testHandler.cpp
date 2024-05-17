@@ -35,7 +35,7 @@ public:
 };
 
 void testHandler() {
-  MyHandler m = createMyHandler();
+  MyHandler m = MyHandler::New();
   for(int i = 0;i<1024*32;i++) {
     m->sendEmptyMessage(EMPTY_MESSAGE);
   }

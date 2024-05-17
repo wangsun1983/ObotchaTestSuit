@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringIndexOf() {
 
     while(1) {
-        String str = createString(" abc  f ");
+        String str = String::New(" abc  f ");
         if(str->indexOf("  ") != 4) {
             TEST_FAIL("String indexOf test1");
             break;
@@ -77,7 +77,7 @@ void TestStringIndexOf() {
     }
     
     while(1) {
-        String str = createString("abCDe fg");
+        String str = String::New("abCDe fg");
         if(str->indexOfIgnoreCase("cde",2) != 2) {
             TEST_FAIL("String indexOf test11");
             break;
@@ -91,7 +91,7 @@ void TestStringIndexOf() {
     }
     
     while(1) {
-        String str = createString("abCDe fg");
+        String str = String::New("abCDe fg");
         if(str->indexOfIgnoreCase("cde") != 2) {
             TEST_FAIL("String indexOf test13");
             break;

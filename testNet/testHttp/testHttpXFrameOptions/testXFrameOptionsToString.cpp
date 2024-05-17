@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testXFrameOptionsToString() {
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("deny");
     if(!options->toString()->sameAs("deny")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case1]");
@@ -23,7 +23,7 @@ void testXFrameOptionsToString() {
   }
 
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("sameorigin");
     if(!options->toString()->sameAs("sameorigin")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case2]");
@@ -33,7 +33,7 @@ void testXFrameOptionsToString() {
   }
 
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("allow-from https://example.com/");
     if(!options->toString()->sameAs("allow-from https://example.com/")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test toString case3]");
@@ -44,9 +44,9 @@ void testXFrameOptionsToString() {
   }
   
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("allow-from https://example.com/");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setXFrameOptions(options);
     
     options = header->getXFrameOptions();

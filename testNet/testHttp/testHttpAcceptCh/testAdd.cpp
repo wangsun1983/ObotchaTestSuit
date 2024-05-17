@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testAdd() {
   while(1) {
-    HttpHeaderAcceptCh acceptCh = createHttpHeaderAcceptCh();
+    HttpHeaderAcceptCh acceptCh = HttpHeaderAcceptCh::New();
     acceptCh->add("DPR");
     acceptCh->add("Viewport-Width");
     acceptCh->add("Width");

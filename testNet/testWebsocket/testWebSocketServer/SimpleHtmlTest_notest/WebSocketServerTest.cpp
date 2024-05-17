@@ -20,27 +20,27 @@ using namespace obotcha;
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
-        mMutex = createMutex();
-        mConditaion = createCondition();
+        mMutex = Mutex::New();
+        mConditaion = Condition::New();
     }
 
     
     int onData(WebSocketFrame message,WebSocketLinker client) {
         printf("message is %s \n",message->getData()->toString()->toChars());
         //mMessage = message->getData();
-        String response = createString("hello from server ");
+        String response = String::New("hello from server ");
         printf("message len is %d \n",response->size());
         ByteArray array = response->toByteArray();
         printf("array size is %d \n",array->size());
         //WebSocketFrameComposer mComposer = createWebSocketFrameComposer(false);
         
-        //int ret = st(NetUtils)::sendTcpPacket(fd,mComposer->generateMessageFrame(st(WebSocketProtocol)::OPCODE_TEXT,createByteArray(response)));
+        //int ret = st(NetUtils)::sendTcpPacket(fd,mComposer->generateMessageFrame(st(WebSocketProtocol)::OPCODE_TEXT,ByteArray::New(response)));
         WebSocketComposer composer = client->getComposer();
 
-        //ArrayList<ByteArray> text = composer->genTextMessage(client,createString("hello world from server"));
+        //ArrayList<ByteArray> text = composer->genTextMessage(client,String::New("hello world from server"));
         //int ret = st(NetUtils)::sendTcpPacket(fd,text->get(0));
         sleep(1);
-        int ret = client->sendTextMessage(createString("hello world from server"));
+        int ret = client->sendTextMessage(String::New("hello world from server"));
         printf("onMessage send result is %d \n",ret);
         mConditaion->notify();
         return 0;
@@ -79,11 +79,11 @@ private:
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
 
     
-    InetAddress address = createInetAddress(1234);
-    WebSocketServer server = createWebSocketServerBuilder()
+    InetAddress address = InetAddress::New(1234);
+    WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->build();

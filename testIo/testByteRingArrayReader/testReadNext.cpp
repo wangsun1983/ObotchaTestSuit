@@ -15,7 +15,7 @@ void testReadNext() {
   //case1
   //data:[1(start/end),2,3,4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -28,7 +28,7 @@ void testReadNext() {
     byte v5;
     int startIndex = ringarray->getStartIndex();
     int endIndex = ringarray->getEndIndex();
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext} case1]");
         return;
@@ -92,7 +92,7 @@ void testReadNext() {
   //case2
   //data:[1(end),2(start),3,4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -104,8 +104,9 @@ void testReadNext() {
     byte v4;
     byte v5;
     ringarray->setEndIndex(1);
+    ringarray->setSize(5);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition2} case1]");
         return;
@@ -176,7 +177,7 @@ void testReadNext() {
   //case3
   //data:[1(end),2,3(start),4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -190,7 +191,7 @@ void testReadNext() {
     ringarray->setEndIndex(0);
     ringarray->setSize(3);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition3} case1]");
         return;
@@ -242,7 +243,7 @@ void testReadNext() {
   //case4
   //data:[1(end),2,3,4(start),5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -256,7 +257,7 @@ void testReadNext() {
     ringarray->setEndIndex(0);
     ringarray->setSize(2);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition4} case1]");
         return;
@@ -299,7 +300,7 @@ void testReadNext() {
   //case5
   //data:[1(end),2,3,4,5(start)]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -314,7 +315,7 @@ void testReadNext() {
     ringarray->setEndIndex(0);
     ringarray->setSize(1);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition5} case1]");
         return;
@@ -348,7 +349,7 @@ void testReadNext() {
   //case5
   //data:[1,2(end/start),3,4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -359,10 +360,10 @@ void testReadNext() {
     byte v3;
     byte v4;
     byte v5;
-    ringarray->setSize(5);
     ringarray->setEndIndex(1);
+    ringarray->setSize(5);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition6} case1]");
         return;
@@ -432,7 +433,7 @@ void testReadNext() {
   //case6
   //data:[1,2(end),3(start),4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -443,10 +444,10 @@ void testReadNext() {
     byte v3;
     byte v4;
     byte v5;
-    ringarray->setSize(4);
     ringarray->setEndIndex(1);
+    ringarray->setSize(4);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition7} case1]");
         return;
@@ -507,7 +508,7 @@ void testReadNext() {
   //case7
   //data:[1,2(end),3,4(start),5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -518,10 +519,10 @@ void testReadNext() {
     byte v3;
     byte v4;
     byte v5;
-    ringarray->setSize(3);
     ringarray->setEndIndex(1);
+    ringarray->setSize(3);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition8} case1]");
         return;
@@ -573,7 +574,7 @@ void testReadNext() {
   //case7
   //data:[1,2(end),3,4,5(start)]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -584,10 +585,10 @@ void testReadNext() {
     byte v3;
     byte v4;
     byte v5;
-    ringarray->setSize(2);
     ringarray->setEndIndex(1);
+    ringarray->setSize(2);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition9} case1]");
         return;
@@ -630,7 +631,7 @@ void testReadNext() {
   //case8
   //data:[1(start),2(end),3,4,5]
   while(1) {
-    ByteRingArray ringarray = createByteRingArray(5);
+    ByteRingArray ringarray = ByteRingArray::New(5);
     ringarray->push(1);
     ringarray->push(2);
     ringarray->push(3);
@@ -641,10 +642,10 @@ void testReadNext() {
     byte v3;
     byte v4;
     byte v5;
-    ringarray->setSize(1);
     ringarray->setEndIndex(1);
+    ringarray->setSize(1);
 
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
     if(reader->readNext(v1) != st(IO)::Reader::Result::HasContent) {
         TEST_FAIL("[ByteRingArrayReader Test {testReadNext condition10} case1]");
         return;

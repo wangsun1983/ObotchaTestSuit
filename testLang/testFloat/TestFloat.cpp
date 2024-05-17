@@ -14,7 +14,7 @@ void basetest() {
 
   //_Float(float v);
   while(1) {
-      Float v1 = createFloat(10.12);
+      Float v1 = Float::New(10.12);
       if(v1->toValue() != 10.12f){
           TEST_FAIL("Float construct test1");
           break;
@@ -26,8 +26,8 @@ void basetest() {
 
   //  _Float(Float v);
   while(1) {
-    Float v1 = createFloat(11.12f);
-    Float v2 = createFloat(v1);
+    Float v1 = Float::New(11.12f);
+    Float v2 = Float::New(v1);
     if(v2->toValue() != 11.12f) {
       TEST_FAIL("Float construct test3");
       break;
@@ -39,8 +39,8 @@ void basetest() {
 
   //float toValue();
   while(1) {
-    Float v1 = createFloat(11.123f);
-    Float v2 = createFloat(v1);
+    Float v1 = Float::New(11.123f);
+    Float v2 = Float::New(v1);
     if(v2->toValue() != 11.123f) {
       TEST_FAIL("Float toValue test1");
       break;
@@ -52,8 +52,8 @@ void basetest() {
 
   //bool equals(Float p);
   while(1) {
-    Float v1 = createFloat(1.123f);
-    Float v2 = createFloat(1.123f);
+    Float v1 = Float::New(1.123f);
+    Float v2 = Float::New(1.123f);
     if(!v1->equals(v2)) {
       TEST_FAIL("Float equals test1");
       break;
@@ -65,7 +65,7 @@ void basetest() {
 
   //bool equals(float p);
   while(1) {
-    Float v1 = createFloat(11.22);
+    Float v1 = Float::New(11.22);
     if(!v1->sameAs(11.22)) {
       TEST_FAIL("Float equals test4");
       break;
@@ -77,8 +77,8 @@ void basetest() {
 
   //==
   while(1) {
-    Float v1 = createFloat(12.1);
-    Float v2 = createFloat(12.1);
+    Float v1 = Float::New(12.1);
+    Float v2 = Float::New(12.1);
     if(v1 != v2) {
       TEST_FAIL("Float [==] test1");
       break;

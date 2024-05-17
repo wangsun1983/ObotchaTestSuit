@@ -14,12 +14,12 @@
 using namespace obotcha;
 
 void testConditionWaitWithOwner() {
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     while(1) {
-      Mutex mMutex = createMutex();
-      Condition c = createCondition();
+      Mutex mMutex = Mutex::New();
+      Condition c = Condition::New();
       long result = 0;
-      Thread t = createThread([&mMutex,&c,&result,&watch]{
+      Thread t = Thread::New([&mMutex,&c,&result,&watch]{
         watch->start();
         AutoLock l(mMutex);
         int ret = c->wait(mMutex,100);
@@ -38,8 +38,8 @@ void testConditionWaitWithOwner() {
     }
 
     while(1) {
-      Mutex mMutex = createMutex();
-      Condition c = createCondition();
+      Mutex mMutex = Mutex::New();
+      Condition c = Condition::New();
       AutoLock l(mMutex);
       watch->start();
       int ret = c->wait(mMutex,300);
@@ -57,10 +57,10 @@ void testConditionWaitWithOwner() {
     }
 
     while(1) {
-      Mutex mMutex = createMutex();
-      Condition c = createCondition();
+      Mutex mMutex = Mutex::New();
+      Condition c = Condition::New();
       long result = 0;
-      Thread t = createThread([&c]{
+      Thread t = Thread::New([&c]{
         usleep(100*1000);
         c->notify();
       });

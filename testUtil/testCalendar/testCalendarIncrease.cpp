@@ -24,7 +24,7 @@ int testCalendarIncreaseYear() {
     int size = yearList->size();
     TimeData d1 = yearList->get(0);
 
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
 
     //printf("testCalendarIncreaseYear d1->year is %d \n",d1->year);
     //printf("testCalendarIncreaseYear c1 is %d \n",c1->get(st(Calendar)::Field::Year));
@@ -63,7 +63,7 @@ int testCalendarIncreaseYear() {
 int testCalendarIncreaseDay() {
     int size = dateList->size();
     TimeData d1 = dateList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i++) {
         c1->add(st(Calendar)::Field::DayOfYear,1);
         d1 = dateList->get(i);
@@ -98,7 +98,7 @@ int testCalendarIncreaseDay() {
 int testCalendarIncreaseMonth() {
     int size = monthList->size();
     TimeData d1 = monthList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i++) {
         c1->add(st(Calendar)::Field::Month,1);
         d1 = monthList->get(i);
@@ -135,7 +135,7 @@ int testCalendarIncreaseMonth() {
 int testCalendarIncreaseHour() {
     int size = hourList->size();
     TimeData d1 = hourList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i++) {
         c1->add(st(Calendar)::Field::Hour,1);
         d1 = hourList->get(i);
@@ -171,7 +171,7 @@ int testCalendarIncreaseHour() {
 int testCalendarIncreaseMinute() {
     int size = minuteList->size();
     TimeData d1 = minuteList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i++) {
         c1->add(st(Calendar)::Field::Minute,1);
         d1 = minuteList->get(i);
@@ -207,7 +207,7 @@ int testCalendarIncreaseMinute() {
 int testCalendarIncreaseSecond() {
     int size = secondList->size();
     TimeData d1 = secondList->get(0);
-    Calendar c1 = createCalendar(d1->time);
+    Calendar c1 = Calendar::New(d1->time);
     for(int i = 1;i < size;i++) {
         c1->add(st(Calendar)::Field::Second,1);
         d1 = secondList->get(i);

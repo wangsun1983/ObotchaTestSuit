@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAge c = createHttpHeaderAge();
+    HttpHeaderAge c = HttpHeaderAge::New();
     c->load("600");
     if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAge test toString case1]");
@@ -23,7 +23,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderAge c = createHttpHeaderAge();
+    HttpHeaderAge c = HttpHeaderAge::New();
     c->set(600);
     if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAge test toString case2]");

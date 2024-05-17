@@ -25,9 +25,9 @@ public:
 };
 
 void testThreadPoolExecutor_GetResult_Interrupt() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
 
@@ -57,7 +57,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([] {
@@ -65,10 +65,10 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
     });
 
     Future f1 = pool->submit([]{
-      st(ExecutorResult)::Set(createInterruptTestData(123));
+      st(ExecutorResult)::Set(InterruptTestData::New(123));
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(10*1000);
       pool->shutdown();
     });
@@ -104,7 +104,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
     pool->submit([] {
@@ -115,7 +115,7 @@ void testThreadPoolExecutor_GetResult_Interrupt() {
       st(ExecutorResult)::Set(123);
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(10*1000);
       pool->shutdown();
     });

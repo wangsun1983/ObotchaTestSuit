@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
+    HttpHeaderServerTiming timing = HttpHeaderServerTiming::New();
     timing->load("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     if(!timing->toString()->sameAs("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {
       TEST_FAIL("[HttpHeaderServerTiming test toString case1],str is %s \n",timing->toString()->toChars());
@@ -22,17 +22,17 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
-    timing->add(createString("cache"),
-                createString("23.3"),
-                createString("Cache Read"));
+    HttpHeaderServerTiming timing = HttpHeaderServerTiming::New();
+    timing->add(String::New("cache"),
+                String::New("23.3"),
+                String::New("Cache Read"));
                 
-    timing->add(createString("db"),
-                createString("53"),
+    timing->add(String::New("db"),
+                String::New("53"),
                 nullptr);
                 
-    timing->add(createString("app"),
-                createString("47.2"),
+    timing->add(String::New("app"),
+                String::New("47.2"),
                 nullptr);
                 
     if(!timing->toString()->sameAs("cache;desc=\"Cache Read\";dur=23.3, db;dur=53, app;dur=47.2")) {

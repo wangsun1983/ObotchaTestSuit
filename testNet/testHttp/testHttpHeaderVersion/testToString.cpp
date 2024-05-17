@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderVersion version = createHttpHeaderVersion();
+    HttpHeaderVersion version = HttpHeaderVersion::New();
     version->setMajorVer(3);
     version->setMinorVer(2);
     if(!version->toString()->sameAs("HTTP/3.2")) {

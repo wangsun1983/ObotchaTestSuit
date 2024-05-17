@@ -11,7 +11,7 @@ using namespace obotcha;
 
 void testConcurrentQueue_Foreach() {
     while(1) {
-        ConcurrentQueue<int> list = createConcurrentQueue<int>();
+        ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);

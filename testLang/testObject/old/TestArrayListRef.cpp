@@ -13,7 +13,7 @@ public:
     int value;
 };
 
-ArrayList<MyArrayDataRef> refList = createArrayList<MyArrayDataRef>();
+ArrayList<MyArrayDataRef> refList = ArrayList<MyArrayDataRef>::New();
 
 void dataUpdate(const MyArrayDataRef &data) {
 	printf("data count1 is %d \n",data->getStrongCount());
@@ -42,7 +42,7 @@ int testObjectArrayListRef() {
 #endif
 
  while(1) {
-   ArrayList<int> intList = createArrayList<int>();
+   ArrayList<int> intList = ArrayList<int>::New();
    intList->add(123);
 
    int v = intList->get(0);

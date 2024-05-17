@@ -13,11 +13,11 @@
 using namespace obotcha;
 
 void testCountDownLatch_MultiThread() {
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     while(1) {
-      CountDownLatch l = createCountDownLatch(16);
+      CountDownLatch l = CountDownLatch::New(16);
       for(int i = 0;i<16;i++) {
-        Thread t = createThread([&l]{
+        Thread t = Thread::New([&l]{
           l->countDown();
         });
         t->start();
@@ -33,10 +33,10 @@ void testCountDownLatch_MultiThread() {
     }
 
     while(1) {
-      CountDownLatch l = createCountDownLatch(16);
-      AtomicInteger finishCount = createAtomicInteger(0);
+      CountDownLatch l = CountDownLatch::New(16);
+      AtomicInteger finishCount = AtomicInteger::New(0);
       for(int i = 0;i<15;i++) {
-        Thread t = createThread([&l,&finishCount]{
+        Thread t = Thread::New([&l,&finishCount]{
           l->countDown();
           l->await();
           finishCount->incrementAndGet();

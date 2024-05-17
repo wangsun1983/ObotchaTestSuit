@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Length"),createString(" 123 "));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Content-Length"),String::New(" 123 "));
     if(header->getContentLength()->get() != 123) {
       TEST_FAIL("[testSetToHeader test Parse case1]");
     }
@@ -25,8 +25,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    auto contentLength = createHttpHeaderContentLength();
+    HttpHeader header = HttpHeader::New();
+    auto contentLength = HttpHeaderContentLength::New();
     contentLength->set(123);
     header->setContentLength(contentLength);
     if(header->getContentLength()->get() != 123) {

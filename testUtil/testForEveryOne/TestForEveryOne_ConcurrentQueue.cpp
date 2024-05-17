@@ -22,7 +22,7 @@ using namespace obotcha;
 
 void testConcurrentQueue() {
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -42,13 +42,13 @@ void testConcurrentQueue() {
     }
 
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
-      list->add(createString("d"));
-      list->add(createString("e"));
-      list->add(createString("f"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
+      list->add(String::New("d"));
+      list->add(String::New("e"));
+      list->add(String::New("f"));
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -63,7 +63,7 @@ void testConcurrentQueue() {
     }
 
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;
@@ -76,18 +76,18 @@ void testConcurrentQueue() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         list->add(2);
         auto result = watcher->stop();

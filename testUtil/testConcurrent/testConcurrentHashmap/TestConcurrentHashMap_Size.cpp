@@ -10,16 +10,16 @@ using namespace obotcha;
 
 void testConcurrentHashMap_Size() {
     while(1) {
-      ConcurrentHashMap<String,String> map = createConcurrentHashMap<String,String>();
-      Thread t1 = createThread([&map]{
+      ConcurrentHashMap<String,String> map = ConcurrentHashMap<String,String>::New();
+      Thread t1 = Thread::New([&map]{
         for(int i = 0;i < 32*1024;i++) {
-          map->put(createString(i),createString(i));
+          map->put(String::New(i),String::New(i));
         }
       });
 
-      Thread t2 = createThread([&map]{
+      Thread t2 = Thread::New([&map]{
         for(int i = 32*1024;i < 64*1024;i++) {
-          map->put(createString(i),createString(i));
+          map->put(String::New(i),String::New(i));
         }
       });
 

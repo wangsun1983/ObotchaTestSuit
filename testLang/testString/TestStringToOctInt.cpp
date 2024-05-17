@@ -19,14 +19,14 @@ void TestOctInt() {
     //----------------------------
     while(1) {
         //case 1
-        String str1 = createString("11");
+        String str1 = String::New("11");
         
         if(str1->toOctInt()->toValue() != 9) {
             TEST_FAIL("String toOctInt test1");
             break;
         }
         
-        str1 = createString("31");
+        str1 = String::New("31");
         if(str1->toOctInt()->toValue() != 25) {
             TEST_FAIL("String toOctInt test2");
             break;

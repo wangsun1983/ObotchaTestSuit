@@ -88,7 +88,7 @@ int normaltest() {
   
   //Barrier()/getWaitNums()
   while(1) {
-      Barrier barrier = createBarrier(2);
+      Barrier barrier = Barrier::New(2);
       int num = barrier->getWaitNums();
       if(num != 2) {
         TEST_FAIL("[Barrier Test {construct()} case1]");
@@ -101,11 +101,11 @@ int normaltest() {
 
   //await()
   while(1) {
-      Barrier b = createBarrier(3);
-      Thread t1 = createThread(createRun1(b));
+      Barrier b = Barrier::New(3);
+      Thread t1 = Thread::New(Run1::New(b));
       t1->start();
 
-      Thread t2 = createThread(createRun1(b));
+      Thread t2 = Thread::New(Run1::New(b));
       t2->start();
       long current = st(System)::CurrentTimeMillis();
       b->await();
@@ -122,8 +122,8 @@ int normaltest() {
 
   //await(long)
   while(1) {
-      Barrier b = createBarrier(3);
-      Thread t1 = createThread(createRun1(b));
+      Barrier b = Barrier::New(3);
+      Thread t1 = Thread::New(Run1::New(b));
       t1->start();
 
       long current = st(System)::CurrentTimeMillis();
@@ -140,8 +140,8 @@ int normaltest() {
 
   //getWaitNums()
   while(1) {
-    Barrier b = createBarrier(2);
-    Thread t1 = createThread(createRun3(b));
+    Barrier b = Barrier::New(2);
+    Thread t1 = Thread::New(Run3::New(b));
     t1->start();
     sleep(1);
     int num = b->getWaitNums();
@@ -156,8 +156,8 @@ int normaltest() {
 
   //await()
   while(1) {
-    Barrier b = createBarrier(2);
-    Thread t1 = createThread(createRun4(b));
+    Barrier b = Barrier::New(2);
+    Thread t1 = Thread::New(Run4::New(b));
     t1->start();
 
     sleep(2);

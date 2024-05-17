@@ -21,7 +21,7 @@ using namespace obotcha;
 
 int testWebSocketInterface() {
   
-  WebSocketParser parser = createWebSocketHybi13Parser();
+  WebSocketParser parser = WebSocketHybi13Parser::New();
   if(parser->getVersion() != 13) {
       TEST_FAIL("testWebSocketInterface case1");
   }

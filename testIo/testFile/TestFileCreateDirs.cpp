@@ -11,7 +11,7 @@
 using namespace obotcha;
 
 void testFileCreateDirs() {
-    File f = createFile("./tmp/a/b/c");
+    File f = File::New("./tmp/a/b/c");
     f->createDirs();
     
     if(access("./tmp/a/b/c",F_OK) != 0) {

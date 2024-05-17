@@ -16,21 +16,21 @@
 
 using namespace obotcha;
 
-CountDownLatch lambdaLatch = createCountDownLatch(1);
+CountDownLatch lambdaLatch = CountDownLatch::New(1);
 
 void testAsyncProcessMqLambda() {
     
     int pid = fork();
     if(pid == 0) {
       sleep(1);
-      ProcessMq sendMq = createProcessMq("lambd_test1",false);
+      ProcessMq sendMq = ProcessMq::New("lambd_test1",false);
       sleep(2);
-      String s = createString("hello world");
+      String s = String::New("hello world");
       int ret = sendMq->send(s->toByteArray());
 	  sendMq->close();
       exit(0);
     } else {
-      ProcessMq readMq1 = createProcessMq("lambd_test1",true);
+      ProcessMq readMq1 = ProcessMq::New("lambd_test1",true);
 	  readMq1->setListener([](ByteArray data){
         if(!data->toString()->sameAs("hello world")) {
           TEST_FAIL("AsyncProcessMqLambda case1");

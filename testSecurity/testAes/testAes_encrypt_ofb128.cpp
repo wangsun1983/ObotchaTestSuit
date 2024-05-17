@@ -11,26 +11,26 @@ using namespace obotcha;
 
 void testAesEncryptOfb128() {
   //create test data
-  File data = createFile("./tmp/Aes_encrypt_Ofb_data");
+  File data = File::New("./tmp/Aes_encrypt_Ofb_data");
   if(!data->exists()) {
     data->createNewFile();
   }
 
-  FileOutputStream stream = createFileOutputStream(data);
-  String str = createString("abcdefghi");
+  FileOutputStream stream = FileOutputStream::New(data);
+  String str = String::New("abcdefghi");
   stream->open();
   stream->write(str->toByteArray());
   stream->close();
 
-  String key = createString("1234567812345678");
-  Md md5sum = createMd(st(Md)::Type::Md5);
+  String key = String::New("1234567812345678");
+  Md md5sum = Md::New(st(Md)::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   //pkcs5
   while(1) {
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/OFB128");
-    secretKey->generate(createString("./tmp/test_Aes_encrypt_Ofb128_deckey"),
-                        createString("./tmp/test_Aes_encrypt_Ofb128_enckey"),
+    secretKey->generate(String::New("./tmp/test_Aes_encrypt_Ofb128_deckey"),
+                        String::New("./tmp/test_Aes_encrypt_Ofb128_enckey"),
                         key);
 
     SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/OFB128");
@@ -44,7 +44,7 @@ void testAesEncryptOfb128() {
     Cipher Aes2 = st(CipherCreator)::getInstance("AES/OFB128/PKCS5Padding");
     Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
     Aes2->decryptFile("./tmp/Aes_encrypt_Ofb128_outdata_pksc5","./tmp/Aes_encrypt_Ofb128_outdata_pksc5_dec");
-    String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Ofb128_outdata_pksc5_dec"));
+    String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Ofb128_outdata_pksc5_dec"));
 
     if(!result->equals(testDataMd5)) {
       TEST_FAIL("[TestAes Ofb128 PKCS5Padding case1]");

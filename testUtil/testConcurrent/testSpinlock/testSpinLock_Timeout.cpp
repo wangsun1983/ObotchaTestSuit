@@ -13,11 +13,11 @@
 using namespace obotcha;
 
 void testSpinlockTimeout() {
-	TimeWatcher watcher = createTimeWatcher();
+	TimeWatcher watcher = TimeWatcher::New();
 
 	while(1) {
-		SpinLock l = createSpinLock();
-		Thread t = createThread([&]{
+		SpinLock l = SpinLock::New();
+		Thread t = Thread::New([&]{
 			l->lock();
 			usleep(300*1000);
 			l->unlock();
@@ -36,7 +36,7 @@ void testSpinlockTimeout() {
 	}
 	
 	while(1) {
-		SpinLock l = createSpinLock();
+		SpinLock l = SpinLock::New();
 		watcher->start();
 		l->lock(100);
 		auto v = watcher->stop();
@@ -47,8 +47,8 @@ void testSpinlockTimeout() {
 	}
 	
 	while(1) {
-		SpinLock l = createSpinLock();
-		Thread t1 = createThread([&]{
+		SpinLock l = SpinLock::New();
+		Thread t1 = Thread::New([&]{
 			l->lock();
 			usleep(1000*300);
 			l->unlock();

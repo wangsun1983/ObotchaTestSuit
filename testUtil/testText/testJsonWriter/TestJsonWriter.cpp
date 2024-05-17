@@ -11,12 +11,12 @@ using namespace obotcha;
 int main() {
 
     //write a json
-    JsonWriter writer = createJsonWriter(createString("./tmp/abc.json"));
-    JsonValue value = createJsonValue();
+    JsonWriter writer = JsonWriter::New(String::New("./tmp/abc.json"));
+    JsonValue value = JsonValue::New();
     value->put("a",1);
     value->put("c","nihao");
 
-    JsonValue array = createJsonValue();
+    JsonValue array = JsonValue::New();
     array->append("abc1");
     array->append("abc2");
     array->append("abc3");
@@ -27,7 +27,7 @@ int main() {
     writer->close();
 
     //read a Json
-    JsonReader reader = createJsonReader()->loadFile(createString("./tmp/abc.json"));
+    JsonReader reader = JsonReader::New()->loadFile(String::New("./tmp/abc.json"));
     JsonValue value2 = reader->get();
     while(1) {
       Integer i1 = value->getInteger("a");

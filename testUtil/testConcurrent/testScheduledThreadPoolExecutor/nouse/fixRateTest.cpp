@@ -17,7 +17,7 @@ public:
     _FixRateRunTest1(int s) {
       startTime = 0;
       recordFinishTime = 0;
-      v = createArrayList<Long>();
+      v = ArrayList<Long>::New();
       sleepTime = s;
     }
 
@@ -28,7 +28,7 @@ public:
 
         if(recordFinishTime != 0) {
           long interval = st(System)::currentTimeMillis() - recordFinishTime;
-          v->add(createLong(interval));
+          v->add(Long::New(interval));
         }
 
         sleep(sleepTime);

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderServerTiming timing = createHttpHeaderServerTiming();
+    HttpHeaderServerTiming timing = HttpHeaderServerTiming::New();
     timing->load("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     auto lists = timing->get();
     if(lists->size() != 3) {
@@ -63,7 +63,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderServerTiming timing = createHttpHeaderServerTiming("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
+    HttpHeaderServerTiming timing = HttpHeaderServerTiming::New("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2");
     auto lists = timing->get();
     if(lists->size() != 3) {
       TEST_FAIL("[HttpHeaderServerTiming test Parse case9],size is %d",lists->size());

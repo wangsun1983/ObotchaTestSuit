@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Keep-Alive"),
-                createString("timeout=5, max=1000"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Keep-Alive"),
+                String::New("timeout=5, max=1000"));
                 
     HttpHeaderKeepAlive keepAlive = header->getKeepAlive();
     if(keepAlive->getTimeout() != 5 || keepAlive->getMax() != 1000) {
@@ -27,9 +27,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Keep-Alive"),
-                createString("1000"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Keep-Alive"),
+                String::New("1000"));
                 
     HttpHeaderKeepAlive keepAlive = header->getKeepAlive();
     if(keepAlive->getTimeout() != 1000) {
@@ -40,9 +40,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Keep-Alive"),
-                createString("timeout=5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Keep-Alive"),
+                String::New("timeout=5"));
     
     auto keepAlive = header->getKeepAlive();
     keepAlive->load("timeout=5");
@@ -54,9 +54,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Keep-Alive"),
-                createString("Max=5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Keep-Alive"),
+                String::New("Max=5"));
     
     auto keepAlive = header->getKeepAlive();
     if(keepAlive->getMax() != 5) {

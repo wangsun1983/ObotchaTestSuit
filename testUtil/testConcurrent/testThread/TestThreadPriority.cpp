@@ -92,7 +92,7 @@ public:
 
 void testThreadPriority() {
     //TestThread onInterrupt case1
-    MyPriorityThread t = createMyPriorityThread();
+    MyPriorityThread t = MyPriorityThread::New();
     t->start();
     t->join();
 

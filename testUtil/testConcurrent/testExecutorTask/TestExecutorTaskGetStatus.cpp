@@ -25,7 +25,7 @@ public:
 void testExecutorTaskGetStatus() {
 	while(1) {
 		int r1 = 0;
-		auto task = createExecutorTask(createMyRunnable1(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable1::New(),[&](ExecutorTask task){
 			r1 = 2;
 		});
 		
@@ -38,11 +38,11 @@ void testExecutorTaskGetStatus() {
 			TEST_FAIL("Test ExecutorTask GetStatus case2");
 		}
 				
-		task = createExecutorTask(createMyRunnable1(),[&](ExecutorTask task){
+		task = ExecutorTask::New(MyRunnable1::New(),[&](ExecutorTask task){
 			r1 = 3;
 		});
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			task->execute();
 		});
 		t1->start();
@@ -62,7 +62,7 @@ void testExecutorTaskGetStatus() {
 	
 	while(1) {
 		int r1 = 0;
-		auto task = createExecutorTask(createMyRunnable1(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable1::New(),[&](ExecutorTask task){
 			r1 = 2;
 		});
 		task->setPending();

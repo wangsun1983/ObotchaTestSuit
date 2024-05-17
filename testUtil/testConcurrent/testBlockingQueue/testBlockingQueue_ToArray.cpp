@@ -12,10 +12,10 @@ using namespace obotcha;
 
 void testBlockingQueueToArray() {
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         ArrayList<String> ll = list->toArray();
         if(ll->size() != 3 || !ll->get(0)->sameAs("a")
@@ -29,7 +29,7 @@ void testBlockingQueueToArray() {
     }
 
     while(1) {
-        BlockingQueue<int> list = createBlockingQueue<int>(3);
+        BlockingQueue<int> list = BlockingQueue<int>::New(3);
         ArrayList<int> ll = list->toArray();
         if(ll->size() != 0) {
           TEST_FAIL("BlockingQueue toArray test2");
@@ -40,7 +40,7 @@ void testBlockingQueueToArray() {
     }
 
     while(1) {
-        BlockingQueue<int> list = createBlockingQueue<int>(128);
+        BlockingQueue<int> list = BlockingQueue<int>::New(128);
         for(int i = 0;i<128;i++) {
           list->putLast(i);
         }

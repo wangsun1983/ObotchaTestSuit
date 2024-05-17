@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("host"),createString(" developer.mozilla.org:1234"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("host"),String::New(" developer.mozilla.org:1234"));
     auto digest = header->getHost();
     auto host = digest->getHost();
     if(!host->sameAs("developer.mozilla.org")) {
@@ -31,9 +31,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeaderHost headhost = createHttpHeaderHost();
+    HttpHeaderHost headhost = HttpHeaderHost::New();
     headhost->load(" developer.mozilla.org");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setHost(headhost);
     
     auto digest = header->getHost();

@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringSubString() {
 
     while(1) {
-        String str = createString("abcef");
+        String str = String::New("abcef");
         String str2 = str->subString(0,2);
         if(!str2->sameAs("ab") || !str->sameAs("abcef")) {
             TEST_FAIL("String SubString test1");

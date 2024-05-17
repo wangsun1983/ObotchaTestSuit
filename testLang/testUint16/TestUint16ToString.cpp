@@ -66,9 +66,9 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
+       Uint16 t1 = Uint16::New(i);
        String v1 = t1->toHexString();
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint16 toString test1");
          break;
@@ -76,10 +76,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
+       Uint16 t1 = Uint16::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint16 toString test2");
          break;
@@ -87,9 +87,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
+       Uint16 t1 = Uint16::New(i);
        String v1 = t1->toBinaryString();
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint16 toString test3");
          break;
@@ -103,9 +103,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
-       Uint16 t2 = st(Uint16)::ParseHexString(createString(HexTable[i]));
-       Uint16 t3 = createUint16(t2);
+       Uint16 t1 = Uint16::New(i);
+       Uint16 t2 = st(Uint16)::ParseHexString(String::New(HexTable[i]));
+       Uint16 t3 = Uint16::New(t2);
        if(t1 != t3) {
          TEST_FAIL("Uint16 toInt test1");
          break;
@@ -113,9 +113,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
-       Uint16 t2 = st(Uint16)::ParseOctString(createString(OctTable[i]));
-       Uint16 t3 = createUint16(t2);
+       Uint16 t1 = Uint16::New(i);
+       Uint16 t2 = st(Uint16)::ParseOctString(String::New(OctTable[i]));
+       Uint16 t3 = Uint16::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Uint16 toInt test2");
@@ -124,11 +124,11 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint16 t1 = createUint16(i);
-       String str = createString(BinaryTable[i]);
+       Uint16 t1 = Uint16::New(i);
+       String str = String::New(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
        Uint16 t2 = st(Uint16)::ParseBinaryString(str);
-       Uint16 t3 = createUint16(t2);
+       Uint16 t3 = Uint16::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Uint16 toInt test3");
          break;

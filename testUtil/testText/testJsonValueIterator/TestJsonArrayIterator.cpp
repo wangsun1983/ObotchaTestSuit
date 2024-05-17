@@ -12,10 +12,10 @@ using namespace obotcha;
 
 int testJsonArrayIterator() {
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("stringarray.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("stringarray.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
-      ArrayList<String> list = createArrayList<String>();
+      ArrayList<String> list = ArrayList<String>::New();
       list->add(S("abc1"));
       list->add(S("abc2"));
       list->add(S("abc3"));
@@ -40,7 +40,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("intarray.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("intarray.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       int array[] = {1, 100, 123};
@@ -64,7 +64,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("booljson.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("booljson.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       bool array[] = {true, false, true};
@@ -88,7 +88,7 @@ int testJsonArrayIterator() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("object.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("object.json"));
       JsonValue value = reader->get();
       auto iterator = value->getIterator();
       int val_array[] = {1, 2, 3};

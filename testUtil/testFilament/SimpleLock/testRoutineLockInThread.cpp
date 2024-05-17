@@ -11,15 +11,15 @@
 using namespace std;
 using namespace obotcha;
 
-FilaMutex threadMutex = createFilaMutex();
-CountDownLatch threadlatch = createCountDownLatch(1);
+FilaMutex threadMutex = FilaMutex::New();
+CountDownLatch threadlatch = CountDownLatch::New(1);
 
 void testRoutineLockInThread() {
-  FilaRoutine croutine = createFilaRoutine();
+  FilaRoutine croutine = FilaRoutine::New();
   croutine->start();
   croutine->execute([]{
     poll(NULL,0,100);
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     watcher->start();
     AutoLock l(threadMutex);
     long rs = watcher->stop();
@@ -31,7 +31,7 @@ void testRoutineLockInThread() {
     threadlatch->countDown();
   });
   
-  TimeWatcher mywatcher = createTimeWatcher();
+  TimeWatcher mywatcher = TimeWatcher::New();
   mywatcher->start();
   int isRun = 0;
   croutine->execute([&mywatcher,&isRun]{
@@ -46,7 +46,7 @@ void testRoutineLockInThread() {
     threadlatch->countDown();
   });
 
-  Thread t = createThread([]{
+  Thread t = Thread::New([]{
     AutoLock l(threadMutex);
     usleep(1000*500);
   });

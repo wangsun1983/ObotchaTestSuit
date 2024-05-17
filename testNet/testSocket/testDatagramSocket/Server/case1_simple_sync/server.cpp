@@ -11,11 +11,11 @@
 
 using namespace obotcha;
 
-String message = createString("");
+String message = String::New("");
 bool isFirst = true;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
@@ -23,7 +23,7 @@ public:
   void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     printf("i received a message,event is %d \n",event);
     if(isFirst) {
-      int len = s->getOutputStream()->write(createString("hello client")->toByteArray());
+      int len = s->getOutputStream()->write(String::New("hello client")->toByteArray());
       isFirst = false;
       printf("len is %d \n",len);
       mCond->notify();
@@ -38,12 +38,12 @@ public:
 int main() {
   int port = getEnvPort();
   printf("port is %d \n",port);
-  InetAddress addr = createInet4Address(port);
-  Socket sock = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
+  InetAddress addr = Inet4Address::New(port);
+  Socket sock = SocketBuilder::New()->setAddress(addr)->newDatagramSocket();
   int result = sock->bind();
   printf("result is %d \n",result);
-  SocketMonitor monitor = createSocketMonitor();
-  MyListener l = createMyListener();
+  SocketMonitor monitor = SocketMonitor::New();
+  MyListener l = MyListener::New();
   monitor->bind(sock,l);
   printf("bind sock \n");
   AutoLock ll(mMutex);

@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Alt-Svc"),
-                createString(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Alt-Svc"),
+                String::New(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1"));
     auto svc = header->getAltSvc();
     auto svcList = svc->getServices();
     if(svcList->size() != 2) {

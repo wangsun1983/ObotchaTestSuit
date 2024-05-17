@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderPragma pragma = createHttpHeaderPragma();
+    HttpHeaderPragma pragma = HttpHeaderPragma::New();
     pragma->load(" no-cache ");
     if(!pragma->get()->sameAs("no-cache")){
       TEST_OK("[HttpHeaderPragma test parse case1]");

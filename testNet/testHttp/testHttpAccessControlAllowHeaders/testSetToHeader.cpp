@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Headers"),createString("X-Custom-Header, Upgrade-Insecure-Requests"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Headers"),String::New("X-Custom-Header, Upgrade-Insecure-Requests"));
     HttpHeaderAccessControlAllowHeaders c = header->getAllowHeaders();
     if(!c->toString()->sameAs("X-Custom-Header, Upgrade-Insecure-Requests")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test setToHeader case1] [FAILED] ,str is %s",c->toString()->toChars());
@@ -25,8 +25,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Headers"),createString("X-Custom-Header, Upgrade-Insecure-Requests"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Headers"),String::New("X-Custom-Header, Upgrade-Insecure-Requests"));
     HttpHeaderAccessControlAllowHeaders c = header->getAllowHeaders();
     c->load("*");
     if(!c->toString()->sameAs("*")) {
@@ -37,8 +37,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Headers"),createString("*"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Headers"),String::New("*"));
     HttpHeaderAccessControlAllowHeaders c = header->getAllowHeaders();
     if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test setToHeader case2]");

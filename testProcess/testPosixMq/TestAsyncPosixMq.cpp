@@ -17,7 +17,7 @@
 
 using namespace obotcha;
 
-CountDownLatch ProcessMqLatch = createCountDownLatch(1);
+CountDownLatch ProcessMqLatch = CountDownLatch::New(1);
 
 DECLARE_CLASS(PosixTestListener) IMPLEMENTS(ProcessMqListener){
 public:
@@ -34,14 +34,14 @@ void testAsyncProcessMq() {
     int pid = fork();
     if(pid == 0) {
       sleep(1);
-      ProcessMq sendMq = createProcessMq("asynctest2",false);
-      String s = createString("hello world");
+      ProcessMq sendMq = ProcessMq::New("asynctest2",false);
+      String s = String::New("hello world");
       sendMq->send(s->toByteArray());
 	  usleep(1000*100);
 	  sendMq->close();
       exit(0);
     } else {
-      ProcessMq readMq1 = createProcessMq("asynctest2",true);
+      ProcessMq readMq1 = ProcessMq::New("asynctest2",true);
 	  readMq1->setListener(createPosixTestListener());
 	  
       ProcessMqLatch->await();

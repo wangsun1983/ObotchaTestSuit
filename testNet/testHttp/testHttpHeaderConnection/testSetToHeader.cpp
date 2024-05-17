@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Connection"),
-                createString(" keep-alive"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Connection"),
+                String::New(" keep-alive"));
       
     auto connection = header->getConnection();
     if(!connection->get()->sameAs("keep-alive")) {
@@ -26,9 +26,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Connection"),
-                createString(" close"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Connection"),
+                String::New(" close"));
       
     auto connection = header->getConnection();
     if(!connection->get()->sameAs("close")) {

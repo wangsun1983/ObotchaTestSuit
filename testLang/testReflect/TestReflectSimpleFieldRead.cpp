@@ -54,13 +54,13 @@ public:
 void testReflectFieldRead() {
     //test1
     while(1) {
-      MyData1 data1 = createMyData1();
+      MyData1 data1 = MyData1::New();
       data1->intData = 1;
       data1->byteData = 2;
       data1->doubleData = 1.1;
       data1->floatData = 2.2;
       data1->longData = 3;
-      data1->stringData = createString("a");
+      data1->stringData = String::New("a");
       data1->uint8Data = 4;
       data1->uint16Data = 5;
       data1->uint32Data = 6;
@@ -141,18 +141,18 @@ void testReflectFieldRead() {
 
     //test2
     while(1) {
-      MyData2 data2 = createMyData2();
-      data2->intData = createInteger(1);
-      data2->byteData = createByte(2);
-      data2->doubleData = createDouble(1.1);
-      data2->floatData = createFloat(2.2);
-      data2->longData = createLong(3);
-      data2->stringData = createString("a");
-      data2->uint8Data = createUint8(4);
-      data2->uint16Data = createUint16(5);
-      data2->uint32Data = createUint32(6);
-      data2->uint64Data = createUint64(7);
-      data2->boolData = createBoolean(false);
+      MyData2 data2 = MyData2::New();
+      data2->intData = Integer::New(1);
+      data2->byteData = Byte::New(2);
+      data2->doubleData = Double::New(1.1);
+      data2->floatData = Float::New(2.2);
+      data2->longData = Long::New(3);
+      data2->stringData = String::New("a");
+      data2->uint8Data = Uint8::New(4);
+      data2->uint16Data = Uint16::New(5);
+      data2->uint32Data = Uint32::New(6);
+      data2->uint64Data = Uint64::New(7);
+      data2->boolData = Boolean::New(false);
 
       //check field
       Field f = data2->getField("intData");

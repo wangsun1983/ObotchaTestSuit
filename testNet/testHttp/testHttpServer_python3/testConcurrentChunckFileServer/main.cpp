@@ -23,7 +23,7 @@
 using namespace obotcha;
 
 
-CountDownLatch latch = createCountDownLatch(128*16);
+CountDownLatch latch = CountDownLatch::New(128*16);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
@@ -37,9 +37,9 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 
         case st(Net)::Event::Message: {
             //messageCount->incrementAndGet();
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-            File file = createFile("data");
+            File file = File::New("data");
             response->getEntity()->setChunk(file);
             w->write(response);
             latch->countDown();
@@ -56,38 +56,45 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 };
 
 int main() {
-  File file = createFile("data");
+  File file = File::New("data");
   long prepareFilesize = file->length();
   signal(SIGPIPE,SIG_IGN);
-
   if(!file->exists()) {
     file->createNewFile();
-      for(int i = 0;i<128;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
+      for(int i = 0;i<1;i++) {
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Append);
-      String data = createString("");
-      for(int j = 0;j < 32;j++) {
-        data = data->append(createString(st(System)::CurrentTimeMillis()));
+      String data = String::New("");
+      for(int j = 0;j < 1;j++) {
+        data = data->append(String::New(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();
     }
   }
-  
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    
+    setEnvPort(port);
+    break;
+  }
   latch->await();
-  sleep(1);
+  sleep(5);
 
-  Md md5 = createMd();
-  String base = md5->encodeFile(createFile("data"));
+  Md md5 = Md::New();
+  String base = md5->encodeFile(File::New("data"));
 
-  File tmpDir = createFile("./tmp");
+  File tmpDir = File::New("./tmp");
   ArrayList<File> files = tmpDir->listFiles();
   if(files->size() != 128 *16) {
     TEST_FAIL("TestHttpServer testConcurrentChunckFileServer test1,download file num is %d",files->size());

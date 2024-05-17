@@ -15,15 +15,15 @@ bool isFirst = true;
 
 int main() {
   int port = getEnvPort();
-  InetAddress addr = createInet6Address(port);
-  ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
+  InetAddress addr = Inet6Address::New(port);
+  ServerSocket sock = SocketBuilder::New()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
   auto client = sock->accept();
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
     auto stream = client->getInputStream();
-    ByteArray data = createByteArray(32);
+    ByteArray data = ByteArray::New(32);
     watch->start();
     int len = stream->read(data);
     long result = watch->stop();

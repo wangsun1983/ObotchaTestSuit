@@ -20,17 +20,17 @@ public:
 };
 
 int testImport() {
-    ImportData data = createImportData();
+    ImportData data = ImportData::New();
     data->intValue = 100;
-    data->stringValue = createString("aabbcc");
+    data->stringValue = String::New("aabbcc");
     
-    ConfValue value = createConfValue();
+    ConfValue value = ConfValue::New();
     value->importFrom(data);
     
-    ConfWriter writer = createConfWriter(createFile("./tmp/importdata1.conf"));
+    ConfWriter writer = ConfWriter::New(File::New("./tmp/importdata1.conf"));
     writer->write(value);
     
-    ConfReader reader = createConfReader()->loadFile(createFile("./tmp/importdata1.conf"));
+    ConfReader reader = ConfReader::New()->loadFile(File::New("./tmp/importdata1.conf"));
     auto __value = reader->get();
     if(!__value->get("intValue")->sameAs("100")
         ||!__value->get("stringValue")->sameAs("aabbcc")) {

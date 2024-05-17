@@ -17,15 +17,15 @@ extern void testFileInputStreamReadNode();
 
 int main() {
   //prepare data
-  File file = createFile("./tmp/data.txt");
+  File file = File::New("./tmp/data.txt");
   if(!file->exists()) {
     file->createNewFile();
       for(int i = 0;i<1024;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Append);
-      String data = createString("");
+      String data = String::New("");
       for(int i = 0;i < 1024;i++) {
-        data = data->append(createString(st(System)::CurrentTimeMillis()));
+        data = data->append(String::New(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();

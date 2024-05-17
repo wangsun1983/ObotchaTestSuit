@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testSocketOptions() {
     //_SocketOption* setReUseAddr(int);
-    SocketOption option = createSocketOption();
+    SocketOption option = SocketOption::New();
     option->setReUseAddr(st(SocketOption)::Ability::Enable);
     if(option->getReUseAddr() != st(SocketOption)::Ability::Enable) {
         TEST_FAIL("[SocketOption ReUseAddr test case1]");

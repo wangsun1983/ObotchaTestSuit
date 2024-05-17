@@ -24,9 +24,9 @@ public:
 
 void testArrayList_Get() {
   while(1) {
-    ArrayList<TestGetData> list = createArrayList<TestGetData>();
-    TestGetData t1 = createTestGetData(1,2);
-    TestGetData t2 = createTestGetData(3,4);
+    ArrayList<TestGetData> list = ArrayList<TestGetData>::New();
+    TestGetData t1 = TestGetData::New(1,2);
+    TestGetData t2 = TestGetData::New(3,4);
     list->add(t1);
     list->add(t2);
 

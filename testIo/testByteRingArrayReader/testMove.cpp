@@ -16,14 +16,14 @@ void testMove() {
     //case1
     //data:[1(start/end/cursor),2,3,4,5]
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
 
       int cursor = reader->move(1);
       if(cursor != 1) {

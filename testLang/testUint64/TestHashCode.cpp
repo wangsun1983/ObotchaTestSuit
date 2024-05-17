@@ -13,15 +13,15 @@
 using namespace obotcha;
 
 void testHash() {
-   Uint64 t1 = createUint64(1);
-   Uint64 t2 = createUint64(2);
+   Uint64 t1 = Uint64::New(1);
+   Uint64 t2 = Uint64::New(2);
    if(t1->hashcode() == t2->hashcode()) {
     TEST_FAIL("Uint64 hashcode test1");
     return;
    }
 
-   t1 = createUint64(1);
-   t2 = createUint64(1);
+   t1 = Uint64::New(1);
+   t2 = Uint64::New(1);
    if(t1->hashcode() != t2->hashcode()) {
     TEST_FAIL("Uint64 hashcode test2");
     return;

@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 void testCachedPoolExecutor_Cancel() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
               ->setMaxThreadNum(1)
               ->setDefaultThreadNum(1)
               ->newCachedThreadPool();

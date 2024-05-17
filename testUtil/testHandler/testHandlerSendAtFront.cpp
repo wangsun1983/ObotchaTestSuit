@@ -33,18 +33,18 @@ public:
 void testHandlerSendAtFront() {
   //case 1
   while(1) {
-    SendAtFrontHandler h = createSendAtFrontHandler();
+    SendAtFrontHandler h = SendAtFrontHandler::New();
     h->post([]{
       sleep(1);
     });
 
-    Message msg1 = createMessage();
+    Message msg1 = Message::New();
     msg1->what = 1;
 
-    Message msg2 = createMessage();
+    Message msg2 = Message::New();
     msg2->what = 2;
 
-    Message msg3 = createMessage();
+    Message msg3 = Message::New();
     msg3->what = 3;
 
     h->sendMessage(msg1);
@@ -61,19 +61,19 @@ void testHandlerSendAtFront() {
   //case 1
   while(1) {
     v = 0;
-    SendAtFrontHandler h = createSendAtFrontHandler();
+    SendAtFrontHandler h = SendAtFrontHandler::New();
     h->post([]{
       sleep(1);
     });
 	usleep(1000*100);
 	
-    Message msg1 = createMessage();
+    Message msg1 = Message::New();
     msg1->what = 1;
 
-    Message msg2 = createMessage();
+    Message msg2 = Message::New();
     msg2->what = 2;
 
-    Message msg3 = createMessage();
+    Message msg3 = Message::New();
     msg3->what = 3;
 	
     h->sendMessageAtFrontOfQueue(msg2);

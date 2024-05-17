@@ -12,19 +12,19 @@ using namespace obotcha;
 
 void testConcurrentStack_SyncWriteAction() {
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      list->push(createString("a"));
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      list->push(String::New("a"));
+      Thread t1 = Thread::New([&]{
          list->syncWriteAction([]{
              usleep(200*1000);
          });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
          usleep(100*1000);
-         TimeWatcher watcher = createTimeWatcher();
+         TimeWatcher watcher = TimeWatcher::New();
          watcher->start();
-         list->push(createString("b"));
+         list->push(String::New("b"));
          auto ret = watcher->stop();
          if(ret < 95 || ret > 105) {
              TEST_FAIL("ConcurrentStack SyncWriteAction case1");
@@ -40,17 +40,17 @@ void testConcurrentStack_SyncWriteAction() {
     }
     
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      list->push(createString("a"));
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      list->push(String::New("a"));
+      Thread t1 = Thread::New([&]{
          list->syncWriteAction([]{
              usleep(200*1000);
          });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
          usleep(100*1000);
-         TimeWatcher watcher = createTimeWatcher();
+         TimeWatcher watcher = TimeWatcher::New();
          watcher->start();
          list->top();
          auto ret = watcher->stop();

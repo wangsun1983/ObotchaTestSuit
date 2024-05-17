@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderIfRange range = createHttpHeaderIfRange();
+    HttpHeaderIfRange range = HttpHeaderIfRange::New();
     range->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(!range->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderIfRange test toString case1] str is %s",range->toString()->toChars());
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderIfRange range = createHttpHeaderIfRange();
+    HttpHeaderIfRange range = HttpHeaderIfRange::New();
     range->load("\"abcds\"");
     if(!range->toString()->sameAs("\"abcds\"")) {
       TEST_FAIL("[HttpHeaderIfRange test toString case8] str is %s",range->toString()->toChars());

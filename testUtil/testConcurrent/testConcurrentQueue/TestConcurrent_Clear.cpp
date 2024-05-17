@@ -10,10 +10,10 @@ using namespace obotcha;
 
 void testConcurrentQueue_Clear() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
       if(list->size() != 3) {
         TEST_FAIL("ConcurrentQueue clear test1");
         break;

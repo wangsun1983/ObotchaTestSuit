@@ -6,13 +6,13 @@
 using namespace obotcha;
 
 int main() {
-    AtomicBoolean value = createAtomicBoolean(false);
-    Thread t1 = createThread([&value] {
+    AtomicBoolean value = AtomicBoolean::New(false);
+    Thread t1 = Thread::New([&value] {
         st(Thread)::Sleep(1000);
         value->set(true);
     });
     
-    Thread t2 = createThread([&value] {
+    Thread t2 = Thread::New([&value] {
         while(!value->get()) {
             
         }
@@ -21,7 +21,7 @@ int main() {
     t1->start();
     t2->start();
     
-    TimeWatcher w = createTimeWatcher();
+    TimeWatcher w = TimeWatcher::New();
     w->start();
     t1->join();
     t2->join();

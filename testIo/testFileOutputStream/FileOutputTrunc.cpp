@@ -13,15 +13,15 @@ void fileoutput_trunc_test() {
 
     //bool _FileOutputStream::write(char c)
     while(1) {
-        File file = createFile("./tmp/trucn_test1.txt");
+        File file = File::New("./tmp/trucn_test1.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
         stream->close();
 
-        FileOutputStream stream2 = createFileOutputStream(file);
+        FileOutputStream stream2 = FileOutputStream::New(file);
         stream2->open(st(IO)::FileControlFlags::Trunc);
         stream2->write('b');
         stream2->flush();
@@ -32,7 +32,7 @@ void fileoutput_trunc_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 1 ||content->at(0) != 'b') {
@@ -47,11 +47,11 @@ void fileoutput_trunc_test() {
     }
 
     while(1) {
-        File file = createFile("./tmp/trucn_test2.txt");
+        File file = File::New("./tmp/trucn_test2.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
-        ByteArray data = createByteArray(12);
+        ByteArray data = ByteArray::New(12);
         for(int i = 0;i<12;i++) {
           data[i] = i;
         }

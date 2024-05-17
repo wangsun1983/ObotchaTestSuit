@@ -40,15 +40,15 @@ public:
 void testReflectArrayListFieldRead() {
     //test1
     while(1) {
-      ListCollection collection = createListCollection();
-      collection->mylist = createArrayList<ArrayData>();
-      ArrayData arrayData1 = createArrayData();
+      ListCollection collection = ListCollection::New();
+      collection->mylist = ArrayList<ArrayData>::New();
+      ArrayData arrayData1 = ArrayData::New();
       arrayData1->intData = 1;
       arrayData1->byteData = 2;
       arrayData1->doubleData = 1.1;
       arrayData1->floatData = 2.2;
       arrayData1->longData = 3;
-      arrayData1->stringData = createString("a");
+      arrayData1->stringData = String::New("a");
       arrayData1->uint8Data = 4;
       arrayData1->uint16Data = 5;
       arrayData1->uint32Data = 6;
@@ -56,13 +56,13 @@ void testReflectArrayListFieldRead() {
       arrayData1->boolData = false;
       collection->mylist->add(arrayData1);
 
-      ArrayData arrayData2 = createArrayData();
+      ArrayData arrayData2 = ArrayData::New();
       arrayData2->intData = 11;
       arrayData2->byteData = 12;
       arrayData2->doubleData = 11.1;
       arrayData2->floatData = 12.2;
       arrayData2->longData = 13;
-      arrayData2->stringData = createString("b");
+      arrayData2->stringData = String::New("b");
       arrayData2->uint8Data = 14;
       arrayData2->uint16Data = 15;
       arrayData2->uint32Data = 16;

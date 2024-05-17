@@ -12,18 +12,18 @@ using namespace obotcha;
 
 void testBlockingLinkedListDestroy() {
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
-        Thread t = createThread([&list]{
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
           list->destroy();
         });
         t->start();
         long time1 = st(System)::CurrentTimeMillis();
-        list->put(createString("d"));
+        list->put(String::New("d"));
         long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingLinkedList destroy test1,value is %ld \n",time2 - time1);
@@ -34,8 +34,8 @@ void testBlockingLinkedListDestroy() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        Thread t = createThread([&list]{
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
           list->destroy();
         });

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderRange range = createHttpHeaderRange();
+    HttpHeaderRange range = HttpHeaderRange::New();
     range->load("bytes=200-1000, 2000-6576, 19000-");
     if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderRange test Parse case1]");
@@ -63,7 +63,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderRange range = createHttpHeaderRange();
+    HttpHeaderRange range = HttpHeaderRange::New();
     range->load("bytes=200-1000, 2000-6576, 19000-");
     if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderRange test Parse case9]");
@@ -72,7 +72,7 @@ void testParse() {
 
     auto list_0 = range->getRanges();
     
-    HttpHeaderRange range2 = createHttpHeaderRange();
+    HttpHeaderRange range2 = HttpHeaderRange::New();
     range2->setRanges(list_0);
     
     auto list = range2->getRanges();

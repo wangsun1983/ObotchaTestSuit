@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Link"),
-                createString("<https://example.com>; rel=\"preload\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Link"),
+                String::New("<https://example.com>; rel=\"preload\""));
                 
     auto links = header->getLinks();
     auto link1 = links->get(0);

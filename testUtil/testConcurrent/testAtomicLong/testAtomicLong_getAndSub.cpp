@@ -10,11 +10,11 @@ using namespace obotcha;
 void testGetAndSub() {
     while(1) {
         for(int testLoop = 0;testLoop < 128;testLoop++) {
-            AtomicLong value = createAtomicLong(64*64*128);
-            ArrayList<Thread> list = createArrayList<Thread>();
+            AtomicLong value = AtomicLong::New(64*64*128);
+            ArrayList<Thread> list = ArrayList<Thread>::New();
 
             for(int i = 0;i < 32;i++) {
-                Thread t = createThread([&value] {
+                Thread t = Thread::New([&value] {
                     for(int j = 0;j<64*128;j++) {
                         value->getAndSub(2);
                     }
@@ -40,7 +40,7 @@ void testGetAndSub() {
     }
 
     while(1) {
-      AtomicLong value = createAtomicLong(5);
+      AtomicLong value = AtomicLong::New(5);
       long v = value->getAndSub(2);
       if(v != 5) {
         TEST_FAIL("AtomicLong GetAndSub test2");

@@ -18,15 +18,15 @@ void testMappedFileOutputStream() {
 
   //readLine();
   while(1) {
-      MappedFile file = createMappedFile("./tmp/base_data",128);
+      MappedFile file = MappedFile::New("./tmp/base_data",128);
       OutputStream stream = file->getOutputStream();
       
-      stream->write(createString("abcdef")->toByteArray());
+      stream->write(String::New("abcdef")->toByteArray());
       stream->flush();
 
-      FileInputStream fstream = createFileInputStream("./tmp/base_data");
+      FileInputStream fstream = FileInputStream::New("./tmp/base_data");
       fstream->open();
-      ByteArray dd = createByteArray(256);
+      ByteArray dd = ByteArray::New(256);
       fstream->read(dd);
 
       if(!dd->toString()->sameAs("abcdefworld,this is a test data.")) {
@@ -36,15 +36,15 @@ void testMappedFileOutputStream() {
   }
   
   while(1) {
-      MappedFile file = createMappedFile("./tmp/base_data2",128);
+      MappedFile file = MappedFile::New("./tmp/base_data2",128);
       OutputStream stream = file->getOutputStream();
       
       stream->write('c');
       stream->flush();
 
-      FileInputStream fstream = createFileInputStream("./tmp/base_data2");
+      FileInputStream fstream = FileInputStream::New("./tmp/base_data2");
       fstream->open();
-      ByteArray dd = createByteArray(256);
+      ByteArray dd = ByteArray::New(256);
       fstream->read(dd);
 
       if(!dd->toString()->sameAs("c")) {

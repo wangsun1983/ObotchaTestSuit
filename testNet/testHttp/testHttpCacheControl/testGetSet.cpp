@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testGetSet() {
   while(1) {
-    HttpHeaderCacheControl c = createHttpHeaderCacheControl();
+    HttpHeaderCacheControl c = HttpHeaderCacheControl::New();
     c->setNoCache(true);
     c->setNoStore(true);
     c->setMaxAgeSeconds(1);

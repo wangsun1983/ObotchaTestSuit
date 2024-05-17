@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 void testXmlValueFromFile() {
-    XmlReader reader = createXmlReader()->loadFile(createFile("regressions.xml"));
+    XmlReader reader = XmlReader::New()->loadFile(File::New("regressions.xml"));
     XmlDocument doc = reader->get();
     XmlValue root = doc->getRootNode();
 
@@ -353,7 +353,7 @@ void testXmlValueFromFile() {
         break;
       }
 
-      root->removeNode(createString("testfloat"));
+      root->removeNode(String::New("testfloat"));
       XmlValue node2 = root->getNode("testfloat");
       if(node2 != nullptr) {
         TEST_FAIL("[XmlValue TestFromFile {removeNode()} case4]");

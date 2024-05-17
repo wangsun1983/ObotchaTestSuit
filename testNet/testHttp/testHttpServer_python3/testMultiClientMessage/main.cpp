@@ -22,11 +22,11 @@
 
 using namespace obotcha;
 
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disConnectCount = createAtomicInteger(0);
-AtomicInteger messageCount = createAtomicInteger(0);
+AtomicInteger connectCount = AtomicInteger::New(0);
+AtomicInteger disConnectCount = AtomicInteger::New(0);
+AtomicInteger messageCount = AtomicInteger::New(0);
 
-CountDownLatch messageLatch = createCountDownLatch(1024*32);
+CountDownLatch messageLatch = CountDownLatch::New(1024*32);
 
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -52,10 +52,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 messageLatch->countDown();
               }
               
-              HttpResponse response = createHttpResponse();
+              HttpResponse response = HttpResponse::New();
               response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-              HttpEntity entity = createHttpEntity();
-              ByteArray rdata = createString("sss")->toByteArray();
+              HttpEntity entity = HttpEntity::New();
+              ByteArray rdata = String::New("sss")->toByteArray();
               entity->setContent(rdata);
               response->setEntity(entity);
 
@@ -73,13 +73,21 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
-  MyHandler h = createMyHandler();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,10*1024);
   messageLatch->await();
   server->close();

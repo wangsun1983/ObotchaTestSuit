@@ -29,16 +29,16 @@ public:
 
 void testArrayList_Remove() {
   while(1) {
-    ArrayList<RemoveTestData> list = createArrayList<RemoveTestData>();
-    RemoveTestData d1 = createRemoveTestData();
+    ArrayList<RemoveTestData> list = ArrayList<RemoveTestData>::New();
+    RemoveTestData d1 = RemoveTestData::New();
     d1->data1 = 1;
     d1->data2 = 2;
 
-    RemoveTestData d2 = createRemoveTestData();
+    RemoveTestData d2 = RemoveTestData::New();
     d2->data1 = 3;
     d2->data2 = 4;
 
-    RemoveTestData d3 = createRemoveTestData();
+    RemoveTestData d3 = RemoveTestData::New();
     d3->data1 = 5;
     d3->data2 = 6;
 
@@ -84,8 +84,8 @@ void testArrayList_Remove() {
   }
 
   while(1) {
-    ArrayList<RemoveTestData> list = createArrayList<RemoveTestData>();
-    auto t1 = createRemoveTestData(1,1);
+    ArrayList<RemoveTestData> list = ArrayList<RemoveTestData>::New();
+    auto t1 = RemoveTestData::New(1,1);
     if(list->remove(t1) != -1) {
       TEST_FAIL("[ArrayList remvoe test6]");
     }

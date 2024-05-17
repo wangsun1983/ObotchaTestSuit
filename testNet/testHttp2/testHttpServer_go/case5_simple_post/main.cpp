@@ -14,6 +14,7 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
+#include "Enviroment.hpp"
 #include "Http2Server.hpp"
 #include "NetEvent.hpp"
 #include "TestLog.hpp"
@@ -31,10 +32,10 @@ using namespace obotcha;
     -H "apns-topic: com.app.identifier" --http2 \
     https://api.development.push.apple.com/3/device/DEVICE_ID
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 
-ByteArray sendData = createByteArray(1024*1024*2);
+ByteArray sendData = ByteArray::New(1024*1024*2);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -46,9 +47,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
           case st(Net)::Event::Message: {
                 printf("write responce from server11111 \n");
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
                 w->write(response);
                 connectlatch->countDown();
           }
@@ -64,9 +65,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();

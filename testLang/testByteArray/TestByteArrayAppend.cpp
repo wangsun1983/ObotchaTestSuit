@@ -18,12 +18,12 @@ void testappend() {
     //testAppend
     while(1) {
       //case1
-      ByteArray data1 = createByteArray(16);
+      ByteArray data1 = ByteArray::New(16);
       for(int i = 0;i<16;i++) {
         data1[i] = i;
       }
 
-      ByteArray data2 = createByteArray(16);
+      ByteArray data2 = ByteArray::New(16);
       for(int i = 0;i<16;i++) {
         data2[i] = i+16;
       }
@@ -43,7 +43,7 @@ void testappend() {
 
 
       //case2
-      ByteArray data3 = createByteArray(8);
+      ByteArray data3 = ByteArray::New(8);
       for(int i = 0;i<8;i++) {
         data3[i] = i;
       }
@@ -60,14 +60,14 @@ void testappend() {
 
     //testAppend
     while(1) {
-      ByteArray array = createByteArray(16);
+      ByteArray array = ByteArray::New(16);
       for(int i = 0;i<16;i++) {
         array[i] = i;
       }
 
       array->quickShrink(8);
 
-      ByteArray array2 = createByteArray(4);
+      ByteArray array2 = ByteArray::New(4);
       for(int i = 0;i < 4;i++) {
         array2[i] = i;
       }
@@ -109,12 +109,12 @@ void testappend() {
     
     //append(const sp<_ByteArray> &b, int len)
     while(1) {
-        ByteArray data = createByteArray(16);
+        ByteArray data = ByteArray::New(16);
         for(int i = 0;i < 16;i++) {
             data[i] = i;
         }
         
-        ByteArray data2 = createByteArray(8);
+        ByteArray data2 = ByteArray::New(8);
         for(int i = 16;i < 24;i++) {
             data2[i-16] = i;
         }
@@ -136,12 +136,12 @@ void testappend() {
     }
     
     while(1) {
-        ByteArray data = createByteArray(16);
+        ByteArray data = ByteArray::New(16);
         for(int i = 0;i < 16;i++) {
             data[i] = i;
         }
         
-        ByteArray data2 = createByteArray(8);
+        ByteArray data2 = ByteArray::New(8);
         for(int i = 16;i < 24;i++) {
             data2[i-16] = i;
         }

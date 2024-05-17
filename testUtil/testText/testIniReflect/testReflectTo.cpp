@@ -55,9 +55,9 @@ public:
 void testReflectTo() {
     //test simple1
     {
-        IniReader r = createIniReader()->loadFile(createFile("./simple1.ini"));
+        IniReader r = IniReader::New()->loadFile(File::New("./simple1.ini"));
         IniValue v = r->get();
-        SIMPLE1 s = createSIMPLE1();
+        SIMPLE1 s = SIMPLE1::New();
         v->reflectTo(s);
 
         if(s->data1 != 1 || s->data2 != 2) {
@@ -67,9 +67,9 @@ void testReflectTo() {
 
     //test simple2
     {
-        IniReader r = createIniReader()->loadFile(createFile("./simple2.ini"));
+        IniReader r = IniReader::New()->loadFile(File::New("./simple2.ini"));
         IniValue v = r->get();
-        SIMPLE2 s = createSIMPLE2();
+        SIMPLE2 s = SIMPLE2::New();
         v->reflectTo(s);
 
         if(s->data1 != 1 || s->data2 != 2) {
@@ -83,9 +83,9 @@ void testReflectTo() {
 
     //test simple3
     {
-        IniReader r = createIniReader()->loadFile(createFile("./simple3.ini"));
+        IniReader r = IniReader::New()->loadFile(File::New("./simple3.ini"));
         IniValue v = r->get();
-        SIMPLE3 s = createSIMPLE3();
+        SIMPLE3 s = SIMPLE3::New();
         v->reflectTo(s);
 
         if(s->data1 != 1 || s->data2 != 2) {

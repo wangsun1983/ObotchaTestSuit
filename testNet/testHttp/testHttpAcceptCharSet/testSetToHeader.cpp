@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Charset"),
-                createString("iso-8859-1"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Charset"),
+                String::New("iso-8859-1"));
     auto charset = header->getAcceptCharSet();
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 1) {
@@ -32,9 +32,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Charset"),
-                createString("utf-8, iso-8859-1;q=0.5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Charset"),
+                String::New("utf-8, iso-8859-1;q=0.5"));
     auto charset = header->getAcceptCharSet();
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 2) {
@@ -60,9 +60,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Charset"),
-                createString("utf-8, iso-8859-1;q=0.5, *;q=0.1"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Charset"),
+                String::New("utf-8, iso-8859-1;q=0.5, *;q=0.1"));
     auto charset = header->getAcceptCharSet();
     ArrayList<HttpHeaderAcceptCharSetItem> charsets = charset->get();
     if(charsets->size() != 3) {

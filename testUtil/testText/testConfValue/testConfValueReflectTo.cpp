@@ -20,10 +20,10 @@ public:
 };
 
 int testReflectTo() {
-    ConfReader reader = createConfReader()->loadFile(createFile("./reflectdata.conf"));
+    ConfReader reader = ConfReader::New()->loadFile(File::New("./reflectdata.conf"));
     auto value = reader->get();
     
-    ReflectData data = createReflectData();
+    ReflectData data = ReflectData::New();
     value->reflectTo(data);
     
     if(data->intValue != 100 || !data->stringValue->sameAs("aabbcc")) {

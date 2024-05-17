@@ -5,8 +5,17 @@ import http.client
 import requests
 import os
 
+import sys
+sys.path.append(r'../../../../common')
+from NetPort import getEnvPort
+from NetPort import setEnvPort
+
 #while 1:
-r = requests.get("http://127.0.0.1:1256/index")
+url_index = "http://127.0.0.1:" + str(getEnvPort()) + "/index"
+url_apq = "http://127.0.0.1:" + str(getEnvPort()) + "/apq"
+
+#r = requests.get("http://127.0.0.1:1256/index")
+r = requests.get(url_index)
 payload={}
 time.sleep(2)
 
@@ -26,7 +35,8 @@ for c in r.cookies:
     print(dt)
 
 print(payload)
-r = requests.get("http://127.0.0.1:1256/apq",data=payload)
+#r = requests.get("http://127.0.0.1:1256/apq",data=payload)
+r = requests.get(url_apq,data=payload)
 
 #get cookie
 print("trace4")

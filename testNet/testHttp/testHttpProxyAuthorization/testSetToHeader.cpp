@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Proxy-Authorization"),
-                createString("Basic YWxhZGRpbjpvcGVuc2VzYW1l"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Proxy-Authorization"),
+                String::New("Basic YWxhZGRpbjpvcGVuc2VzYW1l"));
     auto proxy = header->getProxyAuthorization();
     if(!proxy->type->sameAs("Basic")) {
       TEST_FAIL("[HttpHeaderProxyAuthorization test setToHeader case10]");

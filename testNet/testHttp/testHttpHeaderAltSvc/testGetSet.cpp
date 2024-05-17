@@ -13,11 +13,11 @@ using namespace obotcha;
 
 void testGetSet() {
   while(1) {
-    HttpHeaderAltSvc svc = createHttpHeaderAltSvc();
-    svc->addService(createString("h2"),
-                    createString("alt.example.com:8000"));
-    svc->addService(createString("h2"),
-                    createString(":443"));
+    HttpHeaderAltSvc svc = HttpHeaderAltSvc::New();
+    svc->addService(String::New("h2"),
+                    String::New("alt.example.com:8000"));
+    svc->addService(String::New("h2"),
+                    String::New(":443"));
     svc->setMaxAge(2592000);
     svc->setPersist(1);
     

@@ -14,7 +14,7 @@ using namespace obotcha;
 int arrayDataTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_01.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_01.json"));
       JsonValue value = reader->get();
       if(value != nullptr && value->size() != 0) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case1] [FAILED],value size is %d ",value->size());
@@ -26,7 +26,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_02.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case6]");
@@ -59,7 +59,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_03.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case12]");
@@ -100,7 +100,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_04.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case18]");
@@ -144,7 +144,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_05.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case24]");
@@ -180,7 +180,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_06.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_06.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case29]");
@@ -221,7 +221,7 @@ int arrayDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_array_07.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_array_07.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {data test} case30]");

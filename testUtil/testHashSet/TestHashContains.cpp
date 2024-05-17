@@ -9,17 +9,17 @@ using namespace obotcha;
 
 void testHashContains() {
 
-    HashSet<String> set = createHashSet<String>();
-    set->add(createString("abc"));
-    set->add(createString("abc"));
-    set->add(createString("abc1"));
-    set->add(createString("abc2"));
-    set->add(createString("abc3"));
-    if(!set->contains(createString("abc1"))) {
+    HashSet<String> set = HashSet<String>::New();
+    set->add(String::New("abc"));
+    set->add(String::New("abc"));
+    set->add(String::New("abc1"));
+    set->add(String::New("abc2"));
+    set->add(String::New("abc3"));
+    if(!set->contains(String::New("abc1"))) {
         TEST_FAIL("HashSet Contains test1");
     }
 
-    if(set->contains(createString("abcd"))) {
+    if(set->contains(String::New("abcd"))) {
         TEST_FAIL("HashSet Contains test2");
     }
 

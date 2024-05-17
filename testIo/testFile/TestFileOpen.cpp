@@ -11,7 +11,7 @@
 using namespace obotcha;
 
 void testFileOpen() {
-    File f = createFile("./tmp/testOpen.txt");
+    File f = File::New("./tmp/testOpen.txt");
     f->createNewFile();
     auto fd = f->open();
     if(fd == nullptr) {
@@ -29,7 +29,7 @@ void testFileOpen() {
         TEST_FAIL("[File Test {open()} case3]");
     }
     
-    FileInputStream s = createFileInputStream(f);
+    FileInputStream s = FileInputStream::New(f);
     s->open();
     auto content = s->readAll();
     if(!content->toString()->sameAs("abcd")) {
@@ -44,7 +44,7 @@ void testFileOpen() {
         TEST_FAIL("[File Test {open()} case5]");
     }
     
-    File f2 = createFile("./tmp/testOpen2.txt");
+    File f2 = File::New("./tmp/testOpen2.txt");
     if(!f2->exists()) {
         TEST_FAIL("[File Test {open()} case6]");
     }

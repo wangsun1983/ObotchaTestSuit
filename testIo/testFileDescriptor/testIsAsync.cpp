@@ -17,7 +17,7 @@ void testIsAsync() {
     //isAsync
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);
-      FileDescriptor descripor = createFileDescriptor(fd);
+      FileDescriptor descripor = FileDescriptor::New(fd);
 
       if(descripor->isAsync()) {
         TEST_FAIL("[FileDescriptor isAsync Test case3]");

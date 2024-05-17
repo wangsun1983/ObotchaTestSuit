@@ -10,10 +10,10 @@ using namespace obotcha;
 
 void testConcurrentQueue_PutLast() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->putLast(createString("a"));
-      list->putLast(createString("b"));
-      list->putLast(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->putLast(String::New("a"));
+      list->putLast(String::New("b"));
+      list->putLast(String::New("c"));
       ArrayList<String> ll = list->toArray();
       if(ll->size() != 3 || !ll->get(0)->sameAs("a")
           || !ll->get(1)->sameAs("b")
@@ -25,7 +25,7 @@ void testConcurrentQueue_PutLast() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->putLast(1);
       list->putLast(2);
       list->putLast(3);

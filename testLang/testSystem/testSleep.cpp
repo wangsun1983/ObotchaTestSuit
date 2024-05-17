@@ -14,7 +14,7 @@ using namespace obotcha;
 
 
 void testSleep() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
   watch->start();
   st(System)::Sleep(1000);
   auto ret = watch->stop();

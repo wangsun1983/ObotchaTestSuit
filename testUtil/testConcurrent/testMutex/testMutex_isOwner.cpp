@@ -19,7 +19,7 @@ using namespace obotcha;
 
 int testMutex_isOwner() {
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         AutoLock l(m);
         if(!m->isOwner()) {
             TEST_FAIL("[TestMutex isOwner case1]");
@@ -28,7 +28,7 @@ int testMutex_isOwner() {
     }
     
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         if(m->isOwner()) {
             TEST_FAIL("[TestMutex isOwner case2]");
         }
@@ -36,10 +36,10 @@ int testMutex_isOwner() {
     }
     
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         AutoLock l(m);
         
-        Thread t = createThread([&m]{
+        Thread t = Thread::New([&m]{
             if(m->isOwner()) {
                 TEST_FAIL("[TestMutex isOwner case3]");
             }
@@ -55,9 +55,9 @@ int testMutex_isOwner() {
     }
     
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         
-        Thread t = createThread([&m]{
+        Thread t = Thread::New([&m]{
             AutoLock l(m);
             sleep(1);
         });

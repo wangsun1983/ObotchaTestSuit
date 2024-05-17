@@ -18,10 +18,10 @@
 
 using namespace obotcha;
 
-//AtomicInteger submitLoopValue1 = createAtomicInteger(0);
-Mutex ttt = createMutex();
+//AtomicInteger submitLoopValue1 = AtomicInteger::New(0);
+Mutex ttt = Mutex::New();
 int vv = 0;
-ArrayList<int> checksubmitList = createArrayList<int>(100001);
+ArrayList<int> checksubmitList = ArrayList<int>::New(100001);
 
 DECLARE_CLASS(SubmitLoopRun1) IMPLEMENTS(Runnable) {
 public:
@@ -43,7 +43,7 @@ int loopsubmittest() {
         }
 
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(100,0,20,1000);
-        ThreadCachedPoolExecutor pool = createExecutorBuilder()
+        ThreadCachedPoolExecutor pool = ExecutorBuilder::New()
                                         ->setMaxPendingTaskNum(100)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
@@ -51,7 +51,7 @@ int loopsubmittest() {
                                         ->newCachedThreadPool();
         for(int i = 0;i < 100000;i++) {
             //TEST_FAIL("trace 1,i is %d ",i);
-            pool->submit(createSubmitLoopRun1());
+            pool->submit(SubmitLoopRun1::New());
         }
         sleep(10);
         pool->shutdown();

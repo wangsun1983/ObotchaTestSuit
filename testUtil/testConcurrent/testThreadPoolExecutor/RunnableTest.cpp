@@ -40,8 +40,8 @@ public:
 void testRunnable_onInterrupt() {
     //void shutdown();
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
-        pool->submit(createRunTest1());
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(100)->setDefaultThreadNum(100)->newThreadPool();
+        pool->submit(RunTest1::New());
         sleep(1);
         pool->shutdown();
         sleep(5);

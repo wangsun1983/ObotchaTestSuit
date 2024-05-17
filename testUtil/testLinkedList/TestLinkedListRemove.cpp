@@ -10,24 +10,24 @@ void testLinkedListRemove() {
 
     //case1 string putLast
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
-        int index = mList->remove(createString("b"));
+        int index = mList->remove(String::New("b"));
         if(index != 1) {
           TEST_FAIL("LinkedList Remove test1");
           break;
         }
 
-        index = mList->remove(createString("a"));
+        index = mList->remove(String::New("a"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test2");
           break;
         }
 
-        index = mList->remove(createString("c"));
+        index = mList->remove(String::New("c"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test3");
           break;
@@ -36,24 +36,24 @@ void testLinkedListRemove() {
     }
 
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
-        int index = mList->remove(createString("a"));
+        int index = mList->remove(String::New("a"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test4");
           break;
         }
 
-        index = mList->remove(createString("b"));
+        index = mList->remove(String::New("b"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test5");
           break;
         }
 
-        index = mList->remove(createString("c"));
+        index = mList->remove(String::New("c"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test6");
           break;
@@ -62,24 +62,24 @@ void testLinkedListRemove() {
     }
 
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
-        int index = mList->remove(createString("c"));
+        int index = mList->remove(String::New("c"));
         if(index != 2) {
           TEST_FAIL("LinkedList Remove test7");
           break;
         }
 
-        index = mList->remove(createString("b"));
+        index = mList->remove(String::New("b"));
         if(index != 1) {
           TEST_FAIL("LinkedList Remove test8");
           break;
         }
 
-        index = mList->remove(createString("a"));
+        index = mList->remove(String::New("a"));
         if(index != 0) {
           TEST_FAIL("LinkedList Remove test9");
           break;
@@ -88,12 +88,12 @@ void testLinkedListRemove() {
     }
 
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
-        int index = mList->remove(createString("d"));
+        int index = mList->remove(String::New("d"));
         if(index != -1) {
           TEST_FAIL("LinkedList Remove test1");
           break;

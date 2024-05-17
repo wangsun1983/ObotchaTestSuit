@@ -66,9 +66,9 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
+       Uint8 t1 = Uint8::New(i);
        String v1 = t1->toHexString();
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint8 toString test1");
          break;
@@ -76,10 +76,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
+       Uint8 t1 = Uint8::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint8 toString test2");
          break;
@@ -87,9 +87,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
+       Uint8 t1 = Uint8::New(i);
        String v1 = t1->toBinaryString();
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint8 toString test3,v1 is %s,v2 is %s,i is %d",v1->toChars(),v2->toChars(),i);
          break;
@@ -103,9 +103,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
-       Uint8 t2 = st(Uint8)::ParseHexString(createString(HexTable[i]));
-       Uint8 t3 = createUint8(t2);
+       Uint8 t1 = Uint8::New(i);
+       Uint8 t2 = st(Uint8)::ParseHexString(String::New(HexTable[i]));
+       Uint8 t3 = Uint8::New(t2);
        if(t1 != t3) {
          TEST_FAIL("Uint8 toInt test1");
          break;
@@ -113,9 +113,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
-       Uint8 t2 = st(Uint8)::ParseOctString(createString(OctTable[i]));
-       Uint8 t3 = createUint8(t2);
+       Uint8 t1 = Uint8::New(i);
+       Uint8 t2 = st(Uint8)::ParseOctString(String::New(OctTable[i]));
+       Uint8 t3 = Uint8::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Uint8 toInt test2");
@@ -124,11 +124,11 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint8 t1 = createUint8(i);
-       String str = createString(BinaryTable[i]);
+       Uint8 t1 = Uint8::New(i);
+       String str = String::New(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
        Uint8 t2 = st(Uint8)::ParseBinaryString(str);
-       Uint8 t3 = createUint8(t2);
+       Uint8 t3 = Uint8::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Uint8 toInt test3");
          break;

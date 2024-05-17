@@ -11,18 +11,18 @@
 using namespace obotcha;
 
 void hashcodetest() {
-  Float t1 = createFloat(1.1);
-  Float t2 = createFloat(1.1);
+  Float t1 = Float::New(1.1);
+  Float t2 = Float::New(1.1);
   if(t1->hashcode() != t2->hashcode()) {
     TEST_FAIL("Float hashcode test1");
   }
 
-  Float t3 = createFloat(1.10);
+  Float t3 = Float::New(1.10);
   if(t1->hashcode() != t3->hashcode()) {
     TEST_FAIL("Float hashcode test2");
   }
 
-  Float t4 = createFloat(1.100000001);
+  Float t4 = Float::New(1.100000001);
   if(t1->hashcode() != t4->hashcode()) {
     TEST_FAIL("Float hashcode test3");
   }

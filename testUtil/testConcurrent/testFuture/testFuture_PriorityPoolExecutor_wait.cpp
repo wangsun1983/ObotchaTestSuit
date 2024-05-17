@@ -18,10 +18,10 @@ using namespace obotcha;
 
 void testPriorityPoolExecutor_Wait() {
 
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
       int value = 100;
@@ -45,7 +45,7 @@ void testPriorityPoolExecutor_Wait() {
   }
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
       int value = 100;
@@ -74,7 +74,7 @@ void testPriorityPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newPriorityThreadPool();
+    auto pool = ExecutorBuilder::New()->setDefaultThreadNum(1)->newPriorityThreadPool();
     int value = 100;
     Future f1 = pool->preempt(st(Concurrent)::TaskPriority::High,[&value](){
       usleep(200*1000);
@@ -96,10 +96,10 @@ void testPriorityPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(3)
                 ->newPriorityThreadPool();
-    CountDownLatch latch = createCountDownLatch(3);
+    CountDownLatch latch = CountDownLatch::New(3);
     pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
@@ -124,19 +124,19 @@ void testPriorityPoolExecutor_Wait() {
       //
     });
 
-    Thread t1 = createThread([&f1,&latch]{
+    Thread t1 = Thread::New([&f1,&latch]{
       f1->wait();
       latch->countDown();
     });
     t1->start();
 
-    Thread t2 = createThread([&f2,&latch]{
+    Thread t2 = Thread::New([&f2,&latch]{
       f2->wait();
       latch->countDown();
     });
     t2->start();
 
-    Thread t3 = createThread([&f3,&latch]{
+    Thread t3 = Thread::New([&f3,&latch]{
       f3->wait();
       latch->countDown();
     });
@@ -156,7 +156,7 @@ void testPriorityPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newPriorityThreadPool();
+    auto pool = ExecutorBuilder::New()->setDefaultThreadNum(1)->newPriorityThreadPool();
     pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
@@ -165,7 +165,7 @@ void testPriorityPoolExecutor_Wait() {
       //TODO
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(10*1000);
       pool->shutdown();
     });

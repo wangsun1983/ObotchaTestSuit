@@ -30,22 +30,22 @@ public:
 
 void testArrayListUint64() {
     while(1) {
-      ArrayList<Uint64> list = createArrayList<Uint64>();
-      list->add(createUint64(1));
-      list->add(createUint64(2));
-      list->add(createUint64(3));
-      list->add(createUint64(4));
-      list->add(createUint64(5));
+      ArrayList<Uint64> list = ArrayList<Uint64>::New();
+      list->add(Uint64::New(1));
+      list->add(Uint64::New(2));
+      list->add(Uint64::New(3));
+      list->add(Uint64::New(4));
+      list->add(Uint64::New(5));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Uint64_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Uint64_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Uint64_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Uint64_test1.json"));
       JsonValue value2 = reader->get();
 
-      ArrayList<Uint64> list2 = createArrayList<Uint64>();
+      ArrayList<Uint64> list2 = ArrayList<Uint64>::New();
       value2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -65,31 +65,31 @@ void testArrayListUint64() {
     }
 
     while(1) {
-      Uint64List2 list = createUint64List2();
-      list->list1 = createArrayList<Uint64>();
-      list->list2 = createArrayList<Uint64>();
+      Uint64List2 list = Uint64List2::New();
+      list->list1 = ArrayList<Uint64>::New();
+      list->list2 = ArrayList<Uint64>::New();
 
-      list->list1->add(createUint64(1));
-      list->list1->add(createUint64(2));
-      list->list1->add(createUint64(3));
-      list->list1->add(createUint64(4));
-      list->list1->add(createUint64(5));
+      list->list1->add(Uint64::New(1));
+      list->list1->add(Uint64::New(2));
+      list->list1->add(Uint64::New(3));
+      list->list1->add(Uint64::New(4));
+      list->list1->add(Uint64::New(5));
 
-      list->list2->add(createUint64(6));
-      list->list2->add(createUint64(7));
-      list->list2->add(createUint64(8));
-      list->list2->add(createUint64(9));
-      list->list2->add(createUint64(10));
+      list->list2->add(Uint64::New(6));
+      list->list2->add(Uint64::New(7));
+      list->list2->add(Uint64::New(8));
+      list->list2->add(Uint64::New(9));
+      list->list2->add(Uint64::New(10));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Uint64_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Uint64_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Uint64_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Uint64_test2.json"));
       JsonValue value2 = reader->get();
 
-      Uint64List2 list2 = createUint64List2();
+      Uint64List2 list2 = Uint64List2::New();
       value2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

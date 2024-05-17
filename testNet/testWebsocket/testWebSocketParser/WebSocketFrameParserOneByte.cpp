@@ -73,11 +73,11 @@ int testWebFrameOneByteParser() {
       memcpy(payload_frame+2+2, key, 4);
       memcpy(payload_frame+2+2+4, (const char *)mask((char *)key, payload_copy, length), length);
 
-      WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-      ArrayList<WebSocketFrame> msgDatas = createArrayList<WebSocketFrame>();
+      WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+      ArrayList<WebSocketFrame> msgDatas = ArrayList<WebSocketFrame>::New();
 
       for(int i = 0;i<(2+2+4+length);i++) {
-        ByteArray loadData = createByteArray(1);
+        ByteArray loadData = ByteArray::New(1);
         loadData[0] = payload_frame[i];
         parser->pushParseData(loadData);
         ArrayList<WebSocketFrame> datas = parser->doParse();
@@ -107,11 +107,11 @@ int testWebFrameOneByteParser() {
   {
     uint8_t msg[] = { 0x81u, 0x85u, 0x37u, 0xfau, 0x21u, 0x3du, 0x7fu, 0x9fu,
                   0x4du, 0x51u, 0x58u };
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
     ArrayList<WebSocketFrame> msgDatas = nullptr;
 
     for(int i = 0; i < sizeof(msg)/sizeof(uint8_t);i++) {
-      ByteArray loadData = createByteArray(1);
+      ByteArray loadData = ByteArray::New(1);
       loadData[0] = msg[i];
       parser->pushParseData(loadData);
       msgDatas = parser->doParse();
@@ -136,11 +136,11 @@ int testWebFrameOneByteParser() {
   //case3
   {
     uint8_t msg[] = { 0x81, 0x00 };
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
     ArrayList<WebSocketFrame> msgDatas = nullptr;
 
     for(int i = 0; i < sizeof(msg)/sizeof(uint8_t);i++) {
-      ByteArray loadData = createByteArray(1);
+      ByteArray loadData = ByteArray::New(1);
       loadData[0] = msg[i];
       parser->pushParseData(loadData);
       msgDatas = parser->doParse();

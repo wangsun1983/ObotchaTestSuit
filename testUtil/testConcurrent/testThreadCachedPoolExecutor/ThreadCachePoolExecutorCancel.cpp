@@ -17,7 +17,7 @@
 
 using namespace obotcha;
 
-Mutex cancelmutex = createMutex();
+Mutex cancelmutex = Mutex::New();
 int cancelNum = 0;
 
 DECLARE_CLASS(CancelRunnable) IMPLEMENTS(Runnable) {
@@ -41,20 +41,20 @@ int cancelTest() {
     while(1) {
         //TEST_FAIL("start test ");
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
-        ThreadCachedPoolExecutor pool = createExecutorBuilder()
+        ThreadCachedPoolExecutor pool = ExecutorBuilder::New()
                                         ->setMaxPendingTaskNum(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
                                         ->setMaxNoWorkingTime(1000)
                                         ->newCachedThreadPool();
 
-        ArrayList<Future> cancellists = createArrayList<Future>();
+        ArrayList<Future> cancellists = ArrayList<Future>::New();
         //TEST_FAIL("start trace ");
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         for(int i = 0;i < 1024*32;i++) {
          //   TEST_FAIL("submit task num is %d ",i);
-            Future f = pool->submit(createCancelRunnable());
+            Future f = pool->submit(CancelRunnable::New());
             cancellists->add(f);
         }
 
@@ -79,18 +79,18 @@ int cancelTest() {
         //TEST_FAIL("start test ");
         cancelNum = 0;
         //ThreadCachedPoolExecutor pool = st(Executors)::newCachedThreadPool(1024*32,0,20,1000);
-        ThreadCachedPoolExecutor pool = createExecutorBuilder()
+        ThreadCachedPoolExecutor pool = ExecutorBuilder::New()
                                         ->setMaxPendingTaskNum(1024*32)
                                         ->setMinThreadNum(0)
                                         ->setMaxThreadNum(20)
                                         ->setMaxNoWorkingTime(1000)
                                         ->newCachedThreadPool();
 
-        ArrayList<Future> cancellists = createArrayList<Future>();
+        ArrayList<Future> cancellists = ArrayList<Future>::New();
         //TEST_FAIL("start trace ");
         for(int i = 0;i < 1024*32;i++) {
          //   TEST_FAIL("submit task num is %d ",i);
-            Future f = pool->submit(createCancelRunnable());
+            Future f = pool->submit(CancelRunnable::New());
             cancellists->add(f);
         }
 

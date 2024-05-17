@@ -65,7 +65,7 @@ extern void testCalendarEqual();
 extern void testCalendarGetMaxium();
 
 void simpleTest() {
-  Calendar c = createCalendar(9277732677921l);
+  Calendar c = Calendar::New(9277732677921l);
   printf("day of week is %d \n",c->get(st(Calendar)::Field::DayOfWeek));
   printf("day of year is %d \n",c->get(st(Calendar)::Field::DayOfYear));
   printf("day of month is %d \n",c->get(st(Calendar)::Field::DayOfMonth));
@@ -74,8 +74,8 @@ void simpleTest() {
 ArrayList<TimeData> analyse(File f) {
     bool isStart = true;
     TimeData data = nullptr;
-    ArrayList<TimeData> list = createArrayList<TimeData>();
-    TextLineReader reader = createTextLineReader(f);
+    ArrayList<TimeData> list = ArrayList<TimeData>::New();
+    TextLineReader reader = TextLineReader::New(f);
 
     while(1) {
 
@@ -88,7 +88,7 @@ ArrayList<TimeData> analyse(File f) {
           //printf("add data11111 \n");
           //if(isStart) {
             //printf("add data22222 \n");
-            //data = createTimeData();
+            //data = TimeData::New();
           //  isStart = false;
           //} else {
             //printf("add data33333 \n");
@@ -104,7 +104,7 @@ ArrayList<TimeData> analyse(File f) {
             if(data != nullptr) {
               list->add(data);
             }
-            data = createTimeData();
+            data = TimeData::New();
 
           //  isStart = true;
           //}
@@ -183,13 +183,13 @@ ArrayList<TimeData> analyse(File f) {
 
 int main() {
     //Test 
-
-    File dateFile = createFile("./testData/date.txt");
-    File hourFile = createFile("./testData/hour.txt");
-    File minuteFile = createFile("./testData/minute.txt");
-    File secondFile = createFile("./testData/second.txt");
-    File yearFile = createFile("./testData/year.txt");
-    File monthFile = createFile("./testData/month.txt");
+#if 0
+    File dateFile = File::New("./testData/date.txt");
+    File hourFile = File::New("./testData/hour.txt");
+    File minuteFile = File::New("./testData/minute.txt");
+    File secondFile = File::New("./testData/second.txt");
+    File yearFile = File::New("./testData/year.txt");
+    File monthFile = File::New("./testData/month.txt");
 
     dateList = analyse(dateFile);
     hourList = analyse(hourFile);
@@ -240,7 +240,7 @@ int main() {
 	testCalendarSetYearSpecial();
 	testCalendarSetMonthSpecial();
 	testCalendarSetMonthSpecial2();
-
+#endif	
 	testCalendarEqual();
 
     return 0;

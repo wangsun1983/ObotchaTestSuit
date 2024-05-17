@@ -12,10 +12,10 @@ using namespace obotcha;
 void testHashMapRemove() {
 
     while(1) {
-      HashMap<String,String> map = createHashMap<String,String>();
-      map->put(createString("a"),createString("b"));
+      HashMap<String,String> map = HashMap<String,String>::New();
+      map->put(String::New("a"),String::New("b"));
 
-      auto value = map->remove(createString("a"));
+      auto value = map->remove(String::New("a"));
       if(value == nullptr || !value->sameAs("b")) {
           TEST_FAIL("[HashMap Remove Test case1]");
       }

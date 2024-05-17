@@ -12,10 +12,10 @@
 using namespace obotcha;
 
 void testCountDownLatch_Await() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     while(1) {
-      CountDownLatch latch = createCountDownLatch(1);
-      Thread t = createThread([&latch]{
+      CountDownLatch latch = CountDownLatch::New(1);
+      Thread t = Thread::New([&latch]{
         usleep(200*1000);
         latch->countDown();
       });
@@ -40,8 +40,8 @@ void testCountDownLatch_Await() {
     }
 	
 	while(1) {
-		CountDownLatch latch = createCountDownLatch(1);
-		Thread t = createThread([&latch]{
+		CountDownLatch latch = CountDownLatch::New(1);
+		Thread t = Thread::New([&latch]{
 		  usleep(200*1000);
 		  latch->countDown();
 		});
@@ -61,7 +61,7 @@ void testCountDownLatch_Await() {
 	}
 	
 	while(1) {
-		CountDownLatch latch = createCountDownLatch(1);
+		CountDownLatch latch = CountDownLatch::New(1);
 		watcher->start();
 		auto result = latch->await(100);
 		auto ret = watcher->stop();
@@ -72,7 +72,7 @@ void testCountDownLatch_Await() {
 	}
 	
 	while(1) {
-		CountDownLatch latch = createCountDownLatch(1);
+		CountDownLatch latch = CountDownLatch::New(1);
 		latch->countDown();
 		watcher->start();
 		if(latch->await() != -1) {
@@ -82,32 +82,32 @@ void testCountDownLatch_Await() {
 	}
 	
 	while(1) {
-		CountDownLatch latch = createCountDownLatch(1);
+		CountDownLatch latch = CountDownLatch::New(1);
 		long cost1 = 0;
 		long cost2 = 0;
 		long cost3 = 0;
 		long cost4 = 0;
 		
-		Thread t1 = createThread([&]{
-			TimeWatcher w1 = createTimeWatcher();
+		Thread t1 = Thread::New([&]{
+			TimeWatcher w1 = TimeWatcher::New();
 			w1->start();
 			cost1 = latch->await();
 		});
 		
-		Thread t2 = createThread([&]{
-			TimeWatcher w2 = createTimeWatcher();
+		Thread t2 = Thread::New([&]{
+			TimeWatcher w2 = TimeWatcher::New();
 			w2->start();
 			cost2 = latch->await();
 		});
 		
-		Thread t3 = createThread([&]{
-			TimeWatcher w3 = createTimeWatcher();
+		Thread t3 = Thread::New([&]{
+			TimeWatcher w3 = TimeWatcher::New();
 			w3->start();
 			cost3 = latch->await();
 		});
 		
-		Thread t4 = createThread([&]{
-			TimeWatcher w4 = createTimeWatcher();
+		Thread t4 = Thread::New([&]{
+			TimeWatcher w4 = TimeWatcher::New();
 			w4->start();
 			cost4 = latch->await();
 		});
@@ -124,22 +124,22 @@ void testCountDownLatch_Await() {
 		t3->join();
 		t4->join();
 		
-		if(cost1 != 0) {
+		if(cost1 > 205 || cost1 < 195) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost1 is %ld",cost1);
 		}
 		
-		if(cost2 != 0) {
+		if(cost2 > 205 || cost2 < 195) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost2 is %ld",cost2);
 		}
 		
-		if(cost3 != 0) {
+		if(cost3 > 205 || cost3 < 195) {
 			TEST_FAIL("[TestCountDownLatch await case7],cost3 is %ld",cost3);
 		}
 		
-		if(cost4 != 0) {
-			TEST_FAIL("[TestCountDownLatch await case7],cost4 is %ld",cost4);
+		if(cost4 > 205 || cost4 < 195) {
+			TEST_FAIL("[TestCountDownLatch await case7],cost2 is %ld",cost4);
 		}
-		break;
+		
 	}
     TEST_OK("[TestCountDownLatch await case100]");
 }

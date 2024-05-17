@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testByteArrayClone() {
   while(1) {
-    ByteArray data1 = createByteArray(5);
+    ByteArray data1 = ByteArray::New(5);
     data1->fill(0x20);
 
     auto ptr1 = data1->clone();

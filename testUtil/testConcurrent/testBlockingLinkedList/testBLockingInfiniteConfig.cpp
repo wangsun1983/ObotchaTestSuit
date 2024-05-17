@@ -7,7 +7,6 @@
 #include "Integer.hpp"
 #include "System.hpp"
 #include "TestLog.hpp"
-#include "Util.hpp"
 
 using namespace obotcha;
 

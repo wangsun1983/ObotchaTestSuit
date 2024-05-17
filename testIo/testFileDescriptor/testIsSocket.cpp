@@ -26,7 +26,7 @@ using namespace obotcha;
 void testIsSocket() {
     while(1) {
         int sock = socket(PF_INET,SOCK_STREAM, 0);
-        FileDescriptor fd = createFileDescriptor(sock);
+        FileDescriptor fd = FileDescriptor::New(sock);
         if(!fd->isSocket()) {
             TEST_FAIL("[FileDescriptor isSocket Test case1]");
         }
@@ -40,7 +40,7 @@ void testIsSocket() {
     
     while(1) {
         int fd = open("./tmp/base_data",O_RDONLY);
-        FileDescriptor descripor = createFileDescriptor(fd);
+        FileDescriptor descripor = FileDescriptor::New(fd);
         if(descripor->isSocket()) {
             TEST_FAIL("[FileDescriptor isSocket Test case3]");
         }

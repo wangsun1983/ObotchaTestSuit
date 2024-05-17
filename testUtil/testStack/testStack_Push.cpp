@@ -17,10 +17,10 @@ public:
 
 void testStackPush() {
   while(1) {
-    Stack<Integer> ss = createStack<Integer>();
+    Stack<Integer> ss = Stack<Integer>::New();
 
     for(int i = 0;i<1024*32;i++) {
-      ss->push(createInteger(i));
+      ss->push(Integer::New(i));
     }
 
     if(ss->size() != 1024*32) {
@@ -29,7 +29,7 @@ void testStackPush() {
     }
 
     for(int i = 1024*32 - 1;i >= 0;i--) {
-      if(ss->pop() != createInteger(i)) {
+      if(ss->pop() != Integer::New(i)) {
         TEST_FAIL("testStack push test2");
         break;
       }
@@ -38,10 +38,10 @@ void testStackPush() {
   }
 
   while(1) {
-    Stack<TestPushData> ss = createStack<TestPushData>();
+    Stack<TestPushData> ss = Stack<TestPushData>::New();
 
     for(int i = 0;i<1024*32;i++) {
-      ss->push(createTestPushData(i));
+      ss->push(TestPushData::New(i));
     }
 
     if(ss->size() != 1024*32) {

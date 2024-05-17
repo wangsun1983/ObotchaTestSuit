@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderContentSecurityPolicy policy = createHttpHeaderContentSecurityPolicy();
+    HttpHeaderContentSecurityPolicy policy = HttpHeaderContentSecurityPolicy::New();
     policy->load("default-src   'self'; img-src *;  media-src media1.com   media2.com; script-src   userscripts.example.com");
     if(!policy->toString()->sameAs("default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com")) {
       TEST_FAIL("[HttpHeaderContentSecurityPolicy test toString case1],str is %s",policy->toString()->toChars());

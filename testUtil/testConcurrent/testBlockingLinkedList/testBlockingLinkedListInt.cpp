@@ -31,7 +31,7 @@ void testBlockingLinkedListInt() {
 //do not support primitive value
 #if 0	
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(5);
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);
@@ -52,7 +52,7 @@ void testBlockingLinkedListInt() {
     }
 
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(5);
         list->putLast(0);
         list->putLast(1);
         list->putLast(2);
@@ -70,7 +70,7 @@ void testBlockingLinkedListInt() {
     }
 
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(5);
         bool isException = false;
         long time1 = st(System)::CurrentTimeMillis();
         try {

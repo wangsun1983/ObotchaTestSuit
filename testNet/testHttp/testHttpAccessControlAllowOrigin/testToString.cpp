@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
+    HttpHeaderAccessControlAllowOrigin c = HttpHeaderAccessControlAllowOrigin::New();
     c->load("https://developer.mozilla.org");
     if(!c->toString()->sameAs("https://developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case1]");
@@ -23,7 +23,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
+    HttpHeaderAccessControlAllowOrigin c = HttpHeaderAccessControlAllowOrigin::New();
     c->load("*");
     if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case2]");
@@ -33,7 +33,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderAccessControlAllowOrigin c = createHttpHeaderAccessControlAllowOrigin();
+    HttpHeaderAccessControlAllowOrigin c = HttpHeaderAccessControlAllowOrigin::New();
     c->set("*");
     if(!c->toString()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test toString case3]");

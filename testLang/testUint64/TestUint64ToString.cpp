@@ -65,9 +65,9 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
+       Uint64 t1 = Uint64::New(i);
        String v1 = t1->toHexString();
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint64 toString test1");
          break;
@@ -75,10 +75,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
+       Uint64 t1 = Uint64::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint64 toString test2");
          break;
@@ -86,9 +86,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
+       Uint64 t1 = Uint64::New(i);
        String v1 = t1->toBinaryString();
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Uint64 toString test3");
          break;
@@ -102,9 +102,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
-       Uint64 t2 = st(Uint64)::ParseHexString(createString(HexTable[i]));
-       Uint64 t3 = createUint64(t2);
+       Uint64 t1 = Uint64::New(i);
+       Uint64 t2 = st(Uint64)::ParseHexString(String::New(HexTable[i]));
+       Uint64 t3 = Uint64::New(t2);
        if(t1 != t3) {
          TEST_FAIL("Uint64 toInt test1");
          break;
@@ -112,9 +112,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
-       Uint64 t2 = st(Uint64)::ParseOctString(createString(OctTable[i]));
-       Uint64 t3 = createUint64(t2);
+       Uint64 t1 = Uint64::New(i);
+       Uint64 t2 = st(Uint64)::ParseOctString(String::New(OctTable[i]));
+       Uint64 t3 = Uint64::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Uint64 toInt test2");
@@ -123,11 +123,11 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Uint64 t1 = createUint64(i);
-       String str = createString(BinaryTable[i]);
+       Uint64 t1 = Uint64::New(i);
+       String str = String::New(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
        Uint64 t2 = st(Uint64)::ParseBinaryString(str);
-       Uint64 t3 = createUint64(t2);
+       Uint64 t3 = Uint64::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Uint64 toInt test3");
          break;

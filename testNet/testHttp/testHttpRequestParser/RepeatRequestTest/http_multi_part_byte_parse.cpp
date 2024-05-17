@@ -15,10 +15,10 @@ void testRepeatRequest() {
                               "conTENT-Length: 5\r\n"
                               "\r\n"
                               "WORLD";
-    HttpPacketParserImpl parser = createHttpPacketParserImpl();
+    HttpPacketParserImpl parser = HttpPacketParserImpl::New();
     int index = 0;
     while(index < 1024*32) {
-      parser->pushData(createByteArray((byte *)content,strlen(content)));
+      parser->pushData(ByteArray::New((byte *)content,strlen(content)));
       ArrayList<HttpPacket> packets = parser->doParse();
       if(packets->size() != 2) {
         TEST_FAIL("HttpPacketParser repeat message parse case2");

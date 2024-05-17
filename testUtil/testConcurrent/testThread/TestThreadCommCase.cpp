@@ -143,8 +143,8 @@ void testThreadCommonCase() {
   //_Thread(String name,Runnable run);
   while(1) {
     {
-        Run1 r1 = createRun1();
-        Thread t = createThread(r1);
+        Run1 r1 = Run1::New();
+        Thread t = Thread::New(r1);
         t->start();
         t->join();
     }
@@ -165,8 +165,8 @@ void testThreadCommonCase() {
   while(1){
     disposeVal = -1;
     {
-        Run1 r1 = createRun1();
-        Thread t = createThread(r1);
+        Run1 r1 = Run1::New();
+        Thread t = Thread::New(r1);
         t->setName("testrunnable");
         t->start();
         t->join();
@@ -186,7 +186,7 @@ void testThreadCommonCase() {
   //_Thread()
   while(1) {
     {
-      Thread1 t1 = createThread1();
+      Thread1 t1 = Thread1::New();
       t1->setName("_thread");
       t1->start();
       t1->join();
@@ -204,7 +204,7 @@ void testThreadCommonCase() {
 
   //void join(long millseconds);
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread2::New();
     t2->setName("testjoinThread");
     t2->start();
     long int start = st(System)::CurrentTimeMillis();
@@ -223,7 +223,7 @@ void testThreadCommonCase() {
 
   //int getStatus();
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread2::New();
     t2->setName("testgetstatus");
     t2->start();
     auto status = t2->getStatus();
@@ -246,7 +246,7 @@ void testThreadCommonCase() {
 #if 0
   //int setSchedPolicy(ThreadSchedPolicy);
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread::New2();
     t2->setName("testschedpolicy");
     t2->start();
     sleep(1);
@@ -265,7 +265,7 @@ void testThreadCommonCase() {
   //void setPriority(ThreadPriority priority);/getPriority()
 
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread::New2();
     t2->setName("setPriority_1");
     t2->start();
     sleep(1);
@@ -292,7 +292,7 @@ void testThreadCommonCase() {
 
   //setName()
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread2::New();
     t2->setName("testsetname");
     t2->start();
     //TEST_FAIL("t2_1 status is %d ",t2->getStatus());
@@ -318,7 +318,7 @@ void testThreadCommonCase() {
 
   //getName()
   while(1) {
-    Thread2 t2 = createThread2();
+    Thread2 t2 = Thread2::New();
     t2->start();
     t2->setName("mygetnametest");
 
@@ -359,7 +359,7 @@ void testThreadCommonCase() {
 #if 0
   //setThreadSchedPolicy(ThreadPriority priority);
   while(1) {
-    Thread4 t1 = createThread4();
+    Thread4 t1 = Thread::New4();
     t1->start();
     sleep(1);
     int policy = t1->getSchedPolicy();
@@ -376,7 +376,7 @@ void testThreadCommonCase() {
   //getThreadPriority()
 
   while(1) {
-    Thread5 t1 = createThread5();
+    Thread5 t1 = Thread::New5();
     t1->setName("getThreadPriority");
     t1->start();
     t1->join();
@@ -393,7 +393,7 @@ void testThreadCommonCase() {
 
   //setThreadPriority()
   while(1) {
-    Thread6 t1 = createThread6();
+    Thread6 t1 = Thread::New6();
     t1->setName("setThreadPriority");
     t1->start();
     sleep(1);
@@ -410,7 +410,7 @@ void testThreadCommonCase() {
 
   //int getThreadPriority();
   while(1) {
-      Thread7 t1 = createThread7();
+      Thread7 t1 = Thread::New7();
       t1->setName("getThreadPriority");
       //TEST_FAIL("abc1 ");
       t1->start();

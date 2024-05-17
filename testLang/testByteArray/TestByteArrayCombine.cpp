@@ -16,8 +16,8 @@ using namespace obotcha;
 void testByteArrayCombine() {
 
     while(1) {
-      ByteArray data1 = createByteArray(5);
-      ByteArray data2 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
+      ByteArray data2 = ByteArray::New(5);
 
       data1->fill(0x10);
       data2->fill(0x20);
@@ -45,7 +45,7 @@ void testByteArrayCombine() {
 
     while(1) {
       ByteArray data1 = nullptr;
-      ByteArray data2 = createByteArray(5);
+      ByteArray data2 = ByteArray::New(5);
       data2->fill(0x20);
       st(ByteArray)::Combine(data1,data2);
       if(data1 == nullptr) {
@@ -68,7 +68,7 @@ void testByteArrayCombine() {
     }
 
     while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       ByteArray data2 = nullptr;
       data1->fill(0x20);
       st(ByteArray)::Combine(data1,data2);

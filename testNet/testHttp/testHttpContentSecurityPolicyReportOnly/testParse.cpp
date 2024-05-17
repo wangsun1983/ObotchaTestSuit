@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderContentSecurityPolicy policy = createHttpHeaderContentSecurityPolicy();
+    HttpHeaderContentSecurityPolicy policy = HttpHeaderContentSecurityPolicy::New();
     policy->load("default-src   'self' ; img-src * ; media-src media1.com   media2.com   ; script-src   userscripts.example.com");
     ArrayList<HttpHeaderContentSecurityPolicyItem> policies = policy->get();
     if(policies->size() != 4) {

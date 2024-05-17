@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 int testReadContent() {
-    ConfReader reader = createConfReader()->loadContent(createString("Desktop-Picture = /usr/images/earth.jpg \r\n \
+    ConfReader reader = ConfReader::New()->loadContent(String::New("Desktop-Picture = /usr/images/earth.jpg \r\n \
                                             Position = Centered \r\n \
                                             \"Background Color\" = Black \r\n \
                                             NULL=  \r\n \
@@ -18,13 +18,13 @@ int testReadContent() {
     auto value = reader->get();
     //getConf(String);
     while(1) {
-      String v1 = value->get(createString("Desktop-Picture"));
+      String v1 = value->get(String::New("Desktop-Picture"));
       if(!v1->sameAs("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case2] ");
         break;
       }
 
-      String v2 = value->get(createString("Position"));
+      String v2 = value->get(String::New("Position"));
       if(!v2->sameAs("Centered")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case3] ");
         break;

@@ -20,9 +20,9 @@ int testWaitTimeout() {
   st(ProcessMutex)::Create("abc1");
   
   while(1) {
-	ProcessCondition cond = createProcessCondition("abc_cond1");
-	ProcessMutex mu = createProcessMutex("abc1");
-	TimeWatcher w = createTimeWatcher();
+	ProcessCondition cond = ProcessCondition::New("abc_cond1");
+	ProcessMutex mu = ProcessMutex::New("abc1");
+	TimeWatcher w = TimeWatcher::New();
 	AutoLock l(mu);
 	w->start();
 	cond->wait(mu,100);
@@ -36,16 +36,16 @@ int testWaitTimeout() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-			ProcessMutex mu = createProcessMutex("abc1");
-			ProcessCondition cond = createProcessCondition("abc_cond1");
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			ProcessCondition cond = ProcessCondition::New("abc_cond1");
 			usleep(1000*200);
 			cond->notify();
 			return -1;
 	  } else {
 			usleep(1000*100);
-			ProcessMutex mu = createProcessMutex("abc1");
-			ProcessCondition cond = createProcessCondition("abc_cond1");
-			TimeWatcher w = createTimeWatcher();
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			ProcessCondition cond = ProcessCondition::New("abc_cond1");
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			AutoLock l(mu);
 			cond->wait(mu,500);

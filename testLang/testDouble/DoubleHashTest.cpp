@@ -14,18 +14,18 @@ using namespace obotcha;
 const double EPSINON = 0.00001;
 
 void hashtest() {
-  Double d1 = createDouble(1.1);
-  Double d2 = createDouble(1.1);
+  Double d1 = Double::New(1.1);
+  Double d2 = Double::New(1.1);
   if(d1->hashcode() != d2->hashcode()) {
     TEST_FAIL("Double hashcode test1");
   }
 
-  Double d3 = createDouble(1.10);
+  Double d3 = Double::New(1.10);
   if(d1->hashcode() != d3->hashcode()) {
     TEST_FAIL("Double hashcode test2");
   }
 
-  Double d4 = createDouble(1.100000001);
+  Double d4 = Double::New(1.100000001);
   if(d1->hashcode() == d4->hashcode()) {
     TEST_FAIL("Double hashcode test3");
   }

@@ -9,7 +9,7 @@ using namespace obotcha;
 
 void testGetAndOr() {
     while(1) {
-      AtomicLong value = createAtomicLong(1);
+      AtomicLong value = AtomicLong::New(1);
       long v = value->getAndOr(4);
       if(v != 1) {
         TEST_FAIL("AtomicLong testGetAndOr test2");

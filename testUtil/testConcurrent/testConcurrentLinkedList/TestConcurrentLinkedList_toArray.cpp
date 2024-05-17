@@ -11,19 +11,19 @@ using namespace obotcha;
 
 void testConcurrentLinkedList_toArray() {
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putFirst(createString("100"));
-      list->putFirst(createString("20"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putFirst(String::New("100"));
+      list->putFirst(String::New("20"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->acquireReadLock()->lock();
           usleep(200*1000);
           list->acquireReadLock()->unlock();
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           auto v = list->toArray();
           auto r = w->stop();
@@ -35,7 +35,7 @@ void testConcurrentLinkedList_toArray() {
               TEST_FAIL("ConcurrentLinkedList toArray case2");
           }
           
-          if(!v->get(0)->equals(createString("20")) || !v->get(1)->equals(createString("100"))) {
+          if(!v->get(0)->equals(String::New("20")) || !v->get(1)->equals(String::New("100"))) {
               TEST_FAIL("ConcurrentLinkedList toArray case3");
           }
       });
@@ -48,19 +48,19 @@ void testConcurrentLinkedList_toArray() {
     }
     
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putFirst(createString("100"));
-      list->putFirst(createString("20"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putFirst(String::New("100"));
+      list->putFirst(String::New("20"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->syncWriteAction([]{
               usleep(200*1000);
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           auto v = list->toArray();
           auto r = w->stop();
@@ -68,7 +68,7 @@ void testConcurrentLinkedList_toArray() {
               TEST_FAIL("ConcurrentLinkedList toArray case4,cost is %d",r);
           }
           
-          if(!v->get(0)->equals(createString("20")) || !v->get(1)->equals(createString("100"))) {
+          if(!v->get(0)->equals(String::New("20")) || !v->get(1)->equals(String::New("100"))) {
               TEST_FAIL("ConcurrentLinkedList toArray case5");
           }
       });

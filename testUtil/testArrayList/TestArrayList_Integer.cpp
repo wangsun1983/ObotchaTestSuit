@@ -13,9 +13,9 @@ using namespace obotcha;
 void testArrayList_Integer() {
   //--[_ArrayList<Integer> Test {add(Integer val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
 
     if(list->size() != 2) {
       TEST_FAIL("[ArrayList<Integer> Test {add(Integer val)} case0]");
@@ -42,9 +42,9 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {add(int val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
 
     if(list->size() != 2) {
       TEST_FAIL("[ArrayList<Integer> Test {add(int val)} case0]");
@@ -63,13 +63,13 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {add(ArrayList<Integer> list)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
 
-    ArrayList<Integer>list2 = createArrayList<Integer>();
-    list2->add(createInteger(3));
-    list2->add(createInteger(4));
+    ArrayList<Integer>list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(3));
+    list2->add(Integer::New(4));
     list->add(list2);
 
     if(list->size() != 4) {
@@ -98,9 +98,9 @@ void testArrayList_Integer() {
   }
   //--[_ArrayList<Integer> Test {clear()} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
     int size = list->size();
     list->clear();
     if(size == 0 || list->size() != 0) {
@@ -113,10 +113,10 @@ void testArrayList_Integer() {
   }
   //--[_ArrayList<Integer> Test {remove(int index)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
     Integer i = list->removeAt(2);
     if(i->toValue() != 3) {
@@ -159,12 +159,12 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {remove(Integer v)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    int result = list->remove(createInteger(2));
+    int result = list->remove(Integer::New(2));
     if(result == -1) {
       TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case0]");
       break;
@@ -177,7 +177,7 @@ void testArrayList_Integer() {
         break;
     }
 
-    Integer t1 = createInteger(100);
+    Integer t1 = Integer::New(100);
     if(list->remove(t1) != -1) {
       TEST_FAIL("[ArrayList<Integer> Test {remove(Integer v)} case2]");
       break;
@@ -201,19 +201,19 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {indexOf(Integer v)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    if(list->indexOf(createInteger(1)) != 0
-      ||list->indexOf(createInteger(2)) != 1
-      ||list->indexOf(createInteger(3)) != 2) {
+    if(list->indexOf(Integer::New(1)) != 0
+      ||list->indexOf(Integer::New(2)) != 1
+      ||list->indexOf(Integer::New(3)) != 2) {
         TEST_FAIL("[ArrayList<Integer> Test {indexOf(Integer v)} case0]");
         break;
     }
 
-    if(list->indexOf(createInteger(100)) != -1) {
+    if(list->indexOf(Integer::New(100)) != -1) {
       TEST_FAIL("[ArrayList<Integer> Test {indexOf(Integer v)} case1]");
       break;
     }
@@ -230,12 +230,12 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {set(int index,Integer val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->set(0,createInteger(2));
+    list->set(0,Integer::New(2));
     if(list->get(0)->toValue() != 2
     ||list->get(1)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
@@ -257,7 +257,7 @@ void testArrayList_Integer() {
 
     bool isException = false;
     try {
-        result = list->set(100,createInteger(1));
+        result = list->set(100,Integer::New(1));
     } catch(ArrayIndexOutOfBoundsException e) {
         isException = true;
     }
@@ -284,12 +284,12 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {set(int index,int val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->set(0,createInteger(2));
+    list->set(0,Integer::New(2));
     if(list->get(0)->toValue() != 2
     ||list->get(1)->toValue() != 2
     ||list->get(2)->toValue() != 3) {
@@ -311,7 +311,7 @@ void testArrayList_Integer() {
 
     bool isException = false;
     try {
-        result = list->set(100,createInteger(1));
+        result = list->set(100,Integer::New(1));
     } catch(ArrayIndexOutOfBoundsException e) {
        isException = true;
     }
@@ -338,10 +338,10 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {get(int index)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
     Integer v1 = list->get(1);
     if(v1->toValue() != 2) {
@@ -379,12 +379,12 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {insert(int index,Integer val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insert(1,createInteger(4));
+    list->insert(1,Integer::New(4));
     if(list->get(0)->toValue() != 1
     ||list->get(1)->toValue() != 4
     ||list->get(2)->toValue() != 2
@@ -396,7 +396,7 @@ void testArrayList_Integer() {
     int size = list->size();
     bool isException = false;
     try {
-        int result = list->insert(100,createInteger(4));
+        int result = list->insert(100,Integer::New(4));
     } catch(ArrayIndexOutOfBoundsException e) {
         isException = true;
     }
@@ -408,7 +408,7 @@ void testArrayList_Integer() {
 
     isException = false;
     try {
-        list->insert(-1,createInteger(4));
+        list->insert(-1,Integer::New(4));
     } catch(ArrayIndexOutOfBoundsException e) {
         isException = true;
     }
@@ -437,12 +437,12 @@ void testArrayList_Integer() {
 
   //--[_ArrayList<Integer> Test {insert(int index,int val)} Start]
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insert(1,createInteger(4));
+    list->insert(1,Integer::New(4));
     if(list->get(0)->toValue() != 1
     ||list->get(1)->toValue() != 4
     ||list->get(2)->toValue() != 2
@@ -454,7 +454,7 @@ void testArrayList_Integer() {
     int size = list->size();
     bool isException = false;
     try {
-        int result = list->insert(100,createInteger(4));
+        int result = list->insert(100,Integer::New(4));
     } catch(ArrayIndexOutOfBoundsException e) {
        isException = true;
     }
@@ -466,7 +466,7 @@ void testArrayList_Integer() {
 
     isException = false;
     try {
-        list->insert(-1,createInteger(4));
+        list->insert(-1,Integer::New(4));
     } catch(ArrayIndexOutOfBoundsException e) {
          isException = true;
     }
@@ -477,7 +477,7 @@ void testArrayList_Integer() {
     }
 
     int currentSize = list->size();
-    list->insert(0,createInteger(100));
+    list->insert(0,Integer::New(100));
     if(list->get(0)->toValue() != 100 && (list->size() != (currentSize + 1))) {
       TEST_FAIL("[ArrayList<Integer> Test {insert(int index,int val)} case3]");
       break;
@@ -489,15 +489,15 @@ void testArrayList_Integer() {
 
   //int insert(int index,ArrayList<Integer> list);
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->add(createInteger(4));
-    list2->add(createInteger(5));
-    list2->add(createInteger(6));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(4));
+    list2->add(Integer::New(5));
+    list2->add(Integer::New(6));
 
     list->insert(1,list2);
     if(list->get(0)->toValue() != 1
@@ -536,15 +536,15 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer>list3 = createArrayList<Integer>();
-    list3->add(createInteger(10));
-    list3->add(createInteger(11));
-    list3->add(createInteger(12));
+    ArrayList<Integer>list3 = ArrayList<Integer>::New();
+    list3->add(Integer::New(10));
+    list3->add(Integer::New(11));
+    list3->add(Integer::New(12));
 
-    ArrayList<Integer>list4 = createArrayList<Integer>();
-    list4->add(createInteger(13));
-    list4->add(createInteger(14));
-    list4->add(createInteger(15));
+    ArrayList<Integer>list4 = ArrayList<Integer>::New();
+    list4->add(Integer::New(13));
+    list4->add(Integer::New(14));
+    list4->add(Integer::New(15));
 
     list3->insert(0,list4);
     if(list3->get(0)->toValue() != 13
@@ -563,15 +563,15 @@ void testArrayList_Integer() {
 
   //int insert(int index,ArrayList<Integer> list,int length);
   while(1) {
-    ArrayList<Integer>list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer>list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->add(createInteger(4));
-    list2->add(createInteger(5));
-    list2->add(createInteger(6));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(4));
+    list2->add(Integer::New(5));
+    list2->add(Integer::New(6));
 
     list->insert(1,list2,2);
     if(list->get(0)->toValue() != 1
@@ -614,15 +614,15 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer>list3 = createArrayList<Integer>();
-    list3->add(createInteger(10));
-    list3->add(createInteger(11));
-    list3->add(createInteger(12));
+    ArrayList<Integer>list3 = ArrayList<Integer>::New();
+    list3->add(Integer::New(10));
+    list3->add(Integer::New(11));
+    list3->add(Integer::New(12));
 
-    ArrayList<Integer>list4 = createArrayList<Integer>();
-    list4->add(createInteger(13));
-    list4->add(createInteger(14));
-    list4->add(createInteger(15));
+    ArrayList<Integer>list4 = ArrayList<Integer>::New();
+    list4->add(Integer::New(13));
+    list4->add(Integer::New(14));
+    list4->add(Integer::New(15));
 
     list3->insert(0,list4,2);
     if(list3->get(0)->toValue() != 13
@@ -639,15 +639,15 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer>list5 = createArrayList<Integer>();
-    list5->add(createInteger(10));
-    list5->add(createInteger(11));
-    list5->add(createInteger(12));
+    ArrayList<Integer>list5 = ArrayList<Integer>::New();
+    list5->add(Integer::New(10));
+    list5->add(Integer::New(11));
+    list5->add(Integer::New(12));
 
-    ArrayList<Integer>list6 = createArrayList<Integer>();
-    list6->add(createInteger(13));
-    list6->add(createInteger(14));
-    list6->add(createInteger(15));
+    ArrayList<Integer>list6 = ArrayList<Integer>::New();
+    list6->add(Integer::New(13));
+    list6->add(Integer::New(14));
+    list6->add(Integer::New(15));
 
     bool isException2 = false;
     try {
@@ -679,12 +679,12 @@ void testArrayList_Integer() {
 
   //void insertFirst(Integer val);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insertFirst(createInteger(4));
+    list->insertFirst(Integer::New(4));
     if(list->get(0)->toValue() != 4
        ||list->get(1)->toValue() != 1
        ||list->get(2)->toValue() != 2
@@ -698,8 +698,8 @@ void testArrayList_Integer() {
         break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->insertFirst(createInteger(4));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->insertFirst(Integer::New(4));
     if(list2->get(0)->toValue() != 4) {
       TEST_FAIL("[ArrayList<Integer> Test {insertFirst(Integer val)} case3]");
       break;
@@ -710,7 +710,7 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer> list3 = createArrayList<Integer>();
+    ArrayList<Integer> list3 = ArrayList<Integer>::New();
     Integer nt;
     list3->insertFirst(nt);
     if(list3->size() == 0) {
@@ -724,12 +724,12 @@ void testArrayList_Integer() {
 
   //void insertFirst(int val);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insertFirst(createInteger(4));
+    list->insertFirst(Integer::New(4));
     if(list->get(0)->toValue() != 4
        ||list->get(1)->toValue() != 1
        ||list->get(2)->toValue() != 2
@@ -743,8 +743,8 @@ void testArrayList_Integer() {
         break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->insertFirst(createInteger(4));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->insertFirst(Integer::New(4));
     if(list2->get(0)->toValue() != 4) {
       TEST_FAIL("[ArrayList<Integer> Test {insertFirst(int val)} case3]");
       break;
@@ -761,15 +761,15 @@ void testArrayList_Integer() {
 
   //void insertFirst(ArrayList<Integer> list);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->add(createInteger(4));
-    list2->add(createInteger(5));
-    list2->add(createInteger(6));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(4));
+    list2->add(Integer::New(5));
+    list2->add(Integer::New(6));
     list->insertFirst(list2);
 
     if(list->get(0)->toValue() != 4
@@ -782,11 +782,11 @@ void testArrayList_Integer() {
         break;
       }
 
-    ArrayList<Integer> list3 = createArrayList<Integer>();
-    list3->add(createInteger(1));
-    list3->add(createInteger(2));
+    ArrayList<Integer> list3 = ArrayList<Integer>::New();
+    list3->add(Integer::New(1));
+    list3->add(Integer::New(2));
 
-    ArrayList<Integer> list4 = createArrayList<Integer>();
+    ArrayList<Integer> list4 = ArrayList<Integer>::New();
     list4->insertFirst(list4);
 
     if(list3->get(0)->toValue() != 1
@@ -814,12 +814,12 @@ void testArrayList_Integer() {
 
   //void insertLast(Integer v);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insertLast(createInteger(4));
+    list->insertLast(Integer::New(4));
     if(list->get(0)->toValue() != 1
       ||list->get(1)->toValue() != 2
       ||list->get(2)->toValue() != 3
@@ -833,10 +833,10 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->add(createInteger(1));
-    list2->add(createInteger(2));
-    list2->add(createInteger(3));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(1));
+    list2->add(Integer::New(2));
+    list2->add(Integer::New(3));
     Integer t2;
     list2->insertLast(t2);
 
@@ -858,12 +858,12 @@ void testArrayList_Integer() {
 
   //void insertLast(int v);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    list->insertLast(createInteger(4));
+    list->insertLast(Integer::New(4));
     if(list->get(0)->toValue() != 1
       ||list->get(1)->toValue() != 2
       ||list->get(2)->toValue() != 3
@@ -877,8 +877,8 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->insertLast(createInteger(1));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->insertLast(Integer::New(1));
 
     if(list2->size() != 1) {
       TEST_FAIL("[ArrayList<Integer> Test {insertLast(int v)} case3]");
@@ -896,15 +896,15 @@ void testArrayList_Integer() {
 
   //insertLast(ArrayList<Integer> list);
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
-    list2->add(createInteger(4));
-    list2->add(createInteger(5));
-    list2->add(createInteger(6));
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
+    list2->add(Integer::New(4));
+    list2->add(Integer::New(5));
+    list2->add(Integer::New(6));
 
     list->insertLast(list2);
     if(list->get(0)->toValue() != 1
@@ -922,10 +922,10 @@ void testArrayList_Integer() {
         break;
     }
 
-    ArrayList<Integer> list3 = createArrayList<Integer>();
-    list3->add(createInteger(1));
-    list3->add(createInteger(2));
-    list3->add(createInteger(3));
+    ArrayList<Integer> list3 = ArrayList<Integer>::New();
+    list3->add(Integer::New(1));
+    list3->add(Integer::New(2));
+    list3->add(Integer::New(3));
 /*
     ArrayList<Integer> list4;
     list3->insertLast(list4);
@@ -948,16 +948,16 @@ void testArrayList_Integer() {
 
   //int size();
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
     if(list->size() != 3) {
       TEST_FAIL("[ArrayList<Integer> Test {size()} case1]");
       break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
     if(list2->size() != 0) {
       TEST_FAIL("[ArrayList<Integer> Test {size()} case2]");
       break;
@@ -969,12 +969,12 @@ void testArrayList_Integer() {
 
   //ListIterator<Integer> getValue;
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
-    list->add(createInteger(4));
-    list->add(createInteger(5));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
+    list->add(Integer::New(4));
+    list->add(Integer::New(5));
 
     auto iterator = list->getIterator();
     int index = 1;
@@ -989,7 +989,7 @@ void testArrayList_Integer() {
       index++;
     }
 
-    ArrayList<Integer> list1 = createArrayList<Integer>();
+    ArrayList<Integer> list1 = ArrayList<Integer>::New();
     auto iterator1 = list1->getIterator();
     bool isException = false;
     try {
@@ -1009,10 +1009,10 @@ void testArrayList_Integer() {
 
   //ListIterator<Integer> hasValue();
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
     auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case1]");
@@ -1028,7 +1028,7 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
     auto iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
       TEST_FAIL("[ListIterator<Integer> Test {hasValue()} case3]");
@@ -1041,10 +1041,10 @@ void testArrayList_Integer() {
 
   // ListIterator<Integer> next();
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
     auto iterator = list->getIterator();
 
     iterator->next();
@@ -1058,7 +1058,7 @@ void testArrayList_Integer() {
       break;
     }
 
-    ArrayList<Integer> list2 = createArrayList<Integer>();
+    ArrayList<Integer> list2 = ArrayList<Integer>::New();
     auto iterator2 = list2->getIterator();
     if(iterator2->next()) {
       TEST_FAIL("[ListIterator<Integer> Test {next()} case2]");
@@ -1070,12 +1070,12 @@ void testArrayList_Integer() {
 
   //--[_ListIterator<Integer> Test {remove()} Start]
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(1));
-    list->add(createInteger(2));
-    list->add(createInteger(3));
-    list->add(createInteger(4));
-    list->add(createInteger(5));
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(1));
+    list->add(Integer::New(2));
+    list->add(Integer::New(3));
+    list->add(Integer::New(4));
+    list->add(Integer::New(5));
     auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->toValue() == 3) {

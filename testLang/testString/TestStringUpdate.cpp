@@ -24,7 +24,7 @@ void TestStringUpdate() {
     void update(std::string);
     */
     while(1) {
-        String str = createString("abc");
+        String str = String::New("abc");
         const char *q = "hello";
         str->update(q);
 
@@ -33,7 +33,7 @@ void TestStringUpdate() {
             break;
         }
 
-        String str2 = createString("abc");
+        String str2 = String::New("abc");
         char q2[16];
         memset(q2,0,16);
         q2[0] = '1';
@@ -57,7 +57,7 @@ void TestStringUpdate() {
             break;
         }
 
-        String str3 = createString("abc");
+        String str3 = String::New("abc");
         str3->update("hhhh");
         if(!str3->sameAs("hhhh")) {
             TEST_FAIL("String update test4");
@@ -68,8 +68,8 @@ void TestStringUpdate() {
     }
 
     while(1) {
-        String str = createString("abc");
-        String str2 = createString("ffff");
+        String str = String::New("abc");
+        String str2 = String::New("ffff");
         str2->update(str);
         if(!str2->sameAs("abc")) {
             TEST_FAIL("String update test4");
@@ -85,7 +85,7 @@ void TestStringUpdate() {
     }
 
     while(1) {
-        String str = createString("abc");
+        String str = String::New("abc");
         std::string str2 = "ffff";
         str->update(str2);
 

@@ -13,13 +13,13 @@ void testHashMapAppend() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-      HashMap<int,Integer> map = createHashMap<int,Integer>();
-      map->put(1,createInteger(100));
-      map->put(2,createInteger(200));
+      HashMap<int,Integer> map = HashMap<int,Integer>::New();
+      map->put(1,Integer::New(100));
+      map->put(2,Integer::New(200));
 
-      HashMap<int,Integer> map2 = createHashMap<int,Integer>();
-      map2->put(3,createInteger(300));
-      map2->put(4,createInteger(400));
+      HashMap<int,Integer> map2 = HashMap<int,Integer>::New();
+      map2->put(3,Integer::New(300));
+      map2->put(4,Integer::New(400));
 
       map->append(map2);
 
@@ -35,13 +35,13 @@ void testHashMapAppend() {
     }
 
     while(1) {
-      HashMap<int,Integer> map = createHashMap<int,Integer>();
-      map->put(1,createInteger(100));
-      map->put(2,createInteger(200));
+      HashMap<int,Integer> map = HashMap<int,Integer>::New();
+      map->put(1,Integer::New(100));
+      map->put(2,Integer::New(200));
 
-      HashMap<int,Integer> map2 = createHashMap<int,Integer>();
-      map2->put(1,createInteger(300));
-      map2->put(2,createInteger(400));
+      HashMap<int,Integer> map2 = HashMap<int,Integer>::New();
+      map2->put(1,Integer::New(300));
+      map2->put(2,Integer::New(400));
 
       map->append(map2);
 
@@ -56,10 +56,10 @@ void testHashMapAppend() {
     }
 
     while(1) {
-      HashMap<int,Integer> map = createHashMap<int,Integer>();
-      HashMap<int,Integer> map2 = createHashMap<int,Integer>();
-      map2->put(1,createInteger(300));
-      map2->put(2,createInteger(400));
+      HashMap<int,Integer> map = HashMap<int,Integer>::New();
+      HashMap<int,Integer> map2 = HashMap<int,Integer>::New();
+      map2->put(1,Integer::New(300));
+      map2->put(2,Integer::New(400));
 
       map->append(map2);
 

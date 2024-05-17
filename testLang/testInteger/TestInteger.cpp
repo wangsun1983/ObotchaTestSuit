@@ -14,7 +14,7 @@ void basetest() {
 
   //_Integer(int v);
   while(1) {
-      Integer v1 = createInteger(10);
+      Integer v1 = Integer::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Integer construct test1");
           break;
@@ -26,8 +26,8 @@ void basetest() {
 
   //  _Integer(Integer v);
   while(1) {
-    Integer v1 = createInteger(11);
-    Integer v2 = createInteger(v1);
+    Integer v1 = Integer::New(11);
+    Integer v2 = Integer::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Integer construct test3");
       break;
@@ -35,7 +35,7 @@ void basetest() {
 
     // Integer v3;
     // try {
-    //   Integer v4 = createInteger(v3);
+    //   Integer v4 = Integer::New(v3);
     //   TEST_FAIL("Integer construct test4");
     // } catch(InitializeException e) {}
 
@@ -45,8 +45,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Integer v1 = createInteger(11);
-    Integer v2 = createInteger(v1);
+    Integer v1 = Integer::New(11);
+    Integer v2 = Integer::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Integer toValue test1");
       break;
@@ -58,8 +58,8 @@ void basetest() {
 
   //bool equals(Integer p);
   while(1) {
-    Integer v1 = createInteger(11);
-    Integer v2 = createInteger(11);
+    Integer v1 = Integer::New(11);
+    Integer v2 = Integer::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Integer equals test1");
       break;
@@ -71,7 +71,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Integer v1 = createInteger(11);
+    Integer v1 = Integer::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Integer equals test4");
       break;
@@ -83,8 +83,8 @@ void basetest() {
 
   //==
   while(1) {
-    Integer v1 = createInteger(12);
-    Integer v2 = createInteger(12);
+    Integer v1 = Integer::New(12);
+    Integer v2 = Integer::New(12);
     if(v1 != v2) {
       TEST_FAIL("Integer [==] test1");
       break;

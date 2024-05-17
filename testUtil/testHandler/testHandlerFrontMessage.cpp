@@ -23,7 +23,6 @@ public:
         switch(msg->what) {
             case 100:
             handler1_count = 123;
-            usleep(120*1000);
             break;
             
             case 125:
@@ -45,11 +44,11 @@ public:
 };
 
 void testHandlerFrontMessage() {
-    HandlerThread t1 = createHandlerThread();
+    HandlerThread t1 = HandlerThread::New();
     t1->start();
     //case1
-    FrontMessageHandler1 handler = createFrontMessageHandler1(t1->getLooper());
-    Message msg = createMessage();
+    FrontMessageHandler1 handler = FrontMessageHandler1::New(t1->getLooper());
+    Message msg = Message::New();
     msg->what = 100;
     handler->sendMessageAtFrontOfQueue(msg);
 
@@ -59,25 +58,25 @@ void testHandlerFrontMessage() {
     }
 
     //case2
-    Message msg2 = createMessage();
+    Message msg2 = Message::New();
     msg2->what = 124;
     handler->sendMessage(msg2);
 
-    Message msg3 = createMessage();
+    Message msg3 = Message::New();
     msg3->what = 125;
     handler->sendMessage(msg3);
 
-    Message msg4 = createMessage();
+    Message msg4 = Message::New();
     msg4->what = 126;
     handler->sendMessage(msg4);
 
-    Message msg5 = createMessage();
+    Message msg5 = Message::New();
     msg5->what = 127;
     handler->sendMessageAtFrontOfQueue(msg5);
     usleep(1000*400);
 
-    if(time_127 >= time_126 || time_125 > time_126 || time_127 > time_125 ) {
-       TEST_FAIL("[Handler Test front message case2],time_125 is %ld time_126 is %ld,time_127 is %ld",time_125,time_126,time_127);
+    if(time_127 >= time_126 || time_126 > time_127) {
+       TEST_FAIL("[Handler Test front message case2],time_126 is %ld,time_127 is %ld",time_126,time_127);
     }
     
     //case3

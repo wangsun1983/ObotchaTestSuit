@@ -16,7 +16,7 @@ void basetest() {
 
     //construct1
     while(1) {
-      List<int> mylist1 = createList<int>(4);
+      List<int> mylist1 = List<int>::New(4);
       if(mylist1->size() != 4) {
         TEST_FAIL("List construct test1");
         break;
@@ -41,7 +41,7 @@ void basetest() {
       v[3] = 3;
       v[4] = 4;
 
-      List<int> list1 = createList<int>(v,5);
+      List<int> list1 = List<int>::New(v,5);
       if(list1->size() != 5) {
         TEST_FAIL("List construct test4");
         break;
@@ -77,8 +77,8 @@ void basetest() {
 
     //compare
     while(1) {
-      List<int> list1 = createList<int>(2);
-      List<int> list2 = createList<int>(2);
+      List<int> list1 = List<int>::New(2);
+      List<int> list2 = List<int>::New(2);
       if(list1 == list2) {
         TEST_FAIL("List equal test1");
         break;

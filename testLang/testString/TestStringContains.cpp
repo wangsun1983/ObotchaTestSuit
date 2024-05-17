@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringContains() {
 
     while(1) {
-        String str = createString(" abc  f ");
+        String str = String::New(" abc  f ");
         if(!str->contains("  ")) {
             TEST_FAIL("String contains test1");
             break;
@@ -62,50 +62,50 @@ void TestStringContains() {
     }
     
     while(1) {
-        String str = createString(" abc  f ");
-        const String str1 = createString("  ");
+        String str = String::New(" abc  f ");
+        const String str1 = String::New("  ");
         if(!str->contains(str1)) {
             TEST_FAIL("String contains test8");
             break;
         }
         
-        const String str2 = createString("a");
+        const String str2 = String::New("a");
         if(!str->contains(str2)) {
             TEST_FAIL("String contains test9");
             break;
         }
         
-        const String str3 = createString("ab");
+        const String str3 = String::New("ab");
         if(!str->contains(str3)) {
             TEST_FAIL("String contains test10");
             break;
         }
         
-        const String str4 = createString("abc");
+        const String str4 = String::New("abc");
         if(!str->contains(str4)) {
             TEST_FAIL("String contains test11");
             break;
         }
         
-        const String str5 = createString("abc ");
+        const String str5 = String::New("abc ");
         if(!str->contains(str5)) {
             TEST_FAIL("String contains test12");
             break;
         }
         
-        const String str5_1 = createString("abc  f");
+        const String str5_1 = String::New("abc  f");
         if(!str->contains(str5_1)) {
             TEST_FAIL("String contains test13");
             break;
         }
         
-        const String str6 = createString("     abc f      ");
+        const String str6 = String::New("     abc f      ");
         if(str->contains(str6)) {
             TEST_FAIL("String contains test14");
             break;
         }
         
-        const String str7 = createString("A");
+        const String str7 = String::New("A");
         if(str->contains(str7)) {
             TEST_FAIL("String contains test15");
             break;

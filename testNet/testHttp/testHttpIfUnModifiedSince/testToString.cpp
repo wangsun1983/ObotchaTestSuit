@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testPatchToString() {
   while(1) {
-    HttpHeaderIfUnmodifiedSince modifiedSince = createHttpHeaderIfUnmodifiedSince();
+    HttpHeaderIfUnmodifiedSince modifiedSince = HttpHeaderIfUnmodifiedSince::New();
     modifiedSince->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(!modifiedSince->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderIfUnmodifiedSince test toString case1] date is %s",modifiedSince->toString()->toChars());

@@ -17,7 +17,7 @@ using namespace obotcha;
 int testMutexInOneThread() {
     //Mutex()
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         m->lock();
         m->lock();
         TEST_OK("[TestMutex TestMutexInOneThread case1]");
@@ -25,7 +25,7 @@ int testMutexInOneThread() {
     }
 
     while(1) {
-        Mutex m = createMutex();
+        Mutex m = Mutex::New();
         m->tryLock();
         m->lock();
         TEST_OK("[TestMutex TestMutexInOneThread case2]");

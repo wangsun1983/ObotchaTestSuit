@@ -13,12 +13,12 @@ using namespace obotcha;
 void testHandlerLooper() {
   //case 1
   while(1) {
-    HandlerThread t = createHandlerThread();
+    HandlerThread t = HandlerThread::New();
     t->start();
 
-    Handler t1 = createHandler(t->getLooper());
-    Handler t2 = createHandler(t->getLooper());
-    TimeWatcher watcher = createTimeWatcher();
+    Handler t1 = Handler::New(t->getLooper());
+    Handler t2 = Handler::New(t->getLooper());
+    TimeWatcher watcher = TimeWatcher::New();
     t1->post([]{
       sleep(1);
     });

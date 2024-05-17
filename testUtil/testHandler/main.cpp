@@ -25,7 +25,8 @@ extern void testHandlerFrontMessage();
 extern void testHandlerRemoveEqualMessage();
 
 int main() {
-  testHandlerRemoveEqualMessage();   
+  testHandlerRemoveEqualMessage();
+
   testHandlerFrontMessage();
   testHandlerSendToTarget();
   testHandlerStress();

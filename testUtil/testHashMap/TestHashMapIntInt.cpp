@@ -13,9 +13,9 @@ void testHashMapIntInt() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-      HashMap<int,Integer> map = createHashMap<int,Integer>();
+      HashMap<int,Integer> map = HashMap<int,Integer>::New();
       for(int i = 0;i < 1024;i++) {
-        map->put(i,createInteger(i * 100));
+        map->put(i,Integer::New(i * 100));
       }
 
       if(map->size() != 1024) {
@@ -32,13 +32,13 @@ void testHashMapIntInt() {
     }
 
     while(1) {
-      HashMap<int,Integer> map = createHashMap<int,Integer>();
-      map->put(100,createInteger(222));
+      HashMap<int,Integer> map = HashMap<int,Integer>::New();
+      map->put(100,Integer::New(222));
       if(map->get(100)->toValue() != 222) {
         TEST_FAIL("[HashMap <int,int> Test  case3]");
       }
 
-      map->put(100,createInteger(333));
+      map->put(100,Integer::New(333));
       if(map->get(100)->toValue() != 333) {
         TEST_FAIL("[HashMap <int,int> Test  case4]");
       }

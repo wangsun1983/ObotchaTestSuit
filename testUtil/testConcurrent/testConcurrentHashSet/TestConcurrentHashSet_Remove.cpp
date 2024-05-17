@@ -12,22 +12,22 @@ using namespace obotcha;
 
 void testConcurrentHashSet_Remove() {
     while(1) {
-      ConcurrentHashSet<String> set = createConcurrentHashSet<String>();
-      set->add(createString("a"));
-      set->add(createString("b"));
-      set->add(createString("c"));
+      ConcurrentHashSet<String> set = ConcurrentHashSet<String>::New();
+      set->add(String::New("a"));
+      set->add(String::New("b"));
+      set->add(String::New("c"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           set->syncReadAction([]{
              usleep(200*1000);
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
-          set->remove(createString("b"));
+          set->remove(String::New("b"));
           auto cost = w->stop();
           if(cost < 95||cost > 105) {
               TEST_FAIL("ConcurrentHashMap Remove case1");
@@ -45,27 +45,27 @@ void testConcurrentHashSet_Remove() {
           TEST_FAIL("ConcurrentHashMap Remove case1 size is %d",set->size());
       }
       
-      if(!set->contains(createString("a")) || !set->contains(createString("c"))) {
+      if(!set->contains(String::New("a")) || !set->contains(String::New("c"))) {
           TEST_FAIL("ConcurrentHashMap Remove case2");
       }
       break;
     }
     
     while(1) {
-      ConcurrentHashSet<String> set = createConcurrentHashSet<String>();
+      ConcurrentHashSet<String> set = ConcurrentHashSet<String>::New();
       for(int i = 0;i < 32*1024;i++) {
-          set->add(createString(i));
+          set->add(String::New(i));
       }
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           for(int i = 0;i < 32*1024;i++) {
-              set->remove(createString(i));
+              set->remove(String::New(i));
           }
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           for(int i = 32*1024;i >0;i--) {
-              set->remove(createString(i));
+              set->remove(String::New(i));
           }
       });
       

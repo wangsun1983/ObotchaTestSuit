@@ -13,11 +13,11 @@ using namespace obotcha;
 void testBlockingLinkedListRemove() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
-        list->remove(createString("b"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
+        list->remove(String::New("b"));
 
         if(list->size() != 2) {
           TEST_FAIL("BlockingLinkedList remove test1,size is %d",list->size());
@@ -49,8 +49,8 @@ void testBlockingLinkedListRemove() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        if(list->remove(createString("a"))!= -1) {
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        if(list->remove(String::New("a"))!= -1) {
           TEST_FAIL("BlockingLinkedList remove test4");
           break;
         }

@@ -23,7 +23,7 @@ public:
 DECLARE_CLASS(RunTestObject) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        MyResult r = createMyResult();
+        MyResult r = MyResult::New();
         r->value1 = 100;
         r->value2 = 123;
         st(ExecutorResult)::Set(r);
@@ -97,7 +97,7 @@ public:
 DECLARE_CLASS(RunTestString) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::Set(createString("hello world"));
+        st(ExecutorResult)::Set(String::New("hello world"));
     }
 };
 
@@ -105,7 +105,7 @@ public:
 DECLARE_CLASS(RunTestObjectDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        MyResult r = createMyResult();
+        MyResult r = MyResult::New();
         r->value1 = 100;
         r->value2 = 123;
         st(ExecutorResult)::Set(r);
@@ -189,7 +189,7 @@ public:
 DECLARE_CLASS(RunTestStringDelayed) IMPLEMENTS(Runnable) {
 public:
     void run() {
-        st(ExecutorResult)::Set(createString("hello world"));
+        st(ExecutorResult)::Set(String::New("hello world"));
         sleep(1);
     }
 };
@@ -207,8 +207,8 @@ public:
 void testThreadPoolExecutor_GetResult() {
   //simple test case1
   while(1) {
-    auto pool = createExecutorBuilder()->newThreadPool();
-    RunTestObject objRun = createRunTestObject();
+    auto pool = ExecutorBuilder::New()->newThreadPool();
+    RunTestObject objRun = RunTestObject::New();
     Future f1 = pool->submit(objRun);
     MyResult r1 = f1->getResult<MyResult>();
     if(r1 == nullptr || r1->value1 != 100 || r1->value2 != 123) {
@@ -217,7 +217,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //int
-    RunTestInt intRun = createRunTestInt();
+    RunTestInt intRun = RunTestInt::New();
     Future f2 = pool->submit(intRun);
     int r2 = f2->getResult<int>();
 
@@ -227,7 +227,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //byte
-    RunTestByte byteRun = createRunTestByte();
+    RunTestByte byteRun = RunTestByte::New();
     Future f3 = pool->submit(byteRun);
     byte r3 = f3->getResult<byte>();
 
@@ -237,7 +237,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //double
-    RunTestDouble doubleRun = createRunTestDouble();
+    RunTestDouble doubleRun = RunTestDouble::New();
     Future f4 = pool->submit(doubleRun);
     double r4 = f4->getResult<double>();
 
@@ -247,7 +247,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool false
-    RunTestBoolFalse falseRun = createRunTestBoolFalse();
+    RunTestBoolFalse falseRun = RunTestBoolFalse::New();
     Future f5 = pool->submit(falseRun);
     bool r5 = f5->getResult<bool>();
 
@@ -257,7 +257,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool true
-    RunTestBoolTrue trueRun = createRunTestBoolTrue();
+    RunTestBoolTrue trueRun = RunTestBoolTrue::New();
     Future f6 = pool->submit(trueRun);
     bool r6 = f6->getResult<bool>();
 
@@ -267,7 +267,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //long
-    RunTestLong longRun = createRunTestLong();
+    RunTestLong longRun = RunTestLong::New();
     Future f7 = pool->submit(longRun);
     long r7 = f7->getResult<long>();
 
@@ -277,7 +277,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint16_t
-    RunTestUint16 uint16Run = createRunTestUint16();
+    RunTestUint16 uint16Run = RunTestUint16::New();
     Future f8 = pool->submit(uint16Run);
     uint16_t r8 = f8->getResult<uint16_t>();
 
@@ -287,7 +287,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint32_t
-    RunTestUint32 uint32Run = createRunTestUint32();
+    RunTestUint32 uint32Run = RunTestUint32::New();
     Future f9 = pool->submit(uint32Run);
     uint32_t r9 = f9->getResult<uint32_t>();
 
@@ -297,7 +297,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint64_t
-    RunTestUint64 uint64Run = createRunTestUint64();
+    RunTestUint64 uint64Run = RunTestUint64::New();
     Future f10 = pool->submit(uint64Run);
     uint64_t r10 = f10->getResult<uint64_t>();
 
@@ -307,7 +307,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //String
-    RunTestString stringRun = createRunTestString();
+    RunTestString stringRun = RunTestString::New();
     Future f11 = pool->submit(stringRun);
     String r11 = f11->getResult<String>();
 
@@ -324,8 +324,8 @@ void testThreadPoolExecutor_GetResult() {
 
   //simple test wait
   while(1) {
-    auto pool = createExecutorBuilder()->newThreadPool();
-    RunTestObjectDelayed objRun = createRunTestObjectDelayed();
+    auto pool = ExecutorBuilder::New()->newThreadPool();
+    RunTestObjectDelayed objRun = RunTestObjectDelayed::New();
     Future f1 = pool->submit(objRun);
     long int start = st(System)::CurrentTimeMillis();
     MyResult r1 = f1->getResult<MyResult>();
@@ -341,7 +341,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //int
-    RunTestIntDelayed intRun = createRunTestIntDelayed();
+    RunTestIntDelayed intRun = RunTestIntDelayed::New();
     Future f2 = pool->submit(intRun);
     //int r2 = f2->getResult<int>();
     start = st(System)::CurrentTimeMillis();
@@ -358,7 +358,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //byte
-    RunTestByteDelayed byteRun = createRunTestByteDelayed();
+    RunTestByteDelayed byteRun = RunTestByteDelayed::New();
     Future f3 = pool->submit(byteRun);
     //byte r3 = f3->getResult<byte>();
     start = st(System)::CurrentTimeMillis();
@@ -375,7 +375,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //double
-    RunTestDoubleDelayed doubleRun = createRunTestDoubleDelayed();
+    RunTestDoubleDelayed doubleRun = RunTestDoubleDelayed::New();
     Future f4 = pool->submit(doubleRun);
     //double r4 = f4->getResult<double>();
     start = st(System)::CurrentTimeMillis();
@@ -392,7 +392,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool false
-    RunTestBoolFalseDelayed falseRun = createRunTestBoolFalseDelayed();
+    RunTestBoolFalseDelayed falseRun = RunTestBoolFalseDelayed::New();
     Future f5 = pool->submit(falseRun);
     //bool r5 = f5->getResult<bool>();
     start = st(System)::CurrentTimeMillis();
@@ -409,7 +409,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool true
-    RunTestBoolTrueDelayed trueRun = createRunTestBoolTrueDelayed();
+    RunTestBoolTrueDelayed trueRun = RunTestBoolTrueDelayed::New();
     Future f6 = pool->submit(trueRun);
     //bool r6 = f6->getResult<bool>();
     start = st(System)::CurrentTimeMillis();
@@ -426,7 +426,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //long
-    RunTestLongDelayed longRun = createRunTestLongDelayed();
+    RunTestLongDelayed longRun = RunTestLongDelayed::New();
     Future f7 = pool->submit(longRun);
     //long r7 = f7->getResult<long>();
     start = st(System)::CurrentTimeMillis();
@@ -443,7 +443,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint16_t
-    RunTestUint16Delayed uint16Run = createRunTestUint16Delayed();
+    RunTestUint16Delayed uint16Run = RunTestUint16Delayed::New();
     Future f8 = pool->submit(uint16Run);
     //uint16_t r8 = f8->getResult<uint16_t>();
     start = st(System)::CurrentTimeMillis();
@@ -460,7 +460,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint32_t
-    RunTestUint32Delayed uint32Run = createRunTestUint32Delayed();
+    RunTestUint32Delayed uint32Run = RunTestUint32Delayed::New();
     Future f9 = pool->submit(uint32Run);
     //uint32_t r9 = f9->getResult<uint32_t>();
     start = st(System)::CurrentTimeMillis();
@@ -477,7 +477,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint64_t
-    RunTestUint64Delayed uint64Run = createRunTestUint64Delayed();
+    RunTestUint64Delayed uint64Run = RunTestUint64Delayed::New();
     Future f10 = pool->submit(uint64Run);
     //uint32_t r10 = f10->getResult<uint64_t>();
     start = st(System)::CurrentTimeMillis();
@@ -494,7 +494,7 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //String
-    RunTestStringDelayed stringRun = createRunTestStringDelayed();
+    RunTestStringDelayed stringRun = RunTestStringDelayed::New();
     Future f11 = pool->submit(stringRun);
     //String r11 = f11->getResult<String>();
     start = st(System)::CurrentTimeMillis();
@@ -518,13 +518,13 @@ void testThreadPoolExecutor_GetResult() {
 
   //test cancel
   while(1) {
-    auto pool = createExecutorBuilder()->setDefaultThreadNum(1)->newThreadPool();
-    pool->submit(createRunTestSleep10());
+    auto pool = ExecutorBuilder::New()->setDefaultThreadNum(1)->newThreadPool();
+    pool->submit(RunTestSleep10::New());
     bool isException = false;
 
-    RunTestObject objRun = createRunTestObject();
+    RunTestObject objRun = RunTestObject::New();
     Future f1 = pool->submit(objRun);
-    Thread t = createThread([&f1]{
+    Thread t = Thread::New([&f1]{
       usleep(100);
       f1->cancel();
     });
@@ -542,10 +542,10 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //int
-    RunTestInt intRun = createRunTestInt();
+    RunTestInt intRun = RunTestInt::New();
     Future f2 = pool->submit(intRun);
     isException = false;
-    t = createThread([&f2]{
+    t = Thread::New([&f2]{
       usleep(100);
       f2->cancel();
     });
@@ -563,10 +563,10 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //byte
-    RunTestByte byteRun = createRunTestByte();
+    RunTestByte byteRun = RunTestByte::New();
     Future f3 = pool->submit(byteRun);
     isException = false;
-    t = createThread([&f3]{
+    t = Thread::New([&f3]{
       usleep(100);
       f3->cancel();
     });
@@ -584,11 +584,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //double
-    RunTestDouble doubleRun = createRunTestDouble();
+    RunTestDouble doubleRun = RunTestDouble::New();
     Future f4 = pool->submit(doubleRun);
     //double r4 = f4->getResult<double>();
     isException = false;
-    t = createThread([&f4]{
+    t = Thread::New([&f4]{
       usleep(100);
       f4->cancel();
     });
@@ -605,11 +605,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool false
-    RunTestBoolFalse falseRun = createRunTestBoolFalse();
+    RunTestBoolFalse falseRun = RunTestBoolFalse::New();
     Future f5 = pool->submit(falseRun);
     //bool r5 = f5->getResult<bool>();
     isException = false;
-    t = createThread([&f5]{
+    t = Thread::New([&f5]{
       usleep(100);
       f5->cancel();
     });
@@ -626,11 +626,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //bool true
-    RunTestBoolTrue trueRun = createRunTestBoolTrue();
+    RunTestBoolTrue trueRun = RunTestBoolTrue::New();
     Future f6 = pool->submit(trueRun);
     //bool r6 = f6->getResult<bool>();
     isException = false;
-    t = createThread([&f6]{
+    t = Thread::New([&f6]{
       usleep(100);
       f6->cancel();
     });
@@ -647,11 +647,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //long
-    RunTestLong longRun = createRunTestLong();
+    RunTestLong longRun = RunTestLong::New();
     Future f7 = pool->submit(longRun);
     //long r7 = f7->getResult<long>();
     isException = false;
-    t = createThread([&f7]{
+    t = Thread::New([&f7]{
       usleep(100);
       f7->cancel();
     });
@@ -668,11 +668,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint16_t
-    RunTestUint16 uint16Run = createRunTestUint16();
+    RunTestUint16 uint16Run = RunTestUint16::New();
     Future f8 = pool->submit(uint16Run);
     //uint16_t r8 = f8->getResult<uint16_t>();
     isException = false;
-    t = createThread([&f8]{
+    t = Thread::New([&f8]{
       usleep(100);
       f8->cancel();
     });
@@ -690,11 +690,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint32_t
-    RunTestUint32 uint32Run = createRunTestUint32();
+    RunTestUint32 uint32Run = RunTestUint32::New();
     Future f9 = pool->submit(uint32Run);
     //uint32_t r9 = f9->getResult<uint32_t>();
     isException = false;
-    t = createThread([&f9]{
+    t = Thread::New([&f9]{
       usleep(100);
       f9->cancel();
     });
@@ -712,11 +712,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //uint64_t
-    RunTestUint64 uint64Run = createRunTestUint64();
+    RunTestUint64 uint64Run = RunTestUint64::New();
     Future f10 = pool->submit(uint64Run);
     //uint64_t r10 = f10->getResult<uint64_t>();
     isException = false;
-    t = createThread([&f10]{
+    t = Thread::New([&f10]{
       usleep(100);
       f10->cancel();
     });
@@ -734,11 +734,11 @@ void testThreadPoolExecutor_GetResult() {
     }
 
     //String
-    RunTestString stringRun = createRunTestString();
+    RunTestString stringRun = RunTestString::New();
     Future f11 = pool->submit(stringRun);
     //String r11 = f11->getResult<String>();
     isException = false;
-    t = createThread([&f11]{
+    t = Thread::New([&f11]{
       usleep(100);
       f11->cancel();
     });

@@ -30,12 +30,12 @@ public:
 };
 
 void testSqlObjectValues() {
-    TestData data = createTestData();
-    data->strData = createString("this is string");
+    TestData data = TestData::New();
+    data->strData = String::New("this is string");
     data->intData = 888;
     data->boolData = false;
     
-    SqlContentValues values = createSqlContentValues();
+    SqlContentValues values = SqlContentValues::New();
     values->put(data);
     if(!values->getTags()->sameAs("(strData,intData,boolData)")) {
         TEST_FAIL("testSqlObjectValues cases1");

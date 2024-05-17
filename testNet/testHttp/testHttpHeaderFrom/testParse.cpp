@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderFrom digest = createHttpHeaderFrom();
+    HttpHeaderFrom digest = HttpHeaderFrom::New();
     digest->load(" developer.mozilla.org");
     if(!digest->toString()->sameAs("developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderFrom test Parse case1]");

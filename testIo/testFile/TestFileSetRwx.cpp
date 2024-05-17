@@ -8,7 +8,7 @@
 using namespace obotcha;
 
 void testFileSetRwx() {
-    File file = createFile("./tmp/setreadonly.data");
+    File file = File::New("./tmp/setreadonly.data");
     if(!file->exists()) {
         file->createNewFile();
     }
@@ -28,7 +28,7 @@ void testFileSetRwx() {
     }
 
     //test2
-    file = createFile("./tmp/setwriteonly.data");
+    file = File::New("./tmp/setwriteonly.data");
     if(!file->exists()) {
         file->createNewFile();
     }
@@ -46,7 +46,7 @@ void testFileSetRwx() {
     }
 
     //test3
-    file = createFile("./tmp/setexecuteonly.data");
+    file = File::New("./tmp/setexecuteonly.data");
     if(!file->exists()) {
         file->createNewFile();
     }

@@ -10,11 +10,11 @@ using namespace obotcha;
 void testGetAndIncrement() {
     while(1) {
         for(int testLoop = 0;testLoop < 64;testLoop++) {
-            AtomicUint64 value = createAtomicUint64(0);
-            ArrayList<Thread> list = createArrayList<Thread>();
+            AtomicUint64 value =AtomicUint64::New(0);
+            ArrayList<Thread> list = ArrayList<Thread>::New();
 
             for(int i = 0;i < 64;i++) {
-                Thread t = createThread([&value] {
+                Thread t = Thread::New([&value] {
                     for(int j = 0;j<64*32;j++) {
                         value->getAndIncrement();
                     }
@@ -40,7 +40,7 @@ void testGetAndIncrement() {
     }
 
     while(1) {
-      AtomicUint64 value = createAtomicUint64(3);
+      AtomicUint64 value =AtomicUint64::New(3);
       long v = value->getAndIncrement();
       if(v != 3) {
         TEST_FAIL("AtomicUint64 GetAndIncrement test2");

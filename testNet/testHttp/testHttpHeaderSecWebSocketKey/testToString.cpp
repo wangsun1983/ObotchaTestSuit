@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     if(!upgrade->toString()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test toString case1]");

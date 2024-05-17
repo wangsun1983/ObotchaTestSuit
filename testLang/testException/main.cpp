@@ -17,11 +17,11 @@ public:
 
 
 void doException() {
-    String exception = createString("ByteArray [] fail")
+    String exception = String::New("ByteArray [] fail")
                             ->append("size is",
-                                    createString(1),
+                                    String::New(1),
                                     "index is ",
-                                    createString(1));
+                                    String::New(1));
     Trigger(MyException,"ByteArray[] fail,id is %d",123);
 }
 

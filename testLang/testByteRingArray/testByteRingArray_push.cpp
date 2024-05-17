@@ -13,7 +13,7 @@ using namespace obotcha;
 ByteRingArray createStartBiggerThanEnd() {
   //{7,  8,  3,  4,  5,  6}
   //         |end    |start
-  ByteRingArray ringarray = createByteRingArray(6);
+  ByteRingArray ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);
@@ -56,7 +56,7 @@ void push_test() {
     return;
   }
 
-  b1 = createByteArray(5);
+  b1 = ByteArray::New(5);
   b1[0] = 19;
   b1[1] = 19;
   b1[2] = 19;

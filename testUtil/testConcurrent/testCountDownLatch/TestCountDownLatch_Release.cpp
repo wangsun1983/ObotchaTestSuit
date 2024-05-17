@@ -13,18 +13,18 @@ using namespace obotcha;
 
 void testCountDownLatch_Release() {
     while(1) {
-        CountDownLatch latch = createCountDownLatch(2);
-        TimeWatcher watcher = createTimeWatcher();
+        CountDownLatch latch = CountDownLatch::New(2);
+        TimeWatcher watcher = TimeWatcher::New();
         
-        Thread t = createThread([& latch]{
+        Thread t = Thread::New([& latch]{
             latch->await();
         });
         
-        Thread t2 = createThread([& latch]{
+        Thread t2 = Thread::New([& latch]{
             latch->await();
         });
 
-        Thread t3 = createThread([& latch]{
+        Thread t3 = Thread::New([& latch]{
             sleep(3);
             latch->release();
         });

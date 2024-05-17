@@ -15,12 +15,12 @@ using namespace obotcha;
 
 void testArrayCopy() {
   while(1) {
-    ByteArray src = createByteArray(32);
+    ByteArray src = ByteArray::New(32);
     for(int i = 0;i < 32;i++) {
       src[i] = i;
     }
 
-    ByteArray dest = createByteArray(35);
+    ByteArray dest = ByteArray::New(35);
     dest[32] = 66;
     dest[33] = 67;
     dest[34] = 68;
@@ -40,12 +40,12 @@ void testArrayCopy() {
   }
 
   while(1) {
-    ByteArray src = createByteArray(32);
+    ByteArray src = ByteArray::New(32);
     for(int i = 0;i < 32;i++) {
       src[i] = i;
     }
 
-    ByteArray dest = createByteArray(35);
+    ByteArray dest = ByteArray::New(35);
     dest[0] = 55;
     dest[32] = 66;
     dest[33] = 67;
@@ -66,12 +66,12 @@ void testArrayCopy() {
   }
 
   while(1) {
-    ByteArray src = createByteArray(32);
+    ByteArray src = ByteArray::New(32);
     for(int i = 0;i < 32;i++) {
       src[i] = i;
     }
 
-    ByteArray dest = createByteArray(35);
+    ByteArray dest = ByteArray::New(35);
     for(int i = 0;i < 35;i++) {
       dest[i] = 22;
     }

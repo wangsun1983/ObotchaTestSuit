@@ -18,12 +18,12 @@ using namespace obotcha;
 
 
 void testProcessMqMultiClient() {
-    ProcessMq sendMq = createProcessMq("multiabc1",false);
-    ProcessMq readMq1 = createProcessMq("multiabc1",false);
-    ProcessMq readMq2 = createProcessMq("multiabc1",false);
+    ProcessMq sendMq = ProcessMq::New("multiabc1",false);
+    ProcessMq readMq1 = ProcessMq::New("multiabc1",false);
+    ProcessMq readMq2 = ProcessMq::New("multiabc1",false);
       
-    Thread t1 = createThread([readMq1]{
-      ByteArray data = createByteArray(readMq1->getMsgSize());
+    Thread t1 = Thread::New([readMq1]{
+      ByteArray data = ByteArray::New(readMq1->getMsgSize());
       int len = readMq1->receive(data);
       if(!data->toString()->sameAs("hello")) {
         TEST_FAIL("[ProcessMq Test MultiClient {send/receive()} case1]");
@@ -31,9 +31,9 @@ void testProcessMqMultiClient() {
     });
     t1->start();
 
-    Thread t2 = createThread([readMq2]{
+    Thread t2 = Thread::New([readMq2]{
       sleep(2);
-      ByteArray data = createByteArray(readMq2->getMsgSize());
+      ByteArray data = ByteArray::New(readMq2->getMsgSize());
       int len = readMq2->receive(data);
       if(!data->toString()->sameAs("world")) {
         TEST_FAIL("[ProcessMq Test MultiClient {send/receive()} case2]");
@@ -42,10 +42,10 @@ void testProcessMqMultiClient() {
     t2->start();
 
     sleep(1);
-    String sendData = createString("hello");
+    String sendData = String::New("hello");
     sendMq->send(sendData->toByteArray());
     
-    sendData = createString("world");
+    sendData = String::New("world");
     sendMq->send(sendData->toByteArray());
     
     t1->join();

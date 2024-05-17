@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderAge c = createHttpHeaderAge();
+    HttpHeaderAge c = HttpHeaderAge::New();
     c->load("600");
     if(c->get() != 600) {
       TEST_FAIL("[HttpHeaderAge test Parse case1]");

@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testThreadLoopStart() {
   while(1) {
-    Thread t = createThread([] {
+    Thread t = Thread::New([] {
 
     });
     if(t->start() != 0) {

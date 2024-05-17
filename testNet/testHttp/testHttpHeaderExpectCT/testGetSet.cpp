@@ -12,10 +12,10 @@
 using namespace obotcha;
 
 void testGetSet() {
-  HttpHeaderExpectCT expect = createHttpHeaderExpectCT();
+  HttpHeaderExpectCT expect = HttpHeaderExpectCT::New();
   expect->setMaxAge(86400);
   expect->setEnforce(true);
-  expect->setReportUri(createString("https://foo.example/report"));
+  expect->setReportUri(String::New("https://foo.example/report"));
   if(!expect->toString()->sameAs("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {
     TEST_FAIL("[HttpHeaderExpectCT test testGetSet case1],str is %s",expect->toString()->toChars());
   }

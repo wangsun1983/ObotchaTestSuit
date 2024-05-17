@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
+    HttpHeaderSecFetchDest save = HttpHeaderSecFetchDest::New();
     save->load("track");
     if(!save->toString()->sameAs("track")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case1]");
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderSecFetchDest save = createHttpHeaderSecFetchDest();
+    HttpHeaderSecFetchDest save = HttpHeaderSecFetchDest::New();
     save->load("audio");
     if(!save->toString()->sameAs("audio")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test toString case2]");

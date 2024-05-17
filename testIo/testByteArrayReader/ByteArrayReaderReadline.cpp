@@ -17,26 +17,26 @@ using namespace obotcha;
 void testReadline() {
 #if 0
     //prepare data
-    File file = createFile("./tmp/base_data");
+    File file = File::New("./tmp/base_data");
     file->removeAll();
     if(!file->exists()) {
       file->createNewFile();
-      FileOutputStream stream = createFileOutputStream(file);
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Trunc);
-      stream->write(createString("hello\nworld\nni\nhao")->toByteArray());
+      stream->write(String::New("hello\nworld\nni\nhao")->toByteArray());
       stream->close();
     }
 
 
-    FileInputStream stream = createFileInputStream(file);
+    FileInputStream stream = FileInputStream::New(file);
     stream->open();
     ByteArray arr = stream->readAll();
-    ByteArrayReader reader = createByteArrayReader(arr);
-    ArrayList<String> contents = createArrayList<String>();
-    contents->add(createString("hello"));
-    contents->add(createString("world"));
-    contents->add(createString("ni"));
-    contents->add(createString("hao"));
+    ByteArrayReader reader = ByteArrayReader::New(arr);
+    ArrayList<String> contents = ArrayList<String>::New();
+    contents->add(String::New("hello"));
+    contents->add(String::New("world"));
+    contents->add(String::New("ni"));
+    contents->add(String::New("hao"));
 
     for(int i = 0;i<4;i++) {
         String t = reader->readLine();

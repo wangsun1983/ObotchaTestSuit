@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSecWebSocketExtensions c = createHttpHeaderSecWebSocketExtensions();
+    HttpHeaderSecWebSocketExtensions c = HttpHeaderSecWebSocketExtensions::New();
     c->load(" permessage-deflate, client_max_window_bits");
     auto list = c->get();
     if(!list->get(0)->sameAs("permessage-deflate")) {

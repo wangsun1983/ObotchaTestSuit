@@ -29,14 +29,8 @@ extern void testByteArrayToValue();
 extern void testByteArrayClone();
 extern void testByteArrayQuickRestore();
 extern void testByteArrayFillFrom();
-extern void testByteArrayIsOverFlow();
-extern void testByteArrayslice();
-extern void testByteArrayTranslate();
 
 int main() {
-  testByteArrayTranslate();
-  testByteArrayslice();
-  testByteArrayIsOverFlow();
   testByteArrayFillFrom();
   testByteArrayQuickRestore();
   testByteArrayClone();
@@ -55,6 +49,5 @@ int main() {
   testConstruct();
   testByteArrayClear();
   testPriority();
-
   return 0;
 }

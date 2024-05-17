@@ -43,7 +43,7 @@ int baseTest() {
 
     //_ScheduledThreadPoolExecutor()
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
 
         pool->shutdown();
         TEST_OK("[ScheduledThreadPoolExecutor Test {constructor()} case1]");
@@ -53,8 +53,8 @@ int baseTest() {
 
     //void shutdown();
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        pool->schedule(0,createBaseRunTest1());
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
+        pool->schedule(0,BaseRunTest1::New());
         pool->shutdown();
         sleep(5);
         //if(!pool->isShutdown()) {
@@ -62,13 +62,13 @@ int baseTest() {
         //    break;
         //}
 
-        Future task = pool->schedule(0,createBaseRunTest1());
+        Future task = pool->schedule(0,BaseRunTest1::New());
         if(task != nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {shutdown()} case2]");
             break;
         }
 
-        auto result = pool->schedule(0,createBaseRunTest1());
+        auto result = pool->schedule(0,BaseRunTest1::New());
         if(result != nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {shutdown()} case3]");
             break;
@@ -81,17 +81,17 @@ int baseTest() {
 
     //int awaitTermination(long timeout);
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
         int result = pool->awaitTermination(1000);
         if(result != -1) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case1]");
             break;
         }
 
-        //runTest2Mutex = createMutex();
+        //runTest2Mutex = Mutex::New();
         //runTest2Mutex->lock();
 
-        pool->schedule(0,createBaseRunTest2());
+        pool->schedule(0,BaseRunTest2::New());
         sleep(1);
         pool->shutdown();
 
@@ -114,14 +114,14 @@ int baseTest() {
 
     //int awaitTermination(long timeout = 0);
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
         int result = pool->awaitTermination(0);
         if(result != -1) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {awaitTermination()} case5]");
             break;
         }
 
-        pool->schedule(0,createBaseRunTest1());
+        pool->schedule(0,BaseRunTest1::New());
         int v = pool->shutdown();
 
         long current = st(System)::CurrentTimeMillis();
@@ -146,8 +146,8 @@ int baseTest() {
 
     //int awaitTermination(long timeout = max);
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        pool->schedule(0,createBaseRunTest1());
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
+        pool->schedule(0,BaseRunTest1::New());
         pool->shutdown();
 
         long current = st(System)::CurrentTimeMillis();
@@ -166,8 +166,8 @@ int baseTest() {
 
     //submit(Runnable task);
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
-        Future task = pool->schedule(0,createBaseRunTest1());
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
+        Future task = pool->schedule(0,BaseRunTest1::New());
         if(task == nullptr) {
             TEST_FAIL("[ScheduledThreadPoolExecutor Test {submit()} case1]");
             break;

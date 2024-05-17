@@ -14,7 +14,7 @@
 using namespace obotcha;
 
 void testSetGetOption() {
-    File f = createFile("./tmp/abc.txt");
+    File f = File::New("./tmp/abc.txt");
     f->createNewFile();
     
     auto fd = f->open();

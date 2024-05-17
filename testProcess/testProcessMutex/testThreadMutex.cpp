@@ -21,7 +21,7 @@ int testThreadMutex() {
 	  int pid = fork();
 	  if(pid == 0) {
 		//printf("child process trace1 \n");
-		ProcessMutex mu = createProcessMutex("abc2");
+		ProcessMutex mu = ProcessMutex::New("abc2");
 		AutoLock l(mu);
 		//printf("child process trace2 \n");
 		usleep(1000*500);
@@ -29,12 +29,12 @@ int testThreadMutex() {
 		return -1;
 	  } else {
 		//usleep(1000*100);
-		ProcessMutex mu = createProcessMutex("abc2");
+		ProcessMutex mu = ProcessMutex::New("abc2");
 		long firsthit = 0;
 		long secondhit = 0;
 		
-		Thread t1 = createThread([&] {
-			TimeWatcher watcher = createTimeWatcher();
+		Thread t1 = Thread::New([&] {
+			TimeWatcher watcher = TimeWatcher::New();
 			watcher->start();
 			AutoLock l(mu);
 			if(firsthit == 0) {
@@ -46,8 +46,8 @@ int testThreadMutex() {
 		});
 		t1->start();
 		
-		Thread t2 = createThread([&] {
-			TimeWatcher watcher = createTimeWatcher();
+		Thread t2 = Thread::New([&] {
+			TimeWatcher watcher = TimeWatcher::New();
 			watcher->start();
 			AutoLock l(mu);
 			if(firsthit == 0) {
@@ -75,9 +75,9 @@ int testThreadMutex() {
   }
   
   while(1) {
-	  ProcessMutex mu = createProcessMutex("abc2");
+	  ProcessMutex mu = ProcessMutex::New("abc2");
 	  AutoLock l(mu);
-	  TimeWatcher watcher = createTimeWatcher();
+	  TimeWatcher watcher = TimeWatcher::New();
 	  watcher->start();
 	  mu->lock(100);
 	  auto ret = watcher->stop();
@@ -89,12 +89,12 @@ int testThreadMutex() {
   }
   
   while(1) {
-  	  ProcessMutex mu = createProcessMutex("abc2");
+  	  ProcessMutex mu = ProcessMutex::New("abc2");
 	  int count = 0;
-	  ArrayList<Thread> list = createArrayList<Thread>();
+	  ArrayList<Thread> list = ArrayList<Thread>::New();
 	  
 	  for(int i = 0;i<256;i++) {
-		  Thread t1 = createThread([&]{
+		  Thread t1 = Thread::New([&]{
 		  		  AutoLock l1(mu);
 		  		  AutoLock l2(mu);
 		  		  AutoLock l3(mu);

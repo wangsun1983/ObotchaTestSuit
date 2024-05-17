@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("cookie"),
-                createString("yummy_cookie=choco; tasty_cookie=strawberry;Secure; Domain=example.com;Path=/abc;HttpOnly;Expires=Wed, 21 Oct 2015 07:28:00 GMT;max-age=600"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("cookie"),
+                String::New("yummy_cookie=choco; tasty_cookie=strawberry;Secure; Domain=example.com;Path=/abc;HttpOnly;Expires=Wed, 21 Oct 2015 07:28:00 GMT;max-age=600"));
     ArrayList<HttpCookie> cookies = header->getCookies();
     if(cookies == nullptr || cookies->size() != 2) {
       TEST_FAIL("[HttpCookie test SetToHeader case1]");

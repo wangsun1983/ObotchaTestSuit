@@ -10,7 +10,6 @@
 #include "Pipe.hpp"
 #include "ByteArray.hpp"
 #include "TestLog.hpp"
-#include "IO.hpp"
 
 using namespace obotcha;
 
@@ -24,16 +23,16 @@ int testCloseOnExecPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(st(IO)::CloseExec);
+  Pipe pp = Pipe::New(st(Pipe)::CloseOnExec);
 
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+     ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
      pp->write(array);
      exit(0);
   } else {
-     ByteArray array = createByteArray(testDatalength);
+     ByteArray array = ByteArray::New(testDatalength);
      int length = pp->read(array);
 
      if(length < testDatalength) {
@@ -52,18 +51,18 @@ int testCloseOnExecPipe() {
    TEST_OK("[Pipe Test {closeonexe write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(st(IO)::CloseExec);
+   Pipe pp2 = Pipe::New(st(Pipe)::CloseOnExec);
 
    pid = fork();
    if(pid == 0) {
       //child process
       pp2->closeReadChannel();
-      ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+      ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
       pp2->write(array);
       exit(0);
    } else {
       pp2->closeWriteChannel();
-      ByteArray array = createByteArray(testDatalength);
+      ByteArray array = ByteArray::New(testDatalength);
       int length = pp2->read(array);
 
       if(length < testDatalength) {
@@ -82,13 +81,13 @@ int testCloseOnExecPipe() {
     TEST_OK("[Pipe Test {closeonexe closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(st(IO)::CloseExec);
+    Pipe pp3 = Pipe::New(st(Pipe)::CloseOnExec);
 
     pid = fork();
     if(pid == 0) {
        //child process
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray(testDatalength);
+       ByteArray array = ByteArray::New(testDatalength);
        int length = pp3->read(array);
        if(length > 0) {
            TEST_FAIL("[Pipe Test {closeonexe closePipe()} case4]");
@@ -96,7 +95,7 @@ int testCloseOnExecPipe() {
        exit(0);
     } else {
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+       ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
        int result = pp3->write(array);
        if(result >= 0) {
            TEST_FAIL("[Pipe Test {closeonexe closePipe()} case5]");

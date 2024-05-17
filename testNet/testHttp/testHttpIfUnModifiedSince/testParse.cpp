@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testPatchParse() {
   while(1) {
-    HttpHeaderIfUnmodifiedSince modifiedSince = createHttpHeaderIfUnmodifiedSince();
+    HttpHeaderIfUnmodifiedSince modifiedSince = HttpHeaderIfUnmodifiedSince::New();
     modifiedSince->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     auto date = modifiedSince->get()->toDateTime();
     if(date->year() != 2015) {

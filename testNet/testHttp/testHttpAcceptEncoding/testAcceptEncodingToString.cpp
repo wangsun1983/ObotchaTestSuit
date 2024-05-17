@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testEncodingToString() {
   while(1) {
-    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = HttpHeaderAcceptEncoding::New();
     encoding1->load("gzip,compress,br");
     if(!encoding1->toString()->sameAs("gzip,compress,br")) {
       TEST_FAIL("[HttpHeaderAcceptEncoding test toString case1] [FAILED] encoding is %s",encoding1->toString()->toChars());
@@ -21,7 +21,7 @@ void testEncodingToString() {
   }
 
   while(1) {
-    HttpHeaderAcceptEncoding encoding1 = createHttpHeaderAcceptEncoding();
+    HttpHeaderAcceptEncoding encoding1 = HttpHeaderAcceptEncoding::New();
     encoding1->load("deflate,gzip;q=0.2,*;q=0.5");
     //q default value is 1,no need
     if(!encoding1->toString()->sameAs("deflate,gzip;q=0.2,*;q=0.5")) {

@@ -12,16 +12,16 @@ using namespace obotcha;
 
 void testConcurrentStack_Clear() {
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      Thread t1 = Thread::New([&]{
           list->syncReadAction([]{
              usleep(1000*200); 
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(1000*100);
-          TimeWatcher watcher = createTimeWatcher();
+          TimeWatcher watcher = TimeWatcher::New();
           watcher->start();
           list->clear();
           auto ret = watcher->stop();
@@ -43,16 +43,16 @@ void testConcurrentStack_Clear() {
     }
     
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      Thread t1 = Thread::New([&]{
           list->syncWriteAction([]{
              usleep(1000*200); 
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(1000*100);
-          TimeWatcher watcher = createTimeWatcher();
+          TimeWatcher watcher = TimeWatcher::New();
           watcher->start();
           list->clear();
           auto ret = watcher->stop();

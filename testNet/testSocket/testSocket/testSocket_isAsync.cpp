@@ -13,12 +13,12 @@
 using namespace obotcha;
 
 void testSocketIsAsync() {
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     
     while(1) {
-        InetAddress addr = createInet4Address("10.0.0.1",12);
-        SocksSocketImpl impl = createSocksSocketImpl(addr,nullptr);
-        Socket s = createSocket(impl);
+        InetAddress addr = Inet4Address::New("10.0.0.1",12);
+        SocksSocketImpl impl = SocksSocketImpl::New(addr,nullptr);
+        Socket s = Socket::New(impl);
         if(s->isAsync()) {
             TEST_FAIL("Socket isAsync case1");
         }
@@ -31,9 +31,9 @@ void testSocketIsAsync() {
     }
 
     while(1) {
-        InetAddress addr = createInet4Address("10.0.0.1",12);
-        DatagramSocketImpl impl = createDatagramSocketImpl(addr,nullptr);
-        Socket s = createSocket(impl);
+        InetAddress addr = Inet4Address::New("10.0.0.1",12);
+        DatagramSocketImpl impl = DatagramSocketImpl::New(addr,nullptr);
+        Socket s = Socket::New(impl);
         if(s->isAsync()) {
             TEST_FAIL("Socket isAsync case2");
         }
@@ -46,9 +46,9 @@ void testSocketIsAsync() {
     }
 
     while(1) {
-        InetAddress addr = createInet4Address("10.0.0.1",12);
-        SSLSocksSocketImpl impl = createSSLSocksSocketImpl(addr,nullptr);
-        Socket s = createSocket(impl);
+        InetAddress addr = Inet4Address::New("10.0.0.1",12);
+        SSLSocksSocketImpl impl = SSLSocksSocketImpl::New(addr,nullptr);
+        Socket s = Socket::New(impl);
         if(s->isAsync()) {
             TEST_FAIL("Socket isAsync case3");
         }

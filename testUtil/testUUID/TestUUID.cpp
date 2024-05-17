@@ -18,47 +18,47 @@ using namespace obotcha;
 
 int main() {
     //String toValue();
-    UUID uuid = createUUID();
-    HashMap<String,Integer> map = createHashMap<String,Integer>();
+    UUID uuid = UUID::New();
+    HashMap<String,Integer> map = HashMap<String,Integer>::New();
 
     for(int i = 0;i<1024*1024;i++) {
-          UUID uuid = createUUID();
+          UUID uuid = UUID::New();
           String s = uuid->generate();
           if(map->get(s) != nullptr) {
               TEST_FAIL("[UUID Test case0]");
           }
-          map->put(s,createInteger(0));
+          map->put(s,Integer::New(0));
     }
 
     TEST_OK("[UUID Test case2]");
 
     for(int i = 0;i<1024*1024;i++) {
-          UUID uuid = createUUID(st(UUID)::Type::Random);
+          UUID uuid = UUID::New(st(UUID)::Type::Random);
           String s = uuid->generate();
           if(map->get(s) != nullptr) {
               TEST_FAIL("[UUID Test case3]");
           }
-          map->put(s,createInteger(0));
+          map->put(s,Integer::New(0));
     }
     TEST_OK("[UUID Test case3]");
 
     for(int i = 0;i<1024*1024;i++) {
-          UUID uuid = createUUID(st(UUID)::Type::Time);
+          UUID uuid = UUID::New(st(UUID)::Type::Time);
           String s = uuid->generate();
           if(map->get(s) != nullptr) {
               TEST_FAIL("[UUID Test case4]");
           }
-          map->put(s,createInteger(0));
+          map->put(s,Integer::New(0));
     }
     TEST_OK("[UUID Test case5]");
 
     for(int i = 0;i<1024*1024;i++) {
-          UUID uuid = createUUID(st(UUID)::Type::TimeSafe);
+          UUID uuid = UUID::New(st(UUID)::Type::TimeSafe);
           String s = uuid->generate();
           if(map->get(s) != nullptr) {
               TEST_FAIL("[UUID Test case6]");
           }
-          map->put(s,createInteger(0));
+          map->put(s,Integer::New(0));
     }
 
     TEST_OK("[UUID Test case100]");

@@ -39,20 +39,20 @@ public:
 
 void testInnerClassReflect() {
     while(1) {
-        OuterData data = createOuterData();
-        data->data1 = createInnerData1();
+        OuterData data = OuterData::New();
+        data->data1 = InnerData1::New();
         data->data1->intData = 1000;
-        data->data2 = createInnerData2();
-        data->data2->stringData = createString("hello world");
+        data->data2 = InnerData2::New();
+        data->data2->stringData = String::New("hello world");
 
-        JsonWriter writer = createJsonWriter("./tmp/inner_class_test1.json");
-        JsonValue value = createJsonValue();
+        JsonWriter writer = JsonWriter::New("./tmp/inner_class_test1.json");
+        JsonValue value = JsonValue::New();
         value->importFrom(data);
         writer->write(value);
 
-        JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/inner_class_test1.json"));
+        JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/inner_class_test1.json"));
         JsonValue value2 = reader->get();
-        OuterData data2 = createOuterData();
+        OuterData data2 = OuterData::New();
         value2->reflectTo(data2);
 
         if(data2->data1 == nullptr ||

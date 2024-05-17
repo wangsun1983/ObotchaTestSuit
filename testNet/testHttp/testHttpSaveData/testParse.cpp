@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSaveData save = createHttpHeaderSaveData();
+    HttpHeaderSaveData save = HttpHeaderSaveData::New();
     save->load("ON");
     if(!save->get()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderSaveData save = createHttpHeaderSaveData();
+    HttpHeaderSaveData save = HttpHeaderSaveData::New();
     save->load("OFF");
     if(!save->get()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test Parse case2]");

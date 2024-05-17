@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    HttpHeaderAcceptRanges ranges = HttpHeaderAcceptRanges::New();
     ranges->load("none");
 
     if(!ranges->toString()->sameAs("none")) {
@@ -23,7 +23,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    HttpHeaderAcceptRanges ranges = HttpHeaderAcceptRanges::New();
     ranges->load("bytes");
 
     if(!ranges->toString()->sameAs("bytes")) {
@@ -34,7 +34,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    HttpHeaderAcceptRanges ranges = HttpHeaderAcceptRanges::New();
     ranges->set("bytes");
 
     if(!ranges->toString()->sameAs("bytes")) {

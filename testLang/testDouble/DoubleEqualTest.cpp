@@ -17,8 +17,8 @@ void equaltest() {
 
   while(1) {
     //case 1
-    Double d1 = createDouble(1.1);
-    Double d1_1 = createDouble(1.1);
+    Double d1 = Double::New(1.1);
+    Double d1_1 = Double::New(1.1);
 
     if(!d1->equals(d1_1)) {
         TEST_FAIL("Double equal special test1");
@@ -26,8 +26,8 @@ void equaltest() {
     }
 
     //case 2
-    Double d2 = createDouble(1.1);
-    Double d2_1 = createDouble(1.2);
+    Double d2 = Double::New(1.1);
+    Double d2_1 = Double::New(1.2);
 
     if(d2->equals(d2_1)) {
         TEST_FAIL("Double equal special test2");
@@ -40,8 +40,8 @@ void equaltest() {
 
   while(1) {
     //case 1
-    Double d1 = createDouble(1.1);
-    Double d1_1 = createDouble(1.1);
+    Double d1 = Double::New(1.1);
+    Double d1_1 = Double::New(1.1);
 
     if(d1!= d1_1) {
         TEST_FAIL("Double equal special test5");
@@ -49,8 +49,8 @@ void equaltest() {
     }
 
     //case 2
-    Double d2 = createDouble(1.1);
-    Double d2_1 = createDouble(1.2);
+    Double d2 = Double::New(1.1);
+    Double d2_1 = Double::New(1.2);
 
     if(d2 == d2_1) {
         TEST_FAIL("Double equal special test6");
@@ -58,7 +58,7 @@ void equaltest() {
     }
 
     //case 3
-    Double d3 = createDouble(1.1);
+    Double d3 = Double::New(1.1);
     Double d3_1;
     if(d3 == d3_1) {
       TEST_FAIL("Double equal special test7");

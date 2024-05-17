@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Request-Headers"),
-                createString("X-PINGOTHER, Content-Type"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Request-Headers"),
+                String::New("X-PINGOTHER, Content-Type"));
     auto c = header->getAccessControlRequestHeaders();
     auto list = c->get();
     if(!list->get(0)->sameAs("X-PINGOTHER")) {
@@ -33,9 +33,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Request-Headers"),
-                createString("X-PINGOTHER"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Request-Headers"),
+                String::New("X-PINGOTHER"));
     auto c = header->getAccessControlRequestHeaders();
     auto list = c->get();
     if(!list->get(0)->sameAs("X-PINGOTHER")) {

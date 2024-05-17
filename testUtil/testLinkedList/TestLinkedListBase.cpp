@@ -11,15 +11,15 @@ void testLinkeListBase() {
 
     //case1 string putLast
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
         std::vector<std::string> list;
         list.push_back("a");
         list.push_back("b");
         list.push_back("c");
 
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         if(mList->size() != 3) {
           TEST_FAIL("LinkedList base test1");
@@ -44,7 +44,7 @@ void testLinkeListBase() {
 
     //case2 int putLast
     while(1) {
-        LinkedList<int> mList = createLinkedList<int>();
+        LinkedList<int> mList = LinkedList<int>::New();
 
         std::vector<int> list;
         list.push_back(4);
@@ -77,15 +77,15 @@ void testLinkeListBase() {
 
     //case3 string putFirst
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
         std::vector<std::string> list;
         list.push_back("c");
         list.push_back("b");
         list.push_back("a");
 
-        mList->putFirst(createString("a"));
-        mList->putFirst(createString("b"));
-        mList->putFirst(createString("c"));
+        mList->putFirst(String::New("a"));
+        mList->putFirst(String::New("b"));
+        mList->putFirst(String::New("c"));
 
         if(mList->size() != 3) {
           TEST_FAIL("LinkedList base test5");
@@ -109,7 +109,7 @@ void testLinkeListBase() {
 
     //case4 int putFirst
     while(1) {
-        LinkedList<int> mList = createLinkedList<int>();
+        LinkedList<int> mList = LinkedList<int>::New();
 
         std::vector<int> list;
         list.push_back(6);
@@ -142,7 +142,7 @@ void testLinkeListBase() {
 
     //case4 String iterator remove
     while(1) {
-      LinkedList<String> mList = createLinkedList<String>();
+      LinkedList<String> mList = LinkedList<String>::New();
       std::vector<std::string> list;
       list.push_back("a");
       //list.push_back("b");
@@ -183,15 +183,15 @@ void testLinkeListBase() {
 
     //case5 String iterator remove
     while(1) {
-      LinkedList<Integer> mList = createLinkedList<Integer>();
+      LinkedList<Integer> mList = LinkedList<Integer>::New();
       std::vector<int> list;
       list.push_back(4);
       //list.push_back(5);
       list.push_back(6);
 
-      mList->putLast(createInteger(4));
-      mList->putLast(createInteger(5));
-      mList->putLast(createInteger(6));
+      mList->putLast(Integer::New(4));
+      mList->putLast(Integer::New(5));
+      mList->putLast(Integer::New(6));
 
       LinkedListIterator<Integer> iterator = mList->getIterator();
       while(iterator->hasValue()) {

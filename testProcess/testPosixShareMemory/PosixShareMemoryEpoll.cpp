@@ -13,8 +13,8 @@ using namespace obotcha;
 //do not support ????
 void testShareMemoryEpoll() {
   st(ShareMemory)::Create("shareMemoryabc1122",32);
-  ShareMemory memory = createShareMemory("shareMemoryabc1122",32,st(ShareMemory)::Type::WriteRead);
-  EPollObserver mPoll = createEPollObserver();
+  ShareMemory memory = ShareMemory::New("shareMemoryabc1122",32,st(ShareMemory)::Type::WriteRead);
+  EPollObserver mPoll = EPollObserver::New();
   printf("channel is %d \n",memory->getChannel());
   mPoll->addObserver(
     memory->getChannel(), EPOLLIN | EPOLLRDHUP | EPOLLHUP,
@@ -25,6 +25,6 @@ void testShareMemoryEpoll() {
           return st(IO)::Epoll::Result::Ok;
     });
   
-  memory->write(createString("hello")->toByteArray());
+  memory->write(String::New("hello")->toByteArray());
   sleep(1);
 }

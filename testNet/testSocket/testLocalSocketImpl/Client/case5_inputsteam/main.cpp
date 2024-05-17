@@ -11,17 +11,17 @@ using namespace obotcha;
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case5_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case5_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     
-    String resp = createString("hello server");
+    String resp = String::New("hello server");
     client->getOutputStream()->write(resp->toByteArray());
     
-    String result = createString("");
+    String result = String::New("");
     for(int i = 0;i < 50;i++) {
-        ByteArray data = createByteArray(128);
+        ByteArray data = ByteArray::New(128);
         client->getInputStream()->read(data);
         result = result->append(data->toString());
     }

@@ -17,11 +17,11 @@ using namespace obotcha;
 
 void testScheduledPoolExecutor_Multithread() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->newScheduledThreadPool();
 
-    CountDownLatch latch = createCountDownLatch(1);
-    ArrayList<Future> lists = createArrayList<Future>();
+    CountDownLatch latch = CountDownLatch::New(1);
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i<32*1024;i++) {
       //TEST_FAIL("trace2 \n");
       Future t = pool->schedule(10,[&latch,i]{

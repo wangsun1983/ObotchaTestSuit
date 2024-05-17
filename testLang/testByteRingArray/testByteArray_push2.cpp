@@ -14,8 +14,8 @@ void testByteRingArrayPush2() {
   //case1 overflow test
   //data:[1(start),2,3,4,5(end)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
-      ByteArray data = createByteArray(6);
+      ByteRingArray ringarray = ByteRingArray::New(5);
+      ByteArray data = ByteArray::New(6);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -41,14 +41,14 @@ void testByteRingArrayPush2() {
   //case2 full test
   //data:[1,2(start),3,4,5(end)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(0);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
 
-      ByteArray data = createByteArray(3);
+      ByteArray data = ByteArray::New(3);
       data[0] = 0;
       data[1] = 1;
       data[2] = 2;
@@ -71,18 +71,17 @@ void testByteRingArrayPush2() {
   //case3
   //data:[1,2(start),3,4,5(end)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setEndIndex(4);
       ringarray->setStartIndex(1);
-      
+      ringarray->setEndIndex(4);
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
-      ByteArray data = createByteArray(2);
+      ByteArray data = ByteArray::New(2);
       data[0] = 10;
       data[1] = 11;
       //[11,2,3,4,10]
@@ -102,18 +101,17 @@ void testByteRingArrayPush2() {
   //case3
   //data:[1,2,3(start),4,5(end)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setEndIndex(4);
       ringarray->setStartIndex(2);
-
+      ringarray->setEndIndex(4);
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
-      ByteArray data = createByteArray(3);
+      ByteArray data = ByteArray::New(3);
       data[0] = 10;
       data[1] = 11;
       data[2] = 12;
@@ -135,18 +133,17 @@ void testByteRingArrayPush2() {
   //data:[1,2,3,4(start),5(end)]
   /*
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
-      ringarray->setEndIndex(4);
       ringarray->setStartIndex(3);
-      
+      ringarray->setEndIndex(4);
       //ringarray->setStatus(st(ByteRingArray)::Partial);
 
-      ByteArray data = createByteArray(4);
+      ByteArray data = ByteArray::New(4);
       data[0] = 10;
       data[1] = 11;
       data[2] = 12;
@@ -174,7 +171,7 @@ void testByteRingArrayPush2() {
   //case5
   //data:[1,2,3,4,5(start/end)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -185,7 +182,7 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(5);
+      ByteArray data = ByteArray::New(5);
       data[0] = 10;
       data[1] = 11;
       data[2] = 12;
@@ -208,7 +205,7 @@ void testByteRingArrayPush2() {
   //case6
   //data:[1(end),2,3,4,5(start)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -219,7 +216,7 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(4);
+      ByteArray data = ByteArray::New(4);
       data[0] = 10;
       data[1] = 11;
       data[2] = 12;
@@ -241,7 +238,7 @@ void testByteRingArrayPush2() {
   //case7
   //data:[1,2(end),3,4,5(start)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -252,13 +249,15 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(3);
+      ByteArray data = ByteArray::New(3);
       data[0] = 10;
       data[1] = 11;
       data[2] = 12;
       //[1,10,11,12,5]
       ringarray->push(data);
-
+      for(int i = 0;i < 5;i++) {
+          printf("vv is %d \n",ringarray->at(i));
+      }
       if(ringarray->at(0) != 1 || ringarray->at(1) != 10
         ||ringarray->at(2) != 11 || ringarray->at(3) != 12
         ||ringarray->at(4) != 5) {
@@ -273,7 +272,7 @@ void testByteRingArrayPush2() {
   //case7
   //data:[1,2,3(end),4,5(start)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -284,7 +283,7 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(2);
+      ByteArray data = ByteArray::New(2);
       data[0] = 10;
       data[1] = 11;
       //[1,2,10,11,5]
@@ -304,7 +303,7 @@ void testByteRingArrayPush2() {
   //case7
   //data:[1,2,3,4(end),5(start)]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -315,7 +314,7 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(1);
+      ByteArray data = ByteArray::New(1);
       data[0] = 10;
       //[1,2,3,10,5]
       ringarray->push(data);
@@ -334,7 +333,7 @@ void testByteRingArrayPush2() {
   //case7
   //data:[1,2(end),3,4(start),5]
   while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -345,7 +344,7 @@ void testByteRingArrayPush2() {
       ringarray->setSize(0);
       //ringarray->setStatus(st(ByteRingArray)::Empty);
 
-      ByteArray data = createByteArray(2);
+      ByteArray data = ByteArray::New(2);
       data[0] = 10;
       data[1] = 11;
       //[1,10,11,4,5]

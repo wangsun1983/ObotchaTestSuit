@@ -85,7 +85,7 @@ public:
 DECLARE_CLASS(ThreadPoolResultRunString) IMPLEMENTS(Runnable){
 public:
   void run() {
-    this->setResult(createString("hello"));
+    this->setResult(String::New("hello"));
   }
 };
 
@@ -103,7 +103,7 @@ int testThreadExecutorPoolFutureResult() {
 
     while(1) {
         ExecutorService pool = st(Executors)::newFixedThreadPool(1);
-        ThreadPoolResultRunInt intRun = createThreadPoolResultRunInt();
+        ThreadPoolResultRunInt intRun = Thread::NewPoolResultRunInt();
         Future f = pool->submit(intRun);
         int ret1 = f->getResult(-1);
         if(ret1 != 1) {
@@ -111,7 +111,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunByte byteRun = createThreadPoolResultRunByte();
+        ThreadPoolResultRunByte byteRun = Thread::NewPoolResultRunByte();
         f = pool->submit(byteRun);
         byte ret2 = f->getResult(-1);
         if(ret2 != 1) {
@@ -119,7 +119,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunDouble doubleRun = createThreadPoolResultRunDouble();
+        ThreadPoolResultRunDouble doubleRun = Thread::NewPoolResultRunDouble();
         f = pool->submit(doubleRun);
         double ret3 = f->getResult(-1.1);
         if(ret3 != 1.1) {
@@ -127,7 +127,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunBool boolRun = createThreadPoolResultRunBool();
+        ThreadPoolResultRunBool boolRun = Thread::NewPoolResultRunBool();
         f = pool->submit(boolRun);
         bool ret3_1 = f->getResult(-1.1);
         if(ret3_1 != false) {
@@ -135,7 +135,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunFloat floatRun = createThreadPoolResultRunFloat();
+        ThreadPoolResultRunFloat floatRun = Thread::NewPoolResultRunFloat();
         f = pool->submit(floatRun);
         float ret4 = f->getResult(-1.1);
         if(st(Math)::compareFloat(ret4,2.2) != st(Math)::CompareParamEqual) {
@@ -143,7 +143,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunLong longRun = createThreadPoolResultRunLong();
+        ThreadPoolResultRunLong longRun = Thread::NewPoolResultRunLong();
         f = pool->submit(longRun);
         long ret5 = f->getResult(-1);
         if(ret5 != 4) {
@@ -151,7 +151,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunUint16 uint16Run = createThreadPoolResultRunUint16();
+        ThreadPoolResultRunUint16 uint16Run = Thread::NewPoolResultRunUint16();
         f = pool->submit(uint16Run);
         uint16_t ret6 = f->getResult(1);
         if(ret6 != 5) {
@@ -159,7 +159,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunUint32 uint32Run = createThreadPoolResultRunUint32();
+        ThreadPoolResultRunUint32 uint32Run = Thread::NewPoolResultRunUint32();
         f = pool->submit(uint32Run);
         uint32_t ret7 = f->getResult(1);
         if(ret7 != 6) {
@@ -167,7 +167,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunUint64 uint64Run = createThreadPoolResultRunUint64();
+        ThreadPoolResultRunUint64 uint64Run = Thread::NewPoolResultRunUint64();
         f = pool->submit(uint64Run);
         uint64_t ret8 = f->getResult(1);
         if(ret8 != 7) {
@@ -175,7 +175,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunString stringRun = createThreadPoolResultRunString();
+        ThreadPoolResultRunString stringRun = Thread::NewPoolResultRunString();
         f = pool->submit(stringRun);
         String ret9 = f->getResult(NullData<String>());
         if(!ret9->sameAs("hello")) {
@@ -183,7 +183,7 @@ int testThreadExecutorPoolFutureResult() {
           break;
         }
 
-        ThreadPoolResultRunObject objRun = createThreadPoolResultRunObject();
+        ThreadPoolResultRunObject objRun = Thread::NewPoolResultRunObject();
         f = pool->submit(objRun);
         ResultData1 ret10 = f->getResult(NullData<ResultData1>());
         if(ret10 == nullptr || ret10->value1 != 10 ||ret10->value2 != 20) {

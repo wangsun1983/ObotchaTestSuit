@@ -24,11 +24,11 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1024*16);
+CountDownLatch latch = CountDownLatch::New(1024*16);
 
-AtomicInteger messageCount = createAtomicInteger(0);
-AtomicInteger connectCount = createAtomicInteger(0);
-AtomicInteger disconnectCount = createAtomicInteger(0);
+AtomicInteger messageCount = AtomicInteger::New(0);
+AtomicInteger connectCount = AtomicInteger::New(0);
+AtomicInteger disconnectCount = AtomicInteger::New(0);
 
 WebSocketServer server;
 
@@ -85,20 +85,20 @@ public:
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
 
     int port = getEnvPort();
 
-    InetAddress address = createInet4Address(port);
+    InetAddress address = Inet4Address::New(port);
     
-    server = createWebSocketServerBuilder()
+    server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->build();
 
     server->start();
 
-    MyHandler h = createMyHandler();
+    MyHandler h = MyHandler::New();
     h->sendEmptyMessageDelayed(0,10*1024);
 
     latch->await();

@@ -23,12 +23,12 @@ void basetest() {
     read<int> is 185339150
   */
   while(1) {
-    ByteArray data = createByteArray(16);
+    ByteArray data = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
        data[i] = i;
     }
 
-    ByteArrayReader reader = createByteArrayReader(data);
+    ByteArrayReader reader = ByteArrayReader::New(data);
     long v1 = reader->read<long>();
     short v2 = reader->read<short int>();
     byte v3 = reader->read<byte>();
@@ -56,13 +56,13 @@ void basetest() {
     read<int> is 724315438
   */
   while(1) {
-    ByteArray data = createByteArray(16);
+    ByteArray data = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
        //data->fill(i,i+32);
        data[i] = i + 32;
     }
 
-    ByteArrayReader reader = createByteArrayReader(data);
+    ByteArrayReader reader = ByteArrayReader::New(data);
     long v1 = reader->read<long>();
     short v2 = reader->read<short int>();
     byte v3 = reader->read<byte>();
@@ -87,13 +87,13 @@ void basetest() {
     read<int> is 1263291726
   */
   while(1) {
-    ByteArray data = createByteArray(16);
+    ByteArray data = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
        //data->fill(i,i+64);
        data[i] = i + 64;
     }
 
-    ByteArrayReader reader = createByteArrayReader(data);
+    ByteArrayReader reader = ByteArrayReader::New(data);
     long v1 = reader->read<long>();
     short v2 = reader->read<short int>();
     byte v3 = reader->read<byte>();
@@ -109,14 +109,14 @@ void basetest() {
 
   //int read(ByteArray);
   while(1) {
-    ByteArray data = createByteArray(16);
+    ByteArray data = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
        //data->fill(i,i+64);
        data[i] = i + 64;
     }
 
-    ByteArrayReader reader = createByteArrayReader(data);
-    ByteArray readarray = createByteArray(64);
+    ByteArrayReader reader = ByteArrayReader::New(data);
+    ByteArray readarray = ByteArray::New(64);
     int len = reader->read(readarray);
     if(len != 16) {
         TEST_FAIL("[TestByteArrayReader Test {read} case1]");

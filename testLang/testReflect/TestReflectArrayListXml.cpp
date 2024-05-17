@@ -31,19 +31,19 @@ public:
 void testReflectArrayListToXml() {
   //test1
   while(1) {
-    XmlReflectList refLists = createXmlReflectList();
-    refLists->lists = createArrayList<ArrayList<XmlItemData1>>();
+    XmlReflectList refLists = XmlReflectList::New();
+    refLists->lists = ArrayList<ArrayList<XmlItemData1>>::New();
 
-    ArrayList<XmlItemData1> l1 = createArrayList<XmlItemData1>();
-    XmlItemData1 d1 = createXmlItemData1();
+    ArrayList<XmlItemData1> l1 = ArrayList<XmlItemData1>::New();
+    XmlItemData1 d1 = XmlItemData1::New();
     d1->data1 = 1;
     d1->data2 = 2;
 
-    XmlItemData1 d2 = createXmlItemData1();
+    XmlItemData1 d2 = XmlItemData1::New();
     d2->data1 = 3;
     d2->data2 = 4;
 
-    XmlItemData1 d3 = createXmlItemData1();
+    XmlItemData1 d3 = XmlItemData1::New();
     d3->data1 = 5;
     d3->data2 = 6;
 
@@ -52,20 +52,20 @@ void testReflectArrayListToXml() {
 
     refLists->lists->add(l1);
 
-    ArrayList<XmlItemData1> l2 = createArrayList<XmlItemData1>();
+    ArrayList<XmlItemData1> l2 = ArrayList<XmlItemData1>::New();
     l2->add(d1);
     l2->add(d2);
     l2->add(d3);
     refLists->lists->add(l2);
 
-    XmlDocument doc = createXmlDocument();
+    XmlDocument doc = XmlDocument::New();
     doc->importFrom(refLists);
-    XmlWriter writer = createXmlWriter(doc);
+    XmlWriter writer = XmlWriter::New(doc);
     writer->write("output_xml_2.xml");
 
 
-    XmlDocument doc1 = createXmlDocument(createFile("output_xml_2.xml"));
-    XmlReflectList data3 = createXmlReflectList();
+    XmlDocument doc1 = XmlDocument::New(File::New("output_xml_2.xml"));
+    XmlReflectList data3 = XmlReflectList::New();
     doc1->reflectTo(data3);
 
     if(data3->lists == nullptr || data3->lists->size() != 2) {

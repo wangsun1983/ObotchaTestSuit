@@ -15,7 +15,7 @@ using namespace obotcha;
 int testBarrierFunc() {
 
   while(1) {
-    AtomicInteger v = createAtomicInteger(0);
+    AtomicInteger v = AtomicInteger::New(0);
 
     auto func = [&v]{
       for(int i = 0;i<1024;i++) {
@@ -23,17 +23,17 @@ int testBarrierFunc() {
       }
     };
 
-    Barrier barrier1 = createBarrier(3);
+    Barrier barrier1 = Barrier::New(3);
 
-    Thread t1 = createThread([&func,&barrier1]{
+    Thread t1 = Thread::New([&func,&barrier1]{
       barrier1->await(func);
     });
 
-    Thread t2 = createThread([&func,&barrier1]{
+    Thread t2 = Thread::New([&func,&barrier1]{
       barrier1->await(func);
     });
 
-    Thread t3 = createThread([&func,&barrier1]{
+    Thread t3 = Thread::New([&func,&barrier1]{
       barrier1->await(func);
     });
 
@@ -52,14 +52,14 @@ int testBarrierFunc() {
   }
 
   while(1) {
-    AtomicInteger v = createAtomicInteger(0);
+    AtomicInteger v = AtomicInteger::New(0);
     auto func = [&v]{
       usleep(1000 *1000*3);
     };
 
-    Barrier barrier1 = createBarrier(3);
-    Thread t1 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Barrier barrier1 = Barrier::New(3);
+    Thread t1 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();
@@ -68,8 +68,8 @@ int testBarrierFunc() {
       }
     });
 
-    Thread t2 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t2 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();
@@ -78,8 +78,8 @@ int testBarrierFunc() {
       }
     });
 
-    Thread t3 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t3 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();
@@ -99,13 +99,13 @@ int testBarrierFunc() {
   }
 
   while(1) {
-    AtomicInteger v = createAtomicInteger(0);
+    AtomicInteger v = AtomicInteger::New(0);
     auto func = [&v]{
     };
 
-    Barrier barrier1 = createBarrier(4);
-    Thread t1 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Barrier barrier1 = Barrier::New(4);
+    Thread t1 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();
@@ -114,8 +114,8 @@ int testBarrierFunc() {
       }
     });
 
-    Thread t2 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t2 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();
@@ -124,8 +124,8 @@ int testBarrierFunc() {
       }
     });
 
-    Thread t3 = createThread([&func,&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t3 = Thread::New([&func,&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(func,1000);
       auto l = watch->stop();

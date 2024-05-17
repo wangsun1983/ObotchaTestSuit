@@ -16,8 +16,8 @@ using namespace obotcha;
 void testSetToHeader() {
   while(1) {
     //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Sec-WebSocket-Accept"),createString(" s3pPLMBiTxaQ9kYGzzhZRbK+xOo="));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Sec-WebSocket-Accept"),String::New(" s3pPLMBiTxaQ9kYGzzhZRbK+xOo="));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketAccept();
     if(!key->get()->sameAs("s3pPLMBiTxaQ9kYGzzhZRbK+xOo=")) {

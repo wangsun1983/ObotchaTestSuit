@@ -23,13 +23,13 @@ public:
 
 
 void testToJson() {
-    MyData data = createMyData();
+    MyData data = MyData::New();
     data->id = 123;
-    data->name = createString("wangsl");
+    data->name = String::New("wangsl");
     
-    TextContent c = createTextContent(data);
+    TextContent c = TextContent::New(data);
     
-    JsonReader v = createJsonReader()->loadContent(c->get());
+    JsonReader v = JsonReader::New()->loadContent(c->get());
     JsonValue value = v->get();
     auto id = value->getInteger("id");
     if(id == nullptr || id->toValue() != 123) {

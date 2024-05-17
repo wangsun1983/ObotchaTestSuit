@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("User-Agent"),
-                createString(" Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("User-Agent"),
+                String::New(" Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"));
     auto useragent = header->getUserAgent();
     ArrayList<HttpUserAgentDetail> lists = useragent->get();
     auto detail1 = lists->get(0);

@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Credentials"),
-                createString("true"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Credentials"),
+                String::New("true"));
     auto c = header->getAllowCredentials();
     
     if(!c->get()) {
@@ -28,9 +28,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Credentials"),
-                createString("false"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Credentials"),
+                String::New("false"));
     auto c = header->getAllowCredentials();
     if(c->get()) {
       TEST_FAIL("[HttpHeaderAccessControlAllowCredentials test SetToHeader case2]");

@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    HttpHeaderCrossOriginEmbedderPolicy policy = HttpHeaderCrossOriginEmbedderPolicy::New();
     policy->load("unsafe-none");
     
     if(!policy->toString()->sameAs("unsafe-none")) {
@@ -24,7 +24,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    HttpHeaderCrossOriginEmbedderPolicy policy = HttpHeaderCrossOriginEmbedderPolicy::New();
     policy->setAsUnSafeNone();
     
     if(!policy->toString()->sameAs("unsafe-none")) {
@@ -34,7 +34,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderCrossOriginEmbedderPolicy policy = createHttpHeaderCrossOriginEmbedderPolicy();
+    HttpHeaderCrossOriginEmbedderPolicy policy = HttpHeaderCrossOriginEmbedderPolicy::New();
     policy->setAsRequireCorp();
     
     if(!policy->toString()->sameAs("require-corp")) {

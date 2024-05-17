@@ -10,10 +10,10 @@ using namespace obotcha;
 
 void testConcurrentQueue_RemoveAt() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
 
       String v = list->removeAt(2);
       if(v != "b") {
@@ -30,7 +30,7 @@ void testConcurrentQueue_RemoveAt() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -50,7 +50,7 @@ void testConcurrentQueue_RemoveAt() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -70,7 +70,7 @@ void testConcurrentQueue_RemoveAt() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -98,7 +98,7 @@ void testConcurrentQueue_RemoveAt() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);

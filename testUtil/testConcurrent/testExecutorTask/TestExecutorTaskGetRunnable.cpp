@@ -20,14 +20,14 @@ public:
 
 void testExecutorTaskGetRunnable() {
 	while(1) {
-		auto r = createMyRunnable5();
-		auto task = createExecutorTask(r,[&](ExecutorTask task){
+		auto r = MyRunnable5::New();
+		auto task = ExecutorTask::New(r,[&](ExecutorTask task){
 		});
 		if(r != task->getRunnable()) {
 			TEST_FAIL("Test ExecutorTask GetRunnable case1");
 		}
 		
-		task = createExecutorTask(nullptr,[&](ExecutorTask task){
+		task = ExecutorTask::New(nullptr,[&](ExecutorTask task){
 		});
 		if(task->getRunnable() != nullptr) {
 			TEST_FAIL("Test ExecutorTask GetRunnable case2");

@@ -17,42 +17,42 @@ using namespace obotcha;
 void TestStringTrim() {
 
     while(1) {
-        String str = createString(" abc f ");
+        String str = String::New(" abc f ");
         String str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abc f")) {
             TEST_FAIL("String trim test1");
             break;
         }
 
-        str = createString("      abc f      ");
+        str = String::New("      abc f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abc f")) {
             TEST_FAIL("String trim test2");
             break;
         }
 
-        str = createString("      abc   f      ");
+        str = String::New("      abc   f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abc   f")) {
             TEST_FAIL("String trim test3");
             break;
         }
 
-        str = createString("abc   f      ");
+        str = String::New("abc   f      ");
         str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abc   f")) {
             TEST_FAIL("String trim test4");
             break;
         }
 
-        str = createString("    abc   f");
+        str = String::New("    abc   f");
         str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abc   f")) {
             TEST_FAIL("String trim test5");
             break;
         }
 
-        str = createString("abcf");
+        str = String::New("abcf");
         str1 = str->trim();
         if(str1 == nullptr || !str1->sameAs("abcf")) {
             TEST_FAIL("String trim test6");

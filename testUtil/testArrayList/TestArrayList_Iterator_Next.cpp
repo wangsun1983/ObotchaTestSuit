@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testArrayList_Iterator_Next() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     auto iterator = list->getIterator();
     if(iterator->next()) {
       TEST_FAIL("[ArrayList Iterator Next test1]");
@@ -24,8 +24,8 @@ void testArrayList_Iterator_Next() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
     auto iterator = list->getIterator();
     if(iterator->next()) {
       TEST_FAIL("[ArrayList Iterator Next test2]");
@@ -40,9 +40,9 @@ void testArrayList_Iterator_Next() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
     auto iterator = list->getIterator();
     if(!iterator->next()) {

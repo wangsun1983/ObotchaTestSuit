@@ -19,8 +19,8 @@ using namespace obotcha;
 
 #define TEST_COUNT 1024
 
-Condition mwaitcond = createCondition();
-Mutex mMutex = createMutex();
+Condition mwaitcond = Condition::New();
+Mutex mMutex = Mutex::New();
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
@@ -29,8 +29,8 @@ public:
   }
 };
 
-CountDownLatch latch = createCountDownLatch(TEST_COUNT);
-MyHandler h = createMyHandler();
+CountDownLatch latch = CountDownLatch::New(TEST_COUNT);
+MyHandler h = MyHandler::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -46,7 +46,7 @@ public:
       break;
 
       case st(Net)::Event::Disconnect: {
-        printf("count is %d \n",latch->getCount());
+        //printf("count is %d \n",latch->getCount());
         latch->countDown();
         h->removeMessages(0);
         h->sendEmptyMessageDelayed(0,2000);
@@ -62,19 +62,19 @@ private:
 
 int main() {
     signal(SIGPIPE, SIG_IGN);
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     long sum = 0;
 
     for(int i = 0;i<TEST_COUNT;i++) {
-          InetAddress addr = createInetLocalAddress("case4_socket");
-          Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+          InetAddress addr = InetLocalAddress::New("case4_socket");
+          Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
           
           if(client->connect() != 0) {
             TEST_FAIL("TestLocalSocket Client case4_simple_multi_test test1,i is %d,fd is %d",i,client->getFileDescriptor()->getFd());
             continue;
           }
-        
-          monitor->bind(client,createMyListener(i));
+
+          monitor->bind(client,MyListener::New(i));
     }
     
     {
@@ -87,6 +87,5 @@ int main() {
     }
 
     TEST_OK("TestLocalSocket Client case4_simple_multi_test test100");
-    usleep(1000*1000);
     return 0;
 }

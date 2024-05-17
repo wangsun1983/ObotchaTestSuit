@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 int testpass1() {
-    JsonReader mReader = createJsonReader()->loadFile(createFile("pass1.json"));
+    JsonReader mReader = JsonReader::New()->loadFile(File::New("pass1.json"));
     JsonValue root = mReader->get();
 
     //first array;
@@ -314,7 +314,7 @@ int testpass1() {
           return 0;
         }
             //"{\"object with 1 member\":[\"array with 1 element\"]}",
-            JsonReader reader = createJsonReader()->loadContent(value8_30);
+            JsonReader reader = JsonReader::New()->loadContent(value8_30);
             JsonValue value8_30_1 = reader->get();
             JsonValue value8_30_1_1 = value8_30_1->getValue("object with 1 member");
             if(!value8_30_1_1->getStringAt(0)->sameAs("array with 1 element")) {

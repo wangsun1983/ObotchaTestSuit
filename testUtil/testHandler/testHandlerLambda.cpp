@@ -9,7 +9,7 @@
 using namespace obotcha;
 
 void testHandlerLambda() {
-  Handler h = createHandler();
+  Handler h = Handler::New();
   while(1) {
     int value = 100;
     h->post([&value]() {

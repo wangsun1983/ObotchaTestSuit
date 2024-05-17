@@ -19,15 +19,15 @@ int testLockInThread() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
 		AutoLock l(mu->getReadLock());
 		usleep(1000*200);
 		return -1;
 	  } else {
 		usleep(1000*100);
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-		Thread t1 = createThread([&]{
-			TimeWatcher watcher = createTimeWatcher();
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+		Thread t1 = Thread::New([&]{
+			TimeWatcher watcher = TimeWatcher::New();
 			watcher->start();
 			AutoLock l(mu->getWriteLock());
 			auto ret = watcher->stop();
@@ -45,15 +45,15 @@ int testLockInThread() {
   while(1) {
   	  int pid = fork();
   	  if(pid == 0) {
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
   		AutoLock l(mu->getWriteLock());
   		usleep(1000*200);
   		return -1;
   	  } else {
   		usleep(1000*100);
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-  		Thread t1 = createThread([&]{
-  			TimeWatcher watcher = createTimeWatcher();
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+  		Thread t1 = Thread::New([&]{
+  			TimeWatcher watcher = TimeWatcher::New();
   			watcher->start();
   			AutoLock l(mu->getReadLock());
   			auto ret = watcher->stop();
@@ -71,8 +71,8 @@ int testLockInThread() {
   while(1) {
   	  int pid = fork();
   	  if(pid == 0) {
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-		Thread t1 = createThread([&]{
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+		Thread t1 = Thread::New([&]{
 			AutoLock l(mu->getWriteLock());
 			usleep(1000*200);
 		});
@@ -81,9 +81,9 @@ int testLockInThread() {
   		return -1;
   	  } else {
   		usleep(1000*100);
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-  		Thread t1 = createThread([&]{
-  			TimeWatcher watcher = createTimeWatcher();
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+  		Thread t1 = Thread::New([&]{
+  			TimeWatcher watcher = TimeWatcher::New();
   			watcher->start();
   			AutoLock l(mu->getReadLock());
   			auto ret = watcher->stop();
@@ -101,8 +101,8 @@ int testLockInThread() {
   while(1) {
   	  int pid = fork();
   	  if(pid == 0) {
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-  		Thread t1 = createThread([&]{
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+  		Thread t1 = Thread::New([&]{
   			AutoLock l(mu->getReadLock());
   			usleep(1000*200);
   		});
@@ -111,9 +111,9 @@ int testLockInThread() {
   		return -1;
   	  } else {
   		usleep(1000*100);
-  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc10");
-  		Thread t1 = createThread([&]{
-  			TimeWatcher watcher = createTimeWatcher();
+  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc10");
+  		Thread t1 = Thread::New([&]{
+  			TimeWatcher watcher = TimeWatcher::New();
   			watcher->start();
   			AutoLock l(mu->getWriteLock());
   			auto ret = watcher->stop();

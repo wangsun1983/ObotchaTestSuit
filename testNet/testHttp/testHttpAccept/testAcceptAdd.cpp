@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testAcceptAdd() {
   while(1) {
-    HttpHeaderAccept accept = createHttpHeaderAccept();
+    HttpHeaderAccept accept = HttpHeaderAccept::New();
     accept->add("text/html");
     accept->add("application/xhtml+xml");
     accept->add("application/xml",0.9);

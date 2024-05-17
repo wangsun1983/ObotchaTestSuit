@@ -21,7 +21,7 @@ public:
 void listobjecttest() {
   //construct1
   while(1) {
-    List<MyData> mylist1 = createList<MyData>(4);
+    List<MyData> mylist1 = List<MyData>::New(4);
     if(mylist1->size() != 4) {
       TEST_FAIL("List Object construct test1");
       break;
@@ -41,13 +41,13 @@ void listobjecttest() {
   while(1) {
     MyData vlist[5];
     for(int i = 0;i < 5;i++) {
-      MyData v = createMyData();
+      MyData v = MyData::New();
       v->i = i;
       v->j = i;
       vlist[i] = v;
     }
 
-    List<MyData> list1 = createList<MyData>(vlist,5);
+    List<MyData> list1 = List<MyData>::New(vlist,5);
     if(list1->size() != 5) {
       TEST_FAIL("List Object construct test4");
       break;
@@ -81,8 +81,8 @@ void listobjecttest() {
 
   //nullptr set
   while(1) {
-    List<MyData> list1 = createList<MyData>(2);
-    MyData data1 = createMyData();
+    List<MyData> list1 = List<MyData>::New(2);
+    MyData data1 = MyData::New();
     data1->i = 1;
     data1->j = 1;
     list1[0] = data1;

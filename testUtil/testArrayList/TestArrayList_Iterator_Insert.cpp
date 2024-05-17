@@ -13,11 +13,11 @@ using namespace obotcha;
 
 void testArrayList_Iterator_Insert() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
 
     auto iterator = list->getIterator();
-    iterator->insert(createString("a1"));
+    iterator->insert(String::New("a1"));
     if(list->size() != 2 || !list->get(0)->sameAs("a1") || !list->get(1)->sameAs("a")) {
       TEST_FAIL("[ArrayList Iterator Insert test1]");
       break;
@@ -26,12 +26,12 @@ void testArrayList_Iterator_Insert() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
     auto iterator = list->getIterator();
     iterator->next();
-    iterator->insert(createString("a1"));
+    iterator->insert(String::New("a1"));
     if(list->size() != 3 || !list->get(0)->sameAs("a") || !list->get(1)->sameAs("a1") ||!list->get(2)->sameAs("b")) {
       TEST_FAIL("[ArrayList Iterator Insert test2]");
       break;
@@ -47,18 +47,18 @@ void testArrayList_Iterator_Insert() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
     auto iterator = list->getIterator();
     iterator->next();
-    iterator->insert(createString("c"));
-    iterator->insert(createString("d"));
+    iterator->insert(String::New("c"));
+    iterator->insert(String::New("d"));
     if(list->size() != 4
-    || !list->get(0)->equals(createString("a"))
-    || !list->get(1)->equals(createString("d"))
-    || !list->get(2)->equals(createString("c"))
-    || !list->get(3)->equals(createString("b"))) {
+    || !list->get(0)->equals(String::New("a"))
+    || !list->get(1)->equals(String::New("d"))
+    || !list->get(2)->equals(String::New("c"))
+    || !list->get(3)->equals(String::New("b"))) {
       TEST_FAIL("[ArrayList Iterator Insert test4]");
       break;
     }
@@ -66,7 +66,7 @@ void testArrayList_Iterator_Insert() {
   }
 
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     auto iterator = list->getIterator();

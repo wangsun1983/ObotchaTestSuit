@@ -22,7 +22,7 @@
 using namespace obotcha;
 
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -43,9 +43,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
           case st(Net)::Event::Message: {
               if(step == 0) {
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
                 w->write(response);
                 step = 1;
               } else {
@@ -67,14 +67,22 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
-  server->start();
-  MyHandler h = createMyHandler();
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,10*1024);
 
   connectlatch->await();

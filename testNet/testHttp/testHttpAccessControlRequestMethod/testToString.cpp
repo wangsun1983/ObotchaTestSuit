@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlRequestMethod c = createHttpHeaderAccessControlRequestMethod();
+    HttpHeaderAccessControlRequestMethod c = HttpHeaderAccessControlRequestMethod::New();
     c->load("POST");
     if(!c->toString()->sameAs("POST")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test toString case1]");

@@ -13,10 +13,10 @@ using namespace obotcha;
 
 void testArrayListForEach() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString(1));
-    list->add(createString(2));
-    list->add(createString(3));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New(1));
+    list->add(String::New(2));
+    list->add(String::New(3));
 
     int index = 1;
     //list->foreach([&index](String value) {
@@ -38,10 +38,10 @@ void testArrayListForEach() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString(1));
-    list->add(createString(2));
-    list->add(createString(3));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New(1));
+    list->add(String::New(2));
+    list->add(String::New(3));
     int index = 1;
     //list->foreach([&index](String value) {
     //  if(index == 2) {

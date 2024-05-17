@@ -19,14 +19,14 @@ int testProcessMutex() {
   int pid = fork();
   
   if(pid == 0) {
-    ProcessMutex mu = createProcessMutex("abc1");
+    ProcessMutex mu = ProcessMutex::New("abc1");
     AutoLock l(mu);
     usleep(1000*500);
     return -1;
   } else {
-    ProcessMutex mu = createProcessMutex("abc1");
+    ProcessMutex mu = ProcessMutex::New("abc1");
     usleep(1000*100);
-    TimeWatcher w = createTimeWatcher();
+    TimeWatcher w = TimeWatcher::New();
     w->start();
     AutoLock l(mu);
     long ret = w->stop();

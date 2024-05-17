@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testArrayList_RemoveAt() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
     auto value = list->removeAt(0);
     if(value == nullptr || !value->sameAs("a")) {
@@ -32,7 +32,7 @@ void testArrayList_RemoveAt() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     bool isException = false;
     try {
       list->removeAt(0);
@@ -48,9 +48,9 @@ void testArrayList_RemoveAt() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
     bool isException = false;
     try {
       list->removeAt(100);
@@ -66,9 +66,9 @@ void testArrayList_RemoveAt() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
     bool isException = false;
     try {
       list->removeAt(-1);
@@ -84,9 +84,9 @@ void testArrayList_RemoveAt() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
     list->clear();
     bool isException = false;
     try {

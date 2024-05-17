@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("timeout=5, max=1000");
     if(!keepAlive->toString()->sameAs("timeout=5, max=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case1]");
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("1000");
     if(!keepAlive->toString()->sameAs("timeout=1000")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case2]");
@@ -32,7 +32,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("timeout=5");
     if(!keepAlive->toString()->sameAs("timeout=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case3]");
@@ -42,7 +42,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("Max=5");
     if(!keepAlive->toString()->sameAs("max=5")) {
       TEST_FAIL("[HttpHeaderKeepAlive test toString case4]");
@@ -52,7 +52,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->setTimeout(5);
     keepAlive->setMax(1000);
     if(!keepAlive->toString()->sameAs("timeout=5, max=1000")) {

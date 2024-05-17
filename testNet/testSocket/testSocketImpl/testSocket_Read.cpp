@@ -15,13 +15,13 @@
 using namespace obotcha;
 
 void testSocketRead() {
-    File file1 = createFile("./tmp/readdata.txt");
+    File file1 = File::New("./tmp/readdata.txt");
     if(!file1->exists()) {
         file1->createNewFile();
-        FileOutputStream output = createFileOutputStream(file1);
+        FileOutputStream output = FileOutputStream::New(file1);
         output->open();
         
-        ByteArray data = createByteArray(64);
+        ByteArray data = ByteArray::New(64);
         for(int i = 0 ;i < 64;i++) {
             data[i] = i;
         }
@@ -30,9 +30,9 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
-        SocketImpl impl = createSocketImpl(fd);
-        ByteArray data = createByteArray(32);
+        auto fd = st(File)::Open(String::New("./tmp/readdata.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
+        ByteArray data = ByteArray::New(32);
         
         int size = impl->read(data);
         if(size != 32) {
@@ -48,9 +48,9 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
-        SocketImpl impl = createSocketImpl(fd);
-        ByteArray data = createByteArray(32);
+        auto fd = st(File)::Open(String::New("./tmp/readdata.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
+        ByteArray data = ByteArray::New(32);
         
         int size = impl->read(data,2,12);
         data[0] = 22;
@@ -77,9 +77,9 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = st(File)::Open(createString("./tmp/readdata.txt"));
-        SocketImpl impl = createSocketImpl(fd);
-        ByteArray data = createByteArray(32);
+        auto fd = st(File)::Open(String::New("./tmp/readdata.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
+        ByteArray data = ByteArray::New(32);
         
         int size = impl->read(data,2,128);
         data[0] = 22;
@@ -106,8 +106,8 @@ void testSocketRead() {
     }
     
     while(1) {
-        auto fd = createFileDescriptor(123);
-        SocketImpl impl = createSocketImpl(fd);
+        auto fd = FileDescriptor::New(123);
+        SocketImpl impl = SocketImpl::New(fd);
         auto ret = impl->read();
         if(ret != nullptr) {
             TEST_FAIL("SocketImpl read case11");

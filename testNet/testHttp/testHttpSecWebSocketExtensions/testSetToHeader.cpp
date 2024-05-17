@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Sec-WebSocket-Extensions"),
-                createString(" permessage-deflate, client_max_window_bits"));
+    auto header = HttpHeader::New();
+    header->set(String::New("Sec-WebSocket-Extensions"),
+                String::New(" permessage-deflate, client_max_window_bits"));
     auto c = header->getWebSocketExtensions();
     auto list = c->get();
     if(!list->get(0)->sameAs("permessage-deflate")) {

@@ -1333,17 +1333,17 @@ void testHttpParse() {
     for(int turn = 0; turn < 2;turn++) {
         for(int i = 0;i<size;i++) {
             //printf("////HttpPacketParser start %d ////\n",i);
-            HttpPacketParserImpl parser = createHttpPacketParserImpl();
+            HttpPacketParserImpl parser = HttpPacketParserImpl::New();
             struct message msg = requests[i];
             //printf("turn is %d msg is %s \n",turn,msg.raw);
-            ArrayList<HttpPacket> packets = createArrayList<HttpPacket>();
+            ArrayList<HttpPacket> packets = ArrayList<HttpPacket>::New();
             if(turn == 0) {
-                parser->pushData(createByteArray((byte *)msg.raw,strlen(msg.raw)));
+                parser->pushData(ByteArray::New((byte *)msg.raw,strlen(msg.raw)));
                 packets = parser->doParse();
             } else {
                 int index = 0;
                 for(;index<strlen(msg.raw);index++) {
-                  ByteArray data = createByteArray(1);
+                  ByteArray data = ByteArray::New(1);
                   data[0] = (byte)msg.raw[index];
                   parser->pushData(data);
                   auto result = parser->doParse();
@@ -1391,10 +1391,10 @@ void testHttpParse() {
                 HttpUrl url = header->getUrl();
                 String path = url->getPath();
 
-                String f1 = createString(msg.request_path);
+                String f1 = String::New(msg.request_path);
                 //path does not contain /
                 //if(f1->size() != 1) {
-                //    f1 = createString("/")->append(f1);
+                //    f1 = String::New("/")->append(f1);
                 //}
 
                 if(path == nullptr || !path->equals(f1)) {
@@ -1464,8 +1464,8 @@ void testHttpParse() {
             //check headers
             int num_headers = msg.num_headers;
             for(int i = 0;i<num_headers;i++) {
-                String key = createString(msg.headers[i][0]);
-                String value = createString(msg.headers[i][1]);
+                String key = String::New(msg.headers[i][0]);
+                String value = String::New(msg.headers[i][1]);
                 String fValue = packet->getHeader()->get(key->toLowerCase());
                 if(fValue == nullptr && !key->equalsIgnoreCase("Link")) {
                     //maybe it is a trailing_headers
@@ -1507,7 +1507,7 @@ void testHttpParse() {
             //check key_value
             if(msg.key_value_size > 0) {
                 String content = entity->getContent()->toString();
-                HttpUrlEncodedValue encodeValue = createHttpUrlEncodedValue(entity->getContent()->toString());
+                HttpUrlEncodedValue encodeValue = HttpUrlEncodedValue::New(entity->getContent()->toString());
                 HashMap<String,String> map = encodeValue->getValues();
                 if(map == nullptr) {
                     TEST_FAIL("HttpPacketParser CheckKeyValue,parse EncodedKeyValues size is 0");
@@ -1520,7 +1520,7 @@ void testHttpParse() {
                     i++;
                     const char *value = msg.key_value[i];
 
-                    String findValue = map->get(createString(key));
+                    String findValue = map->get(String::New(key));
                     if(!findValue->sameAs(value)) {
                         TEST_FAIL("HttpPacketParser CheckKeyValue Fail,parsed key is %s,parser value is %s",
                                     key,findValue->toChars());

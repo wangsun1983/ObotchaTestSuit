@@ -23,8 +23,8 @@ public:
 void testReferenceArraylist() {
   //case 1
   while(1) {
-    ContainerData ref = createContainerData();
-    ArrayList<ContainerData> list = createArrayList<ContainerData>();
+    ContainerData ref = ContainerData::New();
+    ArrayList<ContainerData> list = ArrayList<ContainerData>::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceArraylistCount test1");
       break;
@@ -47,8 +47,8 @@ void testReferenceArraylist() {
 
   //case 1
   while(1) {
-    ContainerData2 ref = createContainerData2();
-    ArrayList<ContainerData> list = createArrayList<ContainerData>();
+    ContainerData2 ref = ContainerData2::New();
+    ArrayList<ContainerData> list = ArrayList<ContainerData>::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceArraylistCount test4");
       break;

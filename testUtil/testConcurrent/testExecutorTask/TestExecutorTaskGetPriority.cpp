@@ -19,7 +19,7 @@ public:
 };
 
 void testExecutorTaskGetPriority() {
-	auto task = createExecutorTask(createMyRunnable3(),[&](ExecutorTask task){
+	auto task = ExecutorTask::New(MyRunnable3::New(),[&](ExecutorTask task){
 	});
 	
 	if(task->getPriority() != st(Concurrent)::TaskPriority::Medium) {

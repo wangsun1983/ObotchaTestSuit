@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderMatch match = createHttpHeaderMatch();
+    HttpHeaderMatch match = HttpHeaderMatch::New();
     match->load("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\"");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 1){
@@ -29,7 +29,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderMatch match = createHttpHeaderMatch();
+    HttpHeaderMatch match = HttpHeaderMatch::New();
     match->load("W/\"67ab43\", \"54ed21\", \"7892dd\"");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 3){
@@ -55,7 +55,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderMatch match = createHttpHeaderMatch();
+    HttpHeaderMatch match = HttpHeaderMatch::New();
     match->load("*");
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 1){

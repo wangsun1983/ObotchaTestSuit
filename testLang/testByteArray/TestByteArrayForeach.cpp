@@ -5,7 +5,7 @@ using namespace obotcha;
 
 void testForeach() {
 #if 0  
-  ByteArray array = createByteArray(10);
+  ByteArray array = ByteArray::New(10);
   for(int i = 0;i <10;i++) {
     array[i] = i;
   }

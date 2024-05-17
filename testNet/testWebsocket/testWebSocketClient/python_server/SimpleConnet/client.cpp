@@ -16,7 +16,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
@@ -54,12 +54,12 @@ public:
 
 
 int main() {
-    MyWsListener l = createMyWsListener();
-    WebSocketClient client = createWebSocketClient();
+    MyWsListener l = MyWsListener::New();
+    WebSocketClient client = WebSocketClient::New();
     int port = getEnvPort();
-    String url = createString("ws://127.0.0.1:")->append(createString(port));
+    String url = String::New("ws://127.0.0.1:")->append(String::New(port));
     client->connect(url,l);
-    client->sendTextMessage(createString("hello server"));
+    client->sendTextMessage(String::New("hello server"));
     latch->await();
     port++;
     setEnvPort(port);

@@ -22,10 +22,10 @@ public:
 };
 
 void testHandlerSendToTarget() {
-  SendTargeHandler h = createSendTargeHandler();
+  SendTargeHandler h = SendTargeHandler::New();
   auto message = h->obtainMessage(100);
   
-  Thread t1 = createThread([&]{
+  Thread t1 = Thread::New([&]{
 	  message->sendToTarget();
   });
   t1->start();

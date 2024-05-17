@@ -23,7 +23,7 @@ public:
 void testThreadLambda() {
     while(1) {
         int value = 100;
-        Thread t1 = createThread([&value]() {
+        Thread t1 = Thread::New([&value]() {
             value = 1;
         });
 
@@ -41,7 +41,7 @@ void testThreadLambda() {
 
     while(1) {
         int value = 100;
-        Thread t1 = createThread([&value](int v) {
+        Thread t1 = Thread::New([&value](int v) {
             if(v == 100) {
                value =123;
             }
@@ -61,7 +61,7 @@ void testThreadLambda() {
     while(1) {
         int value = 100;
         int result = 1;
-        Thread t1 = createThread([&value,&result]() {
+        Thread t1 = Thread::New([&value,&result]() {
             if(value == 100) {
                result =123;
             }
@@ -81,7 +81,7 @@ void testThreadLambda() {
     while(1) {
         int value = 100;
         int result = 1;
-        Thread t1 = createThread([&value,&result]() {
+        Thread t1 = Thread::New([&value,&result]() {
             if(value == 100) {
                result =123;
             }
@@ -99,11 +99,11 @@ void testThreadLambda() {
     }
 
     while(1) {
-        Testdata data = createTestdata();
+        Testdata data = Testdata::New();
         data->i = 100;
         data->j = 120;
 
-        Thread t1 = createThread([&data]() {
+        Thread t1 = Thread::New([&data]() {
             data->i = 1;
             data->j = 2;
         });

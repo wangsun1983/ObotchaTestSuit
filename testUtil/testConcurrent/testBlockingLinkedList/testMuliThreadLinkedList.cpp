@@ -21,12 +21,12 @@ public:
 };
 
 void testMultiThreadQueue() {
-    BlockingLinkedList<MultiThreadData> queue = createBlockingLinkedList<MultiThreadData>();
-    ArrayList<Thread> threads = createArrayList<Thread>();
-    AtomicInteger count = createAtomicInteger(0);
+    BlockingLinkedList<MultiThreadData> queue = BlockingLinkedList<MultiThreadData>::New();
+    ArrayList<Thread> threads = ArrayList<Thread>::New();
+    AtomicInteger count = AtomicInteger::New(0);
     int i = 0;
     for(;i < 32;i++) {
-      Thread t1 = createThread([&](){
+      Thread t1 = Thread::New([&](){
         while(1){
           //printf("thread[%d] take trace1 \n",i);
           auto value = queue->takeFirst();
@@ -43,13 +43,13 @@ void testMultiThreadQueue() {
       threads->add(t1);
     }
 
-    ArrayList<Thread> mSubmits = createArrayList<Thread>();
+    ArrayList<Thread> mSubmits = ArrayList<Thread>::New();
     int k = 0;
     for(;k < 32;k++) {
-      Thread t1 = createThread([&](){
+      Thread t1 = Thread::New([&](){
         for(int j = 0;j < 1024*16;j++) {
           //printf("thread[%d] put trace1 \n",k);
-          queue->putFirst(createMultiThreadData(j));
+          queue->putFirst(MultiThreadData::New(j));
           //printf("thread[%d] put trace2 \n",k);
         }
       });
@@ -62,7 +62,7 @@ void testMultiThreadQueue() {
     }
 
     for(int i = 0;i < 32;i++) {
-      queue->putLast(createMultiThreadData(-1));
+      queue->putLast(MultiThreadData::New(-1));
     }
 
     for(int i = 0;i<threads->size();i++) {

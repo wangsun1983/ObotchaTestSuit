@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testReadLock_UnlockException() {
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
 	try {
 		rwLock->getWriteLock()->unlock();
 		TEST_FAIL("[TestReadLock ReadLock Lock Exception case1]");
@@ -55,7 +55,7 @@ void testReadLock_UnlockException() {
   }
   
   while(1) {
-	  ReadWriteLock rwLock = createReadWriteLock();
+	  ReadWriteLock rwLock = ReadWriteLock::New();
 	  rwLock->getReadLock()->lock();
 	  try {
 	  	rwLock->getReadLock()->unlock();

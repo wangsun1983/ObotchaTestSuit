@@ -17,9 +17,9 @@ void testMappedFileInputStream() {
 
   //readLine();
   while(1) {
-      MappedFile file = createMappedFile("./tmp/base_data");
+      MappedFile file = MappedFile::New("./tmp/base_data");
       InputStream stream = file->getInputStream();
-      ByteArray data = createByteArray(128);
+      ByteArray data = ByteArray::New(128);
       int len = stream->read(data);
       if(len != 32) {
          TEST_FAIL("[MappedFileInputStream Test case1]");

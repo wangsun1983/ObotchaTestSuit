@@ -28,25 +28,25 @@ public:
 
 void testArrayList_Contains() {
   while(1) {
-    ArrayList<ContainsTestData> list1 = createArrayList<ContainsTestData>();
-    list1->add(createContainsTestData(1,createString("hello")));
-    if(!list1->contains(createContainsTestData(1,createString("hello")))) {
+    ArrayList<ContainsTestData> list1 = ArrayList<ContainsTestData>::New();
+    list1->add(ContainsTestData::New(1,String::New("hello")));
+    if(!list1->contains(ContainsTestData::New(1,String::New("hello")))) {
         TEST_FAIL("ArrayList contains case1");
     }
 
-    if(list1->contains(createContainsTestData(2,createString("hello")))) {
+    if(list1->contains(ContainsTestData::New(2,String::New("hello")))) {
         TEST_FAIL("ArrayList contains case2");
     }
 
-    if(list1->contains(createContainsTestData(1,createString("he1llo")))) {
+    if(list1->contains(ContainsTestData::New(1,String::New("he1llo")))) {
         TEST_FAIL("ArrayList contains case3");
     }
     break;
   }
 
   while(1) {
-    ArrayList<ContainsTestData> list1 = createArrayList<ContainsTestData>();
-    auto t1 = createContainsTestData(1,createString("hello"));
+    ArrayList<ContainsTestData> list1 = ArrayList<ContainsTestData>::New();
+    auto t1 = ContainsTestData::New(1,String::New("hello"));
     if(list1->contains(t1)) {
       TEST_FAIL("ArrayList contains case4");
     }
@@ -54,8 +54,8 @@ void testArrayList_Contains() {
   }
 
   while(1) {
-    ArrayList<ContainsTestData> list1 = createArrayList<ContainsTestData>();
-    auto t1 = createContainsTestData(1,createString("hello"));
+    ArrayList<ContainsTestData> list1 = ArrayList<ContainsTestData>::New();
+    auto t1 = ContainsTestData::New(1,String::New("hello"));
     list1->add(t1);
     list1->removeAt(0);
 

@@ -16,14 +16,14 @@ void testReadableLength() {
     //case1
     //data:[1(start/end/cursor),2,3,4,5]
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(0);
       int length = reader->getReadableLength();
       if(length != 5) {
@@ -35,14 +35,14 @@ void testReadableLength() {
     }
 
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(1);
       int length = reader->getReadableLength();
       if(length != 4) {
@@ -54,14 +54,14 @@ void testReadableLength() {
     }
 
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(2);
       int length = reader->getReadableLength();
       if(length != 3) {
@@ -73,14 +73,14 @@ void testReadableLength() {
     }
 
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(3);
       int length = reader->getReadableLength();
       if(length != 2) {
@@ -92,14 +92,14 @@ void testReadableLength() {
     }
 
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
       ringarray->push(4);
       ringarray->push(5);
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(4);
       int length = reader->getReadableLength();
       if(length != 1) {
@@ -112,7 +112,7 @@ void testReadableLength() {
 
     //
     while(1) {
-      ByteRingArray ringarray = createByteRingArray(5);
+      ByteRingArray ringarray = ByteRingArray::New(5);
       ringarray->push(1);
       ringarray->push(2);
       ringarray->push(3);
@@ -123,7 +123,7 @@ void testReadableLength() {
       ringarray->setSize(5);
 
 
-      ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(0);
       int length = reader->getReadableLength();
       if(length != 1) {
@@ -163,7 +163,7 @@ void testReadableLength() {
       ringarray->setEndIndex(2);
       ringarray->setSize(5);
 
-      reader = createByteRingArrayReader(ringarray);
+      reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 2) {
@@ -204,7 +204,7 @@ void testReadableLength() {
       ringarray->setEndIndex(3);
       ringarray->setSize(5);
 
-      reader = createByteRingArrayReader(ringarray);
+      reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 3) {
@@ -244,7 +244,7 @@ void testReadableLength() {
       ringarray->setEndIndex(4);
       ringarray->setSize(5);
 
-      reader = createByteRingArrayReader(ringarray);
+      reader = ByteRingArrayReader::New(ringarray);
       reader->setCursor(0);
       length = reader->getReadableLength();
       if(length != 4) {

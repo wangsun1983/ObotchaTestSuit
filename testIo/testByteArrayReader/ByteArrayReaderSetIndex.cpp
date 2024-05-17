@@ -15,8 +15,8 @@ using namespace obotcha;
 
 void testSetIndex() {
     byte array[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
-    ByteArray testData = createByteArray(array,8);
-    ByteArrayReader reader = createByteArrayReader(testData);
+    ByteArray testData = ByteArray::New(array,8);
+    ByteArrayReader reader = ByteArrayReader::New(testData);
     reader->setIndex(1);
     if(reader->getIndex() != 1) {
         TEST_FAIL("[TestByteArrayReader setIndex case1],index is %d",reader->getIndex());

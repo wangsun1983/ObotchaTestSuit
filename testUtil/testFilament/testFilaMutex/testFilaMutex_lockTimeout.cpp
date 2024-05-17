@@ -14,13 +14,13 @@ using namespace obotcha;
 
 void testFilaMutexLockTimeout() {
     while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex mutex = createFilaMutex();
+		FilaMutex mutex = FilaMutex::New();
 		mutex->lock();
 		
 		c->execute([&]{
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
@@ -32,7 +32,7 @@ void testFilaMutexLockTimeout() {
 		usleep(200*1000);
 		mutex->unlock();
 		c->execute([&]{
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
@@ -46,11 +46,11 @@ void testFilaMutexLockTimeout() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex mutex = createFilaMutex();
+		FilaMutex mutex = FilaMutex::New();
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			mutex->lock();
 			usleep(1000*200);
 			mutex->unlock();
@@ -59,7 +59,7 @@ void testFilaMutexLockTimeout() {
 		usleep(100*1000);
 		
 		c->execute([&]{
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();
@@ -75,9 +75,9 @@ void testFilaMutexLockTimeout() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex mutex = createFilaMutex();
+		FilaMutex mutex = FilaMutex::New();
 		c->execute([&]{
 			mutex->lock();
 			try {
@@ -88,8 +88,8 @@ void testFilaMutexLockTimeout() {
 		});
 		usleep(1000*100);
 		
-		Thread t1 = createThread([&]{
-			TimeWatcher w = createTimeWatcher();
+		Thread t1 = Thread::New([&]{
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			mutex->lock(100);
 			auto r = w->stop();

@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testGetPipe() {
 
-  Pipe pip = createPipe();
+  Pipe pip = Pipe::New();
   if(pip->getReadChannel() <= 0) {
     TEST_FAIL("[Pipe Test {getPipe()} case1]");
   }

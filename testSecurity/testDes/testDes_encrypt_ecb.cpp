@@ -11,26 +11,26 @@ using namespace obotcha;
 
 void testDesEncryptEcb() {
   //create test data
-  File data = createFile("./tmp/des_encrypt_ecb_data");
+  File data = File::New("./tmp/des_encrypt_ecb_data");
   if(!data->exists()) {
     data->createNewFile();
   }
 
-  FileOutputStream stream = createFileOutputStream(data);
-  String str = createString("abcdefghi");
+  FileOutputStream stream = FileOutputStream::New(data);
+  String str = String::New("abcdefghi");
   stream->open();
   stream->write(str->toByteArray());
   stream->close();
 
-  String key = createString("12345678");
-  Md md5sum = createMd(st(Md)::Type::Md5);
+  String key = String::New("12345678");
+  Md md5sum = Md::New(st(Md)::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {
     //create a test data
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("DES");
-    secretKey->generate(createString("./tmp/test_des_encrypt_ecb_deckey"),
-                        createString("./tmp/test_des_encrypt_ecb_enckey"),
+    secretKey->generate(String::New("./tmp/test_des_encrypt_ecb_deckey"),
+                        String::New("./tmp/test_des_encrypt_ecb_enckey"),
                         key);
 
     //pkcs5
@@ -46,7 +46,7 @@ void testDesEncryptEcb() {
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS5Padding");
       des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc5","./tmp/des_encrypt_ecb_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/des_encrypt_ecb_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS5Padding case1] [FAILED]--- \n");
@@ -66,7 +66,7 @@ void testDesEncryptEcb() {
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS5Padding case1] [FAILED]--- \n");
@@ -86,7 +86,7 @@ void testDesEncryptEcb() {
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/PKCS7Padding");
       des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc7","./tmp/des_encrypt_ecb_outdata_pksc7_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/des_encrypt_ecb_outdata_pksc7_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb PKCS7Padding case2] [FAILED]--- \n");
@@ -106,7 +106,7 @@ void testDesEncryptEcb() {
       Cipher des2 = st(CipherCreator)::getInstance("DES/ECB/ZeroPading");
       des2->init(st(Cipher)::Mode::Decrypt,deckey);
       des2->decryptFile("./tmp/des_encrypt_ecb_outdata_pksc0","./tmp/des_encrypt_ecb_outdata_pksc0_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/des_encrypt_ecb_outdata_pksc0_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/des_encrypt_ecb_outdata_pksc0_dec"));
 
       if(!result->equals(testDataMd5)) {
         printf("---[TestDes Ecb ZeroPading case3] [FAILED]--- \n");

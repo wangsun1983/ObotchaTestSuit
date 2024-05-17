@@ -23,7 +23,7 @@ public:
 
 void testJsonValueAppend() {
     //test as array
-    JsonValue value = createJsonValue();
+    JsonValue value = JsonValue::New();
     value->append("string1");
     value->append(100);
     
@@ -42,11 +42,11 @@ void testJsonValueAppend() {
     }
     
     //append object
-    JsonValue objval = createJsonValue();
+    JsonValue objval = JsonValue::New();
     objval->put("age",12);
     objval->put("name","wang");
     
-    User usr = createUser();
+    User usr = User::New();
     objval->reflectTo(usr);
     
     if(usr->age != 12 || !usr->name->sameAs("wang")) {

@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders();
+    HttpHeaderAccessControlExposeHeaders c = HttpHeaderAccessControlExposeHeaders::New();
     c->load("Content-Length, X-Kuma-Revision");
     auto list = c->get();
     String v0 = list->get(0);
@@ -33,7 +33,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderAccessControlExposeHeaders c = createHttpHeaderAccessControlExposeHeaders("Content-Length, X-Kuma-Revision");
+    HttpHeaderAccessControlExposeHeaders c = HttpHeaderAccessControlExposeHeaders::New("Content-Length, X-Kuma-Revision");
     auto list = c->get();
     String v0 = list->get(0);
     if(!v0->sameAs("Content-Length")) {

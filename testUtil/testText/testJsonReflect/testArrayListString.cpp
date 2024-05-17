@@ -31,22 +31,22 @@ public:
 
 void testArrayListString() {
     while(1) {
-      ArrayList<String> list = createArrayList<String>();
+      ArrayList<String> list = ArrayList<String>::New();
       list->add(S("val1"));
       list->add(S("val2"));
       list->add(S("val3"));
       list->add(S("val4"));
       list->add(S("val5"));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_string_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_string_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_string_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_string_test1.json"));
       JsonValue value2 = reader->get();
 
-      ArrayList<String> list2 = createArrayList<String>();
+      ArrayList<String> list2 = ArrayList<String>::New();
       value2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -66,8 +66,8 @@ void testArrayListString() {
     }
 
     while(1) {
-      StringStringList ll = createStringStringList();
-      ArrayList<String> list = createArrayList<String>();
+      StringStringList ll = StringStringList::New();
+      ArrayList<String> list = ArrayList<String>::New();
       list->add(S("val1"));
       list->add(S("val2"));
       list->add(S("val3"));
@@ -75,16 +75,16 @@ void testArrayListString() {
       list->add(S("val5"));
       ll->lists = list;
 
-      JsonWriter writer = createJsonWriter("./tmp/list_string_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_string_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(ll);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_string_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_string_test2.json"));
       JsonValue value2 = reader->get();
 
-      //ArrayList<String> list2 = createArrayList<String>();
-      StringStringList ll2 = createStringStringList();
+      //ArrayList<String> list2 = ArrayList<String>::New();
+      StringStringList ll2 = StringStringList::New();
       value2->reflectTo(ll2);
 
       auto list2 = ll2->lists;

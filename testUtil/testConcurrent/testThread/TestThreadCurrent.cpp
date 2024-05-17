@@ -18,7 +18,7 @@ Thread gThread = nullptr;
 void testThreadCurrent() {
   while(1) {
       bool isRun = false;
-      Thread t1 = createThread([&isRun] {
+      Thread t1 = Thread::New([&isRun] {
         usleep(1000 * 100);
         if(st(Thread)::Current() != gThread
             ||st(Thread)::Current() == nullptr) {

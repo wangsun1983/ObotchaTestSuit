@@ -36,19 +36,19 @@ public:
 };
 
 void testReflectNullItems() {
-  JsonValue value = createJsonValue();
-  MyInfo info = createMyInfo();
+  JsonValue value = JsonValue::New();
+  MyInfo info = MyInfo::New();
   info->age = 12;
 
   value->importFrom(info);
 
-  JsonWriter writer = createJsonWriter(createString("./abc.json"));
+  JsonWriter writer = JsonWriter::New(String::New("./abc.json"));
   writer->write(value);
 
-  JsonReader reader = createJsonReader()->loadFile(createFile("./abc.json"));
+  JsonReader reader = JsonReader::New()->loadFile(File::New("./abc.json"));
   JsonValue value2 = reader->get();
 
-  MyInfo info2 = createMyInfo();
+  MyInfo info2 = MyInfo::New();
   value2->reflectTo(info2);
 
   if(info2->age != 12) {

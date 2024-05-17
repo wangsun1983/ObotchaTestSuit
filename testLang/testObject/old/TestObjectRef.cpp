@@ -13,7 +13,7 @@ public:
     int value;
 };
 
-ArrayList<MyTestRef> list = createArrayList<MyTestRef>();
+ArrayList<MyTestRef> list = ArrayList<MyTestRef>::New();
 
 void dataUpdate(const MyTestRef &data) {
 	printf("data count1 is %d \n",data->getStrongCount());

@@ -35,15 +35,15 @@ public:
 
 void testArrayList_IndexOf() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    if(list->indexOf(createString("a")) != 0) {
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    if(list->indexOf(String::New("a")) != 0) {
       TEST_FAIL("[ArrayList IndexOf test1]");
       break;
     }
 
-    if(list->indexOf(createString("b")) != 1) {
+    if(list->indexOf(String::New("b")) != 1) {
       TEST_FAIL("[ArrayList IndexOf test2]");
       break;
     }
@@ -51,15 +51,15 @@ void testArrayList_IndexOf() {
   }
 
   while(1) {
-    ArrayList<Integer> list = createArrayList<Integer>();
-    list->add(createInteger(100));
-    list->add(createInteger(200));
-    if(list->indexOf(createInteger(100)) != 0) {
+    ArrayList<Integer> list = ArrayList<Integer>::New();
+    list->add(Integer::New(100));
+    list->add(Integer::New(200));
+    if(list->indexOf(Integer::New(100)) != 0) {
       TEST_FAIL("[ArrayList IndexOf test3]");
       break;
     }
 
-    if(list->indexOf(createInteger(200)) != 1) {
+    if(list->indexOf(Integer::New(200)) != 1) {
       TEST_FAIL("[ArrayList IndexOf test4]");
       break;
     }
@@ -67,11 +67,11 @@ void testArrayList_IndexOf() {
   }
 
   while(1) {
-    ArrayList<IndexTestData> list = createArrayList<IndexTestData>();
-    IndexTestData t1 = createIndexTestData(100);
+    ArrayList<IndexTestData> list = ArrayList<IndexTestData>::New();
+    IndexTestData t1 = IndexTestData::New(100);
     list->add(t1);
 
-    IndexTestData t2 = createIndexTestData(200);
+    IndexTestData t2 = IndexTestData::New(200);
     list->add(t2);
 
     if(list->indexOf(t1) != 0) {
@@ -84,12 +84,12 @@ void testArrayList_IndexOf() {
       break;
     }
 
-    if(list->indexOf(createIndexTestData(100)) != -1) {
+    if(list->indexOf(IndexTestData::New(100)) != -1) {
       TEST_FAIL("[ArrayList IndexOf test7]");
       break;
     }
 
-    if(list->indexOf(createIndexTestData(200)) != -1) {
+    if(list->indexOf(IndexTestData::New(200)) != -1) {
       TEST_FAIL("[ArrayList IndexOf test8]");
       break;
     }
@@ -98,19 +98,19 @@ void testArrayList_IndexOf() {
   }
 
   while(1) {
-    ArrayList<IndexTestData2> list = createArrayList<IndexTestData2>();
-    IndexTestData2 t1 = createIndexTestData2(100);
+    ArrayList<IndexTestData2> list = ArrayList<IndexTestData2>::New();
+    IndexTestData2 t1 = IndexTestData2::New(100);
     list->add(t1);
 
-    IndexTestData2 t2 = createIndexTestData2(200);
+    IndexTestData2 t2 = IndexTestData2::New(200);
     list->add(t2);
 
-    if(list->indexOf(createIndexTestData2(100)) != 0) {
+    if(list->indexOf(IndexTestData2::New(100)) != 0) {
       TEST_FAIL("[ArrayList IndexOf test9]");
       break;
     }
 
-    if(list->indexOf(createIndexTestData2(200)) != 1) {
+    if(list->indexOf(IndexTestData2::New(200)) != 1) {
       TEST_FAIL("[ArrayList IndexOf test10]");
       break;
     }

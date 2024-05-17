@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Range"),
-                createString("bytes 200-1000/67589"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Content-Range"),
+                String::New("bytes 200-1000/67589"));
     auto range = header->getContentRange();
     if(!range->getUnit()->sameAs("bytes")) {
       TEST_FAIL("[HttpHeaderContentRange test SetToHeader case1]");

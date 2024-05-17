@@ -17,7 +17,7 @@ using namespace obotcha;
 void testPriorityPoolExecutor_Cancel() {
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
 
@@ -56,7 +56,7 @@ void testPriorityPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
 
@@ -81,14 +81,14 @@ void testPriorityPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newPriorityThreadPool();
     pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    ArrayList<Future> lists = createArrayList<Future>();
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i < 1024;i++) {
       Future f = pool->preempt(st(Concurrent)::TaskPriority::High,[] {
 
@@ -112,14 +112,14 @@ void testPriorityPoolExecutor_Cancel() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(12)
                 ->newPriorityThreadPool();
     pool->preempt(st(Concurrent)::TaskPriority::High,[]{
       usleep(100*1000);
     });
 
-    ArrayList<Future> lists = createArrayList<Future>();
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i < 1024*32;i++) {
       Future f = pool->preempt(st(Concurrent)::TaskPriority::High,[] {
         usleep(1*1000);
@@ -127,7 +127,7 @@ void testPriorityPoolExecutor_Cancel() {
       lists->add(f);
     }
 
-    Thread t = createThread([&lists] {
+    Thread t = Thread::New([&lists] {
       auto iterator = lists->getIterator();
       while(iterator->hasValue()) {
         auto f = iterator->getValue();

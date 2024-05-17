@@ -22,12 +22,12 @@ void testMultipartContentRequest() {
   int port = getEnvPort();
   printf("port is %d \n",port);
 
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpPost post = createHttpPost(url);
-  HttpConnection client = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpPost post = HttpPost::New(url);
+  HttpConnection client = HttpConnection::New(url);
   int ret = client->connect();
   printf("ret is %d \n",ret);
-  HttpMultiPart multipart = createHttpMultiPart();
+  HttpMultiPart multipart = HttpMultiPart::New();
   multipart->addContent("tag1","value1");
   multipart->addContent("tag2","value2");
   multipart->addContent("tag3","value3");
@@ -35,7 +35,7 @@ void testMultipartContentRequest() {
   
   auto response = client->execute(post);
   ByteArray data = response->getEntity()->getContent();
-  String value = createString("tag1value1tag2value2tag3value3");
+  String value = String::New("tag1value1tag2value2tag3value3");
   String acceptValue = data->toString();
   if(value->size() != acceptValue->size()) {
     TEST_FAIL("testHttpClient testMultipartContentRequest case1");

@@ -12,8 +12,8 @@
 
 using namespace obotcha;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
@@ -28,32 +28,32 @@ public:
 
 int main() {
     //prepare file
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     int port = getEnvPort();
 
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Append);
-        String data = createString("");
+        String data = String::New("");
         for(int i = 0;i < 1024;i++) {
-          data = data->append(createString(st(System)::CurrentTimeMillis()));
+          data = data->append(String::New(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();
       }
     }
 
-    InetAddress addr = createInet6Address(port);
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = Inet6Address::New(port);
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
-        SocketMonitor monitor = createSocketMonitor();
-    int bindret = monitor->bind(client,createMyListener());
+        SocketMonitor monitor = SocketMonitor::New();
+    int bindret = monitor->bind(client,MyListener::New());
     
-    ByteArray fileBuff = createByteArray(1024*4);
-    FileInputStream stream = createFileInputStream(file);
+    ByteArray fileBuff = ByteArray::New(1024*4);
+    FileInputStream stream = FileInputStream::New(file);
     stream->open();
     long index = 0;
     long filesize = file->length();
@@ -71,9 +71,9 @@ int main() {
     AutoLock l(mMutex);
     mCond->wait(mMutex);
 
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
-    String v2 = md5->encodeFile(createFile("./tmp/file"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/testdata"));
+    String v2 = md5->encodeFile(File::New("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket case2_simple_send_file test1,v1 is %s,v2 is %s ",v1->toChars(),v2->toChars());

@@ -22,11 +22,11 @@ using namespace obotcha;
 
 
 void testSimpleSql() {
-    SqlContentValues values = createSqlContentValues();
-    values->put(createString("a1"),123);
-    values->put(createString("a2"),"456");
-    values->put(createString("a3"),false);
-    values->putString(createString("a4"),789);
+    SqlContentValues values = SqlContentValues::New();
+    values->put(String::New("a1"),123);
+    values->put(String::New("a2"),"456");
+    values->put(String::New("a3"),false);
+    values->putString(String::New("a4"),789);
     
     if(!values->getTags()->sameAs("(a4,a3,a2,a1)")) {
         TEST_FAIL("testSqlContentValues case1,tags is %s",values->getTags()->toChars());

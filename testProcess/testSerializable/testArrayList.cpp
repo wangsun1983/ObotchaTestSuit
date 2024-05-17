@@ -30,15 +30,15 @@ public:
 };
 
 void testOrpcArrayList() {
-    MyTestDataList list = createMyTestDataList();
-    list->ll = createArrayList<MyTestArrayListMember>();
+    MyTestDataList list = MyTestDataList::New();
+    list->ll = ArrayList<MyTestArrayListMember>::New();
 
-    MyTestArrayListMember member1 = createMyTestArrayListMember();
-    member1->m1 = createString("str1");
+    MyTestArrayListMember member1 = MyTestArrayListMember::New();
+    member1->m1 = String::New("str1");
     member1->m2 = 1;
 
-    MyTestArrayListMember member2 = createMyTestArrayListMember();
-    member2->m1 = createString("str2");
+    MyTestArrayListMember member2 = MyTestArrayListMember::New();
+    member2->m1 = String::New("str2");
     member2->m2 = 2;
 
     list->ll->add(member1);
@@ -46,7 +46,7 @@ void testOrpcArrayList() {
 
     ByteArray array = list->serialize();
 
-    MyTestDataList list2 = createMyTestDataList();
+    MyTestDataList list2 = MyTestDataList::New();
     list2->deserialize(array);
 
     

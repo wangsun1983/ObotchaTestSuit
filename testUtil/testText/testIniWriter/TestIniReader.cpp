@@ -15,11 +15,11 @@ using namespace obotcha;
 void testIniReader() {
 
     while(1) {
-        IniReader reader = createIniReader()->loadFile(createFile("testData.ini"));
+        IniReader reader = IniReader::New()->loadFile(File::New("testData.ini"));
         IniValue v = reader->get();
-        auto writer = createIniWriter(createFile("./tmp/testData0.ini"));
+        auto writer = IniWriter::New(File::New("./tmp/testData0.ini"));
         writer->write(v);
-        IniReader reader2 = createIniReader()->loadFile(createFile("./tmp/testData0.ini"));
+        IniReader reader2 = IniReader::New()->loadFile(File::New("./tmp/testData0.ini"));
       
         auto maps = reader2->get()->getAll();
         if(maps->size() != 5) {
@@ -28,7 +28,7 @@ void testIniReader() {
         }
 
         //L0
-        auto map1 = maps->get(createString(st(IniValue)::RootSection));
+        auto map1 = maps->get(String::New(st(IniValue)::RootSection));
         if(map1->size() != 1) {
           TEST_FAIL("IniWriter test2");
           break;
@@ -41,7 +41,7 @@ void testIniReader() {
         }
 
         //L1
-        auto map2 = maps->get(createString("l1"));
+        auto map2 = maps->get(String::New("l1"));
         if(map2->size() != 6) {
           TEST_FAIL("IniWriter test4");
           break;

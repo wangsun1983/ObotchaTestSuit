@@ -39,19 +39,19 @@ public:
 };
 
 void testFileMonitor() {
-    Socket s1 = createSocketBuilder()
-                ->setAddress(createInetLocalAddress("./tmp/sock1"))
+    Socket s1 = SocketBuilder::New()
+                ->setAddress(InetLocalAddress::New("./tmp/sock1"))
                 ->newSocket();
                 
-    Socket s2 = createSocketBuilder()
-                ->setAddress(createInetLocalAddress("./tmp/sock2"))
+    Socket s2 = SocketBuilder::New()
+                ->setAddress(InetLocalAddress::New("./tmp/sock2"))
                 ->newSocket();
     monitorfd = s1->getFileDescriptor()->getFd();
     unmonitorfd = s2->getFileDescriptor()->getFd();
     
-    auto listener = createMySockListener();
+    auto listener = MySockListener::New();
     
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     monitor->bind(s1,listener);
     monitor->bind(s2,listener);
     s2->getFileDescriptor()->unMonitor();

@@ -5,7 +5,7 @@ using namespace obotcha;
 
 void testToString() {
     while(1) {
-      StringBuffer buffer = createStringBuffer(1);
+      StringBuffer buffer = StringBuffer::New(1);
       buffer->append("abc","abc2","abc3");
       if(!buffer->toString(0,4)->sameAs("abca")) {
         TEST_FAIL("StringBuffer toString test1");
@@ -14,7 +14,7 @@ void testToString() {
     }
 
     while(1) {
-      StringBuffer buffer = createStringBuffer(1);
+      StringBuffer buffer = StringBuffer::New(1);
       buffer->append('a','b','c');
       if(!buffer->toString(0,2)->sameAs("ab")) {
         TEST_FAIL("StringBuffer toString test2");

@@ -23,7 +23,7 @@ using namespace obotcha;
 
 bool isFirst = true;
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
@@ -44,8 +44,8 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
           case st(Net)::Event::Message: {
               if(isFirst) {
-                HttpResponse response = createHttpResponse();
-                HttpHeader header = createHttpHeader();
+                HttpResponse response = HttpResponse::New();
+                HttpHeader header = HttpHeader::New();
                 //header->set(st(HttpHeader)::TransferEncoding,"chunked");
                 //auto encoding = header->getTransferEncoding();
                 //if(encoding == nullptr) {
@@ -54,9 +54,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 response->setHeader(header);
                 
-                HttpEntity entity = createHttpEntity();
+                HttpEntity entity = HttpEntity::New();
 
-                String arg1 = createString("hello1hello2hello3");
+                String arg1 = String::New("hello1hello2hello3");
                 entity->setChunk(arg1->toByteArray());
 
                 response->setEntity(entity);
@@ -84,14 +84,23 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(port))
                     ->setListener(listener)
                     ->build();
+    if(server->start() == -1) {
+        port++;
+        continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();
-  MyHandler h = createMyHandler();
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,10*1024);
 
   connectlatch->await();

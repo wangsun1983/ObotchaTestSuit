@@ -23,9 +23,9 @@ using namespace std;
 using namespace obotcha;
 
 void testSleepInterrupt() {
-	TimeWatcher w = createTimeWatcher();
+	TimeWatcher w = TimeWatcher::New();
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		int count = 0;
 		auto f = croutine->submit([&]{
@@ -36,7 +36,7 @@ void testSleepInterrupt() {
 		  } catch(...) {}
 		});
 		usleep(1000*100);
-		Thread t = createThread([&]{
+		Thread t = Thread::New([&]{
 			croutine->shutdown();
 		});
 		t->start();

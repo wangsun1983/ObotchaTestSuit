@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderContentLength upgrade = createHttpHeaderContentLength();
+    HttpHeaderContentLength upgrade = HttpHeaderContentLength::New();
     upgrade->load(" 123 ");
     if(upgrade->get() != 123) {
       TEST_FAIL("[HttpHeaderContentLength test Parse case1]");

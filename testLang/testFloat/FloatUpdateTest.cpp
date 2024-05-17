@@ -17,15 +17,15 @@ void updatetest() {
 
   while(1) {
     //case 1
-    Float d1 = createFloat(1.1);
+    Float d1 = Float::New(1.1);
     d1->update(1.2);
     if((d1->toValue() - 1.2) > EPSINON) {
       TEST_FAIL("Float update special test1");
       break;
     }
 
-    Float d2 = createFloat(1.1);
-    Float d2_1 = createFloat(1.2);
+    Float d2 = Float::New(1.1);
+    Float d2_1 = Float::New(1.2);
 
     d2->update(d2_1);
     if((d2->toValue() - 1.2) > EPSINON) {

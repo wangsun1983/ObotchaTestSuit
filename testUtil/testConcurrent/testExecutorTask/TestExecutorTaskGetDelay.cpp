@@ -20,7 +20,7 @@ public:
 
 void testExecutorTaskGetDelay() {
 	while(1) {
-		auto task = createExecutorTask(createMyRunnable4(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable4::New(),[&](ExecutorTask task){
 		});
 		
 		if(task->getDelay() != 0) {
@@ -35,7 +35,7 @@ void testExecutorTaskGetDelay() {
 	}
 	
 	while(1) {
-		auto task = createExecutorTask(createMyRunnable4(),[&](ExecutorTask task){
+		auto task = ExecutorTask::New(MyRunnable4::New(),[&](ExecutorTask task){
 		},23,st(Concurrent)::TaskPriority::Low);
 		
 		if(task->getDelay() != 23) {

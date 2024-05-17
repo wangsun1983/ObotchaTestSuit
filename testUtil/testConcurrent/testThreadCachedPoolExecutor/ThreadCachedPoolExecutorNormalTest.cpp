@@ -44,7 +44,7 @@ int normalTest() {
 
     //int awaitTermination(long timeout = 0);
     while(1) {
-        ThreadCachedPoolExecutor pool = createExecutorBuilder()->newCachedThreadPool();
+        ThreadCachedPoolExecutor pool = ExecutorBuilder::New()->newCachedThreadPool();
 
         //int result = pool->awaitTermination(0);
         //if(result != -InvalidStatus) {
@@ -53,7 +53,7 @@ int normalTest() {
         //    break;
         //}
 
-        pool->submit(createRunTest1());
+        pool->submit(RunTest1::New());
         pool->shutdown();
 
         long current = st(System)::CurrentTimeMillis();

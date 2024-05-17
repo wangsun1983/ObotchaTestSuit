@@ -20,7 +20,7 @@ using namespace obotcha;
 
 void testForeachWithNoData() {
 
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     int count = 0;
     ForEveryOne(s,list) {
       count++;

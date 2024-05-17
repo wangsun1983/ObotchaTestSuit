@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -26,11 +26,11 @@ public:
 
 void testDisconnect() {
     int port = getEnvPort();
-    MyListener l = createMyListener();
-    SocketMonitor monitor = createSocketMonitor();
+    MyListener l = MyListener::New();
+    SocketMonitor monitor = SocketMonitor::New();
     //create server
-    InetAddress addr = createInet4Address(port);
-    auto server = createSocketBuilder()->setAddress(addr)->newServerSocket();
+    InetAddress addr = Inet4Address::New(port);
+    auto server = SocketBuilder::New()->setAddress(addr)->newServerSocket();
     int result = server->bind();
     monitor->bind(server,l);
     

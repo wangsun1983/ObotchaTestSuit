@@ -17,10 +17,10 @@
 using namespace obotcha;
 
 void testScheduledPoolExecutor_Wait() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
                 ->setMaxPendingTaskNum(1)
                 ->newScheduledThreadPool();
       int value = 100;
@@ -41,7 +41,7 @@ void testScheduledPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->newScheduledThreadPool();
 
@@ -70,7 +70,7 @@ void testScheduledPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->newScheduledThreadPool();
 
@@ -95,11 +95,11 @@ void testScheduledPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(32)
               ->newScheduledThreadPool();
 
-    CountDownLatch latch = createCountDownLatch(3);
+    CountDownLatch latch = CountDownLatch::New(3);
     pool->schedule(100,[]{
       usleep(100*1000);
     });
@@ -124,19 +124,19 @@ void testScheduledPoolExecutor_Wait() {
       //
     });
 
-    Thread t1 = createThread([&f1,&latch]{
+    Thread t1 = Thread::New([&f1,&latch]{
       f1->wait();
       latch->countDown();
     });
     t1->start();
 
-    Thread t2 = createThread([&f2,&latch]{
+    Thread t2 = Thread::New([&f2,&latch]{
       f2->wait();
       latch->countDown();
     });
     t2->start();
 
-    Thread t3 = createThread([&f3,&latch]{
+    Thread t3 = Thread::New([&f3,&latch]{
       f3->wait();
       latch->countDown();
     });
@@ -156,7 +156,7 @@ void testScheduledPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(32)
               ->newScheduledThreadPool();
     pool->schedule(100,[]{
@@ -167,7 +167,7 @@ void testScheduledPoolExecutor_Wait() {
       //TODO
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(10*1000);
       pool->shutdown();
     });

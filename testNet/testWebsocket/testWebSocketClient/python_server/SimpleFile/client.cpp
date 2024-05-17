@@ -17,7 +17,7 @@
 #include "Md.hpp"
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
@@ -55,35 +55,35 @@ public:
 
 
 int main() {
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
 
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Append);
-        String data = createString(st(System)::CurrentTimeMillis());
+        String data = String::New(st(System)::CurrentTimeMillis());
         for(int j = 0;j < 32;j++) {
-          data = data->append(createString(st(System)::CurrentTimeMillis()));
+          data = data->append(String::New(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();
       }
     }
 
-    MyWsListener l = createMyWsListener();
-    WebSocketClient client = createWebSocketClient();
+    MyWsListener l = MyWsListener::New();
+    WebSocketClient client = WebSocketClient::New();
     int port = getEnvPort();
-    String url = createString("ws://127.0.0.1:")->append(createString(port));
+    String url = String::New("ws://127.0.0.1:")->append(String::New(port));
     client->connect(url,l);
-    File f = createFile("./tmp/testdata");
+    File f = File::New("./tmp/testdata");
     client->sendFile(f);
     usleep(1000*200);
     
-    Md md5sum = createMd();
-    String base = md5sum->encodeFile(createFile("./tmp/testdata"));
+    Md md5sum = Md::New();
+    String base = md5sum->encodeFile(File::New("./tmp/testdata"));
 
-    String newFile = md5sum->encodeFile(createFile("./tmp/file"));
+    String newFile = md5sum->encodeFile(File::New("./tmp/file"));
 
     if(!base->equals(newFile)) {
       TEST_FAIL("WebSocketClient SimpleConnect case100");

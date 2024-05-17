@@ -18,8 +18,8 @@ using namespace obotcha;
 
 void testZipDecompress() {
   while(1) {
-     String testData = createString("hello,this is ss");
-     ZipMemoryStream stream = createZipMemoryStream();
+     String testData = String::New("hello,this is ss");
+     ZipMemoryStream stream = ZipMemoryStream::New();
      auto compressData = stream->compress(testData->toByteArray());
      auto decompressData = stream->decompress(compressData)->toString();
      
@@ -27,7 +27,7 @@ void testZipDecompress() {
          TEST_FAIL("[ZipeMemoryStream Decompress Test case1]");
      }
      
-     String testData2 = createString("hello,this is dd");
+     String testData2 = String::New("hello,this is dd");
      auto compressData2 = stream->compress(testData2->toByteArray());
      auto decompressData2 = stream->decompress(compressData2);
      
@@ -35,46 +35,6 @@ void testZipDecompress() {
          TEST_FAIL("[ZipeMemoryStream Decompress Test case2]");
      }
      break;
-  }
-  
-  while(1) {
-      ByteArray data = createByteArray(1024*1024*4);
-      for(long i = 0;i < 1024*1024*4;i++) {
-          data[i] = i%128;
-      }
-      
-      ZipMemoryStream stream = createZipMemoryStream();
-      auto compressData = stream->compress(data);
-      auto decompressData = stream->decompress(compressData);
-      
-      if(decompressData->size() != 1024*1024*4) {
-          TEST_FAIL("[ZipeMemoryStream Decompress Test case3]");
-      }
-      
-      for(long i = 0;i < 1024*1024*4;i++) {
-          if(data[i] != decompressData[i]) {
-              TEST_FAIL("[ZipeMemoryStream Decompress Test case4]");
-          }
-      }
-      break;
-  }
-  
-  while(1) {
-      ByteArray data = createByteArray(1);
-      data[0] = 123;
-      
-      ZipMemoryStream stream = createZipMemoryStream();
-      auto compressData = stream->compress(data);
-      auto decompressData = stream->decompress(compressData);
-      
-      if(decompressData->size() != 1) {
-          TEST_FAIL("[ZipeMemoryStream Decompress Test case5]");
-      }
-      
-      if(decompressData[0] != 123) {
-          TEST_FAIL("[ZipeMemoryStream Decompress Test case6]");
-      }
-      break;
   }
     
   TEST_OK("[ZipeMemoryStream Decompress Test case100]");

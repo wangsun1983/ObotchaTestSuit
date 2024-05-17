@@ -25,15 +25,15 @@ public:
 
 int main() {
     
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     file->removeAll();
 
-    Sqlite3ConnectParam param = createSqlite3ConnectParam();
+    Sqlite3ConnectParam param = Sqlite3ConnectParam::New();
     param->setPath("./tmp/testdata");
-    SqlConnection c = createSqlite3Connection();
+    SqlConnection c = Sqlite3Connection::New();
     c->connect(param);
 
-    File f = createFile("./tmp/testdata");
+    File f = File::New("./tmp/testdata");
     if(!f->exists()) {
         TEST_FAIL("Sqlite3 testUpdateDb case1");
     }
@@ -44,20 +44,20 @@ int main() {
     Company com = createCompany();
     com->id = 1;
     com->age = 12;
-    com->name = createString("Wang");
-    SqlContentValues values = createSqlContentValues();
+    com->name = String::New("Wang");
+    SqlContentValues values = SqlContentValues::New();
     values->put(com);
-    c->insert(createString("Company"),values);
+    c->insert(String::New("Company"),values);
     //TODO
-    SqlContentValues updateValue = createSqlContentValues();
+    SqlContentValues updateValue = SqlContentValues::New();
     updateValue->put("age",100);
     updateValue->putString("name","sun");
     
-    SqlQuery condition = createSqlQuery("id = _$1");
+    SqlQuery condition = SqlQuery::New("id = _$1");
     condition->bindParam(1);
-    c->update(createString("Company"),updateValue,condition);
+    c->update(String::New("Company"),updateValue,condition);
     
-    ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
+    ArrayList<Company> list = c->query<Company>(SqlQuery::New("select * from Company"));
     
     if(list == nullptr || list->size() == 0) {
         TEST_FAIL("Sqlite3 testUpdateDb case1");
@@ -69,12 +69,12 @@ int main() {
         TEST_FAIL("Sqlite3 testUpdateDb case2");
     }
 
-    int count = c->count(createSqlQuery("select count(*) from Company"));
+    int count = c->count(SqlQuery::New("select count(*) from Company"));
     if(count != 1) {
         TEST_FAIL("Sqlite3 testUpdateDb case3");
     }
 
-    SqlRecords records = c->query(createSqlQuery("select * from Company"));
+    SqlRecords records = c->query(SqlQuery::New("select * from Company"));
     auto iterator = records->getIterator();
     int index = 0;
     while(iterator->hasValue()) {

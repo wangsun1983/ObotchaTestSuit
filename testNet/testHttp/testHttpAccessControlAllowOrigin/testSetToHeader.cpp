@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Origin"),
-                createString("https://developer.mozilla.org"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Origin"),
+                String::New("https://developer.mozilla.org"));
     auto c = header->getAllowOrigin();
     if(!c->get()->sameAs("https://developer.mozilla.org")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test setToHeader case1]");
@@ -28,9 +28,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Allow-Origin"),
-                createString("*"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Allow-Origin"),
+                String::New("*"));
     auto c = header->getAllowOrigin();
     if(!c->get()->sameAs("*")) {
       TEST_FAIL("[HttpHeaderAccessControlAllowOrigin test setToHeader case2]");

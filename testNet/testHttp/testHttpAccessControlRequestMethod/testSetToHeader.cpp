@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Request-Method"),createString("POST"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Request-Method"),String::New("POST"));
     auto c = header->getAccessControlRequestMethod();
     if(c->get() != st(HttpMethod)::Id::Post){
       TEST_FAIL("[HttpHeaderAccessControlRequestMethod test setToHeader case1]");
@@ -27,8 +27,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderAccessControlRequestMethod meth = createHttpHeaderAccessControlRequestMethod();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderAccessControlRequestMethod meth = HttpHeaderAccessControlRequestMethod::New();
     meth->load("POST");
     header->setAccessControlRequestMethod(meth);
     auto c = header->getAccessControlRequestMethod();

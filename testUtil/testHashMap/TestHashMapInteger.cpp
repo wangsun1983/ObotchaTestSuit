@@ -17,16 +17,16 @@ public:
 void testHashMapInteger() {
     //test null and 0
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-      TT2 tt = createTT2();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+      TT2 tt = TT2::New();
       tt->i = 100;
       map->put(nullptr,tt);
 
-      TT2 tt2 = createTT2();
+      TT2 tt2 = TT2::New();
       tt2->i = 1;
-      map->put(createInteger(0),tt2);
+      map->put(Integer::New(0),tt2);
 
-      if(map->get(createInteger(0))->i != 1) {
+      if(map->get(Integer::New(0))->i != 1) {
         TEST_FAIL("[HashMap Integer Test {null test} case1]");
         break;
       }
@@ -37,9 +37,9 @@ void testHashMapInteger() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-        Integer tag = createInteger(1);
-        TT2 tt = createTT2();
+        HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+        Integer tag = Integer::New(1);
+        TT2 tt = TT2::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -53,7 +53,7 @@ void testHashMapInteger() {
           break;
         }
 
-        map->put(createInteger(2),nullptr);
+        map->put(Integer::New(2),nullptr);
         if(map->size() != 2) {
           TEST_FAIL("[HashMap Integer Test {put(T t,U u)/get(T t)} case3]");
           break;
@@ -71,14 +71,14 @@ void testHashMapInteger() {
 
     //void remove(T t)
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-      Integer tag = createInteger(1);
-      TT2 tt = createTT2();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+      Integer tag = Integer::New(1);
+      TT2 tt = TT2::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createInteger(1));
+      map->remove(Integer::New(1));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap Integer Test {remove(T t)} case1]");
         break;
@@ -92,7 +92,7 @@ void testHashMapInteger() {
         break;
       }
 
-      map->remove(createInteger(1));
+      map->remove(Integer::New(1));
       if(map->size() != 0) {
         TEST_FAIL("[HashMap Integer Test {remove(T t)} case3]");
         break;
@@ -104,9 +104,9 @@ void testHashMapInteger() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-      Integer tag = createInteger(1);
-      TT2 tt = createTT2();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+      Integer tag = Integer::New(1);
+      TT2 tt = TT2::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -115,7 +115,7 @@ void testHashMapInteger() {
         break;
       }
 
-      map->remove(createInteger(1));
+      map->remove(Integer::New(1));
       if(!map->isEmpty()) {
         TEST_FAIL("[HashMap Integer Test {isEmpty()} case2]");
         break;
@@ -127,12 +127,12 @@ void testHashMapInteger() {
 
     //void clear()
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-      Integer tag = createInteger(1);
-      TT2 tt = createTT2();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+      Integer tag = Integer::New(1);
+      TT2 tt = TT2::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createInteger(2),tt);
+      map->put(Integer::New(2),tt);
 
       int size = map->size();
       map->clear();
@@ -141,7 +141,7 @@ void testHashMapInteger() {
         break;
       }
 
-      HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map2 = HashMap<Integer,TT2>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Integer Test {clear()} case2]");
@@ -154,12 +154,12 @@ void testHashMapInteger() {
 
     //int size()
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
-      Integer tag = createInteger(1);
-      TT2 tt = createTT2();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
+      Integer tag = Integer::New(1);
+      TT2 tt = TT2::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createInteger(2),tt);
+      map->put(Integer::New(2),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap Integer Test {size()} case1]");
         break;
@@ -171,11 +171,11 @@ void testHashMapInteger() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
       for(int index = 0;index < 100;index++) {
-        TT2 tt = createTT2();
+        TT2 tt = TT2::New();
         tt->i = index;
-        map->put(createInteger(index),tt);
+        map->put(Integer::New(index),tt);
       }
 
       ArrayList<Integer> keys = map->keySet();
@@ -194,7 +194,7 @@ void testHashMapInteger() {
         }
       }
 
-      HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map2 = HashMap<Integer,TT2>::New();
       ArrayList<Integer>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Integer Test {keySet()} case3]");
@@ -207,24 +207,24 @@ void testHashMapInteger() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
       for(int index = 0;index < 100;index++) {
-        TT2 tt = createTT2();
+        TT2 tt = TT2::New();
         tt->i = index;
-        map->put(createInteger(index),tt);
+        map->put(Integer::New(index),tt);
       }
 
       ArrayList<TT2> keys = map->entrySet();
       int size = keys->size();
       for(int index = 0;index < size;index++) {
         TT2 key1 = keys->get(index);
-        if(map->get(createInteger(key1->i)) == nullptr) {
+        if(map->get(Integer::New(key1->i)) == nullptr) {
           TEST_FAIL("[HashMap Integer Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<Integer,TT2> map2 = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map2 = HashMap<Integer,TT2>::New();
       ArrayList<TT2>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Integer Test {entrySet()} case2]");
@@ -238,11 +238,11 @@ void testHashMapInteger() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<Integer,TT2> map = createHashMap<Integer,TT2>();
+      HashMap<Integer,TT2> map = HashMap<Integer,TT2>::New();
       for(int index = 0;index < 100;index++) {
-        TT2 tt = createTT2();
+        TT2 tt = TT2::New();
         tt->i = index;
-        map->put(createInteger(index),tt);
+        map->put(Integer::New(index),tt);
       }
 
       int index = 0;
@@ -269,10 +269,10 @@ void testHashMapInteger() {
     }
 
     while(1) {
-      HashMap<Integer,String> map = createHashMap<Integer,String>();
-      map->put(createInteger(1),createString("hello"));
-      map->put(createInteger(1),createString("hello3"));
-      String str = map->get(createInteger(1));
+      HashMap<Integer,String> map = HashMap<Integer,String>::New();
+      map->put(Integer::New(1),String::New("hello"));
+      map->put(Integer::New(1),String::New("hello3"));
+      String str = map->get(Integer::New(1));
       if(str == nullptr) {
         TEST_FAIL("[MapIterator Integer Test special equal case1] [FAIL] ");
         break;

@@ -19,14 +19,14 @@ int main() {
     //prepare file
     int port = getEnvPort();
 
-    InetAddress addr = createInet4Address(port);
-    Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
+    InetAddress addr = Inet4Address::New(port);
+    Socket client = SocketBuilder::New()->setAddress(addr)->newDatagramSocket();
     int ret = client->connect();
     if(ret != 0) {
         TEST_FAIL("TestDataGramSocket case4_disconnect_from_server case1,ret is %d",ret);
     }
     
-    String hello = createString("abc");
+    String hello = String::New("abc");
     client->getOutputStream()->write(hello->toByteArray());
     client->close();
     
@@ -34,7 +34,7 @@ int main() {
        TEST_FAIL("TestDataGramSocket case4_disconnect_from_server case5");
     }
     
-    ByteArray indata = createByteArray(4);
+    ByteArray indata = ByteArray::New(4);
     if(client->getInputStream() != nullptr) {
        TEST_FAIL("TestDataGramSocket case4_disconnect_from_server case6");
     }

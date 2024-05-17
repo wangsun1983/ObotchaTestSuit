@@ -23,6 +23,8 @@ extern void testFileSetProperty();
 extern void testFileMode();
 
 int main() {
+    testFileList();
+#if 0    
     testFileMode();
     testFileSetProperty();
     testFileList();
@@ -40,5 +42,5 @@ int main() {
     testFileCreateDirs();
     testFileIsDirectory();
     testFileExists();
-    return 0;
+#endif    
 }

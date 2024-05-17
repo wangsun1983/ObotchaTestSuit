@@ -28,7 +28,7 @@ public:
 void testHandlerSendDelayed() {
   //case 1
   while(1) {
-    SendDelayedHandler handler = createSendDelayedHandler();
+    SendDelayedHandler handler = SendDelayedHandler::New();
     handler->sendEmptyMessageDelayed(0,1000);
     handler->sendEmptyMessage(1);
     usleep(1000*5);

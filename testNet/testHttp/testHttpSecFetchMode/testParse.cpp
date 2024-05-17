@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
+    HttpHeaderSecFetchMode save = HttpHeaderSecFetchMode::New();
     save->load("navigate");
     if(!save->get()->sameAs("navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderSecFetchMode save = createHttpHeaderSecFetchMode();
+    HttpHeaderSecFetchMode save = HttpHeaderSecFetchMode::New();
     save->load("nested-navigate");
     if(!save->get()->sameAs("nested-navigate")) {
       TEST_FAIL("[HttpHeaderSecFetchMode test Parse case2]");

@@ -26,18 +26,18 @@ public:
 
 void testHashMapList() {
     while(1) {
-      HashMap<Integer,ArrayList<ListItem1>> map = createHashMap<Integer,ArrayList<ListItem1>>();
+      HashMap<Integer,ArrayList<ListItem1>> map = HashMap<Integer,ArrayList<ListItem1>>::New();
 
-      ArrayList<ListItem1> list1 = createArrayList<ListItem1>();
-      ListItem1 item1 = createListItem1();
+      ArrayList<ListItem1> list1 = ArrayList<ListItem1>::New();
+      ListItem1 item1 = ListItem1::New();
       item1->data1 = 1;
       item1->data2 = 2;
 
-      ListItem1 item2 = createListItem1();
+      ListItem1 item2 = ListItem1::New();
       item2->data1 = 3;
       item2->data2 = 4;
 
-      ListItem1 item3 = createListItem1();
+      ListItem1 item3 = ListItem1::New();
       item3->data1 = 5;
       item3->data2 = 6;
 
@@ -45,16 +45,16 @@ void testHashMapList() {
       list1->add(item2);
       list1->add(item3);
 
-      ArrayList<ListItem1> list2 = createArrayList<ListItem1>();
-      ListItem1 item2_1 = createListItem1();
+      ArrayList<ListItem1> list2 = ArrayList<ListItem1>::New();
+      ListItem1 item2_1 = ListItem1::New();
       item2_1->data1 = 11;
       item2_1->data2 = 21;
 
-      ListItem1 item2_2 = createListItem1();
+      ListItem1 item2_2 = ListItem1::New();
       item2_2->data1 = 31;
       item2_2->data2 = 41;
 
-      ListItem1 item2_3 = createListItem1();
+      ListItem1 item2_3 = ListItem1::New();
       item2_3->data1 = 51;
       item2_3->data2 = 61;
 
@@ -62,18 +62,18 @@ void testHashMapList() {
       list2->add(item2_2);
       list2->add(item2_3);
 
-      map->put(createInteger(0),list1);
-      map->put(createInteger(1),list2);
+      map->put(Integer::New(0),list1);
+      map->put(Integer::New(1),list2);
 
-      JsonWriter writer = createJsonWriter("./tmp/hashmap_list_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/hashmap_list_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(map);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_list_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/hashmap_list_test1.json"));
       JsonValue value2 = reader->get();
 
-      HashMap<Integer,ArrayList<ListItem1>> map2 = createHashMap<Integer,ArrayList<ListItem1>>();
+      HashMap<Integer,ArrayList<ListItem1>> map2 = HashMap<Integer,ArrayList<ListItem1>>::New();
       value2->reflectTo(map2);
 
       if(map2->size() != 2) {
@@ -81,7 +81,7 @@ void testHashMapList() {
         break;
       }
 
-      auto l1 = map2->get(createInteger(0));
+      auto l1 = map2->get(Integer::New(0));
       if(l1->size() != 3) {
         TEST_FAIL("[JsonReflect HashMap List Test case2] ,size is %d ",l1->size());
         TEST_FAIL("data1 is %d,data2 is %d",l1->get(0)->data1,l1->get(1)->data1);
@@ -103,7 +103,7 @@ void testHashMapList() {
         break;
       }
 
-      auto l2 = map2->get(createInteger(1));
+      auto l2 = map2->get(Integer::New(1));
       if(l2->size() != 3) {
         TEST_FAIL("[JsonReflect HashMap List Test case6]  ");
         break;

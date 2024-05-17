@@ -16,27 +16,27 @@ using namespace obotcha;
 int normalTest() {
  
   // {
-  //   ProcessSem sem = createProcessSem("sem_test1",0);
+  //   ProcessSem sem = ProcessSem::New("sem_test1",0);
   //   sem->clear();
 
-  //   ProcessSem sem2 = createProcessSem("sem_test2",0);
+  //   ProcessSem sem2 = ProcessSem::New("sem_test2",0);
   //   sem2->clear();
 
-  //   ProcessSem sem3 = createProcessSem("sem_test3",100);
+  //   ProcessSem sem3 = ProcessSem::New("sem_test3",100);
   //   sem3->clear();
   // }
   //wait()
   st(ProcessSem)::Create("sem_test1");
   int pid = fork();
   if(pid == 0) {
-      ProcessSem sem = createProcessSem("sem_test1");
+      ProcessSem sem = ProcessSem::New("sem_test1");
       int ret = sem->wait();
       exit(0);
   } else {
-      ProcessSem sem = createProcessSem("sem_test1");
+      ProcessSem sem = ProcessSem::New("sem_test1");
       sleep(1);
       sem->post();
-      TimeWatcher t = createTimeWatcher();
+      TimeWatcher t = TimeWatcher::New();
       t->start();
       wait(nullptr);//wait for child process
       long v = t->stop();
@@ -51,12 +51,12 @@ int normalTest() {
   st(ProcessSem)::Create("sem_test2",0);
   pid = fork();
   if(pid == 0) {
-      ProcessSem sem = createProcessSem("sem_test2");
+      ProcessSem sem = ProcessSem::New("sem_test2");
       sleep(1);
       int ret = sem->post();
       exit(0);
   } else {
-      ProcessSem sem = createProcessSem("sem_test2");
+      ProcessSem sem = ProcessSem::New("sem_test2");
       long current = st(System)::CurrentTimeMillis();
       sem->wait(500);
       long waittime = (st(System)::CurrentTimeMillis() - current);
@@ -74,7 +74,7 @@ int normalTest() {
   //int getValue();
   {
 	  st(ProcessSem)::Create("sem_test3",0);
-      auto sem3 = createProcessSem("sem_test3");
+      auto sem3 = ProcessSem::New("sem_test3");
       sem3->post();
       if(sem3->getValue() != 1) {
         TEST_FAIL("[ProcessSem Test {getValue()} case1]");

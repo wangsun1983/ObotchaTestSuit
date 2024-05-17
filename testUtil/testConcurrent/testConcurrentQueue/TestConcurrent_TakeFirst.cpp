@@ -10,10 +10,10 @@ using namespace obotcha;
 
 void testConcurrentQueue_TakeFirst() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
       ArrayList<String> ll = list->toArray();
       for(int i = 0;i < 3;i++) {
         auto v = list->takeFirst();
@@ -26,7 +26,7 @@ void testConcurrentQueue_TakeFirst() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -42,7 +42,7 @@ void testConcurrentQueue_TakeFirst() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       bool isException = false;
       try {
         list->takeFirst();

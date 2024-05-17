@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderSaveData save = createHttpHeaderSaveData();
+    HttpHeaderSaveData save = HttpHeaderSaveData::New();
     save->load("ON");
     if(!save->toString()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case1]");
@@ -23,7 +23,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderSaveData save = createHttpHeaderSaveData();
+    HttpHeaderSaveData save = HttpHeaderSaveData::New();
     save->load("OFF");
     if(!save->toString()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test toString case2]");
@@ -33,9 +33,9 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderSaveData save = createHttpHeaderSaveData();
+    HttpHeaderSaveData save = HttpHeaderSaveData::New();
     save->load("OFF");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setSaveData(save);
     
     auto save2 = header->getSaveData();

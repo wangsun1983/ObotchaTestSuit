@@ -13,13 +13,13 @@ using namespace obotcha;
 void testConcurrentQueue_SyncAction() {
 
     while(1) {
-        ConcurrentQueue<int> list = createConcurrentQueue<int>();
+        ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);
         list->putFirst(4);
         list->putFirst(5);
-        Thread t = createThread([&list]{
+        Thread t = Thread::New([&list]{
             list->syncReadAction([&list] {
                 if(list->size() != 5) {
                     TEST_FAIL("ConcurrentQueue SyncAction case1");
@@ -28,7 +28,7 @@ void testConcurrentQueue_SyncAction() {
             });
         });
 
-        Thread t2 = createThread([&list]{
+        Thread t2 = Thread::New([&list]{
             long start = st(System)::CurrentTimeMillis();
 
             list->syncWriteAction([&list,&start] {
@@ -57,14 +57,14 @@ void testConcurrentQueue_SyncAction() {
 
 
     while(1) {
-        ConcurrentQueue<int> list = createConcurrentQueue<int>();
+        ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);
         list->putFirst(4);
         list->putFirst(5);
         
-        Thread t = createThread([&list]{
+        Thread t = Thread::New([&list]{
             list->syncWriteAction([&list] {
                 if(list->size() != 5) {
                     TEST_FAIL("ConcurrentQueue SyncAction case5");
@@ -73,7 +73,7 @@ void testConcurrentQueue_SyncAction() {
             });
         });
 
-        Thread t2 = createThread([&list]{
+        Thread t2 = Thread::New([&list]{
             long start = st(System)::CurrentTimeMillis();
             list->syncReadAction([&list,&start] {
                 if(list->size() != 5) {

@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Sec-Fetch-Dest"),createString("audio"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Sec-Fetch-Dest"),String::New("audio"));
     auto save = header->getSecFetchDest();
     save->load("audio");
     if(!save->get()->sameAs("audio")) {
@@ -26,8 +26,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Sec-Fetch-Dest"),createString("track"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Sec-Fetch-Dest"),String::New("track"));
     auto save = header->getSecFetchDest();
     if(!save->get()->sameAs("track")) {
       TEST_FAIL("[HttpHeaderSecFetchDest test Parse case2]");

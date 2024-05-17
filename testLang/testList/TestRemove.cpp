@@ -21,16 +21,16 @@ public:
 void testRemove() {
   //construct1
   while(1) {
-    List<TestRemoveData> mylist1 = createList<TestRemoveData>(4);
-    TestRemoveData data1 = createTestRemoveData();
+    List<TestRemoveData> mylist1 = List<TestRemoveData>::New(4);
+    TestRemoveData data1 = TestRemoveData::New();
     data1->i = 1;
     data1->j = 10;
 
-    TestRemoveData data2 = createTestRemoveData();
+    TestRemoveData data2 = TestRemoveData::New();
     data2->i = 2;
     data2->j = 20;
 
-    TestRemoveData data3 = createTestRemoveData();
+    TestRemoveData data3 = TestRemoveData::New();
     data3->i = 3;
     data3->j = 30;
 

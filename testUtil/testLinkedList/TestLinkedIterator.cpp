@@ -11,7 +11,7 @@ void testLinkeListQueueIterator() {
 
     //case1 string iterator
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -23,7 +23,7 @@ void testLinkeListQueueIterator() {
       int index = 0;
       while(iterator->hasValue()) {
           String v = iterator->getValue();
-          if(!v->equals(createString(result[index]))) {
+          if(!v->equals(String::New(result[index]))) {
             TEST_FAIL("LinkedList Iterator test1,v is %s,result is %s",v->toChars(),result[index].c_str());
           }
           index++;
@@ -37,7 +37,7 @@ void testLinkeListQueueIterator() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -50,7 +50,7 @@ void testLinkeListQueueIterator() {
       int index = 0;
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(!v->equals(createString(result[index]))) {
+        if(!v->equals(String::New(result[index]))) {
           TEST_FAIL("LinkedList Iterator test3,v is %s,result is %s",v->toChars(),result[index].c_str());
         }
         index++;
@@ -64,7 +64,7 @@ void testLinkeListQueueIterator() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -96,7 +96,7 @@ void testLinkeListQueueIterator() {
       index = 0;
       while(iterator2->hasValue()) {
         String v = iterator2->getValue();
-        if(!v->equals(createString(result[index]))) {
+        if(!v->equals(String::New(result[index]))) {
           TEST_FAIL("LinkedList Iterator test7,v is %s,result is %s",v->toChars(),result[index].c_str());
         }
         index++;
@@ -107,7 +107,7 @@ void testLinkeListQueueIterator() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -138,7 +138,7 @@ void testLinkeListQueueIterator() {
       index = 0;
       while(iterator->hasValue()) {
         String v = iterator->getValue();
-        if(!v->equals(createString(result[index]))) {
+        if(!v->equals(String::New(result[index]))) {
           TEST_FAIL("LinkedList Iterator test10,v is %s,result is %s,index is %d",v->toChars(),result[index].c_str(),index);
         }
         index++;

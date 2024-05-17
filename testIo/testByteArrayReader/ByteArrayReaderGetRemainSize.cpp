@@ -15,8 +15,8 @@ using namespace obotcha;
 
 void testGetRemainSize() {
     byte array[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
-    ByteArray testData = createByteArray(array,8);
-    ByteArrayReader reader = createByteArrayReader(testData);
+    ByteArray testData = ByteArray::New(array,8);
+    ByteArrayReader reader = ByteArrayReader::New(testData);
     if(reader->getRemainSize() != 8) {
         TEST_FAIL("[TestByteArrayReader getRemainSize case1],remain size is %d",reader->getRemainSize());
     }

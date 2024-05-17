@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("dnt"),createString("1"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("dnt"),String::New("1"));
     auto dnt = header->getDnt();
     
     int val = dnt->get();
@@ -27,8 +27,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("dnt"),createString("0"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("dnt"),String::New("0"));
     auto dnt = header->getDnt();
     
     int val = dnt->get();

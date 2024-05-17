@@ -43,21 +43,21 @@ public:
 
 void testHashMapHashKey() {
     while(1) {
-      HashMap<TestHashKey,String> map = createHashMap<TestHashKey,String>();
-      TestHashKey key = createTestHashKey();
+      HashMap<TestHashKey,String> map = HashMap<TestHashKey,String>::New();
+      TestHashKey key = TestHashKey::New();
       key->value = 1;
-      map->put(key,createString("aaa"));
+      map->put(key,String::New("aaa"));
 
-      TestHashKey key2 = createTestHashKey();
+      TestHashKey key2 = TestHashKey::New();
       key2->value = 1;
-      map->put(key2,createString("aaa"));
+      map->put(key2,String::New("aaa"));
 
       if(map->size() != 1) {
         TEST_FAIL("[HashMap test HashKey} test1]");
         break;
       }
 
-      TestHashKey key3 = createTestHashKey();
+      TestHashKey key3 = TestHashKey::New();
       key3->value = 1;
       String str = map->get(key3);
       if(str == nullptr) {
@@ -74,21 +74,21 @@ void testHashMapHashKey() {
     }
 
     while(1) {
-      HashMap<TestHashKey2,String> map = createHashMap<TestHashKey2,String>();
-      TestHashKey2 key = createTestHashKey2();
+      HashMap<TestHashKey2,String> map = HashMap<TestHashKey2,String>::New();
+      TestHashKey2 key = TestHashKey2::New();
       key->value = 1;
-      map->put(key,createString("aaa"));
+      map->put(key,String::New("aaa"));
 
-      TestHashKey2 key2 = createTestHashKey2();
+      TestHashKey2 key2 = TestHashKey2::New();
       key2->value = 1;
-      map->put(key2,createString("aaa"));
+      map->put(key2,String::New("aaa"));
 
       if(map->size() != 2) {
         TEST_FAIL("[HashMap test HashKey} test4]");
         break;
       }
 
-      TestHashKey2 key3 = createTestHashKey2();
+      TestHashKey2 key3 = TestHashKey2::New();
       key3->value = 1;
       if(map->get(key3)!= nullptr) {
         TEST_FAIL("[HashMap test HashKey} test5]");
@@ -111,21 +111,21 @@ void testHashMapHashKey() {
     }
 
     while(1) {
-      HashMap<TestHashKey3,String> map = createHashMap<TestHashKey3,String>();
-      TestHashKey3 key = createTestHashKey3();
+      HashMap<TestHashKey3,String> map = HashMap<TestHashKey3,String>::New();
+      TestHashKey3 key = TestHashKey3::New();
       key->value = 1;
-      map->put(key,createString("aaa"));
+      map->put(key,String::New("aaa"));
 
-      TestHashKey3 key2 = createTestHashKey3();
+      TestHashKey3 key2 = TestHashKey3::New();
       key2->value = 1;
-      map->put(key2,createString("bbb"));
+      map->put(key2,String::New("bbb"));
 
       if(map->size() != 2) {
         TEST_FAIL("[HashMap test HashKey} test8] [FAIL],map size is %d ",map->size());
         break;
       }
 
-      TestHashKey3 key3 = createTestHashKey3();
+      TestHashKey3 key3 = TestHashKey3::New();
       key3->value = 1;
       if(map->get(key3)!= nullptr) {
         TEST_FAIL("[HashMap test HashKey} test9]");

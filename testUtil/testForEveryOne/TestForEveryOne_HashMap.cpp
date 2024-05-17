@@ -19,10 +19,10 @@ using namespace obotcha;
 
 void testHashMap() {
     while(1) {
-      HashMap<int,String> map = createHashMap<int,String>();
+      HashMap<int,String> map = HashMap<int,String>::New();
       int sum = 0;
       for(int i = 0; i < 10;i++) {
-        map->put(i,createString(i));
+        map->put(i,String::New(i));
         sum += i;
       }
 
@@ -40,7 +40,7 @@ void testHashMap() {
     }
 
     while(1) {
-      HashMap<int,String> map = createHashMap<int,String>();
+      HashMap<int,String> map = HashMap<int,String>::New();
       int count = 0;
       ForEveryOne(pair,map) {
         count++;

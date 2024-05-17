@@ -16,13 +16,13 @@ using namespace obotcha;
 
 void testByteArrayWriterArray() {
     while(1) {
-      ByteArray array = createByteArray(8);
+      ByteArray array = ByteArray::New(8);
       byte arr1[] = {1,2,3,4};
       byte arr2[] = {5,6,7,8};
 
-      ByteArrayWriter writer = createByteArrayWriter(array);
-      writer->write(createByteArray(arr1,4));
-      writer->write(createByteArray(arr2,4));
+      ByteArrayWriter writer = ByteArrayWriter::New(array);
+      writer->write(ByteArray::New(arr1,4));
+      writer->write(ByteArray::New(arr2,4));
 
       for(int i = 0;i<8;i++) {
         if(array[i] != i + 1) {
@@ -34,11 +34,11 @@ void testByteArrayWriterArray() {
     }
 
     while(1) {
-      ByteArray d1 = createByteArray(16);
-      ByteArrayWriter writer = createByteArrayWriter(d1);
+      ByteArray d1 = ByteArray::New(16);
+      ByteArrayWriter writer = ByteArrayWriter::New(d1);
 
       byte data[] = {1,2,3,4,5,6};
-      ByteArray d2 = createByteArray(data,6);
+      ByteArray d2 = ByteArray::New(data,6);
       writer->write(d2,2,3);
       if(d1[0] != 3 || d1[1] != 4 || d1[2] != 5) {
         TEST_FAIL("[TestByteArrayWriter Write Array case2]");
@@ -47,8 +47,8 @@ void testByteArrayWriterArray() {
     }
 
     while(1) {
-      ByteArray d1 = createByteArray(16);
-      ByteArrayWriter writer = createByteArrayWriter(d1);
+      ByteArray d1 = ByteArray::New(16);
+      ByteArrayWriter writer = ByteArrayWriter::New(d1);
 
       byte data[] = {1,2,3,4,5,6};
       writer->write(data+1,3);

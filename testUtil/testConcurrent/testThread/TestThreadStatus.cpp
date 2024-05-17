@@ -16,7 +16,7 @@ using namespace obotcha;
 void testThreadStatus() {
     //TestThread onInterrupt case1
     while(1) {
-        auto thread = createThread([]{
+        auto thread = Thread::New([]{
            usleep(100); 
         });
         
@@ -27,7 +27,7 @@ void testThreadStatus() {
     }
     
     while(1) {
-        auto thread = createThread([]{
+        auto thread = Thread::New([]{
            usleep(100*1000); 
         });
         thread->start();
@@ -42,7 +42,7 @@ void testThreadStatus() {
     }
     
     while(1) {
-        auto thread = createThread([]{
+        auto thread = Thread::New([]{
            usleep(100); 
         });
         thread->start();
@@ -57,7 +57,7 @@ void testThreadStatus() {
     }
     
     while(1) {
-        auto thread = createThread([]{
+        auto thread = Thread::New([]{
            usleep(500); 
         });
         thread->start();

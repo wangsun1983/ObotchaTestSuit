@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cache-Control"),
-        createString("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cache-Control"),
+        String::New("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate"));
     auto c = header->getCacheControl();
     
     if(!c->noCache()) {
@@ -59,9 +59,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cache-Control"),
-        createString("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cache-Control"),
+        String::New("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate"));
     auto c = header->getCacheControl();
     
     if(!c->noCache()) {
@@ -102,9 +102,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cache-Control"),
-        createString("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cache-Control"),
+        String::New("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90"));
     auto c = header->getCacheControl();
     
     if(c->maxAgeSeconds() != 31536000) {

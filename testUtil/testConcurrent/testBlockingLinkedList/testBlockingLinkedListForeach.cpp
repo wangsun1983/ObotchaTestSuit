@@ -14,7 +14,7 @@ using namespace obotcha;
 void testBlockingLinkedListForeach() {
 
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(5);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(5);
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);

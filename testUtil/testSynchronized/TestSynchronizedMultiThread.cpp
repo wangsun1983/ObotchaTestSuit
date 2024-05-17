@@ -23,14 +23,14 @@ using namespace obotcha;
 
 void testSynchronizedMultiThread() {
     while(1) {
-        Mutex mutex = createMutex();
+        Mutex mutex = Mutex::New();
         int run = 0;
         int run2 = 0;
         int loop = 0;
         
-        Thread t1 = createThread([&mutex,&run]{
+        Thread t1 = Thread::New([&mutex,&run]{
             usleep(1000*100);
-            TimeWatcher watch = createTimeWatcher();
+            TimeWatcher watch = TimeWatcher::New();
             watch->start();
             Synchronized(mutex) {
                 run++;
@@ -42,11 +42,9 @@ void testSynchronizedMultiThread() {
         });
         t1->start();
 
-        Thread t2 = createThread([&mutex,&run2]{
+        Thread t2 = Thread::New([&mutex,&run2]{
             usleep(1000*200);
-            try {
-                mutex->unlock();
-            } catch(...) {}
+            mutex->unlock();
             run2++;
         });
         t2->start();

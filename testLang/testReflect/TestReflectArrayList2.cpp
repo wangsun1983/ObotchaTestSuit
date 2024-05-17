@@ -43,45 +43,45 @@ public:
 
 void testReflectArrayList2() {
   while(1) {
-    ArrayDataList3 ll = createArrayDataList3();
-    ll->lists = createArrayList<ArrayList<ArrayData3>>();
+    ArrayDataList3 ll = ArrayDataList3::New();
+    ll->lists = ArrayList<ArrayList<ArrayData3>>::New();
 
-    ArrayList<ArrayData3> ll_1 = createArrayList<ArrayData3>();
-    ArrayData3 d3_1 = createArrayData3();
-    d3_1->list = createArrayList<Integer>();
-    d3_1->list->add(createInteger(1));
-    d3_1->list->add(createInteger(2));
+    ArrayList<ArrayData3> ll_1 = ArrayList<ArrayData3>::New();
+    ArrayData3 d3_1 = ArrayData3::New();
+    d3_1->list = ArrayList<Integer>::New();
+    d3_1->list->add(Integer::New(1));
+    d3_1->list->add(Integer::New(2));
     ll_1->add(d3_1);
 
-    ArrayData3 d3_2 = createArrayData3();
-    d3_2->list = createArrayList<Integer>();
-    d3_2->list->add(createInteger(3));
-    d3_2->list->add(createInteger(4));
+    ArrayData3 d3_2 = ArrayData3::New();
+    d3_2->list = ArrayList<Integer>::New();
+    d3_2->list->add(Integer::New(3));
+    d3_2->list->add(Integer::New(4));
     ll_1->add(d3_2);
 
-    ArrayData3 d3_3 = createArrayData3();
-    d3_3->list = createArrayList<Integer>();
-    d3_3->list->add(createInteger(5));
-    d3_3->list->add(createInteger(6));
+    ArrayData3 d3_3 = ArrayData3::New();
+    d3_3->list = ArrayList<Integer>::New();
+    d3_3->list->add(Integer::New(5));
+    d3_3->list->add(Integer::New(6));
 
-    ArrayList<ArrayData3> ll_2 = createArrayList<ArrayData3>();
+    ArrayList<ArrayData3> ll_2 = ArrayList<ArrayData3>::New();
     ll_2->add(d3_1);
     ll_2->add(d3_2);
     ll_2->add(d3_3);
 
     ll->lists->add(ll_1);
     ll->lists->add(ll_2);
-    JsonValue jvalue = createJsonValue();
+    JsonValue jvalue = JsonValue::New();
     jvalue->importFrom(ll);
 
-    JsonWriter jwriter = createJsonWriter("output_arraylist_case2_2.json");
+    JsonWriter jwriter = JsonWriter::New("output_arraylist_case2_2.json");
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader()->loadFile(createFile("output_arraylist_case2_2.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("output_arraylist_case2_2.json"));
     JsonValue readValue = reader->get();
 
-    ArrayDataList3 ll_chk = createArrayDataList3();
+    ArrayDataList3 ll_chk = ArrayDataList3::New();
     readValue->reflectTo(ll_chk);
 
     if(ll_chk->lists == nullptr) {
@@ -166,26 +166,26 @@ void testReflectArrayList2() {
 
   //test1
   while(1) {
-    ArrayDataList2 ll = createArrayDataList2();
-    ll->lists = createArrayList<ArrayList<ArrayData2>>();
+    ArrayDataList2 ll = ArrayDataList2::New();
+    ll->lists = ArrayList<ArrayList<ArrayData2>>::New();
 
-    ArrayList<ArrayData2> l1 = createArrayList<ArrayData2>();
-    ArrayData2 d1 = createArrayData2();
+    ArrayList<ArrayData2> l1 = ArrayList<ArrayData2>::New();
+    ArrayData2 d1 = ArrayData2::New();
     d1->data1 = 1;
     d1->data2 = 2;
 
-    ArrayData2 d2 = createArrayData2();
+    ArrayData2 d2 = ArrayData2::New();
     d2->data1 = 1;
     d2->data2 = 2;
     l1->add(d1);
     l1->add(d2);
 
-    ArrayList<ArrayData2> sl1 = createArrayList<ArrayData2>();
-    ArrayData2 sd1 = createArrayData2();
+    ArrayList<ArrayData2> sl1 = ArrayList<ArrayData2>::New();
+    ArrayData2 sd1 = ArrayData2::New();
     sd1->data1 = 1;
     sd1->data2 = 2;
 
-    ArrayData2 sd2 = createArrayData2();
+    ArrayData2 sd2 = ArrayData2::New();
     sd2->data1 = 1;
     sd2->data2 = 2;
     sl1->add(d1);
@@ -195,17 +195,17 @@ void testReflectArrayList2() {
     ll->lists->add(l1);
     ll->lists->add(sl1);
 
-    JsonValue jvalue = createJsonValue();
+    JsonValue jvalue = JsonValue::New();
     jvalue->importFrom(ll);
 
-    JsonWriter jwriter = createJsonWriter("output_arraylist_case2_1.json");
+    JsonWriter jwriter = JsonWriter::New("output_arraylist_case2_1.json");
     jwriter->write(jvalue);
 
 
-    JsonReader reader = createJsonReader()->loadFile(createFile("output_arraylist_case2_1.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("output_arraylist_case2_1.json"));
     JsonValue readValue = reader->get();
 
-    ArrayDataList2 ll2 = createArrayDataList2();
+    ArrayDataList2 ll2 = ArrayDataList2::New();
     readValue->reflectTo(ll2);
 
     if(ll2 == nullptr) {

@@ -20,10 +20,10 @@ using namespace obotcha;
 
 void testForeach() {
 
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("c"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("c"));
+    list->add(String::New("b"));
 
     //ForEveryOne(s,list) {
     //  printf("s is %s \n",s->toChars());
@@ -40,10 +40,10 @@ void testForeach() {
         TEST_FAIL("TestForEveryOne case2");
     }
 
-    HashMap<String,String> map = createHashMap<String,String>();
-    map->put(createString("key1"),createString("val1"));
-    map->put(createString("key2"),createString("val2"));
-    map->put(createString("key3"),createString("val3"));
+    HashMap<String,String> map = HashMap<String,String>::New();
+    map->put(String::New("key1"),String::New("val1"));
+    map->put(String::New("key2"),String::New("val2"));
+    map->put(String::New("key3"),String::New("val3"));
     
     count = 0;
     ForEveryOne(m,map) {
@@ -57,10 +57,10 @@ void testForeach() {
         TEST_FAIL("TestForEveryOne case4");
     }
 
-    ConcurrentQueue<String> queue = createConcurrentQueue<String>();
-    queue->add(createString("aa"));
-    queue->add(createString("bb"));
-    queue->add(createString("cc"));
+    ConcurrentQueue<String> queue = ConcurrentQueue<String>::New();
+    queue->add(String::New("aa"));
+    queue->add(String::New("bb"));
+    queue->add(String::New("cc"));
     
     count = 0;
     ForEveryOne(ss,queue) {

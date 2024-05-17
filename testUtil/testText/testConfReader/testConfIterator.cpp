@@ -12,12 +12,12 @@
 using namespace obotcha;
 
 void testConfIterator() {
-    ConfReader reader = createConfReader()->loadFile(createFile("simple.conf"));
+    ConfReader reader = ConfReader::New()->loadFile(File::New("simple.conf"));
     //ConfIterator(String);
     auto value = reader->get();
     while(1) {
       ConfIterator iterator = value->getIterator();
-      HashMap<String,String> mHashMap = createHashMap<String,String>();
+      HashMap<String,String> mHashMap = HashMap<String,String>::New();
       while(iterator->hasValue()) {
           mHashMap->put(iterator->getTag(),iterator->getValue());
           iterator->next();
@@ -28,25 +28,25 @@ void testConfIterator() {
           break;
       }
 
-      String v1 = mHashMap->get(createString("Desktop-Picture"));
+      String v1 = mHashMap->get(String::New("Desktop-Picture"));
       if(!v1->sameAs("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case2] ");
         break;
       }
 
-      String v2 = mHashMap->get(createString("Position"));
+      String v2 = mHashMap->get(String::New("Position"));
       if(!v2->sameAs("Centered")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case3] ");
         break;
       }
 
-      String v3 = mHashMap->get(createString("Background Color"));
+      String v3 = mHashMap->get(String::New("Background Color"));
       if(!v3->sameAs("Black")) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case4] ");
         break;
       }
 
-      String v4 = mHashMap->get(createString("NULL"));
+      String v4 = mHashMap->get(String::New("NULL"));
       if(v4->size() != 0) {
         TEST_FAIL("[ConfIterator Test {getValue()/next()} case5] ");
         break;

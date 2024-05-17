@@ -32,12 +32,12 @@ void testThreadQuickShutDown() {
     while(1) {
         for(int i = 0;i < 32*1024;i++) {
             //TEST_FAIL("trace1 ");
-            ThreadPoolExecutor t = createThreadPoolExecutor(4,4,0);
+            ThreadPoolExecutor t = ThreadPoolExecutor::New(4,4,0);
             //TEST_FAIL("trace2 ");
-            t->submit(createMySleepWaitRun());
-            t->submit(createMySleepWaitRun());
-            t->submit(createMySleepWaitRun());
-            t->submit(createMySleepWaitRun());
+            t->submit(MySleepWaitRun::New());
+            t->submit(MySleepWaitRun::New());
+            t->submit(MySleepWaitRun::New());
+            t->submit(MySleepWaitRun::New());
             //TEST_FAIL("trace3 ");
             t->shutdown();
             //TEST_FAIL("trace4 ");

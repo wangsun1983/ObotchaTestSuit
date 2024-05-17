@@ -18,11 +18,11 @@ using namespace obotcha;
 //openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt -extfile extfile.cnf
 
 
-String message = createString("");
+String message = String::New("");
 bool isFirst = true;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 
@@ -31,7 +31,7 @@ public:
     switch(event) {
       case st(Net)::Event::Message: {
         if(isFirst) {
-          s->getOutputStream()->write(createString("hello i am server")->toByteArray());
+          s->getOutputStream()->write(String::New("hello i am server")->toByteArray());
           isFirst = false;
         } else {
           if(!data->toString()->sameAs("hello i am server")) {
@@ -47,19 +47,19 @@ public:
 
 int main() {
   int port = getEnvPort();
-  InetAddress addr = createInet4Address(port);
-  auto option = createSocketOption();
+  InetAddress addr = Inet4Address::New(port);
+  auto option = SocketOption::New();
   option->setSSLCertificatePath("server.crt")
         ->setSSLKeyPath("server.key");
                         
-  ServerSocket sock = createSocketBuilder()
+  ServerSocket sock = SocketBuilder::New()
                         ->setAddress(addr)
                         ->setOption(option)
                         ->newSSLServerSocket();
                         
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor();
-  MyListener l = createMyListener();
+  SocketMonitor monitor = SocketMonitor::New();
+  MyListener l = MyListener::New();
   monitor->bind(sock,l);
   AutoLock ll(mMutex);
   mCond->wait(mMutex);

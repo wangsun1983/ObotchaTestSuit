@@ -12,11 +12,11 @@
 using namespace obotcha;
 
 void testReadLock_LockTimeout() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
-    Thread t = createThread([&rwLock] {
+    ReadWriteLock rwLock = ReadWriteLock::New();
+    Thread t = Thread::New([&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(1000*500);
     });
@@ -35,7 +35,7 @@ void testReadLock_LockTimeout() {
   }
   
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     watcher->start();
     int ret = rwLock->getReadLock()->lock(100);
     long interval = watcher->stop();

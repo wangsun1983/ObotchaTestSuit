@@ -13,9 +13,9 @@ using namespace obotcha;
 void testBlockingQueueUnlimited() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>();
+        BlockingQueue<String> list = BlockingQueue<String>::New();
         for(int i = 0;i<1024;i++) {
-          list->put(createString(i));
+          list->put(String::New(i));
         }
 
         if(list->size() != 1024) {
@@ -31,10 +31,10 @@ void testBlockingQueueUnlimited() {
     }
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        Thread t = createThread([&list]{
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
-          list->put(createString("a"));
+          list->put(String::New("a"));
         });
         t->start();
         long time1 = st(System)::CurrentTimeMillis();

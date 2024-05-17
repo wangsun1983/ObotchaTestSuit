@@ -37,10 +37,10 @@ public:
 
 void testThreadLoopJoin() {
   //test1
-  ArrayList<Thread> list = createArrayList<Thread>();
+  ArrayList<Thread> list = ArrayList<Thread>::New();
 
   for(int i = 0;i<1024*32;i++) {
-      Thread t = createThread(createLoopThreadJoinRun1());
+      Thread t = Thread::New(LoopThreadJoinRun1::New());
       int ret = t->start();
       list->add(t);
   }
@@ -51,10 +51,10 @@ void testThreadLoopJoin() {
 
   list->clear();
   //test2
-  ArrayList<Thread> list2 = createArrayList<Thread>();
+  ArrayList<Thread> list2 = ArrayList<Thread>::New();
 
   for(int i = 0;i<1024*8;i++) {
-      Thread t = createThread(createLoopThreadJoinRun2());
+      Thread t = Thread::New(LoopThreadJoinRun2::New());
       int ret = t->start();
       list2->add(t);
   }

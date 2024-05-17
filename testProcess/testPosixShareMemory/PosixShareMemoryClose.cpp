@@ -16,15 +16,15 @@ using namespace obotcha;
 void testShareMemoryClose() {
 	st(ShareMemory)::Create("aabbcc",12);
     while(1) {
-        ShareMemory memory = createShareMemory("aabbcc",12,st(ShareMemory)::Type::WriteRead);
-        File f = createFile("/dev/shm/aabbcc");
+        ShareMemory memory = ShareMemory::New("aabbcc",12,st(ShareMemory)::Type::WriteRead);
+        File f = File::New("/dev/shm/aabbcc");
         if(!f->exists()) {
             TEST_FAIL("[ShareMemory Test {close()} case1]");
         }
         usleep(1000*50);
         //memory->close();
 		st(ShareMemory)::Clear("aabbcc");
-        File f2 = createFile("/dev/shm/aabbcc");
+        File f2 = File::New("/dev/shm/aabbcc");
         if(f2->exists()) {
             TEST_FAIL("[ShareMemory Test {close()} case2]");
         }

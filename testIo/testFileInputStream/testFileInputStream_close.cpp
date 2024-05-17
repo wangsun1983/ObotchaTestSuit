@@ -11,9 +11,9 @@ using namespace obotcha;
 
 void testFileInputStreamClose() {
   while(1) {
-    auto fd = createFileDescriptor(open("./tmp/data.txt",O_RDONLY));
+    auto fd = FileDescriptor::New(open("./tmp/data.txt",O_RDONLY));
     {
-      FileInputStream stream = createFileInputStream(fd);
+      FileInputStream stream = FileInputStream::New(fd);
       stream->open();
     }
 
@@ -26,9 +26,9 @@ void testFileInputStreamClose() {
   }
 
   while(1) {
-    auto fd = createFileDescriptor(open("./tmp/data.txt",O_WRONLY));
+    auto fd = FileDescriptor::New(open("./tmp/data.txt",O_WRONLY));
     {
-      FileInputStream stream = createFileInputStream(fd);
+      FileInputStream stream = FileInputStream::New(fd);
       stream->close();
     }
 

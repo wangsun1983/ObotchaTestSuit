@@ -17,8 +17,8 @@ using namespace obotcha;
 
 
 void testSkipBy() {
-    ByteArray data = createByteArray(3);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(3);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
     int ret = writer->skipBy(1);
     if(ret != 0) {
         TEST_FAIL("[TestByteArrayWriter test skipBy case1]");
@@ -35,9 +35,9 @@ void testSkipBy() {
     }
     
     try {
-        ret = writer->skipBy(1);
+        writer->skipBy(1);
         TEST_FAIL("[TestByteArrayWriter test skipBy case4]");
-    } catch(...) {}
+    } catch(...){}
     
     writer->reset();
     ret = writer->skipBy(2);
@@ -46,9 +46,9 @@ void testSkipBy() {
     }
     
     try {
-        ret = writer->skipBy(2);
+        writer->skipBy(2);
         TEST_FAIL("[TestByteArrayWriter test skipBy case6]");
     } catch(...) {}
-       
+    
     TEST_OK("[TestByteArrayWriter test skipBy case100]");
 }

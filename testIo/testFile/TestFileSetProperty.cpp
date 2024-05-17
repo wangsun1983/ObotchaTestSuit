@@ -9,7 +9,7 @@
 using namespace obotcha;
 
 void testFileSetProperty() {
-    File file = createFile("./tmp/property.data");
+    File file = File::New("./tmp/property.data");
     if(!file->exists()) {
         file->createNewFile();
     }

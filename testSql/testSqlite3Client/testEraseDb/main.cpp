@@ -25,15 +25,15 @@ public:
 
 int main() {
     
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     file->removeAll();
 
-    Sqlite3ConnectParam param = createSqlite3ConnectParam();
+    Sqlite3ConnectParam param = Sqlite3ConnectParam::New();
     param->setPath("./tmp/testdata");
-    SqlConnection c = createSqlite3Connection();
+    SqlConnection c = Sqlite3Connection::New();
     c->connect(param);
 
-    File f = createFile("./tmp/testdata");
+    File f = File::New("./tmp/testdata");
     if(!f->exists()) {
         TEST_FAIL("Sqlite3 testEraseDb case1");
     }
@@ -41,24 +41,24 @@ int main() {
     //test create table
     c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
     //c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
-    Company com = createCompany();
+    Company com = Company::New();
     com->id = 1;
-    com->age = createInteger(12);
-    com->name = createString("Wang");
-    SqlContentValues values = createSqlContentValues();
+    com->age = Integer::New(12);
+    com->name = String::New("Wang");
+    SqlContentValues values = SqlContentValues::New();
     values->put(com);
-    c->insert(createString("Company"),values);
+    c->insert(String::New("Company"),values);
     
-    Company com2 = createCompany();
+    Company com2 = Company::New();
     com2->id = 2;
-    com2->age = createInteger(22);
-    com2->name = createString("Sun");
-    SqlContentValues values2 = createSqlContentValues();
+    com2->age = Integer::New(22);
+    com2->name = String::New("Sun");
+    SqlContentValues values2 = SqlContentValues::New();
     values2->put(com2);
-    c->insert(createString("Company"),values2);
+    c->insert(String::New("Company"),values2);
     
     //check table first
-    ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
+    ArrayList<Company> list = c->query<Company>(SqlQuery::New("select * from Company"));
     
     if(list == nullptr || list->size() != 2) {
         TEST_FAIL("Sqlite3 testEraseDb case1");
@@ -75,10 +75,10 @@ int main() {
         TEST_FAIL("Sqlite3 testEraseDb case3");
     }
     
-    SqlQuery condition = createSqlQuery("id = 1");
-    c->erase(createString("Company"),condition);
+    SqlQuery condition = SqlQuery::New("id = 1");
+    c->erase(String::New("Company"),condition);
     
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     
     if(list == nullptr || list->size() != 1) {
         TEST_FAIL("Sqlite3 testEraseDb case4");

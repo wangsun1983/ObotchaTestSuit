@@ -25,8 +25,8 @@ public:
 
 
 int main() {
-    SqlConnection c = createMySqlConnection();
-    MySqlConnectParam param = createMySqlConnectParam();
+    SqlConnection c = MySqlConnection::New();
+    MySqlConnectParam param = MySqlConnectParam::New();
     param->setHost("127.0.0.1");
     param->setUser("wangsun");
     param->setPassword("01122982");
@@ -40,7 +40,7 @@ int main() {
     //test create table
     c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
     c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
-    ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
+    ArrayList<Company> list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 1) {
         TEST_FAIL("MySql testTransaction case2");
     }
@@ -48,13 +48,13 @@ int main() {
     c->startTransaction();
     c->exec("INSERT INTO Company(id,name,age) VALUES(2,\"Wang2\",22)");
     c->rollabckTransaction();
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 1) {
         TEST_FAIL("MySql testTransaction case2");
     }
 
     c->exec("INSERT INTO Company(id,name,age) VALUES(3,\"Wang3\",32)");
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 2) {
         TEST_FAIL("MySql testTransaction case3");
     }
@@ -64,7 +64,7 @@ int main() {
     c->exec("INSERT INTO Company(id,name,age) VALUES(5,\"Wang5\",54)");
     c->commitTransaction();
     
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 4) {
         TEST_FAIL("MySql testTransaction case6");
     }
@@ -72,21 +72,21 @@ int main() {
 
     c->startTransaction();
     c->exec("INSERT INTO Company(id,name,age) VALUES(6,\"Wang4\",24)");
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 5) {
         TEST_FAIL("MySql testTransaction case7");
     }
 
     c->exec("INSERT INTO Company(id,name,age) VALUES(7,\"Wang5\",54)");
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 6) {
         TEST_FAIL("MySql testTransaction case8");
     }
     c->close();
 
-    c = createMySqlConnection();
+    c = MySqlConnection::New();
     c->connect(param);
-    list = c->query<Company>(createSqlQuery("select * from Company"));
+    list = c->query<Company>(SqlQuery::New("select * from Company"));
     if(list->size() != 4) {
         TEST_FAIL("MySql testTransaction case9");
     }

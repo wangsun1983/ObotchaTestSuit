@@ -27,8 +27,8 @@ void splittest() {
     ////sp<_ArrayList<String>> split(String v);
     while(1) {
         //case 1
-        String str1 = createString(" a b c d ");
-        ArrayList<String> str1list = str1->split(createString(" "));
+        String str1 = String::New(" a b c d ");
+        ArrayList<String> str1list = str1->split(String::New(" "));
         ArrayListIterator<String> iterator = str1list->getIterator();
 
         if(str1list->size() != 4) {
@@ -45,16 +45,16 @@ void splittest() {
         }
 
         //case 2
-        String str2 = createString(" ");
-        ArrayList<String> str2list = str2->split(createString(" "));
+        String str2 = String::New(" ");
+        ArrayList<String> str2list = str2->split(String::New(" "));
         if(str2list->size() != 0) {
             TEST_FAIL("String split Special test3");
             break;
         }
 
         //case 3
-        String str3 = createString("accbcc");
-        ArrayList<String> str3list = str3->split(createString("cc"));
+        String str3 = String::New("accbcc");
+        ArrayList<String> str3list = str3->split(String::New("cc"));
         if(str3list->size() != 2) {
             TEST_FAIL("String split Special test5");
             break;
@@ -73,7 +73,7 @@ void splittest() {
     //split(char const*, int)
     while(1) {
         const char * str = "a1d1c1d";
-        String ss = createString(str);
+        String ss = String::New(str);
         auto list = ss->split("123",1);
         if(list->size() != 4) {
             TEST_FAIL("String split Special test9");

@@ -18,7 +18,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 int count = 0;
 
 
@@ -33,9 +33,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           case st(Net)::Event::Message: {
               if(count == 0) {
                 //first message to send response with cookie
-                HttpResponse response = createHttpResponse();
-                HttpCookie cookie1 = createHttpCookie("test_tag1","test_value1");
-                HttpCookie cookie2 = createHttpCookie("test_tag2","test_value2");
+                HttpResponse response = HttpResponse::New();
+                HttpCookie cookie1 = HttpCookie::New("test_tag1","test_value1");
+                HttpCookie cookie2 = HttpCookie::New("test_tag2","test_value2");
                 response->getHeader()->addCookie(cookie1);
                 response->getHeader()->addCookie(cookie2);
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -45,15 +45,15 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 //TODO
                 HttpEntity entity = msg->getEntity();
                 auto content = entity->getContent()->toString();
-                HttpUrlEncodedValue encodedValue = createHttpUrlEncodedValue(content);
+                HttpUrlEncodedValue encodedValue = HttpUrlEncodedValue::New(content);
                 auto map = encodedValue->getValues();
 
-                auto v1 = map->get(createString("test_tag1"));
+                auto v1 = map->get(String::New("test_tag1"));
                 if(v1 == nullptr || !v1->sameAs("test_value1")) {
                      TEST_FAIL("TestHttpResponseWriter Request Encode test1");
                 }
 
-                auto v2 = map->get(createString("test_tag2"));
+                auto v2 = map->get(String::New("test_tag2"));
                 if(v2 == nullptr || !v2->sameAs("test_value2")) {
                      TEST_FAIL("TestHttpResponseWriter Request Encode test2");
                 }
@@ -63,7 +63,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 }
 
 
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
                 //count = 0;
@@ -84,12 +84,20 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 int main() {
   int port = getEnvPort();
   printf("port is %d \n",port);
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(port))
                     ->setListener(listener)
                     ->build();
-  server->start();
+    if (server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   latch->await();
   server->close();
 

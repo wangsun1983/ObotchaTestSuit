@@ -14,12 +14,12 @@ using namespace obotcha;
 void testBlockingQueueRemove() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
-        list->remove(createString("b"));
+        list->remove(String::New("b"));
         if(list->size() != 2) {
           TEST_FAIL("BlockingQueue remove test1");
           break;
@@ -50,8 +50,8 @@ void testBlockingQueueRemove() {
     }
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        if(list->remove(createString("a"))!= -1) {
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        if(list->remove(String::New("a"))!= -1) {
           TEST_FAIL("BlockingQueue remove test4");
           break;
         }
@@ -60,20 +60,20 @@ void testBlockingQueueRemove() {
     }
     
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(1);
-        list->putFirst(createString("a"));
-        Thread t1 = createThread([&]{
+        BlockingQueue<String> list = BlockingQueue<String>::New(1);
+        list->putFirst(String::New("a"));
+        Thread t1 = Thread::New([&]{
             usleep(100*1000);
-            TimeWatcher watcher = createTimeWatcher();
+            TimeWatcher watcher = TimeWatcher::New();
             watcher->start();
-            list->putFirst(createString("b"));
+            list->putFirst(String::New("b"));
             auto ret = watcher->stop();
             if(ret < 95 || ret > 105) {
                 TEST_FAIL("BlockingQueue remove test5,ret is %d",ret);
             }
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             usleep(200*1000);
             list->destroy();
         });

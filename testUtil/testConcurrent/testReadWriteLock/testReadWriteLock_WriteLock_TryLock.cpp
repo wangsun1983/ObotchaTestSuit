@@ -13,13 +13,13 @@
 using namespace obotcha;
 
 void testWriteLock_TryLock() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&rwLock,&value]{
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&rwLock,&value]{
       int ret = rwLock->getWriteLock()->tryLock();
       if(ret != -EBUSY) {
         TEST_FAIL("[TestReadLock WriteLock TryLock case1]");
@@ -36,10 +36,10 @@ void testWriteLock_TryLock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getReadLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&rwLock,&value]{
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&rwLock,&value]{
       int ret = rwLock->getWriteLock()->tryLock();
       if(ret != -EBUSY) {
         TEST_FAIL("[TestReadLock WriteLock TryLock case3]");
@@ -56,11 +56,11 @@ void testWriteLock_TryLock() {
   }
   
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     auto readlock = rwLock->getReadLock();
     auto writelock = rwLock->getWriteLock();
     
-    Thread t1 = createThread([&]{
+    Thread t1 = Thread::New([&]{
         writelock->tryLock();
         writelock->tryLock();
         usleep(200*1000);
@@ -69,9 +69,9 @@ void testWriteLock_TryLock() {
         writelock->unlock();
     });
     
-    Thread t2 = createThread([&]{
+    Thread t2 = Thread::New([&]{
         usleep(100*1000);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         int ret = readlock->tryLock();
         if(ret != -EBUSY) {
             TEST_FAIL("[TestReadLock WriteLock TryLock case5,ret is %d]",ret);
@@ -98,11 +98,11 @@ void testWriteLock_TryLock() {
   }
   
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     auto readlock = rwLock->getReadLock();
     auto writelock = rwLock->getWriteLock();
 
-    Thread t1 = createThread([&] {
+    Thread t1 = Thread::New([&] {
         readlock->tryLock();
         int ret = writelock->tryLock();
         if(ret != 0) {
@@ -128,7 +128,7 @@ void testWriteLock_TryLock() {
         readlock->unlock();
     });
     
-    Thread t2 = createThread([&] {
+    Thread t2 = Thread::New([&] {
         usleep(100*1000);
         int ret = writelock->tryLock();
         if(ret != -EBUSY) {
@@ -161,14 +161,14 @@ void testWriteLock_TryLock() {
   }
   
   while(1) {
-    TimeWatcher watcher = createTimeWatcher();
-    ReadWriteLock rwLock = createReadWriteLock();
+    TimeWatcher watcher = TimeWatcher::New();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     auto readlock = rwLock->getReadLock();
     auto writelock = rwLock->getWriteLock();
-    Thread t1 = createThread([&] {
+    Thread t1 = Thread::New([&] {
         writelock->tryLock();
     });    
-    Thread t2 = createThread([&] {
+    Thread t2 = Thread::New([&] {
         usleep(100*1000);
         writelock->lock(1000);
     });

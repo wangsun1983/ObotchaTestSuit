@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testFilaMutexLock() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
         croutine->execute([&mutex] {
             AutoLock l(mutex);
@@ -28,7 +28,7 @@ void testFilaMutexLock() {
         usleep(1000*100);
         
         croutine->execute([&mutex] {
-            TimeWatcher t = createTimeWatcher();
+            TimeWatcher t = TimeWatcher::New();
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
@@ -44,9 +44,9 @@ void testFilaMutexLock() {
     }
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
         croutine->execute([&mutex] {
             AutoLock l(mutex);
@@ -58,8 +58,8 @@ void testFilaMutexLock() {
         usleep(1000*100);
         
         int run = 0;
-        Thread t = createThread([&mutex,&run] {
-            TimeWatcher t = createTimeWatcher();
+        Thread t = Thread::New([&mutex,&run] {
+            TimeWatcher t = TimeWatcher::New();
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
@@ -80,11 +80,11 @@ void testFilaMutexLock() {
     }
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
-        Thread t = createThread([&mutex] {
+        Thread t = Thread::New([&mutex] {
             AutoLock l(mutex);
             usleep(1000 * 200);
         });
@@ -93,7 +93,7 @@ void testFilaMutexLock() {
         
         int ret = 0;
         croutine->execute([&mutex,&ret] {
-            TimeWatcher t = createTimeWatcher();
+            TimeWatcher t = TimeWatcher::New();
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
@@ -114,9 +114,9 @@ void testFilaMutexLock() {
     }
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
         int value = 0;
         croutine->execute([&mutex,&value] {
@@ -154,9 +154,9 @@ void testFilaMutexLock() {
     }
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
         croutine->execute([&mutex] {
             AutoLock l(mutex);
@@ -166,7 +166,7 @@ void testFilaMutexLock() {
         usleep(1000*100);
         
         croutine->execute([&mutex] {
-            TimeWatcher t = createTimeWatcher();
+            TimeWatcher t = TimeWatcher::New();
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
@@ -183,9 +183,9 @@ void testFilaMutexLock() {
     
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
         croutine->execute([&mutex] {
             mutex->lock();
@@ -196,7 +196,7 @@ void testFilaMutexLock() {
         
         bool isExecute = false;
         croutine->execute([&isExecute,&mutex] {
-            TimeWatcher t = createTimeWatcher();
+            TimeWatcher t = TimeWatcher::New();
             t->start();
             AutoLock l(mutex);
             auto interval = t->stop();
@@ -219,10 +219,10 @@ void testFilaMutexLock() {
     }
 
 	while(1) {
-		TimeWatcher watcher = createTimeWatcher();
-	    FilaRoutine croutine = createFilaRoutine();
+		TimeWatcher watcher = TimeWatcher::New();
+	    FilaRoutine croutine = FilaRoutine::New();
 	    croutine->start();
-	    FilaMutex mutex = createFilaMutex();
+	    FilaMutex mutex = FilaMutex::New();
 		croutine->execute([&] {
 			mutex->lock();
 			mutex->lock();

@@ -19,13 +19,13 @@
 using namespace std;
 using namespace obotcha;
 
-FilaMutex fmutex = createFilaMutex();
-FilaCondition cond = createFilaCondition();
-TimeWatcher watcher = createTimeWatcher();
-CountDownLatch latch = createCountDownLatch(2);
+FilaMutex fmutex = FilaMutex::New();
+FilaCondition cond = FilaCondition::New();
+TimeWatcher watcher = TimeWatcher::New();
+CountDownLatch latch = CountDownLatch::New(2);
 
 int main(void) {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
 
     croutine->execute([] {
@@ -35,7 +35,7 @@ int main(void) {
       latch->countDown();
     });
 
-    Thread t = createThread([]{
+    Thread t = Thread::New([]{
       AutoLock l(fmutex);
       cond->wait(fmutex);
       latch->countDown();
@@ -43,7 +43,7 @@ int main(void) {
     t->start();
     usleep(1000*100);
 
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     watcher->start();
     latch->await();
     long rs = watcher->stop();

@@ -17,11 +17,11 @@ using namespace obotcha;
 
 
 void testSetIndex() {
-    ByteArray writeData = createByteArray(2);
+    ByteArray writeData = ByteArray::New(2);
     writeData[0] = 0x1;
     writeData[1] = 0x2;
-    ByteArray data = createByteArray(5);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(5);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
     writer->setIndex(1);
     if(writer->getIndex() != 1) {
         TEST_FAIL("[TestByteArrayWriter test setIndex case1]");

@@ -13,15 +13,15 @@ using namespace obotcha;
 
 void testHttpChunkInputStream() {
 
-  ByteArray data = createByteArray(8);
+  ByteArray data = ByteArray::New(8);
   for(int i = 0; i < 8 ;i++) {
     data[i] = i;
   }
 
   while(1) {
-    HttpChunkInputStream stream = createHttpChunkInputStream(data);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data);
 
-    ByteArray rs = createByteArray(32);
+    ByteArray rs = ByteArray::New(32);
     int len = stream->read(rs);
     if(len != 8) {
       TEST_FAIL("[HttpChunkInputStream test case1],len is %d",len);
@@ -38,8 +38,8 @@ void testHttpChunkInputStream() {
   }
 
   while(1) {
-    HttpChunkInputStream stream = createHttpChunkInputStream(data);
-    ByteArray rs = createByteArray(32);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data);
+    ByteArray rs = ByteArray::New(32);
     rs[0] = 22;
     rs[1] = 11;
     rs[2] = 11;
@@ -66,8 +66,8 @@ void testHttpChunkInputStream() {
   }
 
   while(1) {
-    HttpChunkInputStream stream = createHttpChunkInputStream(data);
-    ByteArray rs = createByteArray(32);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data);
+    ByteArray rs = ByteArray::New(32);
     rs[0] = 22;
     rs[1] = 11;
     rs[2] = 11;
@@ -100,13 +100,13 @@ void testHttpChunkInputStream() {
 
 
   while(1) {
-    ByteArray data1 = createByteArray(3);
+    ByteArray data1 = ByteArray::New(3);
     data1[0] = 1;
     data1[1] = 11;
     data1[2] = 22;
-    HttpChunkInputStream stream = createHttpChunkInputStream(data1);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data1);
 
-    ByteArray data2 = createByteArray(2);
+    ByteArray data2 = ByteArray::New(2);
     int len = stream->read(data2);
     if(len != 2) {
       TEST_FAIL("[HttpChunkInputStream test case10");
@@ -120,13 +120,13 @@ void testHttpChunkInputStream() {
   }
 
   while(1) {
-    ByteArray data1 = createByteArray(3);
+    ByteArray data1 = ByteArray::New(3);
     data1[0] = 1;
     data1[1] = 11;
     data1[2] = 22;
-    HttpChunkInputStream stream = createHttpChunkInputStream(data1);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data1);
 
-    ByteArray data2 = createByteArray(2);
+    ByteArray data2 = ByteArray::New(2);
     data2[0] = 9;
     data2[1] = 10;
     int len = stream->read(data2,1);
@@ -142,13 +142,13 @@ void testHttpChunkInputStream() {
   }
 
   while(1) {
-    ByteArray data1 = createByteArray(3);
+    ByteArray data1 = ByteArray::New(3);
     data1[0] = 1;
     data1[1] = 11;
     data1[2] = 22;
-    HttpChunkInputStream stream = createHttpChunkInputStream(data1);
+    HttpChunkInputStream stream = HttpChunkInputStream::New(data1);
 
-    ByteArray data2 = createByteArray(6);
+    ByteArray data2 = ByteArray::New(6);
     data2[0] = 9;
     data2[1] = 10;
     data2[2] = 10;

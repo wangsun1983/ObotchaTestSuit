@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSet() {
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
-    HttpDate date = createHttpDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT "));
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New();
+    HttpDate date = HttpDate::New(String::New(" Wed, 21 Oct 2015 07:28:00 GMT "));
     retryAfter->setDate(date);
     if(!retryAfter->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderRetryAfter test set case1]");
@@ -24,7 +24,7 @@ void testSet() {
   }
 
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New();
     //retryAfter->load(" 120 ");
     retryAfter->setDelayInterval(120);
     if(!retryAfter->toString()->sameAs("120")) {

@@ -55,7 +55,7 @@ public:
 
 
 void testExecutorParam() {
-    MyExecutor t = createMyExecutor();
+    MyExecutor t = MyExecutor::New();
     if(t->getMaxPendingTaskNum() != 1) {
         TEST_FAIL("Test Executor Param case1");
     }
@@ -81,7 +81,7 @@ void testExecutorParam() {
     }
 	
 	while(1) {
-		auto pool = createThreadPoolExecutor(1,/*mMaxPendingTaskNum*/
+		auto pool = ThreadPoolExecutor::New(1,/*mMaxPendingTaskNum*/
 											2,/*mDefaultThreadNum*/
 											3 /*mMaxSubmitTaskWaitTime*/);
 		if(pool->getMaxPendingTaskNum() != 1) {
@@ -101,7 +101,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createThreadCachedPoolExecutor(1,/*mMaxPendingTaskNum, */
+		auto pool = ThreadCachedPoolExecutor::New(1,/*mMaxPendingTaskNum, */
 		                                           5,/*mMaxThreadNum, */
 		                                           3,/*mMinThreadNum,*/
 		                                           4,/*mMaxSubmitTaskWaitTime,*/
@@ -131,7 +131,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createThreadScheduledPoolExecutor(9,/*mMaxPendingTaskNum,*/
+		auto pool = ThreadScheduledPoolExecutor::New(9,/*mMaxPendingTaskNum,*/
 		                                              10 /*mMaxSubmitTaskWaitTime*/);
 												
 	    if(pool->getMaxPendingTaskNum() != 9) {
@@ -147,7 +147,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createThreadPriorityPoolExecutor(6,/*mMaxPendingTaskNum, */
+		auto pool = ThreadPriorityPoolExecutor::New(6,/*mMaxPendingTaskNum, */
                                                      7,/*mDefaultThreadNum,*/
                                                      8 /*mMaxSubmitTaskWaitTime*/);
 												

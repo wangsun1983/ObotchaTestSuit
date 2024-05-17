@@ -19,7 +19,7 @@ using namespace obotcha;
 
 void testList() {
     while(1) {
-      List<int> list = createList<int>(128);
+      List<int> list = List<int>::New(128);
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -39,13 +39,13 @@ void testList() {
     }
 
     while(1) {
-      List<String> list = createList<String>(6);
-      list[0] = createString("a");
-      list[1] = createString("b");
-      list[2] = createString("c");
-      list[3] = createString("d");
-      list[4] = createString("e");
-      list[5] = createString("f");
+      List<String> list = List<String>::New(6);
+      list[0] = String::New("a");
+      list[1] = String::New("b");
+      list[2] = String::New("c");
+      list[3] = String::New("d");
+      list[4] = String::New("e");
+      list[5] = String::New("f");
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -60,7 +60,7 @@ void testList() {
     }
 
     while(1) {
-      List<String> list = createList<String>(2);
+      List<String> list = List<String>::New(2);
       int count = 0;
       ForEveryOne(s,list) {
         count++;

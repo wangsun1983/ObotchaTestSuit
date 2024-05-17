@@ -8,7 +8,7 @@ using namespace obotcha;
 
 void testOrAndGet() {
     while(1) {
-      AtomicByte value = createAtomicByte(1);
+      AtomicByte value = AtomicByte::New(1);
       long v = value->orAndGet(2);
       if(v != 3) {
         TEST_FAIL("AtomicByte testOrAndGet test1");

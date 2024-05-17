@@ -21,12 +21,12 @@ public:
 
 void testFutureGetValue() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            MyData data = createMyData();
+            MyData data = MyData::New();
             data->value1 = 100;
-            data->value2 = createString("hello");
+            data->value2 = String::New("hello");
             st(FilaExecutorResult)::Set(data);
         });
         

@@ -22,7 +22,7 @@ using namespace obotcha;
 
 void testConcurrentStack() {
     while(1) {
-      ConcurrentStack<int> list = createConcurrentStack<int>();
+      ConcurrentStack<int> list = ConcurrentStack<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -42,7 +42,7 @@ void testConcurrentStack() {
     }
 
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;
@@ -55,18 +55,18 @@ void testConcurrentStack() {
     }
 
     while(1) {
-      ConcurrentStack<int> list = createConcurrentStack<int>();
+      ConcurrentStack<int> list = ConcurrentStack<int>::New();
       list->push(1);
       list->push(2);
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         list->push(2);
         auto result = watcher->stop();

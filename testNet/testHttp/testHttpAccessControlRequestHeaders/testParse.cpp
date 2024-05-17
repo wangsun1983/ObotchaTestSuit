@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = HttpHeaderAccessControlRequestHeaders::New();
     c->load("X-PINGOTHER, Content-Type");
     auto list = c->get();
     if(!list->get(0)->sameAs("X-PINGOTHER")) {
@@ -30,7 +30,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = HttpHeaderAccessControlRequestHeaders::New();
     c->load("X-PINGOTHER");
     auto list = c->get();
     if(!list->get(0)->sameAs("X-PINGOTHER")) {

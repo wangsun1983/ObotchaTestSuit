@@ -29,16 +29,16 @@
 using namespace obotcha;
 
 int main() {
-  File file = createFile("./tmp/testdata");
+  File file = File::New("./tmp/testdata");
   
   if(!file->exists()) {
     file->createNewFile();
     for(int i = 0;i<32*1024;i++) {
-          FileOutputStream stream = createFileOutputStream(file);
+          FileOutputStream stream = FileOutputStream::New(file);
           stream->open(st(IO)::FileControlFlags::Append);
-          String data = createString("");
+          String data = String::New("");
           for(int j = 0;j < 32;j++) {
-            data = data->append(createString(st(System)::CurrentTimeMillis()));
+            data = data->append(String::New(st(System)::CurrentTimeMillis()));
           }
           stream->write(data->toByteArray());
           stream->close();
@@ -46,8 +46,8 @@ int main() {
   }
   
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   
   HttpGet get = HttpGet(url);

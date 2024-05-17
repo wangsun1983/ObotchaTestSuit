@@ -26,9 +26,9 @@ int _MyFilament2::count = 0;
 void testFilaRoutineExecute() {
 	//case1	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
-		FilaMutex m = createFilaMutex();
+		FilaMutex m = FilaMutex::New();
 		int count = 0;
 		for(int i = 0; i < 128;i ++) {
 			croutine->execute([&,i] {
@@ -46,10 +46,10 @@ void testFilaRoutineExecute() {
 	}
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		for(int i = 0 ; i < 128;i++) {
-			croutine->execute(createMyFilament2());
+			croutine->execute(MyFilament2::New());
 		}
 		usleep(1000*10);
 		croutine->shutdown();

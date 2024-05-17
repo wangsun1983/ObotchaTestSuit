@@ -85,7 +85,7 @@ int testThreadCachedPoolFutureCancel() {
     //threadExecutorPool
     while(1) {
         ExecutorService pool = st(Executors)::newCachedThreadPool();
-        TestCachedCancelRun1 run1 = createTestCachedCancelRun1();
+        TestCachedCancelRun1 run1 = TestCachedCancelRun1::New();
         Future f = pool->submit(run1);
         sleep(1);
         f->cancel();
@@ -102,9 +102,9 @@ int testThreadCachedPoolFutureCancel() {
   
     while(1) {
         ExecutorService pool = st(Executors)::newCachedThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<50;i++) {
-            Future f = pool->submit(createTestCachedCancelRun1());
+            Future f = pool->submit(TestCachedCancelRun1::New());
             futurelist->add(f);
         }
 
@@ -126,9 +126,9 @@ int testThreadCachedPoolFutureCancel() {
 
     while(1) {
         ExecutorService pool = st(Executors)::newCachedThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<50;i++) {
-            Future f = pool->submit(createTestCachedCancelRun1());
+            Future f = pool->submit(TestCachedCancelRun1::New());
             futurelist->add(f);
         }
 
@@ -152,9 +152,9 @@ int testThreadCachedPoolFutureCancel() {
 
     while(1) {
         ExecutorService pool = st(Executors)::newCachedThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
         for(int i = 0;i<55;i++) {
-            Future f = pool->submit(createTestCachedCancelRun1());
+            Future f = pool->submit(TestCachedCancelRun1::New());
             futurelist->add(f);
         }
 
@@ -170,8 +170,8 @@ int testThreadCachedPoolFutureCancel() {
         long start = st(System)::CurrentTimeMillis();
         //for(int i = 0;i<50;i++) {
         printf("submit testcancel run1 \n");
-        Future f1 = pool->submit(createTestCachedCancelRun1());
-        Future f2 = pool->submit(createTestCachedCancelRun1());
+        Future f1 = pool->submit(TestCachedCancelRun1::New());
+        Future f2 = pool->submit(TestCachedCancelRun1::New());
         long end = st(System)::CurrentTimeMillis();
         if((end - start) > 10) {
             printf("---[TestFuture CachedThreadPool Test {cancel()} case5] [Fail],%d --- \n",end-start);
@@ -186,10 +186,10 @@ int testThreadCachedPoolFutureCancel() {
 
     while(1) {
         ExecutorService pool = st(Executors)::newCachedThreadPool();
-        ArrayList<Future> futurelist = createArrayList<Future>();
-        ArrayList<TestCachedCancelRun2> runlist = createArrayList<TestCachedCancelRun2>();
+        ArrayList<Future> futurelist = ArrayList<Future>::New();
+        ArrayList<TestCachedCancelRun2> runlist = ArrayList<TestCachedCancelRun2>::New();
         for(int i = 0;i<55;i++) {
-            TestCachedCancelRun2 run2 = createTestCachedCancelRun2();
+            TestCachedCancelRun2 run2 = TestCachedCancelRun2::New();
             run2->setCount(i);
             runlist->add(run2);
             Future f = pool->submit(run2);

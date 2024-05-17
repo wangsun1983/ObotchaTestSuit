@@ -12,21 +12,21 @@
 using namespace obotcha;
 
 int testConfValueSet() {
-    ConfValue value = createConfValue();
+    ConfValue value = ConfValue::New();
     
-    value->set(createString("tag1"),createString("value1"));
-    value->set(createString("tag2"),createString("value2"));
-    value->set(createString("tag3"),createString("value3"));
+    value->set(String::New("tag1"),String::New("value1"));
+    value->set(String::New("tag2"),String::New("value2"));
+    value->set(String::New("tag3"),String::New("value3"));
     
-    ConfWriter writer = createConfWriter(createFile("./tmp/test1.conf"));
+    ConfWriter writer = ConfWriter::New(File::New("./tmp/test1.conf"));
     writer->write(value);
     
-    ConfReader r = createConfReader()->loadFile(createFile("./tmp/test1.conf"));
+    ConfReader r = ConfReader::New()->loadFile(File::New("./tmp/test1.conf"));
     auto value2 = r->get();
     
-    if(!value2->get(createString("tag1"))->sameAs("value1")
-        ||!value2->get(createString("tag2"))->sameAs("value2")
-        ||!value2->get(createString("tag3"))->sameAs("value3")) {
+    if(!value2->get(String::New("tag1"))->sameAs("value1")
+        ||!value2->get(String::New("tag2"))->sameAs("value2")
+        ||!value2->get(String::New("tag3"))->sameAs("value3")) {
         TEST_FAIL("ConfValue Get/Set test1");
     }
     

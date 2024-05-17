@@ -33,7 +33,7 @@ using namespace obotcha;
 
 int count = 0;
 String respStr;
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -46,17 +46,17 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
           case st(Net)::Event::Message: {
             if(count == 0) {
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
                 w->write(response);
                 count++;
             } else {
                 auto data = msg->getEntity()->getContent();
                 respStr = data->toString();
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("byebye")->toByteArray());
+                response->getEntity()->setContent(String::New("byebye")->toByteArray());
                 w->write(response);
                 latch->countDown();
                 count++;
@@ -74,9 +74,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();

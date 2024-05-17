@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testForwardedParse() {
   while(1) {
-    HttpHeaderForwarded encoding1 = createHttpHeaderForwarded();
+    HttpHeaderForwarded encoding1 = HttpHeaderForwarded::New();
     encoding1->load("For=\"[2001:db8:cafe::17]:4711\"");
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case1]");
@@ -28,7 +28,7 @@ void testForwardedParse() {
   }
 
   while(1) {
-    HttpHeaderForwarded encoding1 = createHttpHeaderForwarded();
+    HttpHeaderForwarded encoding1 = HttpHeaderForwarded::New();
     encoding1->load("For=\"[2001:db8:cafe::17]:4711\"");
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case3]");
@@ -43,7 +43,7 @@ void testForwardedParse() {
   }
 
   while(1) {
-    HttpHeaderForwarded encoding1 = createHttpHeaderForwarded();
+    HttpHeaderForwarded encoding1 = HttpHeaderForwarded::New();
     encoding1->load("for=\"_mdn\"");
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case5]");
@@ -58,7 +58,7 @@ void testForwardedParse() {
   }
 
   while(1) {
-    HttpHeaderForwarded encoding1 = createHttpHeaderForwarded();
+    HttpHeaderForwarded encoding1 = HttpHeaderForwarded::New();
     encoding1->load("for=192.0.2.60; proto=http; by=203.0.113.43");
     if(encoding1->forIdentities->size() != 1) {
       TEST_FAIL("[HttpHeaderForwarded test Parse case5]");

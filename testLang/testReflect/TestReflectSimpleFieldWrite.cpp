@@ -53,7 +53,7 @@ public:
 void testReflectFieldWrite() {
     //test1
     while(1) {
-      MyData3 data1 = createMyData3();
+      MyData3 data1 = MyData3::New();
       //check field
       Field f = data1->getField("intData");
       f->setValue(1);
@@ -71,7 +71,7 @@ void testReflectFieldWrite() {
       f->setValue(3);
 
       f = data1->getField("stringData");
-      f->setValue(createString("a"));
+      f->setValue(String::New("a"));
 
       f = data1->getField("uint8Data");
       f->setValue(4);
@@ -148,7 +148,7 @@ void testReflectFieldWrite() {
 
     //test1
     while(1) {
-      MyData4 data1 = createMyData4();
+      MyData4 data1 = MyData4::New();
       //check field
       Field f = data1->getField("intData");
       Integer v1 = Cast<Integer>(f->createObject());
@@ -171,7 +171,7 @@ void testReflectFieldWrite() {
       v5->update(3);
 
       f = data1->getField("stringData");
-      f->setValue(createString("a"));
+      f->setValue(String::New("a"));
 
       f = data1->getField("uint8Data");
       Uint8 v7 = Cast<Uint8>(f->createObject());

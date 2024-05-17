@@ -16,14 +16,14 @@ public:
 };
 
 void testHashMapLambda() {
-  HashMap<int,Lambda1> map = createHashMap<int,Lambda1>();
-  Lambda1 t1 = createLambda1();
+  HashMap<int,Lambda1> map = HashMap<int,Lambda1>::New();
+  Lambda1 t1 = Lambda1::New();
   t1->i = 123;
 
-  Lambda1 t2 = createLambda1();
+  Lambda1 t2 = Lambda1::New();
   t2->i = 456;
 
-  Lambda1 t3 = createLambda1();
+  Lambda1 t3 = Lambda1::New();
   t3->i = 789;
 
   map->put(1,t1);

@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 void testHttpUrlWithoutPath() {
-  HttpUrl url = createHttpUrl("http://localhost/");
+  HttpUrl url = HttpUrl::New("http://localhost/");
   if(url->getPath() != nullptr) {
     TEST_FAIL("[HttpUrlParse test Parse with no path case1]");
   }

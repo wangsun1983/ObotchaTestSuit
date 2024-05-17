@@ -11,7 +11,7 @@
 using namespace obotcha;
 
 RedisConnection c;
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 
 DECLARE_CLASS(RedisListener) IMPLEMENTS(RedisSubscribeListener) {
@@ -28,9 +28,9 @@ public:
 };
 
 int main() {
-    c = createRedisConnection();
-    c->connect(createString("127.0.0.1"),6379,100);
-    auto l = createRedisListener();
+    c = RedisConnection::New();
+    c->connect(String::New("127.0.0.1"),6379,100);
+    auto l = RedisListener::New();
     c->subscribe("abc",l);
 
     latch->await();

@@ -10,10 +10,10 @@ void testPutLast() {
 
     //case1
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         if(mList->size() != 3) {
             TEST_FAIL("LinkedList Enqueue Last test1");
@@ -41,7 +41,7 @@ void testPutLast() {
 
     //case2
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
         if(mList->takeLast() != nullptr) {
           TEST_FAIL("LinkedList Dequeue Last test5");
           break;

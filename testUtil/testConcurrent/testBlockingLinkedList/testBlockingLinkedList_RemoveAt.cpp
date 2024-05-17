@@ -13,10 +13,10 @@ using namespace obotcha;
 void testBlockingLinkedListRemoveAt() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         String v = list->removeAt(1);
         if(v == nullptr || !v->sameAs("b")) {
@@ -32,7 +32,7 @@ void testBlockingLinkedListRemoveAt() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
         bool isException = false;
         try {
           String v = list->removeAt(1);
@@ -49,7 +49,7 @@ void testBlockingLinkedListRemoveAt() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
         bool isException = false;
         try {
           String v = list->removeAt(0);
@@ -66,8 +66,8 @@ void testBlockingLinkedListRemoveAt() {
     }
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
         bool isException = false;
         try {
           String v = list->removeAt(2);

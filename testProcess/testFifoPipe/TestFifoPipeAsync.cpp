@@ -26,10 +26,10 @@ using namespace obotcha;
 void testFifoPipeAsync() {
 
   st(FifoPipe)::Create("mytestasync");
-  FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::Type::AsyncRead);
-  CountDownLatch latch = createCountDownLatch(1);
+  FifoPipe fifo = FifoPipe::New("mytestasync",st(FifoPipe)::Type::AsyncRead);
+  CountDownLatch latch = CountDownLatch::New(1);
 
-  EPollObserver mPoll = createEPollObserver();
+  EPollObserver mPoll = EPollObserver::New();
   mPoll->addObserver(
     fifo->getChannel(), EPOLLIN | EPOLLRDHUP | EPOLLHUP,
     [latch](int fd, uint32_t events) {
@@ -40,7 +40,7 @@ void testFifoPipeAsync() {
                 TEST_FAIL("[FifoPipe Test {AsyncWrite/AsyncRead()} case1],len is %d",len);
               }
 
-              String str = createString((const char *)buff);
+              String str = String::New((const char *)buff);
               printf("i get str is %s \n",str->toChars());
               if(!str->sameAs("hello world")) {
                 TEST_FAIL("[FifoPipe Test {AsyncWrite/AsyncRead()} case2]");
@@ -50,9 +50,9 @@ void testFifoPipeAsync() {
           return st(IO)::Epoll::Result::Ok;
     });
 
-  Thread t = createThread([] {
-    FifoPipe fifo = createFifoPipe("mytestasync",st(FifoPipe)::Type::AsyncWrite);
-    String str = createString("hello world");
+  Thread t = Thread::New([] {
+    FifoPipe fifo = FifoPipe::New("mytestasync",st(FifoPipe)::Type::AsyncWrite);
+    String str = String::New("hello world");
     fifo->write(str->toByteArray());
   });
   t->start();

@@ -25,8 +25,8 @@ public:
 
 int main() {
     
-    SqlConnection c = createMySqlConnection();
-    MySqlConnectParam param = createMySqlConnectParam();
+    SqlConnection c = MySqlConnection::New();
+    MySqlConnectParam param = MySqlConnectParam::New();
     param->setHost("127.0.0.1");
     param->setUser("wangsun");
     param->setPassword("01122982");
@@ -40,7 +40,7 @@ int main() {
     //test create table
     c->exec("CREATE TABLE Company(id INT PRIMARY KEY,name TEXT,age INT);");
     c->exec("INSERT INTO Company(id,name,age) VALUES(1,\"Wang\",12)");
-    ArrayList<Company> list = c->query<Company>(createSqlQuery("select * from Company"));
+    ArrayList<Company> list = c->query<Company>(SqlQuery::New("select * from Company"));
 
     if(list == nullptr || list->size() == 0) {
         TEST_FAIL("Sqlite3 testCreateDB case1");
@@ -51,12 +51,12 @@ int main() {
         TEST_FAIL("MySql testCreateDB case2");
     }
 
-    int count = c->count(createSqlQuery("select * from Company"));
+    int count = c->count(SqlQuery::New("select * from Company"));
     if(count != 1) {
         TEST_FAIL("MySql testCreateDB case3");
     }
 
-    SqlRecords records = c->query(createSqlQuery("select * from Company"));
+    SqlRecords records = c->query(SqlQuery::New("select * from Company"));
     auto iterator = records->getIterator();
     int index = 0;
     while(iterator->hasValue()) {

@@ -4,6 +4,9 @@ import sys
 sys.path.append(r'../../../common')
 from NetPort import getEnvPort
 from NetPort import setEnvPort
+from SampleFile import create_sample_file
+
+create_sample_file("./",1024*1024*32)
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 port = getEnvPort()

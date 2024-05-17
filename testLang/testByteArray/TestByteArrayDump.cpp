@@ -18,7 +18,7 @@ void dumptest() {
 
     while(1) {
       //case1
-      ByteArray arr1 = createByteArray(16);
+      ByteArray arr1 = ByteArray::New(16);
       for(int i = 0;i<16;i++) {
         arr1[i] = i;
       }

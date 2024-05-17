@@ -19,10 +19,10 @@
 using namespace obotcha;
 
 int testMutex_Lock() {
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
 
     while(1) {
-      Mutex t = createMutex();
+      Mutex t = Mutex::New();
       watch->start();
       t->lock(100);
       t->lock(100);
@@ -35,7 +35,7 @@ int testMutex_Lock() {
     }
 
     while(1) {
-      Mutex t = createMutex(st(Lock)::Type::Normal);
+      Mutex t = Mutex::New(st(Lock)::Type::Normal);
       watch->start();
       t->lock(100);
       t->lock(100);
@@ -48,7 +48,7 @@ int testMutex_Lock() {
     }
 	
 	while(1) {
-	  Mutex t = createMutex(st(Lock)::Type::Normal);
+	  Mutex t = Mutex::New(st(Lock)::Type::Normal);
 	  watch->start();
 	  t->lock(100);
 	  t->lock(100);
@@ -62,8 +62,8 @@ int testMutex_Lock() {
 	}
 
     while(1) {
-      Mutex t = createMutex();
-      Thread t1 = createThread([&t]{
+      Mutex t = Mutex::New();
+      Thread t1 = Thread::New([&t]{
         t->lock(300);
       });
       t1->start();
@@ -84,11 +84,11 @@ int testMutex_Lock() {
     }
 
     while(1) {
-      Mutex t = createMutex();
-      AtomicInteger count = createAtomicInteger(0);
+      Mutex t = Mutex::New();
+      AtomicInteger count = AtomicInteger::New(0);
       t->lock();
 
-      Thread t1 = createThread([&t,&count]{
+      Thread t1 = Thread::New([&t,&count]{
         t->lock();
         count->incrementAndGet();
       });
@@ -109,11 +109,11 @@ int testMutex_Lock() {
     }
 	
 	while(1) {
-		Mutex t = createMutex();
+		Mutex t = Mutex::New();
 		t->lock();
 		t->lock();
 		
-		Thread t1 = createThread([&] {
+		Thread t1 = Thread::New([&] {
 			t->lock();
 		});
 		t1->start();

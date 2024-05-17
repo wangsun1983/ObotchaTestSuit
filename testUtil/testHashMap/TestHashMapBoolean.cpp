@@ -17,9 +17,9 @@ void testHashMapBoolean() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-        Boolean tag = createBoolean(true);
-        TT6 tt = createTT6();
+        HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+        Boolean tag = Boolean::New(true);
+        TT6 tt = TT6::New();
         tt->i = true;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -33,7 +33,7 @@ void testHashMapBoolean() {
           break;
         }
 
-        map->put(createBoolean(false),nullptr);
+        map->put(Boolean::New(false),nullptr);
         if(map->size() != 2) {
           TEST_FAIL("[HashMap Boolean Test {put(T t,U u)/get(T t)} case3]");
           break;
@@ -51,14 +51,14 @@ void testHashMapBoolean() {
 
     //void remove(T t)
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      Boolean tag = createBoolean(true);
-      TT6 tt = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      Boolean tag = Boolean::New(true);
+      TT6 tt = TT6::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createBoolean(true));
+      map->remove(Boolean::New(true));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap Boolean Test {remove(T t)} case1]");
         break;
@@ -72,7 +72,7 @@ void testHashMapBoolean() {
         break;
       }
 
-      map->remove(createBoolean(true));
+      map->remove(Boolean::New(true));
       if(map->size() != 0) {
         TEST_FAIL("[HashMap Boolean Test {remove(T t)} case3]");
         break;
@@ -84,9 +84,9 @@ void testHashMapBoolean() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      Boolean tag = createBoolean(true);
-      TT6 tt = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      Boolean tag = Boolean::New(true);
+      TT6 tt = TT6::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -95,7 +95,7 @@ void testHashMapBoolean() {
         break;
       }
 
-      map->remove(createBoolean(true));
+      map->remove(Boolean::New(true));
       if(!map->isEmpty()) {
         TEST_FAIL("[HashMap Boolean Test {isEmpty()} case2]");
         break;
@@ -107,12 +107,12 @@ void testHashMapBoolean() {
 
     //void clear()
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      Boolean tag = createBoolean(true);
-      TT6 tt = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      Boolean tag = Boolean::New(true);
+      TT6 tt = TT6::New();
       tt->i = true;
       map->put(tag,tt);
-      map->put(createBoolean(false),tt);
+      map->put(Boolean::New(false),tt);
 
       int size = map->size();
       map->clear();
@@ -121,7 +121,7 @@ void testHashMapBoolean() {
         break;
       }
 
-      HashMap<Boolean,TT6> map2 = createHashMap<Boolean,TT6>();
+      HashMap<Boolean,TT6> map2 = HashMap<Boolean,TT6>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Boolean Test {clear()} case2]");
@@ -134,12 +134,12 @@ void testHashMapBoolean() {
 
     //int size()
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      Boolean tag = createBoolean(true);
-      TT6 tt = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      Boolean tag = Boolean::New(true);
+      TT6 tt = TT6::New();
       tt->i = true;
       map->put(tag,tt);
-      map->put(createBoolean(false),tt);
+      map->put(Boolean::New(false),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap Boolean Test {size()} case1]");
         break;
@@ -151,14 +151,14 @@ void testHashMapBoolean() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      TT6 tt1 = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      TT6 tt1 = TT6::New();
       tt1->i = true;
-      map->put(createBoolean(true),tt1);
+      map->put(Boolean::New(true),tt1);
 
-      TT6 tt2 = createTT6();
+      TT6 tt2 = TT6::New();
       tt2->i = false;
-      map->put(createBoolean(false),tt2);
+      map->put(Boolean::New(false),tt2);
 
       ArrayList<Boolean> keys = map->keySet();
       int size = keys->size();
@@ -176,7 +176,7 @@ void testHashMapBoolean() {
         }
       }
 
-      HashMap<Boolean,TT6> map2 = createHashMap<Boolean,TT6>();
+      HashMap<Boolean,TT6> map2 = HashMap<Boolean,TT6>::New();
       ArrayList<Boolean>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Boolean Test {keySet()} case3]");
@@ -189,26 +189,26 @@ void testHashMapBoolean() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      TT6 tt1 = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      TT6 tt1 = TT6::New();
       tt1->i = true;
-      map->put(createBoolean(true),tt1);
+      map->put(Boolean::New(true),tt1);
 
-      TT6 tt2 = createTT6();
+      TT6 tt2 = TT6::New();
       tt2->i = false;
-      map->put(createBoolean(false),tt2);
+      map->put(Boolean::New(false),tt2);
 
       ArrayList<TT6> keys = map->entrySet();
       int size = keys->size();
       for(int index = 0;index < size;index++) {
         TT6 key1 = keys->get(index);
-        if(map->get(createBoolean(key1->i)) == nullptr) {
+        if(map->get(Boolean::New(key1->i)) == nullptr) {
           TEST_FAIL("[HashMap Boolean Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<Boolean,TT6> map2 = createHashMap<Boolean,TT6>();
+      HashMap<Boolean,TT6> map2 = HashMap<Boolean,TT6>::New();
       ArrayList<TT6>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Boolean Test {entrySet()} case2]");
@@ -222,14 +222,14 @@ void testHashMapBoolean() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<Boolean,TT6> map = createHashMap<Boolean,TT6>();
-      TT6 tt1 = createTT6();
+      HashMap<Boolean,TT6> map = HashMap<Boolean,TT6>::New();
+      TT6 tt1 = TT6::New();
       tt1->i = true;
-      map->put(createBoolean(true),tt1);
+      map->put(Boolean::New(true),tt1);
 
-      TT6 tt2 = createTT6();
+      TT6 tt2 = TT6::New();
       tt2->i = false;
-      map->put(createBoolean(false),tt2);
+      map->put(Boolean::New(false),tt2);
 
       int index = 0;
       MapIterator<Boolean,TT6> iterator = map->getIterator();

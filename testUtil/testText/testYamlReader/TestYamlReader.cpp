@@ -14,17 +14,17 @@ struct TestData {
 };
 
 int main() {
-    YamlReader reader = createYamlReader()->loadFile(createFile("test.yaml"));
+    YamlReader reader = YamlReader::New()->loadFile(File::New("test.yaml"));
     YamlValue root = reader->parse();
 
     //version: '{build}'
-    String value1 = root->get<String>(createString("version"));
+    String value1 = root->get<String>(String::New("version"));
     if(!value1->sameAs("{build}")) {
       TEST_FAIL("[TestYamlReader Test parse()} case1]");
     }
 
     //os: Visual Studio 2015
-    String value2 = root->get<String>(createString("os"));
+    String value2 = root->get<String>(String::New("os"));
     if(!value2->sameAs("Visual Studio 2015")) {
       TEST_FAIL("[TestYamlReader Test parse()} case2]");
     }
@@ -35,28 +35,28 @@ int main() {
     //  - Toolset: v120
     //  - Toolset: v110
     //  - Toolset: v100
-    YamlValue value3 = root->get<YamlValue>(createString("environment"));
-    YamlValue value3_1 = value3->get<YamlValue>(createString("matrix"));
+    YamlValue value3 = root->get<YamlValue>(String::New("environment"));
+    YamlValue value3_1 = value3->get<YamlValue>(String::New("matrix"));
     YamlValue value3_1_1 = value3_1->getAt<YamlValue>(0);
-    String chckV = value3_1_1->get<String>(createString("Toolset"));
+    String chckV = value3_1_1->get<String>(String::New("Toolset"));
     if(!chckV->sameAs("v140")) {
       TEST_FAIL("[TestYamlReader Test parse()} case3]");
     }
 
     YamlValue value3_1_2 = value3_1->getAt<YamlValue>(1);
-    chckV = value3_1_2->get<String>(createString("Toolset"));
+    chckV = value3_1_2->get<String>(String::New("Toolset"));
     if(!chckV->sameAs("v120")) {
       TEST_FAIL("[TestYamlReader Test parse()} case4]");
     }
 
     YamlValue value3_1_3 = value3_1->getAt<YamlValue>(2);
-    chckV = value3_1_3->get<String>(createString("Toolset"));
+    chckV = value3_1_3->get<String>(String::New("Toolset"));
     if(!chckV->sameAs("v110")) {
       TEST_FAIL("[TestYamlReader Test parse()} case5]");
     }
 
     YamlValue value3_1_4 = value3_1->getAt<YamlValue>(3);
-    chckV = value3_1_4->get<String>(createString("Toolset"));
+    chckV = value3_1_4->get<String>(String::New("Toolset"));
     if(!chckV->sameAs("v100")) {
       TEST_FAIL("[TestYamlReader Test parse()} case6]");
     }
@@ -99,8 +99,8 @@ int main() {
 
     YamlValue value8 = root->get<YamlValue>("before_build");
     YamlValue value8_1 = value8->getAt<YamlValue>(0);
-    String str8_1 = value8_1->get<String>(createString("ps"));
-    String vv = createString("Write-Output \"Configuration: $env:CONFIGURATION\"\n"\
+    String str8_1 = value8_1->get<String>(String::New("ps"));
+    String vv = String::New("Write-Output \"Configuration: $env:CONFIGURATION\"\n"\
     "Write-Output \"Platform: $env:PLATFORM\"\n"\
     "$generator = switch ($env:TOOLSET)\n"\
     "{\n"\

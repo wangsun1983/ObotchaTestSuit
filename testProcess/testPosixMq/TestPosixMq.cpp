@@ -16,7 +16,7 @@ using namespace obotcha;
 
 int testProcessMq() {
 
-  ProcessMq mq = createProcessMq("abc",false);
+  ProcessMq mq = ProcessMq::New("abc",false);
   mq->clear();
 
   const int testDatalength = 32;
@@ -31,18 +31,18 @@ int testProcessMq() {
   if(pid == 0) {
     //child process
     sleep(10);
-    ProcessMq mq = createProcessMq("abc",false);
+    ProcessMq mq = ProcessMq::New("abc",false);
     
-    ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+    ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
     mq->send(array);
     mq->close();
     exit(0);
   } else {
-    ByteArray array = createByteArray(mq->getMsgSize());
+    ByteArray array = ByteArray::New(mq->getMsgSize());
     //sleep(1);
     //TEST_FAIL("father start read \n");
-    ProcessMq mq = createProcessMq("abc",false);
+    ProcessMq mq = ProcessMq::New("abc",false);
     
     int length = mq->receive(array);
     if(length < testDatalength) {
@@ -66,21 +66,21 @@ int testProcessMq() {
   pid = fork();
   if(pid == 0) {
     //child process
-    ProcessMq mq = createProcessMq("abc",false);
+    ProcessMq mq = ProcessMq::New("abc",false);
     
-    ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+    ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
     //TEST_FAIL("child start write \n");
     int ret = mq->send(array);
 	
-    ByteArray array2 = createByteArray((byte *)&testData[1],testDatalength-1);
+    ByteArray array2 = ByteArray::New((byte *)&testData[1],testDatalength-1);
     ret = mq->send(array2,5);
 	
     mq->close();
     return 1;
   } else {
     sleep(1);
-    ByteArray array = createByteArray(mq->getMsgSize());
-    ProcessMq mq = createProcessMq("abc",false);
+    ByteArray array = ByteArray::New(mq->getMsgSize());
+    ProcessMq mq = ProcessMq::New("abc",false);
     
     int length = mq->receive(array);
     if(length != testDatalength - 1) {
@@ -119,8 +119,8 @@ int testProcessMq() {
     //child process
     exit(0);
   } else {
-    ByteArray array = createByteArray(mq->getMsgSize());
-    ProcessMq mq = createProcessMq("abc",false);
+    ByteArray array = ByteArray::New(mq->getMsgSize());
+    ProcessMq mq = ProcessMq::New("abc",false);
     long current = st(System)::CurrentTimeMillis();
     int length = mq->receiveTimeout(array,500);
     

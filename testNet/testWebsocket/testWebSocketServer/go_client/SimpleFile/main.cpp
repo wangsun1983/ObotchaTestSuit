@@ -26,18 +26,18 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyWsListener) IMPLEMENTS(WebSocketListener) {
 public:
     _MyWsListener() {
-        File f = createFile("./tmp/rcvfile");
+        File f = File::New("./tmp/rcvfile");
         if(f->exists()) {
             f->removeAll();
         }
         f->createNewFile();
 
-        stream = createFileOutputStream(f);
+        stream = FileOutputStream::New(f);
         stream->open();
     }
 
@@ -71,17 +71,17 @@ private:
 
 int main() {
     //crete file first
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     long prepareFilesize = file->length();
 
     if(!file->exists()) {
         file->createNewFile();
         for(int i = 0;i<1024;i++) {
-            FileOutputStream stream = createFileOutputStream(file);
+            FileOutputStream stream = FileOutputStream::New(file);
             stream->open(st(IO)::FileControlFlags::Append);
-            String data = createString("");
+            String data = String::New("");
             for(int j = 0;j < 256;j++) {
-                data = data->append(createString(st(System)::CurrentTimeMillis()));
+                data = data->append(String::New(st(System)::CurrentTimeMillis()));
             }
             stream->write(data->toByteArray());
             stream->close();
@@ -89,11 +89,11 @@ int main() {
     }
 
 
-    MyWsListener l = createMyWsListener();
+    MyWsListener l = MyWsListener::New();
 
     int port = getEnvPort();
-    InetAddress address = createInet4Address(port);
-    WebSocketServer server = createWebSocketServerBuilder()
+    InetAddress address = Inet4Address::New(port);
+    WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)
                             ->build();
@@ -103,9 +103,9 @@ int main() {
     latch->await();
 
     //check md5
-    Md md5 = createMd();
-    String base = md5->encodeFile(createFile("./tmp/testdata"));
-    String rcv = md5->encodeFile(createFile("./tmp/rcvfile"));
+    Md md5 = Md::New();
+    String base = md5->encodeFile(File::New("./tmp/testdata"));
+    String rcv = md5->encodeFile(File::New("./tmp/rcvfile"));
     if(!base->equals(rcv)) {
         TEST_FAIL("WebSocketServer SimpleFile test1");
     }

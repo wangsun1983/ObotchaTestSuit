@@ -13,15 +13,15 @@
 using namespace obotcha;
 
 void testHash() {
-   Uint16 t1 = createUint16(1);
-   Uint16 t2 = createUint16(2);
+   Uint16 t1 = Uint16::New(1);
+   Uint16 t2 = Uint16::New(2);
    if(t1->hashcode() == t2->hashcode()) {
     TEST_FAIL("Uint16 hashcode test1");
     return;
    }
 
-   t1 = createUint16(1);
-   t2 = createUint16(1);
+   t1 = Uint16::New(1);
+   t2 = Uint16::New(1);
    if(t1->hashcode() != t2->hashcode()) {
     TEST_FAIL("Uint16 hashcode test2");
     return;

@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Server"),
-                createString("Apache/2.4.1 (Unix)"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Server"),
+                String::New("Apache/2.4.1 (Unix)"));
                 
     auto match = header->getServer();
     if(!match->get()->sameAs("Apache/2.4.1 (Unix)")) {

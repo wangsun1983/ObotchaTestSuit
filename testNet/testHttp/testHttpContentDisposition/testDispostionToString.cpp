@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testDispositionToString() {
   while(1) {
-    HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
+    HttpHeaderContentDisposition disposition = HttpHeaderContentDisposition::New();
     disposition->load("attachment");
     if(!disposition->toString()->sameAs("attachment")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case1] [FAILED],disposition is %s ",disposition->toString()->toChars());
@@ -22,7 +22,7 @@ void testDispositionToString() {
   }
 
   while(1) {
-    HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
+    HttpHeaderContentDisposition disposition = HttpHeaderContentDisposition::New();
     disposition->load("attachment; filename=\"filename.jpg\"");
     if(!disposition->toString()->sameAs("attachment; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case2] [FAILED],disposition is %s ",disposition->toString()->toChars());
@@ -32,7 +32,7 @@ void testDispositionToString() {
   }
 
   while(1) {
-    HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
+    HttpHeaderContentDisposition disposition = HttpHeaderContentDisposition::New();
     disposition->load("form-data; name=\"fieldName\"; filename=\"filename.jpg\"");
     if(!disposition->toString()->sameAs("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case3] [FAILED] disposition is %s ",disposition->toString()->toChars());
@@ -42,10 +42,10 @@ void testDispositionToString() {
   }
   
   while(1) {
-      HttpHeaderContentDisposition disposition = createHttpHeaderContentDisposition();
+      HttpHeaderContentDisposition disposition = HttpHeaderContentDisposition::New();
       disposition->setType(st(HttpHeaderContentDisposition)::FormData);
-      disposition->setFileName(createString("filename.jpg"));
-      disposition->setName(createString("fieldName"));
+      disposition->setFileName(String::New("filename.jpg"));
+      disposition->setName(String::New("fieldName"));
       if(!disposition->toString()->sameAs("form-data; name=\"fieldName\"; filename=\"filename.jpg\"")) {
         TEST_FAIL("[HttpHeaderContentDisposition test toString case4] [FAILED] disposition is %s ",disposition->toString()->toChars());
       }

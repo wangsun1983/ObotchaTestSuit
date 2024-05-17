@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding();
+    HttpHeaderTransferEncoding c = HttpHeaderTransferEncoding::New();
     c->load("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->sameAs("gzip")) {
@@ -31,7 +31,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderTransferEncoding c = createHttpHeaderTransferEncoding("gzip, deflate");
+    HttpHeaderTransferEncoding c = HttpHeaderTransferEncoding::New("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->sameAs("gzip")) {
       TEST_FAIL("[HttpHeaderTransferEncoding test Parse case3]");

@@ -14,7 +14,7 @@ using namespace obotcha;
 void basetest() {
   //_Uint64(int v);
   while(1) {
-      Uint64 v1 = createUint64(10);
+      Uint64 v1 = Uint64::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Uint64 construct test1");
           break;
@@ -26,8 +26,8 @@ void basetest() {
 
   //  _Uint64(Uint64 v);
   while(1) {
-    Uint64 v1 = createUint64(11);
-    Uint64 v2 = createUint64(v1);
+    Uint64 v1 = Uint64::New(11);
+    Uint64 v2 = Uint64::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint64 construct test3");
       break;
@@ -35,7 +35,7 @@ void basetest() {
 
     // Uint64 v3;
     // try {
-    //     Uint64 v4 = createUint64(v3);
+    //     Uint64 v4 = Uint64::New(v3);
     //     TEST_FAIL("Uint64 construct test4");
     // } catch(InitializeException e) {}
 
@@ -45,8 +45,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Uint64 v1 = createUint64(11);
-    Uint64 v2 = createUint64(v1);
+    Uint64 v1 = Uint64::New(11);
+    Uint64 v2 = Uint64::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint64 toValue test1");
       break;
@@ -58,8 +58,8 @@ void basetest() {
 
   //bool equals(Uint64 p);
   while(1) {
-    Uint64 v1 = createUint64(11);
-    Uint64 v2 = createUint64(11);
+    Uint64 v1 = Uint64::New(11);
+    Uint64 v2 = Uint64::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Uint64 equals test1");
       break;
@@ -76,7 +76,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Uint64 v1 = createUint64(11);
+    Uint64 v1 = Uint64::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Uint64 equals test4");
       break;
@@ -88,8 +88,8 @@ void basetest() {
 
   //==
   while(1) {
-    Uint64 v1 = createUint64(12);
-    Uint64 v2 = createUint64(12);
+    Uint64 v1 = Uint64::New(12);
+    Uint64 v2 = Uint64::New(12);
     if(v1 != v2) {
       TEST_FAIL("Uint64 [==] test1");
       break;
@@ -117,13 +117,13 @@ void basetest() {
   
   //update
   while(1) {
-      Uint64 v1 = createUint64(12);
+      Uint64 v1 = Uint64::New(12);
       v1->update(20);
       if(v1->toValue() != 20) {
         TEST_FAIL("Uint64 update test3");
       }
       
-      Uint64 v2 = createUint64(52);
+      Uint64 v2 = Uint64::New(52);
       v1->update(v2);
       if(v1->toValue() != 52) {
         TEST_FAIL("Uint64 update test4");

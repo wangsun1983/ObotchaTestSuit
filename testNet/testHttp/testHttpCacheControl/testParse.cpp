@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderCacheControl c = createHttpHeaderCacheControl();
+    HttpHeaderCacheControl c = HttpHeaderCacheControl::New();
     c->load("no-transform,only-if-cached,must-revalidate,public,no-cache, no-store, must-revalidate");
     if(!c->noCache()) {
       TEST_FAIL("[HttpHeaderCacheControl test Parse case1]");
@@ -55,7 +55,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderCacheControl c = createHttpHeaderCacheControl();
+    HttpHeaderCacheControl c = HttpHeaderCacheControl::New();
     c->load("no-transform,only-if-cached,must-revalidate,private,no-cache, no-store, must-revalidate");
     if(!c->noCache()) {
       TEST_FAIL("[HttpHeaderCacheControl test Parse case8]");
@@ -95,7 +95,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderCacheControl c = createHttpHeaderCacheControl();
+    HttpHeaderCacheControl c = HttpHeaderCacheControl::New();
     c->load("max-age=31536000,max-stale=123,min-fresh=333,s-maxage=90");
     if(c->maxAgeSeconds() != 31536000) {
       TEST_FAIL("[HttpHeaderCacheControl test Parse case15]");

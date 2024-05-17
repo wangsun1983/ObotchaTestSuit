@@ -14,27 +14,27 @@ extern void testZipFileStreamRead();
 
 int main() {
   //prepare test data
-  File file = createFile("./tmp/base_data");
+  File file = File::New("./tmp/base_data");
   if(!file->exists()) {
     file->createNewFile();
       for(int i = 0;i<32*1024;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Append);
-      String data = createString("");
+      String data = String::New("");
       for(int j = 0;j < 32;j++) {
-        data = data->append(createString(st(System)::CurrentTimeMillis()));
+        data = data->append(String::New(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();
     }
   }
 
-  File zipfile = createFile("./tmp/base_zip");
+  File zipfile = File::New("./tmp/base_zip");
   if(!zipfile->exists()) {
     system("zip -r ./tmp/base_zip ./tmp/base_data");
   }
 
-  File zippasswordfile = createFile("./tmp/base_password_data");
+  File zippasswordfile = File::New("./tmp/base_password_data");
   if(!zippasswordfile->exists()) {
     system("zip -P 123456 -r ./tmp/base_password_data ./tmp/base_data");
   }

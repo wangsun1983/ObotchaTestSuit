@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Patch"),
-                createString("application/example, text/example"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Patch"),
+                String::New("application/example, text/example"));
     auto encoding1 = header->getAcceptPatch();
     auto encodings = encoding1->get();
     if(encodings->size() != 2) {
@@ -32,9 +32,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Patch"),
-                createString("text/example;charset=utf-8"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Patch"),
+                String::New("text/example;charset=utf-8"));
     auto encoding1 = header->getAcceptPatch();
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
@@ -56,9 +56,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Patch"),
-                createString("application/merge-patch+json"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Patch"),
+                String::New("application/merge-patch+json"));
     auto encoding1 = header->getAcceptPatch();
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {

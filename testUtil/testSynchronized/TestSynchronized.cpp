@@ -23,12 +23,12 @@ using namespace obotcha;
 
 void testSynchronized() {
     while(1) {
-        Mutex mutex = createMutex();
+        Mutex mutex = Mutex::New();
         int run = 0;
         int loop = 0;
         
-        Thread t = createThread([&mutex,&run,&loop]{
-            TimeWatcher wa = createTimeWatcher();
+        Thread t = Thread::New([&mutex,&run,&loop]{
+            TimeWatcher wa = TimeWatcher::New();
             wa->start();
             Synchronized(mutex) {
                 loop++;
@@ -48,7 +48,7 @@ void testSynchronized() {
         t->start();
         
         usleep(1000*100);
-        TimeWatcher watch = createTimeWatcher();
+        TimeWatcher watch = TimeWatcher::New();
         watch->start();
         Synchronized(mutex) {
             long interval = watch->stop();
@@ -66,12 +66,12 @@ void testSynchronized() {
     }
     
     while(1) {
-        Mutex mutex = createMutex();
+        Mutex mutex = Mutex::New();
         int run = 0;
         int loop = 0;
         
-        Thread t = createThread([&mutex,&run,&loop]{
-            TimeWatcher wa = createTimeWatcher();
+        Thread t = Thread::New([&mutex,&run,&loop]{
+            TimeWatcher wa = TimeWatcher::New();
             wa->start();
             run = 1;
             Synchronized(mutex) {

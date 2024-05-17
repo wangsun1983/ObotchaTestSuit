@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 void testExecutorTaskUpdate() {
-	ExecutorResult result = createExecutorResult();
+	ExecutorResult result = ExecutorResult::New();
 	
 	int value = 100;
 	result->update(value);

@@ -9,10 +9,10 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(150);
+CountDownLatch latch = CountDownLatch::New(150);
 
 int main(void) {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
 
     croutine->execute([] {

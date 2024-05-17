@@ -22,16 +22,16 @@
 using namespace obotcha;
 
 void testTimeCheck() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1024)
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
               
     std::vector<uint64_t> vector;
-    Random rand = createRandom();
-    CountDownLatch latch = createCountDownLatch(128);
+    Random rand = Random::New();
+    CountDownLatch latch = CountDownLatch::New(128);
     
     std::mutex m;
     std::vector<uint64_t> intervals;

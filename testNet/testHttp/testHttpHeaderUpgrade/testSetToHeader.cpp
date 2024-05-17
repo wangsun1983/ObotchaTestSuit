@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Upgrade"),
-                createString(" websocket "));
+    auto header = HttpHeader::New();
+    header->set(String::New("Upgrade"),
+                String::New(" websocket "));
     auto upgrade = header->getUpgrade();
     if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test setToHeader case1]");

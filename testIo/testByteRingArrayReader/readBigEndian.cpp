@@ -18,10 +18,10 @@ using namespace obotcha;
 void testReadBigEndian() {
     byte array[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteRingArray ringArray = createByteRingArray(32);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteRingArray ringArray = ByteRingArray::New(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Big);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray,st(IO)::Endianness::Big);
 
       //test short
       short int v1 = 0;
@@ -59,10 +59,10 @@ void testReadBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteRingArray ringArray = createByteRingArray(32);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteRingArray ringArray = ByteRingArray::New(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Big);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray,st(IO)::Endianness::Big);
       
       int v1 = 0;
       v1 = (array[0]<<24)|(array[1]<<16)|(array[2]<<8)|(array[3]);
@@ -83,10 +83,10 @@ void testReadBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteRingArray ringArray = createByteRingArray(32);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteRingArray ringArray = ByteRingArray::New(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Big);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray,st(IO)::Endianness::Big);
       
       long v1 = 0;
       v1 = (long)array[7]|((long)array[6]<<8)|((long)array[5]<<16)|((long)array[4]<<24)|((long)array[3]<<32)|((long)array[2]<<40)|((long)array[1]<<48)|((long)array[0]<<56);
@@ -100,10 +100,10 @@ void testReadBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteRingArray ringArray = createByteRingArray(32);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteRingArray ringArray = ByteRingArray::New(32);
       ringArray->push(testData);
-      ByteRingArrayReader reader = createByteRingArrayReader(ringArray,st(IO)::Endianness::Big);
+      ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray,st(IO)::Endianness::Big);
      
       for(int i = 0;i<8;i++) {
         byte v = 0;

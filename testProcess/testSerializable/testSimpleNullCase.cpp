@@ -26,21 +26,21 @@ public:
 };
 
 void testOrpcSimpleNullCase() {
-  MyTestNullMember data1 = createMyTestNullMember();
+  MyTestNullMember data1 = MyTestNullMember::New();
   data1->m1 = "this is m1";
   data1->m2 = 100;
 
 
-  MyTestNullMember data2 = createMyTestNullMember();
+  MyTestNullMember data2 = MyTestNullMember::New();
   data2->m2 = 12;
 
-  MyNullMembers members = createMyNullMembers();
+  MyNullMembers members = MyNullMembers::New();
   members->m1 = data1;
   members->m2 = data2;
 
   ByteArray data = members->serialize();
 
-  MyNullMembers newMembers = createMyNullMembers();
+  MyNullMembers newMembers = MyNullMembers::New();
   newMembers->deserialize(data);
 
   //printf("data1 m1 is %s,m2 is %d \n",newMembers->m1->m1->toChars(),newMembers->m1->m2);

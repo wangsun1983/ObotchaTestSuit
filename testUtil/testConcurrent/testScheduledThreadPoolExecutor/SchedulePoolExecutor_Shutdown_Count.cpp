@@ -53,20 +53,20 @@ public:
     }
 	
 private:
-	Mutex m = createMutex();
+	Mutex m = Mutex::New();
 	int status = 0;
 };
 
 void testShutdownCount() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
 	
 	for(int i = 0;i<32*1024;i++) {
-      pool->schedule(30000,createScheduleShutDownTask());
+      pool->schedule(30000,ScheduleShutDownTask::New());
     }
     usleep(1000*100);
 

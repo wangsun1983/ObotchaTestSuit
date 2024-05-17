@@ -109,14 +109,14 @@ private:
 int testMutexNormal() {
     //Mutex()
     while(1) {
-        Mutex mutex = createMutex();
+        Mutex mutex = Mutex::New();
         TEST_OK("[TestMutex Test {construct()} case1]");
         break;
     }
 
     //Mutex(String)
     while(1) {
-        Mutex mutex = createMutex("test");
+        Mutex mutex = Mutex::New("test");
         if(!mutex->getName()->sameAs("test")) {
             TEST_FAIL("[TestMutex Test {construct(String)} case1]");
             break;
@@ -128,13 +128,13 @@ int testMutexNormal() {
 
     //lock()
     while(1) {
-        Mutex mutex = createMutex("test");
-        Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
+        Mutex mutex = Mutex::New("test");
+        Thread mThread1 = Thread::New(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
         long current = st(System)::CurrentTimeMillis();
         sleep(1);
 
-        Thread mThread2 = createThread(createMyRun2(mutex));
+        Thread mThread2 = Thread::New(createMyRun2(mutex));
         mThread2->start();
         mThread2->join();
         int v = st(System)::CurrentTimeMillis() - current;
@@ -150,12 +150,12 @@ int testMutexNormal() {
 #if 0
     //lock(long)
     while(1) {
-        Mutex mutex = createMutex("test");
-        Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
+        Mutex mutex = Mutex::New("test");
+        Thread mThread1 = Thread::New(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
         sleep(1);
         long current = st(System)::CurrentTimeMillis();
-        Thread mThread2 = createThread(createMyRun3(mutex));
+        Thread mThread2 = Thread::New(createMyRun3(mutex));
         mThread2->start();
         int v = st(System)::CurrentTimeMillis() - current;
         if(v > 2005) {
@@ -170,7 +170,7 @@ int testMutexNormal() {
 
     //unlock()
     while(1) {
-        Mutex t = createMutex();
+        Mutex t = Mutex::New();
 		try {
 			int ret = t->unlock();
 			TEST_FAIL("[TestMutex Test {unlock()} case1],ret is %d",ret);
@@ -181,12 +181,12 @@ int testMutexNormal() {
 
     //tryLock()
     while(1) {
-        Mutex mutex = createMutex("test");
-        Thread mThread1 = createThread(createMyRun1(mutex));//new Thread(new Thread1(mutex));
+        Mutex mutex = Mutex::New("test");
+        Thread mThread1 = Thread::New(createMyRun1(mutex));//new Thread(new Thread1(mutex));
         mThread1->start();
         sleep(1);
         long current = st(System)::CurrentTimeMillis();
-        Thread mThread2 = createThread(createMyRun4(mutex));
+        Thread mThread2 = Thread::New(createMyRun4(mutex));
         mThread2->start();
         mThread2->join();
 

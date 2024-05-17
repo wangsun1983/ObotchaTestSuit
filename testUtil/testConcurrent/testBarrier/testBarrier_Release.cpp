@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testBarrierRelease() {
   while(1) {
-    Barrier barrier1 = createBarrier(3);
-    Thread t1 = createThread([&barrier1]{
-      auto watch = createTimeWatcher();
+    Barrier barrier1 = Barrier::New(3);
+    Thread t1 = Thread::New([&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await();
       auto l = watch->stop();
@@ -24,8 +24,8 @@ void testBarrierRelease() {
       }
     });
 
-    Thread t2 = createThread([&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t2 = Thread::New([&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await();
       auto l = watch->stop();
@@ -38,7 +38,7 @@ void testBarrierRelease() {
     t2->start();
 
     usleep(1000*100);
-    Thread t3 = createThread([&barrier1]{
+    Thread t3 = Thread::New([&barrier1]{
       barrier1->release();
     });
     t3->start();
@@ -50,9 +50,9 @@ void testBarrierRelease() {
   }
 
   while(1) {
-    Barrier barrier1 = createBarrier(3);
-    Thread t1 = createThread([&barrier1]{
-      auto watch = createTimeWatcher();
+    Barrier barrier1 = Barrier::New(3);
+    Thread t1 = Thread::New([&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(1000);
       auto l = watch->stop();
@@ -61,8 +61,8 @@ void testBarrierRelease() {
       }
     });
 
-    Thread t2 = createThread([&barrier1]{
-      auto watch = createTimeWatcher();
+    Thread t2 = Thread::New([&barrier1]{
+      auto watch = TimeWatcher::New();
       watch->start();
       barrier1->await(1000);
       auto l = watch->stop();
@@ -75,7 +75,7 @@ void testBarrierRelease() {
     t2->start();
 
     usleep(1000*100);
-    Thread t3 = createThread([&barrier1]{
+    Thread t3 = Thread::New([&barrier1]{
       barrier1->release();
     });
     t3->start();
@@ -87,9 +87,9 @@ void testBarrierRelease() {
   }
   
   while(1) {
-	  Barrier b = createBarrier(5);
-	  Thread t1 = createThread([&]{
-		TimeWatcher w = createTimeWatcher();
+	  Barrier b = Barrier::New(5);
+	  Thread t1 = Thread::New([&]{
+		TimeWatcher w = TimeWatcher::New();
 		w->start();
 		b->await();
 		auto ret = w->stop();
@@ -98,8 +98,8 @@ void testBarrierRelease() {
 		}
 	  });
 	  
-	  Thread t2 = createThread([&]{
-	  	TimeWatcher w = createTimeWatcher();
+	  Thread t2 = Thread::New([&]{
+	  	TimeWatcher w = TimeWatcher::New();
 	  	w->start();
 	  	b->await();
 	  	auto ret = w->stop();

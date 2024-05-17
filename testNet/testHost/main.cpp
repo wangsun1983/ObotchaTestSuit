@@ -14,13 +14,13 @@
 using namespace obotcha;
 
 int main() {
-  Host host = createHost();
+  Host host = Host::New();
   ArrayList<HostAddress> address = host->getAddresses();
   auto iter = address->getIterator();
   while(iter->hasValue()) {
     HostAddress addr = iter->getValue();
     if(addr->ip == nullptr || addr->ip->size() == 0) {
-      TEST_FAIL("Host test case1");
+      TEST_FAIL("Host test `ase1");
     }
     iter->next();
   }

@@ -10,8 +10,8 @@
 using namespace obotcha;
 
 void testSockAddress() {
-    SockAddress sockAddr = createSockAddress(st(Net)::Family::Ipv4,
-                                         createString("127.1.2.1"),
+    SockAddress sockAddr = SockAddress::New(st(Net)::Family::Ipv4,
+                                         String::New("127.1.2.1"),
                                          12);
     if(sockAddr->port() != 12) {
       TEST_FAIL("InetAddress sockAddress case1,port is %d",sockAddr->port());
@@ -23,7 +23,7 @@ void testSockAddress() {
 
     FetchRet(size,addr) = sockAddr->get();
 
-    String ip = createString(inet_ntoa(((sockaddr_in *)addr)->sin_addr));
+    String ip = String::New(inet_ntoa(((sockaddr_in *)addr)->sin_addr));
     if(!ip->sameAs("127.1.2.1")) {
       TEST_FAIL("InetAddress sockAddress case4");
     }

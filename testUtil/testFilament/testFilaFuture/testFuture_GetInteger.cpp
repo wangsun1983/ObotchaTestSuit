@@ -11,21 +11,21 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch sleepLatch = createCountDownLatch(1);
+CountDownLatch sleepLatch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyFutureTask) IMPLEMENTS(Filament){
 public:
     void run() {
       usleep(1000*100);
-      st(FilaExecutorResult)::Set(createInteger(100));
+      st(FilaExecutorResult)::Set(Integer::New(100));
     }
 };
 
 void testFutureGetInteger() {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
-    TimeWatcher watcher = createTimeWatcher();
-    FilaFuture f = croutine->submit(createMyFutureTask());
+    TimeWatcher watcher = TimeWatcher::New();
+    FilaFuture f = croutine->submit(MyFutureTask::New());
     watcher->start();
     Integer v = f->getResult<Integer>();
     long ret = watcher->stop();

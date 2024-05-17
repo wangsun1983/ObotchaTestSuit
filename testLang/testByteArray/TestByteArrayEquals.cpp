@@ -15,12 +15,12 @@ using namespace obotcha;
 void testByteArrayEquals() {
 
   while(1) {
-    ByteArray d1 = createByteArray(16);
+    ByteArray d1 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       d1[i] = i;
     }
 
-    ByteArray d2 = createByteArray(16);
+    ByteArray d2 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       d2[i] = i;
     }
@@ -32,12 +32,12 @@ void testByteArrayEquals() {
   }
 
   while(1) {
-    ByteArray d1 = createByteArray(16);
+    ByteArray d1 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       d1[i] = i;
     }
 
-    ByteArray d2 = createByteArray(16);
+    ByteArray d2 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       d2[i] = i+1;
     }
@@ -49,7 +49,7 @@ void testByteArrayEquals() {
   }
 
   while(1) {
-    ByteArray d1 = createByteArray(16);
+    ByteArray d1 = ByteArray::New(16);
     for(int i = 0;i<16;i++) {
       d1[i] = i;
     }

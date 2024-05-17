@@ -30,22 +30,22 @@ public:
 
 void testArrayListLong() {
     while(1) {
-      ArrayList<Long> list = createArrayList<Long>();
-      list->add(createLong(1));
-      list->add(createLong(2));
-      list->add(createLong(3));
-      list->add(createLong(4));
-      list->add(createLong(5));
+      ArrayList<Long> list = ArrayList<Long>::New();
+      list->add(Long::New(1));
+      list->add(Long::New(2));
+      list->add(Long::New(3));
+      list->add(Long::New(4));
+      list->add(Long::New(5));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Long_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Long_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Long_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Long_test1.json"));
       JsonValue value2 = reader->get();
 
-      ArrayList<Long> list2 = createArrayList<Long>();
+      ArrayList<Long> list2 = ArrayList<Long>::New();
       value2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -65,31 +65,31 @@ void testArrayListLong() {
     }
 
     while(1) {
-      LongList2 list = createLongList2();
-      list->list1 = createArrayList<Long>();
-      list->list2 = createArrayList<Long>();
+      LongList2 list = LongList2::New();
+      list->list1 = ArrayList<Long>::New();
+      list->list2 = ArrayList<Long>::New();
 
-      list->list1->add(createLong(1));
-      list->list1->add(createLong(2));
-      list->list1->add(createLong(3));
-      list->list1->add(createLong(4));
-      list->list1->add(createLong(5));
+      list->list1->add(Long::New(1));
+      list->list1->add(Long::New(2));
+      list->list1->add(Long::New(3));
+      list->list1->add(Long::New(4));
+      list->list1->add(Long::New(5));
 
-      list->list2->add(createLong(6));
-      list->list2->add(createLong(7));
-      list->list2->add(createLong(8));
-      list->list2->add(createLong(9));
-      list->list2->add(createLong(10));
+      list->list2->add(Long::New(6));
+      list->list2->add(Long::New(7));
+      list->list2->add(Long::New(8));
+      list->list2->add(Long::New(9));
+      list->list2->add(Long::New(10));
 
-      JsonWriter writer = createJsonWriter("./tmp/list_Long_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/list_Long_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(list);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/list_Long_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/list_Long_test2.json"));
       JsonValue value2 = reader->get();
 
-      LongList2 list2 = createLongList2();
+      LongList2 list2 = LongList2::New();
       value2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

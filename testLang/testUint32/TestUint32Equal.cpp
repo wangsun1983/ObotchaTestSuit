@@ -14,15 +14,15 @@ using namespace obotcha;
 void equaltest() {
 
   while(1) {
-      Uint32 v1 = createUint32(10);
-      Uint32 v2 = createUint32(10);
+      Uint32 v1 = Uint32::New(10);
+      Uint32 v2 = Uint32::New(10);
       if(v1 != v2){
           TEST_FAIL("Uint32 equal test1");
           break;
       }
 
-      Uint32 v3 = createUint32(10);
-      Uint32 v4 = createUint32(11);
+      Uint32 v3 = Uint32::New(10);
+      Uint32 v4 = Uint32::New(11);
       if(v3 == v4){
           TEST_FAIL("Uint32 equal test2");
           break;

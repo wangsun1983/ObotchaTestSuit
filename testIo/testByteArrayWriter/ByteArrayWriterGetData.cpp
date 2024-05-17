@@ -17,8 +17,8 @@ using namespace obotcha;
 
 
 void testGetByteArray() {
-    ByteArray data = createByteArray(5);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(5);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
     writer->write<byte>(1);
     auto ret = writer->getByteArray();
     if(ret->size() != 1 || ret[0] != 0x1) {

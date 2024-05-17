@@ -19,7 +19,7 @@ using namespace obotcha;
 
 
 int main() {
-  Http2RstFrame rst = createHttp2RstFrame();
+  Http2RstFrame rst = Http2RstFrame::New();
   rst->setStreamId(1);
   rst->setErrorCode(5);
   Http2FrameByteArray l = rst->toFrameData();

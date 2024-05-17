@@ -17,8 +17,8 @@ using namespace obotcha;
 
 void testFutureWake() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
-        FilaFuture future = createFilaFuture();
+        FilaRoutine croutine = FilaRoutine::New();
+        FilaFuture future = FilaFuture::New();
         long start = 0;
         long finish = 0;
         croutine->start();
@@ -39,8 +39,8 @@ void testFutureWake() {
     }
 
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
-        FilaFuture future = createFilaFuture();
+        FilaRoutine croutine = FilaRoutine::New();
+        FilaFuture future = FilaFuture::New();
         long start = 0;
         long finish1 = 0;
         long finish2 = 0;
@@ -67,8 +67,8 @@ void testFutureWake() {
     }
     
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
-        FilaFuture future = createFilaFuture();
+        FilaRoutine croutine = FilaRoutine::New();
+        FilaFuture future = FilaFuture::New();
         long start = 0;
         long finish1 = 0;
         long finish2 = 0;

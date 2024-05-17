@@ -22,18 +22,18 @@ int testNotifyInThread() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-			ProcessMutex mu = createProcessMutex("abc1");
-			ProcessCondition cond = createProcessCondition("abc_cond1");
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			ProcessCondition cond = ProcessCondition::New("abc_cond1");
 			usleep(1000*200);
 			cond->notify();
 			return -1;
 	  } else {
 		    usleep(1000*100);
-			ProcessMutex mu = createProcessMutex("abc1");
-			ProcessCondition cond = createProcessCondition("abc_cond1");
-			TimeWatcher w = createTimeWatcher();
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			ProcessCondition cond = ProcessCondition::New("abc_cond1");
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
-			Thread t1 = createThread([&] {
+			Thread t1 = Thread::New([&] {
 				AutoLock l(mu);
 				cond->wait(mu,500);
 				long ret = w->stop();
@@ -49,7 +49,7 @@ int testNotifyInThread() {
 			});
 			t1->start();
 			
-			Thread t2 = createThread([&] {
+			Thread t2 = Thread::New([&] {
 				AutoLock l(mu);
 				cond->wait(mu,500);
 				long ret = w->stop();
@@ -73,16 +73,16 @@ int testNotifyInThread() {
   usleep(1000*500);
   
   while(1) {
-	  ProcessMutex mu = createProcessMutex("abc1");
-	  ProcessCondition cond = createProcessCondition("abc_cond1");
+	  ProcessMutex mu = ProcessMutex::New("abc1");
+	  ProcessCondition cond = ProcessCondition::New("abc_cond1");
 	  
-	  Thread t1 = createThread([&]{
+	  Thread t1 = Thread::New([&]{
 		  usleep(1000*100);
 		  cond->notify();
 	  });
 	  
-	  Thread t2 = createThread([&]{
-	  	TimeWatcher w = createTimeWatcher();
+	  Thread t2 = Thread::New([&]{
+	  	TimeWatcher w = TimeWatcher::New();
 		w->start();
 		AutoLock l(mu);
 		cond->wait(mu);

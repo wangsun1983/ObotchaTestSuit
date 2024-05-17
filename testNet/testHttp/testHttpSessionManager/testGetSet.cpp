@@ -15,7 +15,7 @@ using namespace obotcha;
 void testGetSet() {
   while(1) {
     //auto session = st(HttpSessionManager)::getInstance()->createSession(2);
-    auto session = createHttpSession(1);
+    auto session = HttpSession::New(1);
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000 * 200);
     auto session2 = st(HttpSessionManager)::getInstance()->get(session->getId());
@@ -33,7 +33,7 @@ void testGetSet() {
   
   while(1) {
     //auto session = st(HttpSessionManager)::getInstance()->createSession(2);
-    auto session = createHttpSession(1);
+    auto session = HttpSession::New(1);
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000 * 200);
     auto session2 = st(HttpSessionManager)::getInstance()->get(session->getId());
@@ -51,7 +51,7 @@ void testGetSet() {
   
   while(1) {
     //auto session = st(HttpSessionManager)::getInstance()->createSession(2);
-    auto session = createHttpSession(st(HttpSession)::kInfiniteDuration);
+    auto session = HttpSession::New(st(HttpSession)::kInfiniteDuration);
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000 * 200);
     auto session2 = st(HttpSessionManager)::getInstance()->get(session->getId());
@@ -69,7 +69,7 @@ void testGetSet() {
   
   while(1) {
     //auto session = st(HttpSessionManager)::getInstance()->createSession(2);
-    auto session = createHttpSession();
+    auto session = HttpSession::New();
     st(HttpSessionManager)::getInstance()->add(session);
     usleep(1000*100);
     session->setMaxInactiveInterval(st(HttpSession)::kInfiniteDuration);

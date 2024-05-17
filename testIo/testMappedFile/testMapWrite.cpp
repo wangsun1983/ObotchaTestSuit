@@ -17,20 +17,20 @@ void testMapWrite() {
     //close(fd);
 
     while(1) {
-      File f = createFile("./tmp/write_test.txt");
+      File f = File::New("./tmp/write_test.txt");
       f->createNewFile();
       
-      MappedFile file = createMappedFile("./tmp/write_test.txt",256);
+      MappedFile file = MappedFile::New("./tmp/write_test.txt",256);
       auto stream = file->getOutputStream();
       stream->open();
       const char *v = "hello world,this is a mapped file test";
-      ByteArray data = createByteArray((byte *)v,strlen(v));
+      ByteArray data = ByteArray::New((byte *)v,strlen(v));
       stream->write(data);
       stream->flush();
 
-      MappedFile file2 = createMappedFile("./tmp/write_test.txt",256);
+      MappedFile file2 = MappedFile::New("./tmp/write_test.txt",256);
       auto stream2 = file->getInputStream();
-      ByteArray data2 = createByteArray(256);
+      ByteArray data2 = ByteArray::New(256);
       stream2->read(data2);
       
       if(!data2->toString()->equals(data->toString())) {

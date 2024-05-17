@@ -20,7 +20,7 @@ using namespace obotcha;
 
 void testLinkedList() {
     while(1) {
-      LinkedList<int> list = createLinkedList<int>();
+      LinkedList<int> list = LinkedList<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -40,13 +40,13 @@ void testLinkedList() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
-      list->putLast(createString("a"));
-      list->putLast(createString("b"));
-      list->putLast(createString("c"));
-      list->putLast(createString("d"));
-      list->putLast(createString("e"));
-      list->putLast(createString("f"));
+      LinkedList<String> list = LinkedList<String>::New();
+      list->putLast(String::New("a"));
+      list->putLast(String::New("b"));
+      list->putLast(String::New("c"));
+      list->putLast(String::New("d"));
+      list->putLast(String::New("e"));
+      list->putLast(String::New("f"));
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -61,7 +61,7 @@ void testLinkedList() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;

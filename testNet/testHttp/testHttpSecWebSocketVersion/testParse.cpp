@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSecWebSocketVersion c = createHttpHeaderSecWebSocketVersion();
+    HttpHeaderSecWebSocketVersion c = HttpHeaderSecWebSocketVersion::New();
     c->load(" 13");
     if(c->get() != 13) {
       TEST_FAIL("[HttpHeaderSecWebSocketVersion test Parse case1]");

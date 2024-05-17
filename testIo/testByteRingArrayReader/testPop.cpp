@@ -13,7 +13,7 @@ using namespace obotcha;
 ByteRingArray createStartBiggerThanEnd() {
   //{7,  8,  3,  4,  5,  6}
   //         |end    |start
-  ByteRingArray ringarray = createByteRingArray(6);
+  ByteRingArray ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);
@@ -36,8 +36,8 @@ ByteRingArray createStartBiggerThanEnd() {
 
 void test_pop() {
     //{1,2,3,4,5,6}
-    ByteRingArray ringarray = createByteRingArray(6);
-    ByteArray array = createByteArray(6);
+    ByteRingArray ringarray = ByteRingArray::New(6);
+    ByteArray array = ByteArray::New(6);
     array[0] = 1;
     array[1] = 2;
     array[2] = 3;
@@ -46,7 +46,7 @@ void test_pop() {
     array[5] = 6;
 
     ringarray->push(array);
-    ByteRingArrayReader reader = createByteRingArrayReader(ringarray);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringarray);
 
     byte v = 0;
     reader->readNext(v);
@@ -89,8 +89,8 @@ void test_pop() {
     }
 
     //{7,2,3,4,5,6}
-    ringarray = createByteRingArray(6);
-    array = createByteArray(5);
+    ringarray = ByteRingArray::New(6);
+    array = ByteArray::New(5);
     array[0] = 1;
     array[1] = 2;
     array[2] = 3;
@@ -99,12 +99,12 @@ void test_pop() {
     ringarray->push(array);
     ringarray->pop(1);
 
-    ByteArray array2 = createByteArray(2);
+    ByteArray array2 = ByteArray::New(2);
     array2[0] = 6;
     array2[1] = 7;
     ringarray->push(array2);
     auto status = st(IO)::Reader::Result::HasContent;
-    reader = createByteRingArrayReader(ringarray);
+    reader = ByteRingArrayReader::New(ringarray);
     byte ind = 2;
     while(1) {
         byte value = 0;
@@ -134,7 +134,7 @@ void test_pop() {
     //{7,  8,  3,  4,  5,  6}
     //         |end    |start
     ringarray = createStartBiggerThanEnd();
-    reader = createByteRingArrayReader(ringarray);
+    reader = ByteRingArrayReader::New(ringarray);
     status = st(IO)::Reader::Result::HasContent;
 
     while(status != st(IO)::Reader::Result::NoContent) {

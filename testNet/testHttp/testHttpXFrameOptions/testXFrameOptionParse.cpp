@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testXFrameOptionsParse() {
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("deny");
     if(!options->option->sameAs("deny")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case1] ,option is %s ",options->option->toChars());
@@ -23,7 +23,7 @@ void testXFrameOptionsParse() {
   }
 
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("sameorigin");
     if(!options->option->sameAs("sameorigin")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case2]");
@@ -33,7 +33,7 @@ void testXFrameOptionsParse() {
   }
 
   while(1) {
-    HttpHeaderXFrameOptions options = createHttpHeaderXFrameOptions();
+    HttpHeaderXFrameOptions options = HttpHeaderXFrameOptions::New();
     options->load("allow-from https://example.com/");
     if(!options->option->sameAs("allow-from")) {
       TEST_FAIL("[HttpHeaderXFrameOptions test Parse case3]");

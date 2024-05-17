@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 void testScheduledPoolExecutor_Cancel() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
             ->setMaxPendingTaskNum(32)
             ->newScheduledThreadPool();
 

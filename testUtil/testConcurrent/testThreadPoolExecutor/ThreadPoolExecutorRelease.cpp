@@ -15,7 +15,7 @@
 
 using namespace obotcha;
 
-Mutex numMutex = createMutex();
+Mutex numMutex = Mutex::New();
 int releaseCount;
 
 DECLARE_CLASS(ReleaseunTest1) IMPLEMENTS(Runnable) {
@@ -46,9 +46,9 @@ public:
 void releaseTest() {
     while(1) {
         {
-            ThreadPoolExecutor pool = createExecutorBuilder()->setMaxPendingTaskNum(50)->setDefaultThreadNum(8)->newThreadPool();//st(Executors)::newFixedThreadPool(50,8);
+            ThreadPoolExecutor pool = ExecutorBuilder::New()->setMaxPendingTaskNum(50)->setDefaultThreadNum(8)->newThreadPool();//st(Executors)::newFixedThreadPool(50,8);
             for(int i = 0;i<50;i++) {
-                pool->submit(createReleaseunTest1());
+                pool->submit(ReleaseunTest1::New());
             }
 
             pool->shutdown();

@@ -98,7 +98,7 @@ void testIntegerParse() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-      int v = st(Integer)::ParseDecString(createString(i))->toValue();
+      int v = st(Integer)::ParseDecString(String::New(i))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test1-------[FAIL],index is %d,v is %d \n",i,v);
           TEST_FAIL("Integer testIntegerParse test1");
@@ -107,7 +107,7 @@ void testIntegerParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Integer)::ParseHexString(createString(HexTable[i]))->toValue();
+      int v = st(Integer)::ParseHexString(String::New(HexTable[i]))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test2-------[FAIL],index is %d,v is %d \n",i,v);
           TEST_FAIL("Integer testIntegerParse test2");
@@ -116,7 +116,7 @@ void testIntegerParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      String hexStr = createString(createString(HexTable[i]))->toUpperCase();
+      String hexStr = String::New(String::New(HexTable[i]))->toUpperCase();
       int v = st(Integer)::ParseHexString(hexStr)->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test2-------[FAIL],index is %d,v is %d \n",i,v);
@@ -126,7 +126,7 @@ void testIntegerParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Integer)::ParseHexString(createString(HexTable_X[i]))->toValue();
+      int v = st(Integer)::ParseHexString(String::New(HexTable_X[i]))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test3-------[FAIL],index is %d,v is %d \n",i,v);
           TEST_FAIL("Integer testIntegerParse test4");
@@ -135,7 +135,7 @@ void testIntegerParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Integer)::ParseOctString(createString(OctTable[i]))->toValue();
+      int v = st(Integer)::ParseOctString(String::New(OctTable[i]))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test4-------[FAIL],index is %d,v is %d,str is %s\n",i,v,OctTable[i].c_str());
           TEST_FAIL("Integer testIntegerParse test5,v is %d,i is %d",v,i);
@@ -144,7 +144,7 @@ void testIntegerParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Integer)::ParseBinaryString(createString(BinaryTable[i]))->toValue();
+      int v = st(Integer)::ParseBinaryString(String::New(BinaryTable[i]))->toValue();
       if(v != i) {
           //printf("Integer testIntegerParse test5-------[FAIL],index is %d,v is %d,str is %s \n",i,v,BinaryTable[i].c_str());
           TEST_FAIL("Integer testIntegerParse test6");
@@ -152,7 +152,7 @@ void testIntegerParse() {
       }
 
       for(int i = 0;i < 100;i++) {
-       int v = st(Integer)::ParseBinaryString(createString(BinaryTable_2[i]))->toValue();
+       int v = st(Integer)::ParseBinaryString(String::New(BinaryTable_2[i]))->toValue();
        if(v != i) {
            //printf("Integer testIntegerParse test5-------[FAIL],index is %d,v is %d,str is %s \n",i,v,BinaryTable[i].c_str());
            TEST_FAIL("Integer testIntegerParse test7");

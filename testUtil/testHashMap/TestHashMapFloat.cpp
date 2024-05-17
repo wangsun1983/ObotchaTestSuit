@@ -18,9 +18,9 @@ void testHashMapFloat() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<Float,TT5> map = createHashMap<Float,TT5>();
-        Float tag = createFloat(1);
-        TT5 tt = createTT5();
+        HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
+        Float tag = Float::New(1);
+        TT5 tt = TT5::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -34,7 +34,7 @@ void testHashMapFloat() {
           break;
         }
 
-        map->put(createFloat(2),nullptr);
+        map->put(Float::New(2),nullptr);
         if(map->size() != 2) {
           TEST_FAIL("[HashMap Float Test {put(T t,U u)/get(T t)} case3]");
           break;
@@ -52,14 +52,14 @@ void testHashMapFloat() {
 
     //void remove(T t)
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
-      Float tag = createFloat(1);
-      TT5 tt = createTT5();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
+      Float tag = Float::New(1);
+      TT5 tt = TT5::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createFloat(1));
+      map->remove(Float::New(1));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap Float Test {remove(T t)} case1]");
         break;
@@ -73,7 +73,7 @@ void testHashMapFloat() {
         break;
       }
 
-      map->remove(createFloat(1));
+      map->remove(Float::New(1));
       if(map->size() != 0) {
         TEST_FAIL("[HashMap Float Test {remove(T t)} case3]");
         break;
@@ -85,9 +85,9 @@ void testHashMapFloat() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
-      Float tag = createFloat(1);
-      TT5 tt = createTT5();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
+      Float tag = Float::New(1);
+      TT5 tt = TT5::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -96,7 +96,7 @@ void testHashMapFloat() {
         break;
       }
 
-      map->remove(createFloat(1));
+      map->remove(Float::New(1));
       if(!map->isEmpty()) {
         TEST_FAIL("[HashMap Float Test {isEmpty()} case2]");
         break;
@@ -108,12 +108,12 @@ void testHashMapFloat() {
 
     //void clear()
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
-      Float tag = createFloat(1);
-      TT5 tt = createTT5();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
+      Float tag = Float::New(1);
+      TT5 tt = TT5::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createFloat(2),tt);
+      map->put(Float::New(2),tt);
 
       int size = map->size();
       map->clear();
@@ -122,7 +122,7 @@ void testHashMapFloat() {
         break;
       }
 
-      HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map2 = HashMap<Float,TT5>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Float Test {clear()} case2]");
@@ -135,12 +135,12 @@ void testHashMapFloat() {
 
     //int size()
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
-      Float tag = createFloat(1);
-      TT5 tt = createTT5();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
+      Float tag = Float::New(1);
+      TT5 tt = TT5::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createFloat(2),tt);
+      map->put(Float::New(2),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap Float Test {size()} case1]");
         break;
@@ -152,11 +152,11 @@ void testHashMapFloat() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
       for(int index = 0;index < 100;index++) {
-        TT5 tt = createTT5();
+        TT5 tt = TT5::New();
         tt->i = index;
-        map->put(createFloat(index),tt);
+        map->put(Float::New(index),tt);
       }
 
       ArrayList<Float> keys = map->keySet();
@@ -175,7 +175,7 @@ void testHashMapFloat() {
         }
       }
 
-      HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map2 = HashMap<Float,TT5>::New();
       ArrayList<Float>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Float Test {keySet()} case3]");
@@ -188,24 +188,24 @@ void testHashMapFloat() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
       for(int index = 0;index < 100;index++) {
-        TT5 tt = createTT5();
+        TT5 tt = TT5::New();
         tt->i = index;
-        map->put(createFloat(index),tt);
+        map->put(Float::New(index),tt);
       }
 
       ArrayList<TT5> keys = map->entrySet();
       int size = keys->size();
       for(int index = 0;index < size;index++) {
         TT5 key1 = keys->get(index);
-        if(map->get(createFloat(key1->i)) == nullptr) {
+        if(map->get(Float::New(key1->i)) == nullptr) {
           TEST_FAIL("[HashMap Float Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<Float,TT5> map2 = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map2 = HashMap<Float,TT5>::New();
       ArrayList<TT5>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Float Test {entrySet()} case2]");
@@ -219,11 +219,11 @@ void testHashMapFloat() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<Float,TT5> map = createHashMap<Float,TT5>();
+      HashMap<Float,TT5> map = HashMap<Float,TT5>::New();
       for(int index = 0;index < 100;index++) {
-        TT5 tt = createTT5();
+        TT5 tt = TT5::New();
         tt->i = index;
-        map->put(createFloat(index),tt);
+        map->put(Float::New(index),tt);
       }
 
       int index = 0;

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
+    HttpHeaderClearSiteData c = HttpHeaderClearSiteData::New();
     c->load("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
     if(!c->toString()->sameAs("\"cache\",\"cookies\",\"executionContexts\",\"storage\"")){
       TEST_FAIL("[HttpHeaderClearSiteData test toString case1],str is %s",c->toString()->toChars());
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
+    HttpHeaderClearSiteData c = HttpHeaderClearSiteData::New();
     c->setCache(true);
     c->setCookies(true);
     c->setExecutionContexts(true);

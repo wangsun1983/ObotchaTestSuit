@@ -14,7 +14,7 @@ void testByteRingArrayPopWithParam() {
 
   //
   while(1) {
-    ByteRingArray array = createByteRingArray(5);
+    ByteRingArray array = ByteRingArray::New(5);
     array->push(1);
     array->push(2);
     array->push(3);
@@ -22,7 +22,7 @@ void testByteRingArrayPopWithParam() {
     array->push(5);
 
     //
-    ByteRingArray arr1 = createByteRingArray(array);
+    ByteRingArray arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(5);
 
@@ -94,7 +94,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(5);
 
@@ -154,7 +154,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(5);
 
@@ -226,7 +226,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(5);
 
@@ -298,7 +298,7 @@ void testByteRingArrayPopWithParam() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(5);
 

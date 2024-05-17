@@ -25,16 +25,16 @@ public:
 
 void testArrayList_removeList() {
   while(1) {
-    TestRemoveData d1 = createTestRemoveData(1,2);
-    TestRemoveData d2 = createTestRemoveData(3,4);
-    TestRemoveData d3 = createTestRemoveData(5,6);
+    TestRemoveData d1 = TestRemoveData::New(1,2);
+    TestRemoveData d2 = TestRemoveData::New(3,4);
+    TestRemoveData d3 = TestRemoveData::New(5,6);
 
-    ArrayList<TestRemoveData> list = createArrayList<TestRemoveData>();
+    ArrayList<TestRemoveData> list = ArrayList<TestRemoveData>::New();
     list->add(d1);
     list->add(d2);
     list->add(d3);
 
-    ArrayList<TestRemoveData> list2 = createArrayList<TestRemoveData>();
+    ArrayList<TestRemoveData> list2 = ArrayList<TestRemoveData>::New();
     list2->add(d2);
     list2->add(d1);
 
@@ -51,17 +51,17 @@ void testArrayList_removeList() {
   }
 
   while(1) {
-    TestRemoveData d1 = createTestRemoveData(1,2);
-    TestRemoveData d2 = createTestRemoveData(3,4);
-    TestRemoveData d3 = createTestRemoveData(5,6);
+    TestRemoveData d1 = TestRemoveData::New(1,2);
+    TestRemoveData d2 = TestRemoveData::New(3,4);
+    TestRemoveData d3 = TestRemoveData::New(5,6);
 
-    ArrayList<TestRemoveData> list = createArrayList<TestRemoveData>();
+    ArrayList<TestRemoveData> list = ArrayList<TestRemoveData>::New();
     list->add(d1);
     list->add(d2);
     list->add(d3);
 
-    TestRemoveData d4 = createTestRemoveData(88,88);
-    ArrayList<TestRemoveData> list2 = createArrayList<TestRemoveData>();
+    TestRemoveData d4 = TestRemoveData::New(88,88);
+    ArrayList<TestRemoveData> list2 = ArrayList<TestRemoveData>::New();
     list2->add(d4);
     list->removeAll(list2);
 
@@ -72,12 +72,12 @@ void testArrayList_removeList() {
   }
 
   while(1) {
-    TestRemoveData d1 = createTestRemoveData(1,2);
+    TestRemoveData d1 = TestRemoveData::New(1,2);
 
-    ArrayList<TestRemoveData> list = createArrayList<TestRemoveData>();
+    ArrayList<TestRemoveData> list = ArrayList<TestRemoveData>::New();
     list->add(d1);
 
-    ArrayList<TestRemoveData> list2 = createArrayList<TestRemoveData>();
+    ArrayList<TestRemoveData> list2 = ArrayList<TestRemoveData>::New();
     list2->add(d1);
     list2->add(d1);
 

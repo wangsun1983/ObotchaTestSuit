@@ -32,27 +32,27 @@ public:
 
 void testSaveFile() {
     
-    SaveData d = createSaveData();
+    SaveData d = SaveData::New();
     d->member1 = 12;
     d->member2 = true;
     d->member2_1 = false;
     
-    d->member3 = createString("hello hello");
+    d->member3 = String::New("hello hello");
 
-    d->member4 = createSaveDataMember();
+    d->member4 = SaveDataMember::New();
     d->member4->data1 =22;
-    d->member4->data2 = createString("world world");
+    d->member4->data2 = String::New("world world");
 
-    IniValue v = createIniValue();
+    IniValue v = IniValue::New();
     v->importFrom(d);
 
-    IniWriter w = createIniWriter(createFile("./tmp/save.ini"));
+    IniWriter w = IniWriter::New(File::New("./tmp/save.ini"));
     w->write(v);
 
-    IniReader reader = createIniReader()->loadFile(createFile("./tmp/save.ini"));
+    IniReader reader = IniReader::New()->loadFile(File::New("./tmp/save.ini"));
     auto v2 = reader->get();
 
-    SaveData d2 = createSaveData();
+    SaveData d2 = SaveData::New();
     v2->reflectTo(d2);
 
     if(d->member1 != d2->member1) {

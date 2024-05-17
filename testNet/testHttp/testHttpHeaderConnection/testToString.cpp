@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testConnectionToString() {
   while(1) {
-    HttpHeaderConnection connection = createHttpHeaderConnection();
+    HttpHeaderConnection connection = HttpHeaderConnection::New();
     connection->load(" keep-alive");
     if(!connection->toString()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test toString case1]");
@@ -21,7 +21,7 @@ void testConnectionToString() {
   }
   
   while(1) {
-    HttpHeaderConnection connection = createHttpHeaderConnection();
+    HttpHeaderConnection connection = HttpHeaderConnection::New();
     connection->set(" keep-alive");
     if(!connection->toString()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test toString case2]");

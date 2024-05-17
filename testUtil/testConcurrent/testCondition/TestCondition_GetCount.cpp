@@ -15,23 +15,23 @@ using namespace obotcha;
 
 void testConditionGetCount() {
     while(1) {
-      Condition cond = createCondition();
-      Mutex mu = createMutex();
+      Condition cond = Condition::New();
+      Mutex mu = Mutex::New();
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           AutoLock l(mu);
           cond->wait(l);
       });
       t1->start();
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           AutoLock l(mu);
           cond->wait(mu);
       });
       t2->start();
       
       int count_t3 = 0;
-      Thread t3 = createThread([&]{
+      Thread t3 = Thread::New([&]{
           AutoLock l(mu);
           cond->wait(mu,[&]{
             if(count_t3 == 0) {
@@ -44,7 +44,7 @@ void testConditionGetCount() {
       t3->start();
       
       int count_t4 = 0;
-      Thread t4 = createThread([&]{
+      Thread t4 = Thread::New([&]{
           AutoLock l(mu);
           cond->wait(l,[&]{
             if(count_t4 == 0) {
@@ -57,7 +57,7 @@ void testConditionGetCount() {
       t4->start();
       
       int count_t5 = 0;
-      Thread t5= createThread([&]{
+      Thread t5= Thread::New([&]{
           AutoLock l(mu);
           cond->wait(l,0,[&]{
             if(count_t5 == 0) {
@@ -70,7 +70,7 @@ void testConditionGetCount() {
       t5->start();
       
       int count_t6 = 0;
-      Thread t6= createThread([&]{
+      Thread t6= Thread::New([&]{
           AutoLock l(mu);
           cond->wait(mu,0,[&]{
             if(count_t6 == 0) {

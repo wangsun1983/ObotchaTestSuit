@@ -11,10 +11,10 @@
 using namespace obotcha;
 
 void testCountDownLatch_CountDown() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     while(1) {
-      CountDownLatch latch = createCountDownLatch(1);
-      Thread t = createThread([&latch]{
+      CountDownLatch latch = CountDownLatch::New(1);
+      Thread t = Thread::New([&latch]{
         usleep(100*1000);
         latch->countDown();
       });
@@ -30,8 +30,8 @@ void testCountDownLatch_CountDown() {
     }
 
     while(1) {
-      CountDownLatch latch = createCountDownLatch(2);
-      Thread t = createThread([&latch]{
+      CountDownLatch latch = CountDownLatch::New(2);
+      Thread t = Thread::New([&latch]{
         usleep(100*1000);
         latch->countDown();
       });
@@ -47,7 +47,7 @@ void testCountDownLatch_CountDown() {
     }
 
     while(1) {
-      CountDownLatch latch = createCountDownLatch(2);
+      CountDownLatch latch = CountDownLatch::New(2);
       if(latch->countDown() != 0) {
         TEST_FAIL("[TestCountDownLatch CountDown case3]");
         break;

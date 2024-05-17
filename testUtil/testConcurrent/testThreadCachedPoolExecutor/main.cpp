@@ -24,6 +24,7 @@ extern void CachedPoolSubmit_AwaitTermination();
 extern void CachedPoolSubmit_Timeout();
 
 int main() {
+
     normalTest();
     numTest();
     releaseTest();
@@ -35,10 +36,9 @@ int main() {
 
     CachedPoolSubmit_Wait();
     CachedPoolSubmit_ThreadNum();
-    
+    CachedPoolSubmit_AwaitTermination();
     CachedPoolSubmit_Timeout();
 
-    CachedPoolSubmit_AwaitTermination();
 
     //cancelTestOne();
     return 0;

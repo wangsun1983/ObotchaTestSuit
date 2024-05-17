@@ -16,10 +16,10 @@ using namespace std;
 using namespace obotcha;
 
 void testFutureWaitTimeout() {
-	TimeWatcher w = createTimeWatcher();
+	TimeWatcher w = TimeWatcher::New();
 	
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
             st(Fila)::Sleep(200);
@@ -45,7 +45,7 @@ void testFutureWaitTimeout() {
     }
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		int count = 0;
 		croutine->start();
 		FilaFuture future = croutine->submit([]{

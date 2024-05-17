@@ -12,10 +12,10 @@
 using namespace obotcha;
 
 void testBlockingQueueTryTakeFirst() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
         String v = list->tryTakeFirst();
         if(v != nullptr) {
           TEST_FAIL("BlockingQueue tryTakeFirst test1");
@@ -26,7 +26,7 @@ void testBlockingQueueTryTakeFirst() {
     }
 #if 0
     while(1) {
-      BlockingQueue<int> list = createBlockingQueue<int>();
+      BlockingQueue<int> list = BlockingQueue<int>::New();
       bool isException = false;
       try {
         int v = list->tryTakeFirst();
@@ -42,9 +42,9 @@ void testBlockingQueueTryTakeFirst() {
     }
 #endif
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
         String v1 = list->tryTakeFirst();
         String v2 = list->tryTakeFirst();
         String v3 = list->tryTakeFirst();

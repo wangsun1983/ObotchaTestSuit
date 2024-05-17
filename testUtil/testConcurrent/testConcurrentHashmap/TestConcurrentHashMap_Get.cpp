@@ -11,18 +11,18 @@ using namespace obotcha;
 
 void testConcurrentHashMap_Get() {
     while(1) {
-      ConcurrentHashMap<String,String> map = createConcurrentHashMap<String,String>();
-      Thread t1 = createThread([&]{
+      ConcurrentHashMap<String,String> map = ConcurrentHashMap<String,String>::New();
+      Thread t1 = Thread::New([&]{
         map->syncWriteAction([]{
             usleep(200*1000);
         });
       });
 
-      Thread t2 = createThread([&map]{
+      Thread t2 = Thread::New([&map]{
         usleep(100*1000);
-        TimeWatcher watch = createTimeWatcher();
+        TimeWatcher watch = TimeWatcher::New();
         watch->start();
-        map->get(createString("a"));
+        map->get(String::New("a"));
         auto ret = watch->stop();
         if(ret < 95 || ret > 105) {
             TEST_FAIL("ConcurrentHashMap Get case1");

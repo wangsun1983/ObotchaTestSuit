@@ -98,7 +98,7 @@ void testLongParse() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-      int v = st(Long)::ParseDecLong(createString(i))->toValue();
+      int v = st(Long)::ParseDecLong(String::New(i))->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test1");
           break;
@@ -106,7 +106,7 @@ void testLongParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Long)::ParseHexLong(createString(HexTable[i]))->toValue();
+      int v = st(Long)::ParseHexLong(String::New(HexTable[i]))->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test2");
           break;
@@ -114,7 +114,7 @@ void testLongParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      String hexStr = createString(createString(HexTable[i]))->toUpperCase();
+      String hexStr = String::New(String::New(HexTable[i]))->toUpperCase();
       int v = st(Long)::ParseHexLong(hexStr)->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test2");
@@ -123,7 +123,7 @@ void testLongParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Long)::ParseHexLong(createString(HexTable_X[i]))->toValue();
+      int v = st(Long)::ParseHexLong(String::New(HexTable_X[i]))->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test3");
           break;
@@ -131,7 +131,7 @@ void testLongParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Long)::ParseOctLong(createString(OctTable[i]))->toValue();
+      int v = st(Long)::ParseOctLong(String::New(OctTable[i]))->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test4");
           break;
@@ -139,14 +139,14 @@ void testLongParse() {
      }
 
      for(int i = 0;i < 100;i++) {
-      int v = st(Long)::ParseBinaryLong(createString(BinaryTable[i]))->toValue();
+      int v = st(Long)::ParseBinaryLong(String::New(BinaryTable[i]))->toValue();
       if(v != i) {
           TEST_FAIL("Long testLongParse test5");
           break;
       }
 
       for(int i = 0;i < 100;i++) {
-       int v = st(Long)::ParseBinaryLong(createString(BinaryTable_2[i]))->toValue();
+       int v = st(Long)::ParseBinaryLong(String::New(BinaryTable_2[i]))->toValue();
        if(v != i) {
            TEST_FAIL("Long testLongParse test5");
            break;

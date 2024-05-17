@@ -41,7 +41,7 @@ sharelib = -Wl,-rpath=../../../../out/lib/ \
 
 files =
 link =
-libname	= testSpinLock
+libname	= testAutoLock
 
 everything : $(libname)
 

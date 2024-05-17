@@ -17,7 +17,7 @@ void basetest() {
 
   //_Long(long v);
   while(1) {
-      Long v1 = createLong(10);
+      Long v1 = Long::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Long construct test1");
           break;
@@ -29,8 +29,8 @@ void basetest() {
 
   // _Long(Long v);
   while(1) {
-    Long v1 = createLong(11);
-    Long v2 = createLong(v1);
+    Long v1 = Long::New(11);
+    Long v2 = Long::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Long construct test3");
       break;
@@ -38,7 +38,7 @@ void basetest() {
 
     // Long v3;
     // try {
-    //     Long v4 = createLong(v3);
+    //     Long v4 = Long::New(v3);
     //     TEST_FAIL("Long construct test4");
     // } catch(InitializeException e) {}
 
@@ -48,8 +48,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Long v1 = createLong(11);
-    Long v2 = createLong(v1);
+    Long v1 = Long::New(11);
+    Long v2 = Long::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Long toValue test1");
       break;
@@ -61,8 +61,8 @@ void basetest() {
 
   //bool equals(Integer p);
   while(1) {
-    Long v1 = createLong(11);
-    Long v2 = createLong(11);
+    Long v1 = Long::New(11);
+    Long v2 = Long::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Long equals test2");
       break;
@@ -74,7 +74,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Long v1 = createLong(11);
+    Long v1 = Long::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Long equals test4");
       break;
@@ -86,8 +86,8 @@ void basetest() {
 
   //==
   while(1) {
-    Long v1 = createLong(12);
-    Long v2 = createLong(12);
+    Long v1 = Long::New(12);
+    Long v2 = Long::New(12);
     if(v1 != v2) {
       TEST_FAIL("Long [==] test1");
       break;

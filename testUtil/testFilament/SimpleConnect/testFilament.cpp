@@ -13,15 +13,15 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(3);
+CountDownLatch latch = CountDownLatch::New(3);
 
 void doConnect() {
   int port = getEnvPort();
-  InetAddress addr = createInet4Address(port);
-  Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+  InetAddress addr = Inet4Address::New(port);
+  Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
   int ret = client->connect();
   InputStream input = client->getInputStream();
-  ByteArray data = createByteArray(64);
+  ByteArray data = ByteArray::New(64);
   int len = input->read(data);
   if(len != 11) {
     TEST_FAIL("Filament SimpleConnect case1");
@@ -33,7 +33,7 @@ void doConnect() {
 }
 
 int main(void) {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
 
     croutine->execute([] {

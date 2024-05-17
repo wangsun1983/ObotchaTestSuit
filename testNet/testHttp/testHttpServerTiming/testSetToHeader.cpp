@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Server-Timing"),
-                createString("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Server-Timing"),
+                String::New("cache;desc=\"Cache Read\";dur=23.3,db;dur=53, app;dur=47.2"));
     
     auto timing = header->getServerTiming();
     

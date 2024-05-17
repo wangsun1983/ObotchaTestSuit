@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderVia match = createHttpHeaderVia();
+    HttpHeaderVia match = HttpHeaderVia::New();
     match->load("1.1 GWA,1.0 fred, 1.1 p.example.net");
     ArrayList<HttpHeaderViaItem> list = match->get();
     if(list->size() != 3) {
@@ -51,7 +51,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderVia match = createHttpHeaderVia();
+    HttpHeaderVia match = HttpHeaderVia::New();
     match->load("Http/1.1 GWA,1.0 fred, 1.1 p.example.net");
     ArrayList<HttpHeaderViaItem> list = match->get();
     if(list->size() != 3) {

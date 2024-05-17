@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cross-Origin-Embedder-Policy"),createString("unsafe-none"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cross-Origin-Embedder-Policy"),String::New("unsafe-none"));
     auto policy = header->getCrossOriginEmbedderPolicy();
     if(!policy->isUnSafeNone()) {
       TEST_FAIL("[CrossOriginEmbedderPolicy test setToHeader case1]");
@@ -26,8 +26,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cross-Origin-Embedder-Policy"),createString("unsafe-none"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cross-Origin-Embedder-Policy"),String::New("unsafe-none"));
     auto policy = header->getCrossOriginEmbedderPolicy();    
     header->setCrossOriginEmbedderPolicy(policy);
     

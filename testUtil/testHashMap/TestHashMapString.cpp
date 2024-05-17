@@ -18,9 +18,9 @@ void testHashMapString() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<String,TT1> map = createHashMap<String,TT1>();
-        String tag = createString("tag1");
-        TT1 tt = createTT1();
+        HashMap<String,TT1> map = HashMap<String,TT1>::New();
+        String tag = String::New("tag1");
+        TT1 tt = TT1::New();
         tt->i = 100;
         map->put(tag,tt);
 
@@ -51,14 +51,14 @@ void testHashMapString() {
 
     //void remove(T t)
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
-      String tag = createString("tag1");
-      TT1 tt = createTT1();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
+      String tag = String::New("tag1");
+      TT1 tt = TT1::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createString("tag1"));
+      map->remove(String::New("tag1"));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap String Test {remove(T t)} case1]");
         break;
@@ -84,9 +84,9 @@ void testHashMapString() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
-      String tag = createString("tag1");
-      TT1 tt = createTT1();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
+      String tag = String::New("tag1");
+      TT1 tt = TT1::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -107,12 +107,12 @@ void testHashMapString() {
 
     //void clear()
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
-      String tag = createString("tag1");
-      TT1 tt = createTT1();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
+      String tag = String::New("tag1");
+      TT1 tt = TT1::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createString("tag2"),tt);
+      map->put(String::New("tag2"),tt);
 
       int size = map->size();
       map->clear();
@@ -121,7 +121,7 @@ void testHashMapString() {
         break;
       }
 
-      HashMap<String,TT1> map2 = createHashMap<String,TT1>();
+      HashMap<String,TT1> map2 = HashMap<String,TT1>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap String Test {clear()} case2]");
@@ -134,12 +134,12 @@ void testHashMapString() {
 
     //int size()
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
-      String tag = createString("tag1");
-      TT1 tt = createTT1();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
+      String tag = String::New("tag1");
+      TT1 tt = TT1::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createString("tag2"),tt);
+      map->put(String::New("tag2"),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap String Test {size()} case1]");
         break;
@@ -151,12 +151,12 @@ void testHashMapString() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
       for(int index = 0;index < 100;index++) {
-        TT1 tt = createTT1();
+        TT1 tt = TT1::New();
         tt->i = index;
         //TEST_FAIL("put index is %d ",index);
-        map->put(createString(index),tt);
+        map->put(String::New(index),tt);
       }
 
       ArrayList<String> keys = map->keySet();
@@ -175,7 +175,7 @@ void testHashMapString() {
         }
       }
 
-      HashMap<String,TT1> map2 = createHashMap<String,TT1>();
+      HashMap<String,TT1> map2 = HashMap<String,TT1>::New();
       ArrayList<String>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap String Test {keySet()} case3]");
@@ -188,24 +188,24 @@ void testHashMapString() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
       for(int index = 0;index < 100;index++) {
-        TT1 tt = createTT1();
+        TT1 tt = TT1::New();
         tt->i = index;
-        map->put(createString(index),tt);
+        map->put(String::New(index),tt);
       }
 
       ArrayList<TT1> keys = map->entrySet();
       int size = keys->size();
       for(int index = 0;index < size;index++) {
         TT1 key1 = keys->get(index);
-        if(map->get(createString(key1->i)) == nullptr) {
+        if(map->get(String::New(key1->i)) == nullptr) {
           TEST_FAIL("[HashMap String Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<String,TT1> map2 = createHashMap<String,TT1>();
+      HashMap<String,TT1> map2 = HashMap<String,TT1>::New();
       ArrayList<TT1>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap String Test {entrySet()} case2]");
@@ -219,11 +219,11 @@ void testHashMapString() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<String,TT1> map = createHashMap<String,TT1>();
+      HashMap<String,TT1> map = HashMap<String,TT1>::New();
       for(int index = 0;index < 100;index++) {
-        TT1 tt = createTT1();
+        TT1 tt = TT1::New();
         tt->i = index;
-        map->put(createString(index),tt);
+        map->put(String::New(index),tt);
       }
 
       int index = 0;

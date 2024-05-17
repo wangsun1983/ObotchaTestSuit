@@ -19,27 +19,28 @@ using namespace obotcha;
 
 void testAsyncOutputChannel() {
 
-    ArrayList<AsyncOutputChannel> list = createArrayList<AsyncOutputChannel>();
-    AsyncOutputChannelPool pool = createAsyncOutputChannelPool();
+    ArrayList<AsyncOutputChannel> list = ArrayList<AsyncOutputChannel>::New();
+    AsyncOutputChannelPool pool = AsyncOutputChannelPool::New();
     for(int i = 1024;i < 1024*5;i++) {
-        FileDescriptor fd = createFileDescriptor(i);
-        auto c = pool->createChannel(fd,nullptr);
+        FileDescriptor fd = FileDescriptor::New(i);
+        auto c = st(AsyncOutputChannelPool)::CreateChannel(fd,nullptr);
         list->add(c);
+        pool->add(c);
     }
     
-    // if(pool->isEmpty()) {
-    //     TEST_FAIL("testAsyncOutputChannel close channel case1");
-    // }
+    if(pool->isEmpty()) {
+        TEST_FAIL("testAsyncOutputChannel close channel case1");
+    }
     
     usleep(1000*50);
     ForEveryOne(c,list) {
         c->close();
     }
     
-    // usleep(1000*300);
-    // if(!pool->isEmpty()) {
-    //     TEST_FAIL("testAsyncOutputChannel close channel case2,size is %d",pool->size());
-    // }
+    usleep(1000*300);
+    if(!pool->isEmpty()) {
+        TEST_FAIL("testAsyncOutputChannel close channel case2,size is %d",pool->size());
+    }
     
     TEST_OK("testAsyncOutputChannel close channel case100");
 }

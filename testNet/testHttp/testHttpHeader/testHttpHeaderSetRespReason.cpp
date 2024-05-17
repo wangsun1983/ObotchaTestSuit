@@ -17,13 +17,13 @@ using namespace obotcha;
 
 void testResponseReason() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    auto ret = header->setResponseReason(createString("abc"));
+    HttpHeader header = HttpHeader::New();
+    auto ret = header->setResponseReason(String::New("abc"));
     if(ret) {
         TEST_FAIL("[HttpHeader test Response Reason case1]");
     }
     
-    ret = header->setResponseReason(createString(" length required "));
+    ret = header->setResponseReason(String::New(" length required "));
     if(!ret) {
         TEST_FAIL("[HttpHeader test Response Reason case2]");
     }

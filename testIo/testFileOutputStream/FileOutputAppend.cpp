@@ -13,15 +13,15 @@ void fileoutput_append_test() {
 
     //bool _FileOutputStream::write(char c)
     while(1) {
-        File file = createFile("./tmp/output_append_test.txt");
+        File file = File::New("./tmp/output_append_test.txt");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write('a');
         stream->flush();
         stream->close();
 
-        FileOutputStream stream2 = createFileOutputStream(file);
+        FileOutputStream stream2 = FileOutputStream::New(file);
         stream2->open(st(IO)::FileControlFlags::Append);
         stream2->write('b');
         stream2->flush();
@@ -32,7 +32,7 @@ void fileoutput_append_test() {
             break;
         }
 
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content = inputstream->readAll();
         if(content == nullptr || content->size() != 2 ||content->at(0) != 'a' || content->at(1) != 'b') {
@@ -48,17 +48,17 @@ void fileoutput_append_test() {
     
     
     while(1) {
-        File file = createFile("./tmp/output_append_test3.txt");
-        String content1 = createString("this i a");
+        File file = File::New("./tmp/output_append_test3.txt");
+        String content1 = String::New("this i a");
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
         stream->write(content1->toByteArray());
         stream->flush();
         stream->close();
     
-        FileOutputStream stream2 = createFileOutputStream(file);
-        String content2 = createString("this i b");
+        FileOutputStream stream2 = FileOutputStream::New(file);
+        String content2 = String::New("this i b");
         stream2->open(st(IO)::FileControlFlags::Append);
         stream2->write(content2->toByteArray());
         stream2->flush();
@@ -69,7 +69,7 @@ void fileoutput_append_test() {
             break;
         }
     
-        FileInputStream inputstream = createFileInputStream(file);
+        FileInputStream inputstream = FileInputStream::New(file);
         inputstream->open();
         ByteArray content3 = inputstream->readAll();
         String mystr = content3->toString();
@@ -80,17 +80,17 @@ void fileoutput_append_test() {
         }
         inputstream->close();
         
-        FileOutputStream stream3 = createFileOutputStream(file);
-        String str = createString("this i c");
+        FileOutputStream stream3 = FileOutputStream::New(file);
+        String str = String::New("this i c");
         stream3->open(st(IO)::FileControlFlags::Trunc);
         stream3->write(str->toByteArray());
         stream3->flush();
         stream3->close();
         
-        inputstream = createFileInputStream(file);
+        inputstream = FileInputStream::New(file);
         inputstream->open();
         content3 = inputstream->readAll();
-        auto data = content3->toString();
+        String data = content3->toString();
         if(content3 == nullptr || content3->size() != 8 ||
             !data->sameAs("this i c")) {
             TEST_FAIL("[TestFileOutputStream Test {open(Append)} case6]");

@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Accept"),
-                createString("text/html"));
+    auto header = HttpHeader::New();
+    header->set(String::New("Accept"),
+                String::New("text/html"));
     auto encoding1 = header->getAccept();
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
@@ -32,9 +32,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Accept"),
-                createString("image/*"));
+    auto header = HttpHeader::New();
+    header->set(String::New("Accept"),
+                String::New("image/*"));
     auto encoding1 = header->getAccept();
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
@@ -51,9 +51,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Accept"),
-                createString("text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8"));
+    auto header = HttpHeader::New();
+    header->set(String::New("Accept"),
+                String::New("text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8"));
     auto encoding1 = header->getAccept();
     auto encodings = encoding1->get();
     if(encodings->size() != 4) {

@@ -15,11 +15,11 @@
 using namespace obotcha;
 
 void testThreadInterruptSleep() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
     bool isInterrupt = false;
-    Thread t = createThread([&isInterrupt]{
+    Thread t = Thread::New([&isInterrupt]{
       try {
         st(Thread)::Sleep(200);
       } catch(...) {
@@ -37,7 +37,7 @@ void testThreadInterruptSleep() {
   }
 
   while(1) {
-    Thread t = createThread([]{
+    Thread t = Thread::New([]{
       try {
         st(Thread)::Sleep(100);
       } catch(...) {
@@ -56,7 +56,7 @@ void testThreadInterruptSleep() {
   
   while(1) {
     bool isInterrupt = false;
-    Thread t = createThread([&isInterrupt]{
+    Thread t = Thread::New([&isInterrupt]{
       try {
         usleep(100*1000);
         st(Thread)::Sleep(200);

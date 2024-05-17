@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlAllowMethods c = createHttpHeaderAccessControlAllowMethods();
+    HttpHeaderAccessControlAllowMethods c = HttpHeaderAccessControlAllowMethods::New();
     c->load("POST, GET, OPTIONS");
     if(!c->toString()->sameAs("POST, GET, OPTIONS")) {
       TEST_FAIL("---[HttpHeaderAccessControlAllowMethods test toString case1] ,str is %s",c->toString()->toChars());

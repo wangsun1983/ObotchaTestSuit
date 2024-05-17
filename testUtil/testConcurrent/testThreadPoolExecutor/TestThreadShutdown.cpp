@@ -26,7 +26,7 @@ public:
 DECLARE_CLASS(MyShutdownRunTest2) IMPLEMENTS(Runnable) {
 public:
     _MyShutdownRunTest2() {
-        mMutex = createMutex();
+        mMutex = Mutex::New();
         count = 0;
     }
 
@@ -84,7 +84,7 @@ void testThreadShutdown() {
 
     //TestThread onInterrupt case1
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->newThreadPool();
         pool->shutdown();
         int ret = pool->shutdown();
 
@@ -93,7 +93,7 @@ void testThreadShutdown() {
             break;
         }
 
-        auto mtask = pool->submit(createMyShutdownRunTest1());
+        auto mtask = pool->submit(MyShutdownRunTest1::New());
         if(mtask != nullptr) {
             TEST_FAIL("[ThreadPoolExecutor Test {shutdown()} special case2]");
             break;
@@ -104,8 +104,8 @@ void testThreadShutdown() {
     }
 
     while(1) {
-        ThreadPoolExecutor pool = createThreadPoolExecutor(128,1,0);
-        MyShutdownRunTest2 run = createMyShutdownRunTest2();
+        ThreadPoolExecutor pool = ThreadPoolExecutor::New(128,1,0);
+        MyShutdownRunTest2 run = MyShutdownRunTest2::New();
         pool->submit(run);
         pool->submit(run);
         pool->submit(run);
@@ -123,7 +123,7 @@ void testThreadShutdown() {
     }
 
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->newThreadPool();
         long t = st(System)::CurrentTimeMillis();
         pool->awaitTermination(1000);
         long current = st(System)::CurrentTimeMillis();
@@ -138,8 +138,8 @@ void testThreadShutdown() {
     }
 
     while(1) {
-        ThreadPoolExecutor pool = createExecutorBuilder()->newThreadPool();
-        pool->submit(createMyShutdownRunTest3());
+        ThreadPoolExecutor pool = ExecutorBuilder::New()->newThreadPool();
+        pool->submit(MyShutdownRunTest3::New());
         pool->shutdown();
         long t = st(System)::CurrentTimeMillis();
         int result = pool->awaitTermination(1000);

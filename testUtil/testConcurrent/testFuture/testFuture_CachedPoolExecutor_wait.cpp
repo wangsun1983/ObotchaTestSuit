@@ -18,10 +18,10 @@ using namespace obotcha;
 
 void testCachedPoolExecutor_Wait() {
 
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
                 ->setMaxThreadNum(1)
                 ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
@@ -46,7 +46,7 @@ void testCachedPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setMaxThreadNum(1)
                 ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
@@ -74,7 +74,7 @@ void testCachedPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setMaxThreadNum(1)
                 ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
@@ -99,11 +99,11 @@ void testCachedPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setMaxThreadNum(3)
                 ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
-    CountDownLatch latch = createCountDownLatch(3);
+    CountDownLatch latch = CountDownLatch::New(3);
     pool->submit([]{
       usleep(100*1000);
     });
@@ -128,19 +128,19 @@ void testCachedPoolExecutor_Wait() {
       //
     });
 
-    Thread t1 = createThread([&f1,&latch]{
+    Thread t1 = Thread::New([&f1,&latch]{
       f1->wait();
       latch->countDown();
     });
     t1->start();
 
-    Thread t2 = createThread([&f2,&latch]{
+    Thread t2 = Thread::New([&f2,&latch]{
       f2->wait();
       latch->countDown();
     });
     t2->start();
 
-    Thread t3 = createThread([&f3,&latch]{
+    Thread t3 = Thread::New([&f3,&latch]{
       f3->wait();
       latch->countDown();
     });
@@ -159,7 +159,7 @@ void testCachedPoolExecutor_Wait() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setMaxThreadNum(1)
                 ->setDefaultThreadNum(1)
                 ->newCachedThreadPool();
@@ -171,7 +171,7 @@ void testCachedPoolExecutor_Wait() {
       //TODO
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(10*1000);
       pool->shutdown();
     });

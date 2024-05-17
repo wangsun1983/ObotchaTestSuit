@@ -25,7 +25,7 @@ public:
 void testHandlerRemove() {
   //case 1
   while(1) {
-    MyTestHandler2 handler = createMyTestHandler2();
+    MyTestHandler2 handler = MyTestHandler2::New();
     handler->sendEmptyMessageDelayed(1,1000*2);
     handler->sendEmptyMessageDelayed(1,1000*2);
     handler->sendEmptyMessageDelayed(1,1000*2);
@@ -41,7 +41,7 @@ void testHandlerRemove() {
 
   //case 2
   while(1) {
-    MyTestHandler2 handler = createMyTestHandler2();
+    MyTestHandler2 handler = MyTestHandler2::New();
     handler->sendEmptyMessageDelayed(1,1000*2);
     handler->sendEmptyMessageDelayed(2,1000*2);
     handler->sendEmptyMessageDelayed(3,1000*2);

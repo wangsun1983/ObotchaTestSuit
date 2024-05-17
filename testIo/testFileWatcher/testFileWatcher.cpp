@@ -13,7 +13,7 @@
 using namespace obotcha;
 
 int testCount = 0;
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyFileObserver) IMPLEMENTS(FileUpdateListener){
 public:
@@ -30,36 +30,36 @@ public:
     }
 };
 
-void testStartWatch() {
+int main() {
     //prepare data
-    File file = createFile("./tmp/testdata.txt");
+    File file = File::New("./tmp/testdata.txt");
     file->removeAll();
     if(!file->exists()) {
         file->createNewFile();
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Trunc);
-        stream->write(createString("hello world,this is a test data.")->toByteArray());
+        stream->write(String::New("hello world,this is a test data.")->toByteArray());
         stream->close();
     }
       
-    FileWatcher watcher = createFileWatcher();
-    watcher->startWatch("./tmp/testdata.txt",st(FileWatcher)::Open,createMyFileObserver());
-    Thread t = createThread([]{
+    FileWatcher watcher = FileWatcher::New();
+    watcher->startWatch("./tmp/testdata.txt",st(FileWatcher)::Open,MyFileObserver::New());
+    Thread t = Thread::New([]{
         usleep(1000 *100);
-        File f = createFile("./tmp/testdata.txt");
-        FileOutputStream stream = createFileOutputStream(f);
+        File f = File::New("./tmp/testdata.txt");
+        FileOutputStream stream = FileOutputStream::New(f);
         stream->open();
-        stream->write(createString("abc")->toByteArray());
+        stream->write(String::New("abc")->toByteArray());
     });
     t->start();
     
-    TimeWatcher twatcher = createTimeWatcher();
+    TimeWatcher twatcher = TimeWatcher::New();
     twatcher->start();
     latch->await(400);
     long v = twatcher->stop();
     if(v > 200) {
         TEST_FAIL("testFileWatcher case3");
     }
-    watcher->close();
+    
     TEST_OK("testFileWatcher case100");
 }

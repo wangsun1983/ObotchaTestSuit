@@ -11,19 +11,19 @@ using namespace obotcha;
 
 void testConcurrentLinkedList_size() {
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putFirst(createString("100"));
-      list->putFirst(createString("20"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putFirst(String::New("100"));
+      list->putFirst(String::New("20"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->acquireReadLock()->lock();
           usleep(200*1000);
           list->acquireReadLock()->unlock();
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           auto v = list->size();
           auto r = w->stop();
@@ -48,19 +48,19 @@ void testConcurrentLinkedList_size() {
     }
     
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putFirst(createString("100"));
-      list->putFirst(createString("20"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putFirst(String::New("100"));
+      list->putFirst(String::New("20"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->syncWriteAction([]{
               usleep(200*1000);
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           auto v = list->size();
           auto r = w->stop();

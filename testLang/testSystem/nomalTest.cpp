@@ -66,7 +66,7 @@ int normalTest() {
 
   //String execute
   while(1) {
-      File file = createFile("abc");
+      File file = File::New("abc");
       if(file->exists()) {
         file->removeAll();
       }

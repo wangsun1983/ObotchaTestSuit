@@ -45,7 +45,7 @@ public:
 void testThreadStart() {
 
     while(1) {
-        StartTestThread1 t1 = createStartTestThread1();
+        StartTestThread1 t1 = StartTestThread1::New();
         t1->start();
         int ret = t1->start();
         if(ret != -EALREADY) {
@@ -65,7 +65,7 @@ void testThreadStart() {
     }
 
     while(1) {
-        StartTestThread1 t1 = createStartTestThread1();
+        StartTestThread1 t1 = StartTestThread1::New();
         t1->start();
         int ret = t1->start();
         if(ret != -EALREADY) {
@@ -78,7 +78,7 @@ void testThreadStart() {
     }
 
     while(1) {
-        Thread t1 = createThread([](){
+        Thread t1 = Thread::New([](){
             sleep(1);
         });
         t1->start();
@@ -94,7 +94,7 @@ void testThreadStart() {
 
     while(1) {
         for(int i = 0;i<1024*32;i++) {
-            StartTestThread3 r = createStartTestThread3();
+            StartTestThread3 r = StartTestThread3::New();
             if(r->start() != 0) {
                 TEST_FAIL("[Thread TestStart {start()} case8]");
                 break;

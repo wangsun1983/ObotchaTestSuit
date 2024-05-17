@@ -14,11 +14,11 @@
 
 using namespace obotcha;
 
-Mutex t = createMutex("test");
-AtomicInteger value = createAtomicInteger(0);
-AtomicInteger MyCompleteLoopValue = createAtomicInteger(0);
+Mutex t = Mutex::New("test");
+AtomicInteger value = AtomicInteger::New(0);
+AtomicInteger MyCompleteLoopValue = AtomicInteger::New(0);
 
-DECLARE_CLASS(LoopCreateRun1) IMPLEMENTS(Runnable) {
+DECLARE_CLASS(LoopRun1) IMPLEMENTS(Runnable) {
 public:
 
   void run() {
@@ -40,7 +40,7 @@ public:
 void testThreadLoopCreate() {
   //test1
   for(int i = 0;i<1024*32;i++) {
-      Thread t = createThread(createLoopCreateRun1());
+      Thread t = Thread::New(LoopRun1::New());
       t->start();
   }
 
@@ -52,7 +52,7 @@ void testThreadLoopCreate() {
 
   //test2
   for(int i = 0;i<1024*32;i++) {
-      LoopTestThread t = createLoopTestThread();
+      LoopTestThread t = LoopTestThread::New();
       t->start();
   }
 

@@ -12,17 +12,17 @@
 using namespace obotcha;
 
 void testGetFamily() {
-    InetAddress addr1 = createInet4Address("192.168.1.1",12);
+    InetAddress addr1 = Inet4Address::New("192.168.1.1",12);
     if(addr1->getFamily() != st(Net)::Family::Ipv4) {
         TEST_FAIL("InetAddress GetFamily case1");
     }
     
-    InetAddress addr2 = createInet6Address(12);
+    InetAddress addr2 = Inet6Address::New(12);
     if(addr2->getFamily() != st(Net)::Family::Ipv6 ) {
         TEST_FAIL("InetAddress GetFamily case2");
     }
     
-    InetAddress addr3 = createInetLocalAddress("aabbcc");
+    InetAddress addr3 = InetLocalAddress::New("aabbcc");
     if(addr3->getFamily() != st(Net)::Family::Local ) {
         TEST_FAIL("InetAddress GetFamily case3");
     }

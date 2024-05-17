@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Max-Age"),
-                createString("600"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Max-Age"),
+                String::New("600"));
     auto c = header->getMaxAge();
     c->load("600");
     if(c->get() != 600) {

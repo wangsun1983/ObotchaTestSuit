@@ -14,15 +14,15 @@ using namespace obotcha;
 void equaltest() {
 
   while(1) {
-      Long v1 = createLong(10);
-      Long v2 = createLong(10);
+      Long v1 = Long::New(10);
+      Long v2 = Long::New(10);
       if(v1 != v2){
           TEST_FAIL("Long equal test1");
           break;
       }
 
-      Long v3 = createLong(10);
-      Long v4 = createLong(11);
+      Long v3 = Long::New(10);
+      Long v4 = Long::New(11);
       if(v3 == v4){
           TEST_FAIL("Long equal test2");
           break;

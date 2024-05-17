@@ -32,21 +32,21 @@ public:
 
 void testImportFrom() {
     
-    ImportData d = createImportData();
+    ImportData d = ImportData::New();
     d->member1 = 12;
     d->member2 = true;
     d->member2_1 = false;
     
-    d->member3 = createString("hello hello");
+    d->member3 = String::New("hello hello");
 
-    d->member4 = createImportDataMember();
+    d->member4 = ImportDataMember::New();
     d->member4->data1 =22;
-    d->member4->data2 = createString("world world");
+    d->member4->data2 = String::New("world world");
 
-    IniValue v = createIniValue();
+    IniValue v = IniValue::New();
     v->importFrom(d);
 
-    ImportData d2 = createImportData();
+    ImportData d2 = ImportData::New();
     v->reflectTo(d2);
 
     if(d->member1 != d2->member1) {

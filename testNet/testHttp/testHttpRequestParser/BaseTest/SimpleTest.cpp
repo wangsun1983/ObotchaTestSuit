@@ -5,7 +5,7 @@
 using namespace obotcha;
 
 void simpleTest() {
-    String test = createString("keep-alive");
+    String test = String::New("keep-alive");
     if(test->equalsIgnoreCase("Keep-Alive")) {
         printf("it equals \n");
     } else {

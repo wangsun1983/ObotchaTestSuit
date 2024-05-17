@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringCharAt() {
 
     while(1) {
-        String str = createString("abcef");
+        String str = String::New("abcef");
         if(str->charAt(0) != 'a'
         ||str->charAt(1) != 'b'
         ||str->charAt(2) != 'c'
@@ -31,7 +31,7 @@ void TestStringCharAt() {
 
     while(1) {
         bool isException = false;
-        String str = createString("abcef");
+        String str = String::New("abcef");
         try {
             str->charAt(5);
         } catch(...) {

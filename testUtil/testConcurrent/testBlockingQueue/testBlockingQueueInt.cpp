@@ -30,7 +30,7 @@ private:
 void testBlockingQueueInt() {
 #if 0
     while(1) {
-        BlockingQueue<int> list = createBlockingQueue<int>(5);
+        BlockingQueue<int> list = BlockingQueue<int>::New(5);
         list->putFirst(1);
         list->putFirst(2);
         list->putFirst(3);
@@ -51,7 +51,7 @@ void testBlockingQueueInt() {
     }
 
     while(1) {
-        BlockingQueue<int> list = createBlockingQueue<int>(5);
+        BlockingQueue<int> list = BlockingQueue<int>::New(5);
         list->putLast(0);
         list->putLast(1);
         list->putLast(2);
@@ -69,7 +69,7 @@ void testBlockingQueueInt() {
     }
 
     while(1) {
-        BlockingQueue<int> list = createBlockingQueue<int>(5);
+        BlockingQueue<int> list = BlockingQueue<int>::New(5);
         bool isException = false;
         long time1 = st(System)::CurrentTimeMillis();
         try {

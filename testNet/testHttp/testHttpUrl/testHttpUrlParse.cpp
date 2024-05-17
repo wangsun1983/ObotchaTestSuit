@@ -15,7 +15,7 @@ using namespace obotcha;
 void testHttpUrlParse() {
   while(1) {
     const char *raw= "/demo";
-    HttpUrl url = createHttpUrl(raw);
+    HttpUrl url = HttpUrl::New(raw);
     if(!url->getPath()->sameAs("demo")) {
       TEST_FAIL("[HttpUrlParse test Parse case1]");
     }
@@ -28,9 +28,9 @@ void testHttpUrlParse() {
 
   while(1) {
     String request =  "http://su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss";
-    //HttpUrlParser parser = createHttpUrl(request);
+    //HttpUrlParser parser = HttpUrl::New(request);
     //HttpUrl url = parser->parseUrl(request);
-    HttpUrl url = createHttpUrl(request);
+    HttpUrl url = HttpUrl::New(request);
     if(url->getScheme() != st(Net)::Protocol::Http) {
       TEST_FAIL("[HttpUrlParse test Parse case2],scheme is %d",url->getScheme());
       break;
@@ -83,7 +83,7 @@ void testHttpUrlParse() {
 
   while(1) {
     String request =  "http://abdd@localhost/test.cgi?a=b&c=d";
-    HttpUrl url = createHttpUrl(request);
+    HttpUrl url = HttpUrl::New(request);
     if(url->getScheme() != st(Net)::Protocol::Http) {
       TEST_FAIL("[HttpUrlParse test Parse case11],scheme is %d",url->getScheme());
       break;
@@ -134,7 +134,7 @@ void testHttpUrlParse() {
   }
 
   while(1) {
-    HttpUrl url =  createHttpUrl("https://su:abc@localhost/test/wangsl/01234");
+    HttpUrl url =  HttpUrl::New("https://su:abc@localhost/test/wangsl/01234");
     if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case22],scheme is %d",url->getScheme());
       break;
@@ -164,7 +164,7 @@ void testHttpUrlParse() {
   }
 
   while(1) {
-    HttpUrl url =  createHttpUrl("https://ssaabb/test/wangsl/01234");
+    HttpUrl url =  HttpUrl::New("https://ssaabb/test/wangsl/01234");
     if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case27],scheme is %d",url->getScheme());
       break;
@@ -193,7 +193,7 @@ void testHttpUrlParse() {
   }
 
   while(1) {
-    HttpUrl url =  createHttpUrl("https://ssaabb:123");
+    HttpUrl url =  HttpUrl::New("https://ssaabb:123");
     if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case32],scheme is %d",url->getScheme());
       break;
@@ -228,9 +228,9 @@ void testHttpUrlParse() {
 
   while(1) {
     String request =  "su:abc@localhost:1234/test.cgi?a=b&c=d#fffsss";
-    //HttpUrlParser parser = createHttpUrl(request);
+    //HttpUrlParser parser = HttpUrl::New(request);
     //HttpUrl url = parser->parseUrl(request);
-    HttpUrl url = createHttpUrl(request);
+    HttpUrl url = HttpUrl::New(request);
     if(url->getScheme() != st(Net)::Protocol::UnKnown) {
       TEST_FAIL("[HttpUrlParse test Parse case38],scheme is %d",url->getScheme());
       break;
@@ -282,7 +282,7 @@ void testHttpUrlParse() {
   }
 
   while(1) {
-    HttpUrl url =  createHttpUrl("https://ssaabb:123#frag");
+    HttpUrl url =  HttpUrl::New("https://ssaabb:123#frag");
     if(url->getScheme() != st(Net)::Protocol::Https) {
       TEST_FAIL("[HttpUrlParse test Parse case49],scheme is %d",url->getScheme());
       break;
@@ -322,26 +322,26 @@ void testHttpUrlParse() {
   
   while(1) {
     String request =  "su:abc@localhost:1234/test.cgi?a=1&b=2&c=3&d=4";
-    auto url = createHttpUrl(request);
+    auto url = HttpUrl::New(request);
     auto query = url->getQuery();
     auto map = query->getValues();
     if(map->size() != 4) {
         TEST_FAIL("[HttpUrlParse test Parse case56]");
     }
     
-    if(!map->get(createString("a"))->equals(createString("1"))) {
+    if(!map->get(String::New("a"))->equals(String::New("1"))) {
         TEST_FAIL("[HttpUrlParse test Parse case56]");
     }
     
-    if(!map->get(createString("b"))->equals(createString("2"))) {
+    if(!map->get(String::New("b"))->equals(String::New("2"))) {
         TEST_FAIL("[HttpUrlParse test Parse case57]");
     }
     
-    if(!map->get(createString("c"))->equals(createString("3"))) {
+    if(!map->get(String::New("c"))->equals(String::New("3"))) {
         TEST_FAIL("[HttpUrlParse test Parse case58]");
     }
     
-    if(!map->get(createString("d"))->equals(createString("4"))) {
+    if(!map->get(String::New("d"))->equals(String::New("4"))) {
         TEST_FAIL("[HttpUrlParse test Parse case59]");
     }
     break;

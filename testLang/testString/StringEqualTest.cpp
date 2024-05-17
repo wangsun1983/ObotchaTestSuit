@@ -19,8 +19,8 @@ void equaltest() {
     //----------------------------
     while(1) {
         //case 1
-        String str1 = createString("abc");
-        String str2 = createString("abc");
+        String str1 = String::New("abc");
+        String str2 = String::New("abc");
         if(str1 != str2) {
             TEST_FAIL("String equaltest Special test1");
             break;

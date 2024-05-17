@@ -15,8 +15,8 @@
 using namespace obotcha;
 
 int testThreadLambda() {
-    //ThreadCachedPoolExecutor t = createThreadCachedPoolExecutor();
-    ThreadCachedPoolExecutor t = createExecutorBuilder()->newCachedThreadPool();
+    //ThreadCachedPoolExecutor t = Thread::NewCachedPoolExecutor();
+    ThreadCachedPoolExecutor t = ExecutorBuilder::New()->newCachedThreadPool();
     while(1) {
         int value = 100;
         t->submit([&value]() {

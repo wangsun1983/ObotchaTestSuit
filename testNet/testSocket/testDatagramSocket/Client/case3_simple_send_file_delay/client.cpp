@@ -16,16 +16,16 @@ using namespace obotcha;
 
 int main() {
     //prepare file
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
 
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Append);
-        String data = createString("");
+        String data = String::New("");
         for(int i = 0;i < 1024;i++) {
-          data = data->append(createString(st(System)::CurrentTimeMillis()));
+          data = data->append(String::New(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();
@@ -33,13 +33,13 @@ int main() {
     }
 
     int port = getEnvPort();
-    InetAddress addr = createInet4Address(port);
-    Socket client = createSocketBuilder()->setAddress(addr)->newDatagramSocket();
+    InetAddress addr = Inet4Address::New(port);
+    Socket client = SocketBuilder::New()->setAddress(addr)->newDatagramSocket();
 
     int ret = client->connect();
-    String resp = createString("hello server");
-    ByteArray fileBuff = createByteArray(1024*4);
-    FileInputStream stream = createFileInputStream(file);
+    String resp = String::New("hello server");
+    ByteArray fileBuff = ByteArray::New(1024*4);
+    FileInputStream stream = FileInputStream::New(file);
     stream->open();
     long index = 0;
     long filesize = file->length();
@@ -55,9 +55,9 @@ int main() {
     stream->close();
 
     usleep(1000*1000);
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
-    String v2 = md5->encodeFile(createFile("./tmp/file"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/testdata"));
+    String v2 = md5->encodeFile(File::New("./tmp/file"));
 
     if(v1 != v2) {
       TEST_FAIL("TestDataGramSocket case2_simple_send_file_delayed test1,v1 is %s,v2 is %s",v1->toChars(),v2->toChars());

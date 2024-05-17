@@ -39,7 +39,7 @@ void testThreadSleepRelease() {
   
   while(1) {
     {
-      MyLongSleepTest1Thread t = createMyLongSleepTest1Thread();
+      MyLongSleepTest1Thread t = MyLongSleepTest1Thread::New();
       t->start();
       sleep(1);
       t->interrupt();

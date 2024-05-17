@@ -23,17 +23,17 @@ int testNoBlockPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe(st(IO)::NonBlock);
+  Pipe pp = Pipe::New(st(Pipe)::NonBlock);
   
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+     ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
      pp->write(array);
      exit(0);
   } else {
      sleep(1);
-     ByteArray array = createByteArray(testDatalength);
+     ByteArray array = ByteArray::New(testDatalength);
      int length = pp->read(array);
 
      if(length < testDatalength) {
@@ -52,17 +52,17 @@ int testNoBlockPipe() {
    TEST_OK("[Pipe Test {noblock write/read()} case3]");
 
 
-   Pipe pp1_1 = createPipe(st(IO)::NonBlock);
+   Pipe pp1_1 = Pipe::New(st(Pipe)::NonBlock);
 
    pid = fork();
    if(pid == 0) {
       //child process
       sleep(1);
-      ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+      ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
       pp->write(array);
       exit(0);
    } else {
-      ByteArray array = createByteArray(testDatalength);
+      ByteArray array = ByteArray::New(testDatalength);
       int length = pp->read(array);
       if(length != -1) {
           TEST_FAIL("[Pipe Test {noblock write/read()} case4]");
@@ -74,20 +74,20 @@ int testNoBlockPipe() {
 
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe(st(IO)::NonBlock);
+   Pipe pp2 = Pipe::New(st(Pipe)::NonBlock);
    
 
    pid = fork();
    if(pid == 0) {
       //child process
       pp2->closeReadChannel();
-      ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+      ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
       pp2->write(array);
       exit(0);
    } else {
       sleep(1);
       pp2->closeWriteChannel();
-      ByteArray array = createByteArray(testDatalength);
+      ByteArray array = ByteArray::New(testDatalength);
       int length = pp2->read(array);
 
       if(length < testDatalength) {
@@ -106,13 +106,13 @@ int testNoBlockPipe() {
     TEST_OK("[Pipe Test {noblock closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe(st(IO)::NonBlock);
+    Pipe pp3 = Pipe::New(st(Pipe)::NonBlock);
 
     pid = fork();
     if(pid == 0) {
        //child process
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray(testDatalength);
+       ByteArray array = ByteArray::New(testDatalength);
        int length = pp3->read(array);
        if(length > 0) {
            TEST_FAIL("[Pipe Test {noblock closePipe()} case4]");
@@ -120,7 +120,7 @@ int testNoBlockPipe() {
        exit(0);
     } else {
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+       ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
        int result = pp3->write(array);
        if(result >= 0) {
            TEST_FAIL("[Pipe Test {noblock closePipe()} case5]");

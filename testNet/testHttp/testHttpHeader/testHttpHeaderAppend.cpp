@@ -34,14 +34,14 @@ void testHttpHeaderAppend() {
                  "\r"
                  "Hot diggity dogg";
 
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setMethod(st(HttpMethod)::Id::Get);
 
-    HttpUrl url = createHttpUrl();
+    HttpUrl url = HttpUrl::New();
     url->setPath("demo");
     header->setUrl(url);
 
-    header->setVersion(createHttpHeaderVersion(1,1));
+    header->setVersion(HttpHeaderVersion::New(1,1));
     header->set("Accept-Charset","utf-8, iso-8859-1;q=0.5");
     header->set("Accept-Encoding","deflate, gzip;q=1.0, *;q=0.5");
     header->set("Accept-Language","fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5");
@@ -56,7 +56,7 @@ void testHttpHeaderAppend() {
     header->set("Link","<https://example.com>; rel=\"preload\"");
     header->set("X-Frame-Options","allow-from https://example.com/");
     
-    HttpHeader header2 = createHttpHeader();
+    HttpHeader header2 = HttpHeader::New();
     header2->append(header);
     //Charset
     auto charset = header2->getAcceptCharSet();

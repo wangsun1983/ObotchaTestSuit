@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Strict-Transport-Security"),
-                createString(" max-age=31536000; includeSubDomains;preload"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Strict-Transport-Security"),
+                String::New(" max-age=31536000; includeSubDomains;preload"));
     auto security = header->getStrictTransportSecurity();
     if(security->maxAge != 31536000) {
       TEST_FAIL("[HttpHeaderStrictTransportSecurity test setToHeader case1]");

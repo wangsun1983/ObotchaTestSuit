@@ -15,8 +15,8 @@ using namespace obotcha;
 
 int testTryWait() {
     st(ProcessSem)::Create("sem_v1",0);
-	auto sem1 = createProcessSem("sem_v1");
-	TimeWatcher w = createTimeWatcher();
+	auto sem1 = ProcessSem::New("sem_v1");
+	TimeWatcher w = TimeWatcher::New();
 	w->start();
 	int ret = sem1->tryWait();
 	auto cost = w->stop();

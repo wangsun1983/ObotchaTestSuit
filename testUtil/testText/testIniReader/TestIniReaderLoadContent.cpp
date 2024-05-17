@@ -15,10 +15,10 @@ using namespace obotcha;
 void testIniReaderLoadContent() {
 
     while(1) {
-        FileInputStream stream = createFileInputStream("./testData.ini");
+        FileInputStream stream = FileInputStream::New("./testData.ini");
         stream->open();
         auto data = stream->readAll();
-        IniReader reader = createIniReader()->loadContent(data->toString());
+        IniReader reader = IniReader::New()->loadContent(data->toString());
         
         auto maps = reader->get()->getAll();
         if(maps->size() != 5) {
@@ -27,7 +27,7 @@ void testIniReaderLoadContent() {
         }
 
         //L0
-        auto map1 = maps->get(createString(st(IniValue)::RootSection));
+        auto map1 = maps->get(String::New(st(IniValue)::RootSection));
         if(map1->size() != 1) {
           TEST_FAIL("IniReader LoadContent test2");
           break;
@@ -40,7 +40,7 @@ void testIniReaderLoadContent() {
         }
 
         //L1
-        auto map2 = maps->get(createString("l1"));
+        auto map2 = maps->get(String::New("l1"));
         if(map2->size() != 6) {
           TEST_FAIL("IniReader LoadContent test4");
           break;

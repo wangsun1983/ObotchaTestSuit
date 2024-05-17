@@ -26,7 +26,7 @@ using namespace obotcha;
 
 bool testResult = false;
 
-CountDownLatch latch = createCountDownLatch(2);
+CountDownLatch latch = CountDownLatch::New(2);
 
 DECLARE_CLASS(MyData) {
 public:
@@ -53,12 +53,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
           case st(Net)::Event::Message: {
               if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Get) {
-                HttpResponse response = createHttpResponse();
-                HttpEntity entity = createHttpEntity();
-                MyData data = createMyData();
+                HttpResponse response = HttpResponse::New();
+                HttpEntity entity = HttpEntity::New();
+                MyData data = MyData::New();
                 data->value1 = 100;
-                data->value2 = createString("this is server");
-                JsonValue value = createJsonValue();
+                data->value2 = String::New("this is server");
+                JsonValue value = JsonValue::New();
                 value->importFrom(data);
                 
                 entity->setContent(value->toString()->toByteArray());
@@ -68,10 +68,10 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 latch->countDown();
               } else if(msg->getHeader()->getMethod() == st(HttpMethod)::Id::Post) {
                 String str = msg->getEntity()->getContent()->toString();
-                //JsonValue value = createJsonValue();
-                JsonReader reader = createJsonReader()->loadContent(str);
+                //JsonValue value = JsonValue::New();
+                JsonReader reader = JsonReader::New()->loadContent(str);
                 auto value = reader->get();
-                MyData data = createMyData();
+                MyData data = MyData::New();
                 value->reflectTo(data);
                 if(data->value1 != 100) {
                     TEST_FAIL("TestHttpServer SimpleClientConnect test1");
@@ -95,14 +95,24 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
-  server->start();
-  MyHandler h = createMyHandler();
+  MyHttpListener listener = MyHttpListener::New();
+  
+  HttpServer server = nullptr;
+  while(1) {
+      server = HttpServerBuilder::New()
+                        ->setAddress(Inet4Address::New(port))
+                        ->setListener(listener)
+                        ->build();
+      //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
+      if(server->start() == -1) {
+          port++;
+          continue;
+      }
+      setEnvPort(port);
+      break;
+  }
+  
+  MyHandler h = MyHandler::New();
   h->sendEmptyMessageDelayed(0,10*1024);
   latch->await();
   server->close();

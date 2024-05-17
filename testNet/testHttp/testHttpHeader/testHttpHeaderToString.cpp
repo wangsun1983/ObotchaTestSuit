@@ -35,20 +35,20 @@ void testHttpHeaderToString() {
                  "\r\n"
                  "Hot diggity dogg";
 
-    ByteRingArray ringArray = createByteRingArray(1024*4);
+    ByteRingArray ringArray = ByteRingArray::New(1024*4);
     ringArray->push((byte *)raw,0,strlen(raw));
-    ByteRingArrayReader reader = createByteRingArrayReader(ringArray);
-    HttpHeaderParser parser = createHttpHeaderParser(reader);
+    ByteRingArrayReader reader = ByteRingArrayReader::New(ringArray);
+    HttpHeaderParser parser = HttpHeaderParser::New(reader);
     HttpHeader header1 = parser->doParse();
 
     String result = header1->toString(st(Http)::PacketType::Request);
 
     result = result->append("\r\n\r\n");
     //reparse again
-    ByteRingArray ringArray2 = createByteRingArray(1024*4);
+    ByteRingArray ringArray2 = ByteRingArray::New(1024*4);
     ringArray2->push(result->toByteArray());
-    ByteRingArrayReader reader2 = createByteRingArrayReader(ringArray2);
-    HttpHeaderParser parser2 = createHttpHeaderParser(reader2);
+    ByteRingArrayReader reader2 = ByteRingArrayReader::New(ringArray2);
+    HttpHeaderParser parser2 = HttpHeaderParser::New(reader2);
     HttpHeader header2 = parser2->doParse();
 
     //check header1 && header2

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testGetSet() {
   while(1) {
-    HttpHeaderPragma pragma = createHttpHeaderPragma();
+    HttpHeaderPragma pragma = HttpHeaderPragma::New();
     pragma->set(" no-cache ");
     if(!pragma->toString()->sameAs("no-cache")){
       TEST_FAIL("[HttpHeaderPragma test set case1]");
@@ -23,9 +23,9 @@ void testGetSet() {
   }
   
   while(1) {
-    HttpHeaderPragma pragma = createHttpHeaderPragma();
+    HttpHeaderPragma pragma = HttpHeaderPragma::New();
     pragma->set(" no-cache ");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setPragma(pragma);
     
     if(!header->getPragma()->toString()->sameAs("no-cache")){

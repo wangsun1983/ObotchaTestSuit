@@ -42,16 +42,16 @@ public:
 void testReflectToXml() {
   //test1
   while(1) {
-    ReflectData data = createReflectData();
-    data->member1 = createReflectWriteMember();
-    data->member2 = createReflectWriteMember();
+    ReflectData data = ReflectData::New();
+    data->member1 = ReflectWriteMember::New();
+    data->member2 = ReflectWriteMember::New();
 
     data->member1->intData = 1;
     data->member1->byteData = 2;
     data->member1->doubleData = 1.1;
     data->member1->floatData = 2.2;
     data->member1->longData = 3;
-    data->member1->stringData = createString("a");
+    data->member1->stringData = String::New("a");
     data->member1->uint8Data = 4;
     data->member1->uint16Data = 5;
     data->member1->uint32Data = 6;
@@ -63,17 +63,17 @@ void testReflectToXml() {
     data->member2->doubleData = 11.1;
     data->member2->floatData = 12.2;
     data->member2->longData = 13;
-    data->member2->stringData = createString("b");
+    data->member2->stringData = String::New("b");
     data->member2->uint8Data = 14;
     data->member2->uint16Data = 15;
     data->member2->uint32Data = 16;
     data->member2->uint64Data = 17;
     data->member2->boolData = false;
 
-    JsonValue jvalue = createJsonValue();
+    JsonValue jvalue = JsonValue::New();
     jvalue->importFrom(data);
 
-    JsonWriter jwriter = createJsonWriter("output1.json");
+    JsonWriter jwriter = JsonWriter::New("output1.json");
     jwriter->write(jvalue);
     break;
   }

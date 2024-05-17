@@ -11,21 +11,21 @@ using namespace obotcha;
 
 void testConcurrentLinkedList_putLast() {
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putLast(createString("bbcc"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putLast(String::New("bbcc"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->acquireReadLock()->lock();
           usleep(200*1000);
           list->takeFirst();
           list->acquireReadLock()->unlock();
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
-          list->putLast(createString("a"));
+          list->putLast(String::New("a"));
           auto r = w->stop();
           if(r > 105 || r < 95) {
               TEST_FAIL("ConcurrentLinkedList putLast case1,cost is %d",r);
@@ -35,7 +35,7 @@ void testConcurrentLinkedList_putLast() {
               TEST_FAIL("ConcurrentLinkedList putLast case2");
           }
           
-          if(!list->takeFirst()->equals(createString("a"))) {
+          if(!list->takeFirst()->equals(String::New("a"))) {
               TEST_FAIL("ConcurrentLinkedList putLast case3");
           }
       });
@@ -48,21 +48,21 @@ void testConcurrentLinkedList_putLast() {
     }
     
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putLast(createString("bbcc"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putLast(String::New("bbcc"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           list->syncWriteAction([&]{
               usleep(200*1000);
               list->takeFirst();
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
-          list->putLast(createString("a"));
+          list->putLast(String::New("a"));
           auto r = w->stop();
           if(r > 105 || r < 95) {
               TEST_FAIL("ConcurrentLinkedList putLast case4,cost is %d",r);
@@ -72,7 +72,7 @@ void testConcurrentLinkedList_putLast() {
               TEST_FAIL("ConcurrentLinkedList putLast case5");
           }
           
-          if(!list->takeFirst()->equals(createString("a"))) {
+          if(!list->takeFirst()->equals(String::New("a"))) {
               TEST_FAIL("ConcurrentLinkedList putLast case6");
           }
       });

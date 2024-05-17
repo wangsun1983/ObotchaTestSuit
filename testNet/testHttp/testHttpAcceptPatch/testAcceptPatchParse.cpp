@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testPatchParse() {
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("application/example, text/example");
     auto encodings = encoding1->get();
     if(encodings->size() != 2) {
@@ -29,7 +29,7 @@ void testPatchParse() {
   }
 
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("text/example;charset=utf-8");
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {
@@ -51,7 +51,7 @@ void testPatchParse() {
   }
 
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("application/merge-patch+json");
     auto encodings = encoding1->get();
     if(encodings->size() != 1) {

@@ -26,13 +26,13 @@ using namespace obotcha;
 
 int main() {
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   printf("ret is %d \n",ret);
   
-  HttpGet httpget = createHttpGet(url);
-  httpget->getEntity()->setContent(createString("hello")->toByteArray());
+  HttpGet httpget = HttpGet::New(url);
+  httpget->getEntity()->setContent(String::New("hello")->toByteArray());
   auto response = c->execute(httpget);
   auto response_data = response->getEntity()->getContent()->toString();
   if(!response_data->sameAs("hello")) {

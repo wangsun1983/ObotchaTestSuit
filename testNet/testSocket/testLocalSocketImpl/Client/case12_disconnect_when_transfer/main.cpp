@@ -14,13 +14,13 @@ using namespace obotcha;
 
 int main() {
     signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case1_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case1_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     
-    Thread t = createThread([&]{
-        String resp = createString("hello server");
+    Thread t = Thread::New([&]{
+        String resp = String::New("hello server");
         while(1) {
             int ret = client->getOutputStream()->write(resp->toByteArray());
             if( ret == -1) {
@@ -31,7 +31,7 @@ int main() {
     });
     t->start();
     
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     watcher->start();
     t->join(1000*12);
     auto cost = watcher->stop();

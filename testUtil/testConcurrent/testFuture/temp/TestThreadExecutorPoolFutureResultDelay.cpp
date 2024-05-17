@@ -95,7 +95,7 @@ DECLARE_CLASS(ThreadPoolResultRunString2) IMPLEMENTS(Runnable){
 public:
   void run() {
     sleep(1);
-    this->setResult(createString("hello"));
+    this->setResult(String::New("hello"));
   }
 };
 
@@ -114,7 +114,7 @@ int testThreadExecutorPoolFutureResultDelay() {
 
     while(1) {
         ExecutorService pool = st(Executors)::newFixedThreadPool(1);
-        ThreadPoolResultRunInt2 intRun = createThreadPoolResultRunInt2();
+        ThreadPoolResultRunInt2 intRun = Thread::NewPoolResultRunInt2();
         Future f = pool->submit(intRun);
         long trace1 = st(System)::CurrentTimeMillis();
         int ret1 = f->getResult(-1);
@@ -130,7 +130,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunByte2 byteRun = createThreadPoolResultRunByte2();
+        ThreadPoolResultRunByte2 byteRun = Thread::NewPoolResultRunByte2();
         f = pool->submit(byteRun);
         trace1 = st(System)::CurrentTimeMillis();
         byte ret2 = f->getResult(-1);
@@ -145,7 +145,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunDouble2 doubleRun = createThreadPoolResultRunDouble2();
+        ThreadPoolResultRunDouble2 doubleRun = Thread::NewPoolResultRunDouble2();
         f = pool->submit(doubleRun);
         trace1 = st(System)::CurrentTimeMillis();
         double ret3 = f->getResult(-1.1);
@@ -160,7 +160,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunBool2 boolRun = createThreadPoolResultRunBool2();
+        ThreadPoolResultRunBool2 boolRun = Thread::NewPoolResultRunBool2();
         f = pool->submit(boolRun);
         trace1 = st(System)::CurrentTimeMillis();
         bool ret3_1 = f->getResult(-1.1);
@@ -175,7 +175,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunFloat2 floatRun = createThreadPoolResultRunFloat2();
+        ThreadPoolResultRunFloat2 floatRun = Thread::NewPoolResultRunFloat2();
         f = pool->submit(floatRun);
         trace1 = st(System)::CurrentTimeMillis();
         float ret4 = f->getResult(-1.1);
@@ -189,7 +189,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunLong2 longRun = createThreadPoolResultRunLong2();
+        ThreadPoolResultRunLong2 longRun = Thread::NewPoolResultRunLong2();
         f = pool->submit(longRun);
         trace1 = st(System)::CurrentTimeMillis();
         long ret5 = f->getResult(-1);
@@ -204,7 +204,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunUint16_2 uint16Run = createThreadPoolResultRunUint16_2();
+        ThreadPoolResultRunUint16_2 uint16Run = Thread::NewPoolResultRunUint16_2();
         f = pool->submit(uint16Run);
         trace1 = st(System)::CurrentTimeMillis();
         uint16_t ret6 = f->getResult(1);
@@ -218,7 +218,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunUint32_2 uint32Run = createThreadPoolResultRunUint32_2();
+        ThreadPoolResultRunUint32_2 uint32Run = Thread::NewPoolResultRunUint32_2();
         f = pool->submit(uint32Run);
         trace1 = st(System)::CurrentTimeMillis();
         uint32_t ret7 = f->getResult(1);
@@ -232,7 +232,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunUint64_2 uint64Run = createThreadPoolResultRunUint64_2();
+        ThreadPoolResultRunUint64_2 uint64Run = Thread::NewPoolResultRunUint64_2();
         f = pool->submit(uint64Run);
         trace1 = st(System)::CurrentTimeMillis();
         uint64_t ret8 = f->getResult(1);
@@ -246,7 +246,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunString2 stringRun = createThreadPoolResultRunString2();
+        ThreadPoolResultRunString2 stringRun = Thread::NewPoolResultRunString2();
         f = pool->submit(stringRun);
         trace1 = st(System)::CurrentTimeMillis();
         String ret9 = f->getResult(NullData<String>());
@@ -260,7 +260,7 @@ int testThreadExecutorPoolFutureResultDelay() {
           break;
         }
 
-        ThreadPoolResultRunObject2 objRun = createThreadPoolResultRunObject2();
+        ThreadPoolResultRunObject2 objRun = Thread::NewPoolResultRunObject2();
         f = pool->submit(objRun);
         trace1 = st(System)::CurrentTimeMillis();
         ResultData2 ret10 = f->getResult(NullData<ResultData2>());

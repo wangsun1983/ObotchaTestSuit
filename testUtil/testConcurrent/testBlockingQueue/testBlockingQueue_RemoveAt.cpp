@@ -15,10 +15,10 @@ using namespace obotcha;
 void testBlockingQueueRemoveAt() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         String v = list->removeAt(1);
         if(v == nullptr || !v->sameAs("b")) {
@@ -34,7 +34,7 @@ void testBlockingQueueRemoveAt() {
     }
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
         bool isException = false;
         try {
           String v = list->removeAt(1);
@@ -51,7 +51,7 @@ void testBlockingQueueRemoveAt() {
     }
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
         bool isException = false;
         try {
           String v = list->removeAt(0);
@@ -68,8 +68,8 @@ void testBlockingQueueRemoveAt() {
     }
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
         bool isException = false;
         try {
           String v = list->removeAt(2);
@@ -86,20 +86,20 @@ void testBlockingQueueRemoveAt() {
     }
     
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(1);
-        list->putFirst(createString("a"));
-        Thread t1 = createThread([&]{
+        BlockingQueue<String> list = BlockingQueue<String>::New(1);
+        list->putFirst(String::New("a"));
+        Thread t1 = Thread::New([&]{
             usleep(100*1000);
-            TimeWatcher watcher = createTimeWatcher();
+            TimeWatcher watcher = TimeWatcher::New();
             watcher->start();
-            list->putFirst(createString("b"));
+            list->putFirst(String::New("b"));
             auto ret = watcher->stop();
             if(ret < 95 || ret > 105) {
                 TEST_FAIL("BlockingQueue removeAt test6,ret is %d",ret);
             }
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             usleep(200*1000);
             list->removeAt(0);
         });

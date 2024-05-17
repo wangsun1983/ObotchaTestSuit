@@ -17,7 +17,7 @@ using namespace obotcha;
 
 void testHttpHeaderSize() {
   while(1) {
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     auto version = header->getVersion();
     if(version == nullptr) {
         TEST_FAIL("[HttpHeader test Size case1]");
@@ -25,7 +25,7 @@ void testHttpHeaderSize() {
     
     //it contains version！！！
     for(int i = 2;i < 1024;i++) {
-        header->set(createString(i),createString(i));
+        header->set(String::New(i),String::New(i));
         if(header->size() != i) {
             printf("head size is %d,expect is %d \n",header->size(),i+1);
             TEST_FAIL("[HttpHeader test Size case1]");

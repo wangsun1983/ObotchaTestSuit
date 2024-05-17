@@ -18,9 +18,9 @@ void testHashMapSimpleDouble() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+        HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
         double tag = 1;
-        SimpleDoubleData tt = createSimpleDoubleData();
+        SimpleDoubleData tt = SimpleDoubleData::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -46,9 +46,9 @@ void testHashMapSimpleDouble() {
 
     //void remove(T t)
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       double tag = 1;
-      SimpleDoubleData tt = createSimpleDoubleData();
+      SimpleDoubleData tt = SimpleDoubleData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -78,9 +78,9 @@ void testHashMapSimpleDouble() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       double tag = 1;
-      SimpleDoubleData tt = createSimpleDoubleData();
+      SimpleDoubleData tt = SimpleDoubleData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -101,9 +101,9 @@ void testHashMapSimpleDouble() {
 
     //void clear()
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       double tag = 1;
-      SimpleDoubleData tt = createSimpleDoubleData();
+      SimpleDoubleData tt = SimpleDoubleData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -115,7 +115,7 @@ void testHashMapSimpleDouble() {
         break;
       }
 
-      HashMap<double,SimpleDoubleData> map2 = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map2 = HashMap<double,SimpleDoubleData>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Simple Double Test {clear()} case2]");
@@ -128,9 +128,9 @@ void testHashMapSimpleDouble() {
 
     //int size()
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       double tag = 1;
-      SimpleDoubleData tt = createSimpleDoubleData();
+      SimpleDoubleData tt = SimpleDoubleData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -145,9 +145,9 @@ void testHashMapSimpleDouble() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleDoubleData tt = createSimpleDoubleData();
+        SimpleDoubleData tt = SimpleDoubleData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -168,7 +168,7 @@ void testHashMapSimpleDouble() {
         }
       }
 
-      HashMap<double,SimpleDoubleData> map2 = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map2 = HashMap<double,SimpleDoubleData>::New();
       ArrayList<double>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Simple Double Test {keySet()} case3]");
@@ -181,9 +181,9 @@ void testHashMapSimpleDouble() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleDoubleData tt = createSimpleDoubleData();
+        SimpleDoubleData tt = SimpleDoubleData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -198,7 +198,7 @@ void testHashMapSimpleDouble() {
         }
       }
 
-      HashMap<double,SimpleDoubleData> map2 = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map2 = HashMap<double,SimpleDoubleData>::New();
       ArrayList<SimpleDoubleData>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Simple Double Test {entrySet()} case2]");
@@ -212,9 +212,9 @@ void testHashMapSimpleDouble() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<double,SimpleDoubleData> map = createHashMap<double,SimpleDoubleData>();
+      HashMap<double,SimpleDoubleData> map = HashMap<double,SimpleDoubleData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleDoubleData tt = createSimpleDoubleData();
+        SimpleDoubleData tt = SimpleDoubleData::New();
         tt->i = index;
         map->put(index,tt);
       }

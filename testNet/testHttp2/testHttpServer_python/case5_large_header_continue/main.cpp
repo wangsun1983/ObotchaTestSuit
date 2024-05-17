@@ -33,7 +33,7 @@ using namespace obotcha;
 
 int count = 0;
 String respStr;
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -45,15 +45,15 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
           break;
 
           case st(Net)::Event::Message: {
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             for(int i = 0;i < 1024 * 4;i++) {
-                String header = createString(i);
+                String header = String::New(i);
                 String value = header->append("a");
                 response->getHeader()->set(header,value);
             }
-            response->getHeader()->set(createString("mydata"),createString("myvalue"));
-            //response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+            response->getHeader()->set(String::New("mydata"),String::New("myvalue"));
+            //response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
             w->write(response);
             
           }
@@ -69,9 +69,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();

@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testSetGet() {
   while(1) {
-    HttpHeaderContentLength content = createHttpHeaderContentLength();
+    HttpHeaderContentLength content = HttpHeaderContentLength::New();
     content->load(" 123 ");
     if(content->get() != 123) {
       TEST_FAIL("[HttpHeaderContentLength test GetSet case1]");

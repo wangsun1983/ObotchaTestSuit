@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testHttpUrlInetAddress() {
   while(1) {
-      HttpUrl url = createHttpUrl("http://www.baidu.com");
+      HttpUrl url = HttpUrl::New("http://www.baidu.com");
       auto list = url->getInetAddress();
       if(list == nullptr || list->size() == 0) {
         TEST_FAIL("[HttpUrlParse test InetAddress case100]");

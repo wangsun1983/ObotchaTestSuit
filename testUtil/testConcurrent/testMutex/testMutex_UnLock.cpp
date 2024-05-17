@@ -18,11 +18,11 @@
 using namespace obotcha;
 
 int testMutex_UnLock() {
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
 
     while(1) {
-		Mutex t = createMutex();
-		Thread th = createThread([&t]{
+		Mutex t = Mutex::New();
+		Thread th = Thread::New([&t]{
 			t->lock();
 			usleep(300*1000);
 			t->unlock();
@@ -38,7 +38,7 @@ int testMutex_UnLock() {
     }
 	
 	while(1) {
-		auto mutex = createMutex();
+		auto mutex = Mutex::New();
 		try {
 			mutex->unlock();
 			TEST_FAIL("[TestMutex UnLock case2]");
@@ -47,7 +47,7 @@ int testMutex_UnLock() {
 	}
 	
 	while(1) {
-		auto mutex = createMutex();
+		auto mutex = Mutex::New();
 		try {
 			mutex->lock();
 			mutex->unlock();

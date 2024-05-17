@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testExecutorParam() {
 	while(1) {
-		auto pool = createExecutorBuilder()->setMaxPendingTaskNum(1)
+		auto pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)
 										   ->setDefaultThreadNum(2)
 										   ->setMaxSubmitTaskWaitTime(3)
 										   ->newThreadPool();
@@ -33,7 +33,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()->setMaxPendingTaskNum(1)
+		auto pool = ExecutorBuilder::New()->setMaxPendingTaskNum(1)
 										   ->setMaxThreadNum(5)
 										   ->setMinThreadNum(3)
 										   ->setMaxSubmitTaskWaitTime(3)
@@ -64,7 +64,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()->setMaxPendingTaskNum(9)
+		auto pool = ExecutorBuilder::New()->setMaxPendingTaskNum(9)
 										   ->setMaxSubmitTaskWaitTime(10)
 										   ->newScheduledThreadPool();
 												
@@ -81,7 +81,7 @@ void testExecutorParam() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()->setMaxPendingTaskNum(6)
+		auto pool = ExecutorBuilder::New()->setMaxPendingTaskNum(6)
 										   ->setDefaultThreadNum(7)
 										   ->setMaxSubmitTaskWaitTime(8)
 										   ->newPriorityThreadPool();

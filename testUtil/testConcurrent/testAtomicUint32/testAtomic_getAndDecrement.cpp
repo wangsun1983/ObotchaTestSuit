@@ -10,11 +10,11 @@ using namespace obotcha;
 void testGetAndDecrement() {
     while(1) {
         for(int testLoop = 0;testLoop < 64;testLoop++) {
-            AtomicUint32 value = createAtomicUint32(128*64*32);
-            ArrayList<Thread> list = createArrayList<Thread>();
+            AtomicUint32 value =AtomicUint32::New(128*64*32);
+            ArrayList<Thread> list = ArrayList<Thread>::New();
 
             for(int i = 0;i < 128;i++) {
-                Thread t = createThread([&value] {
+                Thread t = Thread::New([&value] {
                     for(int j = 0;j<64*32;j++) {
                         value->getAndDecrement();
                     }
@@ -40,7 +40,7 @@ void testGetAndDecrement() {
     }
 
     while(1) {
-      AtomicUint32 value = createAtomicUint32(5);
+      AtomicUint32 value =AtomicUint32::New(5);
       long v = value->getAndDecrement();
       if(v != 5) {
         TEST_FAIL("AtomicUint32 GetAndDecrement test2");

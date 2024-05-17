@@ -33,37 +33,37 @@ public:
 
 void testMapList() {
     while(1) {
-      MapListUserData data = createMapListUserData();
-      data->lists = createArrayList<MapListTestData>();
-      MapListTestData t1 = createMapListTestData();
+      MapListUserData data = MapListUserData::New();
+      data->lists = ArrayList<MapListTestData>::New();
+      MapListTestData t1 = MapListTestData::New();
       t1->data1 = 1;
       t1->data2 = 2;
 
-      MapListTestData t2 = createMapListTestData();
+      MapListTestData t2 = MapListTestData::New();
       t2->data1 = 3;
       t2->data2 = 4;
 
-      MapListTestData t3 = createMapListTestData();
+      MapListTestData t3 = MapListTestData::New();
       t3->data1 = 5;
       t3->data2 = 6;
       data->lists->add(t1);
       data->lists->add(t2);
       data->lists->add(t3);
 
-      auto maps = createHashMap<String,MapListTestData>();
-      maps->put(createString("a"),t1);
-      maps->put(createString("b"),t2);
-      maps->put(createString("c"),t3);
+      auto maps = HashMap<String,MapListTestData>::New();
+      maps->put(String::New("a"),t1);
+      maps->put(String::New("b"),t2);
+      maps->put(String::New("c"),t3);
       data->maps = maps;
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(data);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/userdata_list_map_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/userdata_list_map_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/userdata_list_map_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      MapListUserData data2 = createMapListUserData();
+      MapListUserData data2 = MapListUserData::New();
       doc2->reflectTo(data2);
 
       auto ll = data2->lists;

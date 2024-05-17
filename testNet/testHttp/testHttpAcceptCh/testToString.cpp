@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAcceptCh acceptCh = createHttpHeaderAcceptCh();
+    HttpHeaderAcceptCh acceptCh = HttpHeaderAcceptCh::New();
     acceptCh->load("DPR, Viewport-Width, Width");
     if(!acceptCh->toString()->sameAs("DPR, Viewport-Width, Width")) {
       TEST_FAIL("[HttpHeaderAcceptCh test toString case1]");

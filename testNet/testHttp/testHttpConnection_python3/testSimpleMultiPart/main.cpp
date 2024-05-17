@@ -30,14 +30,14 @@ using namespace obotcha;
 
 int main() {
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   
-  HttpPost post = createHttpPost(url);
-  HttpMultiPart part= createHttpMultiPart();
-  part->addContent(createString("value_1"),createString("this is value1,abc"));
-  part->addContent(createString("value_2"),createString("this is value2,efg"));
+  HttpPost post = HttpPost::New(url);
+  HttpMultiPart part= HttpMultiPart::New();
+  part->addContent(String::New("value_1"),String::New("this is value1,abc"));
+  part->addContent(String::New("value_2"),String::New("this is value2,efg"));
   post->getEntity()->setMultiPart(part);
   auto response = c->execute(post);
   

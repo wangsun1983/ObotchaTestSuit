@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderExpect expect = createHttpHeaderExpect();
+    HttpHeaderExpect expect = HttpHeaderExpect::New();
     expect->load("100-continue");
     auto str = expect->get();
     if(!str->sameAs("100-continue")) {
@@ -24,7 +24,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderExpect expect = createHttpHeaderExpect();
+    HttpHeaderExpect expect = HttpHeaderExpect::New();
     bool isException = false;
     try {
       expect->load("123-continue");

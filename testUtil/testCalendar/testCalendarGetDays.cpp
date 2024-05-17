@@ -7,8 +7,8 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "TextLineReader.hpp"
 #include "ForEveryOne.hpp"
+#include "TextLineReader.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
 
@@ -21,8 +21,8 @@ public:
 };
 
 void testCalendarGetDays() {
-    TextLineReader input = createTextLineReader(createFile("./testData/days.txt"));
-    ArrayList<DayTestItem> items = createArrayList<DayTestItem>();
+    TextLineReader input = TextLineReader::New(File::New("./testData/days.txt"));
+    ArrayList<DayTestItem> items = ArrayList<DayTestItem>::New();
     while(1) {
         auto line = input->readLine();
         if(line == nullptr || line->size() == 0) {
@@ -30,7 +30,7 @@ void testCalendarGetDays() {
         }
         
         ArrayList<String> values = line->split(" ");
-        DayTestItem item = createDayTestItem();
+        DayTestItem item = DayTestItem::New();
         item->year = values->get(0)->toInteger()->toValue();
         item->days = values->get(1)->toInteger()->toValue();
         items->add(item);

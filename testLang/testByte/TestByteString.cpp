@@ -19,7 +19,7 @@ using namespace obotcha;
 void testByteString() {
     //case1
     byte v = 10;
-    String s = createString(v);
+    String s = String::New(v);
     byte v2 = s->toBasicByte();
     if(v != v2) {
       TEST_FAIL("Byte String test1");
@@ -27,7 +27,7 @@ void testByteString() {
 
     //case2
     v = 0x12;
-    s = createString(v);
+    s = String::New(v);
     v2 = s->toBasicByte();
     if(v != v2) {
       TEST_FAIL("Byte String test2");

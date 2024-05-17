@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Transfer-Encoding"),
-                createString("gzip, deflate"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Transfer-Encoding"),
+                String::New("gzip, deflate"));
     auto c = header->getTransferEncoding();
     auto list = c->get();
     if(!list->get(0)->sameAs("gzip")) {

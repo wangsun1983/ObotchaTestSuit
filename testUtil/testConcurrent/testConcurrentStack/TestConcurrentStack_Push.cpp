@@ -11,16 +11,16 @@ using namespace obotcha;
 
 void testConcurrentStack_Push() {
     while(1) {
-      ConcurrentStack<String> list = createConcurrentStack<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentStack<String> list = ConcurrentStack<String>::New();
+      Thread t1 = Thread::New([&]{
           for(int i = 0;i < 32*1024;i++) {
-              list->push(createString(i));
+              list->push(String::New(i));
           }
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           for(int i = 32*1024;i < 64*1024;i++) {
-              list->push(createString(i));
+              list->push(String::New(i));
           }
       });
       
@@ -34,9 +34,9 @@ void testConcurrentStack_Push() {
           TEST_FAIL("ConcurrentStack push case1");
       }
       
-      HashMap<String,Boolean> maps = createHashMap<String,Boolean>();
+      HashMap<String,Boolean> maps = HashMap<String,Boolean>::New();
       ForEveryOne(v,list) {
-          maps->put(v,createBoolean(true));
+          maps->put(v,Boolean::New(true));
       }
       
       if(maps->size() != 64*1024) {
@@ -44,7 +44,7 @@ void testConcurrentStack_Push() {
       }
       
       for(int i = 0;i < 64*1024;i++) {
-          if(maps->get(createString(v)) == nullptr) {
+          if(maps->get(String::New(v)) == nullptr) {
               TEST_FAIL("ConcurrentStack push case3,index is %d",i);
               break;
           }

@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
+    HttpHeaderAccessControlAllowHeaders c = HttpHeaderAccessControlAllowHeaders::New();
     c->load("X-Custom-Header, Upgrade-Insecure-Requests");
     auto list = c->get();
     if(!list->get(0)->sameAs("X-Custom-Header")) {
@@ -30,7 +30,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderAccessControlAllowHeaders c = createHttpHeaderAccessControlAllowHeaders();
+    HttpHeaderAccessControlAllowHeaders c = HttpHeaderAccessControlAllowHeaders::New();
     c->load("*");
     auto list = c->get();
     if(!list->get(0)->sameAs("*")) {

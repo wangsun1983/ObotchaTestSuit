@@ -19,14 +19,14 @@ int testLockTimeout() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-		ProcessMutex mu = createProcessMutex("abc1");
+		ProcessMutex mu = ProcessMutex::New("abc1");
 		AutoLock l(mu);
 		usleep(1000*500);
 		return -1;
 	  } else {
 		usleep(1000*100);
-		ProcessMutex mu = createProcessMutex("abc1");
-		TimeWatcher w = createTimeWatcher();
+		ProcessMutex mu = ProcessMutex::New("abc1");
+		TimeWatcher w = TimeWatcher::New();
 		w->start();
 		mu->lock(100);
 		long ret = w->stop();
@@ -40,7 +40,6 @@ int testLockTimeout() {
 		if(ret < 295 || ret > 305) {
 			TEST_FAIL("testProcessMuex lock timeout case2,ret is %ld",ret);
 		}
-        mu->unlock();
 		int status = 0;
 		wait(&status);
 	  }
@@ -50,14 +49,14 @@ int testLockTimeout() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-		ProcessMutex mu = createProcessMutex("abc1");
+		ProcessMutex mu = ProcessMutex::New("abc1");
 		AutoLock l(mu);
 		usleep(1000*100);
 		return -1;
 	  } else {
 		usleep(1000*150);
-		ProcessMutex mu = createProcessMutex("abc1");
-		TimeWatcher w = createTimeWatcher();
+		ProcessMutex mu = ProcessMutex::New("abc1");
+		TimeWatcher w = TimeWatcher::New();
 		w->start();
 		mu->lock(100);
 		auto ret = w->stop();
@@ -65,8 +64,6 @@ int testLockTimeout() {
 			TEST_FAIL("testProcessMuex lock timeout case3,ret is %ld",ret);
 		}
 		mu->unlock();
-        int status = 0;
-        wait(&status);
 	  }
 	  break;
   }

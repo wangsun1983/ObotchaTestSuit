@@ -14,10 +14,10 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Ranges"),
-                createString("bytes"));
-    //HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Ranges"),
+                String::New("bytes"));
+    //HttpHeaderAcceptRanges ranges = HttpHeaderAcceptRanges::New();
     //ranges->load("bytes");
     auto ranges = header->getAcceptRanges();
     if(!ranges->get()->sameAs("bytes")) {
@@ -28,10 +28,10 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Ranges"),
-                createString("none"));
-    //HttpHeaderAcceptRanges ranges = createHttpHeaderAcceptRanges();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Ranges"),
+                String::New("none"));
+    //HttpHeaderAcceptRanges ranges = HttpHeaderAcceptRanges::New();
     //ranges->load("bytes");
     auto ranges = header->getAcceptRanges();
 

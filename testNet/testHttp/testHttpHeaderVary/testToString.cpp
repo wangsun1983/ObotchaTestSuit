@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderVary match = createHttpHeaderVary();
+    HttpHeaderVary match = HttpHeaderVary::New();
     match->load("no-referrer, User-Agent");
     if(!match->toString()->sameAs("no-referrer, User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test toString case1]");
@@ -21,10 +21,10 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderVary match = createHttpHeaderVary();
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("no-referrer"));
-    list->add(createString("User-Agent"));
+    HttpHeaderVary match = HttpHeaderVary::New();
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("no-referrer"));
+    list->add(String::New("User-Agent"));
     match->set(list);
     if(!match->toString()->sameAs("no-referrer, User-Agent")) {
       TEST_FAIL("[HttpHeaderVary test toString case2]");

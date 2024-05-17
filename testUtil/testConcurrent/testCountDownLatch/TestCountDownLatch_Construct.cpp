@@ -13,7 +13,7 @@ void testCountDownLatch_Construct() {
     while(1) {
       bool isException  = false;
       try {
-        CountDownLatch l = createCountDownLatch(0);
+        CountDownLatch l = CountDownLatch::New(0);
       } catch(...) {
         isException = true;
       }

@@ -16,10 +16,10 @@
 using namespace obotcha;
 
 void testThreadPoolSubmit_ShutDown() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
@@ -30,7 +30,7 @@ void testThreadPoolSubmit_ShutDown() {
     Future f2 = pool->submit([]{
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(100*1000);
       pool->shutdown();
     });
@@ -48,7 +48,7 @@ void testThreadPoolSubmit_ShutDown() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->setMaxPendingTaskNum(1)
                 ->newThreadPool();
@@ -59,7 +59,7 @@ void testThreadPoolSubmit_ShutDown() {
     Future f2 = pool->submit([]{
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(100*1000);
       pool->shutdown();
     });
@@ -76,7 +76,7 @@ void testThreadPoolSubmit_ShutDown() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->setMaxPendingTaskNum(1)
                 ->setMaxSubmitTaskWaitTime(300)
@@ -88,7 +88,7 @@ void testThreadPoolSubmit_ShutDown() {
     Future f2 = pool->submit([]{
     });
 
-    Thread t = createThread([&pool]{
+    Thread t = Thread::New([&pool]{
       usleep(100*1000);
       pool->shutdown();
     });

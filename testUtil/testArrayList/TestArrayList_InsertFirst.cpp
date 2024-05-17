@@ -14,13 +14,13 @@ using namespace obotcha;
 
 void testArrayList_InsertFirst() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
-    list2->add(createString("d"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
+    list2->add(String::New("d"));
     list->insertFirst(list2);
 
     if(list->size() != 4
@@ -36,15 +36,15 @@ void testArrayList_InsertFirst() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
-    list2->add(createString("d"));
-    list2->add(createString("e"));
-    list2->add(createString("f"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
+    list2->add(String::New("d"));
+    list2->add(String::New("e"));
+    list2->add(String::New("f"));
 
     list->insertFirst(list2,2);
     if(list->size() != 4
@@ -59,12 +59,12 @@ void testArrayList_InsertFirst() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
     bool isException = false;
     try {
       list->insertFirst(list2,2);
@@ -79,12 +79,12 @@ void testArrayList_InsertFirst() {
   }
 
   while(1) {
-    ArrayList<String> list1 = createArrayList<String>();
+    ArrayList<String> list1 = ArrayList<String>::New();
 
-    ArrayList<String>list2 = createArrayList<String>();
-    list2->add(createString("a"));
-    list2->add(createString("b"));
-    list2->add(createString("c"));
+    ArrayList<String>list2 = ArrayList<String>::New();
+    list2->add(String::New("a"));
+    list2->add(String::New("b"));
+    list2->add(String::New("c"));
 
     list1->insertFirst(list2);
     if(list1->size() != 3) {
@@ -99,11 +99,11 @@ void testArrayList_InsertFirst() {
   }
 
   while(1) {
-    ArrayList<String> list1 = createArrayList<String>(1);
-    ArrayList<String>list2 = createArrayList<String>();
-    list2->add(createString("a"));
-    list2->add(createString("b"));
-    list2->add(createString("c"));
+    ArrayList<String> list1 = ArrayList<String>::New(1);
+    ArrayList<String>list2 = ArrayList<String>::New();
+    list2->add(String::New("a"));
+    list2->add(String::New("b"));
+    list2->add(String::New("c"));
 
     list1->insertFirst(list2);
     if(list1->size() != 3) {

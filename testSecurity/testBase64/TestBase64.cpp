@@ -17,7 +17,7 @@ int main() {
   //decode(String)/encode(String)
   while(1) {
       String abc = "hello world";
-      Base64 base64 = createBase64();
+      Base64 base64 = Base64::New();
       String r1 = base64->encode(abc);
       String r2 = base64->decode(r1);
       if(!r2->equals(abc)) {
@@ -37,10 +37,10 @@ int main() {
 
   //decode(ByteArray)/encode(ByteArray)
   while(1) {
-      ByteArray array = createByteArray(32);
+      ByteArray array = ByteArray::New(32);
       array->fill('a');
 
-      Base64 base64 = createBase64();
+      Base64 base64 = Base64::New();
       //TEST_FAIL("encode array is %s,size is %d\n",array->toValue(),array->size());
       ByteArray r1 = base64->encode(array);
 
@@ -69,13 +69,13 @@ int main() {
 
   //encode(File)
   while(1) {
-      Base64 base64 = createBase64();
-      File f = createFile("testData.file");
+      Base64 base64 = Base64::New();
+      File f = File::New("testData.file");
 
       ByteArray r1 = base64->encode(f);
       ByteArray r2 = base64->decode(r1);
 
-      FileInputStream stream = createFileInputStream(f);
+      FileInputStream stream = FileInputStream::New(f);
       stream->open();
       ByteArray fcontent = stream->readAll();
       //TEST_FAIL("fcontent is %s \n",fcontent->toValue());
@@ -96,8 +96,8 @@ int main() {
 
   //encode(File)
   while(1) {
-      Base64 base64 = createBase64();
-      String content = createString("<<?\?\?>>");
+      Base64 base64 = Base64::New();
+      String content = String::New("<<?\?\?>>");
       ByteArray encode = base64->encodeBase64Url(content->toByteArray());
       if(!encode->toString()->sameAs("PDw_Pz8-Pg")) {
           TEST_FAIL("[ByteArray Test {encode(File)} case3]");

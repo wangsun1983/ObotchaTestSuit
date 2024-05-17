@@ -11,20 +11,20 @@ using namespace obotcha;
 
 void testIniValue() {
     while(1) {
-      IniValue v1 = createIniValue();
-      v1->set(createString("tag1"),createString("value1"));
-      v1->set(createString("tag2"),createString("value2"));
-      v1->set(createString("sec1"),
-             createString("sec1_tag1"),createString("sec1_value1"));
-      v1->set(createString("sec1"),
-             createString("sec1_tag2"),createString("sec1_value2"));
-      v1->set(createString("sec1"),
-             createString("sec1_tag3"),createString("sec1_value3"));
+      IniValue v1 = IniValue::New();
+      v1->set(String::New("tag1"),String::New("value1"));
+      v1->set(String::New("tag2"),String::New("value2"));
+      v1->set(String::New("sec1"),
+             String::New("sec1_tag1"),String::New("sec1_value1"));
+      v1->set(String::New("sec1"),
+             String::New("sec1_tag2"),String::New("sec1_value2"));
+      v1->set(String::New("sec1"),
+             String::New("sec1_tag3"),String::New("sec1_value3"));
  
-      IniWriter w = createIniWriter(createFile("./tmp/test1.ini"));
+      IniWriter w = IniWriter::New(File::New("./tmp/test1.ini"));
       w->write(v1);
       
-      IniReader r = createIniReader()->loadFile(createFile("./tmp/test1.ini"));
+      IniReader r = IniReader::New()->loadFile(File::New("./tmp/test1.ini"));
       auto v2 = r->get();
       
       if(!v2->get("tag1")->equals(v1->get("tag1"))) {

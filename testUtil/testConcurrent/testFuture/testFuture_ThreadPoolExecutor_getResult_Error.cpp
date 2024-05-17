@@ -15,7 +15,7 @@
 using namespace obotcha;
 
 void testThreadPoolExecutor_GetResult_Error() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(1)
               ->newThreadPool();
   while(1) {
@@ -45,7 +45,7 @@ void testThreadPoolExecutor_GetResult_Error() {
       Future f1 = pool->submit([&value](){
         usleep(200*1000);
         value = 222;
-        st(ExecutorResult)::Set(createInteger(100));
+        st(ExecutorResult)::Set(Integer::New(100));
       });
 
       int result = f1->getResult<int>();

@@ -14,13 +14,13 @@ using namespace obotcha;
 
 void testWaitTimeout() {
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,100);
 			auto r = w->stop();
@@ -35,14 +35,14 @@ void testWaitTimeout() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m);
 			auto r = w->stop();
@@ -68,15 +68,15 @@ void testWaitTimeout() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		int count = 0;
 		for(int i = 0;i < 128;i++) {
 			c->execute([&]{
 				AutoLock l(m);
-				TimeWatcher w = createTimeWatcher();
+				TimeWatcher w = TimeWatcher::New();
 				w->start();
 				cond->wait(m,200);
 				auto r = w->stop();
@@ -98,9 +98,9 @@ void testWaitTimeout() {
 	
 	//test in thread
 	while(1) {
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
-		TimeWatcher w = createTimeWatcher();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
+		TimeWatcher w = TimeWatcher::New();
 		AutoLock l(m);
 		w->start();
 		cond->wait(m,100);

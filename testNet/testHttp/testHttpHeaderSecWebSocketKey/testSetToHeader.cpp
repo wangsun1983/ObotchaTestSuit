@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    header->set(createString("sec-websocket-key"),createString(" abc"));
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("sec-websocket-key"),String::New(" abc"));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey();
     if(!key->get()->sameAs("abc")) {
@@ -27,9 +27,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    header->set(createString("sec-websocket-key1"),createString(" abc"));
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("sec-websocket-key1"),String::New(" abc"));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey1();
     if(!key->get()->sameAs("abc")) {
@@ -39,9 +39,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    header->set(createString("sec-websocket-key2"),createString(" abc3"));
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("sec-websocket-key2"),String::New(" abc3"));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey2();
     if(!key->get()->sameAs("abc3")) {
@@ -51,9 +51,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    header->set(createString("sec-websocket-key3"),createString(" abc4"));
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("sec-websocket-key3"),String::New(" abc4"));
     //upgrade->load(" websocket ");
     auto key = header->getWebSocketKey3();
     if(!key->get()->sameAs("abc4")) {
@@ -63,9 +63,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     header->setWebSocketKey(upgrade);
     
@@ -78,9 +78,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     header->setWebSocketKey1(upgrade);
     
@@ -93,9 +93,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     header->setWebSocketKey2(upgrade);
     
@@ -108,9 +108,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    //HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
-    HttpHeader header = createHttpHeader();
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    //HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     header->setWebSocketKey3(upgrade);
     

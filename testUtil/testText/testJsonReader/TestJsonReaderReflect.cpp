@@ -22,9 +22,9 @@ public:
 };
 
 int testreflect() {
-    JsonReader mReader = createJsonReader()->loadFile(createFile("reflect.json"));
+    JsonReader mReader = JsonReader::New()->loadFile(File::New("reflect.json"));
     //MyReflectData data = mReader->reflect<st(MyReflectData)>();
-    MyReflectData data = createMyReflectData();
+    MyReflectData data = MyReflectData::New();
     mReader->get()->reflectTo(data);
     //std::cout<<"a is "<<data->a<<";d is "<<data->d;
     return 0;

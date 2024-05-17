@@ -17,7 +17,7 @@ void testIsClosed() {
     //isClosed
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);
-      FileDescriptor descripor = createFileDescriptor(fd);
+      FileDescriptor descripor = FileDescriptor::New(fd);
 
       if(descripor->isClosed()) {
         TEST_FAIL("[FileDescriptor isClosed Test case1]");
@@ -33,7 +33,7 @@ void testIsClosed() {
     //isAsync
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);
-      FileDescriptor descripor = createFileDescriptor(fd);
+      FileDescriptor descripor = FileDescriptor::New(fd);
 
       if(descripor->isAsync()) {
         TEST_FAIL("[FileDescriptor isClosed Test case3]");
@@ -57,7 +57,7 @@ void testIsClosed() {
     //hashcode
     while(1) {
       int fd = open("./tmp/base_data",O_RDONLY);
-      FileDescriptor descripor = createFileDescriptor(fd);
+      FileDescriptor descripor = FileDescriptor::New(fd);
       if(descripor->hashcode() != fd) {
         TEST_FAIL("[FileDescriptor isClosed Test case6]");
       }

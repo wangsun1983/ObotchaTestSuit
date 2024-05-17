@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testFutureGetUint32() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
             st(FilaExecutorResult)::Set<uint32_t>(123);

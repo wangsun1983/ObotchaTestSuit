@@ -10,7 +10,7 @@ using namespace obotcha;
 
 void testConcurrentQueue_Size() {
     while(1) {
-      ConcurrentQueue<int> queue = createConcurrentQueue<int>();
+      ConcurrentQueue<int> queue = ConcurrentQueue<int>::New();
       if(queue->size() != 0) {
           TEST_FAIL("ConcurrentQueue size test1");
           break;
@@ -22,7 +22,7 @@ void testConcurrentQueue_Size() {
           break;
       }
 
-      ConcurrentQueue<int> queue2 = createConcurrentQueue<int>();
+      ConcurrentQueue<int> queue2 = ConcurrentQueue<int>::New();
       for(int i = 0;i < 1024;i++) {
         queue2->putLast(i);
       }
@@ -35,21 +35,21 @@ void testConcurrentQueue_Size() {
     }
 
     while(1) {
-      ConcurrentQueue<String> queue = createConcurrentQueue<String>();
+      ConcurrentQueue<String> queue = ConcurrentQueue<String>::New();
       if(queue->size() != 0) {
           TEST_FAIL("ConcurrentQueue size test4");
           break;
       }
 
-      queue->putFirst(createString("a"));
+      queue->putFirst(String::New("a"));
       if(queue->size() != 1) {
           TEST_FAIL("ConcurrentQueue size test5");
           break;
       }
 
-      ConcurrentQueue<String> queue2 = createConcurrentQueue<String>();
+      ConcurrentQueue<String> queue2 = ConcurrentQueue<String>::New();
       for(int i = 0;i < 1024;i++) {
-        queue2->putLast(createString(i));
+        queue2->putLast(String::New(i));
       }
 
       if(queue2->size() != 1024) {

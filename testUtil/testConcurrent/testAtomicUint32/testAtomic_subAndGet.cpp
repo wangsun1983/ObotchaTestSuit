@@ -9,11 +9,11 @@ using namespace obotcha;
 void testSubAndGet() {
     while(1) {
         for(int testLoop = 0;testLoop < 128;testLoop++) {
-            AtomicUint32 value = createAtomicUint32(64*64*256);
-            ArrayList<Thread> list = createArrayList<Thread>();
+            AtomicUint32 value =AtomicUint32::New(64*64*256);
+            ArrayList<Thread> list = ArrayList<Thread>::New();
 
             for(int i = 0;i < 32;i++) {
-                Thread t = createThread([&value] {
+                Thread t = Thread::New([&value] {
                     for(int j = 0;j<64*256;j++) {
                         value->subAndGet(2);
                     }
@@ -39,7 +39,7 @@ void testSubAndGet() {
     }
 
     while(1) {
-      AtomicUint32 value = createAtomicUint32(5);
+      AtomicUint32 value =AtomicUint32::New(5);
       long v = value->subAndGet(2);
       if(v != 3) {
         TEST_FAIL("AtomicUint32 SubAndGet test2");

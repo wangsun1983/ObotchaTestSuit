@@ -18,8 +18,8 @@ using namespace obotcha;
 void testGetSetFunction() {
   while(1) {
     //setHeader/getHeader
-    HttpHeader h = createHttpHeader();
-    HttpPacket p = createHttpPacket();
+    HttpHeader h = HttpHeader::New();
+    HttpPacket p = HttpPacket::New();
     p->setHeader(h);
      
     auto h2 = p->getHeader();
@@ -28,7 +28,7 @@ void testGetSetFunction() {
     }
     
     //getEntity/setEntity
-    HttpEntity e1 = createHttpEntity();
+    HttpEntity e1 = HttpEntity::New();
     p->setEntity(e1);
     
     auto e2 = p->getEntity();
@@ -46,12 +46,12 @@ void testGetSetFunction() {
   }
   
   while(1) {
-    HttpHeader h = createHttpHeader();
-    HttpPacket p = createHttpPacket();
+    HttpHeader h = HttpHeader::New();
+    HttpPacket p = HttpPacket::New();
     p->setHeader(h);
     
-    h->set(createString("Transfer-Encoding"),
-           createString("Chunked"));
+    h->set(String::New("Transfer-Encoding"),
+           String::New("Chunked"));
     if(!p->isChunked()) {
         TEST_FAIL("HttpPacket test set/get Entity case4");
     }

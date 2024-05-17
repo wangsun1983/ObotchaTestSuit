@@ -10,9 +10,9 @@ using namespace obotcha;
 
 void testConcurrentQueue_Add() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
       for(int i = 0;i<1024;i++) {
-        list->add(createString(i));
+        list->add(String::New(i));
       }
 
       for(int j = 0;j<1024;j++) {
@@ -25,7 +25,7 @@ void testConcurrentQueue_Add() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       for(int i = 0;i<1024;i++) {
         list->add(i);
       }

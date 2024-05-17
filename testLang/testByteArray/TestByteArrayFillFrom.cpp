@@ -19,7 +19,7 @@ void testByteArrayFillFrom() {
       data[i] = i+32;
     }
 
-    ByteArray data2 = createByteArray(10);
+    ByteArray data2 = ByteArray::New(10);
     for(int i = 0; i < 10 ;i++) {
       data2[i] = i + 64;
     }

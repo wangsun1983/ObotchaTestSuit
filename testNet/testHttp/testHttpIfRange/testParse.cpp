@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderIfRange range = createHttpHeaderIfRange();
+    HttpHeaderIfRange range = HttpHeaderIfRange::New();
     range->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(range->getDate() == nullptr) {
       TEST_FAIL("[HttpHeaderIfRange test Parse case1]");
@@ -55,7 +55,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderIfRange range = createHttpHeaderIfRange();
+    HttpHeaderIfRange range = HttpHeaderIfRange::New();
     range->load("\"abcds\"");
     if(range->getTag()== nullptr || !range->getTag()->sameAs("abcds")) {
       TEST_FAIL("[HttpHeaderIfRange test Parse case8]");

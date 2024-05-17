@@ -11,26 +11,26 @@ using namespace obotcha;
 
 void testAesEncryptCfb() {
   //create test data
-  File data = createFile("./tmp/Aes_encrypt_Cfb_data");
+  File data = File::New("./tmp/Aes_encrypt_Cfb_data");
   if(!data->exists()) {
     data->createNewFile();
   }
 
-  FileOutputStream stream = createFileOutputStream(data);
-  String str = createString("abcdefghi");
+  FileOutputStream stream = FileOutputStream::New(data);
+  String str = String::New("abcdefghi");
   stream->open();
   stream->write(str->toByteArray());
   stream->close();
 
-  String key = createString("1234567812345678");
-  Md md5sum = createMd(st(Md)::Type::Md5);
+  String key = String::New("1234567812345678");
+  Md md5sum = Md::New(st(Md)::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   //pkcs5
   while(1) {
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB1");
-    secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb1_deckey"),
-                        createString("./tmp/test_Aes_encrypt_Cfb1_enckey"),
+    secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb1_deckey"),
+                        String::New("./tmp/test_Aes_encrypt_Cfb1_enckey"),
                         key);
 
     SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB1");
@@ -44,7 +44,7 @@ void testAesEncryptCfb() {
     Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB1/PKCS5Padding");
     Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
     Aes2->decryptFile("./tmp/Aes_encrypt_Cfb1_outdata_pksc5","./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec");
-    String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec"));
+    String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec"));
 
     if(!result->equals(testDataMd5)) {
       TEST_FAIL("[TestAes Cfb1 PKCS5Padding case1]");
@@ -55,8 +55,8 @@ void testAesEncryptCfb() {
 
   while(1) {
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-    secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb8_deckey"),
-                        createString("./tmp/test_Aes_encrypt_Cfb8_enckey"),
+    secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb8_deckey"),
+                        String::New("./tmp/test_Aes_encrypt_Cfb8_enckey"),
                         key);
 
     SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB8");
@@ -69,7 +69,7 @@ void testAesEncryptCfb() {
     Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB8/PKCS5Padding");
     Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
     Aes2->decryptFile("./tmp/Aes_encrypt_Cfb8_outdata_pksc5","./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec");
-    String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec"));
+    String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec"));
 
     if(!result->equals(testDataMd5)) {
       TEST_FAIL("[TestAes Cfb1 case2]");
@@ -80,8 +80,8 @@ void testAesEncryptCfb() {
 
   while(1) {
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-    secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb128_deckey"),
-                        createString("./tmp/test_Aes_encrypt_Cfb128_enckey"),
+    secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb128_deckey"),
+                        String::New("./tmp/test_Aes_encrypt_Cfb128_enckey"),
                         key);
 
     SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB128");
@@ -94,7 +94,7 @@ void testAesEncryptCfb() {
     Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB128/PKCS5Padding");
     Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
     Aes2->decryptFile("./tmp/Aes_encrypt_Cfb128_outdata_pksc5","./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec");
-    String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec"));
+    String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec"));
 
     if(!result->equals(testDataMd5)) {
       TEST_FAIL("[TestAes Cfb1 case3]");
@@ -107,8 +107,8 @@ void testAesEncryptCfb() {
     //pkcs5
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB1");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb1_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb1_enckey"),
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb1_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb1_enckey"),
                           key);
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB1");
@@ -121,7 +121,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB1/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb1_outdata_pksc5","./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb1_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb1 PKCS5Padding case1]");
@@ -131,8 +131,8 @@ void testAesEncryptCfb() {
 
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb8_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb8_enckey"),
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb8_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb8_enckey"),
                           key);
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB8");
@@ -145,7 +145,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB8/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb8_outdata_pksc5","./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb8_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb1 case2]");
@@ -155,8 +155,8 @@ void testAesEncryptCfb() {
 
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb128_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb128_enckey"),
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb128_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb128_enckey"),
                           key);
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB128");
@@ -169,7 +169,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB128/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb128_outdata_pksc5","./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb128_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb1 case3]");
@@ -180,8 +180,8 @@ void testAesEncryptCfb() {
     // random key
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB1");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb1_random_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb1_random_enckey"));
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb1_random_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb1_random_enckey"));
 
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB1");
@@ -195,7 +195,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB1/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb1_random_outdata_pksc5","./tmp/Aes_encrypt_Cfb1_random_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb1_random_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb1_random_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb4 PKCS5Padding case1]");
@@ -205,8 +205,8 @@ void testAesEncryptCfb() {
 
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb8_random_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb8_random_enckey"));
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb8_random_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb8_random_enckey"));
 
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB8");
@@ -220,7 +220,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB8/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb8_random_outdata_pksc5","./tmp/Aes_encrypt_Cfb8_random_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb8_random_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb8_random_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb5 case2]");
@@ -230,8 +230,8 @@ void testAesEncryptCfb() {
 
     while(1) {
       SecretKey secretKey = st(SecretKeyCreator)::getInstance("AES/CFB8");
-      secretKey->generate(createString("./tmp/test_Aes_encrypt_Cfb128_random_deckey"),
-                          createString("./tmp/test_Aes_encrypt_Cfb128_random_enckey"));
+      secretKey->generate(String::New("./tmp/test_Aes_encrypt_Cfb128_random_deckey"),
+                          String::New("./tmp/test_Aes_encrypt_Cfb128_random_enckey"));
 
 
       SecretKey enckey = st(SecretKeyCreator)::getInstance("AES/CFB128");
@@ -245,7 +245,7 @@ void testAesEncryptCfb() {
       Cipher Aes2 = st(CipherCreator)::getInstance("AES/CFB128/PKCS5Padding");
       Aes2->init(st(Cipher)::Mode::Decrypt,deckey);
       Aes2->decryptFile("./tmp/Aes_encrypt_Cfb128_random_outdata_pksc5","./tmp/Aes_encrypt_Cfb128_random_outdata_pksc5_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/Aes_encrypt_Cfb128_random_outdata_pksc5_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/Aes_encrypt_Cfb128_random_outdata_pksc5_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestAes Cfb6 case3]");

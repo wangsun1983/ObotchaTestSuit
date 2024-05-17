@@ -14,10 +14,10 @@ using namespace obotcha;
 //<RegressionTests name="rootn" intv="123" boolv="false" doublev="1.1" floatv="2.2">
 
 void testXmlValueFromMemory() {
-    //XmlReader reader = createXmlReader("regressions.xml");
+    //XmlReader reader = XmlReader::New("regressions.xml");
     //XmlDocument doc = reader->parse();
     //XmlValue root = doc->getRootNode();
-    XmlDocument doc = createXmlDocument();
+    XmlDocument doc = XmlDocument::New();
     XmlValue root = doc->newRootNode("RegressionTests");
     root->appendAttr("name","rootn");
     root->appendAttr("intv","123");
@@ -409,7 +409,7 @@ void testXmlValueFromMemory() {
         break;
       }
 
-      root->removeNode(createString("testfloat"));
+      root->removeNode(String::New("testfloat"));
       XmlValue node2 = root->getNode("testfloat");
       if(node2 != nullptr) {
         TEST_FAIL("[XmlValue TestFromMemory {removeNode()} case4]");

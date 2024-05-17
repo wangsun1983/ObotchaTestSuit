@@ -31,19 +31,19 @@ public:
 
 void testHandlerRemoveEqualMessage() {
     //case1
-    HandlerThread t1 = createHandlerThread();
+    HandlerThread t1 = HandlerThread::New();
     t1->start();
     //case1
-    String data1 = createString("h");
-    String data2 = createString("b");
-    RemoveEqualHandler handler = createRemoveEqualHandler(t1->getLooper());
+    String data1 = String::New("h");
+    String data2 = String::New("b");
+    RemoveEqualHandler handler = RemoveEqualHandler::New(t1->getLooper());
     
-    Message msg1 = createMessage();
+    Message msg1 = Message::New();
     msg1->what = 1;
     msg1->data = data1;
     handler->sendMessageDelayed(msg1,200);
     
-    Message msg2 = createMessage();
+    Message msg2 = Message::New();
     msg2->what = 1;
     msg2->data = data2;
     handler->sendMessageDelayed(msg2,200);

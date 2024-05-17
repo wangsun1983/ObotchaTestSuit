@@ -17,7 +17,7 @@ using namespace obotcha;
 
 void testPendingTask() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(1)
               ->newPriorityThreadPool();
 

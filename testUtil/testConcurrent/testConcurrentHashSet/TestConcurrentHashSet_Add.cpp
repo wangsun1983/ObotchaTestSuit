@@ -12,16 +12,16 @@ using namespace obotcha;
 
 void testConcurrentHashSet_Add() {
     while(1) {
-      ConcurrentHashSet<String> set = createConcurrentHashSet<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentHashSet<String> set = ConcurrentHashSet<String>::New();
+      Thread t1 = Thread::New([&]{
           for(int i = 0;i < 1024*32;i++) {
-              set->add(createString(i));
+              set->add(String::New(i));
           }
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           for(int i = 0;i < 1024*32;i++) {
-              set->add(createString(i));
+              set->add(String::New(i));
           }
       });
       
@@ -36,7 +36,7 @@ void testConcurrentHashSet_Add() {
       }
       
       for(int i = 0;i < 1024*32;i++) {
-            if(!set->contains(createString(i)))  {
+            if(!set->contains(String::New(i)))  {
                 TEST_FAIL("ConcurrentHashMap Get test2,i is %d",i);
             }
       }

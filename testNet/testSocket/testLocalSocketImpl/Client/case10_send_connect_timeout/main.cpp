@@ -13,20 +13,20 @@ using namespace obotcha;
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case6_socket");
-    SocketOption option = createSocketOption();
+    InetAddress addr = InetLocalAddress::New("case6_socket");
+    SocketOption option = SocketOption::New();
     option->setSndTimeout(1000);
     printf("start trace1 \n");
 
-    Socket client = createSocketBuilder()
+    Socket client = SocketBuilder::New()
                     ->setAddress(addr)
                     ->setOption(option)
                     ->newSocket();
     printf("start trace2 \n");
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     int ret = client->connect();
     printf("ret is %d \n",ret);
-    ByteArray data = createByteArray(1024*1024);
+    ByteArray data = ByteArray::New(1024*1024);
     for(int i = 0;i < 1024*1024;i++) {
         data[i] = 1;
     }

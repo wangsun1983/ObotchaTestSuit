@@ -12,23 +12,23 @@
 using namespace obotcha;
 
 void testReadLock_Lock() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getReadLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&value,&rwLock] {
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         value->incrementAndGet();
     });
 
-    Thread t1 = createThread([&value,&rwLock] {
+    Thread t1 = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         value->incrementAndGet();
     });
 
-    Thread t2 = createThread([&value,&rwLock] {
+    Thread t2 = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         value->incrementAndGet();
     });
@@ -48,7 +48,7 @@ void testReadLock_Lock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     auto r1 = rwLock->getReadLock();
     auto r2 = rwLock->getReadLock();
     r1->lock();

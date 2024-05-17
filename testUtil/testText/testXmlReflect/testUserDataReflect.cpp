@@ -56,7 +56,7 @@ public:
 
 void testUserDataReflect() {
     while(1) {
-      ReflectUserData data = createReflectUserData();
+      ReflectUserData data = ReflectUserData::New();
       data->intData = 100;
       data->byteData = 25;
       data->doubleData = 100.10;
@@ -69,14 +69,14 @@ void testUserDataReflect() {
       data->uint64Data = 107;
       data->boolData = true;
 
-      JsonWriter writer = createJsonWriter("./tmp/userdata_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/userdata_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/userdata_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/userdata_test1.json"));
       JsonValue value2 = reader->get();
-      ReflectUserData data2 = createReflectUserData();
+      ReflectUserData data2 = ReflectUserData::New();
       value2->reflectTo(data2);
       if(data2->intData != 100 ||
           data2->byteData != 25 ||
@@ -101,26 +101,26 @@ void testUserDataReflect() {
     }
 
     while(1) {
-      ReflectUserObjData data = createReflectUserObjData();
-      data->intObjData = createInteger(100);
-      data->longObjData = createLong(101);
-      data->uint8ObjData = createUint8(102);
-      data->uint16ObjData = createUint16(103);
-      data->uint32ObjData = createUint32(104);
-      data->uint64ObjData = createUint64(105);
-      data->boolObjData = createBoolean(true);
-      data->floatObjData = createFloat(102.10);
-      data->doubleObjData = createDouble(103.20);
-      data->byteObjData = createByte(23);
+      ReflectUserObjData data = ReflectUserObjData::New();
+      data->intObjData = Integer::New(100);
+      data->longObjData = Long::New(101);
+      data->uint8ObjData = Uint8::New(102);
+      data->uint16ObjData = Uint16::New(103);
+      data->uint32ObjData = Uint32::New(104);
+      data->uint64ObjData = Uint64::New(105);
+      data->boolObjData = Boolean::New(true);
+      data->floatObjData = Float::New(102.10);
+      data->doubleObjData = Double::New(103.20);
+      data->byteObjData = Byte::New(23);
 
-      JsonWriter writer = createJsonWriter("./tmp/userdata_test2.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/userdata_test2.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(data);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/userdata_test2.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/userdata_test2.json"));
       JsonValue value2 = reader->get();
-      ReflectUserData data2 = createReflectUserData();
+      ReflectUserData data2 = ReflectUserData::New();
       value2->reflectTo(data2);
 
       if(data->intObjData == nullptr ||

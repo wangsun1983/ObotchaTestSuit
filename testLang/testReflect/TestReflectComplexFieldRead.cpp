@@ -48,28 +48,28 @@ public:
 void testReflectComplexFieldRead() {
     //test1
     while(1) {
-      MyData5 data = createMyData5();
-      data->data1 = createMyComplexMember();
-      data->data1->complexMember1 = createMyMember();
+      MyData5 data = MyData5::New();
+      data->data1 = MyComplexMember::New();
+      data->data1->complexMember1 = MyMember::New();
       data->data1->complexMember1->intData = 1;
       data->data1->complexMember1->byteData = 2;
       data->data1->complexMember1->doubleData = 1.1;
       data->data1->complexMember1->floatData = 2.2;
       data->data1->complexMember1->longData = 3;
-      data->data1->complexMember1->stringData = createString("a");
+      data->data1->complexMember1->stringData = String::New("a");
       data->data1->complexMember1->uint8Data = 4;
       data->data1->complexMember1->uint16Data = 5;
       data->data1->complexMember1->uint32Data = 6;
       data->data1->complexMember1->uint64Data = 7;
       data->data1->complexMember1->boolData = false;
 
-      data->data1->complexMember2 = createMyMember();
+      data->data1->complexMember2 = MyMember::New();
       data->data1->complexMember2->intData = 11;
       data->data1->complexMember2->byteData = 12;
       data->data1->complexMember2->doubleData = 11.1;
       data->data1->complexMember2->floatData = 12.2;
       data->data1->complexMember2->longData = 13;
-      data->data1->complexMember2->stringData = createString("b");
+      data->data1->complexMember2->stringData = String::New("b");
       data->data1->complexMember2->uint8Data = 14;
       data->data1->complexMember2->uint16Data = 15;
       data->data1->complexMember2->uint32Data = 16;

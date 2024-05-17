@@ -42,18 +42,18 @@ public:
 
 void testScheduledPoolExecutor_shutdown() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->newScheduledThreadPool();
 
-    Future f = pool->submit(createFutureScheduledPoolCancelTask());
+    Future f = pool->submit(FutureScheduledPoolCancelTask::New());
 
-    Thread t = createThread([](ThreadScheduledPoolExecutor pool) {
+    Thread t = Thread::New([](ThreadScheduledPoolExecutor pool) {
         usleep(1000*50);
         pool->shutdown();
     },pool);
     t->start();
 
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     watch->start();
     bool isException = false;
     try {
@@ -76,18 +76,18 @@ void testScheduledPoolExecutor_shutdown() {
   }
 
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->newScheduledThreadPool();
 
-    Future f = pool->submit(createFutureScheduledNoCancelTask());
+    Future f = pool->submit(FutureScheduledNoCancelTask::New());
 
-    Thread t = createThread([](ThreadScheduledPoolExecutor pool) {
+    Thread t = Thread::New([](ThreadScheduledPoolExecutor pool) {
         usleep(1000*50);
         pool->shutdown();
     },pool);
     t->start();
 
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     watch->start();
     bool isException = false;
     int value = 0;
@@ -117,18 +117,18 @@ void testScheduledPoolExecutor_shutdown() {
 
   //test delay task
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->newScheduledThreadPool();
 
-    Future f = pool->schedule(300,createFutureScheduledPoolCancelTask());
+    Future f = pool->schedule(300,FutureScheduledPoolCancelTask::New());
 
-    Thread t = createThread([](ThreadScheduledPoolExecutor pool) {
+    Thread t = Thread::New([](ThreadScheduledPoolExecutor pool) {
         usleep(1000*50);
         pool->shutdown();
     },pool);
     t->start();
 
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     watch->start();
     bool isException = false;
     try {

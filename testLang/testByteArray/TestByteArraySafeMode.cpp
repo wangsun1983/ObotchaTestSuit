@@ -17,7 +17,7 @@ void testsafemode() {
 
   //case1
   while(1) {
-    ByteArray arr1 = createByteArray(8);
+    ByteArray arr1 = ByteArray::New(8);
     //arr1->setSafe();
     for(int i = 0;i < 8;i++) {
       arr1[i] = 99;
@@ -42,7 +42,7 @@ void testsafemode() {
 
   //case2
   while(1) {
-    ByteArray arr1 = createByteArray(8);
+    ByteArray arr1 = ByteArray::New(8);
     for(int i = 0;i < 8;i++) {
       arr1[i] = 99;
     }
@@ -65,7 +65,7 @@ void testsafemode() {
 
   //case3
   while(1) {
-    ByteArray arr1 = createByteArray(8);
+    ByteArray arr1 = ByteArray::New(8);
     //arr1->setSafe();
     //if(!arr1->isSafeMode()) {
     //  TEST_FAIL("ByteArray testsafemode test 5");

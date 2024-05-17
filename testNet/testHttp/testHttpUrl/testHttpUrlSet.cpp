@@ -15,7 +15,7 @@ using namespace obotcha;
 void testHttpUrlSet() {
   
   while(1) {
-    HttpUrl url = createHttpUrl();
+    HttpUrl url = HttpUrl::New();
     url->setScheme(st(Net)::Protocol::Http);
     url->setUser("su");
     url->setHost("localhost");

@@ -8,7 +8,7 @@ using namespace obotcha;
 
 void testOrAndGet() {
     while(1) {
-      AtomicUint32 value = createAtomicUint32(1);
+      AtomicUint32 value =AtomicUint32::New(1);
       long v = value->orAndGet(2);
       if(v != 3) {
         TEST_FAIL("AtomicUint32 testOrAndGet test1");

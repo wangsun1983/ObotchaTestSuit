@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderExpires headerDate = createHttpHeaderExpires();
+    HttpHeaderExpires headerDate = HttpHeaderExpires::New();
     headerDate->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     auto date = headerDate->get()->toDateTime();
     if(date->year() != 2015) {
@@ -52,8 +52,8 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderExpires headerDate = createHttpHeaderExpires();
-    headerDate->set(createHttpDate(createString(" Wed, 21 Oct 2015 07:28:00 GMT")));
+    HttpHeaderExpires headerDate = HttpHeaderExpires::New();
+    headerDate->set(HttpDate::New(String::New(" Wed, 21 Oct 2015 07:28:00 GMT")));
     auto date = headerDate->get()->toDateTime();
     if(date->year() != 2015) {
       TEST_FAIL("[HttpHeaderExpires test Parse case7]");

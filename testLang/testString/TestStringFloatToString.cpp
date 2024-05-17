@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringFloatToString() {
 
     while(1) {
-        auto str1 = createString(createFloat(1.01f),5);
+        auto str1 = String::New(Float::New(1.01f),5);
         if(!str1->sameAs("1.01")) {
             TEST_FAIL("String Float toString test1,str is %s",str1->toChars());
         }

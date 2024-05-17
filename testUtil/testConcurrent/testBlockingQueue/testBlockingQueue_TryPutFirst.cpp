@@ -13,12 +13,12 @@ using namespace obotcha;
 void testBlockingQueueTryPutFirst() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
-        bool result = list->tryPutFirst(createString("d"));
+        bool result = list->tryPutFirst(String::New("d"));
         if(result) {
           TEST_FAIL("BlockingQueue TryPutFirst test1");
           break;
@@ -32,15 +32,15 @@ void testBlockingQueueTryPutFirst() {
     }
 
     while(1) {
-      BlockingQueue<String> list = createBlockingQueue<String>(3);
-      list->tryPutFirst(createString("a"));
-      list->tryPutFirst(createString("b"));
-      list->tryPutFirst(createString("c"));
+      BlockingQueue<String> list = BlockingQueue<String>::New(3);
+      list->tryPutFirst(String::New("a"));
+      list->tryPutFirst(String::New("b"));
+      list->tryPutFirst(String::New("c"));
 
-      ArrayList<String> result = createArrayList<String>();
-      result->add(createString("c"));
-      result->add(createString("b"));
-      result->add(createString("a"));
+      ArrayList<String> result = ArrayList<String>::New();
+      result->add(String::New("c"));
+      result->add(String::New("b"));
+      result->add(String::New("a"));
       auto iterator = result->getIterator();
       while(iterator->hasValue()) {
         auto v = iterator->getValue();

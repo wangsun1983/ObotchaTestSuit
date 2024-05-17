@@ -12,12 +12,12 @@ using namespace obotcha;
 
 void testFileRename() {
     //test1
-    Md md = createMd(st(Md)::Type::Md5);
+    Md md = Md::New(st(Md)::Type::Md5);
     
-    auto file = createFile("./tmp/abc.cpp");
+    auto file = File::New("./tmp/abc.cpp");
     file->createNewFile();
     
-    FileOutputStream stream = createFileOutputStream(file);
+    FileOutputStream stream = FileOutputStream::New(file);
     stream->open();
     stream->writeString("aaaabbbccc");
     stream->flush();

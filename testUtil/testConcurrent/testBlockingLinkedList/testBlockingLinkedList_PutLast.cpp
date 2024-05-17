@@ -13,12 +13,12 @@ using namespace obotcha;
 void testBlockingLinkedListPutLast() {
 
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->putLast(createString("a"));
-        list->putLast(createString("b"));
-        list->putLast(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->putLast(String::New("a"));
+        list->putLast(String::New("b"));
+        list->putLast(String::New("c"));
 
-        Thread t = createThread([&list]{
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
           list->takeLast();
         });
@@ -33,10 +33,10 @@ void testBlockingLinkedListPutLast() {
           break;
         }
 
-        ArrayList<String> result = createArrayList<String>();
-        result->add(createString("a"));
-        result->add(createString("b"));
-        result->add(createString("d"));
+        ArrayList<String> result = ArrayList<String>::New();
+        result->add(String::New("a"));
+        result->add(String::New("b"));
+        result->add(String::New("d"));
         auto iterator = result->getIterator();
         while(iterator->hasValue()) {
           auto v = iterator->getValue();

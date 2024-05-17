@@ -12,17 +12,17 @@
 using namespace obotcha;
 
 void testBarrierAlreadyRelease() {
-  Barrier barrier = createBarrier(3);
+  Barrier barrier = Barrier::New(3);
   
-  Thread t1 = createThread([&] {
+  Thread t1 = Thread::New([&] {
 	  barrier->await();
   });
   
-  Thread t2 = createThread([&] {
+  Thread t2 = Thread::New([&] {
   	  barrier->await();
   });
   
-  Thread t3 = createThread([&] {
+  Thread t3 = Thread::New([&] {
   	  barrier->await();
   });
   
@@ -34,13 +34,13 @@ void testBarrierAlreadyRelease() {
   t2->join();
   t3->join();
   
-  Thread t4 = createThread([&] {
+  Thread t4 = Thread::New([&] {
   	  if(barrier->await() != -1) {
 		  TEST_FAIL("[Barrier Test {Already Release test} case1]");
 	  }
   });
   
-  Thread t5 = createThread([&] {
+  Thread t5 = Thread::New([&] {
   	  if(barrier->await() != -1) {
   	  		  TEST_FAIL("[Barrier Test {Already Release test} case2]");
   	  }
@@ -48,7 +48,7 @@ void testBarrierAlreadyRelease() {
   t4->start();
   t5->start();
   
-  TimeWatcher w = createTimeWatcher();
+  TimeWatcher w = TimeWatcher::New();
   w->start();
   t4->join(1000*100);
   t5->join(1000*100);

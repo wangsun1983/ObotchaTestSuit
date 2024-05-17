@@ -10,8 +10,8 @@ using namespace obotcha;
 
 void testConcurrentLinkedList_MultiThread_Case1() {
     while(1) {
-      ConcurrentLinkedList<int> list = createConcurrentLinkedList<int>();
-      ArrayList<Thread> threads = createArrayList<Thread>();
+      ConcurrentLinkedList<int> list = ConcurrentLinkedList<int>::New();
+      ArrayList<Thread> threads = ArrayList<Thread>::New();
 
       //get result
       long result = 0;
@@ -20,7 +20,7 @@ void testConcurrentLinkedList_MultiThread_Case1() {
       }
 
       for(int j = 0;j<16;j++) {
-        Thread t = createThread([&list] {
+        Thread t = Thread::New([&list] {
           for(int i = 1;i<1024*32;i++) {
             list->putLast(i);
           }

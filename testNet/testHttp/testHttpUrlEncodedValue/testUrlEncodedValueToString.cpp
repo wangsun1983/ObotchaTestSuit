@@ -14,7 +14,7 @@ using namespace obotcha;
 void testUrlEncodedValueToString() {
   while(1) {
     //abc=1&bbb=qq&ccc=ffds
-    HttpUrlEncodedValue v = createHttpUrlEncodedValue();
+    HttpUrlEncodedValue v = HttpUrlEncodedValue::New();
     v->set("abc","1");
     v->set("bbb","qq");
     v->set("ccc","ffds");

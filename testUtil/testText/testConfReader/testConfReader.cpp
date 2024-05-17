@@ -11,17 +11,17 @@ using namespace obotcha;
 
 int basetest() {
     while(1) {
-      ConfReader reader = createConfReader()->loadFile(createFile("simple.conf"));
+      ConfReader reader = ConfReader::New()->loadFile(File::New("simple.conf"));
       auto value = reader->get();
         //getConf(String);
 
-      String v1 = value->get(createString("Desktop-Picture"));
+      String v1 = value->get(String::New("Desktop-Picture"));
       if(!v1->sameAs("/usr/images/earth.jpg")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case2] ");
         break;
       }
 
-      String v2 = value->get(createString("Position"));
+      String v2 = value->get(String::New("Position"));
       if(!v2->sameAs("Centered")) {
         TEST_FAIL("[ConfReader Test {getConf(String)} case3] ");
         break;

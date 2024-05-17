@@ -15,13 +15,13 @@ using namespace obotcha;
 
 void testFilaRoutineAwait() {
 	//case1	
-	TimeWatcher w = createTimeWatcher();	
+	TimeWatcher w = TimeWatcher::New();	
 	while(1) {
-		FilaMutex mutex = createFilaMutex();
+		FilaMutex mutex = FilaMutex::New();
 		std::vector<int> data;
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
-		Thread t1 = createThread([&] {
+		Thread t1 = Thread::New([&] {
 			AutoLock l(mutex);
 			usleep(500*1000);
 		});
@@ -50,7 +50,7 @@ void testFilaRoutineAwait() {
 	}
 	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		int ret = croutine->awaitTermination();
 		if(ret != -1) {

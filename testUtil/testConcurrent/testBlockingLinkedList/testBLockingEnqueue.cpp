@@ -50,7 +50,7 @@ public:
         int i = 0;
         while(1) {
             //TEST_FAIL("setvalue is %d \n",i);
-            EnqueueData d = createEnqueueData(i);
+            EnqueueData d = EnqueueData::New(i);
             mQueue->putFirst(d);
             mQueue->putFirst(d);
             if(i == 50) {
@@ -103,16 +103,16 @@ private:
 void testEnqueueDequeue() {
 #if 0
     while(1) {
-        BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);
-        list->putFirst(createEnqueueData(1));
-        list->putFirst(createEnqueueData(2));
-        list->putFirst(createEnqueueData(3));
-        list->putFirst(createEnqueueData(4));
-        list->putFirst(createEnqueueData(5));
+        BlockingLinkedList<EnqueueData> list = BlockingLinkedList<EnqueueData>::New(5);
+        list->putFirst(EnqueueData::New(1));
+        list->putFirst(EnqueueData::New(2));
+        list->putFirst(EnqueueData::New(3));
+        list->putFirst(EnqueueData::New(4));
+        list->putFirst(EnqueueData::New(5));
         EnqueueThread1 t1 = createEnqueueThread1(list);
         t1->start();
         long time1 = st(System)::CurrentTimeMillis();
-        list->putFirst(createEnqueueData(5));
+        list->putFirst(EnqueueData::New(5));
         long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 5000 || (time2 - time1) > 5005) {
             TEST_FAIL("BlockingEnqueue putFirst test1");
@@ -124,12 +124,12 @@ void testEnqueueDequeue() {
     }
 
     while(1) {
-        BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);
-        list->putFirst(createEnqueueData(1));
-        list->putFirst(createEnqueueData(2));
-        list->putFirst(createEnqueueData(3));
-        list->putFirst(createEnqueueData(4));
-        list->putFirst(createEnqueueData(5));
+        BlockingLinkedList<EnqueueData> list = BlockingLinkedList<EnqueueData>::New(5);
+        list->putFirst(EnqueueData::New(1));
+        list->putFirst(EnqueueData::New(2));
+        list->putFirst(EnqueueData::New(3));
+        list->putFirst(EnqueueData::New(4));
+        list->putFirst(EnqueueData::New(5));
 
         EnqueueData data1 = list->takeFirst();
         if(data1->getValue() != 5) {
@@ -166,7 +166,7 @@ void testEnqueueDequeue() {
     }
 
     while(1) {
-        BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);
+        BlockingLinkedList<EnqueueData> list = BlockingLinkedList<EnqueueData>::New(5);
         list->putFirst(nullptr);
         if(list->size() == 0) {
             TEST_FAIL("BlockingEnqueue putFirst test9");
@@ -179,9 +179,9 @@ void testEnqueueDequeue() {
 #endif
 
     while(1) {
-        BlockingLinkedList<EnqueueData> list = createBlockingLinkedList<EnqueueData>(5);
-        EnqueueThread2 t1 = createEnqueueThread2(list);
-        DequeueThread2 t2 = createDequeueThread2(list);
+        BlockingLinkedList<EnqueueData> list = BlockingLinkedList<EnqueueData>::New(5);
+        EnqueueThread2 t1 = EnqueueThread2::New(list);
+        DequeueThread2 t2 = DequeueThread2::New(list);
 
         t1->start();
         t2->start();

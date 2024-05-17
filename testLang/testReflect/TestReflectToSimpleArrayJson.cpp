@@ -35,56 +35,56 @@ public:
 void testReflectToSimpleArrayJson() {
   //test1
   while(1) {
-    IntArray data = createIntArray();
-    data->intlists = createArrayList<Integer>();
-    data->intlists->add(createInteger(1));
-    data->intlists->add(createInteger(2));
+    IntArray data = IntArray::New();
+    data->intlists = ArrayList<Integer>::New();
+    data->intlists->add(Integer::New(1));
+    data->intlists->add(Integer::New(2));
 
-    data->longlists = createArrayList<Long>();
-    data->longlists->add(createLong(1));
-    data->longlists->add(createLong(2));
+    data->longlists = ArrayList<Long>::New();
+    data->longlists->add(Long::New(1));
+    data->longlists->add(Long::New(2));
 
-    data->boollists = createArrayList<Boolean>();
-    data->boollists->add(createBoolean(true));
-    data->boollists->add(createBoolean(false));
+    data->boollists = ArrayList<Boolean>::New();
+    data->boollists->add(Boolean::New(true));
+    data->boollists->add(Boolean::New(false));
 
-    data->doublelists = createArrayList<Double>();
-    data->doublelists->add(createDouble(1.1));
-    data->doublelists->add(createDouble(2.2));
+    data->doublelists = ArrayList<Double>::New();
+    data->doublelists->add(Double::New(1.1));
+    data->doublelists->add(Double::New(2.2));
 
-    data->floatlists = createArrayList<Float>();
-    data->floatlists->add(createFloat(1.1));
-    data->floatlists->add(createFloat(2.2));
+    data->floatlists = ArrayList<Float>::New();
+    data->floatlists->add(Float::New(1.1));
+    data->floatlists->add(Float::New(2.2));
 
-    data->uint8lists = createArrayList<Uint8>();
-    data->uint8lists->add(createUint8(1));
-    data->uint8lists->add(createUint8(2));
+    data->uint8lists = ArrayList<Uint8>::New();
+    data->uint8lists->add(Uint8::New(1));
+    data->uint8lists->add(Uint8::New(2));
 
-    data->uint16lists = createArrayList<Uint16>();
-    data->uint16lists->add(createUint16(1));
-    data->uint16lists->add(createUint16(2));
+    data->uint16lists = ArrayList<Uint16>::New();
+    data->uint16lists->add(Uint16::New(1));
+    data->uint16lists->add(Uint16::New(2));
 
-    data->uint32lists = createArrayList<Uint32>();
-    data->uint32lists->add(createUint32(1));
-    data->uint32lists->add(createUint32(2));
+    data->uint32lists = ArrayList<Uint32>::New();
+    data->uint32lists->add(Uint32::New(1));
+    data->uint32lists->add(Uint32::New(2));
 
-    data->uint64lists = createArrayList<Uint64>();
-    data->uint64lists->add(createUint64(1));
-    data->uint64lists->add(createUint64(2));
+    data->uint64lists = ArrayList<Uint64>::New();
+    data->uint64lists->add(Uint64::New(1));
+    data->uint64lists->add(Uint64::New(2));
 
-    data->stringlists = createArrayList<String>();
-    data->stringlists->add(createString("a"));
-    data->stringlists->add(createString("b"));
+    data->stringlists = ArrayList<String>::New();
+    data->stringlists->add(String::New("a"));
+    data->stringlists->add(String::New("b"));
 
-    JsonValue jvalue = createJsonValue();
+    JsonValue jvalue = JsonValue::New();
     jvalue->importFrom(data);
-    JsonWriter jwriter = createJsonWriter("output3.json");
+    JsonWriter jwriter = JsonWriter::New("output3.json");
     jwriter->write(jvalue);
 
-    JsonReader reader = createJsonReader()->loadFile(createFile("output3.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("output3.json"));
     JsonValue readValue = reader->get();
 
-    IntArray rdata3 = createIntArray();
+    IntArray rdata3 = IntArray::New();
     readValue->reflectTo(rdata3);
 
     if(rdata3->intlists == nullptr || rdata3->intlists->size() != 2) {

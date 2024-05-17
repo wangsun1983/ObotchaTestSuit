@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("warning"),createString("112 - \"cache down\" \"Wed, 21 Oct 2015 07:28:00 GMT\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("warning"),String::New("112 - \"cache down\" \"Wed, 21 Oct 2015 07:28:00 GMT\""));
     auto warning = header->getWarning();
     if(warning->getCode() != 112) {
       TEST_FAIL("[HttpHeaderWarning test setToHeader case1]");
@@ -40,10 +40,10 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    //HttpHeaderWarning warning = createHttpHeaderWarning();
+    HttpHeader header = HttpHeader::New();
+    //HttpHeaderWarning warning = HttpHeaderWarning::New();
     //warning->load("110 anderson/1.3.37 \"Response is stale\"");
-    header->set(createString("warning"),createString("110 anderson/1.3.37 \"Response is stale\""));
+    header->set(String::New("warning"),String::New("110 anderson/1.3.37 \"Response is stale\""));
     auto warning = header->getWarning();
     
     if(warning->getCode() != 110) {
@@ -69,8 +69,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderWarning warning_base = createHttpHeaderWarning();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderWarning warning_base = HttpHeaderWarning::New();
     warning_base->load("110 anderson/1.3.37 \"Response is stale\"");
     header->setWarning(warning_base);
     

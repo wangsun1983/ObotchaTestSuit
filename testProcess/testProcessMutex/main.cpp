@@ -24,10 +24,10 @@ int main() {
   if(testLockTimeout() == -1) {
 	  return 0;
   }
-  // printf("process mutex trace4 \n");
-  // if(testTryLock() == -1) {
-	 //  return 0;
-  // }
+  
+  if(testTryLock() == -1) {
+	  return 0;
+  }
   
   return 0;
 }

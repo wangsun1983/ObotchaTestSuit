@@ -31,20 +31,20 @@ public:
 
 void testArrayListUint32() {
     while(1) {
-      ArrayList<Uint32> list = createArrayList<Uint32>();
-      list->add(createUint32(1));
-      list->add(createUint32(2));
-      list->add(createUint32(3));
-      list->add(createUint32(4));
-      list->add(createUint32(5));
+      ArrayList<Uint32> list = ArrayList<Uint32>::New();
+      list->add(Uint32::New(1));
+      list->add(Uint32::New(2));
+      list->add(Uint32::New(3));
+      list->add(Uint32::New(4));
+      list->add(Uint32::New(5));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint32_test1.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint32_test1.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint32_test1.xml"));
       XmlDocument doc2 = reader->get();
-      ArrayList<Uint32> list2 = createArrayList<Uint32>();
+      ArrayList<Uint32> list2 = ArrayList<Uint32>::New();
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -64,30 +64,30 @@ void testArrayListUint32() {
     }
 
     while(1) {
-      Uint32List2 list = createUint32List2();
-      list->list1 = createArrayList<Uint32>();
-      list->list2 = createArrayList<Uint32>();
+      Uint32List2 list = Uint32List2::New();
+      list->list1 = ArrayList<Uint32>::New();
+      list->list2 = ArrayList<Uint32>::New();
 
-      list->list1->add(createUint32(1));
-      list->list1->add(createUint32(2));
-      list->list1->add(createUint32(3));
-      list->list1->add(createUint32(4));
-      list->list1->add(createUint32(5));
+      list->list1->add(Uint32::New(1));
+      list->list1->add(Uint32::New(2));
+      list->list1->add(Uint32::New(3));
+      list->list1->add(Uint32::New(4));
+      list->list1->add(Uint32::New(5));
 
-      list->list2->add(createUint32(6));
-      list->list2->add(createUint32(7));
-      list->list2->add(createUint32(8));
-      list->list2->add(createUint32(9));
-      list->list2->add(createUint32(10));
+      list->list2->add(Uint32::New(6));
+      list->list2->add(Uint32::New(7));
+      list->list2->add(Uint32::New(8));
+      list->list2->add(Uint32::New(9));
+      list->list2->add(Uint32::New(10));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint32_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint32_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint32_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      Uint32List2 list2 = createUint32List2();
+      Uint32List2 list2 = Uint32List2::New();
       doc2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

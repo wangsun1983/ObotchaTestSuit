@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Cross-Origin-Resource-Policy"),
-                createString("same-site"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Cross-Origin-Resource-Policy"),
+                String::New("same-site"));
     auto policy = header->getCrossOriginResourcePolicy();
     if(!policy->isSameSite()) {
       TEST_FAIL("[CrossOriginResourcePolicy test setToHeader case1]");

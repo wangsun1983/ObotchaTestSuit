@@ -25,51 +25,51 @@ public:
 
 void testHashMapUserdata() {
     while(1) {
-      HashMap<Integer,MapUserData> maps = createHashMap<Integer,MapUserData>();
-      MapUserData d1 = createMapUserData();
+      HashMap<Integer,MapUserData> maps = HashMap<Integer,MapUserData>::New();
+      MapUserData d1 = MapUserData::New();
       d1->data1 = 1;
       d1->data2 = 2;
 
-      MapUserData d2 = createMapUserData();
+      MapUserData d2 = MapUserData::New();
       d2->data1 = 3;
       d2->data2 = 4;
 
-      MapUserData d3 = createMapUserData();
+      MapUserData d3 = MapUserData::New();
       d3->data1 = 5;
       d3->data2 = 6;
 
-      maps->put(createInteger(1),d1);
-      maps->put(createInteger(2),d2);
-      maps->put(createInteger(3),d3);
+      maps->put(Integer::New(1),d1);
+      maps->put(Integer::New(2),d2);
+      maps->put(Integer::New(3),d3);
 
-      JsonWriter writer = createJsonWriter("./tmp/hashmap_userdata_test1.json");
-      JsonValue value = createJsonValue();
+      JsonWriter writer = JsonWriter::New("./tmp/hashmap_userdata_test1.json");
+      JsonValue value = JsonValue::New();
       value->importFrom(maps);
       writer->write(value);
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("./tmp/hashmap_userdata_test1.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./tmp/hashmap_userdata_test1.json"));
       JsonValue value2 = reader->get();
 
-      HashMap<Integer,MapUserData> maps2 = createHashMap<Integer,MapUserData>();
+      HashMap<Integer,MapUserData> maps2 = HashMap<Integer,MapUserData>::New();
       value2->reflectTo(maps2);
       if(maps2->size() != 3) {
         TEST_FAIL("[JsonReflect HashMap UserData Test case1]  ");
         break;
       }
 
-      auto v1 = maps2->get(createInteger(1));
+      auto v1 = maps2->get(Integer::New(1));
       if(v1 == nullptr || v1->data1 != 1 || v1->data2 != 2) {
         TEST_FAIL("[JsonReflect HashMap UserData Test case2]  ");
         break;
       }
 
-      auto v2 = maps2->get(createInteger(2));
+      auto v2 = maps2->get(Integer::New(2));
       if(v2 == nullptr || v2->data1 != 3 || v2->data2 != 4) {
         TEST_FAIL("[JsonReflect HashMap UserData Test case3]  ");
         break;
       }
 
-      auto v3 = maps2->get(createInteger(3));
+      auto v3 = maps2->get(Integer::New(3));
       if(v3 == nullptr || v3->data1 != 5 || v3->data2 != 6) {
         TEST_FAIL("[JsonReflect HashMap UserData Test case4]  ");
         break;

@@ -18,8 +18,8 @@ void testHashMapSimpleBoolean() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
-        SimpleTestData tt = createSimpleTestData();
+        HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
+        SimpleTestData tt = SimpleTestData::New();
         tt->i = true;
         map->put(true,tt);
         if(map->size() != 1) {
@@ -45,9 +45,9 @@ void testHashMapSimpleBoolean() {
 
     //void remove(T t)
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
       bool tag = true;
-      SimpleTestData tt = createSimpleTestData();
+      SimpleTestData tt = SimpleTestData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -77,9 +77,9 @@ void testHashMapSimpleBoolean() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
       bool tag = true;
-      SimpleTestData tt = createSimpleTestData();
+      SimpleTestData tt = SimpleTestData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -100,9 +100,9 @@ void testHashMapSimpleBoolean() {
 
     //void clear()
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
       bool tag = true;
-      SimpleTestData tt = createSimpleTestData();
+      SimpleTestData tt = SimpleTestData::New();
       tt->i = true;
       map->put(tag,tt);
       map->put(false,tt);
@@ -114,7 +114,7 @@ void testHashMapSimpleBoolean() {
         break;
       }
 
-      HashMap<bool,SimpleTestData> map2 = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map2 = HashMap<bool,SimpleTestData>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Simple bool Test {clear()} case2]");
@@ -127,9 +127,9 @@ void testHashMapSimpleBoolean() {
 
     //int size()
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
       bool tag = true;
-      SimpleTestData tt = createSimpleTestData();
+      SimpleTestData tt = SimpleTestData::New();
       tt->i = true;
       map->put(tag,tt);
       map->put(false,tt);
@@ -144,12 +144,12 @@ void testHashMapSimpleBoolean() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
-      SimpleTestData tt1 = createSimpleTestData();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
+      SimpleTestData tt1 = SimpleTestData::New();
       tt1->i = true;
       map->put(true,tt1);
 
-      SimpleTestData tt2 = createSimpleTestData();
+      SimpleTestData tt2 = SimpleTestData::New();
       tt2->i = false;
       map->put(false,tt2);
 
@@ -160,7 +160,7 @@ void testHashMapSimpleBoolean() {
         break;
       }
 
-      HashMap<bool,SimpleTestData> map2 = createHashMap<bool,SimpleTestData>();
+      HashMap<bool,SimpleTestData> map2 = HashMap<bool,SimpleTestData>::New();
       ArrayList<bool>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Simple bool Test {keySet()} case3]");
@@ -173,12 +173,12 @@ void testHashMapSimpleBoolean() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
-      SimpleTestData tt1 = createSimpleTestData();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
+      SimpleTestData tt1 = SimpleTestData::New();
       tt1->i = true;
       map->put(true,tt1);
 
-      SimpleTestData tt2 = createSimpleTestData();
+      SimpleTestData tt2 = SimpleTestData::New();
       tt2->i = false;
       map->put(false,tt2);
 
@@ -192,7 +192,7 @@ void testHashMapSimpleBoolean() {
         }
       }
 
-      HashMap<Boolean,SimpleTestData> map2 = createHashMap<Boolean,SimpleTestData>();
+      HashMap<Boolean,SimpleTestData> map2 = HashMap<Boolean,SimpleTestData>::New();
       ArrayList<SimpleTestData>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Simple bool Test {entrySet()} case2]");
@@ -206,12 +206,12 @@ void testHashMapSimpleBoolean() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<bool,SimpleTestData> map = createHashMap<bool,SimpleTestData>();
-      SimpleTestData tt1 = createSimpleTestData();
+      HashMap<bool,SimpleTestData> map = HashMap<bool,SimpleTestData>::New();
+      SimpleTestData tt1 = SimpleTestData::New();
       tt1->i = true;
       map->put(true,tt1);
 
-      SimpleTestData tt2 = createSimpleTestData();
+      SimpleTestData tt2 = SimpleTestData::New();
       tt2->i = false;
       map->put(false,tt2);
 

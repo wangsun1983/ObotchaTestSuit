@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testReadWriteLock_GetName() {
   
-  ReadWriteLock rwLock = createReadWriteLock(createString("testLock"));
+  ReadWriteLock rwLock = ReadWriteLock::New(String::New("testLock"));
   if(!rwLock->getName()->sameAs("testLock")
     ||!rwLock->getReadLock()->getName()->sameAs("testLock")
     ||!rwLock->getWriteLock()->getName()->sameAs("testLock")) {

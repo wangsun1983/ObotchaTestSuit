@@ -11,13 +11,13 @@ using namespace obotcha;
 
 void testRsa3Pcks1OEAP() {
   //create test data
-  File data = createFile("./tmp/Rsa3_pcks1_oeap_data");
+  File data = File::New("./tmp/Rsa3_pcks1_oeap_data");
   if(!data->exists()) {
     data->createNewFile();
   }
 
-  FileOutputStream stream = createFileOutputStream(data);
-  String str = createString("abcdefghi");
+  FileOutputStream stream = FileOutputStream::New(data);
+  String str = String::New("abcdefghi");
   stream->open();
   for(int i = 0;i < 1024;i++) {
       str = str->append("abcdefgh \r\n");
@@ -25,15 +25,15 @@ void testRsa3Pcks1OEAP() {
   stream->write(str->toByteArray());
   stream->close();
 
-  String key = createString("12345678");
-  Md md5sum = createMd(st(Md)::Type::Md5);
+  String key = String::New("12345678");
+  Md md5sum = Md::New(st(Md)::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {
     //create a test data
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("RSA/RSA3/OEAPPadding");
-    secretKey->generate(createString("./tmp/test_Rsa3_pcks1_oeap_encrypt_deckey"),
-                        createString("./tmp/test_Rsa3_pcks1_oeap_encrypt_enckey"),
+    secretKey->generate(String::New("./tmp/test_Rsa3_pcks1_oeap_encrypt_deckey"),
+                        String::New("./tmp/test_Rsa3_pcks1_oeap_encrypt_enckey"),
                         key);
 
     //pkcs5
@@ -49,7 +49,7 @@ void testRsa3Pcks1OEAP() {
       Cipher AES1282 = st(CipherCreator)::getInstance("RSA/RSA3/OEAPPadding");
       AES1282->init(st(Cipher)::Mode::Decrypt,deckey);
       AES1282->decryptFile("./tmp/rsa3_pcks1_oeap_encrypt_outdata","./tmp/rsa3_pcks1_oeap_encrypt_outdata_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/rsa3_pcks1_oeap_encrypt_outdata_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/rsa3_pcks1_oeap_encrypt_outdata_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestRsa3Pcks1 OEAP PKCS5Padding case1]");

@@ -18,9 +18,9 @@ void testHashMapSimpleFloat() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+        HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
         float tag = 1;
-        SimpleFloatData tt = createSimpleFloatData();
+        SimpleFloatData tt = SimpleFloatData::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -46,9 +46,9 @@ void testHashMapSimpleFloat() {
 
     //void remove(T t)
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       float tag = 1;
-      SimpleFloatData tt = createSimpleFloatData();
+      SimpleFloatData tt = SimpleFloatData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -78,9 +78,9 @@ void testHashMapSimpleFloat() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       float tag = 1;
-      SimpleFloatData tt = createSimpleFloatData();
+      SimpleFloatData tt = SimpleFloatData::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -101,9 +101,9 @@ void testHashMapSimpleFloat() {
 
     //void clear()
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       float tag = 1;
-      SimpleFloatData tt = createSimpleFloatData();
+      SimpleFloatData tt = SimpleFloatData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -115,7 +115,7 @@ void testHashMapSimpleFloat() {
         break;
       }
 
-      HashMap<float,SimpleFloatData> map2 = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map2 = HashMap<float,SimpleFloatData>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap Simple Float Test {clear()} case2]");
@@ -128,9 +128,9 @@ void testHashMapSimpleFloat() {
 
     //int size()
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       float tag = 1;
-      SimpleFloatData tt = createSimpleFloatData();
+      SimpleFloatData tt = SimpleFloatData::New();
       tt->i = 100;
       map->put(tag,tt);
       map->put(2,tt);
@@ -145,9 +145,9 @@ void testHashMapSimpleFloat() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleFloatData tt = createSimpleFloatData();
+        SimpleFloatData tt = SimpleFloatData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -168,7 +168,7 @@ void testHashMapSimpleFloat() {
         }
       }
 
-      HashMap<float,SimpleFloatData> map2 = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map2 = HashMap<float,SimpleFloatData>::New();
       ArrayList<float>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap Simple Float Test {keySet()} case3]");
@@ -181,9 +181,9 @@ void testHashMapSimpleFloat() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleFloatData tt = createSimpleFloatData();
+        SimpleFloatData tt = SimpleFloatData::New();
         tt->i = index;
         map->put(index,tt);
       }
@@ -198,7 +198,7 @@ void testHashMapSimpleFloat() {
         }
       }
 
-      HashMap<float,SimpleFloatData> map2 = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map2 = HashMap<float,SimpleFloatData>::New();
       ArrayList<SimpleFloatData>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap Simple Float Test {entrySet()} case2]");
@@ -212,9 +212,9 @@ void testHashMapSimpleFloat() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<float,SimpleFloatData> map = createHashMap<float,SimpleFloatData>();
+      HashMap<float,SimpleFloatData> map = HashMap<float,SimpleFloatData>::New();
       for(int index = 0;index < 100;index++) {
-        SimpleFloatData tt = createSimpleFloatData();
+        SimpleFloatData tt = SimpleFloatData::New();
         tt->i = index;
         map->put(index,tt);
       }

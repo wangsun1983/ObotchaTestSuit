@@ -62,7 +62,7 @@ const char *testdata[46][3] = {
 char *testname[3] = {"Name","SemiMajorAxis","Flattening"};
 
 void simpleattrtest() {
-    XmlReader reader = createXmlReader()->loadFile(createFile("test.xml"));
+    XmlReader reader = XmlReader::New()->loadFile(File::New("test.xml"));
     XmlDocument doc = reader->get();
 
     String content = doc->toString();

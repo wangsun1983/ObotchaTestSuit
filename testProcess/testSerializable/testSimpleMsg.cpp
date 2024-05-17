@@ -43,8 +43,8 @@ public:
 };
 
 void testSimpleMsg() {
-    String v = createString("11");
-    TestMqMessage msg = createTestMqMessage(1,"abc",v->toByteArray());
+    String v = String::New("11");
+    TestMqMessage msg = TestMqMessage::New(1,"abc",v->toByteArray());
     ByteArray data = Serialize(msg);
     
     TestMqMessage msg2 = DeSerialize<TestMqMessage>(data);

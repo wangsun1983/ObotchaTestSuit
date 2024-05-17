@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderClearSiteData c = createHttpHeaderClearSiteData();
+    HttpHeaderClearSiteData c = HttpHeaderClearSiteData::New();
     c->load("\"cache\", \"cookies\", \"storage\", \"executionContexts\"");
     if(!c->isCache()) {
       TEST_FAIL("[HttpHeaderClearSiteData test Parse case1]");

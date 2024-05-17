@@ -13,18 +13,18 @@ using namespace obotcha;
 void testBlockingQueueClear() {
 
     while(1) {
-        BlockingQueue<String> list = createBlockingQueue<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingQueue<String> list = BlockingQueue<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
-        Thread t = createThread([&list]{
+        Thread t = Thread::New([&list]{
           usleep(100*1000);
           list->clear();
         });
         t->start();
         long time1 = st(System)::CurrentTimeMillis();
-        list->put(createString("d"));
+        list->put(String::New("d"));
         long time2 = st(System)::CurrentTimeMillis();
         if((time2 - time1) < 100 || (time2 - time1) > 105) {
           TEST_FAIL("BlockingQueue clear test1");

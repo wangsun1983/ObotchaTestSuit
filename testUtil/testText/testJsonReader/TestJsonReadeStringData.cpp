@@ -14,7 +14,7 @@ using namespace obotcha;
 int stringDataTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_01.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_string_01.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Data Test case1]");
@@ -32,7 +32,7 @@ int stringDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_02.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_string_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Data Test case4]");
@@ -50,7 +50,7 @@ int stringDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_03.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_string_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Data Test case7]");
@@ -68,7 +68,7 @@ int stringDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_04.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_string_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Data Test case10]");
@@ -86,7 +86,7 @@ int stringDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_string_05.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_string_05.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader String Data Test case13]");

@@ -14,8 +14,8 @@
 using namespace obotcha;
 
 void testConditionWaitWithoutLock() {
-    Mutex m = createMutex();
-    Condition c = createCondition();
+    Mutex m = Mutex::New();
+    Condition c = Condition::New();
     
     try {
         c->wait(m);

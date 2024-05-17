@@ -12,13 +12,13 @@
 using namespace obotcha;
 
 void testToString() {
-  HttpHeaderExpectCT expect = createHttpHeaderExpectCT();
+  HttpHeaderExpectCT expect = HttpHeaderExpectCT::New();
   expect->load("max-age=86400; enforce; report-uri=\"https://foo.example/report\"");
   if(!expect->toString()->sameAs("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {
     TEST_FAIL("[HttpHeaderExpectCT test toString case1],str is %s",expect->toString()->toChars());
   }
   
-  HttpHeader header = createHttpHeader();
+  HttpHeader header = HttpHeader::New();
   header->setExpectCT(expect);
   auto expect2 = header->getExpectCT();
   if(!expect2->toString()->sameAs("max-age=86400; enforce; report-uri=\"https://foo.example/report\"")) {

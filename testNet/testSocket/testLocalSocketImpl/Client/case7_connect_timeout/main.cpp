@@ -13,16 +13,16 @@ using namespace obotcha;
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case6_socket");
-    SocketOption option = createSocketOption();
+    InetAddress addr = InetLocalAddress::New("case6_socket");
+    SocketOption option = SocketOption::New();
     option->setConnectTimeout(1000);
     
     //connect 1:
-    ConcurrentQueue<Socket> clients = createConcurrentQueue<Socket>();
-    ArrayList<Thread> threads = createArrayList<Thread>();    
+    ConcurrentQueue<Socket> clients = ConcurrentQueue<Socket>::New();
+    ArrayList<Thread> threads = ArrayList<Thread>::New();    
     for(int i = 0; i < 32;i++) {
-        Thread t = createThread([&] {
-            Socket client1 = createSocketBuilder()
+        Thread t = Thread::New([&] {
+            Socket client1 = SocketBuilder::New()
                     ->setAddress(addr)
                     ->newSocket();
             client1->connect();
@@ -34,11 +34,11 @@ int main() {
     
     usleep(1000*100);
     
-    Socket client = createSocketBuilder()
+    Socket client = SocketBuilder::New()
                     ->setAddress(addr)
                     ->setOption(option)
                     ->newSocket();
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     watcher->start();
     int ret = client->connect();
     auto cost = watcher->stop();

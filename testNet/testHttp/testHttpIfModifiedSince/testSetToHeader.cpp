@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("If-Modified-Since"),
-                createString(" Wed, 21 Oct 2015 07:28:00 GMT"));
+    auto header = HttpHeader::New();
+    header->set(String::New("If-Modified-Since"),
+                String::New(" Wed, 21 Oct 2015 07:28:00 GMT"));
     auto modifiedSince = header->getIfModifiedSince();
     auto date = modifiedSince->get()->toDateTime();
     if(date->year() != 2015) {

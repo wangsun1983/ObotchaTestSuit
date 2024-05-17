@@ -17,9 +17,9 @@ public:
 
 void testStackSize() {
   while(1) {
-    Stack<Integer> stack = createStack<Integer>();
-    stack->push(createInteger(1));
-    stack->push(createInteger(2));
+    Stack<Integer> stack = Stack<Integer>::New();
+    stack->push(Integer::New(1));
+    stack->push(Integer::New(2));
 
     if(stack->size() != 2) {
       TEST_FAIL("testStack size test1");
@@ -43,9 +43,9 @@ void testStackSize() {
   }
 
   while(1) {
-    Stack<TestSizeData> stack = createStack<TestSizeData>();
-    stack->push(createTestSizeData(1));
-    stack->push(createTestSizeData(2));
+    Stack<TestSizeData> stack = Stack<TestSizeData>::New();
+    stack->push(TestSizeData::New(1));
+    stack->push(TestSizeData::New(2));
 
     if(stack->size() != 2) {
       TEST_FAIL("testStack size test4");

@@ -13,18 +13,18 @@ using namespace obotcha;
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case6_socket");
-    SocketOption option = createSocketOption();
+    InetAddress addr = InetLocalAddress::New("case6_socket");
+    SocketOption option = SocketOption::New();
     option->setConnectTimeout(2000);
     option->setSndTimeout(1000);
     
-    Socket client = createSocketBuilder()
+    Socket client = SocketBuilder::New()
                     ->setAddress(addr)
                     ->setOption(option)
                     ->newSocket();
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     int ret = client->connect();
-    ByteArray data = createByteArray(1024*1024);
+    ByteArray data = ByteArray::New(1024*1024);
     for(int i = 0;i < 1024*1024;i++) {
         data[i] = 1;
     }

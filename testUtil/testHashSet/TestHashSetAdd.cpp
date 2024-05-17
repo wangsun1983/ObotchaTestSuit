@@ -11,12 +11,12 @@ void testHashAdd() {
 
     //case string
     while(1) {
-        HashSet<String> set = createHashSet<String>();
-        set->add(createString("abc"));
-        set->add(createString("abc"));
-        set->add(createString("abc1"));
-        set->add(createString("abc2"));
-        set->add(createString("abc3"));
+        HashSet<String> set = HashSet<String>::New();
+        set->add(String::New("abc"));
+        set->add(String::New("abc"));
+        set->add(String::New("abc1"));
+        set->add(String::New("abc2"));
+        set->add(String::New("abc3"));
 
         if(set->size() != 4) {
           TEST_FAIL("HashSet base test1");
@@ -40,7 +40,7 @@ void testHashAdd() {
           break;
         }
 
-        set->remove(createString("abc"));
+        set->remove(String::New("abc"));
         it = set->getIterator();
         count = 0;
         while(it->hasValue()) {
@@ -63,7 +63,7 @@ void testHashAdd() {
 
     //case int
     while(1) {
-        HashSet<int> set = createHashSet<int>();
+        HashSet<int> set = HashSet<int>::New();
         set->add(1);
         set->add(2);
         set->add(2);
@@ -115,22 +115,22 @@ void testHashAdd() {
 
     //case string
     while(1) {
-        HashSet<String> set = createHashSet<String>();
-        set->add(createString("abc"));
-        set->add(createString("abc"));
-        set->add(createString("abc1"));
-        set->add(createString("abc2"));
-        set->add(createString("abc3"));
+        HashSet<String> set = HashSet<String>::New();
+        set->add(String::New("abc"));
+        set->add(String::New("abc"));
+        set->add(String::New("abc1"));
+        set->add(String::New("abc2"));
+        set->add(String::New("abc3"));
 
         if(set->size() != 4) {
           TEST_FAIL("HashSet base test7");
           break;
         }
 
-        set->remove(createString("abc"));
-        set->remove(createString("abc1"));
-        set->remove(createString("abc2"));
-        set->remove(createString("abc3"));
+        set->remove(String::New("abc"));
+        set->remove(String::New("abc1"));
+        set->remove(String::New("abc2"));
+        set->remove(String::New("abc3"));
 
         if(set->size() != 0) {
           TEST_FAIL("HashSet base test8");
@@ -140,7 +140,7 @@ void testHashAdd() {
 
     //case int
     while(1) {
-        HashSet<int> set = createHashSet<int>();
+        HashSet<int> set = HashSet<int>::New();
         set->add(1);
         set->add(2);
         set->add(1);

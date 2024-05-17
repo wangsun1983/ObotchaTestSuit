@@ -16,11 +16,11 @@
 using namespace obotcha;
 
 void testThreadPoolExecutor_GetResult_TimeWatch() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(1)
               ->newThreadPool();
 
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
   while(1) {
       Future f1 = pool->submit([]{
           usleep(200*1000);

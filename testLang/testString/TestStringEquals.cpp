@@ -17,7 +17,7 @@ using namespace obotcha;
 void TestStringEquals() {
 
     while(1) {
-        String str = createString(" abc  f ");
+        String str = String::New(" abc  f ");
         if(!str->sameAs(" abc  f ")) {
             TEST_FAIL("String equals test1");
             break;
@@ -58,7 +58,7 @@ void TestStringEquals() {
             break;
         }
 
-        String str2 = createString(" abc  f ");
+        String str2 = String::New(" abc  f ");
         if(!str->equals(str2)) {
             TEST_FAIL("String equals test8");
             break;

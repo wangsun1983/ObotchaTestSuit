@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 void testFileLength() {
-    File f1 = createFile("./tmp/len1.txt");
+    File f1 = File::New("./tmp/len1.txt");
     if(f1->length() != -1) {
         TEST_FAIL("[File Test {length()} case1],ret is %ld",f1->length());
     }
@@ -20,19 +20,19 @@ void testFileLength() {
         TEST_FAIL("[File Test {length()} case2]");
     }
     
-    FileOutputStream stream = createFileOutputStream(f1);
+    FileOutputStream stream = FileOutputStream::New(f1);
     stream->open();
-    stream->write(createString("hello")->toByteArray());
+    stream->write(String::New("hello")->toByteArray());
     stream->close();
     
     if(f1->length() != 5) {
         TEST_OK("[File Test {length()} case3]");
     }
     
-    stream = createFileOutputStream(f1);
+    stream = FileOutputStream::New(f1);
     stream->open(st(IO)::FileControlFlags::Append);
     
-    stream->write(createString("hello")->toByteArray());
+    stream->write(String::New("hello")->toByteArray());
     stream->close();
     if(f1->length() != 10) {
         TEST_OK("[File Test {length()} case4]");

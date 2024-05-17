@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderReferrerPolicy match = createHttpHeaderReferrerPolicy();
+    HttpHeaderReferrerPolicy match = HttpHeaderReferrerPolicy::New();
     match->load("no-referrer, strict-origin-when-cross-origin");
 
     ArrayList<String> list = match->get();

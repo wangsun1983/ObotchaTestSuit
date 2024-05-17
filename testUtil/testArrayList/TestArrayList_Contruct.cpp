@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testArrayList_Construct() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     if(list->size() != 0) {
       TEST_FAIL("[ArrayList construct test1]");
       break;
@@ -22,12 +22,12 @@ void testArrayList_Construct() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    ArrayList<String> list2 = createArrayList<String>(list);
+    ArrayList<String> list2 = ArrayList<String>::New(list);
     if(list2->size() != 3) {
       TEST_FAIL("[ArrayList construct test2] ");
       break;
@@ -38,7 +38,7 @@ void testArrayList_Construct() {
       break;
     }
 
-    list->add(createString("d"));
+    list->add(String::New("d"));
     if(list2->size() != 3 || list->size() != 4) {
       TEST_FAIL("[ArrayList construct test4] ");
       break;

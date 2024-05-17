@@ -13,14 +13,14 @@ using namespace obotcha;
 
 void testArrayList_Iterator_HasValue() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
     auto iterator = list->getIterator();
     if(iterator->hasValue()) {
       TEST_FAIL("[ArrayList Iterator HasValue test1]");
       break;
     }
 
-    list->add(createString("a")); //this may case crash~~~.haha
+    list->add(String::New("a")); //this may case crash~~~.haha
     if(!iterator->hasValue()) {
       TEST_FAIL("[ArrayList Iterator HasValue test2]");
       break;
@@ -43,8 +43,8 @@ void testArrayList_Iterator_HasValue() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
     auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ArrayList Iterator HasValue test3]");
@@ -61,8 +61,8 @@ void testArrayList_Iterator_HasValue() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
     auto iterator = list->getIterator();
     if(!iterator->hasValue()) {
       TEST_FAIL("[ArrayList Iterator HasValue test5] ");

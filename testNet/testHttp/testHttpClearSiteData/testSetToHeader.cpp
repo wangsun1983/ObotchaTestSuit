@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    auto header = createHttpHeader();
-    header->set(createString("Clear-Site-Data"),
-                createString("\"cache\", \"cookies\", \"storage\", \"executionContexts\""));
+    auto header = HttpHeader::New();
+    header->set(String::New("Clear-Site-Data"),
+                String::New("\"cache\", \"cookies\", \"storage\", \"executionContexts\""));
 
     auto c = header->getClearSiteData();
     if(!c->isCache()) {

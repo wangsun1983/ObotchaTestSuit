@@ -21,10 +21,10 @@ using namespace obotcha;
 
 void testConcurrentHashMap() {
     while(1) {
-      ConcurrentHashMap<int,String> map = createConcurrentHashMap<int,String>();
+      ConcurrentHashMap<int,String> map = ConcurrentHashMap<int,String>::New();
       int sum = 0;
       for(int i = 0; i < 10;i++) {
-        map->put(i,createString(i));
+        map->put(i,String::New(i));
         sum += i;
       }
 
@@ -42,7 +42,7 @@ void testConcurrentHashMap() {
     }
 
     while(1) {
-      ConcurrentHashMap<int,String> map = createConcurrentHashMap<int,String>();
+      ConcurrentHashMap<int,String> map = ConcurrentHashMap<int,String>::New();
       int count = 0;
       ForEveryOne(pair,map) {
         count++;
@@ -55,20 +55,20 @@ void testConcurrentHashMap() {
     }
 
     while(1) {
-      ConcurrentHashMap<int,String> list = createConcurrentHashMap<int,String>();
-      list->put(1,createString("a"));
-      list->put(2,createString("b"));
-      Thread t1 = createThread([&]{
+      ConcurrentHashMap<int,String> list = ConcurrentHashMap<int,String>::New();
+      list->put(1,String::New("a"));
+      list->put(2,String::New("b"));
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
-        list->put(3,createString("c"));
+        list->put(3,String::New("c"));
         auto result = watcher->stop();
         if(result > 1005 || result < 995) {
           TEST_FAIL("ForEveryOne ConcurrentHashMap case4,result is %ld",result);

@@ -11,12 +11,12 @@ using namespace obotcha;
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case6_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case6_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     
-    String resp = createString("hello server");
+    String resp = String::New("hello server");
     client->getOutputStream()->write(resp->toByteArray());
     
     client->close();
@@ -26,7 +26,7 @@ int main() {
         TEST_FAIL("TestLocalSocket Client case6_close case1");
     }
     
-    ByteArray data = createByteArray(32);
+    ByteArray data = ByteArray::New(32);
     //if(client->getInputStream()->read(data) != -1) {
 	if(client->getInputStream() != nullptr) {
         TEST_FAIL("TestLocalSocket Client case6_close case2");

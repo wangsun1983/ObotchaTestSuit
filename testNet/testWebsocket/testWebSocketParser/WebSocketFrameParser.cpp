@@ -64,8 +64,8 @@ int testFrameParser() {
     size_t offset = 0;
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -92,8 +92,8 @@ int testFrameParser() {
                           "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
 
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
@@ -129,8 +129,8 @@ int testFrameParser() {
     size_t offset = 0;
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() != 2) {
@@ -175,8 +175,8 @@ int testFrameParser() {
       memcpy(payload_frame+2+2, key, 4);
       memcpy(payload_frame+2+2+4, (const char *)mask((char *)key, payload_copy, length), length);
 
-      WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-      ByteArray loadData = createByteArray((byte *)payload_frame,(2+2+4+length));
+      WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+      ByteArray loadData = ByteArray::New((byte *)payload_frame,(2+2+4+length));
       parser->pushParseData(loadData);
       ArrayList<WebSocketFrame> msgDatas = parser->doParse();
       if(msgDatas->size() != 1) {
@@ -221,8 +221,8 @@ int testFrameParser() {
     memcpy(payload_frame+2, &len, sizeof(uint64_t));
     memcpy(payload_frame+2+sizeof(uint64_t), key, 4);
     memcpy(payload_frame+2+sizeof(uint64_t)+4, (const char *)mask((char *)key, payload_copy, length), length);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload_frame,length+6+sizeof(uint64_t));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload_frame,length+6+sizeof(uint64_t));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
 
@@ -249,8 +249,8 @@ int testFrameParser() {
     size_t offset = 0;
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -274,8 +274,8 @@ int testFrameParser() {
     size_t offset = 0;
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
-    ByteArray loadData = createByteArray((byte *)payload,strlen(payload));
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
+    ByteArray loadData = ByteArray::New((byte *)payload,strlen(payload));
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
     if(msgDatas->size() == 0) {
@@ -299,9 +299,9 @@ int testFrameParser() {
     size_t offset = 0;
     const char *payload = "\x81\x85\x37\xfa\x21\x3d\x7f\x9f\x4d\x51\x58";
     uint16_t length = strlen(payload);
-    WebSocketHybi13Parser parser = createWebSocketHybi13Parser();
+    WebSocketHybi13Parser parser = WebSocketHybi13Parser::New();
 
-    ByteArray loadData = createByteArray((byte *)payload,1);
+    ByteArray loadData = ByteArray::New((byte *)payload,1);
 	printf("loadData size is %d,loadData[0] is %x \n",loadData->size(),loadData[0]);
     parser->pushParseData(loadData);
     ArrayList<WebSocketFrame> msgDatas = parser->doParse();
@@ -310,70 +310,70 @@ int testFrameParser() {
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[1],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[1],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check2 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[2],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[2],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check3 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[3],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[3],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check4 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[4],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[4],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check5 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[5],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[5],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check6 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[6],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[6],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check7 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[7],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[7],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check7 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[8],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[8],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check8 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[9],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[9],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 0) {
       TEST_FAIL("testFrameParser case8 frame check9 size failed,current is %d ",msgDatas->size());
       return -1;
     }
 
-    parser->pushParseData(createByteArray((byte *)&payload[10],1));
+    parser->pushParseData(ByteArray::New((byte *)&payload[10],1));
     msgDatas = parser->doParse();
     if(msgDatas->size() != 1) {
       TEST_FAIL("testFrameParser case8 frame check10 size failed,current is %d ",msgDatas->size());

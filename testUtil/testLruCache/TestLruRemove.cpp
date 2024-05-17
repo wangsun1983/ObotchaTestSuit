@@ -24,11 +24,11 @@ int testLruRemove() {
 
     //case 1
     while(1) {
-      LruCache<String,MyTestData> lru = createLruCache<String,MyTestData>(3);
+      LruCache<String,MyTestData> lru = LruCache<String,MyTestData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyTestData d = createMyTestData();
+        MyTestData d = MyTestData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -36,7 +36,7 @@ int testLruRemove() {
         return 1;
       }
       //[14,13,12]
-      lru->remove(createString(14));
+      lru->remove(String::New(14));
       if(lru->size() != 2) {
         TEST_FAIL("[LruCache Test {remove()} case2]");
         return 1;
@@ -59,11 +59,11 @@ int testLruRemove() {
 
     //case 2
     while(1) {
-      LruCache<String,MyTestData> lru = createLruCache<String,MyTestData>(3);
+      LruCache<String,MyTestData> lru = LruCache<String,MyTestData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyTestData d = createMyTestData();
+        MyTestData d = MyTestData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -71,7 +71,7 @@ int testLruRemove() {
         return 1;
       }
       //[14,13,12]
-      lru->remove(createString(13));
+      lru->remove(String::New(13));
       if(lru->size() != 2) {
         TEST_FAIL("[LruCache Test {remove()} case6]");
         return 1;
@@ -95,11 +95,11 @@ int testLruRemove() {
 
     //case 3
     while(1) {
-      LruCache<String,MyTestData> lru = createLruCache<String,MyTestData>(3);
+      LruCache<String,MyTestData> lru = LruCache<String,MyTestData>::New(3);
       for(int i = 0;i < 15;i++) {
-        MyTestData d = createMyTestData();
+        MyTestData d = MyTestData::New();
         d->i = i;
-        lru->put(createString(i),d);
+        lru->put(String::New(i),d);
       }
 
       if(lru->size() != 3) {
@@ -107,7 +107,7 @@ int testLruRemove() {
         return 1;
       }
       //[14,13,12]
-      lru->remove(createString(12));
+      lru->remove(String::New(12));
       if(lru->size() != 2) {
         TEST_FAIL("[LruCache Test {remove()} case11]");
         return 1;

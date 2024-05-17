@@ -16,24 +16,24 @@
 using namespace obotcha;
 
 void testSubmitMultiThread() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
   while(1) {
-    CountDownLatch latch = createCountDownLatch(32*1024*3);
+    CountDownLatch latch = CountDownLatch::New(32*1024*3);
 
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(32)
               ->setDefaultThreadNum(4)
               ->newPriorityThreadPool();
-    Mutex mutex1 = createMutex();
+    Mutex mutex1 = Mutex::New();
     int count1 = 0;
 
-    Mutex mutex2 = createMutex();
+    Mutex mutex2 = Mutex::New();
     int count2 = 0;
 
-    Mutex mutex3 = createMutex();
+    Mutex mutex3 = Mutex::New();
     int count3 = 0;
 
-    Thread t1 = createThread([&count1,&pool,&latch,&mutex1]{
+    Thread t1 = Thread::New([&count1,&pool,&latch,&mutex1]{
       for(int i = 0;i<1024*32;i++) {
         pool->preempt(st(Concurrent)::TaskPriority::Low,[&count1,&latch,&mutex1]{
           {
@@ -46,7 +46,7 @@ void testSubmitMultiThread() {
     });
     t1->start();
 
-    Thread t2 = createThread([&count2,&pool,&latch,&mutex2]{
+    Thread t2 = Thread::New([&count2,&pool,&latch,&mutex2]{
       for(int i = 0;i<1024*32;i++) {
         pool->preempt(st(Concurrent)::TaskPriority::Medium,[&count2,&latch,&mutex2]{
           {
@@ -59,7 +59,7 @@ void testSubmitMultiThread() {
     });
     t2->start();
 
-    Thread t3 = createThread([&count3,&pool,&latch,&mutex3]{
+    Thread t3 = Thread::New([&count3,&pool,&latch,&mutex3]{
       for(int i = 0;i<1024*32;i++) {
         pool->preempt(st(Concurrent)::TaskPriority::High,[&count3,&latch,&mutex3]{
           {

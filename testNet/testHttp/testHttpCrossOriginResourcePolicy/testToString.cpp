@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
+    HttpHeaderCrossOriginResourcePolicy policy = HttpHeaderCrossOriginResourcePolicy::New();
     policy->load("same-origin ");
     
     if(!policy->toString()->sameAs("same-origin")) {
@@ -24,7 +24,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
+    HttpHeaderCrossOriginResourcePolicy policy = HttpHeaderCrossOriginResourcePolicy::New();
     policy->setAsSameOrigin();
     
     if(!policy->toString()->sameAs("same-origin")) {
@@ -34,7 +34,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
+    HttpHeaderCrossOriginResourcePolicy policy = HttpHeaderCrossOriginResourcePolicy::New();
     policy->setAsCrossOrigin();
     
     if(!policy->toString()->sameAs("cross-origin")) {
@@ -44,7 +44,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderCrossOriginResourcePolicy policy = createHttpHeaderCrossOriginResourcePolicy();
+    HttpHeaderCrossOriginResourcePolicy policy = HttpHeaderCrossOriginResourcePolicy::New();
     policy->setAsSameSite();
     
     if(!policy->toString()->sameAs("same-site")) {

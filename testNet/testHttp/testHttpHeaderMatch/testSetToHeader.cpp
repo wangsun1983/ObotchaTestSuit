@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("If-Match"),
-                createString("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("If-Match"),
+                String::New("\"bfc13a64729c4290ef5b2c2730249c88ca92d82d\""));
     auto match = header->getIfMatch();
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 1){
@@ -32,9 +32,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("If-Match"),
-                createString("W/\"67ab43\", \"54ed21\", \"7892dd\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("If-Match"),
+                String::New("W/\"67ab43\", \"54ed21\", \"7892dd\""));
     auto match = header->getIfMatch();
     ArrayList<HttpHeaderMatchItem> list = match->get();
     if(list->size() != 3){
@@ -60,9 +60,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("If-Match"),
-                createString("*"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("If-Match"),
+                String::New("*"));
     auto match = header->getIfMatch();
     
     ArrayList<HttpHeaderMatchItem> list = match->get();

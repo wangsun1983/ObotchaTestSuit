@@ -29,11 +29,11 @@ public:
 
 
 int main() {
-    Sqlite3ConnectParam param = createSqlite3ConnectParam();
+    Sqlite3ConnectParam param = Sqlite3ConnectParam::New();
     param->setPath("abc");
-    SqlConnection c = createSqlite3Connection();
+    SqlConnection c = Sqlite3Connection::New();
     c->connect(param);
-    int count = c->count(createSqlQuery("select count(*) from student"));
+    int count = c->count(SqlQuery::New("select count(*) from student"));
     if(count != 4) {
         TEST_FAIL("Sqlite3 testOpenDB case1,count is %d",count);
     }
@@ -44,25 +44,25 @@ int main() {
     }
 
     //database
-    ArrayList<Student> datalist = createArrayList<Student>();
-    Student d1 = createStudent();
+    ArrayList<Student> datalist = ArrayList<Student>::New();
+    Student d1 = Student::New();
     d1->age = 123;
-    d1->name = createString("wangsl");
+    d1->name = String::New("wangsl");
     d1->id = 1;
 
-    Student d2 = createStudent();
+    Student d2 = Student::New();
     d2->age = 1;
-    d2->name = createString("wa");
+    d2->name = String::New("wa");
     d2->id = 2;
 
-    Student d3 = createStudent();
+    Student d3 = Student::New();
     d3->age = 2;
-    d3->name = createString("waaa1");
+    d3->name = String::New("waaa1");
     d3->id = 3;
 
-    Student d4 = createStudent();
+    Student d4 = Student::New();
     d4->age = 3;
-    d4->name = createString("a");
+    d4->name = String::New("a");
     d4->id = 4;
 
     datalist->add(d1);
@@ -87,7 +87,7 @@ int main() {
     }
 
 
-    SqlRecords records = c->query(createSqlQuery("select * from student"));
+    SqlRecords records = c->query(SqlQuery::New("select * from student"));
     if(records->getRowNum() != 4) {
         TEST_FAIL("Sqlite3 testOpenDB case4_1,size is %d",records->getRowNum());
     }
@@ -97,7 +97,7 @@ int main() {
     while(iterator2->hasValue()) {
         List<String> s = iterator2->getRowData();
         auto v = datalist->get(index);
-        if(!s[0]->equals(createString(v->age)) || !s[1]->equals(v->name) || !s[2]->equals(createString(v->id))) {
+        if(!s[0]->equals(String::New(v->age)) || !s[1]->equals(v->name) || !s[2]->equals(String::New(v->id))) {
             TEST_FAIL("Sqlite3 testOpenDB case5index is %d",index);
         }
         index++;

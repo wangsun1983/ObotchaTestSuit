@@ -18,7 +18,7 @@ public:
     int value;
 };
 
-HashMap<MyHashmapKey,MyHashmapValue> map = createHashMap<MyHashmapKey,MyHashmapValue>();
+HashMap<MyHashmapKey,MyHashmapValue> map = HashMap<MyHashmapKey,MyHashmapValue>::New();
 
 static void dataUpdate(const MyHashmapKey &key,const MyHashmapValue &value) {
 	printf("func1 key count is %d,value count is %d \n",key->getStrongCount(),value->getStrongCount());

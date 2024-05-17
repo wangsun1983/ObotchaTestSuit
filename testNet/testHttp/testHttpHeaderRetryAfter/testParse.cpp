@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New();
     retryAfter->load(" Thu, 21 Oct 2021 07:28:00 GMT ");
     auto date = retryAfter->getDate()->toDateTime();
     if(date->year() != 2021) {
@@ -44,7 +44,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New();
     retryAfter->load(" 120 ");
     if(retryAfter->getDelayInterval() != 120) {
       TEST_FAIL("[HttpHeaderRetryAfter test Parse case7]");
@@ -53,7 +53,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter(" Thu, 21 Oct 2021 07:28:00 GMT ");
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New(" Thu, 21 Oct 2021 07:28:00 GMT ");
     auto date = retryAfter->getDate()->toDateTime();
     if(date->year() != 2021) {
       TEST_FAIL("[HttpHeaderRetryAfter test Parse case8]");

@@ -12,27 +12,27 @@
 using namespace obotcha;
 
 void testReadWriteLock_Lock() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getReadLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&value,&rwLock] {
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
         rwLock->getWriteLock()->unlock();
     });
 
-    Thread t1 = createThread([&value,&rwLock] {
+    Thread t1 = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
         rwLock->getWriteLock()->unlock();
     });
 
-    Thread t2 = createThread([&value,&rwLock] {
+    Thread t2 = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
@@ -64,10 +64,10 @@ void testReadWriteLock_Lock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&value,&rwLock] {
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
@@ -77,7 +77,7 @@ void testReadWriteLock_Lock() {
 		} catch(...) {}
     });
 
-    Thread t1 = createThread([&value,&rwLock] {
+    Thread t1 = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
@@ -87,7 +87,7 @@ void testReadWriteLock_Lock() {
         } catch(...) {}
     });
 
-    Thread t2 = createThread([&value,&rwLock] {
+    Thread t2 = Thread::New([&value,&rwLock] {
         rwLock->getReadLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
@@ -122,7 +122,7 @@ void testReadWriteLock_Lock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getWriteLock()->lock();
     rwLock->getWriteLock()->lock();
     rwLock->getReadLock()->lock();

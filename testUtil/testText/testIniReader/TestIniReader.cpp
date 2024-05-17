@@ -14,7 +14,7 @@ using namespace obotcha;
 void testIniReader() {
 
     while(1) {
-        IniReader reader = createIniReader()->loadFile(createFile("./testData.ini"));
+        IniReader reader = IniReader::New()->loadFile(File::New("./testData.ini"));
         auto maps = reader->get()->getAll();
         if(maps->size() != 5) {
           TEST_FAIL("IniReader test1");
@@ -22,7 +22,7 @@ void testIniReader() {
         }
 
         //L0
-        auto map1 = maps->get(createString(st(IniValue)::RootSection));
+        auto map1 = maps->get(String::New(st(IniValue)::RootSection));
         if(map1->size() != 1) {
           TEST_FAIL("IniReader test2");
           break;
@@ -35,7 +35,7 @@ void testIniReader() {
         }
 
         //L1
-        auto map2 = maps->get(createString("l1"));
+        auto map2 = maps->get(String::New("l1"));
         if(map2->size() != 6) {
           TEST_FAIL("IniReader test4");
           break;

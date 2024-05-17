@@ -10,10 +10,10 @@ void testLinkedListPeekLast() {
 
     //case1 string putLast
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         auto v1 = mList->peekLast();
         auto v2 = mList->peekLast();
@@ -28,8 +28,8 @@ void testLinkedListPeekLast() {
     }
     
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
         mList->takeFirst();
         
         auto v1 = mList->peekLast();

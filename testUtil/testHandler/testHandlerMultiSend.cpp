@@ -22,13 +22,13 @@ public:
   int count;
 };
 
-MyMultiHandler1 mulitHandler = createMyMultiHandler1();
+MyMultiHandler1 mulitHandler = MyMultiHandler1::New();
 
 DECLARE_CLASS(SendThread) IMPLEMENTS(Thread) {
 public:
   void run() {
     for(int index = 0;index<1024*5;index++) {
-      Message msg = createMessage(1);
+      Message msg = Message::New(1);
       msg->arg1 = index;
       mulitHandler->sendMessage(msg);
     }
@@ -38,11 +38,11 @@ public:
 void testHandlerMultiSend() {
   //case 1
   while(1) {
-    SendThread t1 = createSendThread();
-    SendThread t2 = createSendThread();
-    SendThread t3 = createSendThread();
-    SendThread t4 = createSendThread();
-    SendThread t5 = createSendThread();
+    SendThread t1 = SendThread::New();
+    SendThread t2 = SendThread::New();
+    SendThread t3 = SendThread::New();
+    SendThread t4 = SendThread::New();
+    SendThread t5 = SendThread::New();
     t1->start();
     t2->start();
     t3->start();

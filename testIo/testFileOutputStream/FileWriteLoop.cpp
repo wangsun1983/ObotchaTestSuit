@@ -10,29 +10,29 @@
 using namespace obotcha;
 
 void file_write_loop() {
-	File file = createFile("./tmp/loopwrite.txt");	
+	File file = File::New("./tmp/loopwrite.txt");	
 	if(!file->exists()) {
 		file->createNewFile();
 	}
 	
     for(int i = 0;i < 1024*128;i++) {
-	    FileOutputStream stream = createFileOutputStream(file);
+	    FileOutputStream stream = FileOutputStream::New(file);
 	    stream->open();
-	    auto data = createString(i)->toByteArray();
+	    auto data = String::New(i)->toByteArray();
 	    stream->write(data);
 	    stream->flush();
 	    stream->close();
 		
-		FileInputStream input = createFileInputStream(file);
+		FileInputStream input = FileInputStream::New(file);
 		input->open();
 		ByteArray outdata = input->readAll();
 		
-		if(outdata->toString() != createString(i)) {
+		if(outdata->toString() != String::New(i)) {
 			TEST_FAIL("[TestFileOutputStream Test {Loop write} case1],i is %d",i);
 			break;
 		}
 		
-		String want = createString(i);
+		String want = String::New(i);
 		auto p = want->toChars();
 		auto q = outdata->toValue();
 		for(int j = 0;j<outdata->size();j++) {

@@ -31,11 +31,11 @@ using namespace obotcha;
 
 int main() {
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   
-  HttpDelete get = createHttpDelete(url);
+  HttpDelete get = HttpDelete::New(url);
   
   if(!get->getMethodName()->sameAs("DELETE")) {
       TEST_FAIL("HttpDelete test case1");

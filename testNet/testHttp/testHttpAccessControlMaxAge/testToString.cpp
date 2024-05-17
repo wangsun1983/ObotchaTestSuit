@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlMaxAge c = createHttpHeaderAccessControlMaxAge();
+    HttpHeaderAccessControlMaxAge c = HttpHeaderAccessControlMaxAge::New();
     c->load("600");
     if(!c->toString()->sameAs("600")) {
       TEST_FAIL("[HttpHeaderAccessControlMaxAge test toString case1]");

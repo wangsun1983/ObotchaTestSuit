@@ -16,7 +16,7 @@ using namespace obotcha;
 void testFilaRoutineIsTerminated() {
 	//case1	
 	while(1) {
-		FilaRoutine croutine = createFilaRoutine();
+		FilaRoutine croutine = FilaRoutine::New();
 		croutine->start();
 		croutine->execute([&] {
 			AutoLock l(mutex);

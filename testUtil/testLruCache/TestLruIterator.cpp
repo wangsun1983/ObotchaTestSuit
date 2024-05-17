@@ -13,20 +13,20 @@ using namespace obotcha;
 
 int testLruIteator() {
 	while(1) {
-		LruCache<String,String> cache = createLruCache<String,String>(16);
-		cache->put(createString("a"),createString("this is a"));
-		cache->put(createString("b"),createString("this is b"));
-		cache->put(createString("c"),createString("this is c"));
+		LruCache<String,String> cache = LruCache<String,String>::New(16);
+		cache->put(String::New("a"),String::New("this is a"));
+		cache->put(String::New("b"),String::New("this is b"));
+		cache->put(String::New("c"),String::New("this is c"));
 		
-		ArrayList<String> tags = createArrayList<String>();
-		tags->add(createString("c"));
-		tags->add(createString("b"));
-		tags->add(createString("a"));
+		ArrayList<String> tags = ArrayList<String>::New();
+		tags->add(String::New("c"));
+		tags->add(String::New("b"));
+		tags->add(String::New("a"));
 		
-		ArrayList<String> values = createArrayList<String>();
-		values->add(createString("this is c"));
-		values->add(createString("this is b"));
-		values->add(createString("this is a"));
+		ArrayList<String> values = ArrayList<String>::New();
+		values->add(String::New("this is c"));
+		values->add(String::New("this is b"));
+		values->add(String::New("this is a"));
 		
 		auto iterator = cache->getIterator();
 		int count = 0;
@@ -45,18 +45,18 @@ int testLruIteator() {
 	}
 	
 	while(1) {
-		LruCache<String,String> cache = createLruCache<String,String>(16);
-		cache->put(createString("a"),createString("this is a"));
-		cache->put(createString("b"),createString("this is b"));
-		cache->put(createString("c"),createString("this is c"));
+		LruCache<String,String> cache = LruCache<String,String>::New(16);
+		cache->put(String::New("a"),String::New("this is a"));
+		cache->put(String::New("b"),String::New("this is b"));
+		cache->put(String::New("c"),String::New("this is c"));
 		
-		ArrayList<String> tags = createArrayList<String>();
-		tags->add(createString("c"));
-		tags->add(createString("a"));
+		ArrayList<String> tags = ArrayList<String>::New();
+		tags->add(String::New("c"));
+		tags->add(String::New("a"));
 		
-		ArrayList<String> values = createArrayList<String>();
-		values->add(createString("this is c"));
-		values->add(createString("this is a"));
+		ArrayList<String> values = ArrayList<String>::New();
+		values->add(String::New("this is c"));
+		values->add(String::New("this is a"));
 		
 		auto iterator = cache->getIterator();
 		while(iterator->hasValue()) {
@@ -87,20 +87,20 @@ int testLruIteator() {
 	}
 	
 	while(1) {
-		LruCache<String,String> cache = createLruCache<String,String>(16);
-		cache->put(createString("a"),createString("this is a"));
-		cache->put(createString("b"),createString("this is b"));
-		cache->put(createString("c"),createString("this is c"));
+		LruCache<String,String> cache = LruCache<String,String>::New(16);
+		cache->put(String::New("a"),String::New("this is a"));
+		cache->put(String::New("b"),String::New("this is b"));
+		cache->put(String::New("c"),String::New("this is c"));
 		
-		ArrayList<String> tags = createArrayList<String>();
-		tags->add(createString("c"));
-		tags->add(createString("b"));
-		tags->add(createString("a"));
+		ArrayList<String> tags = ArrayList<String>::New();
+		tags->add(String::New("c"));
+		tags->add(String::New("b"));
+		tags->add(String::New("a"));
 		
-		ArrayList<String> values = createArrayList<String>();
-		values->add(createString("this is c"));
-		values->add(createString("this is b"));
-		values->add(createString("this is a"));
+		ArrayList<String> values = ArrayList<String>::New();
+		values->add(String::New("this is c"));
+		values->add(String::New("this is b"));
+		values->add(String::New("this is a"));
 		
 		auto iterator = cache->getIterator();
 		int count = 0;

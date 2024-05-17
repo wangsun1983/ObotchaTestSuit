@@ -13,13 +13,13 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-      HttpHeaderExpect expect = createHttpHeaderExpect();
+      HttpHeaderExpect expect = HttpHeaderExpect::New();
       expect->load("100-continue");
       if(!expect->toString()->sameAs("100-continue")) {
         TEST_FAIL("[HttpHeaderExpect test toString case1]");
       }
 
-      HttpHeader header = createHttpHeader();
+      HttpHeader header = HttpHeader::New();
       header->setExpect(expect);
       auto expect2 = header->getExpect();
       if(!expect2->toString()->sameAs("100-continue")) {
@@ -29,7 +29,7 @@ void testToString() {
   }
   
   while(1) {
-      HttpHeaderExpect expect = createHttpHeaderExpect();
+      HttpHeaderExpect expect = HttpHeaderExpect::New();
       expect->set("100-continue");
       if(!expect->toString()->sameAs("100-continue")) {
         TEST_FAIL("[HttpHeaderExpect test toString case3]");

@@ -17,12 +17,12 @@ using namespace obotcha;
 
 void testThreadPoolExecutor_Multithread() {
   while(1) {
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setDefaultThreadNum(32)
               ->newThreadPool();
 
-    CountDownLatch latch = createCountDownLatch(32*1024);
-    ArrayList<Future> lists = createArrayList<Future>();
+    CountDownLatch latch = CountDownLatch::New(32*1024);
+    ArrayList<Future> lists = ArrayList<Future>::New();
     for(int i = 0;i<32*1024;i++) {
       Future t = pool->submit([&latch,i]{
         st(ExecutorResult)::Set(i);

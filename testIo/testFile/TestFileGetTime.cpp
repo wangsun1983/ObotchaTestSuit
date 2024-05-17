@@ -10,7 +10,7 @@
 using namespace obotcha;
 
 void testFileGetTime() {
-    File f = createFile("./tmp/time.txt");
+    File f = File::New("./tmp/time.txt");
     if(f->exists()) {
         f->removeAll();
     }
@@ -29,9 +29,9 @@ void testFileGetTime() {
         TEST_FAIL("[File Test {getTime()} case3]");
     }
     
-    FileOutputStream stream = createFileOutputStream("./tmp/time.txt");
+    FileOutputStream stream = FileOutputStream::New("./tmp/time.txt");
     stream->open();
-    stream->write(createString("hello")->toByteArray());
+    stream->write(String::New("hello")->toByteArray());
     stream->close();
     usleep(500*1000);
     time = st(System)::CurrentTimeMillis();

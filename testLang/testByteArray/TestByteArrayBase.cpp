@@ -20,7 +20,7 @@ struct MyData {
 void basetest() {
     while(1) {
         //Test Construct
-        ByteArray array1 = createByteArray(16);
+        ByteArray array1 = ByteArray::New(16);
 
         byte *p = array1->toValue();
         for(int index = 0;index<16;index++) {
@@ -32,7 +32,7 @@ void basetest() {
 
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array2 = createByteArray(v,16);
+        ByteArray array2 = ByteArray::New(v,16);
         byte *p2 = array2->toValue();
         bool isOk = true;
         for(int index = 0;index<16;index++) {
@@ -55,7 +55,7 @@ void basetest() {
         //test clear
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array1 = createByteArray(v,16);
+        ByteArray array1 = ByteArray::New(v,16);
         array1->clear();
         byte *p2 = array1->toValue();
         bool isOk = true;
@@ -79,7 +79,7 @@ void basetest() {
         //test toValue
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array1 = createByteArray(v,16);
+        ByteArray array1 = ByteArray::New(v,16);
         array1->clear();
         byte *p2 = array1->toValue();
         bool isOk = true;
@@ -103,7 +103,7 @@ void basetest() {
         //test size
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array1 = createByteArray(v,16);
+        ByteArray array1 = ByteArray::New(v,16);
 
         if(array1->size() != 16) {
             TEST_FAIL("ByteArray size test1 ");
@@ -118,7 +118,7 @@ void basetest() {
 
     while(1) {
         //test isEmpty
-        ByteArray t = createByteArray(16);
+        ByteArray t = ByteArray::New(16);
         if(t->isEmpty()) {
             TEST_FAIL("ByteArray isEmpty ");
             break;
@@ -132,7 +132,7 @@ void basetest() {
         //test at
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array1 = createByteArray(v,16);
+        ByteArray array1 = ByteArray::New(v,16);
         byte *p = array1->toValue();
         bool isOk = true;
         for(int index = 0;index<16;index++) {
@@ -154,7 +154,7 @@ void basetest() {
         //test at
         byte *v = (byte *)malloc(16);
         memset(v,8,16);
-        ByteArray array1 = createByteArray(v,16);
+        ByteArray array1 = ByteArray::New(v,16);
         array1->fill(9);
 
         byte *p = array1->toValue();
@@ -178,7 +178,7 @@ void basetest() {
     //bool fill(byte v,int index);
     while(1) {
 
-      ByteArray buff2 = createByteArray(6);
+      ByteArray buff2 = ByteArray::New(6);
       buff2->fill(2,2,3);
       if(buff2->at(0) != 0
         ||buff2->at(1) != 0
@@ -190,13 +190,13 @@ void basetest() {
           break;
       }
 
-      ByteArray buff3 = createByteArray(6);
+      ByteArray buff3 = ByteArray::New(6);
       try {
         buff3->fill(100,2,3);
         TEST_FAIL("ByteArray fill test 5");
       } catch(ArrayIndexOutOfBoundsException e) {}
 
-      ByteArray buff4 = createByteArray(6);
+      ByteArray buff4 = ByteArray::New(6);
       try {
         buff4->fill(0,200,3);
         TEST_FAIL("ByteArray fill test 6");
@@ -211,7 +211,7 @@ void basetest() {
       MyData t;
       t.i = 100;
       t.j = 120;
-      ByteArray arr = createByteArray((byte *)&t,sizeof(struct MyData));
+      ByteArray arr = ByteArray::New((byte *)&t,sizeof(struct MyData));
       struct MyData * t1 = (struct MyData *)arr->toValue();
       if(t1->i != t.i
         ||t1->j != t.j) {
@@ -225,7 +225,7 @@ void basetest() {
 
     //char at(int);
     while(1) {
-      ByteArray array = createByteArray(2);
+      ByteArray array = ByteArray::New(2);
       try{
         int value = array->at(3);
         TEST_FAIL("ByteArray at()) test 1");

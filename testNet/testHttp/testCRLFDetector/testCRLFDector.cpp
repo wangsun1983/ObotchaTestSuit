@@ -14,7 +14,7 @@ using namespace obotcha;
 void testCRLFDetector() {
   while(1) {
    
-    CRLFDetector dector = createCRLFDetector();     
+    CRLFDetector dector = CRLFDetector::New();     
     const char *p = "abc\r\n,d";
     int i = 0;
     for(;i < strlen(p);i++) {
@@ -57,7 +57,7 @@ void testCRLFDetector() {
 
     const char *p4 = "\r\naabb";
     i = 0;
-    dector = createCRLFDetector();
+    dector = CRLFDetector::New();
     bool isOnly = false;
     for(;i < strlen(p4);i++) {
       uint8_t v = p4[i];

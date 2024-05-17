@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void check(String suffix,st(HttpMime)::Type expectedId) {
   //HttpMime mime = st(HttpMime)::createBySuffix(suffix);
-  HttpMime mime = createHttpMime();
+  HttpMime mime = HttpMime::New();
   mime->setSuffix(suffix);
   //mime->setSuffix(suffix);
   if(mime->getTypeId() != expectedId) {

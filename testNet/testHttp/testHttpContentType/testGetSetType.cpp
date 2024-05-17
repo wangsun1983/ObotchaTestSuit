@@ -13,10 +13,10 @@ using namespace obotcha;
 
 void testGetSetType() {
   
-  HttpHeaderContentType type = createHttpHeaderContentType();
-  type->setType(createString("a"));
-  type->setCharSet(createString("b"));
-  type->setBoundary(createString("c"));
+  HttpHeaderContentType type = HttpHeaderContentType::New();
+  type->setType(String::New("a"));
+  type->setCharSet(String::New("b"));
+  type->setBoundary(String::New("c"));
   
   if(!type->getType()->sameAs("a")
     ||!type->getCharSet()->sameAs("b")

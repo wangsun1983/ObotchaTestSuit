@@ -81,32 +81,32 @@ public:
 
 void testImport() {
   /*
-    JsonValue value = createJsonValue();
-    ImportData importData = createImportData();
+    JsonValue value = JsonValue::New();
+    ImportData importData = ImportData::New();
     importData->data1 = 1;
     importData->data2 = 123;
 
-    importData->data3 = createSubImportData();
+    importData->data3 = SubImportData::New();
     importData->data3->subData1 = 222;
     importData->data3->subData2 = 777;
-    importData->data3->subData3 = createString("hello world");
+    importData->data3->subData3 = String::New("hello world");
 
-    importData->data4 = createArrayList<SubImportData>();
-    SubImportData t1 = createSubImportData();
+    importData->data4 = ArrayList<SubImportData>::New();
+    SubImportData t1 = SubImportData::New();
     t1->subData1 = 1;
     t1->subData2 = 1111;
-    t1->subData3 = createString("this is one");
-    t1->subData4 = createArrayList<BaseImportData>();
-    BaseImportData tt1 = createBaseImportData();
+    t1->subData3 = String::New("this is one");
+    t1->subData4 = ArrayList<BaseImportData>::New();
+    BaseImportData tt1 = BaseImportData::New();
     tt1->baseData1 = 1122;
     t1->subData4->add(tt1);
 
-    SubImportData t2 = createSubImportData();
+    SubImportData t2 = SubImportData::New();
     t2->subData1 = 2;
     t2->subData2 = 2222;
-    t2->subData3 = createString("this is two");
-    t2->subData4 = createArrayList<BaseImportData>();
-    BaseImportData tt2 = createBaseImportData();
+    t2->subData3 = String::New("this is two");
+    t2->subData4 = ArrayList<BaseImportData>::New();
+    BaseImportData tt2 = BaseImportData::New();
     tt2->baseData1 = 3344;
     t2->subData4->add(tt2);
 
@@ -114,13 +114,13 @@ void testImport() {
     importData->data4->add(t2);
 
     value->importFrom(importData);
-    JsonWriter writer = createJsonWriter(createString("wangslabc.json"));
+    JsonWriter writer = JsonWriter::New(String::New("wangslabc.json"));
     writer->write(value);
     writer->close();*/
-    JsonReader reader = createJsonReader()->loadFile(createFile("wangslabc.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("wangslabc.json"));
     JsonValue value = reader->get();
 
-    ImportData info = createImportData();
+    ImportData info = ImportData::New();
     value->reflectTo(info);
 
     //TEST_FAIL("data1 is %d ",info->data1);

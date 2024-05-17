@@ -31,11 +31,11 @@ using namespace obotcha;
 
 int main() {
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   
-  HttpGet get = createHttpGet(url);
+  HttpGet get = HttpGet::New(url);
   
   if(!get->getMethodName()->sameAs("GET")) {
       TEST_FAIL("HttpGet test case1");

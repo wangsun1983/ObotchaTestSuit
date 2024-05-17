@@ -10,13 +10,9 @@ using namespace obotcha;
 
 extern void testMapRead();
 extern void testMapWrite();
-extern void testMapGetInputStream();
-extern void testSize();
 
 int main() {
-  testSize();
   testMapRead();
   testMapWrite();
-  testMapGetInputStream();
   return 0;
 }

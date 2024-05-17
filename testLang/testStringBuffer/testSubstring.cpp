@@ -6,7 +6,7 @@ using namespace obotcha;
 
 void testSubString() {
     while(1) {
-      StringBuffer buffer = createStringBuffer(1);
+      StringBuffer buffer = StringBuffer::New(1);
       buffer->append("abc","abc2","abc3");
       auto ret = buffer->subString(0,4)->append("123");
       if(!ret->sameAs("abca123")) {
@@ -16,7 +16,7 @@ void testSubString() {
     }
 
     while(1) {
-      StringBuffer buffer = createStringBuffer(1);
+      StringBuffer buffer = StringBuffer::New(1);
       buffer->append("abc","abc2","abc3");
       auto ret = buffer->subString(1,4)->append("123");
       if(!ret->sameAs("bcab123")) {
@@ -26,7 +26,7 @@ void testSubString() {
     }
 
     while(1) {
-      StringBuffer buffer = createStringBuffer();
+      StringBuffer buffer = StringBuffer::New();
       buffer->append("abcd");
       auto ret = buffer->subString(1,3);
       if(!ret->sameAs("bcd")) {
@@ -36,7 +36,7 @@ void testSubString() {
     }
 
     while(1) {
-      StringBuffer buffer = createStringBuffer(5);
+      StringBuffer buffer = StringBuffer::New(5);
       buffer->append("abcd");
       //TEST_FAIL("capacity is %d,size is %d \n",buffer->capacity(),buffer->size());
 
@@ -48,7 +48,7 @@ void testSubString() {
     }
 
     while(1) {
-      StringBuffer buffer = createStringBuffer(5);
+      StringBuffer buffer = StringBuffer::New(5);
       buffer->append("abcd");
       bool isExcept = false;
       try {
@@ -64,7 +64,7 @@ void testSubString() {
     }
     
     while(1) {
-      StringBuffer buffer = createStringBuffer(5);
+      StringBuffer buffer = StringBuffer::New(5);
       buffer->append("abcde");
       
       if(!buffer->toString()->sameAs("abcde")) {

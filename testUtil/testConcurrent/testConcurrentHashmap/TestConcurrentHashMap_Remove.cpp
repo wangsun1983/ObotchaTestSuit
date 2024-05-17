@@ -11,33 +11,33 @@ using namespace obotcha;
 
 void testConcurrentHashMap_Remove() {
     while(1) {
-        ConcurrentHashMap<String,String> maps = createConcurrentHashMap<String,String>();
+        ConcurrentHashMap<String,String> maps = ConcurrentHashMap<String,String>::New();
       
         for(int i = 0;i < 1024*32;i++) {
-            maps->put(createString(i),createString(i));
+            maps->put(String::New(i),String::New(i));
         }
 
-        Thread t1 = createThread([&]{
+        Thread t1 = Thread::New([&]{
             for(int i = 0;i < 1024*32;i++) {
-                maps->remove(createString(i));
+                maps->remove(String::New(i));
             }
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             for(int i = 0;i < 1024*32;i++) {
-                maps->remove(createString(i));
+                maps->remove(String::New(i));
             }
         });
         
-        Thread t3 = createThread([&]{
+        Thread t3 = Thread::New([&]{
             for(int i = 0;i < 1024*32;i++) {
-                maps->remove(createString(i));
+                maps->remove(String::New(i));
             }
         });
         
-        Thread t4 = createThread([&]{
+        Thread t4 = Thread::New([&]{
             for(int i = 0;i < 1024*32;i++) {
-                maps->remove(createString(i));
+                maps->remove(String::New(i));
             }
         });
         
@@ -58,10 +58,10 @@ void testConcurrentHashMap_Remove() {
     }
     
     while(1) {
-        ConcurrentHashMap<String,String> maps = createConcurrentHashMap<String,String>();
-        maps->put(createString("a"),createString("b"));
+        ConcurrentHashMap<String,String> maps = ConcurrentHashMap<String,String>::New();
+        maps->put(String::New("a"),String::New("b"));
         
-        Thread t1 = createThread([&]{
+        Thread t1 = Thread::New([&]{
             maps->syncReadAction([&] {
                 if(maps->size() != 1) {
                     TEST_FAIL("ConcurrentHashMap Remove case2,size is %d",maps->size());
@@ -70,11 +70,11 @@ void testConcurrentHashMap_Remove() {
             }); 
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             usleep(100*1000);
-            TimeWatcher watcher = createTimeWatcher();
+            TimeWatcher watcher = TimeWatcher::New();
             watcher->start();
-            maps->remove(createString("a"));
+            maps->remove(String::New("a"));
             auto ret = watcher->stop();
             if(ret < 195 || ret > 305) {
                 TEST_FAIL("ConcurrentHashMap Remove case3,ret is %d",ret);

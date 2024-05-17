@@ -20,17 +20,17 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {void add(T val)} Start]
       while(1){
-          ArrayList<TestData1> list = createArrayList<TestData1>();
-          TestData1 t1 = createTestData1();
+          ArrayList<TestData1> list =ArrayList<TestData1>::New();
+          TestData1 t1 = TestData1::New();
           t1->i = 1;
 
-          TestData1 t2 = createTestData1();
+          TestData1 t2 = TestData1::New();
           t2->i = 2;
 
-          TestData1 t3 = createTestData1();
+          TestData1 t3 = TestData1::New();
           t3->i = 3;
 
-          TestData1 t4 = createTestData1();
+          TestData1 t4 = TestData1::New();
           t4->i = 4;
 
           list->add(t1);
@@ -59,22 +59,22 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {void add(ArrayList<T> list)} Start]
       while(1) {
-          ArrayList<TestData1> list1 = createArrayList<TestData1>();
-          ArrayList<TestData1> list2 = createArrayList<TestData1>();
+          ArrayList<TestData1> list1 =ArrayList<TestData1>::New();
+          ArrayList<TestData1> list2 =ArrayList<TestData1>::New();
 
-          TestData1 tt1 = createTestData1();
+          TestData1 tt1 = TestData1::New();
           tt1->i = 1;
 
-          TestData1 tt2 = createTestData1();
+          TestData1 tt2 = TestData1::New();
           tt2->i = 2;
 
           list1->add(tt1);
           list1->add(tt2);
 
-          TestData1 tt1_1 = createTestData1();
+          TestData1 tt1_1 = TestData1::New();
           tt1_1->i = 1;
 
-          TestData1 tt2_1 = createTestData1();
+          TestData1 tt2_1 = TestData1::New();
           tt2_1->i = 2;
 
           list2->add(tt1_1);
@@ -103,8 +103,8 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {void clear()} Start]
       while(1) {
-          ArrayList<TestData1> clist = createArrayList<TestData1>();
-          TestData1 cl1_1 = createTestData1();
+          ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+          TestData1 cl1_1 = TestData1::New();
           cl1_1->i = 1;
 
           clist->add(cl1_1);
@@ -121,14 +121,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {remove(int index)} Start]
       while(1) {
-          ArrayList<TestData1> clist = createArrayList<TestData1>();
-          TestData1 t1 = createTestData1();
+          ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+          TestData1 t1 = TestData1::New();
           t1->i = 1;
 
-          TestData1 t2 = createTestData1();
+          TestData1 t2 = TestData1::New();
           t2->i = 2;
 
-          TestData1 t3 = createTestData1();
+          TestData1 t3 = TestData1::New();
           t3->i = 3;
 
           clist->add(t1);
@@ -161,14 +161,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {remove(T val)} Start]
       while(1) {
-          ArrayList<TestData1> clist = createArrayList<TestData1>();
-          TestData1 t1 = createTestData1();
+          ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+          TestData1 t1 = TestData1::New();
           t1->i = 1;
 
-          TestData1 t2 = createTestData1();
+          TestData1 t2 = TestData1::New();
           t2->i = 2;
 
-          TestData1 t3 = createTestData1();
+          TestData1 t3 = TestData1::New();
           t3->i = 3;
 
           clist->add(t1);
@@ -188,7 +188,7 @@ void testArrayList_MyData() {
             break;
           }
 
-          TestData1 tt3 = createTestData1();
+          TestData1 tt3 = TestData1::New();
           tt3->i = 100;
           result =clist->remove(tt3);
           if(result != -1 || clist->size() != 1) {
@@ -201,14 +201,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {indexOf(T val)} Start]
       while(1) {
-          ArrayList<TestData1> clist = createArrayList<TestData1>();
-          TestData1 t1 = createTestData1();
+          ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+          TestData1 t1 = TestData1::New();
           t1->i = 1;
 
-          TestData1 t2 = createTestData1();
+          TestData1 t2 = TestData1::New();
           t2->i = 2;
 
-          TestData1 t3 = createTestData1();
+          TestData1 t3 = TestData1::New();
           t3->i = 3;
 
           clist->add(t1);
@@ -235,7 +235,7 @@ void testArrayList_MyData() {
             break;
           }
 
-          TestData1 t6 = createTestData1();
+          TestData1 t6 = TestData1::New();
           t6->i = 1;
           index = clist->indexOf(t6);
           if(index != -1) {
@@ -249,21 +249,21 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {set(int index,T val)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
         clist->add(t2);
         clist->add(t3);
 
-        TestData1 t4 = createTestData1();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
 
         bool isException = false;
@@ -303,14 +303,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {get(int index)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
@@ -347,14 +347,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insert(int index,T val)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
@@ -362,7 +362,7 @@ void testArrayList_MyData() {
         clist->add(t3);
 
         int size = clist->size();
-        TestData1 t4 = createTestData1();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
         clist->insert(1,t4);
 
@@ -386,14 +386,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insert(int index,ArrayList<T> list)} Start]
       while(1){
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
@@ -402,11 +402,11 @@ void testArrayList_MyData() {
 
         int size = clist->size();
 
-        ArrayList<TestData1> clist2 = createArrayList<TestData1>();
-        TestData1 t4 = createTestData1();
+        ArrayList<TestData1> clist2 =ArrayList<TestData1>::New();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
 
-        TestData1 t5 = createTestData1();
+        TestData1 t5 = TestData1::New();
         t5->i = 5;
 
         clist2->add(t4);
@@ -452,28 +452,28 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insert(int index,ArrayList<T> list,int length)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
         clist->add(t2);
         clist->add(t3);
 
-        ArrayList<TestData1> clist2 = createArrayList<TestData1>();
-        TestData1 t4 = createTestData1();
+        ArrayList<TestData1> clist2 =ArrayList<TestData1>::New();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
 
-        TestData1 t5 = createTestData1();
+        TestData1 t5 = TestData1::New();
         t5->i = 5;
 
-        TestData1 t6 = createTestData1();
+        TestData1 t6 = TestData1::New();
         t6->i = 6;
 
         clist2->add(t4);
@@ -552,14 +552,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insertFirst(T val)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->insertFirst(t1);
@@ -581,25 +581,25 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insertFirst(ArrayList<T> list)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->add(t1);
         clist->add(t2);
         clist->add(t3);
 
-        ArrayList<TestData1> clist2 = createArrayList<TestData1>();
-        TestData1 t4 = createTestData1();
+        ArrayList<TestData1> clist2 =ArrayList<TestData1>::New();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
 
-        TestData1 t5 = createTestData1();
+        TestData1 t5 = TestData1::New();
         t5->i = 5;
 
         clist2->add(t4);
@@ -618,7 +618,7 @@ void testArrayList_MyData() {
         }
 
         int size = clist->size();
-        ArrayList<TestData1>clist3 = createArrayList<TestData1>();
+        ArrayList<TestData1>clist3 =ArrayList<TestData1>::New();
         clist->insertFirst(clist3);
         if(clist->size() != size) {
           TEST_FAIL("[ArrayList<T> Test {insertFirst(ArrayList<T> list)} case2]");
@@ -631,14 +631,14 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {void insertLast(T v)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->insertLast(t1);
@@ -660,25 +660,25 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {insertLast(ArrayList<T> list)} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
-        TestData1 t1 = createTestData1();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
 
-        TestData1 t2 = createTestData1();
+        TestData1 t2 = TestData1::New();
         t2->i = 2;
 
-        TestData1 t3 = createTestData1();
+        TestData1 t3 = TestData1::New();
         t3->i = 3;
 
         clist->insertLast(t1);
         clist->insertLast(t2);
         clist->insertLast(t3);
 
-        ArrayList<TestData1> clist2 = createArrayList<TestData1>();
-        TestData1 t4 = createTestData1();
+        ArrayList<TestData1> clist2 =ArrayList<TestData1>::New();
+        TestData1 t4 = TestData1::New();
         t4->i = 4;
 
-        TestData1 t5 = createTestData1();
+        TestData1 t5 = TestData1::New();
         t5->i = 5;
 
         clist2->add(t4);
@@ -702,13 +702,13 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {size()} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
         if(clist->size() != 0) {
           TEST_FAIL("[ArrayList<T> Test {size()} case1]");
           break;
         }
 
-        TestData1 t1 = createTestData1();
+        TestData1 t1 = TestData1::New();
         t1->i = 1;
         clist->add(t1);
         clist->add(t1);
@@ -726,7 +726,7 @@ void testArrayList_MyData() {
 
       //[ArrayList<T> Test {getIterator()} Start]
       while(1) {
-        ArrayList<TestData1> clist = createArrayList<TestData1>();
+        ArrayList<TestData1> clist =ArrayList<TestData1>::New();
         auto iterate = clist->getIterator();
         if(iterate == nullptr) {
           TEST_FAIL("[ArrayList<T> Test {getIterator()}]");
@@ -742,20 +742,20 @@ void testArrayList_MyData() {
 
     //[ListIterator<T> Test {ListIterator(ArrayList<T> list)} Start]
     while(1) {
-      ArrayList<TestData1> clist = createArrayList<TestData1>();
-      TestData1 t1 = createTestData1();
+      ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+      TestData1 t1 = TestData1::New();
       t1->i = 1;
 
-      TestData1 t2 = createTestData1();
+      TestData1 t2 = TestData1::New();
       t2->i = 2;
 
-      TestData1 t3 = createTestData1();
+      TestData1 t3 = TestData1::New();
       t3->i = 3;
 
       clist->add(t1);
       clist->add(t2);
       clist->add(t3);
-      auto iterator = createArrayListIterator<TestData1>(clist);
+      auto iterator = ArrayListIterator<TestData1>::New(clist);
 
       int index = 1;
       bool isOk = true;
@@ -779,14 +779,14 @@ void testArrayList_MyData() {
 
     //[ListIterator<T> Test {getValue()} Start]
     while(1) {
-      ArrayList<TestData1> clist = createArrayList<TestData1>();
-      TestData1 t1 = createTestData1();
+      ArrayList<TestData1> clist =ArrayList<TestData1>::New();
+      TestData1 t1 = TestData1::New();
       t1->i = 1;
 
-      TestData1 t2 = createTestData1();
+      TestData1 t2 = TestData1::New();
       t2->i = 2;
 
-      TestData1 t3 = createTestData1();
+      TestData1 t3 = TestData1::New();
       t3->i = 3;
 
       clist->add(t1);
@@ -810,7 +810,7 @@ void testArrayList_MyData() {
         break;
       }
 
-      ArrayList<TestData1> clist2 = createArrayList<TestData1>();
+      ArrayList<TestData1> clist2 =ArrayList<TestData1>::New();
       auto iterator2 = clist2->getIterator();
       bool isException = false;
       try {
@@ -830,20 +830,20 @@ void testArrayList_MyData() {
 
   //--[_ListIterator<T> Test {remove()} Start]
   while(1) {
-    ArrayList<TestData1> list = createArrayList<TestData1>();
-    TestData1 t1 = createTestData1();
+    ArrayList<TestData1> list =ArrayList<TestData1>::New();
+    TestData1 t1 = TestData1::New();
     t1->i = 1;
 
-    TestData1 t2 = createTestData1();
+    TestData1 t2 = TestData1::New();
     t2->i = 2;
 
-    TestData1 t3 = createTestData1();
+    TestData1 t3 = TestData1::New();
     t3->i = 3;
 
-    TestData1 t4 = createTestData1();
+    TestData1 t4 = TestData1::New();
     t4->i = 4;
 
-    TestData1 t5 = createTestData1();
+    TestData1 t5 = TestData1::New();
     t5->i = 5;
 
     list->add(t1);

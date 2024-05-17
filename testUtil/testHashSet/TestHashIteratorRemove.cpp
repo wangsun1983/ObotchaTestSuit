@@ -11,11 +11,11 @@ void testHashIteratorRemove() {
 
     //remove string
     while(1) {
-        HashSet<String> set = createHashSet<String>();
-        set->add(createString("abc"));
-        set->add(createString("abc1"));
-        set->add(createString("abc2"));
-        set->add(createString("abc3"));
+        HashSet<String> set = HashSet<String>::New();
+        set->add(String::New("abc"));
+        set->add(String::New("abc1"));
+        set->add(String::New("abc2"));
+        set->add(String::New("abc3"));
         HashSetIterator<String> iterator = set->getIterator();
         while(iterator->hasValue()) {
           String v1 = iterator->getValue();
@@ -53,7 +53,7 @@ void testHashIteratorRemove() {
 
     //remove int
     while(1) {
-        HashSet<int> set = createHashSet<int>();
+        HashSet<int> set = HashSet<int>::New();
         set->add(1);
         set->add(2);
         set->add(3);

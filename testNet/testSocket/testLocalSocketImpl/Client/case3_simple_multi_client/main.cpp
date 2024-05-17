@@ -19,7 +19,7 @@
 using namespace obotcha;
 
 
-CountDownLatch latch = createCountDownLatch(128);
+CountDownLatch latch = CountDownLatch::New(128);
 long array[128] = {0};
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
@@ -31,9 +31,9 @@ public:
   void onSocketMessage(st(Net)::Event event,Socket s,ByteArray data) {
     switch(event) {
       case st(Net)::Event::Message: {
-        printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
+        //printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
         array[index] += data->toString()->toBasicLong();
-        s->getOutputStream()->write(createString("abc")->toByteArray());
+        s->getOutputStream()->write(String::New("abc")->toByteArray());
       }
       break;
 
@@ -52,21 +52,21 @@ private:
 
 int main() {
     signal(SIGPIPE, SIG_IGN);
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     long sum = 0;
     for(int i = 0;i<1024*32;i++) {
       sum+=i;
     }
 
     for(int i = 0;i<128;i++) {
-      auto addr = createInetLocalAddress("case3_socket");
-      Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+      auto addr = InetLocalAddress::New("case3_socket");
+      Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
         TEST_FAIL("TestLocalSocket Client case3_simple_multi_test test1,i is %d",i);
         return -1;
       }
       array[i] = 0;
-      monitor->bind(client,createMyListener(i));
+      monitor->bind(client,MyListener::New(i));
     }
 
     latch->await();

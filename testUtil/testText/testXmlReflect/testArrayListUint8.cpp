@@ -31,21 +31,21 @@ public:
 
 void testArrayListUint8() {
     while(1) {
-      ArrayList<Uint8> list = createArrayList<Uint8>();
-      list->add(createUint8(1));
-      list->add(createUint8(2));
-      list->add(createUint8(3));
-      list->add(createUint8(4));
-      list->add(createUint8(5));
+      ArrayList<Uint8> list = ArrayList<Uint8>::New();
+      list->add(Uint8::New(1));
+      list->add(Uint8::New(2));
+      list->add(Uint8::New(3));
+      list->add(Uint8::New(4));
+      list->add(Uint8::New(5));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint8_test1.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint8_test1.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint8_test1.xml"));
       XmlDocument doc2 = reader->get();
 
-      ArrayList<Uint8> list2 = createArrayList<Uint8>();
+      ArrayList<Uint8> list2 = ArrayList<Uint8>::New();
       doc2->reflectTo(list2);
 
       if(list2->size() != 5) {
@@ -65,30 +65,30 @@ void testArrayListUint8() {
     }
 
     while(1) {
-      Uint8List2 list = createUint8List2();
-      list->list1 = createArrayList<Uint8>();
-      list->list2 = createArrayList<Uint8>();
+      Uint8List2 list = Uint8List2::New();
+      list->list1 = ArrayList<Uint8>::New();
+      list->list2 = ArrayList<Uint8>::New();
 
-      list->list1->add(createUint8(1));
-      list->list1->add(createUint8(2));
-      list->list1->add(createUint8(3));
-      list->list1->add(createUint8(4));
-      list->list1->add(createUint8(5));
+      list->list1->add(Uint8::New(1));
+      list->list1->add(Uint8::New(2));
+      list->list1->add(Uint8::New(3));
+      list->list1->add(Uint8::New(4));
+      list->list1->add(Uint8::New(5));
 
-      list->list2->add(createUint8(6));
-      list->list2->add(createUint8(7));
-      list->list2->add(createUint8(8));
-      list->list2->add(createUint8(9));
-      list->list2->add(createUint8(10));
+      list->list2->add(Uint8::New(6));
+      list->list2->add(Uint8::New(7));
+      list->list2->add(Uint8::New(8));
+      list->list2->add(Uint8::New(9));
+      list->list2->add(Uint8::New(10));
 
-      XmlDocument doc = createXmlDocument();
+      XmlDocument doc = XmlDocument::New();
       doc->importFrom(list);
-      XmlWriter writer = createXmlWriter(doc);
+      XmlWriter writer = XmlWriter::New(doc);
       writer->write("./tmp/list_Uint8_test2.xml");
-      XmlReader reader = createXmlReader()->loadFile(createFile("./tmp/list_Uint8_test2.xml"));
+      XmlReader reader = XmlReader::New()->loadFile(File::New("./tmp/list_Uint8_test2.xml"));
       XmlDocument doc2 = reader->get();
 
-      Uint8List2 list2 = createUint8List2();
+      Uint8List2 list2 = Uint8List2::New();
       doc2->reflectTo(list2);
 
       if(list2->list1->get(0)->toValue() != 1

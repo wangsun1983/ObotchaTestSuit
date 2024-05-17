@@ -21,16 +21,16 @@ public:
 void testIterator() {
   //construct1
   while(1) {
-    List<IteratorData> mylist1 = createList<IteratorData>(4);
-    IteratorData data1 = createIteratorData();
+    List<IteratorData> mylist1 = List<IteratorData>::New(4);
+    IteratorData data1 = IteratorData::New();
     data1->i = 1;
     data1->j = 10;
 
-    IteratorData data2 = createIteratorData();
+    IteratorData data2 = IteratorData::New();
     data2->i = 2;
     data2->j = 20;
 
-    IteratorData data3 = createIteratorData();
+    IteratorData data3 = IteratorData::New();
     data3->i = 3;
     data3->j = 30;
 

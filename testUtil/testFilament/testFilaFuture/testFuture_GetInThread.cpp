@@ -16,15 +16,15 @@ using namespace obotcha;
 
 void testFutureGetInThread() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
 			st(Fila)::Sleep(100);
-            st(FilaExecutorResult)::Set(createString("hello"));
+            st(FilaExecutorResult)::Set(String::New("hello"));
         });
         
-        Thread t1 = createThread([&]{
-			TimeWatcher w = createTimeWatcher();
+        Thread t1 = Thread::New([&]{
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			auto v = future->getResult<String>();
 			auto ret = w->stop();

@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testArrayList_Size() {
   while(1) {
-    ArrayList<String> list1 = createArrayList<String>();
+    ArrayList<String> list1 = ArrayList<String>::New();
     if(list1->size() != 0) {
       TEST_FAIL("[testArrayList size case1]");
     }
@@ -21,9 +21,9 @@ void testArrayList_Size() {
   }
 
   while(1) {
-    ArrayList<String> list1 = createArrayList<String>();
-    list1->add(createString("a"));
-    list1->add(createString("b"));
+    ArrayList<String> list1 = ArrayList<String>::New();
+    list1->add(String::New("a"));
+    list1->add(String::New("b"));
     if(list1->size() != 2) {
       TEST_FAIL("[testArrayList size case2]");
     }
@@ -31,9 +31,9 @@ void testArrayList_Size() {
   }
 
   while(1) {
-    ArrayList<String> list1 = createArrayList<String>();
-    list1->add(createString("a"));
-    list1->add(createString("b"));
+    ArrayList<String> list1 = ArrayList<String>::New();
+    list1->add(String::New("a"));
+    list1->add(String::New("b"));
     list1->clear();
     if(list1->size() != 0) {
       TEST_FAIL("[testArrayList size case3]");

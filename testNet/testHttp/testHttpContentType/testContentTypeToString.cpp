@@ -12,14 +12,14 @@ using namespace obotcha;
 
 void testContentTypeToString() {
   while(1) {
-    HttpHeaderContentType contentType1 = createHttpHeaderContentType();
+    HttpHeaderContentType contentType1 = HttpHeaderContentType::New();
     contentType1->load("text/html;charset=utf-8");
     if(!contentType1->toString()->sameAs("text/html;charset=utf-8")) {
       TEST_FAIL("[HttpHeaderContentType test toString case1],type is %s",contentType1->toString()->toChars());
       return;
     }
 
-    HttpHeaderContentType contentType2 = createHttpHeaderContentType();
+    HttpHeaderContentType contentType2 = HttpHeaderContentType::New();
     contentType2->load("multipart/form-data;boundary=something");
     if(!contentType2->toString()->sameAs("multipart/form-data;boundary=something")) {
       TEST_FAIL("[HttpHeaderContentType test toString case3],type is %s",contentType1->toString()->toChars());

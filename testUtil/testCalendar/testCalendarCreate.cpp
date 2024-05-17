@@ -27,7 +27,7 @@ int testCaldnerCreate() {
         //printf("data size is %d \n",size);
         for(int i = 0;i<size;i++) {
           TimeData d1 = dateList->get(i);
-          Calendar c1 = createCalendar(d1->time);
+          Calendar c1 = Calendar::New(d1->time);
           if(c1->get(st(Calendar)::Field::Year) != d1->year ||
              c1->get(st(Calendar)::Field::Month) != d1->month ||
              c1->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
@@ -57,7 +57,7 @@ int testCaldnerCreate() {
         size = hourList->size();
         for(int i = 0;i<size;i++) {
           TimeData d1 = hourList->get(i);
-          Calendar c1 = createCalendar(d1->time);
+          Calendar c1 = Calendar::New(d1->time);
           if(c1->get(st(Calendar)::Field::Year) != d1->year ||
              c1->get(st(Calendar)::Field::Month) != d1->month ||
              c1->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
@@ -87,7 +87,7 @@ int testCaldnerCreate() {
         size = minuteList->size();
         for(int i = 0;i<size;i++) {
           TimeData d1 = minuteList->get(i);
-          Calendar c1 = createCalendar(d1->time);
+          Calendar c1 = Calendar::New(d1->time);
           if(c1->get(st(Calendar)::Field::Year) != d1->year ||
              c1->get(st(Calendar)::Field::Month) != d1->month ||
              c1->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
@@ -117,7 +117,7 @@ int testCaldnerCreate() {
         size = secondList->size();
         for(int i = 0;i<size;i++) {
           TimeData d1 = secondList->get(i);
-          Calendar c1 = createCalendar(d1->time);
+          Calendar c1 = Calendar::New(d1->time);
           if(c1->get(st(Calendar)::Field::Year) != d1->year ||
              c1->get(st(Calendar)::Field::Month) != d1->month ||
              c1->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
@@ -145,7 +145,7 @@ int testCaldnerCreate() {
         size = yearList->size();
         for(int i = 0;i<size;i++) {
           TimeData d1 = yearList->get(i);
-          Calendar c1 = createCalendar(d1->time);
+          Calendar c1 = Calendar::New(d1->time);
           if(c1->get(st(Calendar)::Field::Year) != d1->year ||
              c1->get(st(Calendar)::Field::Month) != d1->month ||
              c1->get(st(Calendar)::Field::DayOfYear) != (d1->dayOfYear - 1) ||
@@ -182,7 +182,7 @@ int testCaldnerCreate() {
         //printf("data size is %d \n",size);
         for(int i = 0;i<size;i++) {
           TimeData d1 = dateList->get(i);
-          Calendar c1 = createCalendar(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
+          Calendar c1 = Calendar::New(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
           if(c1->toTimeMillis() != d1->time) {
 
               printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
@@ -204,7 +204,7 @@ int testCaldnerCreate() {
         size = hourList->size();
         for(int i = 0;i<size;i++) {
             TimeData d1 = hourList->get(i);
-            Calendar c1 = createCalendar(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
+            Calendar c1 = Calendar::New(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
             if(c1->toTimeMillis() != d1->time) {
 
                 printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
@@ -226,7 +226,7 @@ int testCaldnerCreate() {
         size = minuteList->size();
         for(int i = 0;i<size;i++) {
             TimeData d1 = minuteList->get(i);
-            Calendar c1 = createCalendar(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
+            Calendar c1 = Calendar::New(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
             if(c1->toTimeMillis() != d1->time) {
 
                 printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
@@ -248,7 +248,7 @@ int testCaldnerCreate() {
         size = secondList->size();
         for(int i = 0;i<size;i++) {
             TimeData d1 = secondList->get(i);
-            Calendar c1 = createCalendar(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
+            Calendar c1 = Calendar::New(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
             if(c1->toTimeMillis() != d1->time) {
 
                 printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);
@@ -270,7 +270,7 @@ int testCaldnerCreate() {
         size = yearList->size();
         for(int i = 0;i<size;i++) {
             TimeData d1 = yearList->get(i);
-            Calendar c1 = createCalendar(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
+            Calendar c1 = Calendar::New(d1->year,d1->month,d1->dayOfMonth,d1->hour,d1->minute,d1->second,d1->millisecond);
             if(c1->toTimeMillis() != d1->time) {
 
                 printf("Calndear year is %d,data year is %d \n",c1->get(st(Calendar)::Field::Year),d1->year);

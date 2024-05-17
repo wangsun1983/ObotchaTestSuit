@@ -11,7 +11,7 @@ using namespace obotcha;
 
 void testHashMapStringString() {
     while(1) {
-      HashMap<std::string,std::string> map = createHashMap<std::string,std::string>();
+      HashMap<std::string,std::string> map = HashMap<std::string,std::string>::New();
       map->put("a","this is a");
       std::string v = map->get("a");
       if(v != "this is a") {
@@ -22,7 +22,7 @@ void testHashMapStringString() {
     }
 
     while(1) {
-      HashMap<std::string,std::string> map = createHashMap<std::string,std::string>();
+      HashMap<std::string,std::string> map = HashMap<std::string,std::string>::New();
       map->put("a","this is a");
       bool isException = false;
       try {
@@ -38,7 +38,7 @@ void testHashMapStringString() {
     }
 
     while(1) {
-      HashMap<std::string,std::string> map = createHashMap<std::string,std::string>();
+      HashMap<std::string,std::string> map = HashMap<std::string,std::string>::New();
       map->put("a","this is a");
       map->put("a","this is not a");
       map->put("b","this is b");

@@ -22,7 +22,7 @@ public:
 void testReferenceCount() {
   //case 1
   while(1) {
-    TestDataRef ref = createTestDataRef();
+    TestDataRef ref = TestDataRef::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceCount test1");
       break;
@@ -52,7 +52,7 @@ void testReferenceCount() {
 
   //case 2
   while(1) {
-    TestDataRef2 ref = createTestDataRef2();
+    TestDataRef2 ref = TestDataRef2::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceCount test5");
       break;
@@ -81,7 +81,7 @@ void testReferenceCount() {
 
   //case 3
   while(1) {
-    TestDataRef ref = createTestDataRef();
+    TestDataRef ref = TestDataRef::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceCount test9");
       break;
@@ -110,13 +110,13 @@ void testReferenceCount() {
 
   //case 3
   while(1) {
-    TestDataRef ref = createTestDataRef();
+    TestDataRef ref = TestDataRef::New();
     if(ref->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceCount test11");
       break;
     }
 
-    TestDataRef ref2 = createTestDataRef();
+    TestDataRef ref2 = TestDataRef::New();
     if(ref2->getStrongCount() != 1) {
       TEST_FAIL("Object ReferenceCount test12");
       break;

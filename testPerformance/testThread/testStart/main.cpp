@@ -6,10 +6,10 @@ using namespace obotcha;
 int total = 0;
 
 int main() {
-    TimeWatcher watcher = createTimeWatcher();
+    TimeWatcher watcher = TimeWatcher::New();
     for(int i = 0; i < 1024;i++) {
       watcher->start();
-      Thread t = createThread([&watcher]{
+      Thread t = Thread::New([&watcher]{
         total += watcher->stop();
       });
       t->start();

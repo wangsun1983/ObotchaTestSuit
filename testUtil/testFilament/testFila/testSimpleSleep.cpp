@@ -13,15 +13,15 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch sleepLatch = createCountDownLatch(1);
+CountDownLatch sleepLatch = CountDownLatch::New(1);
 
 void testSimpleSleep() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         int runCount = 0;
         croutine->execute([&runCount]{
-          TimeWatcher watcher = createTimeWatcher();
+          TimeWatcher watcher = TimeWatcher::New();
           watcher->start();
           st(Fila)::Sleep(100);
           long v = watcher->stop();
@@ -32,7 +32,7 @@ void testSimpleSleep() {
         });
 
         croutine->execute([&runCount]{
-          TimeWatcher watcher = createTimeWatcher();
+          TimeWatcher watcher = TimeWatcher::New();
           watcher->start();
           st(Fila)::Sleep(200);
           long v = watcher->stop();
@@ -50,7 +50,7 @@ void testSimpleSleep() {
     }
     
     while(1) {
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         st(Fila)::Sleep(100);
         auto v = watcher->stop();

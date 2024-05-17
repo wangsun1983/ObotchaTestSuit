@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -26,32 +26,33 @@ public:
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("./tmp/testdata"),1024*1024*32);
+    //createSampleFile(File::New("./tmp/testdata"),1024*1024*32);
 
     int port = getEnvPort();
-    Socket s = createSocketBuilder()
-                ->setAddress(createInet4Address(port))
+    
+    Socket s =SocketBuilder::New()
+                ->setAddress(Inet4Address::New(port))
                 ->newSocket();
     
     int ret = s->connect();
     printf("connect ret is %d \n",ret);
 
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
 	printf("trace0 \n");
-    monitor->bind(s,createMyListener());
+    monitor->bind(s,MyListener::New());
 	printf("trace1 \n");
     OutputStream stream = s->getOutputStream();
     stream->open();
 	printf("trace2 \n");
     long index = 0;
 
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
 
-    FileInputStream inputstream = createFileInputStream(file);
+    FileInputStream inputstream = FileInputStream::New(file);
     inputstream->open();
 	printf("trace3 \n");
     while(1) {
-        ByteArray data = createByteArray(1024*4);
+        ByteArray data = ByteArray::New(1024*4);
 		printf("trace1 \n");
         int length = inputstream->read(data);
         index += length;
@@ -63,12 +64,12 @@ int main() {
         }
     }
     
-    Thread t = createThread([&stream]{
+    Thread t = Thread::New([&stream]{
         int formsize = 0;
         int sameCount = 5;
         while(1) {
-            File datafile = createFile("./tmp/testdata");
-            File rcvfile = createFile("./tmp/file");
+            File datafile = File::New("./tmp/testdata");
+            File rcvfile = File::New("./tmp/file");
             
             printf("datafile size is %ld,rcvfile size is %ld \n",
                     datafile->length(),rcvfile->length());
@@ -89,15 +90,15 @@ int main() {
     t->start();
     t->join();
     
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/testdata"));
     
-    auto result_file = createFile("./tmp/file");
+    auto result_file = File::New("./tmp/file");
     
     if(!result_file->exists()) {
         TEST_FAIL("testAsyncOutputChannel close case1");
     } else {
-        String v2 = md5->encodeFile(createFile("./tmp/file"));
+        String v2 = md5->encodeFile(File::New("./tmp/file"));
         
         if(!v1->equals(v2)) {
             TEST_FAIL("testAsyncOutputChannel close case2")

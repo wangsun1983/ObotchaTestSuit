@@ -20,7 +20,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
@@ -36,7 +36,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
             //messageCount->incrementAndGet();
             HttpEntity entity = msg->getEntity();
           
-            HttpUrlEncodedValue v = createHttpUrlEncodedValue(entity->getContent()->toString());
+            HttpUrlEncodedValue v = HttpUrlEncodedValue::New(entity->getContent()->toString());
             
             //printf("key1 is %s,vaue1 is %s \n",keyvalue1->getKey()->toChars(),keyvalue1->getValue()->toChars());
             if(!v->get("tag1")->sameAs("value1")) {
@@ -47,7 +47,7 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
                 TEST_FAIL("TestHttpServer Request Encode test2");
             }
             
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
             w->write(response);
           
@@ -67,12 +67,20 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 int main() {
   int port = getEnvPort();
 
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    if(server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   latch->await();
    
   port++;

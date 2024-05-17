@@ -47,18 +47,18 @@ public:
 };
 
 void testInnerClass() {
-    AllMember allmem = createAllMember();
-    allmem->m1 = createMember1();
+    AllMember allmem = AllMember::New();
+    allmem->m1 = Member1::New();
     allmem->m1->v1 = 123;
     allmem->m1->v2 = false;
 
-    allmem->m2 = createMember2();
-    allmem->m2->v1 = createString("hello world");
-    allmem->m2->v2 = createInteger(223);
+    allmem->m2 = Member2::New();
+    allmem->m2->v1 = String::New("hello world");
+    allmem->m2->v2 = Integer::New(223);
 
     ByteArray data = allmem->serialize();
 
-    AllMember rs = createAllMember();
+    AllMember rs = AllMember::New();
     rs->deserialize(data);
 
     if(!rs->equals(allmem)) {

@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Encoding"),
-                createString("gzip, compress, br"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Encoding"),
+                String::New("gzip, compress, br"));
                 
     auto encoding1 = header->getAcceptEncoding();
     auto encodings = encoding1->get();
@@ -34,9 +34,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Encoding"),
-                createString("deflate, gzip;q=1.0, *;q=0.5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Encoding"),
+                String::New("deflate, gzip;q=1.0, *;q=0.5"));
                 
     auto encoding1 = header->getAcceptEncoding();
     auto encodings = encoding1->get();
@@ -65,9 +65,9 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Encoding"),
-                createString("deflate, gzip;q=1.0, *;q=0.5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Encoding"),
+                String::New("deflate, gzip;q=1.0, *;q=0.5"));
                 
     auto encoding1 = header->getAcceptEncoding();
     header->setAcceptEncoding(encoding1);

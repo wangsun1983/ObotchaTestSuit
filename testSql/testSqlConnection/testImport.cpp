@@ -23,9 +23,9 @@ using namespace obotcha;
 
 
 int testSimpleSql() {
-    SqlConnection connection = createMySqlConnection();
+    SqlConnection connection = MySqlConnection::New();
 
-    MySqlConnectParam param = createMySqlConnectParam();
+    MySqlConnectParam param = MySqlConnectParam::New();
     param->setHost("127.0.0.1");
     param->setUser("wangsun");
     param->setPassword("01122982");
@@ -34,7 +34,7 @@ int testSimpleSql() {
     
     connection->connect(param);
     /*
-    ArrayList<Student> list = client->query<Student>(createSqlQuery("select * from information"));
+    ArrayList<Student> list = client->query<Student>(SqlQuery::New("select * from information"));
     printf("list size is %d \n",list->size());
     ListIterator<Student> iterator = list->getIterator();
     while(iterator->hasValue()) {
@@ -43,7 +43,7 @@ int testSimpleSql() {
         iterator->next();
     }*/
 
-    SqlRecords records = connection->query(createSqlQuery("select * from information"));
+    SqlRecords records = connection->query(SqlQuery::New("select * from information"));
     SqlRecordsIterator iterator = records->getIterator();
     printf("wangsl,trace1 \n");
     while(iterator->hasValue()) {

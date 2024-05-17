@@ -16,8 +16,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Sec-WebSocket-Version"),createString("13"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Sec-WebSocket-Version"),String::New("13"));
     auto c = header->getWebSocketVersion();
     if(c->get() != 13) {
       TEST_FAIL("[HttpHeaderSecWebSocketVersion test setToHeader case1]");

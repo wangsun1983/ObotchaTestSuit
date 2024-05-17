@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("timeout=5, max=1000");
     if(keepAlive->getTimeout() != 5 || keepAlive->getMax() != 1000) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("1000");
     if(keepAlive->getTimeout() != 1000) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case2]");
@@ -33,7 +33,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("timeout=5");
     if(keepAlive->getTimeout() != 5) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case3]");
@@ -43,7 +43,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderKeepAlive keepAlive = createHttpHeaderKeepAlive();
+    HttpHeaderKeepAlive keepAlive = HttpHeaderKeepAlive::New();
     keepAlive->load("Max=5");
     if(keepAlive->getMax() != 5) {
       TEST_FAIL("[HttpHeaderKeepAlive test Parse case4]");

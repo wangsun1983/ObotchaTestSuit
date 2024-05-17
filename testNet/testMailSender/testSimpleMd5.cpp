@@ -30,8 +30,8 @@ int testSimpleMd5() {
     char *decoded_challenge = (char *)md5pass2.hex_digest();
     printf("decoded_chan is %s \n",decoded_challenge);
     
-    Md md = createMd(st(Md)::Md5);
-    String ss = createString(opad)->append(ustrResult);
+    Md md = Md::New(st(Md)::Md5);
+    String ss = String::New(opad)->append(ustrResult);
     auto r = md->encrypt(ss);
     printf("decoded_chan2 is %s \n",r->toChars());
 #endif    

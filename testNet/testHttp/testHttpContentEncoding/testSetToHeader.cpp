@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderContentEncoding c = createHttpHeaderContentEncoding();
+    HttpHeaderContentEncoding c = HttpHeaderContentEncoding::New();
     c->load("gzip, deflate");
     auto list = c->get();
     if(!list->get(0)->sameAs("gzip")) {

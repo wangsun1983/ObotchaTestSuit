@@ -10,12 +10,12 @@ using namespace obotcha;
 
 void testConcurrentQueue_Remove() {
     while(1) {
-      ConcurrentQueue<String> list = createConcurrentQueue<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
+      ConcurrentQueue<String> list = ConcurrentQueue<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
 
-      int index = list->remove(createString("b"));
+      int index = list->remove(String::New("b"));
       if(index != 1) {
         TEST_FAIL("ConcurrentQueue Remove test1");
         break;
@@ -30,7 +30,7 @@ void testConcurrentQueue_Remove() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -50,7 +50,7 @@ void testConcurrentQueue_Remove() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -70,7 +70,7 @@ void testConcurrentQueue_Remove() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);
@@ -91,7 +91,7 @@ void testConcurrentQueue_Remove() {
     }
 
     while(1) {
-      ConcurrentQueue<int> list = createConcurrentQueue<int>();
+      ConcurrentQueue<int> list = ConcurrentQueue<int>::New();
       list->add(1);
       list->add(2);
       list->add(3);

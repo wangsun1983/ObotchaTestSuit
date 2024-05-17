@@ -7,12 +7,12 @@
 #include "FileInputStream.hpp"
 #include "ArrayList.hpp"
 #include "testCalendar.hpp"
-#include "TextLineReader.hpp"
 #include "ForEveryOne.hpp"
 #include "Log.hpp"
 #include "TestLog.hpp"
 #include "ForEveryOne.hpp"
 #include "System.hpp"
+#include "TextLineReader.hpp"
 
 using namespace obotcha;
 
@@ -26,12 +26,12 @@ public:
 
 void testCalendarGetMaxium() {
 	//load data first
-	ArrayList<MaxiumData> list = createArrayList<MaxiumData>();
-	File f = createFile("./testData/maxium.txt");
+	ArrayList<MaxiumData> list = ArrayList<MaxiumData>::New();
+	File f = File::New("./testData/maxium.txt");
 	if(!f->exists()) {
 		printf("file not found \n");
 	}
-	TextLineReader reader = createTextLineReader(f);
+	TextLineReader reader = TextLineReader::New(f);
 	MaxiumData data = nullptr;
 	
 	while(1) {
@@ -44,7 +44,7 @@ void testCalendarGetMaxium() {
 			if(data != nullptr) {
 				list->add(data);
 			}
-			data = createMaxiumData();
+			data = MaxiumData::New();
 		} else if(content->indexOf("time is") != -1) {
 			int index = content->lastIndexOf(" ");
 			String timeStr = content->subString(index + 1,content->size() - index - 1);
@@ -70,7 +70,7 @@ void testCalendarGetMaxium() {
 	
 	ForEveryOne(date,list) {
 		auto millseconds = date->millseconds;
-		auto c = createCalendar(millseconds);
+		auto c = Calendar::New(millseconds);
 		if(c->getMaximum(st(Calendar)::Field::DayOfYear) != date->maxDayOfYear) {
 			TEST_FAIL("Calendar getMax case1,year is %d,maxDayOfYear is %d,expected is %d",
 						c->get(st(Calendar)::Field::Year),

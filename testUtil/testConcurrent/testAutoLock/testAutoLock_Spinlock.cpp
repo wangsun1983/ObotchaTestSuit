@@ -17,16 +17,16 @@ using namespace obotcha;
 
 void testAutoLockSpinlock() {
 	while(1) {
-		SpinLock mutex = createSpinLock();
+		SpinLock mutex = SpinLock::New();
 
-		Thread t = createThread([&]{
+		Thread t = Thread::New([&]{
 		  AutoLock l(mutex);
 			usleep(200*1000);
 		});
 		t->start();
 
 		usleep(100*1000);
-		TimeWatcher watcher = createTimeWatcher();
+		TimeWatcher watcher = TimeWatcher::New();
 		watcher->start();
 		AutoLock l(mutex);
 		long v = watcher->stop();

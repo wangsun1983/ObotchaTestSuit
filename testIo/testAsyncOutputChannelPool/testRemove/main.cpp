@@ -16,16 +16,17 @@
 
 using namespace obotcha;
 
-BlockingQueue<AsyncOutputChannel> channelQueue = createBlockingQueue<AsyncOutputChannel>();
-CountDownLatch latch = createCountDownLatch(2);
+BlockingQueue<AsyncOutputChannel> channelQueue = BlockingQueue<AsyncOutputChannel>::New();
+CountDownLatch latch = CountDownLatch::New(2);
 
 int main() {
     while(1) {
-        AsyncOutputChannelPool pool = createAsyncOutputChannelPool();
-        Thread t1 = createThread([&pool]{
+        AsyncOutputChannelPool pool = AsyncOutputChannelPool::New();
+        Thread t1 = Thread::New([&pool]{
             for(int i = 10;i<1024*128;i++) {
-                FileDescriptor fd = createFileDescriptor(i);
-                auto c = pool->createChannel(fd,nullptr);
+                FileDescriptor fd = FileDescriptor::New(i);
+                auto c = st(AsyncOutputChannelPool)::CreateChannel(fd,nullptr);
+                pool->add(c);
                 channelQueue->putFirst(c);
             }
             channelQueue->putFirst(nullptr);
@@ -33,7 +34,7 @@ int main() {
         });
         t1->start();
         
-        Thread t2 = createThread([&pool]{
+        Thread t2 = Thread::New([&pool]{
             while(1) {
                 auto c = channelQueue->takeLast();
                 if(c == nullptr) {
@@ -47,9 +48,9 @@ int main() {
         t1->join();
         t2->join();
         latch->await();
-        
+        usleep(1000*1000);
         if(!pool->isEmpty()) {
-            TEST_FAIL("testAsyncOutputChannel testRemove case1");
+            TEST_FAIL("testAsyncOutputChannel testRemove case1,size is %d",pool->size());
         }
         break;
     }

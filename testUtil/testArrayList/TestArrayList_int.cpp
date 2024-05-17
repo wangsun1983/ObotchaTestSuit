@@ -12,7 +12,7 @@ using namespace obotcha;
 void testArrayList_dataType_int() {
   //--[_ArrayList<int> Test {add(int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
 
@@ -41,7 +41,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {add(int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
 
@@ -62,11 +62,11 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {add(ArrayList<int> list)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
 
-    ArrayList<int>list2 = createArrayList<int>();
+    ArrayList<int>list2 =ArrayList<int>::New();
     list2->add(3);
     list2->add(4);
     list->add(list2);
@@ -98,7 +98,7 @@ void testArrayList_dataType_int() {
   }
   //--[_ArrayList<int> Test {clear()} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     int size = list->size();
@@ -113,7 +113,7 @@ void testArrayList_dataType_int() {
   }
   //--[_ArrayList<int> Test {remove(int index)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -159,7 +159,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {remove(int v)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -202,7 +202,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {indexOf(int v)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -231,7 +231,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {set(int index,int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -274,7 +274,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {set(int index,int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -317,7 +317,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {get(int index)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -358,7 +358,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {insert(int index,int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -416,7 +416,7 @@ void testArrayList_dataType_int() {
 
   //--[_ArrayList<int> Test {insert(int index,int val)} Start]
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -468,12 +468,12 @@ void testArrayList_dataType_int() {
 
   //int insert(int index,ArrayList<int> list);
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->add(4);
     list2->add(5);
     list2->add(6);
@@ -515,12 +515,12 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int>list3 = createArrayList<int>();
+    ArrayList<int>list3 =ArrayList<int>::New();
     list3->add(10);
     list3->add(11);
     list3->add(12);
 
-    ArrayList<int>list4 = createArrayList<int>();
+    ArrayList<int>list4 =ArrayList<int>::New();
     list4->add(13);
     list4->add(14);
     list4->add(15);
@@ -542,12 +542,12 @@ void testArrayList_dataType_int() {
 
   //int insert(int index,ArrayList<int> list,int length);
   while(1) {
-    ArrayList<int>list = createArrayList<int>();
+    ArrayList<int>list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->add(4);
     list2->add(5);
     list2->add(6);
@@ -593,12 +593,12 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int>list3 = createArrayList<int>();
+    ArrayList<int>list3 =ArrayList<int>::New();
     list3->add(10);
     list3->add(11);
     list3->add(12);
 
-    ArrayList<int>list4 = createArrayList<int>();
+    ArrayList<int>list4 =ArrayList<int>::New();
     list4->add(13);
     list4->add(14);
     list4->add(15);
@@ -618,12 +618,12 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int>list5 = createArrayList<int>();
+    ArrayList<int>list5 =ArrayList<int>::New();
     list5->add(10);
     list5->add(11);
     list5->add(12);
 
-    ArrayList<int>list6 = createArrayList<int>();
+    ArrayList<int>list6 =ArrayList<int>::New();
     list6->add(13);
     list6->add(14);
     list6->add(15);
@@ -668,7 +668,7 @@ void testArrayList_dataType_int() {
 
   //void insertFirst(int val);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -687,7 +687,7 @@ void testArrayList_dataType_int() {
         break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->insertFirst(4);
     if(list2->get(0) != 4) {
       TEST_FAIL("[ArrayList<int> Test {insertFirst(int val)} case3]");
@@ -699,7 +699,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list3 = createArrayList<int>();
+    ArrayList<int> list3 =ArrayList<int>::New();
     int nt;
     list3->insertFirst(nt);
     if(list3->size() == 0) {
@@ -713,7 +713,7 @@ void testArrayList_dataType_int() {
 
   //void insertFirst(int val);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -732,7 +732,7 @@ void testArrayList_dataType_int() {
         break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->insertFirst(4);
     if(list2->get(0) != 4) {
       TEST_FAIL("[ArrayList<int> Test {insertFirst(int val)} case3]");
@@ -750,12 +750,12 @@ void testArrayList_dataType_int() {
 
   //void insertFirst(ArrayList<int> list);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->add(4);
     list2->add(5);
     list2->add(6);
@@ -771,11 +771,11 @@ void testArrayList_dataType_int() {
         break;
       }
 
-    ArrayList<int> list3 = createArrayList<int>();
+    ArrayList<int> list3 =ArrayList<int>::New();
     list3->add(1);
     list3->add(2);
 
-    ArrayList<int> list4 = createArrayList<int>();
+    ArrayList<int> list4 =ArrayList<int>::New();
     list4->insertFirst(list4);
 
     if(list3->get(0) != 1
@@ -803,7 +803,7 @@ void testArrayList_dataType_int() {
 
   //void insertLast(int v);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -822,7 +822,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->add(1);
     list2->add(2);
     list2->add(3);
@@ -847,7 +847,7 @@ void testArrayList_dataType_int() {
 
   //void insertLast(int v);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -866,7 +866,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->insertLast(1);
 
     if(list2->size() != 1) {
@@ -885,12 +885,12 @@ void testArrayList_dataType_int() {
 
   //insertLast(ArrayList<int> list);
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     list2->add(4);
     list2->add(5);
     list2->add(6);
@@ -911,7 +911,7 @@ void testArrayList_dataType_int() {
         break;
     }
 
-    ArrayList<int> list3 = createArrayList<int>();
+    ArrayList<int> list3 =ArrayList<int>::New();
     list3->add(1);
     list3->add(2);
     list3->add(3);
@@ -937,7 +937,7 @@ void testArrayList_dataType_int() {
 
   //int size();
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -946,7 +946,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     if(list2->size() != 0) {
       TEST_FAIL("[ArrayList<int> Test {size()} case2]");
       break;
@@ -958,7 +958,7 @@ void testArrayList_dataType_int() {
 
   //ListIterator<int> getValue;
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -978,7 +978,7 @@ void testArrayList_dataType_int() {
       index++;
     }
 
-    ArrayList<int> list1 = createArrayList<int>();
+    ArrayList<int> list1 =ArrayList<int>::New();
     auto iterator1 = list1->getIterator();
     bool isException = false;
     try {
@@ -998,7 +998,7 @@ void testArrayList_dataType_int() {
 
   //ListIterator<int> hasValue();
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -1017,7 +1017,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     auto iterator2 = list2->getIterator();
     if(iterator2->hasValue()) {
       TEST_FAIL("[ListIterator<int> Test {hasValue()} case3]");
@@ -1030,7 +1030,7 @@ void testArrayList_dataType_int() {
 
   // ListIterator<int> next();
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);
@@ -1043,7 +1043,7 @@ void testArrayList_dataType_int() {
       break;
     }
 
-    ArrayList<int> list2 = createArrayList<int>();
+    ArrayList<int> list2 =ArrayList<int>::New();
     auto iterator2 = list2->getIterator();
 
     if(iterator2->next()) {
@@ -1057,7 +1057,7 @@ void testArrayList_dataType_int() {
 
   //--[_ListIterator<int> Test {remove()} Start]
   while(1) {
-    ArrayList<int> list = createArrayList<int>();
+    ArrayList<int> list =ArrayList<int>::New();
     list->add(1);
     list->add(2);
     list->add(3);

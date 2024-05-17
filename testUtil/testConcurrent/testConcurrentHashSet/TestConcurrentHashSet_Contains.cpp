@@ -12,18 +12,18 @@ using namespace obotcha;
 
 void testConcurrentHashSet_Contains() {
     while(1) {
-      ConcurrentHashSet<String> set = createConcurrentHashSet<String>();
-      Thread t1 = createThread([&]{
+      ConcurrentHashSet<String> set = ConcurrentHashSet<String>::New();
+      Thread t1 = Thread::New([&]{
           for(int i = 0;i < 1024*32;i++) {
-              set->add(createString(i));
+              set->add(String::New(i));
           }
       });
       
       int count = 0;
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         for(int i = 0;i < 32*1024;i++) {
             while(1) {
-                if(set->contains(createString(i))) {
+                if(set->contains(String::New(i))) {
                     count++;
                     break;
                 }
@@ -37,7 +37,7 @@ void testConcurrentHashSet_Contains() {
       
       t1->join();
     
-      TimeWatcher w = createTimeWatcher();
+      TimeWatcher w = TimeWatcher::New();
       w->start();
       int ret = t2->join(500);
       auto cost = w->stop();

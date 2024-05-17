@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderDnt dnt = createHttpHeaderDnt();
+    HttpHeaderDnt dnt = HttpHeaderDnt::New();
     dnt->load("1");
     if(!dnt->toString()->sameAs("1")) {
       TEST_FAIL("[HttpHeaderDnt test toString case1]");
@@ -23,7 +23,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderDnt dnt = createHttpHeaderDnt();
+    HttpHeaderDnt dnt = HttpHeaderDnt::New();
     dnt->load("0");
     if(!dnt->toString()->sameAs("0")) {
       TEST_FAIL("[HttpHeaderDnt test toString case2]");
@@ -33,9 +33,9 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderDnt dnt = createHttpHeaderDnt();
+    HttpHeaderDnt dnt = HttpHeaderDnt::New();
     dnt->load("0");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setDnt(dnt);
     
     auto dnt2 = header->getDnt();

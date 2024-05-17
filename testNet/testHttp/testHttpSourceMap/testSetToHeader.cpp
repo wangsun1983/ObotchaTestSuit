@@ -14,8 +14,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("SourceMap"),createString("/path/to/file.js.map"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("SourceMap"),String::New("/path/to/file.js.map"));
     
     HttpHeaderSourceMap timing = header->getSourceMap();
     timing->load("/path/to/file.js.map");

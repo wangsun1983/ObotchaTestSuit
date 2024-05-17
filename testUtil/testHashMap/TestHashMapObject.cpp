@@ -42,9 +42,9 @@ void testHashMapObject() {
 
     //void put(T t,U u)/get(T t)
     while(1) {
-        HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
-        MyKey tag = createMyKey(1);
-        MyValue tt = createMyValue();
+        HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
+        MyKey tag = MyKey::New(1);
+        MyValue tt = MyValue::New();
         tt->i = 100;
         map->put(tag,tt);
         if(map->size() != 1) {
@@ -58,7 +58,7 @@ void testHashMapObject() {
           break;
         }
 
-        map->put(createMyKey(2),nullptr);
+        map->put(MyKey::New(2),nullptr);
         if(map->size() != 2) {
           TEST_FAIL("[HashMap MyKey Test {put(T t,U u)/get(T t)} case3]");
           break;
@@ -76,14 +76,14 @@ void testHashMapObject() {
 
     //void remove(T t)
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
-      MyKey tag = createMyKey(1);
-      MyValue tt = createMyValue();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
+      MyKey tag = MyKey::New(1);
+      MyValue tt = MyValue::New();
       tt->i = 100;
       map->put(tag,tt);
 
       int size = map->size();
-      map->remove(createMyKey(1));
+      map->remove(MyKey::New(1));
       if(size != 1 && map->size() != 0) {
         TEST_FAIL("[HashMap MyKey Test {remove(T t)} case1]");
         break;
@@ -97,7 +97,7 @@ void testHashMapObject() {
         break;
       }
 
-      map->remove(createMyKey(1));
+      map->remove(MyKey::New(1));
       if(map->size() != 0) {
         TEST_FAIL("[HashMap MyKey Test {remove(T t)} case3]");
         break;
@@ -109,9 +109,9 @@ void testHashMapObject() {
 
     //bool isEmpty()
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
-      MyKey tag = createMyKey(1);
-      MyValue tt = createMyValue();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
+      MyKey tag = MyKey::New(1);
+      MyValue tt = MyValue::New();
       tt->i = 100;
       map->put(tag,tt);
 
@@ -120,7 +120,7 @@ void testHashMapObject() {
         break;
       }
 
-      map->remove(createMyKey(1));
+      map->remove(MyKey::New(1));
       if(!map->isEmpty()) {
         TEST_FAIL("[HashMap MyKey Test {isEmpty()} case2]");
         break;
@@ -132,12 +132,12 @@ void testHashMapObject() {
 
     //void clear()
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
-      MyKey tag = createMyKey(1);
-      MyValue tt = createMyValue();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
+      MyKey tag = MyKey::New(1);
+      MyValue tt = MyValue::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createMyKey(2),tt);
+      map->put(MyKey::New(2),tt);
 
       int size = map->size();
       map->clear();
@@ -146,7 +146,7 @@ void testHashMapObject() {
         break;
       }
 
-      HashMap<MyKey,MyValue> map2 = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map2 = HashMap<MyKey,MyValue>::New();
       map2->clear();
       if(map2->size() != 0) {
         TEST_FAIL("[HashMap MyKey Test {clear()} case2]");
@@ -159,12 +159,12 @@ void testHashMapObject() {
 
     //int size()
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
-      MyKey tag = createMyKey(1);
-      MyValue tt = createMyValue();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
+      MyKey tag = MyKey::New(1);
+      MyValue tt = MyValue::New();
       tt->i = 100;
       map->put(tag,tt);
-      map->put(createMyKey(2),tt);
+      map->put(MyKey::New(2),tt);
       if(map->size() != 2 ) {
         TEST_FAIL("[HashMap MyKey Test {size()} case1]");
         break;
@@ -176,11 +176,11 @@ void testHashMapObject() {
 
     //ArrayList<V> keySet()
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
       for(int index = 0;index < 100;index++) {
-        MyValue tt = createMyValue();
+        MyValue tt = MyValue::New();
         tt->i = index;
-        map->put(createMyKey(index),tt);
+        map->put(MyKey::New(index),tt);
       }
 
       ArrayList<MyKey> keys = map->keySet();
@@ -199,7 +199,7 @@ void testHashMapObject() {
         }
       }
 
-      HashMap<MyKey,MyValue> map2 = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map2 = HashMap<MyKey,MyValue>::New();
       ArrayList<MyKey>keys2 = map2->keySet();
       if(keys2->size() != 0) {
           TEST_FAIL("[HashMap MyKey Test {keySet()} case3]");
@@ -212,10 +212,10 @@ void testHashMapObject() {
 
     //ArrayList<V> entrySet()
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
       for(int index = 0;index < 100;index++) {
-        MyValue tt = createMyValue();
-        MyKey kk = createMyKey(index);
+        MyValue tt = MyValue::New();
+        MyKey kk = MyKey::New(index);
         tt->i = index;
         map->put(kk,tt);
       }
@@ -225,14 +225,14 @@ void testHashMapObject() {
 
       for(int index = 0;index < size;index++) {
         MyKey key1 = keys->get(index);
-        MyValue v1 = map->get(createMyKey(key1->i));
+        MyValue v1 = map->get(MyKey::New(key1->i));
         if(v1 == nullptr) {
           TEST_FAIL("[HashMap MyKey Test {entrySet()} case1]");
           break;
         }
       }
 
-      HashMap<MyKey,MyValue> map2 = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map2 = HashMap<MyKey,MyValue>::New();
       ArrayList<MyValue>values = map2->entrySet();
       if(values->size() != 0) {
           TEST_FAIL("[HashMap MyKey Test {entrySet()} case2]");
@@ -246,11 +246,11 @@ void testHashMapObject() {
 
     //_MapIterator(getKey/getValue)
     while(1) {
-      HashMap<MyKey,MyValue> map = createHashMap<MyKey,MyValue>();
+      HashMap<MyKey,MyValue> map = HashMap<MyKey,MyValue>::New();
       for(int index = 0;index < 100;index++) {
-        MyValue tt = createMyValue();
+        MyValue tt = MyValue::New();
         tt->i = index;
-        map->put(createMyKey(index),tt);
+        map->put(MyKey::New(index),tt);
       }
 
       int index = 0;

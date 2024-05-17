@@ -24,17 +24,17 @@ void testShareMemory() {
   st(ShareMemory)::Create("shareMemoryabc",testDatalength);
   int pid = fork();
   if(pid == 0) {
-      ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
+      ShareMemory memory = ShareMemory::New("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
       
-      ByteArray arr = createByteArray((byte *)&testData[0],32);
+      ByteArray arr = ByteArray::New((byte *)&testData[0],32);
       memory->write(arr);
       exit(0);
   } else {
       sleep(1);
-      ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::Type::Read);
+      ShareMemory memory = ShareMemory::New("shareMemoryabc",testDatalength,st(ShareMemory)::Type::Read);
       
 
-      ByteArray b = createByteArray(32);
+      ByteArray b = ByteArray::New(32);
       int length = memory->read(b);
 
       if(length < testDatalength) {
@@ -54,7 +54,7 @@ void testShareMemory() {
         }
       }
 
-      ByteArray b2 = createByteArray(64);
+      ByteArray b2 = ByteArray::New(64);
       int length2 = memory->read(b2);
       if(length2 < testDatalength) {
           TEST_FAIL("[ShareMemory Test {write/read()} case4]");
@@ -68,7 +68,7 @@ void testShareMemory() {
         }
       }
 
-      ByteArray b3 = createByteArray(64);
+      ByteArray b3 = ByteArray::New(64);
       if(memory->read(256,b3) != -EINVAL) {
         TEST_FAIL("[ShareMemory Test {write/read()} case6]");
       }
@@ -94,9 +94,9 @@ void testShareMemory() {
   //int write(int index,char v);
   pid = fork();
   if(pid == 0) {
-    ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
+    ShareMemory memory = ShareMemory::New("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
     
-    ByteArray arr = createByteArray((byte *)&testData[0],32);
+    ByteArray arr = ByteArray::New((byte *)&testData[0],32);
     if(memory->write(256,arr) != -EINVAL) {
       TEST_FAIL("[ShareMemory Test {write/read()} case10]");
     }
@@ -109,7 +109,7 @@ void testShareMemory() {
     exit(0);
   } else {
     sleep(1);
-    ShareMemory memory = createShareMemory("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
+    ShareMemory memory = ShareMemory::New("shareMemoryabc",testDatalength,st(ShareMemory)::Type::WriteRead);
     
     if(memory->read(16) != 'c') {
       TEST_FAIL("[ShareMemory Test {write/read()} case12]");

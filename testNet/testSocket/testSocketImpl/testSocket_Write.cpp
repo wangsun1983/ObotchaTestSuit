@@ -14,28 +14,28 @@
 using namespace obotcha;
 
 void testSocketWrite() {
-    File delfile1 = createFile("./tmp/write1.txt");
-    File delfile2 = createFile("./tmp/write2.txt");
-    File delfile3 = createFile("./tmp/write3.txt");
+    File delfile1 = File::New("./tmp/write1.txt");
+    File delfile2 = File::New("./tmp/write2.txt");
+    File delfile3 = File::New("./tmp/write3.txt");
     delfile1->removeAll();
     delfile2->removeAll();
     delfile3->removeAll();
     
     while(1) {
-        File file1 = createFile("./tmp/write1.txt");
+        File file1 = File::New("./tmp/write1.txt");
         file1->createNewFile();
-        auto fd = st(File)::Open(createString("./tmp/write1.txt"));
-        SocketImpl impl = createSocketImpl(fd);
+        auto fd = st(File)::Open(String::New("./tmp/write1.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
         
-        ByteArray data = createByteArray(32);
+        ByteArray data = ByteArray::New(32);
         for(int i = 0;i < 32;i++) {
             data[i] = i;
         }
         impl->write(data);
         
-        FileInputStream stream = createFileInputStream(createString("./tmp/write1.txt"));
+        FileInputStream stream = FileInputStream::New(String::New("./tmp/write1.txt"));
         stream->open();
-        ByteArray data2 = createByteArray(64);
+        ByteArray data2 = ByteArray::New(64);
         stream->read(data2);
         for(int i = 0;i < 32;i++) {
             if(data2[i] != i) {
@@ -49,20 +49,20 @@ void testSocketWrite() {
     }
     
     while(1) {
-        File file1 = createFile("./tmp/write2.txt");
+        File file1 = File::New("./tmp/write2.txt");
         file1->createNewFile();
-        auto fd = st(File)::Open(createString("./tmp/write2.txt"));
-        SocketImpl impl = createSocketImpl(fd);
+        auto fd = st(File)::Open(String::New("./tmp/write2.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
         
-        ByteArray data = createByteArray(32);
+        ByteArray data = ByteArray::New(32);
         for(int i = 0;i < 32;i++) {
             data[i] = i;
         }
         impl->write(data,2,12);
         
-        FileInputStream stream = createFileInputStream(createString("./tmp/write2.txt"));
+        FileInputStream stream = FileInputStream::New(String::New("./tmp/write2.txt"));
         stream->open();
-        ByteArray data2 = createByteArray(64);
+        ByteArray data2 = ByteArray::New(64);
         int size = stream->read(data2);
         if(size != 12) {
             TEST_FAIL("SocketImpl write case2,size is %d,expect is %d",size,12);
@@ -80,20 +80,20 @@ void testSocketWrite() {
     }
     
     while(1) {
-        File file1 = createFile("./tmp/write3.txt");
+        File file1 = File::New("./tmp/write3.txt");
         file1->createNewFile();
-        auto fd = st(File)::Open(createString("./tmp/write3.txt"));
-        SocketImpl impl = createSocketImpl(fd);
+        auto fd = st(File)::Open(String::New("./tmp/write3.txt"));
+        SocketImpl impl = SocketImpl::New(fd);
         
-        ByteArray data = createByteArray(32);
+        ByteArray data = ByteArray::New(32);
         for(int i = 0;i < 32;i++) {
             data[i] = i;
         }
         impl->write(data,2,64);
         
-        FileInputStream stream = createFileInputStream(createString("./tmp/write3.txt"));
+        FileInputStream stream = FileInputStream::New(String::New("./tmp/write3.txt"));
         stream->open();
-        ByteArray data2 = createByteArray(64);
+        ByteArray data2 = ByteArray::New(64);
         int size = stream->read(data2);
         if(size != 30) {
             TEST_FAIL("SocketImpl write case4,size is %d,expect size is %d",size,30);

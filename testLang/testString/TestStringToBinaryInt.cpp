@@ -19,14 +19,14 @@ void TestBinaryInt() {
     //----------------------------
     while(1) {
         //case 1
-        String str1 = createString("0b11");
+        String str1 = String::New("0b11");
         
         if(str1->toBinaryInt()->toValue() != 3) {
             TEST_FAIL("String toBinaryInt test1");
             break;
         }
         
-        str1 = createString("010");
+        str1 = String::New("010");
         if(str1->toBinaryInt()->toValue() != 2) {
             TEST_FAIL("String toBinaryInt test2");
             break;
@@ -36,7 +36,7 @@ void TestBinaryInt() {
     
     while(1) {
         //case 1
-        String str1 = createString("0b51");
+        String str1 = String::New("0b51");
         
         if(str1->toBinaryInt() != nullptr) {
             TEST_FAIL("String toBinaryInt test3");

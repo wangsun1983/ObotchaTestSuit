@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Vary"),
-                createString("no-referrer, User-Agent"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Vary"),
+                String::New("no-referrer, User-Agent"));
     auto match = header->getVary();
     ArrayList<String> list = match->get();
     if(list->size() != 2) {
@@ -32,8 +32,8 @@ void testSetToHeader() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderVary vary = createHttpHeaderVary();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderVary vary = HttpHeaderVary::New();
     vary->load("no-referrer, User-Agent ");
     header->setVary(vary);
     auto match = header->getVary();

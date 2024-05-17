@@ -10,16 +10,16 @@ using namespace obotcha;
 
 void testFileInputStreamReadTo() {
   while(1) {
-    File f = createFile("./tmp/data.txt");
+    File f = File::New("./tmp/data.txt");
 
-    FileInputStream stream = createFileInputStream(f);
+    FileInputStream stream = FileInputStream::New(f);
     stream->open();
 
-    File f2 = createFile("./tmp/read_to_case1.txt");
+    File f2 = File::New("./tmp/read_to_case1.txt");
     f2->removeAll();
 
     int fd = open("./tmp/read_to_case1.txt",O_CREAT|O_WRONLY|O_APPEND,0666);
-    ByteArray buff = createByteArray(32*1024);
+    ByteArray buff = ByteArray::New(32*1024);
     while(1) {
         int length = stream->read(buff);
         if(length == 0) {
@@ -30,9 +30,9 @@ void testFileInputStreamReadTo() {
 
     close(fd);
 
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/data.txt"));
-    String v2 = md5->encodeFile(createFile("./tmp/read_to_case1.txt"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/data.txt"));
+    String v2 = md5->encodeFile(File::New("./tmp/read_to_case1.txt"));
     if(v1 != v2) {
       TEST_FAIL("testFileInputStreamReadTo test1 ");
       break;

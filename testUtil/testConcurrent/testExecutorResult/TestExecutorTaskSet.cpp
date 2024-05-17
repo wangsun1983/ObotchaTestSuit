@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testExecutorTaskSet() {
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		            ->setDefaultThreadNum(1)
 		            ->newThreadPool();
 		auto f1 = pool->submit([]{
@@ -107,7 +107,7 @@ void testExecutorTaskSet() {
 		}
 		
 		auto f12 = pool->submit([]{
-			st(ExecutorResult)::Set(createString("hello world"));
+			st(ExecutorResult)::Set(String::New("hello world"));
 		});
 		
 		if(!f12->getResult<String>()->sameAs("hello world")) {
@@ -120,7 +120,7 @@ void testExecutorTaskSet() {
 	}
     
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		            ->newCachedThreadPool();
 					
 		auto f1 = pool->submit([]{
@@ -214,7 +214,7 @@ void testExecutorTaskSet() {
 		}
 		
 		auto f12 = pool->submit([]{
-			st(ExecutorResult)::Set(createString("hello world"));
+			st(ExecutorResult)::Set(String::New("hello world"));
 		});
 		
 		if(!f12->getResult<String>()->sameAs("hello world")) {
@@ -227,7 +227,7 @@ void testExecutorTaskSet() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		            ->newScheduledThreadPool();
 					
 		auto f1 = pool->schedule(1,[]{
@@ -321,7 +321,7 @@ void testExecutorTaskSet() {
 		}
 		
 		auto f12 = pool->schedule(1,[]{
-			st(ExecutorResult)::Set(createString("hello world"));
+			st(ExecutorResult)::Set(String::New("hello world"));
 		});
 		
 		if(!f12->getResult<String>()->sameAs("hello world")) {
@@ -334,7 +334,7 @@ void testExecutorTaskSet() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		            ->newPriorityThreadPool();
 					
 		auto f1 = pool->preempt(st(Concurrent)::TaskPriority::Low,[]{
@@ -428,7 +428,7 @@ void testExecutorTaskSet() {
 		}
 		
 		auto f12 = pool->preempt(st(Concurrent)::TaskPriority::Low,[]{
-			st(ExecutorResult)::Set(createString("hello world"));
+			st(ExecutorResult)::Set(String::New("hello world"));
 		});
 		
 		if(!f12->getResult<String>()->sameAs("hello world")) {

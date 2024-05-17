@@ -50,36 +50,36 @@ public:
 };
 
 void testImportFrom() {
-    Worker data = createWorker();
-    data->name = createString("wang");
-    data->job = createString("engineer");
+    Worker data = Worker::New();
+    data->name = String::New("wang");
+    data->job = String::New("engineer");
     data->employed = true;
     data->tall = false;
-    data->foods = createArrayList<String>();
-    data->foods->add(createString("apple"));
-    data->foods->add(createString("pear"));
-    data->foods->add(createString("bread"));
+    data->foods = ArrayList<String>::New();
+    data->foods->add(String::New("apple"));
+    data->foods->add(String::New("pear"));
+    data->foods->add(String::New("bread"));
 
-    data->skills = createSkill();
-    data->skills->ruby = createString("good");
-    data->skills->python = createString("very good");
-    data->skills->dotnet = createString("just so so");
+    data->skills = Skill::New();
+    data->skills->ruby = String::New("good");
+    data->skills->python = String::New("very good");
+    data->skills->dotnet = String::New("just so so");
 
-    data->hobbies = createHashMap<String,String>();
+    data->hobbies = HashMap<String,String>::New();
     data->hobbies->put("basketball","like");
     data->hobbies->put("football","unlike");
     data->hobbies->put("sleep","like");
 
-    YamlValue value = createYamlValue();
+    YamlValue value = YamlValue::New();
     value->importFrom(data);
 
-    YamlWriter w = createYamlWriter(createFile("./tmp/import.yaml"));
+    YamlWriter w = YamlWriter::New(File::New("./tmp/import.yaml"));
     w->write(value);
 
     //
-    YamlReader r = createYamlReader()->loadFile(createFile("./tmp/import.yaml"));
+    YamlReader r = YamlReader::New()->loadFile(File::New("./tmp/import.yaml"));
     auto node = r->parse();
-    Worker v2 = createWorker();
+    Worker v2 = Worker::New();
     node->reflectTo(v2);
 
     if(!data->name->equals(v2->name)) {

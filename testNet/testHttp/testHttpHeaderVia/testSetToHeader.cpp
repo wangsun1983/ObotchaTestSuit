@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Via"),
-                createString("1.1 GWA,1.0 fred, 1.1 p.example.net"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Via"),
+                String::New("1.1 GWA,1.0 fred, 1.1 p.example.net"));
     auto match = header->getVia();
     ArrayList<HttpHeaderViaItem> list = match->get();
     if(list->size() != 3) {

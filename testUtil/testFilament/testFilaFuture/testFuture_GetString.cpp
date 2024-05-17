@@ -15,10 +15,10 @@ using namespace obotcha;
 
 void testFutureGetString() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         FilaFuture future = croutine->submit([]{
-            st(FilaExecutorResult)::Set(createString("hello"));
+            st(FilaExecutorResult)::Set(String::New("hello"));
         });
         
         usleep(1000*100);

@@ -12,20 +12,20 @@ using namespace obotcha;
 
 void testConcurrentHashSet_Clear() {
     while(1) {
-      ConcurrentHashSet<String> set = createConcurrentHashSet<String>();
-      set->add(createString("a"));
-      set->add(createString("b"));
-      set->add(createString("c"));
+      ConcurrentHashSet<String> set = ConcurrentHashSet<String>::New();
+      set->add(String::New("a"));
+      set->add(String::New("b"));
+      set->add(String::New("c"));
       
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
           set->syncReadAction([]{
              usleep(200*1000);
           });
       });
       
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
           usleep(100*1000);
-          TimeWatcher w = createTimeWatcher();
+          TimeWatcher w = TimeWatcher::New();
           w->start();
           set->clear();
           auto cost = w->stop();

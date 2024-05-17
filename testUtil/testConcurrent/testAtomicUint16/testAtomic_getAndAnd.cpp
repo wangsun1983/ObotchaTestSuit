@@ -9,7 +9,7 @@ using namespace obotcha;
 
 void testGetAndAnd() {
     while(1) {
-      AtomicUint16 value = createAtomicUint16(7);
+      AtomicUint16 value = AtomicUint16::New(7);
       long v = value->getAndAnd(2);
       if(v != 7) {
         TEST_FAIL("AtomicUint16 testGetAndAnd test2");

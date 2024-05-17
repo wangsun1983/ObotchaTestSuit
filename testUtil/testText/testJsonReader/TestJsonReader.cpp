@@ -12,7 +12,7 @@
 using namespace obotcha;
 
 int basetest() {
-    JsonReader reader = createJsonReader()->loadFile(createFile("abc.json"));
+    JsonReader reader = JsonReader::New()->loadFile(File::New("abc.json"));
     JsonValue value = reader->get();
 
     //String getString(String tag);
@@ -153,7 +153,7 @@ int basetest() {
 
     //void put(String tag,String value);
     while(1) {
-      value->put(S("test1"),createString("test1"));
+      value->put(S("test1"),String::New("test1"));
 
       String test1 = value->getString("test1");
       if(test1 == nullptr || !test1->sameAs("test1")) {
@@ -210,7 +210,7 @@ int basetest() {
 
     //void put(String tag,Integer value);
     while(1) {
-      value->put(S("int1"),createInteger(1));
+      value->put(S("int1"),Integer::New(1));
       Integer test1 = value->getInteger("int1");
 
       if(test1 == nullptr || test1->toValue() != 1) {
@@ -246,7 +246,7 @@ int basetest() {
 
     //void put(String tag,Boolean value);
     while(1) {
-      value->put(S("bool1"),createBoolean(true));
+      value->put(S("bool1"),Boolean::New(true));
       Boolean test1 = value->getBoolean("bool1");
 
       if(test1 == nullptr || test1->toValue() != true) {
@@ -281,7 +281,7 @@ int basetest() {
 
     //void put(String tag,Double value);
     while(1) {
-      value->put(S("double1"),createDouble(1.1));
+      value->put(S("double1"),Double::New(1.1));
       Double test1 = value->getDouble("double1");
 
       if(test1 == nullptr || test1->toValue() != 1.1) {
@@ -318,10 +318,10 @@ int basetest() {
     //put(sp<_JsonValue> value);
     while(1) {
       //create a array attr
-      JsonValue array = createJsonValue();
+      JsonValue array = JsonValue::New();
       array->append((char *)"abc1");
       array->append(100);
-      JsonValue jvalue = createJsonValue();
+      JsonValue jvalue = JsonValue::New();
       jvalue->put(S("jv1"),(char *)"jv1");
       jvalue->put(S("jv2"),2);
       //TEST_FAIL("jvalue size is %d ",jvalue->size());
@@ -362,7 +362,7 @@ int basetest() {
 
     //void remove(String tag);
     while(1) {
-      JsonValue array = createJsonValue();
+      JsonValue array = JsonValue::New();
       array->append((char *)"abc1");
       array->append(100);
       value->put(S("testarr2"),array);
@@ -405,7 +405,7 @@ int basetest() {
 
     //String getString();
     while(1) {
-      JsonValue v1 = value->getValue(createString("c"));
+      JsonValue v1 = value->getValue(String::New("c"));
       String str1 = v1->getString();
       if(str1 == nullptr || !str1->sameAs("nihao")) {
         TEST_FAIL("[JsonReader SimpleRead {getString()} case4]");
@@ -511,7 +511,7 @@ int basetest() {
 
     //sp<_JsonValue> getValue(String tag);
     while(1) {
-      JsonValue arr1 = value->getValue(createString("arr"));
+      JsonValue arr1 = value->getValue(String::New("arr"));
       if(arr1 == nullptr) {
         TEST_FAIL("[JsonReader SimpleRead {getValue()} case１]");
         break;

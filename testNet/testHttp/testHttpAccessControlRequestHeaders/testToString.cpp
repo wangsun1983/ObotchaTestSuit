@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = HttpHeaderAccessControlRequestHeaders::New();
     c->load("X-PINGOTHER, Content-Type");
     if(!c->toString()->sameAs("X-PINGOTHER, Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case1]");
@@ -24,7 +24,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
+    HttpHeaderAccessControlRequestHeaders c = HttpHeaderAccessControlRequestHeaders::New();
     c->load("X-PINGOTHER");
     if(!c->toString()->sameAs("X-PINGOTHER")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case3]");
@@ -34,9 +34,9 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderAccessControlRequestHeaders c = createHttpHeaderAccessControlRequestHeaders();
-    c->add(createString("X-PINGOTHER"));
-    c->add(createString("Content-Type"));
+    HttpHeaderAccessControlRequestHeaders c = HttpHeaderAccessControlRequestHeaders::New();
+    c->add(String::New("X-PINGOTHER"));
+    c->add(String::New("Content-Type"));
     if(!c->toString()->sameAs("X-PINGOTHER, Content-Type")) {
       TEST_FAIL("[HttpHeaderAccessControlRequestHeaders test toString case4]");
       break;

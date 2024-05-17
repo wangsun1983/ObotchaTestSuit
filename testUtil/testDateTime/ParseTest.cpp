@@ -17,7 +17,7 @@ using namespace obotcha;
 
 void parseISO8601()
 {
-	DateTime dt = createDateTime("2005-01-08T12:30:00Z");
+	DateTime dt = DateTime::New("2005-01-08T12:30:00Z");
 	if(dt->year() != 2005 ||
 	   dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -28,7 +28,7 @@ void parseISO8601()
 			TEST_FAIL("DateTime parseISO8601 test1");
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00+01:00");
+	dt = DateTime::New("2005-01-08T12:30:00+01:00");
 	if(dt->year() != 2005 ||
 	   dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -39,7 +39,7 @@ void parseISO8601()
       TEST_FAIL("DateTime parseISO8601 test2");
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00-01:00");
+	dt = DateTime::New("2005-01-08T12:30:00-01:00");
 	if(dt->year() != 2005 ||
 	   dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -50,7 +50,7 @@ void parseISO8601()
       TEST_FAIL("DateTime parseISO8601 test3");
 	}
 
-	dt = createDateTime("2005-01-08");
+	dt = DateTime::New("2005-01-08");
 	if(dt->year() != 2005 ||
 	   dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -67,7 +67,7 @@ void parseISO8601()
 void parseISO8601Frac()
 {
 	int tzd;
-	DateTime dt = createDateTime("2005-01-08T12:30:00Z");
+	DateTime dt = DateTime::New("2005-01-08T12:30:00Z");
 
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
@@ -81,7 +81,7 @@ void parseISO8601Frac()
 			TEST_FAIL("DateTime testISO8601Frac test1");
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00+01:00");
+	dt = DateTime::New("2005-01-08T12:30:00+01:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -95,7 +95,7 @@ void parseISO8601Frac()
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00-01:00");
+	dt = DateTime::New("2005-01-08T12:30:00-01:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -109,7 +109,7 @@ void parseISO8601Frac()
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00");
+	dt = DateTime::New("2005-01-08T12:30:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -123,7 +123,7 @@ void parseISO8601Frac()
 							dt->year(),dt->month(),dt->dayOfMonth(),dt->hour(),dt->minute(),dt->second(),dt->tzd());
 	}
 
-	dt = createDateTime("2005-01-08");
+	dt = DateTime::New("2005-01-08");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -139,7 +139,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00.1Z");
+	dt = DateTime::New("2005-01-08T12:30:00.1Z");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -155,7 +155,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00.123+01:00");
+	dt = DateTime::New("2005-01-08T12:30:00.123+01:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -171,7 +171,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00.12345-01:00");
+	dt = DateTime::New("2005-01-08T12:30:00.12345-01:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -187,7 +187,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2010-09-23T16:17:01.2817002+02:00");
+	dt = DateTime::New("2010-09-23T16:17:01.2817002+02:00");
 	if(dt->year() != 2010 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 23 ||
@@ -203,7 +203,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00");
+	dt = DateTime::New("2005-01-08T12:30:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -219,7 +219,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08T12:30:00.123456");
+	dt = DateTime::New("2005-01-08T12:30:00.123456");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -235,7 +235,7 @@ void parseISO8601Frac()
 			
 	}
 
-	dt = createDateTime("2005-01-08");
+	dt = DateTime::New("2005-01-08");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -256,7 +256,7 @@ void parseISO8601Frac()
 
 void parseRFC822() {
 	int tzd;
-	DateTime dt = createDateTime("Sat, 8 Jan 05 12:30:00 GMT");
+	DateTime dt = DateTime::New("Sat, 8 Jan 05 12:30:00 GMT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -270,7 +270,7 @@ void parseRFC822() {
 			
 	}
 
-	dt = createDateTime("Sat, 8 Jan 05 12:30:00 +0100");
+	dt = DateTime::New("Sat, 8 Jan 05 12:30:00 +0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -284,7 +284,7 @@ void parseRFC822() {
 			
 	}
 
-	dt = createDateTime("Sat, 8 Jan 05 12:30:00 -0100");
+	dt = DateTime::New("Sat, 8 Jan 05 12:30:00 -0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -298,7 +298,7 @@ void parseRFC822() {
 			
 	}
 
-	dt = createDateTime("Tue, 18 Jan 05 12:30:00 CDT");
+	dt = DateTime::New("Tue, 18 Jan 05 12:30:00 CDT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 18 ||
@@ -312,7 +312,7 @@ void parseRFC822() {
 			
 	}
 
-	dt = createDateTime("Wed, 12 Sep 73 02:01:12 CST");
+	dt = DateTime::New("Wed, 12 Sep 73 02:01:12 CST");
 	if(dt->year() != 1973 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 12 ||
@@ -326,7 +326,7 @@ void parseRFC822() {
 			
 	}
 
-	dt = createDateTime("12 Sep 73 02:01:12 EST");
+	dt = DateTime::New("12 Sep 73 02:01:12 EST");
 	if(dt->year() != 1973 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 12 ||
@@ -344,7 +344,7 @@ void parseRFC822() {
 
 void parseRFC1123()
 {
-	DateTime dt = createDateTime("Sat, 8 Jan 2005 12:30:00 GMT");
+	DateTime dt = DateTime::New("Sat, 8 Jan 2005 12:30:00 GMT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -359,7 +359,7 @@ void parseRFC1123()
 	}
 
 
-	dt = createDateTime("Sat, 8 Jan 2005 12:30:00 +0100");
+	dt = DateTime::New("Sat, 8 Jan 2005 12:30:00 +0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -373,7 +373,7 @@ void parseRFC1123()
 			
 	}
 
-	dt = createDateTime("Sat, 8 Jan 2005 12:30:00 -0100");
+	dt = DateTime::New("Sat, 8 Jan 2005 12:30:00 -0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -387,7 +387,7 @@ void parseRFC1123()
 			
 	}
 
-	dt = createDateTime("Tue, 18 Jan 2005 12:30:00 CDT");
+	dt = DateTime::New("Tue, 18 Jan 2005 12:30:00 CDT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 18 ||
@@ -401,7 +401,7 @@ void parseRFC1123()
 			
 	}
 
-	dt = createDateTime("Wed, 12 Sep 1973 02:01:12 CST");
+	dt = DateTime::New("Wed, 12 Sep 1973 02:01:12 CST");
 	if(dt->year() != 1973 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 12 ||
@@ -415,7 +415,7 @@ void parseRFC1123()
 			
 	}
 
-	dt = createDateTime("12 Sep 1973 02:01:12 EST");
+	dt = DateTime::New("12 Sep 1973 02:01:12 EST");
 	if(dt->year() != 1973 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 12 ||
@@ -433,7 +433,7 @@ void parseRFC1123()
 
 void parseHTTP()
 {
-	DateTime dt = createDateTime("Sat, 08 Jan 2005 12:30:00 GMT");
+	DateTime dt = DateTime::New("Sat, 08 Jan 2005 12:30:00 GMT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -446,7 +446,7 @@ void parseHTTP()
 			
 	}
 
-	dt = createDateTime("Sat, 08 Jan 2005 12:30:00 +0100");
+	dt = DateTime::New("Sat, 08 Jan 2005 12:30:00 +0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -460,7 +460,7 @@ void parseHTTP()
 			
 	}
 
-	dt = createDateTime("Sat, 08 Jan 2005 12:30:00 -0100");
+	dt = DateTime::New("Sat, 08 Jan 2005 12:30:00 -0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -477,7 +477,7 @@ void parseHTTP()
 
 void parseRFC850()
 {
-	DateTime dt = createDateTime("Saturday, 8-Jan-05 12:30:00 GMT");
+	DateTime dt = DateTime::New("Saturday, 8-Jan-05 12:30:00 GMT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -490,7 +490,7 @@ void parseRFC850()
 			
 	}
 
-	dt = createDateTime("Saturday, 8-Jan-05 12:30:00 +0100");
+	dt = DateTime::New("Saturday, 8-Jan-05 12:30:00 +0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -503,7 +503,7 @@ void parseRFC850()
 			
 	}
 
-	dt = createDateTime("Saturday, 8-Jan-05 12:30:00 -0100");
+	dt = DateTime::New("Saturday, 8-Jan-05 12:30:00 -0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -516,7 +516,7 @@ void parseRFC850()
 			
 	}
 
-	dt = createDateTime("Wed, 12-Sep-73 02:01:12 CST");
+	dt = DateTime::New("Wed, 12-Sep-73 02:01:12 CST");
 	if(dt->year() != 1973 ||
 		 dt->month() != st(Calendar)::September ||
 		 dt->dayOfMonth() != 12 ||
@@ -532,7 +532,7 @@ void parseRFC850()
 }
 
 void parseRFC1036() {
-	DateTime dt = createDateTime("Saturday, 8 Jan 05 12:30:00 GMT");
+	DateTime dt = DateTime::New("Saturday, 8 Jan 05 12:30:00 GMT");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -545,7 +545,7 @@ void parseRFC1036() {
 			
 	}
 
-	dt = createDateTime("Saturday, 8 Jan 05 12:30:00 +0100");
+	dt = DateTime::New("Saturday, 8 Jan 05 12:30:00 +0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -558,7 +558,7 @@ void parseRFC1036() {
 			
 	}
 
-	dt = createDateTime("Saturday, 8 Jan 05 12:30:00 -0100");
+	dt = DateTime::New("Saturday, 8 Jan 05 12:30:00 -0100");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -574,7 +574,7 @@ void parseRFC1036() {
 }
 
 void parseASCTIME() {
-	DateTime dt = createDateTime("Sat Jan  8 12:30:00 2005");
+	DateTime dt = DateTime::New("Sat Jan  8 12:30:00 2005");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -590,7 +590,7 @@ void parseASCTIME() {
 }
 
 void parseSORTABLE() {
-	DateTime dt = createDateTime("2005-01-08 12:30:00");
+	DateTime dt = DateTime::New("2005-01-08 12:30:00");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -603,7 +603,7 @@ void parseSORTABLE() {
 			
 	}
 
-	dt = createDateTime("2005-01-08");
+	dt = DateTime::New("2005-01-08");
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 8 ||
@@ -619,7 +619,7 @@ void parseSORTABLE() {
 }
 
 void parseCustom() {
-	DateTime dt = createDateTime(createString("%d-%b-%Y"),createString("18-Jan-2005"));
+	DateTime dt = DateTime::New(String::New("%d-%b-%Y"),String::New("18-Jan-2005"));
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 18 ||
@@ -632,7 +632,7 @@ void parseCustom() {
 			
 	}
 
-	dt = createDateTime(createString("%m/%d/%y"),createString("01/18/05"));
+	dt = DateTime::New(String::New("%m/%d/%y"),String::New("01/18/05"));
 	if(dt->year() != 2005 ||
 		 dt->month() != st(Calendar)::January ||
 		 dt->dayOfMonth() != 18 ||
@@ -645,7 +645,7 @@ void parseCustom() {
 			
 	}
 
-	dt = createDateTime(createString("%h:%M %a"),createString("12:30 am"));
+	dt = DateTime::New(String::New("%h:%M %a"),String::New("12:30 am"));
 	if(dt->hour() != 0||
 		 dt->minute() != 30||
 		 dt->second() != 0 ) {
@@ -654,7 +654,7 @@ void parseCustom() {
 			
 	}
 
-	dt = createDateTime(createString("%h:%M %a"),createString("12:30 PM"));
+	dt = DateTime::New(String::New("%h:%M %a"),String::New("12:30 PM"));
 	if(dt->hour() != 12||
 		 dt->minute() != 30||
 		 dt->second() != 0 ) {

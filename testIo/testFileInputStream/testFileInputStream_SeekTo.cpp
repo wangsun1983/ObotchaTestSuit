@@ -11,18 +11,18 @@ using namespace obotcha;
 void testFileInputStreamSeekTo() {
 
   while(1) {
-    File f = createFile("./tmp/data.txt");
+    File f = File::New("./tmp/data.txt");
 
-    FileInputStream stream = createFileInputStream(f);
+    FileInputStream stream = FileInputStream::New(f);
     stream->open();
 
-    File f2 = createFile("./tmp/read_to_case1.txt");
+    File f2 = File::New("./tmp/read_to_case1.txt");
     f2->removeAll();
 
     int fd = open("./tmp/read_to_case1.txt",O_CREAT|O_WRONLY|O_APPEND,0666);
     stream->seekTo(1024*32);
 
-    ByteArray buff = createByteArray(32*1024);
+    ByteArray buff = ByteArray::New(32*1024);
     while(1) {
         int length = stream->read(buff);
         if(length == 0) {
@@ -40,11 +40,11 @@ void testFileInputStreamSeekTo() {
       TEST_FAIL("testFileInputStreamSeekTo test1 ");
     }
 
-    FileInputStream stream2 = createFileInputStream(f);
+    FileInputStream stream2 = FileInputStream::New(f);
     stream2->open();
     auto data = stream2->readAll();
 
-    FileInputStream stream3 = createFileInputStream(f2);
+    FileInputStream stream3 = FileInputStream::New(f2);
     stream3->open();
     auto data2 = stream3->readAll();
 
@@ -56,7 +56,7 @@ void testFileInputStreamSeekTo() {
 
     //reset and test again
     stream->reset();
-    File f3 = createFile("./tmp/read_to_case2.txt");
+    File f3 = File::New("./tmp/read_to_case2.txt");
     f3->removeAll();
 
     fd = open("./tmp/read_to_case2.txt",O_CREAT|O_WRONLY|O_APPEND,0666);
@@ -68,9 +68,9 @@ void testFileInputStreamSeekTo() {
         write(fd,buff->toValue(),length);
     }
 
-    Md md5 = createMd();
-    String v3 = md5->encodeFile(createFile("./tmp/data.txt"));
-    String v4 = md5->encodeFile(createFile("./tmp/read_to_case2.txt"));
+    Md md5 = Md::New();
+    String v3 = md5->encodeFile(File::New("./tmp/data.txt"));
+    String v4 = md5->encodeFile(File::New("./tmp/read_to_case2.txt"));
     if(v3 != v4) {
       TEST_FAIL("testFileInputStreamRead test4 ");
       break;

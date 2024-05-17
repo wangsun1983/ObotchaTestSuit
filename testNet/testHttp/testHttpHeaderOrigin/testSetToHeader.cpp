@@ -15,8 +15,8 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Origin"),createString(""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Origin"),String::New(""));
     auto match = header->getOrigin();
     HttpUrl url = match->get();
     if(url == nullptr){
@@ -28,8 +28,8 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Origin"),createString("https://developer.mozilla.org:1234"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Origin"),String::New("https://developer.mozilla.org:1234"));
     auto match = header->getOrigin();
     HttpUrl url = match->get();
     if(url == nullptr){

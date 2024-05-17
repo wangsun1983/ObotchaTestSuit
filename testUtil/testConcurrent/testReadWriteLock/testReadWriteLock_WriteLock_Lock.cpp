@@ -13,26 +13,26 @@
 using namespace obotcha;
 
 void testWriteLock_Lock() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
-    Thread t = createThread([&value,&rwLock] {
+    AtomicInteger value = AtomicInteger::New(0);
+    Thread t = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
         rwLock->getWriteLock()->unlock();
     });
 
-    Thread t1 = createThread([&value,&rwLock] {
+    Thread t1 = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
         rwLock->getWriteLock()->unlock();
     });
 
-    Thread t2 = createThread([&value,&rwLock] {
+    Thread t2 = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         usleep(100*1000);
         value->incrementAndGet();
@@ -61,7 +61,7 @@ void testWriteLock_Lock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getWriteLock()->lock();
     rwLock->getWriteLock()->lock();
     TEST_OK("[TestReadLock WriteLock Lock case3]");
@@ -69,8 +69,8 @@ void testWriteLock_Lock() {
   }
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
-    Thread t = createThread([&rwLock]() {
+    ReadWriteLock rwLock = ReadWriteLock::New();
+    Thread t = Thread::New([&rwLock]() {
       rwLock->getWriteLock()->lock();
       usleep(200*1000);
       rwLock->getWriteLock()->unlock();

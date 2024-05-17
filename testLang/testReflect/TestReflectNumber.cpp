@@ -36,20 +36,20 @@ public:
 void testReflectNumber() {
   //test1
   while(1) {
-      NumberReflectData data = createNumberReflectData();
-      data->intData = createInteger(1);
-      data->byteData = createByte(1);
-      data->doubleData = createDouble(1.1);
-      data->floatData = createFloat(2.2);
-      data->longData = createLong(3);
-      data->stringData = createString("abc");
-      data->uint8Data = createUint8(4);
-      data->uint16Data = createUint16(5);
-      data->uint32Data = createUint32(6);
-      data->uint64Data = createUint64(7);
-      data->boolData = createBoolean(false);
+      NumberReflectData data = NumberReflectData::New();
+      data->intData = Integer::New(1);
+      data->byteData = Byte::New(1);
+      data->doubleData = Double::New(1.1);
+      data->floatData = Float::New(2.2);
+      data->longData = Long::New(3);
+      data->stringData = String::New("abc");
+      data->uint8Data = Uint8::New(4);
+      data->uint16Data = Uint16::New(5);
+      data->uint32Data = Uint32::New(6);
+      data->uint64Data = Uint64::New(7);
+      data->boolData = Boolean::New(false);
 
-      JsonValue jvalue = createJsonValue();
+      JsonValue jvalue = JsonValue::New();
 
       //wangsl
       //auto list = data->getAllFields();
@@ -59,15 +59,15 @@ void testReflectNumber() {
       jvalue->importFrom(data);
       //TEST_FAIL("JsonValue is %s \n",jvalue->toString()->toChars());
 
-      JsonWriter jwriter = createJsonWriter("output4.json");
+      JsonWriter jwriter = JsonWriter::New("output4.json");
       jwriter->write(jvalue);
       jwriter->close();
 
 
-      JsonReader reader = createJsonReader()->loadFile(createFile("output4.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("output4.json"));
       JsonValue readValue = reader->get();
 
-      NumberReflectData rdata3 = createNumberReflectData();
+      NumberReflectData rdata3 = NumberReflectData::New();
       readValue->reflectTo(rdata3);
 
       if(rdata3->intData == nullptr ||data->intData->toValue() != rdata3->intData->toValue()) {

@@ -16,7 +16,7 @@ void basetest() {
 
   //_Uint8(int v);
   while(1) {
-      Uint8 v1 = createUint8(10);
+      Uint8 v1 = Uint8::New(10);
       if(v1->toValue() != 10){
           TEST_FAIL("Uint8 construct test1");
           break;
@@ -28,8 +28,8 @@ void basetest() {
 
   //  _Uint8(Uint8 v);
   while(1) {
-    Uint8 v1 = createUint8(11);
-    Uint8 v2 = createUint8(v1);
+    Uint8 v1 = Uint8::New(11);
+    Uint8 v2 = Uint8::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint8 construct test3");
       break;
@@ -37,7 +37,7 @@ void basetest() {
 
     // Uint8 v3;
     // try {
-    //   Uint8 v4 = createUint8(v3);
+    //   Uint8 v4 = Uint8::New(v3);
     //   TEST_FAIL("Uint8 construct test4");
     // } catch(InitializeException e) {}
 
@@ -47,8 +47,8 @@ void basetest() {
 
   //int toValue();
   while(1) {
-    Uint8 v1 = createUint8(11);
-    Uint8 v2 = createUint8(v1);
+    Uint8 v1 = Uint8::New(11);
+    Uint8 v2 = Uint8::New(v1);
     if(v2->toValue() != 11) {
       TEST_FAIL("Uint8 toValue test1");
       break;
@@ -60,8 +60,8 @@ void basetest() {
 
   //bool equals(Uint8 p);
   while(1) {
-    Uint8 v1 = createUint8(11);
-    Uint8 v2 = createUint8(11);
+    Uint8 v1 = Uint8::New(11);
+    Uint8 v2 = Uint8::New(11);
     if(!v1->equals(v2)) {
       TEST_FAIL("Uint8 equals test1");
       break;
@@ -79,7 +79,7 @@ void basetest() {
 
   //bool equals(int p);
   while(1) {
-    Uint8 v1 = createUint8(11);
+    Uint8 v1 = Uint8::New(11);
     if(!v1->sameAs(11)) {
       TEST_FAIL("Uint8 equals test4");
       break;
@@ -91,8 +91,8 @@ void basetest() {
 
   //==
   while(1) {
-    Uint8 v1 = createUint8(12);
-    Uint8 v2 = createUint8(12);
+    Uint8 v1 = Uint8::New(12);
+    Uint8 v2 = Uint8::New(12);
     if(v1 != v2) {
       TEST_FAIL("Uint8 [==] test1");
       break;
@@ -120,13 +120,13 @@ void basetest() {
   
   //update
   while(1) {
-      Uint8 v1 = createUint8(12);
+      Uint8 v1 = Uint8::New(12);
       v1->update(20);
       if(v1->toValue() != 20) {
         TEST_FAIL("Uint8 update test3");
       }
       
-      Uint8 v2 = createUint8(52);
+      Uint8 v2 = Uint8::New(52);
       v1->update(v2);
       if(v1->toValue() != 52) {
         TEST_FAIL("Uint8 update test4");

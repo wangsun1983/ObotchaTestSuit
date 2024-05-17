@@ -14,28 +14,28 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
-#include "Net.hpp"
+#include "Enviroment.hpp"
 
 using namespace obotcha;
 
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,HttpPacket msg){
       switch(event) {
-          case st(Net)::Event::Connect: {
+          case HttpEvent::Connect: {
               
           }
           break;
 
-          case st(Net)::Event::Message: {
+          case HttpEvent::Message: {
               printf("write response connect!!! \n");
               //if(step == 0) {
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
                 w->write(response);
                 step = 1;
               //} else {
@@ -48,7 +48,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           }
           break;
 
-          case st(Net)::Event::Disconnect:{
+          case HttpEvent::Disconnect:{
           }
           break;
       }
@@ -56,15 +56,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
-  MyHttpListener listener = createMyHttpListener();
-  HttpOption option = createHttpOption();
-  option->setSSLCertificatePath("server.crt");
-  option->setSSLKeyPath("server.key");
-  
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1260))
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(9260))
                     ->setListener(listener)
-                    ->setOption(option)
+                    ->setCertificatePath("server.crt")
+                    ->setKeyPath("server.key")
                     ->build();
   //printf("thread num is %d \n",st(Enviroment)::DefaultgHttpServerThreadsNum);
   server->start();

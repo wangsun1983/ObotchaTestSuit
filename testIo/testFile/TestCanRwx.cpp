@@ -13,9 +13,9 @@ void testCanRwx() {
     int fd2 = open("./tmp/executeonly",O_RDWR|O_CREAT,0111);
     int fd3 = open("./tmp/writeonly",O_RDWR|O_CREAT,0222);
 
-    File readFile = createFile("./tmp/readonly");
-    File executeFile = createFile("./tmp/executeonly");
-    File writeFile = createFile("./tmp/writeonly");
+    File readFile = File::New("./tmp/readonly");
+    File executeFile = File::New("./tmp/executeonly");
+    File writeFile = File::New("./tmp/writeonly");
 
     //test read
     if(!readFile->canRead()) {

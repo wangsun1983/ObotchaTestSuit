@@ -16,7 +16,7 @@
 using namespace obotcha;
 
 void testToTimeMillis() {
-	Calendar now = createCalendar();
+	Calendar now = Calendar::New();
 	DateTime date = now->getDateTime();
 	if(date->toTimeMillis() != now->toTimeMillis()) {
 		TEST_FAIL("DateTime toTimeMillis test1,now is %ld,date is %ld",now->toTimeMillis(),date->toTimeMillis());

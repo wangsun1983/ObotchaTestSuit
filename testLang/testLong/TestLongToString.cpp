@@ -66,9 +66,9 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
+       Long t1 = Long::New(i);
        String v1 = t1->toHexString();
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Long toString test1");
          break;
@@ -76,10 +76,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
+       Long t1 = Long::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Long toString test2");
          break;
@@ -87,9 +87,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
+       Long t1 = Long::New(i);
        String v1 = t1->toBinaryString();
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Long toString test3");
          break;
@@ -103,9 +103,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
-       Long t2 = st(Long)::ParseHexLong(createString(HexTable[i]));
-       Long t3 = createLong(t2);
+       Long t1 = Long::New(i);
+       Long t2 = st(Long)::ParseHexLong(String::New(HexTable[i]));
+       Long t3 = Long::New(t2);
        if(t1 != t3) {
          TEST_FAIL("Long toInt test1");
          break;
@@ -113,9 +113,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
-       Long t2 = st(Long)::ParseOctLong(createString(OctTable[i]));
-       Long t3 = createLong(t2);
+       Long t1 = Long::New(i);
+       Long t2 = st(Long)::ParseOctLong(String::New(OctTable[i]));
+       Long t3 = Long::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Long toInt test2");
@@ -124,11 +124,11 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Long t1 = createLong(i);
-       String str = createString(BinaryTable[i]);
+       Long t1 = Long::New(i);
+       String str = String::New(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
        Long t2 = st(Long)::ParseBinaryLong(str);
-       Long t3 = createLong(t2);
+       Long t3 = Long::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Long toInt test3");
          break;

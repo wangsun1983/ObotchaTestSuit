@@ -14,13 +14,13 @@ using namespace obotcha;
 
 void testWaitCounts() {
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,100);
 			auto r = w->stop();
@@ -42,13 +42,13 @@ void testWaitCounts() {
 	}
 	
 	while(1) {
-		FilaRoutine c = createFilaRoutine();
+		FilaRoutine c = FilaRoutine::New();
 		c->start();
-		FilaMutex m = createFilaMutex();
-		FilaCondition cond = createFilaCondition();
+		FilaMutex m = FilaMutex::New();
+		FilaCondition cond = FilaCondition::New();
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,100);
 			auto r = w->stop();
@@ -59,7 +59,7 @@ void testWaitCounts() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,100);
 			auto r = w->stop();
@@ -70,7 +70,7 @@ void testWaitCounts() {
 		
 		c->execute([&]{
 			AutoLock l(m);
-			TimeWatcher w = createTimeWatcher();
+			TimeWatcher w = TimeWatcher::New();
 			w->start();
 			cond->wait(m,100);
 			auto r = w->stop();

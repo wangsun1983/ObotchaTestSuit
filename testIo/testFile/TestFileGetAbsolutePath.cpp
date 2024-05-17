@@ -16,14 +16,14 @@ void testFileGetAbsPath() {
     char *p = getcwd(buff , 256);
 
     //test1
-    file = createFile("abc.cpp");
+    file = File::New("abc.cpp");
     name = file->getAbsolutePath();
     if(name != nullptr ) {
       TEST_FAIL("[File Test {getAbsolutePath()} case1]");
     }
 
     //test2
-    file = createFile("makefile");
+    file = File::New("makefile");
     name = file->getAbsolutePath();
     if(name == nullptr ) {
       TEST_FAIL("[File Test {getAbsolutePath()} case2]");

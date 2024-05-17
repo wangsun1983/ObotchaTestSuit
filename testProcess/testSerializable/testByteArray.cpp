@@ -57,16 +57,16 @@ public:
 };
 
 void testByteArray() {
-    ByteArray data = createByteArray(1024);
+    ByteArray data = ByteArray::New(1024);
     data[0] = 1;
     data[1] = 2;
     data[2] = 12;
     data[3] = 16;
 
-    MyTestArrayData d1 = createMyTestArrayData("aaa",data,12);
+    MyTestArrayData d1 = MyTestArrayData::New("aaa",data,12);
 
     ByteArray serializedData = d1->toByteArray();
-    MyTestArrayData rs = createMyTestArrayData();
+    MyTestArrayData rs = MyTestArrayData::New();
     rs->deserialize(serializedData);
 
     if(!rs->equals(d1)) {

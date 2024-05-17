@@ -12,11 +12,11 @@ using namespace obotcha;
 
 void test_sha1() {
 
-    Sha sha1 = createSha(st(Sha)::Type::Sha1);
+    Sha sha1 = Sha::New(st(Sha)::Type::Sha1);
     //String encrypt(String str);
 
     while(1) {
-        String s = createString("hello world");
+        String s = String::New("hello world");
         String s1 = sha1->encodeContent(s->toByteArray());
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha1:encrypt(String)} case1]");
@@ -30,7 +30,7 @@ void test_sha1() {
 
     //String encrypt(File);
     while(1) {
-        File f = createFile("test_data.file");
+        File f = File::New("test_data.file");
         String s1 = sha1->encodeFile(f);
         if(s1 == nullptr ||s1->size() <=0) {
             TEST_FAIL("[TestSha Test {Sha1:encrypt(File)} case1]");
@@ -50,7 +50,7 @@ void test_sha1() {
 
     //ByteArray encryptRawData(ByteArray);
     while(1) {
-        ByteArray data = createByteArray(64);
+        ByteArray data = ByteArray::New(64);
         for(int i = 0;i<64;i++) {
             data[i] = i;
         }

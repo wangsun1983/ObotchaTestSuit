@@ -19,13 +19,13 @@ public:
 };
 
 void testHashMapKeyCompare() {
-    HashMap<KeyData,String> map = createHashMap<KeyData,String>();
-    KeyData k = createKeyData();
+    HashMap<KeyData,String> map = HashMap<KeyData,String>::New();
+    KeyData k = KeyData::New();
     k->value = 100;
 
-    map->put(k,createString("hello world"));
+    map->put(k,String::New("hello world"));
 
-    KeyData k2 = createKeyData();
+    KeyData k2 = KeyData::New();
     k2->value = 100;
 
     String v1 = map->get(k2);
@@ -34,7 +34,7 @@ void testHashMapKeyCompare() {
         return;
     }
 
-    KeyData k3 = createKeyData();
+    KeyData k3 = KeyData::New();
     k3->value = 1;
     String v3 = map->get(k3);
     if(v3 != nullptr) {

@@ -54,14 +54,14 @@ public:
 
 void testThreadPoolExecutor_CancelRunningTask() {
 
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
       
-      auto f = pool->submit(createRunningTask());
+      auto f = pool->submit(RunningTask::New());
       usleep(1000*100);
 
       f->cancel();
@@ -87,11 +87,11 @@ void testThreadPoolExecutor_CancelRunningTask() {
 
 
   while(1) {
-      auto pool = createExecutorBuilder()
+      auto pool = ExecutorBuilder::New()
                 ->setDefaultThreadNum(1)
                 ->newThreadPool();
       
-      auto f = pool->submit(createNoStopTask());
+      auto f = pool->submit(NoStopTask::New());
       usleep(1000*100);
 
       f->cancel();

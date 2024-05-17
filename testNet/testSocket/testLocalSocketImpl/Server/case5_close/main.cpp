@@ -12,10 +12,10 @@
 using namespace obotcha;
 
 int main() {
-  auto addr = createInetLocalAddress("case1_socket");
-  auto option = createSocketOption();
+  auto addr = InetLocalAddress::New("case1_socket");
+  auto option = SocketOption::New();
   option->setReUseAddr(st(SocketOption)::Ability::Enable);
-  auto sock = createSocketBuilder()
+  auto sock = SocketBuilder::New()
               ->setAddress(addr)
               ->setOption(option)
               ->newServerSocket();

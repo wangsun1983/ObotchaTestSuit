@@ -21,7 +21,7 @@ extern void testFileWrLock();
 extern void testFileMonitor();
 
 int main() {
-    File f = createFile("./tmp/base_data");
+    File f = File::New("./tmp/base_data");
     f->createNewFile();
     testFileMonitor();
     

@@ -44,15 +44,15 @@ public:
 void testReflectToSimpleXml() {
   //test1
   while(1) {
-    XmlReflectData data = createXmlReflectData();
-    data->member1 = createXmlReflectWriteMember();
-    data->member2 = createXmlReflectWriteMember();
+    XmlReflectData data = XmlReflectData::New();
+    data->member1 = XmlReflectWriteMember::New();
+    data->member2 = XmlReflectWriteMember::New();
     data->member1->intData = 1;
     data->member1->byteData = 2;
     data->member1->doubleData = 1.1;
     data->member1->floatData = 2.2;
     data->member1->longData = 3;
-    data->member1->stringData = createString("a");
+    data->member1->stringData = String::New("a");
     data->member1->uint8Data = 4;
     data->member1->uint16Data = 5;
     data->member1->uint32Data = 6;
@@ -64,21 +64,21 @@ void testReflectToSimpleXml() {
     data->member2->doubleData = 11.1;
     data->member2->floatData = 12.2;
     data->member2->longData = 13;
-    data->member2->stringData = createString("b");
+    data->member2->stringData = String::New("b");
     data->member2->uint8Data = 14;
     data->member2->uint16Data = 15;
     data->member2->uint32Data = 16;
     data->member2->uint64Data = 17;
     data->member2->boolData = false;
 
-    XmlDocument doc = createXmlDocument();
+    XmlDocument doc = XmlDocument::New();
     doc->importFrom(data);
-    XmlWriter writer = createXmlWriter(doc);
+    XmlWriter writer = XmlWriter::New(doc);
     writer->write("output4.xml");
 
-    XmlReader reader = createXmlReader()->loadFile(createFile("output4.xml"));
+    XmlReader reader = XmlReader::New()->loadFile(File::New("output4.xml"));
     XmlDocument doc2 = reader->get();
-    XmlReflectData rdata3 = createXmlReflectData();
+    XmlReflectData rdata3 = XmlReflectData::New();
     doc2->reflectTo(rdata3);
 
     if(data->member1->intData != rdata3->member1->intData) {

@@ -12,15 +12,15 @@
 using namespace obotcha;
 
 void testReadWriteLock_Acquire() {
-  TimeWatcher watcher = createTimeWatcher();
+  TimeWatcher watcher = TimeWatcher::New();
 
   while(1) {
-    ReadWriteLock rwLock = createReadWriteLock();
+    ReadWriteLock rwLock = ReadWriteLock::New();
     rwLock->getReadLock()->lock();
     rwLock->getWriteLock()->lock();
-    AtomicInteger value = createAtomicInteger(0);
+    AtomicInteger value = AtomicInteger::New(0);
     long start = st(System)::CurrentTimeMillis();
-    Thread t = createThread([&value,&rwLock] {
+    Thread t = Thread::New([&value,&rwLock] {
         rwLock->getWriteLock()->lock();
         sleep(1);
         rwLock->getWriteLock()->unlock();

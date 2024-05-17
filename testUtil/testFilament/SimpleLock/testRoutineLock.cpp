@@ -11,11 +11,11 @@
 using namespace std;
 using namespace obotcha;
 
-FilaMutex routineMutex = createFilaMutex();
-CountDownLatch routinelatch = createCountDownLatch(2);
+FilaMutex routineMutex = FilaMutex::New();
+CountDownLatch routinelatch = CountDownLatch::New(2);
 
 void testRoutineLock() {
-  FilaRoutine croutine = createFilaRoutine();
+  FilaRoutine croutine = FilaRoutine::New();
   croutine->start();
   croutine->execute([]{
     routineMutex->lock();

@@ -31,7 +31,7 @@ using namespace obotcha;
     -H "apns-topic: com.app.identifier" --http2 \
     https://api.development.push.apple.com/3/device/DEVICE_ID
 
-CountDownLatch connectlatch = createCountDownLatch(1);
+CountDownLatch connectlatch = CountDownLatch::New(1);
 int step = 0;
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
@@ -45,12 +45,12 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
           case st(Net)::Event::Message: {
                 if(step == 0) {
-                    HttpResponse response = createHttpResponse();
+                    HttpResponse response = HttpResponse::New();
                     auto hh = response->getHeader();
-                    response->getHeader()->set(createString("mytest1"),createString("myvalue1"));
-                    response->getHeader()->set(createString("mytest2"),createString("myvalue2"));
+                    response->getHeader()->set(String::New("mytest1"),String::New("myvalue1"));
+                    response->getHeader()->set(String::New("mytest2"),String::New("myvalue2"));
                     response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                    response->getEntity()->setContent(createString("hello this is server")->toByteArray());
+                    response->getEntity()->setContent(String::New("hello this is server")->toByteArray());
                     w->write(response);
                     step++;
                 } else {
@@ -60,7 +60,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
                         TEST_FAIL("TestHttp2Server SimpleHeader test1");
                     }
                     printf("value is %s \n",value->toChars());
-                    HttpResponse response = createHttpResponse();
+                    HttpResponse response = HttpResponse::New();
                     w->write(response);
                     connectlatch->countDown();
                 }
@@ -78,9 +78,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
 int main() {
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();

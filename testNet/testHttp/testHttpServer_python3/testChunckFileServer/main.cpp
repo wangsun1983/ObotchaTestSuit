@@ -22,7 +22,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(32);
+CountDownLatch latch = CountDownLatch::New(32);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 
@@ -35,9 +35,9 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 
         case st(Net)::Event::Message: {
             //messageCount->incrementAndGet();
-            HttpResponse response = createHttpResponse();
+            HttpResponse response = HttpResponse::New();
             response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-            File file = createFile("./tmp/testdata");
+            File file = File::New("./tmp/testdata");
             response->getEntity()->setChunk(file);
             w->write(response);
             latch->countDown();
@@ -54,37 +54,50 @@ void onHttpMessage(st(Net)::Event event,HttpLinker client,HttpResponseWriter w,H
 };
 
 int main() {
-  File file = createFile("./tmp/testdata");
+  File file = File::New("./tmp/testdata");
   long prepareFilesize = file->length();
   signal(SIGPIPE,SIG_IGN);
-
+  fprintf(stderr,"chunck server start!!!! \n");
   if(!file->exists()) {
     file->createNewFile();
       for(int i = 0;i<32*1024;i++) {
-      FileOutputStream stream = createFileOutputStream(file);
+      FileOutputStream stream = FileOutputStream::New(file);
       stream->open(st(IO)::FileControlFlags::Append);
-      String data = createString("");
+      String data = String::New("");
       for(int j = 0;j < 32;j++) {
-        data = data->append(createString(st(System)::CurrentTimeMillis()));
+        data = data->append(String::New(st(System)::CurrentTimeMillis()));
       }
       stream->write(data->toByteArray());
       stream->close();
     }
   }
-
+  fprintf(stderr,"chunck server trace1!!!! \n");
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(port))
-                    ->setListener(listener)
-                    ->build();
-  server->start();
+  fprintf(stderr,"chunck server bind port %d\n",port);
+  MyHttpListener listener = MyHttpListener::New();
+  HttpServer server;
+  while(1) {
+    auto server1 = HttpServerBuilder::New()
+                      ->setAddress(Inet4Address::New(port))
+                      ->setListener(listener)
+                      ->build();
+    server = server1;
+    if(server->start() == -1) {
+      fprintf(stderr,"chunck server bind fail %d\n",port);
+      port++;
+      continue;
+    }
+    fprintf(stderr,"chunck server bind ok %d\n",port);
+    setEnvPort(port);
+    break;
+  }
+  fprintf(stderr,"chunck server trace2");
   latch->await();
 
-  Md md5 = createMd();
-  String base = md5->encodeFile(createFile("./tmp/testdata"));
+  Md md5 = Md::New();
+  String base = md5->encodeFile(File::New("./tmp/testdata"));
 
-  File tmpDir = createFile("tmp");
+  File tmpDir = File::New("tmp");
   ArrayList<File> files = tmpDir->listFiles();
   auto iter = files->getIterator();
   while(iter->hasValue()) {

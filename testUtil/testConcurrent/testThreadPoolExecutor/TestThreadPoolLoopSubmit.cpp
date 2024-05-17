@@ -15,7 +15,7 @@
 
 using namespace obotcha;
 
-AtomicInteger value = createAtomicInteger(0);
+AtomicInteger value = AtomicInteger::New(0);
 
 DECLARE_CLASS(MyLoopSubmitRunnable1) IMPLEMENTS(Runnable) {
 public:
@@ -48,9 +48,9 @@ public:
 
 void testThreadPoolLoopSubmit() {
     //test1
-    ThreadPoolExecutor executor = createThreadPoolExecutor(4,4,0);
+    ThreadPoolExecutor executor = ThreadPoolExecutor::New(4,4,0);
     for(int i = 0;i<1024*8;i++){
-      executor->submit(createMyLoopSubmitRunnable1());
+      executor->submit(MyLoopSubmitRunnable1::New());
     }
     sleep(1);
     if(value->get() != 1024*8) {
@@ -58,9 +58,9 @@ void testThreadPoolLoopSubmit() {
     }
     executor->shutdown();
     //test2
-    ThreadPoolExecutor executor2 = createThreadPoolExecutor(4,4,0);
+    ThreadPoolExecutor executor2 = ThreadPoolExecutor::New(4,4,0);
     for(int i = 0;i<1024*8;i++){
-      executor2->submit(createMyLoopSubmitRunnable2());
+      executor2->submit(MyLoopSubmitRunnable2::New());
     }
     sleep(1);
     if(value->get() != 0) {
@@ -68,11 +68,11 @@ void testThreadPoolLoopSubmit() {
     }
     executor2->shutdown();
     //test3
-    ThreadPoolExecutor executor3 = createThreadPoolExecutor(1,1,0);
-    executor3->submit(createMyLoopSubmitRunnable3());
-    executor3->submit(createMyLoopSubmitRunnable3());
+    ThreadPoolExecutor executor3 = ThreadPoolExecutor::New(1,1,0);
+    executor3->submit(MyLoopSubmitRunnable3::New());
+    executor3->submit(MyLoopSubmitRunnable3::New());
     long c = st(System)::CurrentTimeMillis();
-    executor3->submit(createMyLoopSubmitRunnable3());
+    executor3->submit(MyLoopSubmitRunnable3::New());
     long interval = st(System)::CurrentTimeMillis() - c;
     if(interval < 5000 || interval > 5005) {
       TEST_FAIL("[ThreadPoolExecutor Loop Submit} special case3],interval is %ld ",interval);

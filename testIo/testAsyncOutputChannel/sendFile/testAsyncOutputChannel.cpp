@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -26,29 +26,29 @@ public:
 
 int main() {
     //create testFile;
-    createSampleFile(createFile("./tmp/testdata"),1024*1024*4);
+    //createSampleFile(File::New("./tmp/testdata"),1024*1024*4);
 
     int port = getEnvPort();
-    Socket s = createSocketBuilder()
-                ->setAddress(createInet4Address(port))
+    Socket s = SocketBuilder::New()
+                ->setAddress(Inet4Address::New(port))
                 ->newSocket();
 
     s->connect();
 
-    SocketMonitor monitor = createSocketMonitor();
-    monitor->bind(s,createMyListener());
+    SocketMonitor monitor = SocketMonitor::New();
+    monitor->bind(s,MyListener::New());
 
     OutputStream stream = s->getOutputStream();
 
     long index = 0;
 
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
 
-    FileInputStream inputstream = createFileInputStream(file);
+    FileInputStream inputstream = FileInputStream::New(file);
     inputstream->open();
 
     while(1) {
-        ByteArray data = createByteArray(1024*4);
+        ByteArray data = ByteArray::New(1024*4);
         int length = inputstream->read(data);
         index += length;
         data->quickShrink(length);
@@ -59,11 +59,11 @@ int main() {
         }
     }
     
-    Thread t = createThread([]{
+    Thread t = Thread::New([]{
         while(1) {
             sleep(5);
-            File datafile = createFile("./tmp/testdata");
-            File rcvfile = createFile("./tmp/file");
+            File datafile = File::New("./tmp/testdata");
+            File rcvfile = File::New("./tmp/file");
             if(datafile->length() != rcvfile->length()) {
                 printf("datafile size is %ld,rcvfile size is %ld \n",
                         datafile->length(),rcvfile->length());
@@ -77,9 +77,9 @@ int main() {
     t->start();
     t->join();
     
-    Md md5 = createMd();
-    String v1 = md5->encodeFile(createFile("./tmp/testdata"));
-    String v2 = md5->encodeFile(createFile("./tmp/file"));
+    Md md5 = Md::New();
+    String v1 = md5->encodeFile(File::New("./tmp/testdata"));
+    String v2 = md5->encodeFile(File::New("./tmp/file"));
     
     if(!v1->equals(v2)) {
         TEST_FAIL("testAsyncOutputChannel case1");

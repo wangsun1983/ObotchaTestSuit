@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     //HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
-    header->set(createString("Sec-Fetch-User"),createString("?1"));
+    header->set(String::New("Sec-Fetch-User"),String::New("?1"));
     //save->load("?1");
     auto save = header->getSecFetchUser();
     if(!save->get()->sameAs("?1")) {
@@ -27,9 +27,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     //HttpHeaderSecFetchUser save = createHttpHeaderSecFetchUser();
-    header->set(createString("Sec-Fetch-User"),createString("?0"));
+    header->set(String::New("Sec-Fetch-User"),String::New("?0"));
     auto save = header->getSecFetchUser();
     if(!save->get()->sameAs("?0")) {
       TEST_FAIL("[HttpHeaderSecFetchUser test SetToHeader case2]");

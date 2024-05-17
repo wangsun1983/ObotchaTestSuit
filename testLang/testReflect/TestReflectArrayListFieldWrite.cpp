@@ -40,7 +40,7 @@ public:
 void testReflectArrayListFieldWrite() {
     //test1
     while(1) {
-      ListCollection2 collection = createListCollection2();
+      ListCollection2 collection = ListCollection2::New();
       Field arrayField = collection->getField("mylist");
       arrayField->createObject();
       Object data1 = collection->getField("mylist")->createListItemObject();
@@ -60,7 +60,7 @@ void testReflectArrayListFieldWrite() {
       f->setValue(3);
 
       f = data1->getField("stringData");
-      f->setValue(createString("a"));
+      f->setValue(String::New("a"));
 
       f = data1->getField("uint8Data");
       f->setValue(4);
@@ -95,7 +95,7 @@ void testReflectArrayListFieldWrite() {
       f->setValue(13);
 
       f = data2->getField("stringData");
-      f->setValue(createString("b"));
+      f->setValue(String::New("b"));
 
       f = data2->getField("uint8Data");
       f->setValue(14);

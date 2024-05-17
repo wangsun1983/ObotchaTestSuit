@@ -14,7 +14,7 @@ using namespace obotcha;
 
 int main() {
     printf("wangsl trace1 \n");
-    NtpClient c = createNtpClient();
+    NtpClient c = NtpClient::New();
     c->bind("ntp.aliyun.com",123);
     long int t = c->get();
     long interval = st(System)::CurrentTimeMillis() - t;

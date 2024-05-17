@@ -44,7 +44,7 @@ void testThreadSleepInterrupt() {
     //TestThread onInterrupt case1
     while(1) {
         {
-            MySleepTest1Thread thread = createMySleepTest1Thread();
+            MySleepTest1Thread thread = MySleepTest1Thread::New();
             thread->start();
             sleep(1);
             thread->interrupt();

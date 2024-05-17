@@ -11,13 +11,13 @@ using namespace obotcha;
 
 void testRsaf4Pcks1() {
   //create test data
-  File data = createFile("./tmp/RSAF4_pcks1_data");
+  File data = File::New("./tmp/RSAF4_pcks1_data");
   if(!data->exists()) {
     data->createNewFile();
   }
 
-  FileOutputStream stream = createFileOutputStream(data);
-  String str = createString("abcdefghi");
+  FileOutputStream stream = FileOutputStream::New(data);
+  String str = String::New("abcdefghi");
   stream->open();
   for(int i = 0;i < 1024;i++) {
       str = str->append("abcdefgh");
@@ -25,15 +25,15 @@ void testRsaf4Pcks1() {
   stream->write(str->toByteArray());
   stream->close();
 
-  String key = createString("12345678");
-  Md md5sum = createMd(st(Md)::Type::Md5);
+  String key = String::New("12345678");
+  Md md5sum = Md::New(st(Md)::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {
     //create a test data
     SecretKey secretKey = st(SecretKeyCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
-    secretKey->generate(createString("./tmp/test_RSAF4_pcks1_encrypt_deckey"),
-                        createString("./tmp/test_RSAF4_pcks1_encrypt_enckey"),
+    secretKey->generate(String::New("./tmp/test_RSAF4_pcks1_encrypt_deckey"),
+                        String::New("./tmp/test_RSAF4_pcks1_encrypt_enckey"),
                         key);
 
     //pkcs5
@@ -49,7 +49,7 @@ void testRsaf4Pcks1() {
       Cipher AES1282 = st(CipherCreator)::getInstance("RSA/RSAF4/PKCS1Padding");
       AES1282->init(st(Cipher)::Mode::Decrypt,deckey);
       AES1282->decryptFile("./tmp/RSAF4_pcks1_encrypt_outdata","./tmp/RSAF4_pcks1_encrypt_outdata_dec");
-      String result = md5sum->encodeFile(createFile("./tmp/RSAF4_pcks1_encrypt_outdata_dec"));
+      String result = md5sum->encodeFile(File::New("./tmp/RSAF4_pcks1_encrypt_outdata_dec"));
 
       if(!result->equals(testDataMd5)) {
         TEST_FAIL("[TestRSAF4Pcks1 Ecb PKCS5Padding case1]");

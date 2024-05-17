@@ -16,12 +16,12 @@
 using namespace obotcha;
 
 void CachedPoolSubmit_ThreadNum() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
             ->setMaxPendingTaskNum(1)
             ->setMaxThreadNum(3)
             ->setMaxNoWorkingTime(200)
             ->newCachedThreadPool();
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
 
   while(1) {
@@ -85,7 +85,7 @@ void CachedPoolSubmit_ThreadNum() {
   }
 
   while(1) {
-    auto pool2 = createExecutorBuilder()
+    auto pool2 = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(12)
               ->setMaxThreadNum(12)
               ->setMaxNoWorkingTime(100)
@@ -107,7 +107,7 @@ void CachedPoolSubmit_ThreadNum() {
   }
 
   while(1) {
-    auto pool2 = createExecutorBuilder()
+    auto pool2 = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(32)
               ->setMaxThreadNum(12)
               ->setMaxNoWorkingTime(100)
@@ -130,7 +130,7 @@ void CachedPoolSubmit_ThreadNum() {
 
 
   while(1) {
-    auto pool2 = createExecutorBuilder()
+    auto pool2 = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1024*4)
               ->setMaxThreadNum(12)
               ->setMaxNoWorkingTime(100)

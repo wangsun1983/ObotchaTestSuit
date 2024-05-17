@@ -44,15 +44,15 @@ public:
 
 int main() {
   int port = getEnvPort();
-  String url = createString("http://127.0.0.1:")->append(createString(port),"/test");
-  HttpConnection c = createHttpConnection(url);
+  String url = String::New("http://127.0.0.1:")->append(String::New(port),"/test");
+  HttpConnection c = HttpConnection::New(url);
   int ret = c->connect();
   
-  MyHandler handler = createMyHandler();
+  MyHandler handler = MyHandler::New();
   auto message = handler->obtainMessage(1);
   
-  HttpGet httpget = createHttpGet(url);
-  httpget->getEntity()->setContent(createString("hello")->toByteArray());
+  HttpGet httpget = HttpGet::New(url);
+  httpget->getEntity()->setContent(String::New("hello")->toByteArray());
   c->execute(httpget,message);
   usleep(1000*100);
   if(value != 1234) {

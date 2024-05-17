@@ -13,13 +13,13 @@ using namespace obotcha;
 
 void testArrayList_InsertLast() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
-    list2->add(createString("d"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
+    list2->add(String::New("d"));
     list->insertLast(list2);
 
     if(list->size() != 4
@@ -35,15 +35,15 @@ void testArrayList_InsertLast() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
-    list2->add(createString("d"));
-    list2->add(createString("e"));
-    list2->add(createString("f"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
+    list2->add(String::New("d"));
+    list2->add(String::New("e"));
+    list2->add(String::New("f"));
 
     list->insertLast(list2,2);
     //TEST_FAIL("size is %d \n",list->size());
@@ -60,12 +60,12 @@ void testArrayList_InsertLast() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("c"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("c"));
     bool isException = false;
     try {
       list->insertLast(list2,2);
@@ -80,10 +80,10 @@ void testArrayList_InsertLast() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
 
-    list->insertLast(createString("c"));
-    list->insertLast(createString("d"));
+    list->insertLast(String::New("c"));
+    list->insertLast(String::New("d"));
 
     if(list->size() != 2) {
       TEST_FAIL("[ArrayList InsertLast test4]");

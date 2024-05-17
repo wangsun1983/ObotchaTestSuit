@@ -16,9 +16,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Access-Control-Expose-Headers"),
-                createString("Content-Length, X-Kuma-Revision"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Access-Control-Expose-Headers"),
+                String::New("Content-Length, X-Kuma-Revision"));
     auto c = header->getExposeHeaders();
     
     auto list = c->get();

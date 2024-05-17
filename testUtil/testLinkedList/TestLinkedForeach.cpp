@@ -11,7 +11,7 @@ void testLinkeListForeach() {
 
     //case1 string iterator
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -21,7 +21,7 @@ void testLinkeListForeach() {
       std::string result[5] = {"a","b","c","d","e"};
       int index = 0;
       ForEveryOne(v,list){
-          if(!v->equals(createString(result[index]))) {
+          if(!v->equals(String::New(result[index]))) {
             TEST_FAIL("LinkedList ForEveryOne test1,v is %s,result is %s",v->toChars(),result[index].c_str());
           }
           index++;
@@ -34,7 +34,7 @@ void testLinkeListForeach() {
     }
 
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -46,7 +46,7 @@ void testLinkeListForeach() {
       std::string result[4] = {"b","c","d","e"};
       int index = 0;
       ForEveryOne(v,list) {
-        if(!v->equals(createString(result[index]))) {
+        if(!v->equals(String::New(result[index]))) {
           TEST_FAIL("LinkedList ForEveryOne test3,v is %s,result is %s",v->toChars(),result[index].c_str());
         }
         index++;

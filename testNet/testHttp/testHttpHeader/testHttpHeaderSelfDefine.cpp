@@ -17,23 +17,23 @@ using namespace obotcha;
 
 void testHttpHeaderSelfDefine() {
   
-  HttpHeader h = createHttpHeader();
-  h->set(createString("tag1"),createString("valuehahaha"));
-  h->set(createString("tag2"),createString("valuehahaha2"));
-  h->set(createString("tag3"),createString("valuehahaha3"));
+  HttpHeader h = HttpHeader::New();
+  h->set(String::New("tag1"),String::New("valuehahaha"));
+  h->set(String::New("tag2"),String::New("valuehahaha2"));
+  h->set(String::New("tag3"),String::New("valuehahaha3"));
   
-  auto v1 = h->get(createString("tag1"));
-  if(v1 == nullptr || !v1->equals(createString("valuehahaha"))) {
+  auto v1 = h->get(String::New("tag1"));
+  if(v1 == nullptr || !v1->equals(String::New("valuehahaha"))) {
       TEST_FAIL("[HttpHeader test SelfDefine case1]");
   }
   
-  auto v2 = h->get(createString("tag2"));
-  if(v2 == nullptr || !v2->equals(createString("valuehahaha2"))) {
+  auto v2 = h->get(String::New("tag2"));
+  if(v2 == nullptr || !v2->equals(String::New("valuehahaha2"))) {
       TEST_FAIL("[HttpHeader test SelfDefine case2]");
   }
   
-  auto v3 = h->get(createString("tag3"));
-  if(v3 == nullptr || !v3->equals(createString("valuehahaha3"))) {
+  auto v3 = h->get(String::New("tag3"));
+  if(v3 == nullptr || !v3->equals(String::New("valuehahaha3"))) {
       TEST_FAIL("[HttpHeader test SelfDefine case3]");
   }
   

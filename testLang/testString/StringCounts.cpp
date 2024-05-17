@@ -19,10 +19,10 @@ void TestCounts() {
     //----------------------------
     while(1) {
         //case 1
-        String str1 = createString("abcbcb");
-        String str2 = createString("bc");
-        String str3 = createString("b");
-        String str4 = createString("q");
+        String str1 = String::New("abcbcb");
+        String str2 = String::New("bc");
+        String str3 = String::New("b");
+        String str4 = String::New("q");
         if(str1->counts(str2) != 2) {
             TEST_FAIL("String TestCounts test1");
             break;

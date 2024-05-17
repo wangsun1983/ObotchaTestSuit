@@ -17,17 +17,17 @@ using namespace obotcha;
 //GYJRCVQZIADUWINJ
 
 int testMailSender() {
-  SmtpConnection connection = createSmtpConnection();
-  connection->setHostName(createString("abc"));
-  connection->setSmtpServer(createString("smtp.163.com"));
-  connection->setMailFrom(createString("wang_sun_1983@163.com"));
-  connection->setUsername(createString("wang_sun_1983@163.com"));
-  connection->setPassword(createString("GYJRCVQZIADUWINJ"));
-  connection->setSubject(createString("hello title"));
+  SmtpConnection connection = SmtpConnection::New();
+  connection->setHostName(String::New("abc"));
+  connection->setSmtpServer(String::New("smtp.163.com"));
+  connection->setMailFrom(String::New("wang_sun_1983@163.com"));
+  connection->setUsername(String::New("wang_sun_1983@163.com"));
+  connection->setPassword(String::New("GYJRCVQZIADUWINJ"));
+  connection->setSubject(String::New("hello title"));
   //connection->setSecurityType(st(SmtpConnection)::SSL);
 
-  MailSenderBuilder senderBuilder = createMailSenderBuilder();
-  MailSender sender = senderBuilder->addRecipient(createMailRecipient("wangsl","wang_sun_1983@163.com"))
+  MailSenderBuilder senderBuilder = MailSenderBuilder::New();
+  MailSender sender = senderBuilder->addRecipient(MailRecipient::New("wangsl","wang_sun_1983@163.com"))
                                    ->setConnection(connection)
                                    ->setMessage("hello,i am obotcha \r\n 123 \r\n tttt")
                                    ->setSubject("hello")

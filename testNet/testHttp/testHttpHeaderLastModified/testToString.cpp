@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderLastModified headerDate = createHttpHeaderLastModified();
+    HttpHeaderLastModified headerDate = HttpHeaderLastModified::New();
     headerDate->load(" Wed, 21 Oct 2015 07:28:00 GMT");
     if(!headerDate->toString()->sameAs("Wed, 21 Oct 2015 07:28:00 GMT")) {
       TEST_FAIL("[HttpHeaderLastModified test toString case1]");

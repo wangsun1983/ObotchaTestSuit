@@ -10,15 +10,15 @@ void testPutFirst() {
 
     //case1
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
         std::vector<std::string> list;
         list.push_back("a");
         list.push_back("b");
         list.push_back("c");
 
-        mList->putFirst(createString("a"));
-        mList->putFirst(createString("b"));
-        mList->putFirst(createString("c"));
+        mList->putFirst(String::New("a"));
+        mList->putFirst(String::New("b"));
+        mList->putFirst(String::New("c"));
 
         if(mList->size() != 3) {
             TEST_FAIL("LinkedList Enqueue First test1");
@@ -40,9 +40,9 @@ void testPutFirst() {
 
     //case2
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
 
-        mList->putFirst(createString("a"));
+        mList->putFirst(String::New("a"));
         if(mList->size() != 1) {
             TEST_FAIL("LinkedList Enqueue First test4");
             break;

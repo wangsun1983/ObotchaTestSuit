@@ -4,7 +4,7 @@
 using namespace obotcha;
 
 void testReset() {
-    StringBuffer buff = createStringBuffer();
+    StringBuffer buff = StringBuffer::New();
     buff->append("hello ")
         ->append("world");
 

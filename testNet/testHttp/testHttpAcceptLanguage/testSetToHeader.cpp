@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Accept-Language"),
-                createString("fr-CH,fr;q=0.9,en;q=0.8,de;q=0.7,*;q=0.5"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Accept-Language"),
+                String::New("fr-CH,fr;q=0.9,en;q=0.8,de;q=0.7,*;q=0.5"));
     auto encoding1 = header->getAcceptLanguage();
     auto languages = encoding1->get();
     if(languages->size() != 5) {

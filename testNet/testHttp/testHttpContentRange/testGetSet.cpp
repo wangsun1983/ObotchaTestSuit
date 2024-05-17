@@ -14,7 +14,7 @@ using namespace obotcha;
 void testGetSet() {
   
   while(1) {
-    HttpHeaderContentRange range = createHttpHeaderContentRange();
+    HttpHeaderContentRange range = HttpHeaderContentRange::New();
     range->setUnit("bytes");
     range->setStart(200);
     range->setEnd(1000);

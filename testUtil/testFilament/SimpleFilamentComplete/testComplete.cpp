@@ -12,10 +12,10 @@
 using namespace std;
 using namespace obotcha;
 
-CountDownLatch sleepLatch = createCountDownLatch(1);
+CountDownLatch sleepLatch = CountDownLatch::New(1);
 
 void testOnComplete() {
-    FilaRoutine croutine = createFilaRoutine();
+    FilaRoutine croutine = FilaRoutine::New();
     croutine->start();
     croutine->execute([]{
       st(Fila)::Sleep(300);

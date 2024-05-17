@@ -14,11 +14,11 @@ using namespace obotcha;
 
 void testArrayList_Set() {
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>::New();
 
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
     list->set(0,"t1");
     list->set(1,"t2");
@@ -37,9 +37,9 @@ void testArrayList_Set() {
   }
 
   while(1) {
-    ArrayList<String> list = createArrayList<String>(10);
+    ArrayList<String> list = ArrayList<String>::New(10);
     try {
-      list->set(2,createString("a"));
+      list->set(2,String::New("a"));
     } catch(...) {
       break;
     }

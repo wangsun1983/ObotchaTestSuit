@@ -7,7 +7,7 @@ using namespace obotcha;
 
 void testIsExecuting() {
     while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		          ->setDefaultThreadNum(1)
 		          ->newPriorityThreadPool();
 		if(!pool->isExecuting()) {
@@ -31,7 +31,7 @@ void testIsExecuting() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		          ->newCachedThreadPool();
 		if(!pool->isExecuting()) {
 			TEST_FAIL("Test Executor isExecuting case5");
@@ -54,7 +54,7 @@ void testIsExecuting() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		          ->newThreadPool();
 		if(!pool->isExecuting()) {
 			TEST_FAIL("Test Executor isExecuting case9");
@@ -77,7 +77,7 @@ void testIsExecuting() {
 	}
 	
 	while(1) {
-		auto pool = createExecutorBuilder()
+		auto pool = ExecutorBuilder::New()
 		          ->newScheduledThreadPool();
 		if(!pool->isExecuting()) {
 			TEST_FAIL("Test Executor isExecuting case13");

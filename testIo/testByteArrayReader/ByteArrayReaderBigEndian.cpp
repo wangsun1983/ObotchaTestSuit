@@ -16,8 +16,8 @@ using namespace obotcha;
 void testByteArrayBigEndian() {
     byte array[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
 
       //test short
       short int v1 = 0;
@@ -51,8 +51,8 @@ void testByteArrayBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
       int v1 = 0;
       v1 = (array[0]<<24)|(array[1]<<16)|(array[2]<<8)|(array[3]);
       int v1_chk = reader->read<int>();
@@ -70,8 +70,8 @@ void testByteArrayBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
       long v1 = 0;
       v1 = (long)array[7]|((long)array[6]<<8)|((long)array[5]<<16)|((long)array[4]<<24)|((long)array[3]<<32)|((long)array[2]<<40)|((long)array[1]<<48)|((long)array[0]<<56);
       long v1_chk = reader->read<long>();
@@ -83,8 +83,8 @@ void testByteArrayBigEndian() {
     }
 
     while(1) {
-      ByteArray testData = createByteArray(array,8);
-      ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+      ByteArray testData = ByteArray::New(array,8);
+      ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
 
       for(int i = 0;i<8;i++) {
         byte v = reader->read<byte>();
@@ -98,11 +98,11 @@ void testByteArrayBigEndian() {
     //////
     while(1) {
         byte array2[] = {0x01,0x02};
-        ByteArray testData = createByteArray(array2,2);
-        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        ByteArray testData = ByteArray::New(array2,2);
+        ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
         
         auto v1 = (array2[0]<<8 | array2[1]);
-        int v2_chk = reader->read<short int>();
+        int v2_chk = reader->read<int>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader BigEndian case9],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -111,11 +111,11 @@ void testByteArrayBigEndian() {
     
     while(1) {
         byte array2[] = {0x01};
-        ByteArray testData = createByteArray(array2,1);
-        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        ByteArray testData = ByteArray::New(array2,1);
+        ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
         
         auto v1 = array2[0];
-        int v2_chk = reader->read<byte>();
+        int v2_chk = reader->read<int>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader BigEndian case10],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -124,11 +124,11 @@ void testByteArrayBigEndian() {
     
     while(1) {
         byte array2[] = {0x01,0x02};
-        ByteArray testData = createByteArray(array2,2);
-        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        ByteArray testData = ByteArray::New(array2,2);
+        ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
         
         auto v1 = (array2[0]<<8|array2[1]);
-        long v2_chk = reader->read<short int>();
+        long v2_chk = reader->read<long>();
         if(v1 != v2_chk) {
           TEST_FAIL("[TestByteArrayReader BigEndian case11],v1 is %d,v2_chk is %d",v1,v2_chk);
         }
@@ -137,10 +137,10 @@ void testByteArrayBigEndian() {
     
     while(1) {
         byte array2[] = {0x01,0x02};
-        ByteArray testData = createByteArray(array2,2);
-        ByteArrayReader reader = createByteArrayReader(testData,st(IO)::Endianness::Big);
+        ByteArray testData = ByteArray::New(array2,2);
+        ByteArrayReader reader = ByteArrayReader::New(testData,st(IO)::Endianness::Big);
         
-        auto v1 = reader->read<short int>();
+        auto v1 = reader->read<int>();
         int v1_chk = (array2[0]<<8|array2[1]);
         if(v1 != v1_chk) {
           TEST_FAIL("[TestByteArrayReader BigEndian case12],v1 is %d,v2_chk is %d",v1,v1_chk);

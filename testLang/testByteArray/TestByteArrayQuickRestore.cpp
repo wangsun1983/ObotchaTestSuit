@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testByteArrayQuickRestore() {
   while(1) {
-    ByteArray data = createByteArray(10);
+    ByteArray data = ByteArray::New(10);
     for(int i = 0;i < 10;i++) {
       data[i] = i;
     }

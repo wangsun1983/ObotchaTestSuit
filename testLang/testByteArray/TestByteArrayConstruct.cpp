@@ -18,7 +18,7 @@ void testConstruct() {
 
     while(1) {
       //case1 _ByteArray(int length,bool isSafe = false);
-      ByteArray data = createByteArray(128);
+      ByteArray data = ByteArray::New(128);
       if(data->size() != 128) {
         TEST_FAIL("ByteArray test Construct test 1");
         break;
@@ -31,7 +31,7 @@ void testConstruct() {
         break;
       }
 
-      data = createByteArray(128);
+      data = ByteArray::New(128);
       //data->setSafe();
       data[16] = 12;
 
@@ -54,7 +54,7 @@ void testConstruct() {
         data[i] = i;
       }
 
-      ByteArray arr1 = createByteArray(data+32,16);
+      ByteArray arr1 = ByteArray::New(data+32,16);
       for(int i = 0;i < 16;i++) {
         if(arr1[i] != i+32) {
           TEST_FAIL("ByteArray test Construct test 3");
@@ -69,7 +69,7 @@ void testConstruct() {
         break;
       }
 
-      arr1 = createByteArray(data+32,16);
+      arr1 = ByteArray::New(data+32,16);
       //arr1->setSafe();
       for(int i = 0;i < 16;i++) {
         if(arr1[i] != i+32) {
@@ -90,12 +90,12 @@ void testConstruct() {
     }
 
     while(1) {
-      ByteArray data = createByteArray(32);
+      ByteArray data = ByteArray::New(32);
       for(int i = 0;i<32;i++) {
         data[i] = i;
       }
 
-      ByteArray arr1 = createByteArray(data);
+      ByteArray arr1 = ByteArray::New(data);
       for(int i = 0;i<32;i++) {
         if(arr1[i] != i) {
           TEST_FAIL("ByteArray test Construct test 6");
@@ -110,7 +110,7 @@ void testConstruct() {
         break;
       }
 
-      ByteArray arr2 = createByteArray(data->toValue(),32);
+      ByteArray arr2 = ByteArray::New(data->toValue(),32);
       //arr2->setSafe();
       for(int i = 0;i<32;i++) {
         if(arr2[i] != i) {
@@ -132,12 +132,12 @@ void testConstruct() {
 
     //_ByteArray::_ByteArray(sp<_ByteArray>&data,int start,int len)
     while(1) {
-      ByteArray data = createByteArray(32);
+      ByteArray data = ByteArray::New(32);
       for(int i = 0; i < data->size();i++) {
         data[i] = i;
       }
 
-      ByteArray data1 = createByteArray(data);
+      ByteArray data1 = ByteArray::New(data);
       if(data1->size() != 32) {
         TEST_FAIL("ByteArray test Construct test 11");
         break;
@@ -153,20 +153,20 @@ void testConstruct() {
     }
 
     while(1) {
-      ByteArray data = createByteArray(32);
+      ByteArray data = ByteArray::New(32);
       for(int i = 0; i < data->size();i++) {
         data[i] = i;
       }
 
-      ByteArray data1 = createByteArray(data,10);
+      ByteArray data1 = ByteArray::New(data,10);
       if(data1->size() != 22) {
         TEST_FAIL("ByteArray test Construct test 13");
         break;
       }
-      
+
       for(int j = 0;j< data1->size();j++) {
         if(data[j + 10] != data1[j]) {
-          TEST_FAIL("ByteArray test Construct test 14,data is %d,data2 is %d",data[j+10],data1[j]);
+          TEST_FAIL("ByteArray test Construct test 14");
           break;
         }
       }
@@ -174,12 +174,12 @@ void testConstruct() {
     }
 
     while(1) {
-      ByteArray data = createByteArray(32);
+      ByteArray data = ByteArray::New(32);
       for(int i = 0; i < data->size();i++) {
         data[i] = i;
       }
 
-      ByteArray data1 = createByteArray(data,10,2);
+      ByteArray data1 = ByteArray::New(data,10,2);
       if(data1->size() != 2) {
         TEST_FAIL("ByteArray test Construct test 15,size is %d",data1->size());
         break;
@@ -195,33 +195,33 @@ void testConstruct() {
     }
 	
 	while(1) {
-		ByteArray data1 = createByteArray(5);
-		ByteArray data2 = createByteArray(data1,0,1);
+		ByteArray data1 = ByteArray::New(5);
+		ByteArray data2 = ByteArray::New(data1,0,1);
 		if(data2->size() != 1) {
 			TEST_FAIL("ByteArray test Construct test 17");
 		}
 		
-		ByteArray data3 = createByteArray(data1,0,5);
+		ByteArray data3 = ByteArray::New(data1,0,5);
 		if(data3->size() != 5) {
 			TEST_FAIL("ByteArray test Construct test 18");
 		}
 		
 		try {
-			ByteArray data4 = createByteArray(data1,1,5);
+			ByteArray data4 = ByteArray::New(data1,1,5);
 			TEST_FAIL("ByteArray test Construct test 19");
 		} catch(...) {}
 		
 		try {
-			ByteArray data5 = createByteArray(data1,2,4);
+			ByteArray data5 = ByteArray::New(data1,2,4);
 			TEST_FAIL("ByteArray test Construct test 20");
 		} catch(...) {}
 		
-		ByteArray data6 = createByteArray(data1,2,3);
+		ByteArray data6 = ByteArray::New(data1,2,3);
 		if(data6->size() != 3) {
 			TEST_FAIL("ByteArray test Construct test 21");
 		}
 		
-		ByteArray data7 = createByteArray(data1,0,0);
+		ByteArray data7 = ByteArray::New(data1,0,0);
 		if(data7->size() != 5) {
 			TEST_FAIL("ByteArray test Construct test 22");
 		}

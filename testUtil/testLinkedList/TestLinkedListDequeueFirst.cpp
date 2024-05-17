@@ -10,10 +10,10 @@ void testTakeFirst() {
 
     //case1
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
-        mList->putLast(createString("a"));
-        mList->putLast(createString("b"));
-        mList->putLast(createString("c"));
+        LinkedList<String> mList = LinkedList<String>::New();
+        mList->putLast(String::New("a"));
+        mList->putLast(String::New("b"));
+        mList->putLast(String::New("c"));
 
         if(mList->size() != 3) {
             TEST_FAIL("LinkedList Dequeue First test1");
@@ -41,9 +41,9 @@ void testTakeFirst() {
 
     //case2
     while(1) {
-        LinkedList<String> mList = createLinkedList<String>();
+        LinkedList<String> mList = LinkedList<String>::New();
 
-        mList->putLast(createString("a"));
+        mList->putLast(String::New("a"));
         if(mList->size() != 1) {
             TEST_FAIL("LinkedList Dequeue First test5");
             break;

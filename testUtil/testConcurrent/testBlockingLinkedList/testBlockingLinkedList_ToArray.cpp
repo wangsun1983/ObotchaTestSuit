@@ -12,10 +12,10 @@ using namespace obotcha;
 
 void testBlockingLinkedListToArray() {
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(3);
-        list->put(createString("a"));
-        list->put(createString("b"));
-        list->put(createString("c"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(3);
+        list->put(String::New("a"));
+        list->put(String::New("b"));
+        list->put(String::New("c"));
 
         ArrayList<String> ll = list->toArray();
         if(ll->size() != 3 || !ll->get(0)->sameAs("a")
@@ -29,7 +29,7 @@ void testBlockingLinkedListToArray() {
     }
 
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(3);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(3);
         ArrayList<int> ll = list->toArray();
         if(ll->size() != 0) {
           TEST_FAIL("BlockingLinkedList toArray test2 \n");
@@ -40,7 +40,7 @@ void testBlockingLinkedListToArray() {
     }
 
     while(1) {
-        BlockingLinkedList<int> list = createBlockingLinkedList<int>(128);
+        BlockingLinkedList<int> list =BlockingLinkedList<int>::New(128);
         for(int i = 0;i<128;i++) {
           list->putLast(i);
         }

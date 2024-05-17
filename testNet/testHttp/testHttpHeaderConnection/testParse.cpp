@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testConnectionParse() {
   while(1) {
-    HttpHeaderConnection connection = createHttpHeaderConnection();
+    HttpHeaderConnection connection = HttpHeaderConnection::New();
     connection->load(" keep-alive");
     if(!connection->get()->sameAs("keep-alive")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case1]");
@@ -22,7 +22,7 @@ void testConnectionParse() {
   }
 
   while(1) {
-    HttpHeaderConnection connection = createHttpHeaderConnection();
+    HttpHeaderConnection connection = HttpHeaderConnection::New();
     connection->load("close");
     if(!connection->get()->sameAs("close")) {
       TEST_FAIL("[HttpHeaderConnection test Parse case2]");

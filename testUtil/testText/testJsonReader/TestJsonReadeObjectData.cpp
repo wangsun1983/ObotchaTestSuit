@@ -13,7 +13,7 @@ using namespace obotcha;
 
 int objectDataTest() {
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_object_01.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_object_01.json"));
       JsonValue value = reader->get();
       if(value != nullptr) {
         TEST_FAIL("[JsonReader Object Data Test case1]");
@@ -31,7 +31,7 @@ int objectDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_object_02.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_object_02.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Object Data Test case3]");
@@ -49,7 +49,7 @@ int objectDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_object_03.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_object_03.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Object Data Test case3]");
@@ -79,7 +79,7 @@ int objectDataTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_object_04.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_object_04.json"));
       JsonValue value = reader->get();
       if(value == nullptr) {
         TEST_FAIL("[JsonReader Object Data Test case6]");

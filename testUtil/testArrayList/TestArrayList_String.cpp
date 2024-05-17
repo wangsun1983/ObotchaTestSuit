@@ -17,10 +17,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {add(char *val)} Start]
       while(1) {
-          ArrayList<String> list = createArrayList<String>();
-          list->add(createString("a"));
-          list->add(createString("b"));
-          list->add(createString("c"));
+          ArrayList<String> list = ArrayList<String>::New();
+          list->add(String::New("a"));
+          list->add(String::New("b"));
+          list->add(String::New("c"));
           if(!list->get(0)->sameAs("a")
           || !list->get(1)->sameAs("b")
           || !list->get(2)->sameAs("c")) {
@@ -42,15 +42,15 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {add(std::string v)} Start]
       while(1) {
-          ArrayList<String> list = createArrayList<String>();
+          ArrayList<String> list = ArrayList<String>::New();
 
           std::string s1("a");
           std::string s2("b");
           std::string s3("c");
 
-          list->add(createString(s1));
-          list->add(createString(s2));
-          list->add(createString(s3));
+          list->add(String::New(s1));
+          list->add(String::New(s2));
+          list->add(String::New(s3));
 
           if(!list->get(0)->sameAs("a")
           || !list->get(1)->sameAs("b")
@@ -65,10 +65,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {add(String val)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
         if(!list->get(0)->sameAs("a")
         || !list->get(1)->sameAs("b")
         || !list->get(2)->sameAs("c")) {
@@ -82,13 +82,13 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {add(ArrayList<String> list)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
 
-        ArrayList<String> list2 = createArrayList<String>();
-        list2->add(createString("c"));
-        list2->add(createString("d"));
+        ArrayList<String> list2 = ArrayList<String>::New();
+        list2->add(String::New("c"));
+        list2->add(String::New("d"));
 
         list->add(list2);
 
@@ -106,8 +106,8 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {clear()} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("1"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("1"));
         int size = list->size();
         list->clear();
         if(list->size() != 0 || size != 1) {
@@ -121,10 +121,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {remove(int index)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
         String v = list->removeAt(1);
         if(!v->sameAs("b")) {
@@ -182,10 +182,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {remove(String v)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
         int result = list->remove("a");
         if(result == -1) {
@@ -216,10 +216,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {indexOf(String v)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
         if(list->indexOf("a") < 0
         ||list->indexOf("b") < 0
@@ -245,10 +245,10 @@ void testArrayList_String() {
       }
       //[ArrayList<String> Test {set(int index,String val)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
         list->set(0,"d");
         if(!list->get(0)->sameAs("d")
@@ -288,10 +288,10 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {get(int index)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
         if(!list->get(0)->sameAs("a")
         ||!list->get(1)->sameAs("b")
         ||!list->get(2)->sameAs("c")) {
@@ -328,12 +328,12 @@ void testArrayList_String() {
       }
       //[ArrayList<String> Test {insert(int index,String val)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
-        list->insert(1,createString("d"));
+        list->insert(1,String::New("d"));
         if(!list->get(0)->sameAs("a")
         ||!list->get(1)->sameAs("d")
         ||!list->get(2)->sameAs("b")
@@ -344,7 +344,7 @@ void testArrayList_String() {
 
         bool isException = false;
         try {
-            list->insert(50,createString("d"));
+            list->insert(50,String::New("d"));
         } catch(ArrayIndexOutOfBoundsException e) {
                isException = true;
         }
@@ -356,7 +356,7 @@ void testArrayList_String() {
 
         isException = false;
         try {
-            list->insert(-1,createString("d"));
+            list->insert(-1,String::New("d"));
         }catch(ArrayIndexOutOfBoundsException e) {
             isException = true;
         }
@@ -372,12 +372,12 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {insert(int index,char* val)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
-        list->insert(1,createString("d"));
+        list->insert(1,String::New("d"));
         if(!list->get(0)->sameAs("a")
         ||!list->get(1)->sameAs("d")
         ||!list->get(2)->sameAs("b")
@@ -388,7 +388,7 @@ void testArrayList_String() {
 
         bool isException = false;
         try {
-            int result = list->insert(50,createString("d"));
+            int result = list->insert(50,String::New("d"));
         } catch(ArrayIndexOutOfBoundsException e) {
            isException = true;
         }
@@ -400,7 +400,7 @@ void testArrayList_String() {
 
         isException = false;
         try {
-            list->insert(-1,createString("d"));
+            list->insert(-1,String::New("d"));
         } catch(ArrayIndexOutOfBoundsException e) {
             isException = true;
         }
@@ -416,12 +416,12 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {insert(int index,std::string val)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString(std::string("a")));
-        list->add(createString(std::string("b")));
-        list->add(createString(std::string("c")));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New(std::string("a")));
+        list->add(String::New(std::string("b")));
+        list->add(String::New(std::string("c")));
 
-        list->insert(1,createString(std::string("d")));
+        list->insert(1,String::New(std::string("d")));
         if(!list->get(0)->sameAs(std::string("a"))
         ||!list->get(1)->sameAs(std::string("d"))
         ||!list->get(2)->sameAs(std::string("b"))
@@ -432,7 +432,7 @@ void testArrayList_String() {
 
         bool isException = false;
         try {
-            list->insert(50,createString(std::string("d")));
+            list->insert(50,String::New(std::string("d")));
         } catch(ArrayIndexOutOfBoundsException e) {
              isException = true;
         }
@@ -444,7 +444,7 @@ void testArrayList_String() {
 
         isException = false;
         try {
-            list->insert(-1,createString(std::string("d")));
+            list->insert(-1,String::New(std::string("d")));
         } catch(ArrayIndexOutOfBoundsException e) {
             isException = true;
         }
@@ -460,14 +460,14 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {insert(int index,ArrayList<String> list)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
-        ArrayList<String> list2 = createArrayList<String>();
-        list2->add(createString("d"));
-        list2->add(createString("e"));
+        ArrayList<String> list2 = ArrayList<String>::New();
+        list2->add(String::New("d"));
+        list2->add(String::New("e"));
 
         list->insert(2,list2);
         if(!list->get(0)->sameAs("a")
@@ -504,7 +504,7 @@ void testArrayList_String() {
         }
 
         int size = list->size();
-        ArrayList<String> list3 = createArrayList<String>();
+        ArrayList<String> list3 = ArrayList<String>::New();
         list->insert(0,list3);
 
         if(size != list->size()) {
@@ -518,15 +518,15 @@ void testArrayList_String() {
 
       //[ArrayList<String> Test {insert(int index,ArrayList<String> list,int length)} Start]
       while(1) {
-        ArrayList<String> list = createArrayList<String>();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        ArrayList<String> list = ArrayList<String>::New();
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
 
-        ArrayList<String> list2 = createArrayList<String>();
-        list2->add(createString("d"));
-        list2->add(createString("e"));
-        list2->add(createString("f"));
+        ArrayList<String> list2 = ArrayList<String>::New();
+        list2->add(String::New("d"));
+        list2->add(String::New("e"));
+        list2->add(String::New("f"));
 
         list->insert(2,list2,2);
         //TEST_FAIL("list->get(0) is %s \n",list->get(0)->toChars());
@@ -545,9 +545,9 @@ void testArrayList_String() {
 
 
         list->clear();
-        list->add(createString("a"));
-        list->add(createString("b"));
-        list->add(createString("c"));
+        list->add(String::New("a"));
+        list->add(String::New("b"));
+        list->add(String::New("c"));
         bool isException1 = false;
         try {
             list->insert(2,list2,100);
@@ -578,12 +578,12 @@ void testArrayList_String() {
 
   //[ArrayList<String> Test {insertFirst(String val)} Start]
   while(1){
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    list->insertFirst(createString("d"));
+    list->insertFirst(String::New("d"));
     if(!list->get(0)->sameAs("d")
     ||!list->get(1)->sameAs("a")
     ||!list->get(2)->sameAs("b")
@@ -606,12 +606,12 @@ void testArrayList_String() {
 
   //[ArrayList<String> Test {insertFirst(const char * val)} Start]
   while(1){
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    list->insertFirst(createString("d"));
+    list->insertFirst(String::New("d"));
     if(!list->get(0)->sameAs("d")
     ||!list->get(1)->sameAs("a")
     ||!list->get(2)->sameAs("b")
@@ -634,15 +634,15 @@ void testArrayList_String() {
 
   //[ArrayList<String> Test {insertFirst(ArrayList<String> list)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("e"));
-    list2->add(createString("f"));
-    list2->add(createString("g"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("e"));
+    list2->add(String::New("f"));
+    list2->add(String::New("g"));
 
     list->insertFirst(list2);
     if(!list->get(0)->sameAs("e")
@@ -674,12 +674,12 @@ void testArrayList_String() {
   }
   //[ArrayList<String> Test {insertLast(String v)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    list->insertLast(createString("d"));
+    list->insertLast(String::New("d"));
     if(!list->get(0)->sameAs("a")
     ||!list->get(1)->sameAs("b")
     ||!list->get(2)->sameAs("c")
@@ -700,12 +700,12 @@ void testArrayList_String() {
   }
   //[ArrayList<String> Test {insertLast(const char *s)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    list->insertLast(createString("d"));
+    list->insertLast(String::New("d"));
     if(!list->get(0)->sameAs("a")
     ||!list->get(1)->sameAs("b")
     ||!list->get(2)->sameAs("c")
@@ -717,7 +717,7 @@ void testArrayList_String() {
     char *p = nullptr;
     int size = list->size();
     try {
-      list->insertLast(createString(p));
+      list->insertLast(String::New(p));
       TEST_FAIL("[ArrayList<String> Test {insertLast(const char *s )} case2]");
     } catch(InitializeException e) {}
 */
@@ -726,15 +726,15 @@ void testArrayList_String() {
   }
   //[ArrayList<String> Test {insertLast(ArrayList<String> list)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
 
-    ArrayList<String> list2 = createArrayList<String>();
-    list2->add(createString("e"));
-    list2->add(createString("f"));
-    list2->add(createString("g"));
+    ArrayList<String> list2 = ArrayList<String>::New();
+    list2->add(String::New("e"));
+    list2->add(String::New("f"));
+    list2->add(String::New("g"));
 
     list->insertLast(list2);
     if(!list->get(0)->sameAs("a")
@@ -761,8 +761,8 @@ void testArrayList_String() {
   }
   //[ArrayList<String> Test {size()} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
     if(list->size() != 1) {
       TEST_FAIL("[ArrayList<String> Test {size()} case1]");
       break;
@@ -780,8 +780,8 @@ void testArrayList_String() {
 
   //[ArrayList<String> Test {getIterator()} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
     if(list->getIterator()== nullptr) {
       TEST_FAIL("[ArrayList<String> Test {getIterator()} case0]");
       break;
@@ -792,13 +792,13 @@ void testArrayList_String() {
   }
   //--[_ListIterator<String> Test {_ListIterator(ArrayList<String> list)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
-    list->add(createString("d"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
+    list->add(String::New("d"));
 
-    auto iterator = createArrayListIterator<String>(list);
+    auto iterator = ArrayListIterator<String>::New(list);
     int index = 0;
     bool isOk = true;
     while(iterator->hasValue()) {
@@ -821,11 +821,11 @@ void testArrayList_String() {
 
   //--[_ListIterator<String> Test {_ListIterator(_ArrayList<String> *list)} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
-    list->add(createString("d"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
+    list->add(String::New("d"));
 
     auto iterator = list->getIterator();
     int index = 0;
@@ -850,12 +850,12 @@ void testArrayList_String() {
 
   //--[_ListIterator<String> Test {remove()} Start]
   while(1) {
-    ArrayList<String> list = createArrayList<String>();
-    list->add(createString("a"));
-    list->add(createString("b"));
-    list->add(createString("c"));
-    list->add(createString("d"));
-    list->add(createString("e"));
+    ArrayList<String> list = ArrayList<String>::New();
+    list->add(String::New("a"));
+    list->add(String::New("b"));
+    list->add(String::New("c"));
+    list->add(String::New("d"));
+    list->add(String::New("e"));
     auto iterator = list->getIterator();
     while(iterator->hasValue()) {
       if(iterator->getValue()->sameAs("c")) {

@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderSecWebSocketKey upgrade = createHttpHeaderSecWebSocketKey();
+    HttpHeaderSecWebSocketKey upgrade = HttpHeaderSecWebSocketKey::New();
     upgrade->load(" websocket ");
     if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderSecWebSocketKey test Parse case1]");

@@ -22,8 +22,8 @@ int testNotify() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-			ProcessMutex mu = createProcessMutex("abc1");
-			ProcessCondition cond = createProcessCondition("abc_cond1");
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			ProcessCondition cond = ProcessCondition::New("abc_cond1");
 			usleep(1000*200);
 			cond->notify();
 			return -1;
@@ -31,9 +31,9 @@ int testNotify() {
 		    usleep(1000*100);
 		    int pid2 = fork();
 			if(pid2 == 0) {
-				ProcessMutex mu = createProcessMutex("abc1");
-				ProcessCondition cond = createProcessCondition("abc_cond1");
-				TimeWatcher w = createTimeWatcher();
+				ProcessMutex mu = ProcessMutex::New("abc1");
+				ProcessCondition cond = ProcessCondition::New("abc_cond1");
+				TimeWatcher w = TimeWatcher::New();
 				w->start();
 				AutoLock l(mu);
 				cond->wait(mu,500);
@@ -49,9 +49,9 @@ int testNotify() {
 				}
 				return -1;
 			} else {
-				ProcessMutex mu = createProcessMutex("abc1");
-				ProcessCondition cond = createProcessCondition("abc_cond1");
-				TimeWatcher w = createTimeWatcher();
+				ProcessMutex mu = ProcessMutex::New("abc1");
+				ProcessCondition cond = ProcessCondition::New("abc_cond1");
+				TimeWatcher w = TimeWatcher::New();
 				w->start();
 				AutoLock l(mu);
 				cond->wait(mu,500);
@@ -74,15 +74,15 @@ int testNotify() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-		  ProcessMutex mu = createProcessMutex("abc1");
-		  ProcessCondition cond = createProcessCondition("abc_cond1");
+		  ProcessMutex mu = ProcessMutex::New("abc1");
+		  ProcessCondition cond = ProcessCondition::New("abc_cond1");
 		  cond->notify();
 		  return -1;
 	  } else {
 		  usleep(1000*100);
-		  ProcessMutex mu = createProcessMutex("abc1");
-		  ProcessCondition cond = createProcessCondition("abc_cond1");
-		  TimeWatcher w = createTimeWatcher();
+		  ProcessMutex mu = ProcessMutex::New("abc1");
+		  ProcessCondition cond = ProcessCondition::New("abc_cond1");
+		  TimeWatcher w = TimeWatcher::New();
 		  w->start();
 		  AutoLock l(mu);
 		  cond->wait(mu,100);

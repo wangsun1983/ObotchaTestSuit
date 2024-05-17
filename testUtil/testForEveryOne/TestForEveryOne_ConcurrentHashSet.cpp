@@ -22,7 +22,7 @@ using namespace obotcha;
 
 void testConcurrentHashSet() {
     while(1) {
-      ConcurrentHashSet<int> list = createConcurrentHashSet<int>();
+      ConcurrentHashSet<int> list = ConcurrentHashSet<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -42,13 +42,13 @@ void testConcurrentHashSet() {
     }
 
     while(1) {
-      ConcurrentHashSet<String> list = createConcurrentHashSet<String>();
-      list->add(createString("a"));
-      list->add(createString("b"));
-      list->add(createString("c"));
-      list->add(createString("d"));
-      list->add(createString("e"));
-      list->add(createString("f"));
+      ConcurrentHashSet<String> list = ConcurrentHashSet<String>::New();
+      list->add(String::New("a"));
+      list->add(String::New("b"));
+      list->add(String::New("c"));
+      list->add(String::New("d"));
+      list->add(String::New("e"));
+      list->add(String::New("f"));
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -68,7 +68,7 @@ void testConcurrentHashSet() {
     }
 
     while(1) {
-      ConcurrentHashSet<String> list = createConcurrentHashSet<String>();
+      ConcurrentHashSet<String> list = ConcurrentHashSet<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;
@@ -81,18 +81,18 @@ void testConcurrentHashSet() {
     }
 
     while(1) {
-      ConcurrentHashSet<int> list = createConcurrentHashSet<int>();
+      ConcurrentHashSet<int> list = ConcurrentHashSet<int>::New();
       list->add(1);
       list->add(2);
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         list->add(2);
         auto result = watcher->stop();

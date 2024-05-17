@@ -37,11 +37,11 @@ void sayhello(ArrayList<T> t) {
 
 #if 0
 int main() {
-    ArrayList<String> list = createArrayList<String>();
+    ArrayList<String> list = ArrayList<String>()::New();
     sayhello(list);
 
 #if 0
-    MyReflectData data = createMyReflectData();
+    MyReflectData data = MyReflectData::New();
     Field f = data->getField("data3");
     f->createObject();
     auto value = f->createListItemObject();

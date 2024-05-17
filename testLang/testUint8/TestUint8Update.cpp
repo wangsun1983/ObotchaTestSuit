@@ -18,7 +18,7 @@ using namespace obotcha;
 void updatetest() {
   while(1) {
       //case 1
-      Uint8 v1 = createUint8(10);
+      Uint8 v1 = Uint8::New(10);
       v1->update(2);
 
       if(v1->toValue() != 2){
@@ -27,8 +27,8 @@ void updatetest() {
       }
 
       //case 2
-      Uint8 v2 = createUint8(10);
-      Uint8 v2_1 = createUint8(2);
+      Uint8 v2 = Uint8::New(10);
+      Uint8 v2_1 = Uint8::New(2);
       v2->update(v2_1);
 
       if(v2->toValue() != 2) {

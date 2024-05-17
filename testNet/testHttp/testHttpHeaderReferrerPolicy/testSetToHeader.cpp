@@ -13,9 +13,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Referrer-Policy"),
-                createString("no-referrer, strict-origin-when-cross-origin"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Referrer-Policy"),
+                String::New("no-referrer, strict-origin-when-cross-origin"));
     auto match = header->getRefererPolicy();
     ArrayList<String> list = match->get();
     if(list->size() != 2) {

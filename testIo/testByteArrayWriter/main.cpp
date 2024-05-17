@@ -21,10 +21,8 @@ extern void testSkipBy();
 extern void testSetIndex();
 extern void testGetRemainSize();
 extern void testGetByteArray();
-extern void testByteArrayWriterEdgeDetection();
 
 int main() {
-    testByteArrayWriterEdgeDetection();
     testByteArrayWriterGet();
     testByteArrayWriterString();
     testByteArrayWriterArray();

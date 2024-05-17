@@ -32,8 +32,8 @@ void testHttpSessionGetSet() {
         HttpSession ss = st(HttpSessionManager)::getInstance()->createSession(1);
         ss->setMaxInactiveInterval(2);
         usleep(1000*1200);
-        ss->setAttribute(createString("abc"),
-                         createString("bbb"));
+        ss->setAttribute(String::New("abc"),
+                         String::New("bbb"));
         usleep(1000*1000);
         if(!ss->isValid()) {
             TEST_OK("[testHttpSessionGetSet case3]");

@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Expect-CT"),
-                createString("max-age=86400; enforce; report-uri=\"https://foo.example/report\""));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Expect-CT"),
+                String::New("max-age=86400; enforce; report-uri=\"https://foo.example/report\""));
     auto expect = header->getExpectCT();
     if(expect->getMaxAge() != 86400) {
       TEST_FAIL("[HttpHeaderExpectCT test setToHeader case1]");

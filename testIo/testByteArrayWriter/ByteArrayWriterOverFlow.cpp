@@ -15,44 +15,40 @@
 
 using namespace obotcha;
 
+
 void testWriteOverFlow() {
-    int ret = 0;
-    ByteArray data = createByteArray(5);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(5);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
+    size_t ret = 0;
     try {
-        int ret = writer->write<long>(56);
+        writer->write<long>(56);
         TEST_FAIL("[TestByteArrayWriter test overflow case1]");
     } catch(...) {}
     
-    writer->reset();
     
-    ByteArray testdata1 = createByteArray(5);
-    ByteArray testdata2 = createByteArray(7);
-    try {
-        ret = writer->write(testdata1,0,5);
-    } catch(...) {
-        TEST_FAIL("[TestByteArrayWriter test overflow case2]");
+    ByteArray testdata1 = ByteArray::New(5);
+    ByteArray testdata2 = ByteArray::New(7);
+    ret = writer->write(testdata1,0,5);
+    writer->reset();
+    if(ret != 5) {
+        TEST_FAIL("[TestByteArrayWriter test overflow case2],ret is %d",ret);
     }
-    writer->reset();
     
     try {
-        ret = writer->write(testdata2,1,6);
+        writer->write(testdata2,1,6);
         TEST_FAIL("[TestByteArrayWriter test overflow case3]");
     } catch(...) {}
-    
+
     writer->reset();
     
     try {
-        ret = writer->write(testdata2->toValue(),6);
+        writer->write(testdata2->toValue(),6);
         TEST_FAIL("[TestByteArrayWriter test overflow case4]");
-    } catch(...) {
-    }
-    writer->reset();
-        
+    } catch(...) {}
+    
     const char*p = "hello,world.haha";
-    try {
-        ret = writer->write(p,5);
-    } catch(...) {
+    ret = writer->write(p,5);    
+    if(ret != 5) {
         TEST_FAIL("[TestByteArrayWriter test overflow case6]");
     }
     writer->reset();
@@ -63,10 +59,9 @@ void testWriteOverFlow() {
     }
     
     try {
-        ret = writer->write(p,6);
+        writer->write(p,6);
         TEST_FAIL("[TestByteArrayWriter test overflow case8]");
     } catch(...) {}
-    writer->reset();
     
     TEST_OK("[TestByteArrayWriter test overflow case100]");
 }

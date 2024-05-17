@@ -22,12 +22,12 @@ using namespace obotcha;
 
 void testHashSet() {
     while(1) {
-      HashSet<int> sets = createHashSet<int>();
-      HashMap<int,Boolean> valuemap = createHashMap<int,Boolean>();
+      HashSet<int> sets = HashSet<int>::New();
+      HashMap<int,Boolean> valuemap = HashMap<int,Boolean>::New();
 
       for(int i = 0;i<32;i++) {
         sets->add(i*32);
-        valuemap->put(i*32,createBoolean(true));
+        valuemap->put(i*32,Boolean::New(true));
       }
 
       ForEveryOne(v,sets) {

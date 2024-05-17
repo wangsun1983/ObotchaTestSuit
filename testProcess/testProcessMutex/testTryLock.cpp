@@ -19,15 +19,15 @@ int testTryLock() {
   int pid = fork();
   
   if(pid == 0) {
-    ProcessMutex mu = createProcessMutex("abc1");
+    ProcessMutex mu = ProcessMutex::New("abc1");
     mu->tryLock();
     usleep(1000*500);
 	mu->unlock();
     return -1;
   } else {
 	usleep(1000*100);
-    TimeWatcher w1 = createTimeWatcher();
-	ProcessMutex mu = createProcessMutex("abc1");
+    TimeWatcher w1 = TimeWatcher::New();
+	ProcessMutex mu = ProcessMutex::New("abc1");
 	w1->start();
 	auto ret = mu->tryLock();
 	auto cost = w1->stop();

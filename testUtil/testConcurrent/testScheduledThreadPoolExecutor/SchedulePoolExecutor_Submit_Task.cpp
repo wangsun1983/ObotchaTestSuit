@@ -19,13 +19,13 @@
 using namespace obotcha;
 
 void testSubmitTask() {
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
-    Mutex taskMutex = createMutex();
-    Condition condition = createCondition();
+    Mutex taskMutex = Mutex::New();
+    Condition condition = Condition::New();
 
-    auto pool = createExecutorBuilder()
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
@@ -49,8 +49,8 @@ void testSubmitTask() {
   }
 
   while(1) {
-    CountDownLatch latch = createCountDownLatch(32);
-    auto pool = createExecutorBuilder()
+    CountDownLatch latch = CountDownLatch::New(32);
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(64)
               ->setMaxThreadNum(3)
               ->newScheduledThreadPool();
@@ -73,8 +73,8 @@ void testSubmitTask() {
   }
 
   while(1) {
-    CountDownLatch latch = createCountDownLatch(256);
-    auto pool = createExecutorBuilder()
+    CountDownLatch latch = CountDownLatch::New(256);
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1024)
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();
@@ -97,8 +97,8 @@ void testSubmitTask() {
   }
 
   while(1) {
-    CountDownLatch latch = createCountDownLatch(32);
-    auto pool = createExecutorBuilder()
+    CountDownLatch latch = CountDownLatch::New(32);
+    auto pool = ExecutorBuilder::New()
               ->setMaxPendingTaskNum(1024)
               ->setMaxThreadNum(16)
               ->newScheduledThreadPool();

@@ -11,8 +11,8 @@ using namespace obotcha;
 void testFileInputStreamReadNode() {
   while(1) {
     //proc/sys/fs/mqueue/msg_max
-    FileInputStream stream = createFileInputStream("/proc/sys/fs/mqueue/msg_max");
-    ByteArray data = createByteArray(32);
+    FileInputStream stream = FileInputStream::New("/proc/sys/fs/mqueue/msg_max");
+    ByteArray data = ByteArray::New(32);
     stream->open();
     int len = stream->read(data);
     String value = data->toString();

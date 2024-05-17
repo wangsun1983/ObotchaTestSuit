@@ -15,9 +15,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Retry-After"),
-                createString(" Thu, 21 Oct 2021 07:28:00 GMT "));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Retry-After"),
+                String::New(" Thu, 21 Oct 2021 07:28:00 GMT "));
 
     auto retryAfter = header->getRetryAfter();
     auto date = retryAfter->getDate()->toDateTime();
@@ -48,7 +48,7 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeaderRetryAfter retryAfter = createHttpHeaderRetryAfter();
+    HttpHeaderRetryAfter retryAfter = HttpHeaderRetryAfter::New();
     retryAfter->load(" 120 ");
     if(retryAfter->getDelayInterval() != 120) {
       TEST_FAIL("[HttpHeaderRetryAfter test SetToHeader case7]");

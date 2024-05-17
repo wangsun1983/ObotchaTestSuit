@@ -14,7 +14,7 @@ using namespace obotcha;
 int commentTest() {
     //String getString(String tag);
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_comment_01.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_comment_01.json"));
       JsonValue root = reader->get();
       JsonValue v = root->getValue("test");
       JsonValue vv1 = v->getValueAt(0);
@@ -43,7 +43,7 @@ int commentTest() {
     }
 
     while(1) {
-      JsonReader reader = createJsonReader()->loadFile(createFile("./test/data/test_preserve_comment_01.json"));
+      JsonReader reader = JsonReader::New()->loadFile(File::New("./test/data/test_preserve_comment_01.json"));
       JsonValue root = reader->get();
       Integer v1 = root->getInteger("first");
       if(v1 == nullptr || v1->toValue() != 1) {

@@ -31,26 +31,26 @@ public:
 void testReflectToXml() {
   //test1
   while(1) {
-    XmlReflectData data = createXmlReflectData();
-    data->map = createHashMap<String,HashMapXmlValue>();
-    HashMapXmlValue value = createHashMapXmlValue();
+    XmlReflectData data = XmlReflectData::New();
+    data->map = HashMap<String,HashMapXmlValue>::New();
+    HashMapXmlValue value = HashMapXmlValue::New();
     value->data1 = 111;
     value->data2 = 222;
 
-    HashMapXmlValue value2 = createHashMapXmlValue();
+    HashMapXmlValue value2 = HashMapXmlValue::New();
     value2->data1 = 333;
     value2->data2 = 444;
 
-    data->map->put(createString("hello"),value);
-    data->map->put(createString("hello1"),value2);
+    data->map->put(String::New("hello"),value);
+    data->map->put(String::New("hello1"),value2);
 
-    XmlDocument doc = createXmlDocument();
+    XmlDocument doc = XmlDocument::New();
     doc->importFrom(data);
-    XmlWriter writer = createXmlWriter(doc);
+    XmlWriter writer = XmlWriter::New(doc);
     writer->write("output_xml_1.xml");
 
-    XmlDocument doc1 = createXmlDocument(createFile("output_xml_1.xml"));
-    XmlReflectData data3 = createXmlReflectData();
+    XmlDocument doc1 = XmlDocument::New(File::New("output_xml_1.xml"));
+    XmlReflectData data3 = XmlReflectData::New();
     doc1->reflectTo(data3);
 
     HashMapXmlValue v1 = data3->map->get("hello");

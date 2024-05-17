@@ -17,18 +17,18 @@ using namespace obotcha;
 void testConditionWaitLambda() {
     
     while(1) {
-        Mutex mu = createMutex();
-        Condition cond = createCondition();
-        AtomicInteger value = createAtomicInteger(1);
+        Mutex mu = Mutex::New();
+        Condition cond = Condition::New();
+        AtomicInteger value = AtomicInteger::New(1);
         
-        Thread t = createThread([&mu,&cond,&value]{
+        Thread t = Thread::New([&mu,&cond,&value]{
             sleep(5);
             value->set(0);
             cond->notifyAll();
         });
         t->start();
         
-        Thread t2 = createThread([&mu,&cond]{
+        Thread t2 = Thread::New([&mu,&cond]{
             for(int i = 0;i < 20;i++) {
                 usleep(1000*100);
                 AutoLock l(mu);
@@ -39,7 +39,7 @@ void testConditionWaitLambda() {
         
         int tryCount = 0;
         
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         AutoLock l(mu);
         cond->wait(mu,[&tryCount,&value]{
@@ -59,9 +59,9 @@ void testConditionWaitLambda() {
     }
     
     while(1) {
-        Mutex mu = createMutex();
-        Condition cond = createCondition();
-        TimeWatcher watcher = createTimeWatcher();
+        Mutex mu = Mutex::New();
+        Condition cond = Condition::New();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         cond->wait(mu,[]{
             return true;
@@ -74,9 +74,9 @@ void testConditionWaitLambda() {
     }
     
     while(1) {
-        Mutex mu = createMutex();
-        Condition cond = createCondition();
-        TimeWatcher watcher = createTimeWatcher();
+        Mutex mu = Mutex::New();
+        Condition cond = Condition::New();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         AutoLock l(mu);
         cond->wait(mu,1000,[]{

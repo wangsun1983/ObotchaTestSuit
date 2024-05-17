@@ -33,7 +33,7 @@ using namespace obotcha;
 
 int count = 0;
 String respStr;
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
   void onHttpMessage(st(Net)::Event event,HttpLinker client,Http2ResponseWriter w,Http2Packet msg){
@@ -46,9 +46,9 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 
           case st(Net)::Event::Message: {
               printf("i get a message \n");
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
-                HttpChunk chunk = createHttpChunk(createFile("./tmp/testdata"));
+                HttpChunk chunk = HttpChunk::New(File::New("./tmp/testdata"));
                 response->getEntity()->setChunk(chunk);
                 w->write(response);
                 latch->countDown();
@@ -64,17 +64,17 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(Http2Listener) {
 };
 
 int main() {
-    File file = createFile("./tmp/testdata");
+    File file = File::New("./tmp/testdata");
     long prepareFilesize = file->length();
 
     if(!file->exists()) {
       file->createNewFile();
         for(int i = 0;i<1024;i++) {
-        FileOutputStream stream = createFileOutputStream(file);
+        FileOutputStream stream = FileOutputStream::New(file);
         stream->open(st(IO)::FileControlFlags::Append);
-        String data = createString("");
+        String data = String::New("");
         for(int j = 0;j < 256;j++) {
-          data = data->append(createString(st(System)::CurrentTimeMillis()));
+          data = data->append(String::New(st(System)::CurrentTimeMillis()));
         }
         stream->write(data->toByteArray());
         stream->close();
@@ -82,9 +82,9 @@ int main() {
     }
 
   int port = getEnvPort();
-  MyHttpListener listener = createMyHttpListener();
-  Http2Server server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(8080))
+  MyHttpListener listener = MyHttpListener::New();
+  Http2Server server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(8080))
                     ->setHttp2Listener(listener)
                     ->buildHttp2Server();
   server->start();

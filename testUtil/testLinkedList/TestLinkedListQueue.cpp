@@ -10,7 +10,7 @@ void testLinkeListQueue() {
 
     //case1 string takeFirst
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -39,12 +39,12 @@ void testLinkeListQueue() {
 
     //case2 int takeFirst
     while(1) {
-      LinkedList<Integer> list = createLinkedList<Integer>();
-      list->putLast(createInteger(1));
-      list->putLast(createInteger(2));
-      list->putLast(createInteger(3));
-      list->putLast(createInteger(4));
-      list->putLast(createInteger(5));
+      LinkedList<Integer> list = LinkedList<Integer>::New();
+      list->putLast(Integer::New(1));
+      list->putLast(Integer::New(2));
+      list->putLast(Integer::New(3));
+      list->putLast(Integer::New(4));
+      list->putLast(Integer::New(5));
 
       std::vector<int> vect;
       vect.push_back(1);
@@ -68,7 +68,7 @@ void testLinkeListQueue() {
 
     //case3 string takeFirst
     while(1) {
-      LinkedList<String> list = createLinkedList<String>();
+      LinkedList<String> list = LinkedList<String>::New();
       list->putLast("a");
       list->putLast("b");
       list->putLast("c");
@@ -97,12 +97,12 @@ void testLinkeListQueue() {
 
     //case4 int takeFirst
     while(1) {
-      LinkedList<Integer> list = createLinkedList<Integer>();
-      list->putLast(createInteger(1));
-      list->putLast(createInteger(2));
-      list->putLast(createInteger(3));
-      list->putLast(createInteger(4));
-      list->putLast(createInteger(5));
+      LinkedList<Integer> list = LinkedList<Integer>::New();
+      list->putLast(Integer::New(1));
+      list->putLast(Integer::New(2));
+      list->putLast(Integer::New(3));
+      list->putLast(Integer::New(4));
+      list->putLast(Integer::New(5));
 
       std::vector<int> vect;
       vect.push_back(5);

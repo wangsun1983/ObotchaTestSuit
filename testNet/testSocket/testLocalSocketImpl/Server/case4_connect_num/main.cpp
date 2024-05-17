@@ -17,15 +17,15 @@ using namespace obotcha;
 
 int count = 0;
 
-Mutex mu = createMutex();
-Condition cond = createCondition();
+Mutex mu = Mutex::New();
+Condition cond = Condition::New();
 
 int main() {
-  auto addr = createInetLocalAddress("case1_socket");
-  auto option = createSocketOption();
+  auto addr = InetLocalAddress::New("case1_socket");
+  auto option = SocketOption::New();
   option->setReUseAddr(st(SocketOption)::Ability::Enable);
   option->setWaitAcceptQueueSize(1);
-  auto sock = createSocketBuilder()
+  auto sock = SocketBuilder::New()
               ->setAddress(addr)
               ->setOption(option)
               ->newServerSocket();
@@ -34,17 +34,17 @@ int main() {
   
   usleep(1000*10000);
     
-  File file = createFile("./tmp/connectNum.txt");
+  File file = File::New("./tmp/connectNum.txt");
   if(!file->exists()) {
       TEST_FAIL("TestLocalSocket Server case4_connect_num case1");
   }
   
-  FileInputStream stream = createFileInputStream(file);
+  FileInputStream stream = FileInputStream::New(file);
   stream->open();
-  ByteArray connectData = createByteArray();
+  ByteArray connectData = ByteArray::New();
   stream->read(connectData);
   String cc = connectData->toString();
-  if(cc == nullptr || !cc->trim()->equals(createString("2"))) {
+  if(cc == nullptr || !cc->trim()->equals(String::New("2"))) {
       TEST_FAIL("TestLocalSocket Server case4_connect_num case3");
   }
   stream->close();

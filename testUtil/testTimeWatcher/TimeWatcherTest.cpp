@@ -14,7 +14,7 @@ using namespace obotcha;
 int main() {
 
   while(1) {
-      TimeWatcher t = createTimeWatcher();
+      TimeWatcher t = TimeWatcher::New();
       t->start();
       sleep(5);
       //t->stop();

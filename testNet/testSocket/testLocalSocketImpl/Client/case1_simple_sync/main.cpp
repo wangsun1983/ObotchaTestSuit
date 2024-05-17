@@ -12,10 +12,10 @@ using namespace obotcha;
 int messageCount = 0;
 int disconnectCount = 0;
 
-Mutex disconnectMutex = createMutex();
-Condition disconnectCond = createCondition();
+Mutex disconnectMutex = Mutex::New();
+Condition disconnectCond = Condition::New();
 
-String message = createString("");
+String message = String::New("");
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
@@ -25,7 +25,7 @@ public:
   }
 };
 
-MyHandler h = createMyHandler();
+MyHandler h = MyHandler::New();
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener){
 public:
@@ -50,16 +50,16 @@ public:
 
 int main() {
     //signal(SIGPIPE, SIG_IGN);
-    InetAddress addr = createInetLocalAddress("case1_socket");
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    InetAddress addr = InetLocalAddress::New("case1_socket");
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
 
     int ret = client->connect();
     
-    String resp = createString("hello server");
+    String resp = String::New("hello server");
     client->getOutputStream()->write(resp->toByteArray());
     
-    SocketMonitor monitor = createSocketMonitor();
-    int bindret = monitor->bind(client,createMyListener());
+    SocketMonitor monitor = SocketMonitor::New();
+    int bindret = monitor->bind(client,MyListener::New());
     AutoLock l(disconnectMutex);
     disconnectCond->wait(disconnectMutex);
     

@@ -32,12 +32,12 @@ public:
 };
 
 void testHandlerRemoveRunnable() {
-  HandlerThread t = createHandlerThread();
+  HandlerThread t = HandlerThread::New();
   t->start();
 
   while(1) {
-    Handler h = createHandler(t->getLooper());
-    RemoveCaseRunnable r = createRemoveCaseRunnable();
+    Handler h = Handler::New(t->getLooper());
+    RemoveCaseRunnable r = RemoveCaseRunnable::New();
     h->postDelayed(1000,r);
     usleep(100*1000);
 
@@ -57,9 +57,9 @@ void testHandlerRemoveRunnable() {
 
   while(1) {
     remove_mark_value = -1;
-    Handler h = createHandler(t->getLooper());
-    RemoveCaseRunnable1 r1 = createRemoveCaseRunnable1();
-    RemoveCaseRunnable2 r2 = createRemoveCaseRunnable2();
+    Handler h = Handler::New(t->getLooper());
+    RemoveCaseRunnable1 r1 = RemoveCaseRunnable1::New();
+    RemoveCaseRunnable2 r2 = RemoveCaseRunnable2::New();
     h->postDelayed(1000,r1);
     h->postDelayed(1000,r2);
     usleep(100*1000);

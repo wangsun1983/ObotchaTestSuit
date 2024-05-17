@@ -17,7 +17,7 @@ public:
 };
 
 void testHasMessage() {
-   HasMessageHandler h = createHasMessageHandler();
+   HasMessageHandler h = HasMessageHandler::New();
    for(int i = 0; i<1024;i++) {
     h->sendEmptyMessageDelayed(1,10000);
    }

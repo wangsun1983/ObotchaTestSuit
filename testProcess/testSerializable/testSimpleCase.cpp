@@ -22,8 +22,8 @@ public:
 
     ByteArray generatePacket() {
       ByteArray serializeData = serialize();
-      ByteArray finalData = createByteArray(serializeData->size() + sizeof(uint32_t));
-      ByteArrayWriter writer = createByteArrayWriter(finalData);
+      ByteArray finalData = ByteArray::New(serializeData->size() + sizeof(uint32_t));
+      ByteArrayWriter writer = ByteArrayWriter::New(finalData);
       writer->write<uint32_t>(serializeData->size());
       writer->write(serializeData);
 
@@ -31,8 +31,8 @@ public:
   }
 
   static MqMessage generateMessage(ByteArray data) {
-      ByteArray msgData = createByteArray(data->toValue() + sizeof(uint32_t),data->size() - sizeof(uint32_t),true);
-      MqMessage msg = createMqMessage();
+      ByteArray msgData = ByteArray::New(data->toValue() + sizeof(uint32_t),data->size() - sizeof(uint32_t),true);
+      MqMessage msg = MqMessage::New();
       msg->deserialize(msgData);
       //msg->mPacketData = data;
       return msg;
@@ -44,8 +44,8 @@ public:
 
 
 void testSimpleCase() {
-    MqMessage mq = createMqMessage();
-    mq->channel = createString("info11");
+    MqMessage mq = MqMessage::New();
+    mq->channel = String::New("info11");
     auto data = mq->generatePacket();
     data->dump("aaa");
   

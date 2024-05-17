@@ -13,16 +13,16 @@
 
 using namespace obotcha;
 
-String message = createString("");
+String message = String::New("");
 bool isFirst = true;
 
-Mutex mMutex = createMutex();
-Condition mCond = createCondition();
+Mutex mMutex = Mutex::New();
+Condition mCond = Condition::New();
 
-CountDownLatch latch = createCountDownLatch(1024*12);
+CountDownLatch latch = CountDownLatch::New(1024*12);
 
 ConcurrentHashMap<int,String> disconnectMessages 
-    = createConcurrentHashMap<int,String>();
+    = ConcurrentHashMap<int,String>::New();
     
 int count = 0;
 
@@ -36,7 +36,7 @@ public:
         if(data != nullptr && data->toString()->sameAs("hello world")) {
           latch->countDown();
         }
-        disconnectMessages->put(fd,createString("OK"));
+        disconnectMessages->put(fd,String::New("OK"));
       } break;
       
       case st(Net)::Event::Disconnect: {
@@ -52,14 +52,14 @@ public:
 
 int main() {
   int port = getEnvPort();
-  InetAddress addr = createInet4Address(port);
-  ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
+  InetAddress addr = Inet4Address::New(port);
+  ServerSocket sock = SocketBuilder::New()->setAddress(addr)->newServerSocket();
   int result = sock->bind();
-  SocketMonitor monitor = createSocketMonitor(16);
-  MyListener l = createMyListener();
+  SocketMonitor monitor = SocketMonitor::New(16);
+  MyListener l = MyListener::New();
   monitor->bind(sock,l);
 
-  Thread t = createThread([] {
+  Thread t = Thread::New([] {
     while(1) {
       usleep(1000*1000);
       printf("count is %d,fail count is %d \n",latch->getCount(),count);

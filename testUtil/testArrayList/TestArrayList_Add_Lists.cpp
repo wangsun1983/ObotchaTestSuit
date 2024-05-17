@@ -19,18 +19,18 @@ public:
 
 void testArrayList_Add_Lists() {
   while(1) {
-    ArrayList<AddTestData> list1 = createArrayList<AddTestData>();
-    AddTestData d1 = createAddTestData();
+    ArrayList<AddTestData> list1 = ArrayList<AddTestData>::New();
+    AddTestData d1 = AddTestData::New();
     d1->data1 = 1;
     d1->data2 = 2;
 
-    AddTestData d2 = createAddTestData();
+    AddTestData d2 = AddTestData::New();
     d2->data1 = 3;
     d2->data2 = 4;
     list1->add(d1);
     list1->add(d2);
 
-    ArrayList<AddTestData> list2 = createArrayList<AddTestData>();
+    ArrayList<AddTestData> list2 = ArrayList<AddTestData>::New();
     list2->add(list1);
 
     AddTestData data = list2->get(0);
@@ -46,25 +46,25 @@ void testArrayList_Add_Lists() {
   }
 
   while(1) {
-    ArrayList<ArrayList<AddTestData>> list1 = createArrayList<ArrayList<AddTestData>>();
-    AddTestData d1 = createAddTestData();
+    ArrayList<ArrayList<AddTestData>> list1 = ArrayList<ArrayList<AddTestData>>::New();
+    AddTestData d1 = AddTestData::New();
     d1->data1 = 1;
     d1->data2 = 2;
 
-    AddTestData d2 = createAddTestData();
+    AddTestData d2 = AddTestData::New();
     d2->data1 = 3;
     d2->data2 = 4;
 
-    ArrayList<AddTestData> l1 = createArrayList<AddTestData>();
+    ArrayList<AddTestData> l1 = ArrayList<AddTestData>::New();
     l1->add(d1);
 
-    ArrayList<AddTestData> l2 = createArrayList<AddTestData>();
+    ArrayList<AddTestData> l2 = ArrayList<AddTestData>::New();
     l2->add(d2);
 
     list1->add(l1);
     list1->add(l2);
 
-    ArrayList<ArrayList<AddTestData>> list2 = createArrayList<ArrayList<AddTestData>>();
+    ArrayList<ArrayList<AddTestData>> list2 = ArrayList<ArrayList<AddTestData>>::New();
     list2->add(list1);
 
     if(list2->size() != 2) {

@@ -19,14 +19,14 @@ void TestHexInt() {
     //----------------------------
     while(1) {
         //case 1
-        String str1 = createString("0x11");
+        String str1 = String::New("0x11");
         
         if(str1->toHexInt()->toValue() != 17) {
             TEST_FAIL("String toHexInt test1");
             break;
         }
         
-        str1 = createString("31");
+        str1 = String::New("31");
         if(str1->toHexInt()->toValue() != 49) {
             TEST_FAIL("String toHexInt test2");
             break;

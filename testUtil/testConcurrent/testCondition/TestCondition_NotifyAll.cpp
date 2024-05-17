@@ -14,12 +14,12 @@
 using namespace obotcha;
 
 void testConditionNotifyAll() {
-    TimeWatcher watch = createTimeWatcher();
+    TimeWatcher watch = TimeWatcher::New();
     while(1) {
-      AtomicInteger v = createAtomicInteger(0);
-      Mutex mMutex = createMutex();
-      Condition c = createCondition();
-      Thread t1 = createThread([&mMutex,&c,&v]{
+      AtomicInteger v = AtomicInteger::New(0);
+      Mutex mMutex = Mutex::New();
+      Condition c = Condition::New();
+      Thread t1 = Thread::New([&mMutex,&c,&v]{
         AutoLock l(mMutex);
         int ret = c->wait(mMutex);
         if(ret != 0) {
@@ -31,7 +31,7 @@ void testConditionNotifyAll() {
       });
       t1->start();
 
-      Thread t2 = createThread([&mMutex,&c,&v]{
+      Thread t2 = Thread::New([&mMutex,&c,&v]{
         AutoLock l(mMutex);
         int ret = c->wait(mMutex);
         if(ret != 0) {

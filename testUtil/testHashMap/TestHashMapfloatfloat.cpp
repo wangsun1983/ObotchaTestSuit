@@ -13,8 +13,8 @@ using namespace obotcha;
 
 void testHashMapFloatFloat() {
     while(1) {
-      HashMap<float,Float> map = createHashMap<float,Float>();
-      map->put(1.1,createFloat(100.01));
+      HashMap<float,Float> map = HashMap<float,Float>::New();
+      map->put(1.1,Float::New(100.01));
       float v = map->get(1.1)->toValue();
       if(st(Float)::Compare(v,100.01) != 0) {
         TEST_FAIL("[HashMap<float,float>} test1],v is %f ",v);
@@ -24,8 +24,8 @@ void testHashMapFloatFloat() {
     }
 
     while(1) {
-      HashMap<float,Float> map = createHashMap<float,Float>();
-      map->put(1.1,createFloat(100.01));
+      HashMap<float,Float> map = HashMap<float,Float>::New();
+      map->put(1.1,Float::New(100.01));
       auto v = map->get(2.1);
       if(v != nullptr) {
         TEST_FAIL("[HashMap<float,float>} test2] ");
@@ -35,10 +35,10 @@ void testHashMapFloatFloat() {
     }
 
     while(1) {
-      HashMap<float,Float> map = createHashMap<float,Float>();
-      map->put(1.1,createFloat(100.01));
-      map->put(1.1,createFloat(200.01));
-      map->put(2.1,createFloat(100.01));
+      HashMap<float,Float> map = HashMap<float,Float>::New();
+      map->put(1.1,Float::New(100.01));
+      map->put(1.1,Float::New(200.01));
+      map->put(2.1,Float::New(100.01));
       if(map->size() != 2) {
         TEST_FAIL("[HashMap<float,float>} test3] ");
         break;

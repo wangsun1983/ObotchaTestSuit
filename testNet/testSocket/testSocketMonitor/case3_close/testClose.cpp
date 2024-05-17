@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testSocketMonitorClose() {
     while(1) {
-        SocketMonitor monitor = createSocketMonitor();
+        SocketMonitor monitor = SocketMonitor::New();
         monitor->close();
         if(monitor->waitForExit() != 0) {
             TEST_FAIL("Test SocketMonitor close case1");
@@ -24,7 +24,7 @@ void testSocketMonitorClose() {
     }
     
     while(1) {
-        SocketMonitor monitor = createSocketMonitor();
+        SocketMonitor monitor = SocketMonitor::New();
         usleep(1000*50);
         monitor->close();
         if(monitor->waitForExit() != 0) {

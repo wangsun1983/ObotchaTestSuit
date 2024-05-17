@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderAltSvc svc = createHttpHeaderAltSvc();
+    HttpHeaderAltSvc svc = HttpHeaderAltSvc::New();
     svc->load(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1");
     auto svcList = svc->getServices();
     if(svcList->size() != 2) {
@@ -67,7 +67,7 @@ void testParse() {
   }
   
   while(1) {
-    HttpHeaderAltSvc svc = createHttpHeaderAltSvc(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1");
+    HttpHeaderAltSvc svc = HttpHeaderAltSvc::New(" h2=\"alt.example.com:8000\", h2=\":443\"; ma=2592000; persist=1");
     auto svcList = svc->getServices();
     if(svcList->size() != 2) {
       TEST_FAIL("[HttpHeaderAltSvc test Parse case10]");

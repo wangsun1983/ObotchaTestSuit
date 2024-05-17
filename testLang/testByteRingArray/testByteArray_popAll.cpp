@@ -15,14 +15,14 @@ void testPopAll() {
   //case1
   //data:[1(start),2,3,4,5(end)]
   while(1) {
-    ByteRingArray array = createByteRingArray(5);
+    ByteRingArray array = ByteRingArray::New(5);
     array->push(1);
     array->push(2);
     array->push(3);
     array->push(4);
     array->push(5);
 
-    ByteRingArray arr1 = createByteRingArray(array);
+    ByteRingArray arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(5);
 
@@ -37,7 +37,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(4);
 
@@ -52,7 +52,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(3);
 
@@ -67,7 +67,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(2);
 
@@ -82,7 +82,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(0);
     arr1->setSize(1);
 
@@ -98,7 +98,7 @@ void testPopAll() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(5);
 
@@ -113,7 +113,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(4);
 
@@ -128,7 +128,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(3);
 
@@ -143,7 +143,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(2);
 
@@ -158,7 +158,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(1);
     arr1->setSize(1);
 
@@ -174,7 +174,7 @@ void testPopAll() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(5);
 
@@ -189,7 +189,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(4);
 
@@ -204,7 +204,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(3);
 
@@ -219,7 +219,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(2);
 
@@ -234,7 +234,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(1);
 
@@ -250,7 +250,7 @@ void testPopAll() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(5);
 
@@ -265,7 +265,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(4);
 
@@ -280,7 +280,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(3);
 
@@ -295,7 +295,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(2);
 
@@ -310,7 +310,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(2);
     arr1->setSize(1);
 
@@ -326,7 +326,7 @@ void testPopAll() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(5);
 
@@ -341,7 +341,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(4);
 
@@ -356,7 +356,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(3);
 
@@ -371,7 +371,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(2);
 
@@ -386,7 +386,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(3);
     arr1->setSize(1);
 
@@ -402,7 +402,7 @@ void testPopAll() {
     }
 
     //
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(5);
 
@@ -417,7 +417,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(4);
 
@@ -432,7 +432,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(3);
 
@@ -447,7 +447,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(2);
 
@@ -462,7 +462,7 @@ void testPopAll() {
       break;
     }
 
-    arr1 = createByteRingArray(array);
+    arr1 = ByteRingArray::New(array);
     arr1->setEndIndex(4);
     arr1->setSize(1);
 

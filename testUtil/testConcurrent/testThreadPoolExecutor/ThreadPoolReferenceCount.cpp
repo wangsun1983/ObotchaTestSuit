@@ -18,7 +18,7 @@ void testPoolReferenceCount() {
     while(1) {
         ThreadPoolExecutor pool = nullptr;
         {
-            pool = createExecutorBuilder()->setDefaultThreadNum(3)->newThreadPool();
+            pool = ExecutorBuilder::New()->setDefaultThreadNum(3)->newThreadPool();
             pool->submit([]() {
               try {
                 st(Thread)::Sleep(10);
@@ -55,7 +55,7 @@ void testPoolReferenceCount() {
     }
     
     while(1) {
-        auto pool = createExecutorBuilder()->setDefaultThreadNum(4)->newThreadPool();
+        auto pool = ExecutorBuilder::New()->setDefaultThreadNum(4)->newThreadPool();
         pool->submit([]() {
           try {
             st(Thread)::Sleep(100);

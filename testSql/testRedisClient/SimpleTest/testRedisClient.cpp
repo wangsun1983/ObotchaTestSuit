@@ -10,9 +10,9 @@
 using namespace obotcha;
 
 int main() {
-    RedisClient client = createRedisClient();
-    client->connect(createString("127.0.0.1"),6379,100);
-    int value1 = client->set(createString("tag1"),createString("haha"));
-    String value2 = client->getValue(createString("tag1"));
+    RedisClient client = RedisClient::New();
+    client->connect(String::New("127.0.0.1"),6379,100);
+    int value1 = client->set(String::New("tag1"),String::New("haha"));
+    String value2 = client->getValue(String::New("tag1"));
     printf("value2 is %s \n",value2->toChars());
 }

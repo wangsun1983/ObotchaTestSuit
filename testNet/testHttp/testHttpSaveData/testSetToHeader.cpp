@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Save-Data"),
-                createString("ON"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Save-Data"),
+                String::New("ON"));
     auto save = header->getSaveData();
     if(!save->get()->sameAs("on")) {
       TEST_FAIL("[HttpHeaderSaveData test SetToHeader case1]");
@@ -26,9 +26,9 @@ void testSetToHeader() {
   }
 
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Save-Data"),
-                createString("OFF"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Save-Data"),
+                String::New("OFF"));
     auto save = header->getSaveData();
     if(!save->get()->sameAs("off")) {
       TEST_FAIL("[HttpHeaderSaveData test SetToHeader case2]");

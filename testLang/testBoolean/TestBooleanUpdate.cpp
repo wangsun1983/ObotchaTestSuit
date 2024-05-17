@@ -14,7 +14,7 @@ void testUpdate() {
 
     while(1) {
         //case1
-        Boolean t0 = createBoolean(true);
+        Boolean t0 = Boolean::New(true);
         t0->update(true);
         if(!t0->toValue()) {
             TEST_FAIL("Boolean update test1");
@@ -25,13 +25,13 @@ void testUpdate() {
             TEST_FAIL("Boolean update test2");
         }
 
-        t0 = createBoolean(false);
+        t0 = Boolean::New(false);
         t0->update(true);
         if(!t0->toValue()) {
             TEST_FAIL("Boolean update test3");
         }
 
-        t0 = createBoolean(false);
+        t0 = Boolean::New(false);
         t0->update(false);
         if(t0->toValue()) {
             TEST_FAIL("Boolean update test4");
@@ -43,24 +43,24 @@ void testUpdate() {
     
     while(1) {
         //case1
-        Boolean t0 = createBoolean(createBoolean(true));
+        Boolean t0 = Boolean::New(Boolean::New(true));
         t0->update(true);
         if(!t0->toValue()) {
             TEST_FAIL("Boolean update test6");
         }
 
-        t0->update(createBoolean(false));
+        t0->update(Boolean::New(false));
         if(t0->toValue()) {
             TEST_FAIL("Boolean update test7");
         }
 
-        t0 = createBoolean(createBoolean(false));
+        t0 = Boolean::New(Boolean::New(false));
         t0->update(true);
         if(!t0->toValue()) {
             TEST_FAIL("Boolean update test8");
         }
 
-        t0 = createBoolean(createBoolean(false));
+        t0 = Boolean::New(Boolean::New(false));
         t0->update(false);
         if(t0->toValue()) {
             TEST_FAIL("Boolean update test9");

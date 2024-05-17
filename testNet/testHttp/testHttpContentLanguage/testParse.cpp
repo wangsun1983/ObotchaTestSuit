@@ -15,7 +15,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderContentLanguage c = createHttpHeaderContentLanguage();
+    HttpHeaderContentLanguage c = HttpHeaderContentLanguage::New();
     c->load("de-DE, en-CA");
     auto list = c->get();
     if(!list->get(0)->sameAs("de-DE")) {

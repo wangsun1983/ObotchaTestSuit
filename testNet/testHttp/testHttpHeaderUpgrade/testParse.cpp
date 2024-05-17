@@ -14,7 +14,7 @@ using namespace obotcha;
 
 void testParse() {
   while(1) {
-    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade();
+    HttpHeaderUpgrade upgrade = HttpHeaderUpgrade::New();
     upgrade->load(" websocket ");
     if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test Parse case1]");
@@ -23,7 +23,7 @@ void testParse() {
   }
 
   while(1) {
-    HttpHeaderUpgrade upgrade = createHttpHeaderUpgrade(" websocket ");
+    HttpHeaderUpgrade upgrade = HttpHeaderUpgrade::New(" websocket ");
     if(!upgrade->get()->sameAs("websocket")) {
       TEST_FAIL("[HttpHeaderUpgrade test Parse case2]");
     }

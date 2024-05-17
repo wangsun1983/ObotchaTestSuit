@@ -9,7 +9,7 @@
 using namespace obotcha;
 
 void testIsFile() {
-    File f1 = createFile("./tmp/dir1.txt");
+    File f1 = File::New("./tmp/dir1.txt");
     f1->createDirs();
     
     if(f1->isFile()) {
@@ -17,7 +17,7 @@ void testIsFile() {
     }
     f1->removeAll();
     
-    File f2 = createFile("./tmp/dir1.txt");
+    File f2 = File::New("./tmp/dir1.txt");
     f2->createNewFile();
     
     if(!f2->isFile()) {
@@ -25,7 +25,7 @@ void testIsFile() {
     }
     f2->removeAll();
 
-    File f3 = createFile("./tmp/dir2.txt");
+    File f3 = File::New("./tmp/dir2.txt");
     if(f3->isFile()) {
         TEST_FAIL("[File Test {isFile()} case3]");
     }

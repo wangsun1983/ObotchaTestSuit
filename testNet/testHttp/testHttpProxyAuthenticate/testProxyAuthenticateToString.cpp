@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testProxyAuthenticateToString() {
   while(1) {
-    HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
+    HttpHeaderProxyAuthenticate proxyAuth = HttpHeaderProxyAuthenticate::New();
     proxyAuth->load("Basic");
 
     if(!proxyAuth->toString()->sameAs("Basic")) {
@@ -24,7 +24,7 @@ void testProxyAuthenticateToString() {
   }
 
   while(1) {
-    HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
+    HttpHeaderProxyAuthenticate proxyAuth = HttpHeaderProxyAuthenticate::New();
     proxyAuth->load("Basic realm=\"Access to the internal site\"");
 
     if(!proxyAuth->toString()->sameAs("Basic realm=\"Access to the internal site\"")) {
@@ -36,9 +36,9 @@ void testProxyAuthenticateToString() {
   }
   
   while(1) {
-    HttpHeaderProxyAuthenticate proxyAuth = createHttpHeaderProxyAuthenticate();
+    HttpHeaderProxyAuthenticate proxyAuth = HttpHeaderProxyAuthenticate::New();
     proxyAuth->load("Basic realm=\"Access to the internal site\"");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setProxyAuthenticate(proxyAuth);
     
     auto proxy = header->getProxyAuthenticate();

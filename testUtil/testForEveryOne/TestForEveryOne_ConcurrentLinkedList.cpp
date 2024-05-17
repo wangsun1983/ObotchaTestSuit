@@ -22,7 +22,7 @@ using namespace obotcha;
 
 void testConcurrentLinkedList() {
     while(1) {
-      ConcurrentLinkedList<int> list = createConcurrentLinkedList<int>();
+      ConcurrentLinkedList<int> list = ConcurrentLinkedList<int>::New();
       int sum = 0;
       for(int i = 0;i < 128;i++) {
         sum += i;
@@ -42,13 +42,13 @@ void testConcurrentLinkedList() {
     }
 
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
-      list->putLast(createString("a"));
-      list->putLast(createString("b"));
-      list->putLast(createString("c"));
-      list->putLast(createString("d"));
-      list->putLast(createString("e"));
-      list->putLast(createString("f"));
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
+      list->putLast(String::New("a"));
+      list->putLast(String::New("b"));
+      list->putLast(String::New("c"));
+      list->putLast(String::New("d"));
+      list->putLast(String::New("e"));
+      list->putLast(String::New("f"));
 
       String abc = "";
       ForEveryOne(v,list) {
@@ -63,7 +63,7 @@ void testConcurrentLinkedList() {
     }
 
     while(1) {
-      ConcurrentLinkedList<String> list = createConcurrentLinkedList<String>();
+      ConcurrentLinkedList<String> list = ConcurrentLinkedList<String>::New();
       int count = 0;
       ForEveryOne(s,list) {
         count++;
@@ -76,18 +76,18 @@ void testConcurrentLinkedList() {
     }
 
     while(1) {
-      ConcurrentLinkedList<int> list = createConcurrentLinkedList<int>();
+      ConcurrentLinkedList<int> list = ConcurrentLinkedList<int>::New();
       list->putLast(1);
       list->putLast(2);
-      Thread t1 = createThread([&]{
+      Thread t1 = Thread::New([&]{
         ForEveryOne(v,list) {
           sleep(1);
         }
       });
 
-      Thread t2 = createThread([&]{
+      Thread t2 = Thread::New([&]{
         sleep(1);
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         list->putLast(2);
         auto result = watcher->stop();

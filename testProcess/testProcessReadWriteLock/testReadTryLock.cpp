@@ -19,14 +19,14 @@ int testReadTryLock() {
 	  int pid = fork();
 	  
 	  if(pid == 0) {
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc4");
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc4");
 		AutoLock l(mu->getWriteLock());
 		usleep(1000*300);
 		return -1;
 	  } else {
 		usleep(1000*100);
-		ProcessReadWriteLock mu = createProcessReadWriteLock("abc4");
-		TimeWatcher watcher = createTimeWatcher();
+		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc4");
+		TimeWatcher watcher = TimeWatcher::New();
 		watcher->start();
 		int ret = mu->getReadLock()->tryLock();
 		auto cost = watcher->stop();
@@ -54,7 +54,7 @@ int testReadTryLock() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-	  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc4");
+	  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc4");
 	  		int ret = mu->getReadLock()->tryLock();
 			if(ret < 0) {
 				TEST_FAIL("testProcessReadWriteLock readtrylock test case5,ret is %d",ret);
@@ -64,8 +64,8 @@ int testReadTryLock() {
 	  		return -1;
 	  } else {
 	  		usleep(1000*100);
-	  		ProcessReadWriteLock mu = createProcessReadWriteLock("abc4");
-	  		TimeWatcher watcher = createTimeWatcher();
+	  		ProcessReadWriteLock mu = ProcessReadWriteLock::New("abc4");
+	  		TimeWatcher watcher = TimeWatcher::New();
 	  		watcher->start();
 	  		AutoLock l(mu->getWriteLock());
 			auto cost = watcher->stop();

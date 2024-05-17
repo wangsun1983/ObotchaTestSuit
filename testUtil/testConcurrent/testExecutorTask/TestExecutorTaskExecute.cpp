@@ -35,16 +35,16 @@ private:
 
 void testExecutorTaskExecute() {
 	while(1) {
-		auto r = createMyExecuteRunnable();
-		auto task = createExecutorTask(r,[&](ExecutorTask task){
+		auto r = MyExecuteRunnable::New();
+		auto task = ExecutorTask::New(r,[&](ExecutorTask task){
 		});
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			if(st(Executor)::GetCurrentTask() != nullptr) {
 				TEST_FAIL("Test ExecutorTask Execute case1");
 			}
 			
-			Thread t2 = createThread([&] {
+			Thread t2 = Thread::New([&] {
 				task->execute();
 			});
 			t2->start();
@@ -61,17 +61,17 @@ void testExecutorTaskExecute() {
 	while(1) {
 		int executeFlag = 0;
 		ExecutorTask task = nullptr;
-		MyExecuteRunnable2 r = createMyExecuteRunnable2([&](MyExecuteRunnable2 c){
+		MyExecuteRunnable2 r = MyExecuteRunnable2::New([&](MyExecuteRunnable2 c){
 			if(task != st(Executor)::GetCurrentTask()) {
 				TEST_FAIL("Test ExecutorTask Execute case4");
 			}
 			executeFlag = 1;
 		});
 		
-		task = createExecutorTask(r,[&](ExecutorTask task){
+		task = ExecutorTask::New(r,[&](ExecutorTask task){
 		});
 		
-		Thread t1 = createThread([&]{
+		Thread t1 = Thread::New([&]{
 			task->execute();
 		});
 		t1->start();

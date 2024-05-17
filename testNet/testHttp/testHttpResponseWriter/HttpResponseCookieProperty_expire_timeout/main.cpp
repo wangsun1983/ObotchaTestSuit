@@ -20,7 +20,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 int count = 0;
 
 long setExpires = 0;
@@ -36,21 +36,21 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
           case st(Net)::Event::Message: {
               if(count == 0) {
                 //first message to send response with cookie
-                HttpResponse response = createHttpResponse();
-                HttpCookie cookie1 = createHttpCookie("test2_tag1","test2_value1");
+                HttpResponse response = HttpResponse::New();
+                HttpCookie cookie1 = HttpCookie::New("test2_tag1","test2_value1");
                 cookie1->setPropertySecure(true);
                 cookie1->setPropertyHttpOnly(true);
                 cookie1->setPropertyPath("path123");
                 //cookie1->setPropertyDomain("domain123");
-                Calendar c = createCalendar();//->getDateTime()
+                Calendar c = Calendar::New();//->getDateTime()
                 
                 setExpires = (c->toTimeMillis())/1000;
 
-                cookie1->setPropertyExpires(createHttpDate(c->getGmtDateTime()));
+                cookie1->setPropertyExpires(HttpDate::New(c->getGmtDateTime()));
                 //cookie1->setPropertyMaxAge(100000);
 
 
-                //HttpCookie cookie2 = createHttpCookie("test2_tag2","test2_value2");
+                //HttpCookie cookie2 = HttpCookie::New("test2_tag2","test2_value2");
                 response->getHeader()->addCookie(cookie1);
                 //response->getHeader()->addCookie(cookie2);
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
@@ -63,13 +63,13 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 if(content != nullptr) {
                   TEST_FAIL("TestHttpResponseWriter Cookie Property Expires timeout test1");
                 }
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
 
                 /*
                 auto content = entity->getContent()->toString();
-                HttpUrlEncodedValue encodedValue = createHttpUrlEncodedValue(content);
+                HttpUrlEncodedValue encodedValue = HttpUrlEncodedValue::New(content);
                 auto map = encodedValue->getValues();
 
                 HttpEntity entity = msg->getEntity();
@@ -77,7 +77,7 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
                 if(lists != nullptr && lists->size() != 0) {
                   TEST_FAIL("TestHttpResponseWriter Cookie Property Expires timeout test2");
                 }
-                HttpResponse response = createHttpResponse();
+                HttpResponse response = HttpResponse::New();
                 response->getHeader()->setResponseStatus(st(HttpStatus)::Ok);
                 w->write(response);
                 //count = 0;*/
@@ -98,11 +98,21 @@ DECLARE_CLASS(MyHttpListener) IMPLEMENTS(HttpListener) {
 };
 
 int main() {
-  MyHttpListener listener = createMyHttpListener();
-  HttpServer server = createHttpServerBuilder()
-                    ->setAddress(createInet4Address(1256))
+  MyHttpListener listener = MyHttpListener::New();
+  int port = getEnvPort();
+  HttpServer server = nullptr;
+  while(1) {
+    server = HttpServerBuilder::New()
+                    ->setAddress(Inet4Address::New(port))
                     ->setListener(listener)
                     ->build();
+    if (server->start() == -1) {
+      port++;
+      continue;
+    }
+    setEnvPort(port);
+    break;
+  }
   server->start();
   latch->await();
   server->close();

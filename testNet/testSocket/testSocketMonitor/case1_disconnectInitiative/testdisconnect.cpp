@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(128);
+CountDownLatch latch = CountDownLatch::New(128);
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
 public:
@@ -41,23 +41,23 @@ private:
 
 void testDisconnect() {
     int port = getEnvPort();
-    MyListener l = createMyListener(true,createString("server"));
+    MyListener l = MyListener::New(true,String::New("server"));
     //create server
-    InetAddress addr = createInet4Address(port);
+    InetAddress addr = Inet4Address::New(port);
 
-    auto server = createSocketBuilder()->setAddress(addr)->newServerSocket();
+    auto server = SocketBuilder::New()->setAddress(addr)->newServerSocket();
     server->bind();
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     monitor->bind(server,l);
     
-    ArrayList<Socket> list = createArrayList<Socket>();
+    ArrayList<Socket> list = ArrayList<Socket>::New();
     
-    MyListener l2 = createMyListener(false,createString("client"));
-    SocketMonitor monitor2 = createSocketMonitor();
+    MyListener l2 = MyListener::New(false,String::New("client"));
+    SocketMonitor monitor2 = SocketMonitor::New();
     
     for(int i = 0;i < 128;i++) {
-      InetAddress addr2 = createInet4Address(port);
-      auto sock = createSocketBuilder()->setAddress(addr2)->newSocket();
+      InetAddress addr2 = Inet4Address::New(port);
+      auto sock = SocketBuilder::New()->setAddress(addr2)->newSocket();
       int ret = sock->connect();
       //printf("ret is %d,sock fd is %d \n",ret,sock->getFileDescriptor()->getFd());
       monitor2->bind(sock,l2);

@@ -14,18 +14,18 @@ using namespace obotcha;
 
 void testBlockingLinkedListRemoveAtOne() {
     while(1) {
-        BlockingLinkedList<String> list = createBlockingLinkedList<String>(1);
-        Thread t1 = createThread([&]{
-            list->put(createString("a"));
+        BlockingLinkedList<String> list = BlockingLinkedList<String>::New(1);
+        Thread t1 = Thread::New([&]{
+            list->put(String::New("a"));
             usleep(1000*200);
             list->removeAt(0);
         });
         
-        Thread t2 = createThread([&]{
+        Thread t2 = Thread::New([&]{
             usleep(1000*100);
-            TimeWatcher w = createTimeWatcher();
+            TimeWatcher w = TimeWatcher::New();
             w->start();
-            list->put(createString("b"));
+            list->put(String::New("b"));
             auto cost = w->stop();
             if(cost < 95 || cost > 105) {
                 TEST_FAIL("BlockingLinkedList removeAt One test1,cost is %d",cost);

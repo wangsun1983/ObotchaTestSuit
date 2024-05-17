@@ -66,10 +66,10 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
+       Integer t1 = Integer::New(i);
        String v1 = t1->toHexString();
 
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Integer toString test1");
          break;
@@ -77,10 +77,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
+       Integer t1 = Integer::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Integer toString test2");
          break;
@@ -88,10 +88,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
+       Integer t1 = Integer::New(i);
        String v1 = t1->toBinaryString();
 
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Integer toString test3");
          break;
@@ -105,9 +105,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
-       int t2 = st(Integer)::ParseHexString(createString(HexTable[i]))->toValue();
-       Integer t3 = createInteger(t2);
+       Integer t1 = Integer::New(i);
+       int t2 = st(Integer)::ParseHexString(String::New(HexTable[i]))->toValue();
+       Integer t3 = Integer::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Integer toInt test1");
@@ -116,9 +116,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
-       int t2 = st(Integer)::ParseOctString(createString(OctTable[i]))->toValue();
-       Integer t3 = createInteger(t2);
+       Integer t1 = Integer::New(i);
+       int t2 = st(Integer)::ParseOctString(String::New(OctTable[i]))->toValue();
+       Integer t3 = Integer::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Integer toInt test2,t1 is %d,t3 is %d",t1->toValue(),t3->toValue());
@@ -127,10 +127,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Integer t1 = createInteger(i);
-       String str = createString(BinaryTable[i]);
+       Integer t1 = Integer::New(i);
+       String str = String::New(BinaryTable[i]);
        int t2 = st(Integer)::ParseBinaryString(str)->toValue();
-       Integer t3 = createInteger(t2);
+       Integer t3 = Integer::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Integer toInt test3");
          break;
@@ -138,8 +138,8 @@ void testtostring() {
      }
 
      for(int i = 0;i < 1024*32;i++) {
-       Integer t1 = createInteger(i);
-       if(!t1->toString()->equals(createString(i))) {
+       Integer t1 = Integer::New(i);
+       if(!t1->toString()->equals(String::New(i))) {
          TEST_FAIL("Integer toInt test4");
          break;
        }

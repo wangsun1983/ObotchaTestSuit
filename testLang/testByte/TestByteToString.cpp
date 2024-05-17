@@ -66,9 +66,9 @@ void testtostring() {
    //toString
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
+       Byte t1 = Byte::New(i);
        String v1 = t1->toHexString();
-       String v2 = createString(HexTable[i]);
+       String v2 = String::New(HexTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Byte toString test1");
          break;
@@ -76,10 +76,10 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
+       Byte t1 = Byte::New(i);
        String v1 = t1->toOctalString();
 
-       String v2 = createString(OctTable[i]);
+       String v2 = String::New(OctTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Byte toString test2");
          break;
@@ -87,9 +87,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
+       Byte t1 = Byte::New(i);
        String v1 = t1->toBinaryString();
-       String v2 = createString(BinaryTable[i]);
+       String v2 = String::New(BinaryTable[i]);
        if(v1 != v2) {
          TEST_FAIL("Byte toString test3");
          break;
@@ -103,9 +103,9 @@ void testtostring() {
    //toInt
    while(1) {
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
-       Byte t2 = st(Byte)::ParseHexString(createString(HexTable[i]));
-       Byte t3 = createByte(t2);
+       Byte t1 = Byte::New(i);
+       Byte t2 = st(Byte)::ParseHexString(String::New(HexTable[i]));
+       Byte t3 = Byte::New(t2);
        if(t1 != t3) {
          printf("t1 is %d,t2 is %d ,t3 is %d,i is %d \n",t1->toValue(),t2->toValue(),t3->toValue(),i);
          TEST_FAIL("Byte toInt test1");
@@ -114,9 +114,9 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
-       Byte t2 = st(Byte)::ParseOctString(createString(OctTable[i]));
-       Byte t3 = createByte(t2);
+       Byte t1 = Byte::New(i);
+       Byte t2 = st(Byte)::ParseOctString(String::New(OctTable[i]));
+       Byte t3 = Byte::New(t2);
 
        if(t1 != t3) {
          TEST_FAIL("Byte toInt test2");
@@ -125,11 +125,11 @@ void testtostring() {
      }
 
      for(int i = 0;i < 100;i++) {
-       Byte t1 = createByte(i);
-       String str = createString(BinaryTable[i]);
+       Byte t1 = Byte::New(i);
+       String str = String::New(BinaryTable[i]);
        //TEST_FAIL("11111 str is %s \n",str->toChars());
        Byte t2 = st(Byte)::ParseBinaryString(str);
-       Byte t3 = createByte(t2);
+       Byte t3 = Byte::New(t2);
         if(t1 != t3) {
          TEST_FAIL("Byte toInt test3");
          break;

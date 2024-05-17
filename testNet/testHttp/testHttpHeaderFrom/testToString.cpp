@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderFrom digest = createHttpHeaderFrom();
+    HttpHeaderFrom digest = HttpHeaderFrom::New();
     digest->load(" webmaster@example.org");
     if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test toString case1]");
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderFrom digest = createHttpHeaderFrom();
+    HttpHeaderFrom digest = HttpHeaderFrom::New();
     digest->set(" webmaster@example.org");
     if(!digest->toString()->sameAs("webmaster@example.org")) {
       TEST_FAIL("[HttpHeaderFrom test toString case2]");

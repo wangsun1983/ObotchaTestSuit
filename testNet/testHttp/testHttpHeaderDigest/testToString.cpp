@@ -12,7 +12,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderDigest digest = createHttpHeaderDigest();
+    HttpHeaderDigest digest = HttpHeaderDigest::New();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=")) {
       TEST_FAIL("[testHttpHeaderDigest test toString case1]");
@@ -22,7 +22,7 @@ void testToString() {
   }
 
   while(1) {
-    HttpHeaderDigest digest = createHttpHeaderDigest();
+    HttpHeaderDigest digest = HttpHeaderDigest::New();
     digest->load(" sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637");
     if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {
       TEST_FAIL("[testHttpHeaderDigest test toString case2]");
@@ -31,7 +31,7 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeaderDigest digest = createHttpHeaderDigest();
+    HttpHeaderDigest digest = HttpHeaderDigest::New();
     digest->add("sha-256","X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=");
     digest->add("unixsum","30637");
     if(!digest->toString()->sameAs("sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637")) {

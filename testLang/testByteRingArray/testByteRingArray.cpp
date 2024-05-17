@@ -15,7 +15,7 @@ using namespace obotcha;
 //test push(byte)
 void testPush_byte() {
   //test pop and push
-  ByteRingArray array = createByteRingArray(5);
+  ByteRingArray array = ByteRingArray::New(5);
   array->push(1);
   array->push(2);
   array->push(3);
@@ -52,8 +52,8 @@ void testPush_byte() {
 void testPush_bytearray() {
   //push array with one data
 
-  ByteRingArray ringarray = createByteRingArray(5);
-  ByteArray array1 = createByteArray(1);
+  ByteRingArray ringarray = ByteRingArray::New(5);
+  ByteArray array1 = ByteArray::New(1);
   array1[0] = 1;
   ringarray->push(array1);
 
@@ -68,8 +68,8 @@ void testPush_bytearray() {
   }
 
   //push array with two datas
-  ringarray = createByteRingArray(5);
-  ByteArray array2 = createByteArray(2);
+  ringarray = ByteRingArray::New(5);
+  ByteArray array2 = ByteArray::New(2);
   array2[0] = 1;
   array2[1] = 2;
   ringarray->push(array2);
@@ -86,8 +86,8 @@ void testPush_bytearray() {
   }
 
   //push array with three datas
-  ringarray = createByteRingArray(5);
-  ByteArray array3 = createByteArray(3);
+  ringarray = ByteRingArray::New(5);
+  ByteArray array3 = ByteArray::New(3);
   array3[0] = 1;
   array3[1] = 2;
   array3[2] = 3;
@@ -107,8 +107,8 @@ void testPush_bytearray() {
   }
 
   //push array with four datas
-  ringarray = createByteRingArray(5);
-  ByteArray array4 = createByteArray(4);
+  ringarray = ByteRingArray::New(5);
+  ByteArray array4 = ByteArray::New(4);
   array4[0] = 1;
   array4[1] = 2;
   array4[2] = 3;
@@ -129,8 +129,8 @@ void testPush_bytearray() {
   }
 
   //push array with five datas
-  ringarray = createByteRingArray(5);
-  ByteArray array5 = createByteArray(5);
+  ringarray = ByteRingArray::New(5);
+  ByteArray array5 = ByteArray::New(5);
   array5[0] = 1;
   array5[1] = 2;
   array5[2] = 3;
@@ -153,8 +153,8 @@ void testPush_bytearray() {
   }
 
   //push array with six datas
-  ringarray = createByteRingArray(5);
-  ByteArray array6 = createByteArray(6);
+  ringarray = ByteRingArray::New(5);
+  ByteArray array6 = ByteArray::New(6);
   array6[0] = 1;
   array6[1] = 2;
   array6[2] = 3;
@@ -182,14 +182,14 @@ void testPush_bytearray() {
 void testPush_bytearray_loop_1() {
 
   //{x,1,2,3,x}
-  ByteRingArray ringarray = createByteRingArray(5);
+  ByteRingArray ringarray = ByteRingArray::New(5);
   for(int index = 0;index < 4;index++) {
     ringarray->push(index);
   }
 
   ringarray->pop(1);
 
-  ByteArray bytearray1 = createByteArray(2);
+  ByteArray bytearray1 = ByteArray::New(2);
   bytearray1[0] = 9;
   bytearray1[1] = 10;
 
@@ -205,14 +205,14 @@ void testPush_bytearray_loop_1() {
   }
 
   //{x,1,2,x,x}
-  ringarray = createByteRingArray(5);
+  ringarray = ByteRingArray::New(5);
   for(int index = 0;index < 3;index++) {
     ringarray->push(index);
   }
 
   ringarray->pop(1);
 
-  ByteArray bytearray2 = createByteArray(3);
+  ByteArray bytearray2 = ByteArray::New(3);
   bytearray2[0] = 9;
   bytearray2[1] = 10;
   bytearray2[2] = 11;
@@ -228,14 +228,14 @@ void testPush_bytearray_loop_1() {
   }
 
   //{x,1,x,x,x}
-  ringarray = createByteRingArray(5);
+  ringarray = ByteRingArray::New(5);
   for(int index = 0;index < 2;index++) {
     ringarray->push(index);
   }
 
   ringarray->pop(1);
 
-  ByteArray bytearray3 = createByteArray(4);
+  ByteArray bytearray3 = ByteArray::New(4);
   bytearray3[0] = 9;
   bytearray3[1] = 10;
   bytearray3[2] = 11;
@@ -258,7 +258,7 @@ void testPush_bytearray_loop_1() {
 //test push(ByteArray) loop
 void testPush_bytearray_loop_2() {
   //{x,x,2,3,x}
-  ByteRingArray ringarray = createByteRingArray(5);
+  ByteRingArray ringarray = ByteRingArray::New(5);
   for(int index = 0;index < 4;index++) {
     ringarray->push(index);
   }
@@ -266,7 +266,7 @@ void testPush_bytearray_loop_2() {
   ringarray->pop(1);
   ringarray->pop(1);
 
-  ByteArray array1 = createByteArray(3);
+  ByteArray array1 = ByteArray::New(3);
   array1[0] = 10;
   array1[1] = 11;
   array1[2] = 12;
@@ -283,14 +283,14 @@ void testPush_bytearray_loop_2() {
   }
 
   //{x,x,2,x,x}
-  ringarray = createByteRingArray(5);
+  ringarray = ByteRingArray::New(5);
   for(int index = 0;index < 3;index++) {
     ringarray->push(index);
   }
   ringarray->pop(1);
   ringarray->pop(1);
 
-  array1 = createByteArray(4);
+  array1 = ByteArray::New(4);
   array1[0] = 10;
   array1[1] = 11;
   array1[2] = 12;
@@ -314,16 +314,16 @@ void testPush_bytearray_loop_2() {
 
 void testPush_bytearray_continue() {
 
-  ByteRingArray ringarray = createByteRingArray(6);
-  ByteArray bytearray1 = createByteArray(2);
+  ByteRingArray ringarray = ByteRingArray::New(6);
+  ByteArray bytearray1 = ByteArray::New(2);
   bytearray1[0] = 1;
   bytearray1[1] = 2;
 
-  ByteArray bytearray2 = createByteArray(2);
+  ByteArray bytearray2 = ByteArray::New(2);
   bytearray2[0] = 1;
   bytearray2[1] = 2;
 
-  ByteArray bytearray3 = createByteArray(2);
+  ByteArray bytearray3 = ByteArray::New(2);
   bytearray3[0] = 1;
   bytearray3[1] = 2;
 
@@ -343,19 +343,19 @@ void testPush_bytearray_continue() {
   }
 
   //{x,x,3,4,x,x,}
-  ringarray = createByteRingArray(6);
+  ringarray = ByteRingArray::New(6);
   for(int index = 0;index < 4;index++) {
     ringarray->push(index + 1);
   }
 
   ringarray->pop(2);
 
-  ByteArray bytearray4 = createByteArray(2);
+  ByteArray bytearray4 = ByteArray::New(2);
   bytearray4[0] = 10;
   bytearray4[1] = 11;
   ringarray->push(bytearray4);
 
-  ByteArray bytearray5 = createByteArray(2);
+  ByteArray bytearray5 = ByteArray::New(2);
   bytearray5[0] = 12;
   bytearray5[1] = 13;
   ringarray->push(bytearray5);
@@ -378,7 +378,7 @@ void testPush_bytearray_continue() {
 
 //pop()
 void test_pop() {
-  ByteRingArray ringarray = createByteRingArray(6);
+  ByteRingArray ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);
@@ -411,7 +411,7 @@ void test_pop() {
 //pop(int)
 /*
 void test_pop_size() {
-  ByteRingArray ringarray = createByteRingArray(6);
+  ByteRingArray ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);
@@ -433,7 +433,7 @@ void test_pop_size() {
     return;
   }
 
-  ringarray = createByteRingArray(6);
+  ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);
@@ -461,7 +461,7 @@ void test_pop_size() {
     return;
   }
 
-  ringarray = createByteRingArray(6);
+  ringarray = ByteRingArray::New(6);
   ringarray->push(1);
   ringarray->push(2);
   ringarray->push(3);

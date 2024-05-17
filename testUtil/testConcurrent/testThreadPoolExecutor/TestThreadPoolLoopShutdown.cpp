@@ -16,7 +16,7 @@
 
 using namespace obotcha;
 
-AtomicInteger interruptCount = createAtomicInteger(0);
+AtomicInteger interruptCount = AtomicInteger::New(0);
 
 DECLARE_CLASS(MyLoopShutdownRunnable1) IMPLEMENTS(Runnable) {
 public:
@@ -32,9 +32,9 @@ public:
 
 void testThreadPoolLoopShutdown() {
     //test1
-    ThreadPoolExecutor executor = createThreadPoolExecutor(8*1024,4,0);
+    ThreadPoolExecutor executor = ThreadPoolExecutor::New(8*1024,4,0);
     for(int i = 0;i<8*1024;i++){
-      executor->submit(createMyLoopShutdownRunnable1());
+      executor->submit(MyLoopShutdownRunnable1::New());
     }
 
     int ret = executor->shutdown();
@@ -46,11 +46,11 @@ void testThreadPoolLoopShutdown() {
     }
 
     //test2
-    interruptCount = createAtomicInteger(0);
-    ThreadPoolExecutor executor2 = createThreadPoolExecutor(8*1024,4,0);
-    ArrayList<Future> list = createArrayList<Future>();
+    interruptCount = AtomicInteger::New(0);
+    ThreadPoolExecutor executor2 = ThreadPoolExecutor::New(8*1024,4,0);
+    ArrayList<Future> list = ArrayList<Future>::New();
     for(int i = 0;i<1024*8;i++){
-      Future v = executor2->submit(createMyLoopShutdownRunnable1());
+      Future v = executor2->submit(MyLoopShutdownRunnable1::New());
       list->add(v);
     }
 

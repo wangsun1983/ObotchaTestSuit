@@ -45,11 +45,11 @@ void testSetLogFile() {
         //check whether there contains info log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("info")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     auto content = stream->readAll()->toString();
                     if(content->contains("info log")) {
@@ -67,11 +67,11 @@ void testSetLogFile() {
         //check whether there contains error log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("error")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     auto content = stream->readAll()->toString();
                     if(content->contains("error log")) {
@@ -88,11 +88,11 @@ void testSetLogFile() {
         //check whether there contains warning log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("warning")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     auto content = stream->readAll()->toString();
                     if(content->contains("warning log")) {
@@ -110,11 +110,11 @@ void testSetLogFile() {
         //check whether there contains info log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("info2")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     printf("start read \n");
                     auto content = stream->readAll()->toString();
@@ -135,11 +135,11 @@ void testSetLogFile() {
         //check whether there contains error log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("error2")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     auto content = stream->readAll()->toString();
                     if(content->contains("error2 log")) {
@@ -156,11 +156,11 @@ void testSetLogFile() {
         //check whether there contains warning log
         {
             bool found = false;
-            File f = createFile("./tmp");
+            File f = File::New("./tmp");
             auto files = f->listFiles();
             ForEveryOne(file,files) {
                 if(file->getName()->contains("warning2")) {
-                    auto stream = createFileInputStream(file);
+                    auto stream = FileInputStream::New(file);
                     stream->open();
                     auto content = stream->readAll()->toString();
                     if(content->contains("warning2 log")) {

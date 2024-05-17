@@ -16,12 +16,12 @@
 using namespace obotcha;
 
 void CachedPoolSubmit_Wait() {
-  auto pool = createExecutorBuilder()
+  auto pool = ExecutorBuilder::New()
             ->setMaxPendingTaskNum(1)
             ->setMaxThreadNum(1)
             ->setMaxNoWorkingTime(200)
             ->newCachedThreadPool();
-  TimeWatcher watch = createTimeWatcher();
+  TimeWatcher watch = TimeWatcher::New();
 
   while(1) {
     Future f1 = pool->submit([]{

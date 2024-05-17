@@ -18,7 +18,7 @@ using namespace obotcha;
 void updatetest() {
   while(1) {
       //case 1
-      Byte v1 = createByte(10);
+      Byte v1 = Byte::New(10);
       v1->update(2);
 
       if(v1->toValue() != 2){
@@ -27,8 +27,8 @@ void updatetest() {
       }
 
       //case 2
-      Byte v2 = createByte(10);
-      Byte v2_1 = createByte(2);
+      Byte v2 = Byte::New(10);
+      Byte v2_1 = Byte::New(2);
       v2->update(v2_1);
 
       if(v2->toValue() != 2) {

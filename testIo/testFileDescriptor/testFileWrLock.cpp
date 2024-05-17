@@ -16,7 +16,7 @@
 using namespace obotcha;
 
 void testFileWrLock() {
-    File f1 = createFile("./tmp/rdlock");
+    File f1 = File::New("./tmp/rdlock");
     if(!f1->exists()) {
         f1->createNewFile();
     }
@@ -25,7 +25,7 @@ void testFileWrLock() {
     if(pid == 0) {
         usleep(100*1000);
         auto fd = f1->open();
-        TimeWatcher watcher = createTimeWatcher();
+        TimeWatcher watcher = TimeWatcher::New();
         watcher->start();
         fd->lock(st(IO)::FileLockFlags::ReadLock);
         auto cost = watcher->stop();

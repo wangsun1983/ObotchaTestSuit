@@ -14,6 +14,7 @@
 #include "CountDownLatch.hpp"
 #include "Handler.hpp"
 #include "HttpPacketWriter.hpp"
+#include "Enviroment.hpp"
 #include "HPackHuffmanEncoder.hpp"
 #include "HPackHuffmanDecoder.hpp"
 
@@ -21,9 +22,9 @@ using namespace obotcha;
 
 
 int main() {
-  String abc = createString("Abcd123");
-  HPackHuffmanEncoder encoder = createHPackHuffmanEncoder();
-  HPackHuffmanDecoder decoder = createHPackHuffmanDecoder();
+  String abc = String::New("Abcd123");
+  HPackHuffmanEncoder encoder = HPackHuffmanEncoder::New();
+  HPackHuffmanDecoder decoder = HPackHuffmanDecoder::New();
 
   ByteArray d1 = encoder->encode(abc);
   printf("d1 size is %d \n",d1->size());

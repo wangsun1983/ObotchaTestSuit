@@ -14,9 +14,9 @@ using namespace obotcha;
 
 void testSetToHeader() {
   while(1) {
-    HttpHeader header = createHttpHeader();
-    header->set(createString("Content-Security-Policy-Report-Only"),
-                createString("default-src   'self' ; img-src * ; media-src media1.com   media2.com   ; script-src   userscripts.example.com"));
+    HttpHeader header = HttpHeader::New();
+    header->set(String::New("Content-Security-Policy-Report-Only"),
+                String::New("default-src   'self' ; img-src * ; media-src media1.com   media2.com   ; script-src   userscripts.example.com"));
     auto policy = header->getSecurityPolicyReportOnly();
     ArrayList<HttpHeaderContentSecurityPolicyItem> policies = policy->get();
     if(policies->size() != 4) {

@@ -13,10 +13,10 @@ using namespace obotcha;
 
 void testFilaMutexIsOwner() {
     while(1) {
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         int testCount = 0;
         
         croutine->execute([&mutex,&testCount] {
@@ -48,7 +48,7 @@ void testFilaMutexIsOwner() {
     }
     
     while(1) {
-        FilaMutex m = createFilaMutex();
+        FilaMutex m = FilaMutex::New();
         if(m->isOwner()) {
             TEST_FAIL("FilaMutex test isOwner case4");
         }
@@ -56,7 +56,7 @@ void testFilaMutexIsOwner() {
     }
     
     while(1) {
-        FilaMutex m = createFilaMutex();
+        FilaMutex m = FilaMutex::New();
         AutoLock l(m);
         if(!m->isOwner()) {
             TEST_FAIL("FilaMutex test isOwner case5");
@@ -65,9 +65,9 @@ void testFilaMutexIsOwner() {
     }
     
     while(1) {
-        FilaMutex mutex = createFilaMutex();
+        FilaMutex mutex = FilaMutex::New();
         
-        Thread t = createThread([&mutex]{
+        Thread t = Thread::New([&mutex]{
             AutoLock l(mutex);
             usleep(100*1000);
             if(!mutex->isOwner()) {
@@ -77,7 +77,7 @@ void testFilaMutexIsOwner() {
         
         t->start();
         
-        FilaRoutine croutine = createFilaRoutine();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
         usleep(1000);
         croutine->execute([&mutex] {
@@ -93,8 +93,8 @@ void testFilaMutexIsOwner() {
     }
     
     while(1) {
-        FilaMutex mutex = createFilaMutex();
-        FilaRoutine croutine = createFilaRoutine();
+        FilaMutex mutex = FilaMutex::New();
+        FilaRoutine croutine = FilaRoutine::New();
         croutine->start();
     
         croutine->execute([&mutex] {
@@ -106,7 +106,7 @@ void testFilaMutexIsOwner() {
         });
         
         usleep(100*1000);
-        Thread t = createThread([&mutex]{
+        Thread t = Thread::New([&mutex]{
             if(mutex->isOwner()) {
                 TEST_FAIL("FilaMutex test isOwner case9");
             }

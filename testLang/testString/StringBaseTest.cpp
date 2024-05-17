@@ -17,7 +17,7 @@ using namespace obotcha;
 void basetest() {
 
   while(1) {
-    String str1 = createString();
+    String str1 = String::New();
     if(str1->size() != 0) {
         TEST_FAIL("BaseTest String construct test1");
         break;
@@ -30,7 +30,7 @@ void basetest() {
   //test _String(std::string v);
   while(1) {
     std::string v("abc");
-    String str = createString(v);
+    String str = String::New(v);
     if(str->size() != 3) {
         TEST_FAIL("BaseTest String construct test3");
         break;
@@ -48,8 +48,8 @@ void basetest() {
   //_String(String v);
   while(1) {
     std::string v("abc");
-    String str = createString(v);
-    String str2 = createString(str);
+    String str = String::New(v);
+    String str2 = String::New(str);
     if(str2->size() != 3) {
         TEST_FAIL("BaseTest String construct test6");
         break;
@@ -62,7 +62,7 @@ void basetest() {
 
     //String str3;
     //try {
-    //    String str4 = createString(str3);
+    //    String str4 = String::New(str3);
     //    TEST_FAIL("BaseTest String construct test8");
     //} catch(NullPointerException e) {
 
@@ -74,7 +74,7 @@ void basetest() {
 
   //_String(const char *v);
   while(1) {
-    String str = createString("abc");
+    String str = String::New("abc");
     if(str->size() != 3) {
         TEST_FAIL("BaseTest String construct test9");
         break;
@@ -87,7 +87,7 @@ void basetest() {
 
     //bool isException = false;
     //try {
-    //    String str2 = createString((const char *)nullptr);
+    //    String str2 = String::New((const char *)nullptr);
     //} catch(InitializeException e) {
     //    isException = true;
     //}
@@ -103,13 +103,13 @@ void basetest() {
 
   //_String::_String(char *v,int start,int length)
   while(1) {
-    String str = createString("abc",1,2);
+    String str = String::New("abc",1,2);
     if(!str->sameAs("bc")) {
         TEST_FAIL("BaseTest String construct test13");
         break;
     }
 
-    String str2 = createString("abc",2,1);
+    String str2 = String::New("abc",2,1);
     if(!str2->sameAs("c")) {
         TEST_FAIL("BaseTest String construct test14");
         break;
@@ -117,7 +117,7 @@ void basetest() {
 
     bool isException = false;
     try {
-      String str3 = createString("abc",2,2);
+      String str3 = String::New("abc",2,2);
     } catch(...) {
       isException = true;
     }
@@ -133,8 +133,8 @@ void basetest() {
 
   //_String(Integer v);
   while(1) {
-    Integer v1 = createInteger(123);
-    String str1 = createString(v1);
+    Integer v1 = Integer::New(123);
+    String str1 = String::New(v1);
     if(!str1->sameAs("123")) {
       TEST_FAIL("BaseTest String construct test17");
       break;
@@ -143,7 +143,7 @@ void basetest() {
     //Integer v2;
     //bool isException = false;
     //try {
-    //    String str2 = createString(v2);
+    //    String str2 = String::New(v2);
     //} catch(InitializeException e) {
     //    isException = true;
     //}
@@ -158,15 +158,15 @@ void basetest() {
 
   //_String::_String(Boolean v)
   while(1) {
-    Boolean v1 = createBoolean(true);
-    String str1 = createString(v1);
+    Boolean v1 = Boolean::New(true);
+    String str1 = String::New(v1);
     if(!str1->sameAs("true")) {
       TEST_FAIL("BaseTest String construct test19");
       break;
     }
 
-    Boolean v2 = createBoolean(false);
-    String str2 = createString(v2);
+    Boolean v2 = Boolean::New(false);
+    String str2 = String::New(v2);
     if(!str2->sameAs("false")) {
       TEST_FAIL("BaseTest String construct test20");
       break;
@@ -175,7 +175,7 @@ void basetest() {
     //Boolean v3;
     //bool isException = false;
     //try {
-    //    String str3 = createString(v3);
+    //    String str3 = String::New(v3);
     //}catch(InitializeException e) {
     //    isException = true;
     //}
@@ -191,15 +191,15 @@ void basetest() {
 
   //_String(Float v);
   while(1) {
-    Float v1 = createFloat(1.2f);
-    String str1 = createString(v1);
+    Float v1 = Float::New(1.2f);
+    String str1 = String::New(v1);
     if(!str1->contains("1.2")) {
       TEST_FAIL("BaseTest String construct test23");
       break;
     }
 
-    Float v2 = createFloat(1.3f);
-    String str2 = createString(v2);
+    Float v2 = Float::New(1.3f);
+    String str2 = String::New(v2);
     if(!str2->contains("1.")) {
       TEST_FAIL("BaseTest String construct test24");
       break;
@@ -208,7 +208,7 @@ void basetest() {
     //Float v3;
     //bool isException = false;
     //try {
-    //    String str3 = createString(v3);
+    //    String str3 = String::New(v3);
     //}catch(InitializeException e) {
     //    isException = true;
     //}
@@ -224,15 +224,15 @@ void basetest() {
 
   //    _String(Double v);
   while(1) {
-    Double v1 = createDouble(1.2);
-    String str1 = createString(v1,2);
+    Double v1 = Double::New(1.2);
+    String str1 = String::New(v1,2);
     if(!str1->sameAs("1.2")) {
       TEST_FAIL("BaseTest String construct test27");
       break;
     }
 
-    Double v2 = createDouble(1.3);
-    String str2 = createString(v2,2);
+    Double v2 = Double::New(1.3);
+    String str2 = String::New(v2,2);
     if(!str2->sameAs("1.3")) {
       TEST_FAIL("BaseTest String construct test28");
       break;
@@ -242,7 +242,7 @@ void basetest() {
     Double v3;
     bool isException = false;
     try {
-        String str3 = createString(v3);
+        String str3 = String::New(v3);
     }catch(InitializeException e) {
         isException = true;
     }
@@ -258,15 +258,15 @@ void basetest() {
 
   //_String(Long v);
   while(1) {
-    Long v1 = createLong(1234567);
-    String str1 = createString(v1);
+    Long v1 = Long::New(1234567);
+    String str1 = String::New(v1);
     if(!str1->sameAs("1234567")) {
       TEST_FAIL("BaseTest String construct test31");
       break;
     }
 
-    Long v2 = createLong(345678);
-    String str2 = createString(v2);
+    Long v2 = Long::New(345678);
+    String str2 = String::New(v2);
     if(!str2->sameAs("345678")) {
       TEST_FAIL("BaseTest String construct test32");
       break;
@@ -275,7 +275,7 @@ void basetest() {
     Long v3;
     bool isException = false;
     try {
-        String str3 = createString(v3);
+        String str3 = String::New(v3);
     }catch(InitializeException e) {
         isException = true;
     }
@@ -292,7 +292,7 @@ void basetest() {
   //_String(int v);
   while(1) {
     int v = 100;
-    String s = createString(v);
+    String s = String::New(v);
     if(!s->sameAs("100")) {
       TEST_FAIL("BaseTest String construct test35");
       break;
@@ -305,14 +305,14 @@ void basetest() {
   //_String(bool v);
   while(1) {
     bool v = false;
-    String s = createString(v);
+    String s = String::New(v);
     if(!s->sameAs("false")) {
       TEST_FAIL("BaseTest String construct test37");
       break;
     }
 
     bool v2 = true;
-    String s2 = createString(v2);
+    String s2 = String::New(v2);
     if(!s2->sameAs("true")) {
       TEST_FAIL("BaseTest String construct test38");
       break;
@@ -325,7 +325,7 @@ void basetest() {
   //_String(float v);
   while(1) {
     float v = 100.1f;
-    String s = createString(v);
+    String s = String::New(v);
     if(!s->contains("100.")) {
       TEST_FAIL("BaseTest String construct test40");
       break;
@@ -338,7 +338,7 @@ void basetest() {
   //_String(double v);
   while(1) {
     double v = 100.01;
-    String s = createString(v);
+    String s = String::New(v);
     if(!s->sameAs("100.01")) {
       TEST_FAIL("BaseTest String construct test42");
       break;
@@ -351,7 +351,7 @@ void basetest() {
   //_String(long v);
   while(1) {
     long v = 100011;
-    String s = createString(v);
+    String s = String::New(v);
     if(!s->sameAs("100011")) {
       TEST_FAIL("BaseTest String construct test44");
       break;
@@ -363,7 +363,7 @@ void basetest() {
 
   //test replaceAll()
   while(1) {
-      String str = createString("AaAbAc");
+      String str = String::New("AaAbAc");
       String str2 = str->replaceAll("A","t");
       //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
       if(!str2->sameAs("tatbtc")) {
@@ -404,7 +404,7 @@ void basetest() {
 #if 0
     //this case cannot be excuted
     String abc3;
-    ArrayList<String> list3 = createArrayList<String>();
+    ArrayList<String> list3 = ArrayList<String>::New();
     abc3->split("||",list3);
     if(list3->size() != 0) {
       TEST_FAIL("BaseTest String split test4");
@@ -853,15 +853,15 @@ void basetest() {
 
   //    static String valueOf(Integer v);
   while(1) {
-    Integer v1 = createInteger(100);
-    String a1 = createString(v1);
+    Integer v1 = Integer::New(100);
+    String a1 = String::New(v1);
     if(!a1->sameAs("100")) {
       TEST_FAIL("BaseTest String valueOf test1");
       break;
     }
 /*
     Integer v2;
-    String a2 = createString(v2);
+    String a2 = String::New(v2);
     if(a2 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test2");
       break;
@@ -873,22 +873,22 @@ void basetest() {
 
   //    static String valueOf(Boolean v);
   while(1) {
-    Boolean v1 = createBoolean(true);
-    String a1 = createString(v1);
+    Boolean v1 = Boolean::New(true);
+    String a1 = String::New(v1);
     if(!a1->sameAs("true")) {
       TEST_FAIL("BaseTest String valueOf test3");
       break;
     }
 
-    Boolean v2 = createBoolean(false);
-    String a2 = createString(v2);
+    Boolean v2 = Boolean::New(false);
+    String a2 = String::New(v2);
     if(!a2->sameAs("false")) {
       TEST_FAIL("BaseTest String valueOf test4");
       break;
     }
 /*
     Boolean v3;
-    String a3 = createString(v3);
+    String a3 = String::New(v3);
     if(a3 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test5");
       break;
@@ -900,8 +900,8 @@ void basetest() {
 
   //static String valueOf(Double v);
   while(1) {
-    Double v1 = createDouble(100.12345);
-    String a1 = createString(v1,8);
+    Double v1 = Double::New(100.12345);
+    String a1 = String::New(v1,8);
     if(!a1->sameAs("100.12345")) {
       //TODO
       TEST_FAIL("BaseTest String valueOf test7,a1 is %s,expect is %s",
@@ -910,8 +910,8 @@ void basetest() {
     }
 
 
-    Double v2 = createDouble(100.12345);
-    String a2 = createString(v1,5); //(100=>3,12=>2)
+    Double v2 = Double::New(100.12345);
+    String a2 = String::New(v1,5); //(100=>3,12=>2)
     if(!a2->sameAs("100.12")) {
       //TODO
       TEST_FAIL("BaseTest String valueOf test7_1,a2 is %s,expect is %s",
@@ -926,15 +926,15 @@ void basetest() {
 
   //static String valueOf(Float v);
   while(1) {
-    Float v1 = createFloat(100);
-    String a1 = createString(v1,3);
+    Float v1 = Float::New(100);
+    String a1 = String::New(v1,3);
     if(!a1->sameAs("100")) {
       TEST_FAIL("BaseTest String valueOf test10,a1 is %s,expected is %s",a1->toChars(),"100.0");
       break;
     }
 /*
     Float v2;
-    String a2 = createString(v2);
+    String a2 = String::New(v2);
     if(a2 != nullptr) {
       TEST_FAIL("BaseTest String valueOf test11");
       break;
@@ -947,14 +947,14 @@ void basetest() {
   //static String valueOf(int v);
   while(1) {
     int i = -1;
-    String v1 = createString(i);
+    String v1 = String::New(i);
     if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test13");
       break;
     }
 
     int i2 = 10;
-    String v2 = createString(i2);
+    String v2 = String::New(i2);
     if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test14");
       break;
@@ -967,14 +967,14 @@ void basetest() {
   //  static String valueOf(bool v);
   while(1) {
     bool i = false;
-    String v1 = createString(i);
+    String v1 = String::New(i);
     if(!v1->sameAs("false")) {
       TEST_FAIL("BaseTest String valueOf test16");
       break;
     }
 
     bool i2 = true;
-    String v2 = createString(i2);
+    String v2 = String::New(i2);
     if(!v2->sameAs("true")) {
       TEST_FAIL("BaseTest String valueOf test17");
       break;
@@ -987,14 +987,14 @@ void basetest() {
   //  static String valueOf(double v);
   while(1) {
     double i = -1.0;
-    String v1 = createString(i);
+    String v1 = String::New(i);
     if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test19");
       break;
     }
 
     double i2 = 10;
-    String v2 = createString(i2);
+    String v2 = String::New(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test20");
@@ -1008,14 +1008,14 @@ void basetest() {
   //  static String valueOf(float v);
   while(1) {
     float i = -1.0f;
-    String v1 = createString(i);
+    String v1 = String::New(i);
     if(!v1->sameAs("-1")) {
       TEST_FAIL("BaseTest String valueOf test22");
       break;
     }
 
     float i2 = 10;
-    String v2 = createString(i2);
+    String v2 = String::New(i2);
     //TEST_FAIL("BaseTest v2 is %s \n",v2->toChars());
     if(!v2->sameAs("10")) {
       TEST_FAIL("BaseTest String valueOf test23");
@@ -1029,7 +1029,7 @@ void basetest() {
   //  static String valueOf(char *p);
   while(1) {
     const char *p1 = "abc";
-    String s1 = createString(p1);
+    String s1 = String::New(p1);
     if(!s1->sameAs("abc")) {
       TEST_FAIL("BaseTest String valueOf test25");
       break;
@@ -1039,7 +1039,7 @@ void basetest() {
     String s2 = nullptr;
 
     try {
-      s2 = createString(p2);
+      s2 = String::New(p2);
     } catch(...) {}
     
     if(s2 != nullptr) {
@@ -1188,7 +1188,7 @@ void basetest() {
 
   //test replaceFirst()
   while(1) {
-      String str = createString("AaAbAc");
+      String str = String::New("AaAbAc");
       String str2 = str->replaceFirst("A","t");
       //TEST_FAIL("BaseTest after replace is %s \n",str2->toChars());
       if(!str2->sameAs("taAbAc")) {
@@ -1203,7 +1203,7 @@ void basetest() {
 
   //test equalsIgnoreCase()
   while(1) {
-      String str = createString("AaAbAc");
+      String str = String::New("AaAbAc");
       if(!str->equalsIgnoreCase("aaabAC")) {
         TEST_FAIL("BaseTest String equalsIgnoreCase test1");
         break;
@@ -1221,8 +1221,8 @@ void basetest() {
 
   //int indexOfIgnoreCase(String str);
   while(1) {
-     String str1 = createString("aabbccdd");
-     String str2 = createString("AA");
+     String str1 = String::New("aabbccdd");
+     String str2 = String::New("AA");
      if(str1->indexOfIgnoreCase(str2) != 0) {
        TEST_FAIL("BaseTest String indexOfIgnoreCase test1");
        break;
@@ -1240,7 +1240,7 @@ void basetest() {
 
   //containsIgnoreCase
   while(1) {
-      String str = createString("AaAbAc");
+      String str = String::New("AaAbAc");
       if(!str->containsIgnoreCase("ab")) {
         TEST_FAIL("BaseTest String containsIgnoreCase test1");
         break;

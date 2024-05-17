@@ -14,7 +14,7 @@
 using namespace obotcha;
 
 
-CountDownLatch latch = createCountDownLatch(128);
+CountDownLatch latch = CountDownLatch::New(128);
 long array[128] = {0};
 
 DECLARE_CLASS(MyListener) IMPLEMENTS(SocketListener) {
@@ -28,7 +28,7 @@ public:
       case st(Net)::Event::Message: {
         //printf("i get a message ,data is %s,fd is %d\n",data->toString()->toChars(),s->getFileDescriptor()->getFd());
         array[index] += data->toString()->toBasicLong();
-        s->getOutputStream()->write(createString("abc")->toByteArray());
+        s->getOutputStream()->write(String::New("abc")->toByteArray());
       }
       break;
 
@@ -45,7 +45,7 @@ private:
 
 
 int main() {
-    SocketMonitor monitor = createSocketMonitor();
+    SocketMonitor monitor = SocketMonitor::New();
     long sum = 0;
     for(int i = 0;i<1024*32;i++) {
       sum+=i;
@@ -53,14 +53,14 @@ int main() {
 
     int port = getEnvPort();
     for(int i = 0;i<128;i++) {
-      InetAddress addr = createInet6Address(port);
-      Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+      InetAddress addr = Inet6Address::New(port);
+      Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
       if(client->connect() != 0) {
         TEST_FAIL("TestTcpSocket case3_simple_multi_test case1,i is %d\n",i);
         return 1;
       }
       array[i] = 0;
-      monitor->bind(client,createMyListener(i));
+      monitor->bind(client,MyListener::New(i));
     }
     
     latch->await();

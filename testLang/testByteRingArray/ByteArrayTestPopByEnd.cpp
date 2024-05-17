@@ -16,23 +16,23 @@ void testPopTo() {
     while(1) {
 
         //case1
-        ByteRingArray array = createByteRingArray(5);
+        ByteRingArray array = ByteRingArray::New(5);
         array->push(1);
         array->push(2);
         array->push(3);
         array->push(4);
         array->push(5);
 
-        ByteRingArray data1 = createByteRingArray(array);
+        ByteRingArray data1 = ByteRingArray::New(array);
         data1->setEndIndex(0);
         data1->setSize(5);
 
-        ByteRingArray arr1 = createByteRingArray(data1);
+        ByteRingArray arr1 = ByteRingArray::New(data1);
 
         //
         ByteArray result = arr1->popTo(0);
         if(result->size() != 1) {
-            TEST_FAIL("[ByteRingArray Test popTo case1],size is %d",result->size());
+            TEST_FAIL("[ByteRingArray Test popTo case1]");
             break;
         }
 
@@ -41,7 +41,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(1);
         if(result->size() != 2) {
             TEST_FAIL("[ByteRingArray Test popTo case3]");
@@ -53,7 +53,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(2);
         if(result->size() != 3) {
             TEST_FAIL("[ByteRingArray Test popTo case5]");
@@ -65,7 +65,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(3);
         if(result->size() != 4) {
             TEST_FAIL("[ByteRingArray Test popTo case7]");
@@ -77,7 +77,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(4);
         if(result->size() != 5) {
             TEST_FAIL("[ByteRingArray Test popTo case9]");
@@ -92,7 +92,7 @@ void testPopTo() {
         //
         data1->setEndIndex(1);
         data1->setSize(5);
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
 
         result = arr1->popTo(1);
         if(result->size() != 1) {
@@ -105,7 +105,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(2);
         if(result->size() != 2) {
             TEST_FAIL("[ByteRingArray Test popTo case13]");
@@ -117,7 +117,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(3);
         if(result->size() != 3) {
             TEST_FAIL("[ByteRingArray Test popTo case15]");
@@ -129,7 +129,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(4);
         if(result->size() != 4) {
             TEST_FAIL("[ByteRingArray Test popTo case17]");
@@ -141,7 +141,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(0);
         if(result->size() != 5) {
             TEST_FAIL("[ByteRingArray Test popTo case19]");
@@ -156,7 +156,7 @@ void testPopTo() {
         //
         data1->setEndIndex(2);
         data1->setSize(5);
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
 
         result = arr1->popTo(2);
         if(result->size() != 1) {
@@ -169,7 +169,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(3);
         if(result->size() != 2) {
             TEST_FAIL("[ByteRingArray Test popTo case23]");
@@ -181,7 +181,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(4);
         if(result->size() != 3) {
             TEST_FAIL("[ByteRingArray Test popTo case25]");
@@ -193,7 +193,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(0);
         if(result->size() != 4) {
             TEST_FAIL("[ByteRingArray Test popTo case27]");
@@ -205,7 +205,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(1);
         if(result->size() != 5) {
             TEST_FAIL("[ByteRingArray Test popTo case29]");
@@ -220,7 +220,7 @@ void testPopTo() {
         //
         data1->setEndIndex(3);
         data1->setSize(5);
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
 
         result = arr1->popTo(3);
         if(result->size() != 1) {
@@ -233,7 +233,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(4);
         if(result->size() != 2) {
             TEST_FAIL("[ByteRingArray Test popTo case33]");
@@ -245,7 +245,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(0);
         if(result->size() != 3) {
             TEST_FAIL("[ByteRingArray Test popTo case35]");
@@ -257,7 +257,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(1);
         if(result->size() != 4) {
             TEST_FAIL("[ByteRingArray Test popTo case37]");
@@ -269,7 +269,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(2);
         if(result->size() != 5) {
             TEST_FAIL("[ByteRingArray Test popTo case39]");
@@ -284,7 +284,7 @@ void testPopTo() {
         //
         data1->setEndIndex(4);
         data1->setSize(5);
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
 
         result = arr1->popTo(4);
         if(result->size() != 1) {
@@ -297,7 +297,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(0);
         if(result->size() != 2) {
             TEST_FAIL("[ByteRingArray Test popTo case53]");
@@ -309,7 +309,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(1);
         if(result->size() != 3) {
             TEST_FAIL("[ByteRingArray Test popTo case55]");
@@ -321,7 +321,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(2);
         if(result->size() != 4) {
             TEST_FAIL("[ByteRingArray Test popTo case57]");
@@ -333,7 +333,7 @@ void testPopTo() {
             break;
         }
 
-        arr1 = createByteRingArray(data1);
+        arr1 = ByteRingArray::New(data1);
         result = arr1->popTo(3);
         if(result->size() != 5) {
             TEST_FAIL("[ByteRingArray Test popTo case59]");

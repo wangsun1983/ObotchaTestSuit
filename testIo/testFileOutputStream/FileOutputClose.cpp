@@ -13,12 +13,12 @@ using namespace obotcha;
 void fileoutput_close_test() {
 
     while(1) {
-        File file = createFile("./tmp/output_close_test.txt");
+        File file = File::New("./tmp/output_close_test.txt");
         file->createNewFile();
 
-        FileDescriptor fd = createFileDescriptor(open("./tmp/output_close_test.txt",O_WRONLY));
+        FileDescriptor fd = FileDescriptor::New(open("./tmp/output_close_test.txt",O_WRONLY));
         {
-          FileOutputStream stream = createFileOutputStream(fd);
+          FileOutputStream stream = FileOutputStream::New(fd);
         }
 
         byte buf[2] = {0x1,0x2};
@@ -33,11 +33,11 @@ void fileoutput_close_test() {
     }
 
     while(1) {
-        File file = createFile("./tmp/output_close_test.txt");
+        File file = File::New("./tmp/output_close_test.txt");
         file->createNewFile();
 
-        FileDescriptor fd = createFileDescriptor(open("./tmp/output_close_test.txt",O_RDONLY));
-        FileOutputStream stream = createFileOutputStream(fd);
+        FileDescriptor fd = FileDescriptor::New(open("./tmp/output_close_test.txt",O_RDONLY));
+        FileOutputStream stream = FileOutputStream::New(fd);
         stream->close();
 
         byte buf[2] = {0x1,0x2};

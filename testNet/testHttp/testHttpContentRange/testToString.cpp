@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testToString() {
   while(1) {
-    HttpHeaderContentRange range = createHttpHeaderContentRange();
+    HttpHeaderContentRange range = HttpHeaderContentRange::New();
     range->load("bytes 200-1000/67589");
     if(!range->toString()->sameAs("bytes 200-1000/67589")) {
       TEST_FAIL("[HttpHeaderContentRange test toSring case1] range is %s",range->toString()->toChars());
@@ -23,8 +23,8 @@ void testToString() {
   }
   
   while(1) {
-    HttpHeader header = createHttpHeader();
-    HttpHeaderContentRange range_0 = createHttpHeaderContentRange();
+    HttpHeader header = HttpHeader::New();
+    HttpHeaderContentRange range_0 = HttpHeaderContentRange::New();
     range_0->load("bytes 200-1000/67589");
     
     header->setContentRange(range_0);

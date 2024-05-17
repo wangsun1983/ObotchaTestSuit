@@ -15,17 +15,17 @@ using namespace obotcha;
 void testShareMemoryReadWrite() {
 	while(1) {
 		st(ShareMemory)::Create("trdwr",12);
-		auto sharemem = createShareMemory("trdwr",12,st(ShareMemory)::Type::WriteRead);
-		ByteArray data = createString("hello")->toByteArray();
+		auto sharemem = ShareMemory::New("trdwr",12,st(ShareMemory)::Type::WriteRead);
+		ByteArray data = String::New("hello")->toByteArray();
 		sharemem->write(data);
 		
-		auto sharemem1 = createShareMemory("trdwr",12,st(ShareMemory)::Type::Read);
-		ByteArray d1 = createByteArray(12);
+		auto sharemem1 = ShareMemory::New("trdwr",12,st(ShareMemory)::Type::Read);
+		ByteArray d1 = ByteArray::New(12);
 		sharemem1->read(d1);
 		sharemem1->close();
 		
-		auto sharemem2 = createShareMemory("trdwr",12,st(ShareMemory)::Type::Read);
-		ByteArray d2 = createByteArray(12);
+		auto sharemem2 = ShareMemory::New("trdwr",12,st(ShareMemory)::Type::Read);
+		ByteArray d2 = ByteArray::New(12);
 		sharemem2->read(d2);
 		
 		if(!d1->toString()->sameAs("hello")) {

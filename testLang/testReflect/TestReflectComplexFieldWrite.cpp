@@ -48,7 +48,7 @@ public:
 void testReflectComplexFieldWrite() {
     //test1
     while(1) {
-      MyData6 data = createMyData6();
+      MyData6 data = MyData6::New();
       Object _data = data->getField("data1")->createObject();
       Object data1 = _data->getField("complexMember1")->createObject();
       Field f = data1->getField("intData");
@@ -67,7 +67,7 @@ void testReflectComplexFieldWrite() {
       f->setValue(3);
 
       f = data1->getField("stringData");
-      f->setValue(createString("a"));
+      f->setValue(String::New("a"));
 
       f = data1->getField("uint8Data");
       f->setValue(4);

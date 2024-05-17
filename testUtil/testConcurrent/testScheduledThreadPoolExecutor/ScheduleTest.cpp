@@ -49,10 +49,10 @@ int scheduleTest() {
     //TEST_FAIL("[TestScheduledThreadPoolExecutor Test Start] \n");
     //schedule test
     while(1) {
-        ThreadScheduledPoolExecutor pool = createExecutorBuilder()->newScheduledThreadPool();
+        ThreadScheduledPoolExecutor pool = ExecutorBuilder::New()->newScheduledThreadPool();
         long current = st(System)::CurrentTimeMillis();
-        pool->schedule(5000,createScheduleRunTest1());
-        pool->schedule(5000,createScheduleRunTest2());
+        pool->schedule(5000,ScheduleRunTest1::New());
+        pool->schedule(5000,ScheduleRunTest2::New());
         sleep(15);
         long v = (RunTestTime1 - RunTestTime2);
         if(v > 50 || v < -50) {

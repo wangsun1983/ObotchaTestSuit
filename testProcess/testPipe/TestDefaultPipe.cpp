@@ -23,17 +23,17 @@ int testDefaultPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = createPipe();
+  Pipe pp = Pipe::New();
   
 
   int pid = fork();
   if(pid == 0) {
      //child process
-     ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+     ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
      pp->write(array);
      exit(0);
   } else {
-     ByteArray array = createByteArray(testDatalength);
+     ByteArray array = ByteArray::New(testDatalength);
      int length = pp->read(array);
 
      if(length < testDatalength) {
@@ -52,17 +52,17 @@ int testDefaultPipe() {
    TEST_OK("[Pipe Test {default write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = createPipe();
+   Pipe pp2 = Pipe::New();
    pid = fork();
    if(pid == 0) {
       //child process
       pp2->closeReadChannel();
-      ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+      ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
       pp2->write(array);
       exit(0);
    } else {
       pp2->closeWriteChannel();
-      ByteArray array = createByteArray(testDatalength);
+      ByteArray array = ByteArray::New(testDatalength);
       int length = pp2->read(array);
       if(length < testDatalength) {
           TEST_FAIL("[Pipe Test {default closePipe()} case1],length is %d,testDatalength is %d,error is %s",
@@ -83,13 +83,13 @@ int testDefaultPipe() {
     TEST_OK("[Pipe Test {default closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = createPipe();
+    Pipe pp3 = Pipe::New();
 
     pid = fork();
     if(pid == 0) {
        //child process
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray(testDatalength);
+       ByteArray array = ByteArray::New(testDatalength);
        int length = pp3->read(array);
        if(length > 0) {
            TEST_FAIL("[Pipe Test {default closePipe()} case4]");
@@ -97,7 +97,7 @@ int testDefaultPipe() {
        exit(0);
     } else {
        pp3->closeWriteChannel();
-       ByteArray array = createByteArray((byte *)&testData[0],testDatalength);
+       ByteArray array = ByteArray::New((byte *)&testData[0],testDatalength);
        int result = pp3->write(array);
        if(result >= 0) {
            TEST_FAIL("[Pipe Test {default closePipe()} case5]");

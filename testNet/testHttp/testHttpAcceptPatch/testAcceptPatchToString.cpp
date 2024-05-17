@@ -13,7 +13,7 @@ using namespace obotcha;
 
 void testPatchToString() {
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("application/example,text/example");
     if(!encoding1->toString()->sameAs("application/example,text/example")) {
       TEST_FAIL("[HttpHeaderAcceptPatch test Parse case1]");
@@ -22,7 +22,7 @@ void testPatchToString() {
   }
 
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("text/example;charset=utf-8");
     if(!encoding1->toString()->sameAs("text/example;charset=utf-8")) {
       TEST_FAIL("[HttpHeaderAcceptPatch test Parse case2]");
@@ -32,7 +32,7 @@ void testPatchToString() {
   }
 
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("application/merge-patch+json");
     if(!encoding1->toString()->sameAs("application/merge-patch+json")) {
       TEST_FAIL("[HttpHeaderAcceptPatch test Parse case3]");
@@ -41,9 +41,9 @@ void testPatchToString() {
   }
   
   while(1) {
-    HttpHeaderAcceptPatch encoding1 = createHttpHeaderAcceptPatch();
+    HttpHeaderAcceptPatch encoding1 = HttpHeaderAcceptPatch::New();
     encoding1->load("application/merge-patch+json");
-    HttpHeader header = createHttpHeader();
+    HttpHeader header = HttpHeader::New();
     header->setAcceptPatch(encoding1);
     
     auto encoding2 = header->getAcceptPatch();
