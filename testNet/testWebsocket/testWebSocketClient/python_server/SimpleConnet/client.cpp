@@ -58,10 +58,14 @@ int main() {
     WebSocketClient client = WebSocketClient::New();
     int port = getEnvPort();
     String url = String::New("ws://127.0.0.1:")->append(String::New(port));
+    printf("trace1 \n");
     client->connect(url,l);
+    printf("trace2 \n");
     client->sendTextMessage(String::New("hello server"));
+    printf("trace3 \n");
     latch->await();
     port++;
     setEnvPort(port);
+    client->close();
     TEST_OK("WebSocketClient SimpleConnect case100");
 }

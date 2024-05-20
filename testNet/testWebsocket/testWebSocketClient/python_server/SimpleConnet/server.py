@@ -12,6 +12,8 @@ class WSserver():
       recv_msg = await websocket.recv()
       if recv_msg == "hello server":
         await websocket.send('i am server')
+
+      await websocket.close()
       sys.exit(0)
 
     def run(self):

@@ -11,7 +11,7 @@ using namespace obotcha;
 
 void testSetNextIndex() {
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
+        ByteRingArray array1 = ByteRingArray::New(5);
         array1->setNextIndex(1);
         array1->setStartIndex(0);
         if(array1->getStoredDataSize() != 1) {
@@ -39,7 +39,7 @@ void testSetNextIndex() {
     }
     
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
+        ByteRingArray array1 = ByteRingArray::New(5);
         array1->setNextIndex(1);
         array1->setStartIndex(2);
         if(array1->getStoredDataSize() != 4) {
@@ -64,7 +64,7 @@ void testSetNextIndex() {
     }
     
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
+        ByteRingArray array1 = ByteRingArray::New(5);
         array1->setNextIndex(2);
         array1->setStartIndex(3);
         if(array1->getStoredDataSize() != 4) {

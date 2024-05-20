@@ -29,12 +29,12 @@ public:
 void testOperatorEqual() {
   //test null compare
   while(1) {
-	TestEqualData d1 = createTestEqualData();
+	TestEqualData d1 = TestEqualData::New();
 	if(d1 == nullptr) {
 		TEST_FAIL("StrongPointer operator equal case1");
 	}
 	
-	TestEqualData d2 = createTestEqualData();
+	TestEqualData d2 = TestEqualData::New();
 	TestEqualData d3;
 	if(d2 == d3 || d3 == d2) {
 		TEST_FAIL("StrongPointer operator equal case2");
@@ -53,10 +53,10 @@ void testOperatorEqual() {
   }
   
   while(1) {
-	  TestEqualData1 d1 = createTestEqualData1();
+	  TestEqualData1 d1 = TestEqualData1::New();
 	  d1->v = 1123;
 	  
-	  TestEqualData1 d2 = createTestEqualData1();
+	  TestEqualData1 d2 = TestEqualData1::New();
 	  d2->v = 1123;
 	  
 	  if(d1 != d2 || d2 != d1) {

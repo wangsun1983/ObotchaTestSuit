@@ -31,6 +31,8 @@ def scan_items(path):
         
         folder = Path(path + "/" + filename)
         if folder.is_dir():
+            if path.find("skip") > 0:
+                return
             scan_items(path+"/" + filename)
 
 def prepare_port_record_file():

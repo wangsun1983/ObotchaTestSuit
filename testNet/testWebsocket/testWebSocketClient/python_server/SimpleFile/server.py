@@ -17,6 +17,8 @@ class WSserver():
               fo.write(recv_msg)                
           except:
               sys.exit(0)
+              
+      await websocket.close()
       sys.exit(0)
 
     def run(self):

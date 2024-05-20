@@ -14,9 +14,12 @@ class WSserver():
                   recv_msg = await websocket.recv()
                   print("i accept a message:",recv_msg)
               except:
+                  print("exit")
+                  await websocket.close()
+                  #break
                   sys.exit(0)
             
-      
+        #await websocket.close()
 
     def run(self):
       self.port = getEnvPort()

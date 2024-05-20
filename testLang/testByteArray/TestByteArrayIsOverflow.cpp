@@ -14,7 +14,7 @@
 using namespace obotcha;
 
 void testByteArrayIsOverFlow() {
-  ByteArray data = createByteArray(3);
+  ByteArray data = ByteArray::New(3);
   
   //start 0
   if(data->isOverflow(0,1)) {

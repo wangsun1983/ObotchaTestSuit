@@ -11,8 +11,8 @@ using namespace obotcha;
 
 void testSetStartIndex() {
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
-        array1->push(createByteArray(3));
+        ByteRingArray array1 = ByteRingArray::New(5);
+        array1->push(ByteArray::New(3));
         if(array1->getStoredDataSize() != 3) {
             TEST_FAIL("ByteRingArray,setStartIndex case1");
         }
@@ -35,8 +35,8 @@ void testSetStartIndex() {
     }
     
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
-        array1->push(createByteArray(2));
+        ByteRingArray array1 = ByteRingArray::New(5);
+        array1->push(ByteArray::New(2));
         if(array1->getStoredDataSize() != 2) {
             TEST_FAIL("ByteRingArray,setStartIndex case1");
         }
@@ -59,8 +59,8 @@ void testSetStartIndex() {
     }
     
     while(1) {
-        ByteRingArray array1 = createByteRingArray(5);
-        array1->push(createByteArray(1));
+        ByteRingArray array1 = ByteRingArray::New(5);
+        array1->push(ByteArray::New(1));
         if(array1->getStoredDataSize() != 1) {
             TEST_FAIL("ByteRingArray,setStartIndex case8");
         }

@@ -10,6 +10,8 @@ from NetPort import setEnvPort
 class WSserver():
     async def handle(self,websocket,path):
       print("i accept a message:",websocket)
+
+      await websocket.close()
       sys.exit(0)
 
     def run(self):

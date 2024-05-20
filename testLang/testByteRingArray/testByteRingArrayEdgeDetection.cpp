@@ -11,8 +11,8 @@ using namespace obotcha;
 
 void testBytRingArrayEdgeDetection() {
     while(1) {
-        ByteRingArray array = createByteRingArray(5);
-        ByteArray data1 = createByteArray(3);
+        ByteRingArray array = ByteRingArray::New(5);
+        ByteArray data1 = ByteArray::New(3);
         
         try {
             array->push(data1,1,3);
@@ -23,11 +23,11 @@ void testBytRingArrayEdgeDetection() {
     }
     
     while(1) {
-        ByteRingArray array = createByteRingArray(5);
+        ByteRingArray array = ByteRingArray::New(5);
         array->setStartIndex(2);
         array->setSize(0);
         
-        auto data1 = createByteArray(5);
+        auto data1 = ByteArray::New(5);
         try {
             array->push(data1);
         } catch(...) {
@@ -37,18 +37,18 @@ void testBytRingArrayEdgeDetection() {
     }
     
     while(1) {
-        ByteRingArray array = createByteRingArray(5);
+        ByteRingArray array = ByteRingArray::New(5);
         array->setStartIndex(2);
         array->setSize(1);
         
-        auto data1 = createByteArray(5);
+        auto data1 = ByteArray::New(5);
         try {
             array->push(data1);
             TEST_FAIL("[ByteRingArray Test Edge detection case3");
         } catch(...) {
         }
         
-        data1 = createByteArray(4);
+        data1 = ByteArray::New(4);
         try {
             array->push(data1);
         } catch(...) {
@@ -56,7 +56,7 @@ void testBytRingArrayEdgeDetection() {
         }
         array->setSize(1);
         
-        data1 = createByteArray(3);
+        data1 = ByteArray::New(3);
         try {
             array->push(data1);
         } catch(...) {
@@ -64,7 +64,7 @@ void testBytRingArrayEdgeDetection() {
         }
         array->setSize(1);
         
-        data1 = createByteArray(2);
+        data1 = ByteArray::New(2);
         try {
             array->push(data1);
         } catch(...) {
@@ -72,7 +72,7 @@ void testBytRingArrayEdgeDetection() {
         }
         array->setSize(1);
         
-        data1 = createByteArray(1);
+        data1 = ByteArray::New(1);
         try {
             array->push(data1);
         } catch(...) {

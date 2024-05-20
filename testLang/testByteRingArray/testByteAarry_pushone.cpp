@@ -10,13 +10,13 @@
 using namespace obotcha;
 
 void testByteRingArrayPushOne() {
-    ByteRingArray data1 = createByteRingArray(5);
+    ByteRingArray data1 = ByteRingArray::New(5);
     data1->setEndIndex(0);
     data1->setSize(5);
     printf("start is %d \n",data1->getStartIndex());
   
     while(1) {
-        ByteRingArray array = createByteRingArray(3);
+        ByteRingArray array = ByteRingArray::New(3);
         array->push(1);
         printf("array start is %d,next is %d \n",array->getStartIndex(),array->getNextIndex());
         array->push(2);

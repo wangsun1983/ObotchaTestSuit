@@ -18,7 +18,7 @@ using namespace obotcha;
 void testByteArrayslice() {
 
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -40,7 +40,7 @@ void testByteArrayslice() {
         TEST_FAIL("testByteArrayslice case3");
       }
       
-      ByteArray data2 = createByteArray(data1);
+      ByteArray data2 = ByteArray::New(data1);
       if(data2->size() != 2) {
         TEST_FAIL("testByteArrayslice case4");
       }
@@ -76,7 +76,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -102,7 +102,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -124,7 +124,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -149,7 +149,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -173,7 +173,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -194,7 +194,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(6);
+      ByteArray data1 = ByteArray::New(6);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -216,7 +216,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -235,7 +235,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -255,7 +255,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -279,7 +279,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -306,14 +306,14 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
       data1[3] = 0x13;
       data1[4] = 0x14;
       
-      ByteArray data2 = createByteArray(5);
+      ByteArray data2 = ByteArray::New(5);
       data2[0] = 0x20;
       data2[1] = 0x21;
       data2[2] = 0x22;
@@ -342,14 +342,14 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
       data1[3] = 0x13;
       data1[4] = 0x14;
       
-      ByteArray data2 = createByteArray(5);
+      ByteArray data2 = ByteArray::New(5);
       data2[0] = 0x20;
       data2[1] = 0x21;
       data2[2] = 0x22;
@@ -382,14 +382,14 @@ void testByteArrayslice() {
   }
 
   while(1) {
-    ByteArray data1 = createByteArray(5);
+    ByteArray data1 = ByteArray::New(5);
     data1[0] = 0x10;
     data1[1] = 0x11;
     data1[2] = 0x12;
     data1[3] = 0x13;
     data1[4] = 0x14;
     
-    ByteArray data2 = createByteArray(5);
+    ByteArray data2 = ByteArray::New(5);
     data2[0] = 0x20;
     data2[1] = 0x21;
     data2[2] = 0x22;
@@ -422,14 +422,14 @@ void testByteArrayslice() {
   }
   
   while(1) {
-    ByteArray data1 = createByteArray(1);
+    ByteArray data1 = ByteArray::New(1);
     data1[0] = 0x11;
     data1->slice(0,1);
     if(data1->size() != 1) {
         TEST_FAIL("testByteArrayslice case32");    
     }
     
-    ByteArray data2 = createByteArray(1);
+    ByteArray data2 = ByteArray::New(1);
     data2[0] = 0x21;
     data2->slice(0,1);
     auto data1_p = data1.get_pointer();
@@ -450,7 +450,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -471,7 +471,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -499,7 +499,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 'a';
       data1[1] = 'b';
       data1[2] = 'c';
@@ -522,14 +522,14 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
       data1[3] = 0x13;
       data1[4] = 0x14;
       
-      ByteArray data2 = createByteArray(5);
+      ByteArray data2 = ByteArray::New(5);
       data2[0] = 0x20;
       data2[1] = 0x21;
       data2[2] = 0x22;
@@ -552,14 +552,14 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
       data1[3] = 0x13;
       data1[4] = 0x14;
       
-      ByteArray data2 = createByteArray(5);
+      ByteArray data2 = ByteArray::New(5);
       data2[0] = 0x10;
       data2[1] = 0x11;
       data2[2] = 0x12;
@@ -586,7 +586,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -606,7 +606,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -628,7 +628,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -661,7 +661,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -675,7 +675,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -694,7 +694,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -709,7 +709,7 @@ void testByteArrayslice() {
   }
   
   while(1) {
-      ByteArray data1 = createByteArray(5);
+      ByteArray data1 = ByteArray::New(5);
       data1[0] = 0x10;
       data1[1] = 0x11;
       data1[2] = 0x12;
@@ -717,7 +717,7 @@ void testByteArrayslice() {
       data1[4] = 0x14;
       
       data1->slice(1,2);
-      ByteArray data2 = createByteArray(data1->toValue(),data1->size());
+      ByteArray data2 = ByteArray::New(data1->toValue(),data1->size());
       
       if(data2->size() != 2) {
           TEST_FAIL("testByteArrayslice case62");
