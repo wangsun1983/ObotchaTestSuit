@@ -23,7 +23,7 @@ int testNoBlockPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = Pipe::New(st(Pipe)::NonBlock);
+  Pipe pp = Pipe::New(st(IO)::FileControlFlags::NonBlock);
   
   int pid = fork();
   if(pid == 0) {
@@ -52,7 +52,7 @@ int testNoBlockPipe() {
    TEST_OK("[Pipe Test {noblock write/read()} case3]");
 
 
-   Pipe pp1_1 = Pipe::New(st(Pipe)::NonBlock);
+   Pipe pp1_1 = Pipe::New(st(IO)::FileControlFlags::NonBlock);
 
    pid = fork();
    if(pid == 0) {
@@ -74,7 +74,7 @@ int testNoBlockPipe() {
 
 
    //int closePipe(PipeType type);
-   Pipe pp2 = Pipe::New(st(Pipe)::NonBlock);
+   Pipe pp2 = Pipe::New(st(IO)::FileControlFlags::NonBlock);
    
 
    pid = fork();
@@ -106,7 +106,7 @@ int testNoBlockPipe() {
     TEST_OK("[Pipe Test {noblock closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = Pipe::New(st(Pipe)::NonBlock);
+    Pipe pp3 = Pipe::New(st(IO)::FileControlFlags::NonBlock);
 
     pid = fork();
     if(pid == 0) {
@@ -128,5 +128,5 @@ int testNoBlockPipe() {
      }
 
      TEST_OK("[Pipe Test {noblock closePipe()} case6]");
-
+    return 0;
 }

@@ -26,23 +26,23 @@ public:
 void testWriteFile() {
     //prepare data
     while(1) {
-        File file = createFile("./tmp/testdata3.txt");
+        File file = File::New("./tmp/testdata3.txt");
         file->removeAll();
         if(!file->exists()) {
             file->createNewFile();
-            FileOutputStream stream = createFileOutputStream(file);
+            FileOutputStream stream = FileOutputStream::New(file);
             stream->open(st(IO)::FileControlFlags::Trunc);
-            stream->write(createString("hello world,this is a test data.")->toByteArray());
+            stream->write(String::New("hello world,this is a test data.")->toByteArray());
             stream->close();
         }
           
-        FileWatcher watcher = createFileWatcher();
-        File f = createFile("./tmp/testdata3.txt");
-        FileOutputStream stream = createFileOutputStream(f);
+        FileWatcher watcher = FileWatcher::New();
+        File f = File::New("./tmp/testdata3.txt");
+        FileOutputStream stream = FileOutputStream::New(f);
         stream->open();
-        int id = watcher->startWatch("./tmp/testdata3.txt",st(FileWatcher)::Full,createWriteWatcher());
+        int id = watcher->startWatch("./tmp/testdata3.txt",st(FileWatcher)::Full,WriteWatcher::New());
         usleep(1000*100);
-        stream->write(createString("abc")->toByteArray());
+        stream->write(String::New("abc")->toByteArray());
         stream->flush();
         usleep(1000*200);
         

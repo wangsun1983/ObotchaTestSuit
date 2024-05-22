@@ -23,7 +23,7 @@ int testDirectPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = Pipe::New(st(Pipe)::Direct);
+  Pipe pp = Pipe::New(st(IO)::FileControlFlags::Direct);
   
 
   int pid = fork();
@@ -52,7 +52,7 @@ int testDirectPipe() {
    TEST_OK("[Pipe Test {direct write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = Pipe::New(st(Pipe)::Direct);
+   Pipe pp2 = Pipe::New(st(IO)::FileControlFlags::Direct);
    
 
    pid = fork();
@@ -83,7 +83,7 @@ int testDirectPipe() {
     TEST_OK("[Pipe Test {direct closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = Pipe::New(st(Pipe)::Direct);
+    Pipe pp3 = Pipe::New(st(IO)::FileControlFlags::Direct);
     
 
     pid = fork();
@@ -106,5 +106,5 @@ int testDirectPipe() {
      }
 
      TEST_OK("[Pipe Test {direct closePipe()} case6]");
-
+    return 0;
 }

@@ -19,12 +19,12 @@
 
 using namespace obotcha;
 
-CountDownLatch latch = createCountDownLatch(1);
+CountDownLatch latch = CountDownLatch::New(1);
 
 DECLARE_CLASS(MyHandler) IMPLEMENTS(Handler) {
 public:
     void handleMessage(Message msg) {
-        File f = createFile("./tmp/file");
+        File f = File::New("./tmp/file");
         if(f->length() != filesize) {
             filesize = f->length();
             this->sendEmptyMessageDelayed(0,1000*5);
@@ -49,9 +49,9 @@ DECLARE_CLASS(ServerListener) IMPLEMENTS(SocketListener) {
 
 public:
   _ServerListener() {
-    File f = createFile("./tmp/file");
+    File f = File::New("./tmp/file");
     f->removeAll();
-    stream = createFileOutputStream("./tmp/file");
+    stream = FileOutputStream::New("./tmp/file");
     stream->open(O_APPEND);
   }
   
@@ -70,42 +70,42 @@ private:
 
 int main() {
     //create socket server
-    createSampleFile(createFile("./tmp/testdata"),1024*1024*16);
-    MyHandler h = createMyHandler();
+    createSampleFile(File::New("./tmp/testdata"),1024*1024*16);
+    MyHandler h = MyHandler::New();
     h->sendEmptyMessageDelayed(0,1000*5);
     int port = getEnvPort();
-    InetAddress addr = createInet4Address(port);
-    ServerSocket sock = createSocketBuilder()->setAddress(addr)->newServerSocket();
+    InetAddress addr = Inet4Address::New(port);
+    ServerSocket sock = SocketBuilder::New()->setAddress(addr)->newServerSocket();
     int result = sock->bind();
-    SocketMonitor monitor = createSocketMonitor();
-    ServerListener l = createServerListener();
+    SocketMonitor monitor = SocketMonitor::New();
+    ServerListener l = ServerListener::New();
     monitor->bind(sock,l);
     
     
-    addr = createInet4Address(port);
-    Socket client = createSocketBuilder()->setAddress(addr)->newSocket();
+    addr = Inet4Address::New(port);
+    Socket client = SocketBuilder::New()->setAddress(addr)->newSocket();
     client->connect();
     
-    Socket client2 = createSocketBuilder()->setAddress(addr)->newSocket();
+    Socket client2 = SocketBuilder::New()->setAddress(addr)->newSocket();
     client2->connect();
     
-    auto pool1 = createAsyncOutputChannelPool();
+    auto pool1 = AsyncOutputChannelPool::New();
     auto outputstream = client->getOutputStream();
     auto socketoutput = Cast<SocketOutputStream>(outputstream);
-    auto channel1 = pool1->createChannel(client->getFileDescriptor(),socketoutput->getSocket());
+    auto channel1 = st(AsyncOutputChannelPool)::CreateChannel(client->getFileDescriptor(),socketoutput->getSocket());
     
-    auto pool2 = createAsyncOutputChannelPool();
+    auto pool2 = AsyncOutputChannelPool::New();
     auto outputstream2 = client2->getOutputStream();
     auto socketoutput2 = Cast<SocketOutputStream>(outputstream2);
-    auto channel2 = pool1->createChannel(client2->getFileDescriptor(),socketoutput->getSocket());
+    auto channel2 = st(AsyncOutputChannelPool)::CreateChannel(client2->getFileDescriptor(),socketoutput->getSocket());
     
-    pool2->addChannel(channel1);
+    pool2->add(channel1);
     pool1->close();
     
     printf("pool1 is %lx,pool2 is %lx \n",pool1.get_pointer(),pool2.get_pointer());
-    FileInputStream stream = createFileInputStream("./tmp/testdata");
+    FileInputStream stream = FileInputStream::New("./tmp/testdata");
     stream->open();
-    ByteArray data = createByteArray(1024*4);
+    ByteArray data = ByteArray::New(1024*4);
     while(1) {
         if(stream->read(data) > 0) {
             channel1->write(data);
@@ -115,9 +115,9 @@ int main() {
     }
     
     latch->await();
-    Md md = createMd();
-    auto ori = md->encodeFile(createFile("./tmp/testdata"));
-    auto test = md->encodeFile(createFile("./tmp/file"));
+    Md md = Md::New();
+    auto ori = md->encodeFile(File::New("./tmp/testdata"));
+    auto test = md->encodeFile(File::New("./tmp/file"));
     if(!ori->sameAs(test)) {
         TEST_FAIL("AsyncOutputChannelPool addChannel case1");
     }

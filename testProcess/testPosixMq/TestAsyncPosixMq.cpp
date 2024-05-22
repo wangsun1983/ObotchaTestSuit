@@ -42,7 +42,7 @@ void testAsyncProcessMq() {
       exit(0);
     } else {
       ProcessMq readMq1 = ProcessMq::New("asynctest2",true);
-	  readMq1->setListener(createPosixTestListener());
+	  readMq1->setListener(PosixTestListener::New());
 	  
       ProcessMqLatch->await();
       readMq1->clear();

@@ -18,28 +18,28 @@ using namespace obotcha;
 
 void testClose() {
     //prepare data
-    FileWatcher watcher = createFileWatcher();
+    FileWatcher watcher = FileWatcher::New();
     usleep(1000*100);
     watcher->close();
     usleep(1000*100);
     
     auto mypid = st(Process)::MyPid();
-    String cmd = createString("ls -la /proc/");
-    cmd = cmd->append(createString(mypid));
+    String cmd = String::New("ls -la /proc/");
+    cmd = cmd->append(String::New(mypid));
     cmd = cmd->append("/task");
     
     auto ret = st(System)::ExecuteForResult(cmd);
-    TextLineReader reader = createTextLineReader(ret);
+    TextLineReader reader = TextLineReader::New(ret);
     ArrayList<String> lines = reader->lines();
     ForEveryOne(str,lines) {
         printf("ss is [%s] \n",str->toChars());
     }
     
-    if(lines->size() != 4) {
+    if(lines->size() != 5) {
         TEST_FAIL("FileWatcher close case1,size is %zu",lines->size());
     }
     
-    if(!lines->get(3)->contains(createString(mypid))) {
+    if(!lines->get(3)->contains(String::New(mypid))) {
         TEST_FAIL("FileWatcher close case2");
     }
     

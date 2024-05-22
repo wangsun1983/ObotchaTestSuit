@@ -13,7 +13,7 @@
 
 using namespace obotcha;
 
-int testCloseOnExecPipe() {
+int testCloseExecPipe() {
 
   const int testDatalength = 32;
   char testData[testDatalength];
@@ -23,7 +23,7 @@ int testCloseOnExecPipe() {
 
   //int write(PipeType type,ByteArray data);
   //int read(PipeType type,ByteArray buff);
-  Pipe pp = Pipe::New(st(Pipe)::CloseOnExec);
+  Pipe pp = Pipe::New(st(IO)::FileControlFlags::CloseExec);
 
   int pid = fork();
   if(pid == 0) {
@@ -51,7 +51,7 @@ int testCloseOnExecPipe() {
    TEST_OK("[Pipe Test {closeonexe write/read()} case3]");
 
    //int closePipe(PipeType type);
-   Pipe pp2 = Pipe::New(st(Pipe)::CloseOnExec);
+   Pipe pp2 = Pipe::New(st(IO)::FileControlFlags::CloseExec);
 
    pid = fork();
    if(pid == 0) {
@@ -81,7 +81,7 @@ int testCloseOnExecPipe() {
     TEST_OK("[Pipe Test {closeonexe closePipe()} case3]");
 
     //int closePipe(PipeType type);
-    Pipe pp3 = Pipe::New(st(Pipe)::CloseOnExec);
+    Pipe pp3 = Pipe::New(st(IO)::FileControlFlags::CloseExec);
 
     pid = fork();
     if(pid == 0) {
@@ -102,6 +102,6 @@ int testCloseOnExecPipe() {
        }
      }
 
-     TEST_OK("[Pipe Test {closeonexe closePipe()} case6]");
-
+    TEST_OK("[Pipe Test {closeonexe closePipe()} case6]");
+    return 0;
 }

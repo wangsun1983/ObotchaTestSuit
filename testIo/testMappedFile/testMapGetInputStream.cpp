@@ -12,14 +12,14 @@ using namespace obotcha;
 
 void testMapGetInputStream() {
     while(1) {
-      File f = createFile("./tmp/testMapGetInputStream1.txt");
+      File f = File::New("./tmp/testMapGetInputStream1.txt");
       f->createNewFile();
       
-      FileOutputStream output = createFileOutputStream(f);
+      FileOutputStream output = FileOutputStream::New(f);
       output->open(O_TRUNC);
-      output->writeString(createString("hello!!"));
+      output->writeString(String::New("hello!!"));
       
-      MappedFile file = createMappedFile("./tmp/testMapGetInputStream1.txt",
+      MappedFile file = MappedFile::New("./tmp/testMapGetInputStream1.txt",
                                           256);
       auto stream = file->getInputStream();
       if(stream == nullptr) {

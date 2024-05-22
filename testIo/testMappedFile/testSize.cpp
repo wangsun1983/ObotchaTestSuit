@@ -12,14 +12,14 @@ using namespace obotcha;
 
 void testSize() {
     while(1) {
-      File f = createFile("./tmp/testMapGetInputStream2.txt");
+      File f = File::New("./tmp/testMapGetInputStream2.txt");
       f->createNewFile();
       
-      FileOutputStream output = createFileOutputStream(f);
+      FileOutputStream output = FileOutputStream::New(f);
       output->open(O_TRUNC);
-      output->writeString(createString("hello!!"));
+      output->writeString(String::New("hello!!"));
       
-      MappedFile file = createMappedFile("./tmp/testMapGetInputStream1.txt",
+      MappedFile file = MappedFile::New("./tmp/testMapGetInputStream1.txt",
                                           256);
       if(file->size() != 256) {
           TEST_FAIL("TestMappedFile size case1");

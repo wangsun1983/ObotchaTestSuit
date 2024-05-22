@@ -10,7 +10,7 @@ int test_md4() {
     File f = File::New("test_data.file");
     // String encrypt(File);
     while(1) {
-        Md md = Md::New(st(Md)::Md4);
+        Md md = Md::New(st(Md)::Type::Md4);
         String result = md->encodeFile(f);
 
         if(result == nullptr || result->size() == 0) {
@@ -25,7 +25,7 @@ int test_md4() {
 
     //String encrypt(String);
     while(1) {
-        Md md = Md::New(st(Md)::Md4);
+        Md md = Md::New(st(Md)::Type::Md4);
         String str = String::New("hello world");
         String result = md->encodeContent(str->toByteArray());
 

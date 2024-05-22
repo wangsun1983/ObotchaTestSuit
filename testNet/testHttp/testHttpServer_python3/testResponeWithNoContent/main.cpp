@@ -73,7 +73,6 @@ int main() {
   }
   latch->await();
   server->close();
-
   port++;
   setEnvPort(port);
   

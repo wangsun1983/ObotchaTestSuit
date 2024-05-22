@@ -14,14 +14,14 @@ using namespace obotcha;
 
 extern int testDefaultPipe();
 extern int testDirectPipe();
-extern int testCloseOnExecPipe();
+extern int testCloseExecPipe();
 extern int testNoBlockPipe();
 extern void testGetPipe();
 
 int main() {
     testDefaultPipe();
     testDirectPipe();
-    testCloseOnExecPipe();
+    testCloseExecPipe();
     testNoBlockPipe();
     testGetPipe();
 

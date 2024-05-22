@@ -14,8 +14,8 @@ using namespace obotcha;
 
 
 void testByteArrayWriterEdgeDetection() {
-    ByteArray data = createByteArray(4);
-    ByteArrayWriter writer = createByteArrayWriter(data);
+    ByteArray data = ByteArray::New(4);
+    ByteArrayWriter writer = ByteArrayWriter::New(data);
     
     writer->write<byte>(1);
     try {
@@ -38,7 +38,7 @@ void testByteArrayWriterEdgeDetection() {
     }
     writer->reset();
     
-    ByteArray data1 = createByteArray(5);
+    ByteArray data1 = ByteArray::New(5);
     try {
         writer->write(data1);
         TEST_FAIL("[TestByteArrayWriter edge detection case4]");

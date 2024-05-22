@@ -27,21 +27,21 @@ public:
 void testCloseNoWrite() {
     //prepare data
     while(1) {
-        File file = createFile("./tmp/testdata4.txt");
+        File file = File::New("./tmp/testdata4.txt");
         file->removeAll();
         if(!file->exists()) {
             file->createNewFile();
-            FileOutputStream stream = createFileOutputStream(file);
+            FileOutputStream stream = FileOutputStream::New(file);
             stream->open(st(IO)::FileControlFlags::Trunc);
-            stream->write(createString("hello world,this is a test data.")->toByteArray());
+            stream->write(String::New("hello world,this is a test data.")->toByteArray());
             stream->close();
         }
           
-        FileWatcher watcher = createFileWatcher();
-        File f = createFile("./tmp/testdata4.txt");
-        FileInputStream stream = createFileInputStream(f);
+        FileWatcher watcher = FileWatcher::New();
+        File f = File::New("./tmp/testdata4.txt");
+        FileInputStream stream = FileInputStream::New(f);
         stream->open();
-        int id = watcher->startWatch("./tmp/testdata4.txt",st(FileWatcher)::Full,createCloseNoWriteWatcher());
+        int id = watcher->startWatch("./tmp/testdata4.txt",st(FileWatcher)::Full,CloseNoWriteWatcher::New());
         usleep(1000*100);
         stream->close();
         usleep(1000*200);

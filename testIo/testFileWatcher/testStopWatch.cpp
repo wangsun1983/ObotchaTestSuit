@@ -30,24 +30,24 @@ void testStopWatch() {
     //prepare data
     while(1) {
         printf("stop watch trace1 \n");
-        File file = createFile("./tmp/testdata2.txt");
+        File file = File::New("./tmp/testdata2.txt");
         file->removeAll();
         if(!file->exists()) {
             file->createNewFile();
-            FileOutputStream stream = createFileOutputStream(file);
+            FileOutputStream stream = FileOutputStream::New(file);
             stream->open(st(IO)::FileControlFlags::Trunc);
-            stream->write(createString("hello world,this is a test data.")->toByteArray());
+            stream->write(String::New("hello world,this is a test data.")->toByteArray());
             stream->close();
         }
           
-        FileWatcher watcher = createFileWatcher();
-        int id = watcher->startWatch("./tmp/testdata2.txt",st(FileWatcher)::Open,createStopWatcher());
-        Thread t = createThread([]{
+        FileWatcher watcher = FileWatcher::New();
+        int id = watcher->startWatch("./tmp/testdata2.txt",st(FileWatcher)::Open,StopWatcher::New());
+        Thread t = Thread::New([]{
             usleep(1000 *100);
-            File f = createFile("./tmp/testdata2.txt");
-            FileOutputStream stream = createFileOutputStream(f);
+            File f = File::New("./tmp/testdata2.txt");
+            FileOutputStream stream = FileOutputStream::New(f);
             stream->open();
-            stream->write(createString("abc")->toByteArray());
+            stream->write(String::New("abc")->toByteArray());
         });
         t->start();
         
@@ -57,11 +57,11 @@ void testStopWatch() {
             TEST_FAIL("testFileWatcher stopWatch case1");
         }
         usleep(1000*50);
-        Thread t2 = createThread([]{
-            File f = createFile("./tmp/testdata2.txt");
-            FileOutputStream stream = createFileOutputStream(f);
+        Thread t2 = Thread::New([]{
+            File f = File::New("./tmp/testdata2.txt");
+            FileOutputStream stream = FileOutputStream::New(f);
             stream->open();
-            stream->write(createString("abc")->toByteArray());
+            stream->write(String::New("abc")->toByteArray());
         });
         t2->start();
         t2->join();
@@ -80,7 +80,7 @@ void testStopWatch() {
     
     while(1) {
         printf("stop watch trace4 \n");
-        FileWatcher watcher = createFileWatcher();
+        FileWatcher watcher = FileWatcher::New();
         int ret = watcher->stopWatch(123);
         if(ret == 0) {
             TEST_FAIL("testFileWatcher stopWatch case4");

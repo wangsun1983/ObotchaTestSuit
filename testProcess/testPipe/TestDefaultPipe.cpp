@@ -105,5 +105,5 @@ int testDefaultPipe() {
      }
 
      TEST_OK("[Pipe Test {default closePipe()} case6]");
-
+    return 0;
 }

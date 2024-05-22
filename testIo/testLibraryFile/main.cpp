@@ -16,10 +16,10 @@ using myfunc = int (*)(int , int );
 
 int main() {
     //first build test Library
-    String cmd = String::New("cd ./library && make");
+    String cmd = String::New("cd ./library_skip && make");
     st(System)::ExecuteForResult(cmd);
 
-    LibraryFile file = LibraryFile::New(String::New("./library/libtest.so"));
+    LibraryFile file = LibraryFile::New(String::New("./library_skip/libtest.so"));
     myfunc t = file->getMethod<int(*)(int,int)>(String::New("start"));
 
     int v1 = 100;

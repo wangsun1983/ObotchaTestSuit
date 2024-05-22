@@ -30,7 +30,7 @@ public:
     }
 };
 
-int main() {
+int testStartWatch() {
     //prepare data
     File file = File::New("./tmp/testdata.txt");
     file->removeAll();
@@ -62,4 +62,5 @@ int main() {
     }
     
     TEST_OK("testFileWatcher case100");
+    return 0;
 }

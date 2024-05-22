@@ -19,29 +19,30 @@ int testLockTimeout() {
   while(1) {
 	  int pid = fork();
 	  if(pid == 0) {
-		ProcessMutex mu = ProcessMutex::New("abc1");
-		AutoLock l(mu);
-		usleep(1000*500);
-		return -1;
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			AutoLock l(mu);
+			usleep(1000*500);
+			return -1;
 	  } else {
-		usleep(1000*100);
-		ProcessMutex mu = ProcessMutex::New("abc1");
-		TimeWatcher w = TimeWatcher::New();
-		w->start();
-		mu->lock(100);
-		long ret = w->stop();
-		if(ret < 95 || ret > 105) {
-			TEST_FAIL("testProcessMuex lock timeout case1,ret is %ld",ret);
-		}
-		
-		w->start();
-		mu->lock();
-		ret = w->stop();
-		if(ret < 295 || ret > 305) {
-			TEST_FAIL("testProcessMuex lock timeout case2,ret is %ld",ret);
-		}
-		int status = 0;
-		wait(&status);
+			usleep(1000*100);
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			TimeWatcher w = TimeWatcher::New();
+			w->start();
+			mu->lock(100);
+			long ret = w->stop();
+			if(ret < 95 || ret > 105) {
+				TEST_FAIL("testProcessMuex lock timeout case1,ret is %ld",ret);
+			}
+			
+			w->start();
+			mu->lock();
+			ret = w->stop();
+			if(ret < 295 || ret > 305) {
+				TEST_FAIL("testProcessMuex lock timeout case2,ret is %ld",ret);
+			}
+			int status = 0;
+			wait(&status);
+			mu->unlock();
 	  }
 	  break;
   }
@@ -50,23 +51,24 @@ int testLockTimeout() {
 	  int pid = fork();
 	  if(pid == 0) {
 		ProcessMutex mu = ProcessMutex::New("abc1");
-		AutoLock l(mu);
-		usleep(1000*100);
-		return -1;
+			AutoLock l(mu);
+			usleep(1000*100);
+			return -1;
 	  } else {
-		usleep(1000*150);
-		ProcessMutex mu = ProcessMutex::New("abc1");
-		TimeWatcher w = TimeWatcher::New();
-		w->start();
-		mu->lock(100);
-		auto ret = w->stop();
-		if(ret  > 5) {
-			TEST_FAIL("testProcessMuex lock timeout case3,ret is %ld",ret);
-		}
-		mu->unlock();
+			usleep(1000*150);
+			ProcessMutex mu = ProcessMutex::New("abc1");
+			TimeWatcher w = TimeWatcher::New();
+			w->start();
+			mu->lock(100);
+			auto ret = w->stop();
+			if(ret  > 5) {
+				TEST_FAIL("testProcessMuex lock timeout case3,ret is %ld",ret);
+			}
+			mu->unlock();
 	  }
 	  break;
   }
+
   TEST_OK("testProcessMuex lock timeout case100");
   return 0;
 }

@@ -89,7 +89,7 @@ def prepare_item_type(path):
     
     #do prepare 
     if is_need_prepare:
-        os.popen("sh prepare.sh").read()
+        build_result = os.popen("cd " + path + "&& chmod 777 prepare.sh && ./prepare.sh").read()
     
     if is_need_build:
         build_result = os.popen("cd " + path + "&& make 2>&1").read()

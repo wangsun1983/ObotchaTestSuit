@@ -15,8 +15,8 @@
 using namespace obotcha;
 
 void testEdgeDetection() {
-    ByteArray data = createByteArray(4);
-    ByteArrayReader reader = createByteArrayReader(data);
+    ByteArray data = ByteArray::New(4);
+    ByteArrayReader reader = ByteArrayReader::New(data);
     
     try {
         reader->read<byte>();
