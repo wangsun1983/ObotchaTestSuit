@@ -20,7 +20,11 @@ int main() {
   while(iter->hasValue()) {
     HostAddress addr = iter->getValue();
     if(addr->ip == nullptr || addr->ip->size() == 0) {
-      TEST_FAIL("Host test `ase1");
+      TEST_FAIL("Host test case1");
+    }
+    
+    if(addr->interface == nullptr || addr->interface->size() == 0) {
+        TEST_FAIL("Host test case2");
     }
     iter->next();
   }
@@ -29,7 +33,7 @@ int main() {
   auto iter2 = macs->getIterator();
   while(iter2->hasValue()) {
     HostMac addr = iter2->getValue();
-    //printf("MacAddress:interface is %s,address is %s \n",addr->interface->toChars(),addr->mac->toChars());
+    printf("MacAddress:interface is %s,address is %s \n",addr->interface->toChars(),addr->mac->toChars());
     if(addr->interface == nullptr || addr->interface->size() == 0) {
       TEST_FAIL("Host test case2");
     }

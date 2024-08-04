@@ -26,7 +26,7 @@ void testRsa3Pcks1() {
   stream->close();
 
   String key = String::New("12345678");
-  Md md5sum = Md::New(st(Md)::Md5);
+  Md md5sum = Md::New(st(Md)::Type::Md5);
   String testDataMd5 = md5sum->encodeFile(data);
 
   while(1) {

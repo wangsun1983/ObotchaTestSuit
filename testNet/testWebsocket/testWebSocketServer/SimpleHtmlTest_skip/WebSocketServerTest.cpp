@@ -13,6 +13,7 @@
 #include "WebSocketComposer.hpp"
 #include "File.hpp"
 #include "FileOutputStream.hpp"
+#include "Inet4Address.hpp"
 #include "WebSocketServerBuilder.hpp"
 
 using namespace obotcha;
@@ -35,7 +36,7 @@ public:
         //WebSocketFrameComposer mComposer = createWebSocketFrameComposer(false);
         
         //int ret = st(NetUtils)::sendTcpPacket(fd,mComposer->generateMessageFrame(st(WebSocketProtocol)::OPCODE_TEXT,ByteArray::New(response)));
-        WebSocketComposer composer = client->getComposer();
+        //WebSocketComposer composer = client->getComposer();
 
         //ArrayList<ByteArray> text = composer->genTextMessage(client,String::New("hello world from server"));
         //int ret = st(NetUtils)::sendTcpPacket(fd,text->get(0));
@@ -82,7 +83,7 @@ int main() {
     MyWsListener l = MyWsListener::New();
 
     
-    InetAddress address = InetAddress::New(1234);
+    InetAddress address = Inet4Address::New(1234);
     WebSocketServer server = WebSocketServerBuilder::New()
                             ->setInetAddr(address)
                             ->addListener("mytest",l)

@@ -29,11 +29,12 @@ def scan_items(path):
             build_items.append(path)
             break
         
-        folder = Path(path + "/" + filename)
+        folder_path = path + "/" + filename
+        folder = Path(folder_path)
         if folder.is_dir():
-            if path.find("skip") > 0:
+            if folder_path.endswith("skip") > 0:
                 return
-            scan_items(path+"/" + filename)
+            scan_items(folder_path)
 
 def prepare_port_record_file():
     try:
