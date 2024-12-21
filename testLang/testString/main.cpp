@@ -45,9 +45,12 @@ extern void TestStringRegionMatches();
 extern void TestStringregionMatchesIgnoreCase();
 extern void TestHexInt();
 extern void TestOctInt();
+extern void TestStringEndsWith();
 
 int main() {
-  
+
+  TestStringEndsWith();
+
   TestOctInt();
   
   TestHexInt();
@@ -109,6 +112,8 @@ int main() {
   TestBinaryInt();
   
   TestStringStartsWith();
+
   TestStringStaticIgnoreCase();
+
   return 0;
 }

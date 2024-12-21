@@ -97,4 +97,13 @@ void trimtest() {
         TEST_OK("String trimAll Special test12");
         break;
     }
+    
+    while(1) {
+        String str = String::New("    ");
+        auto str2 = str->trim();
+        if(str2->size() != 0) {
+            TEST_FAIL("String trimAll Special test4_1");
+        }
+        break;
+    }
 }

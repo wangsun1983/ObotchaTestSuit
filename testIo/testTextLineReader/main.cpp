@@ -10,7 +10,10 @@
 #include "FileOutputStream.hpp"
 
 using namespace obotcha;
+
 extern void testTextLineReader();
+extern void testTextLineReaderNewLine();
+extern void testTextLineReaderEmpty();
 
 int main() {
   //prepare data
@@ -26,5 +29,7 @@ int main() {
   }
 
   testTextLineReader();
+  testTextLineReaderNewLine();
+  testTextLineReaderEmpty();
   return 0;
 }

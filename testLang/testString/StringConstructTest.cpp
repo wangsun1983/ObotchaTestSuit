@@ -212,8 +212,8 @@ void StringConstructTest() {
         //_String(char v);
         char v18 = 112;
         String str23 = String::New(v18);
-        if(!str23->sameAs("112")) {
-            TEST_FAIL("String construct test24");
+        if(!str23->sameAs("p")) {
+            TEST_FAIL("String construct test24,str23 is %s ",str23->toChars());
             break;
         }
 

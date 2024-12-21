@@ -201,7 +201,7 @@ void basetest() {
     Float v2 = Float::New(1.3f);
     String str2 = String::New(v2);
     if(!str2->contains("1.")) {
-      TEST_FAIL("BaseTest String construct test24");
+      TEST_FAIL("BaseTest String construct test24,str2 is %s",str2->toChars());
       break;
     }
 
